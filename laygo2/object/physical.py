@@ -693,6 +693,9 @@ class Instance(IterablePhysicalObject):
     cellname = None
     """str: The cell name of the instance."""
 
+    viewname = None
+    """str: The view name of the instance."""
+
     shape = None
     """np.array([int, int]) or None: The shape of the instance mosaic. None if the instance is non-mosaic."""
 
@@ -795,8 +798,8 @@ class Instance(IterablePhysicalObject):
         """int: The width of the instance."""
         return abs(self.bbox[1][0] - self.bbox[0][0])
 
-    def __init__(self, xy, libname, cellname, shape=None, pitch=None, transform='R0', unit_size=np.array([0, 0]),
-                 pins=None, name=None, params=None):
+    def __init__(self, xy, libname, cellname, viewname='layout', shape=None, pitch=None, transform='R0',
+                 unit_size=np.array([0, 0]), pins=None, name=None, params=None):
         """
         Constructor.
 
@@ -808,6 +811,8 @@ class Instance(IterablePhysicalObject):
             The library name of the instance.
         cellname : str
             The cell name of th instance.
+        viewname : str, optional
+            The view name of th instance. Default value is 'layout'.
         shape : numpy.ndarray(dtype=int) or None
             The size of the instance array. The format is [col, row].
         pitch : numpy.ndarray(dtype=int) or None
@@ -828,6 +833,7 @@ class Instance(IterablePhysicalObject):
         xy = np.asarray(xy)
         self.libname = libname
         self.cellname = cellname
+        self.viewname = viewname
         if shape is not None:
             _shape = np.asarray(shape)
             if _shape.shape != (2, ):
@@ -914,8 +920,8 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
     native_elements = None
     # Dict[PhysicalObject] the elements that compose the virtual instance. Its keys represent the names of the elements.
 
-    def __init__(self, xy, libname, cellname, native_elements, shape=None, pitch=None, transform='R0', unit_size=np.array([0, 0]),
-                 pins=None, name=None, params=None):
+    def __init__(self, xy, libname, cellname, native_elements, viewname='layout', shape=None, pitch=None,
+                 transform='R0', unit_size=np.array([0, 0]), pins=None, name=None, params=None):
         """
         Constructor.
 
@@ -945,7 +951,7 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
         """
         self.native_elements = native_elements
 
-        Instance.__init__(self, xy=xy, libname=libname, cellname=cellname, shape=shape, pitch=pitch,
+        Instance.__init__(self, xy=xy, libname=libname, cellname=cellname, viewname=viewname, shape=shape, pitch=pitch,
                           transform=transform, unit_size=unit_size, pins=pins, name=name, params=params)
         #Instance.__init__(self, xy=xy, libname='VirtualInstance', cellname='VirtualInstance', shape=shape, pitch=pitch,
         #                  transform=transform, unit_size=unit_size, pins=pins, name=name, params=params)

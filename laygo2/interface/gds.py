@@ -34,10 +34,13 @@ __status__ = "Prototype"
 
 # TODO: Implement import functions (similar to load in python-gdsii)
 
-from laygo2.interface.gds_helper import *
-import laygo2.object
+import logging
+import pprint
+
 import numpy as np
-import pprint, logging
+
+import laygo2.object
+from laygo2.interface.gds_helper import *
 
 
 class Library:

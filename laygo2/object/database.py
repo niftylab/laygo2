@@ -199,22 +199,23 @@ class Design(BaseDatabase):
     virtual_instances = None
 
     def append(self, item):
-        item_name, _item = BaseDatabase.append(self, item)
         if isinstance(item, list) or isinstance(item, np.ndarray):
-            [self.append(i) for i in item]
-        elif item.__class__ == laygo2.object.Rect:
-            self.rects[item_name] = item
-        elif item.__class__ == laygo2.object.Path:
-            self.paths[item_name] = item
-        elif item.__class__ == laygo2.object.Pin:
-            self.pins[item_name] = item
-        elif item.__class__ == laygo2.object.Text:
-            self.texts[item_name] = item
-        elif item.__class__ == laygo2.object.Instance:
-            self.instances[item_name] = item
-        elif item.__class__ == laygo2.object.VirtualInstance:
-            self.virtual_instances[item_name] = item
-        return item_name, item
+            return [self.append(i) for i in item]
+        else:
+            item_name, _item = BaseDatabase.append(self, item)
+            if item.__class__ == laygo2.object.Rect:
+                self.rects[item_name] = item
+            elif item.__class__ == laygo2.object.Path:
+                self.paths[item_name] = item
+            elif item.__class__ == laygo2.object.Pin:
+                self.pins[item_name] = item
+            elif item.__class__ == laygo2.object.Text:
+                self.texts[item_name] = item
+            elif item.__class__ == laygo2.object.Instance:
+                self.instances[item_name] = item
+            elif item.__class__ == laygo2.object.VirtualInstance:
+                self.virtual_instances[item_name] = item
+            return item_name, item
 
     def __iter__(self):
         """Iterator function. Directly mapped to its elements."""

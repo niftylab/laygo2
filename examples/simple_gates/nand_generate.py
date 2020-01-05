@@ -26,7 +26,7 @@ import numpy as np
 import pprint
 import laygo2
 import laygo2.interface
-import examples.technology_advanced as tech
+import examples.technology_example as tech
 
 # Parameter definitions ##############
 # Templates
@@ -122,13 +122,24 @@ po0 = dsn.pin(name='O', grid=r23, mn=r23.mn.bbox(ro0))
 pvss0 = dsn.pin(name='VSS', grid=r12, mn=r12.mn.bbox(rvss0))
 pvdd0 = dsn.pin(name='VDD', grid=r12, mn=r12.mn.bbox(rvdd0))
 
+print(dsn)
+
+# for debug
+#inst0 = laygo2.object.physical.Instance(name='I0', xy=[-5, -5], libname='test', cellname='mytest', shape=[4, 4],
+#                                        pitch=[2, 2], unit_size=[1, 1], pins=None, transform='R0')
+#inst1 = laygo2.object.physical.Instance(name='I1', xy=[-20, -20], libname='test', cellname='mytest', shape=[4, 4],
+#                                        pitch=[2, 2], unit_size=[1, 1], pins=None, transform='MX')
+#dsn.append([inst0, inst1])
+
 # 7. Export to physical database.
 print("Export design")
-abstract = True  # export abstract
-laygo2.interface.gds.export(lib, filename=libname+'_'+cellname+'.gds', cellname=None, scale=1e-9,
-                            layermapfile="../technology_advanced/advtech.layermap", physical_unit=1e-9, logical_unit=0.001,
-                            pin_label_height=0.1, pin_annotate_layer=['text', 'drawing'], text_height=0.1,
-                            abstract_instances=True)
+abstract = False  # export abstract
+#laygo2.interface.gds.export(lib, filename=libname+'_'+cellname+'.gds', cellname=None, scale=1e-9,
+#                            layermapfile="../technology_example/technology_example.layermap", physical_unit=1e-9, logical_unit=0.001,
+#                            pin_label_height=0.1, pin_annotate_layer=['text', 'drawing'], text_height=0.1,
+#                            abstract_instances=abstract)
+skill_str = laygo2.interface.skill.export(lib, filename=libname+'_'+cellname+'.il', cellname=None, scale=1e-3)
+print(skill_str)
 
 # 7-a. Import the GDS file back and display
 #with open('nand_generate.gds', 'rb') as stream:
@@ -137,8 +148,9 @@ laygo2.interface.gds.export(lib, filename=libname+'_'+cellname+'.gds', cellname=
 # 8. Export to a template database file.
 nat_temp = dsn.export_to_template()
 laygo2.interface.yaml.export_template(nat_temp, filename=libname+'_templates.yaml', mode='append')
+#print(in0.native_elements['diff0'])
 #nat_temp.export_to_yaml()
-print(nat_temp)
-print(lib)
+#print(nat_temp)
+#print(lib)
 #nat_temp = laygo2.template.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate', xy=[[0, 0], [100, 100]],
 #                                                  pins={'A':pa0, 'B':pb0, 'O':po0, 'VSS':pvss0, 'VDD':pvdd0})

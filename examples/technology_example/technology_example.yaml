@@ -32,7 +32,7 @@ templates: # Primitive template parameters
           layer: ['poly', 'drawing']
           xy: [[12, 5], [18, 95]]
         metal1_s:
-          layer: ['metal1', 'drawing']
+          layer: ['metal2', 'drawing']
           xy: [[-7, 23], [7, 77]]
         metal1_d:
           layer: ['metal1', 'drawing']

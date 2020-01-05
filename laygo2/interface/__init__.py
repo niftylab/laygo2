@@ -26,5 +26,5 @@
 
 from laygo2.interface import *
 import laygo2.interface.gds
-import laygo2.interface.virtuoso
+import laygo2.interface.skill
 import laygo2.interface.yaml

@@ -10,7 +10,7 @@ laygo2_test:
     pins:
       A:
         layer:
-        - metal3
+        - M3
         - pin
         name: A
         netname: A
@@ -21,7 +21,7 @@ laygo2_test:
           - 110
       B:
         layer:
-        - metal3
+        - M3
         - pin
         name: B
         netname: B
@@ -32,7 +32,7 @@ laygo2_test:
           - 110
       O:
         layer:
-        - metal3
+        - M3
         - pin
         name: O
         netname: O
@@ -43,7 +43,7 @@ laygo2_test:
           - 140
       VDD:
         layer:
-        - metal2
+        - M2
         - pin
         name: VDD
         netname: VDD
@@ -54,7 +54,7 @@ laygo2_test:
           - 195
       VSS:
         layer:
-        - metal2
+        - M2
         - pin
         name: VSS
         netname: VSS

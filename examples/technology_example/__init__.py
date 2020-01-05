@@ -1,4 +1,4 @@
-#!/usr/bin/python
+# -*- coding: utf-8 -*-
 ########################################################################################################################
 #
 # Copyright (c) 2014, Regents of the University of California
@@ -22,12 +22,8 @@
 #
 ########################################################################################################################
 
-"""
-This module implements interactive interfaces with virtuoso.
+"""Advanced example technology module"""
 
-"""
+from .technology_example_templates import load_templates
+from .technology_example_grids import load_grids
 
-
-__author__ = ""
-__maintainer__ = ""
-__status__ = "Prototype"

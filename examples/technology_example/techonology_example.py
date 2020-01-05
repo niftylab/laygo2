@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/python
 ########################################################################################################################
 #
 # Copyright (c) 2014, Regents of the University of California
@@ -22,8 +22,4 @@
 #
 ########################################################################################################################
 
-"""Advanced example technology module"""
-
-from .advtech_templates import load_templates
-from .advtech_grids import load_grids
-
+libname = 'technology_example'

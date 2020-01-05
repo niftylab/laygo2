@@ -34,9 +34,9 @@ import pprint
 
 # Technology parameters
 if __name__ == '__main__':
-    tech_fname = './advtech_parameters.yaml'
+    tech_fname = './technology_example.yaml'
 else:
-    tech_fname = '../technology_advanced/advtech_parameters.yaml'
+    tech_fname = '../technology_example/technology_example.yaml'
 with open(tech_fname, 'r') as stream:
     try:
         tech_params = yaml.safe_load(stream)
