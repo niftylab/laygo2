@@ -1274,6 +1274,19 @@ class RoutingGrid(Grid):
         p = laygo2.object.physical.Pin(name=name, xy=_xy, layer=layer, netname=netname, params=params)
         return p
 
+
+class ParameterizedGrid(Grid):
+    """A parameterized grid to support flexible templates."""
+    # TODO: implement this.
+
+
+class ParameterizedPlacementGrid(Grid):
+    # TODO: implement this.
+
+
+class ParameterizedRoutingGrid(Grid):
+    # TODO: implement this.
+
 # Tests.
 if __name__ == '__main__':
     print("Testing 1d grid")
