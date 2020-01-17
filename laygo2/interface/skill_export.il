@@ -2,6 +2,7 @@
 ; - Initial code from BAG_framework (https://github.com/ucb-art/BAG_framework).
 ; - Users need to install CCSinvokeCdfCallbacks() from Cadence Online Support
 ;   (support.cadence.com) to enable pcell export.
+;   (link: https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1Od0000000namyEAA&pageName=ArticleContent)
 
 ; create or reset a library
 procedure( _laygo2_reset_library(libname tech_libname "tt")
@@ -55,8 +56,8 @@ procedure( _laygo2_generate_instance( cv name libname cellname viewname loc orie
                         if( params_order == nil then  ; if parameter order is not specified,
                             params_order = mapcar( lambda( (x) car(x) ) params )
                         );if
-                        abInvokeCdfCallbacks(obj ?order params_order)  ; run callback functions
-                        ;CCSinvokeCdfCallbacks(obj ?order params_order)  ; run callback functions
+                        ;abInvokeCdfCallbacks(obj ?order params_order)  ; run callback functions
+                        CCSinvokeCdfCallbacks(obj ?order params_order)  ; run callback functions
                     );when
                 else  ; for vanilla cells
                     obj = dbCreateInst(cv inst_cv name loc orient)
@@ -68,8 +69,8 @@ procedure( _laygo2_generate_instance( cv name libname cellname viewname loc orie
                         if( params_order == nil then  ; if parameter order is not specified,
                             params_order = mapcar( lambda( (x) car(x) ) params )
                         );if
-                        abInvokeCdfCallbacks(obj ?order params_order)  ; run callback functions
-                        ;CCSinvokeCdfCallbacks(obj ?order params_order)  ; run callback functions
+                        ;abInvokeCdfCallbacks(obj ?order params_order)  ; run callback functions
+                        CCSinvokeCdfCallbacks(obj ?order params_order)  ; run callback functions
                     );when
                 else  ; for vanilla cells
                     obj = dbCreateSimpleMosaic(cv inst_cv name loc orient num_rows num_cols sp_rows sp_cols)
