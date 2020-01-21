@@ -1278,14 +1278,15 @@ class RoutingGrid(Grid):
 class ParameterizedGrid(Grid):
     """A parameterized grid to support flexible templates."""
     # TODO: implement this.
-
+    pass
 
 class ParameterizedPlacementGrid(Grid):
     # TODO: implement this.
-
+    pass
 
 class ParameterizedRoutingGrid(Grid):
     # TODO: implement this.
+    pass
 
 # Tests.
 if __name__ == '__main__':
