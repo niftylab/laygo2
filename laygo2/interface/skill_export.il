@@ -113,7 +113,7 @@ procedure( _laygo2_generate_pin( cv, name, layer, bbox)
 ; test routine
 let( (_laygo2_test cv)
     _laygo2_test = nil
-    if( _laygo_test then
+    if( _laygo2_test then
 
         libname="test2"
         tech_libname="testtech"
