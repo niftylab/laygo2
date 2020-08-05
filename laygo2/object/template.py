@@ -206,7 +206,7 @@ class NativeInstanceTemplate(Template):
         """
         return self._pins
 
-    def generate(self, name=None, shape=None, pitch=np.array([0, 0]), transform='R0', params=None):
+    def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None):
         """
         Creates an instance from this template. See laygo2.object.template.Template.generate() for details.
 
@@ -228,7 +228,7 @@ class NativeInstanceTemplate(Template):
         laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance: the generated instance.
         """
         return laygo2.object.physical.Instance(libname=self.libname, cellname=self.cellname, xy=np.array([0, 0]),
-                                               shape=shape, pitch=pitch, unit_size=self.size, pins=self.pins,
+                                               shape=shape, pitch=pitch, unit_size=self.size(params), pins=self.pins(params),
                                                transform=transform, name=name, params=params)
 
     # I/O functions
