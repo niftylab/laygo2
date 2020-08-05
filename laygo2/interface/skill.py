@@ -51,7 +51,7 @@ def _py2skill_list(pylist, scale=0.001):
         if isinstance(item, list):  # nested list
             list_str += _py2skill_list(item) + " "
         elif isinstance(item, np.ndarray):  # nested list
-            list_str += _py2skill_list(item) + " "
+            list_str += _py2skill_list(item, scale=scale) + " "
         elif isinstance(item, str):
             list_str += "\"" + str(item) + "\" "
         elif isinstance(item, int) or isinstance(item, np.integer):
