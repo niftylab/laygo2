@@ -169,10 +169,10 @@ class GridLibrary(Library):
 class Design(BaseDatabase):
     """This class implements layout libraries that contain layout objects as their child objects. """
     def get_libname(self):
-        return self.name
+        return self._libname
 
     def set_libname(self, val):
-        self.name = val
+        self._libname = val
 
     libname = property(get_libname, set_libname)
     """str: library name"""
