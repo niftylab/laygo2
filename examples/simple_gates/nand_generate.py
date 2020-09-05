@@ -124,26 +124,19 @@ pvdd0 = dsn.pin(name='VDD', grid=r12, mn=r12.mn.bbox(rvdd0))
 
 print(dsn)
 
-# for debug
-#inst0 = laygo2.object.physical.Instance(name='I0', xy=[-5, -5], libname='test', cellname='mytest', shape=[4, 4],
-#                                        pitch=[2, 2], unit_size=[1, 1], pins=None, transform='R0')
-#inst1 = laygo2.object.physical.Instance(name='I1', xy=[-20, -20], libname='test', cellname='mytest', shape=[4, 4],
-#                                        pitch=[2, 2], unit_size=[1, 1], pins=None, transform='MX')
-#dsn.append([inst0, inst1])
-
 # 7. Export to physical database.
 print("Export design")
 abstract = False  # export abstract
-#laygo2.interface.gds.export(lib, filename=libname+'_'+cellname+'.gds', cellname=None, scale=1e-9,
-#                            layermapfile="../technology_example/technology_example.layermap", physical_unit=1e-9, logical_unit=0.001,
-#                            pin_label_height=0.1, pin_annotate_layer=['text', 'drawing'], text_height=0.1,
-#                            abstract_instances=abstract)
+laygo2.interface.gds.export(lib, filename=libname+'_'+cellname+'.gds', cellname=None, scale=1e-9,
+                            layermapfile="../technology_example/technology_example.layermap", physical_unit=1e-9, logical_unit=0.001,
+                            pin_label_height=0.1, pin_annotate_layer=['text', 'drawing'], text_height=0.1,
+                            abstract_instances=abstract)
 skill_str = laygo2.interface.skill.export(lib, filename=libname+'_'+cellname+'.il', cellname=None, scale=1e-3)
 print(skill_str)
 
 # 7-a. Import the GDS file back and display
-#with open('nand_generate.gds', 'rb') as stream:
-#    pprint.pprint(laygo2.interface.gds.readout(stream, scale=1e-9))
+with open(libname+'_'+cellname+'.gds', 'rb') as stream:
+    pprint.pprint(laygo2.interface.gds.readout(stream, scale=1e-9))
 
 # 8. Export to a template database file.
 nat_temp = dsn.export_to_template()
