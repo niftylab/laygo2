@@ -141,9 +141,3 @@ with open(libname+'_'+cellname+'.gds', 'rb') as stream:
 # 8. Export to a template database file.
 nat_temp = dsn.export_to_template()
 laygo2.interface.yaml.export_template(nat_temp, filename=libname+'_templates.yaml', mode='append')
-#print(in0.native_elements['diff0'])
-#nat_temp.export_to_yaml()
-#print(nat_temp)
-#print(lib)
-#nat_temp = laygo2.template.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate', xy=[[0, 0], [100, 100]],
-#                                                  pins={'A':pa0, 'B':pb0, 'O':po0, 'VSS':pvss0, 'VDD':pvdd0})
