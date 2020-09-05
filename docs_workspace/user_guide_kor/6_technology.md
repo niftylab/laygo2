@@ -5,16 +5,14 @@ laygo2 제네레이터 코드에서 관련 Paython module들(template, grid)를 
 
 * ***(technology_name)*_example.layermap**: 공정 PDK에 의해 정의된 레이아웃 레이어 정보
 * ***(technology_name)*_example.lyp**: (optional) KLayout용 레이어 디스플레이 정보
-* ***(technology_name)*_example.yaml**: (_template.py, _grid.py파일들에 의하여 사용될 시) 레이아웃 관련 파라미터들
+* ***(technology_name)*_templates.py**: Template 정의 파이선 코드
 * ***(technology_name)*_grids.py**: Grid 정의 파이선 코드
-* ***(technology_name)*_templates.py**: Grid 정의 파이선 코드
+* ***(technology_name)*_example.yaml**: (_template.py, _grid.py파일들에 의하여 사용될 시) 레이아웃 관련 파라미터들
 
 Laygo2의 공정 패키지 예제는 [다음 경로](../../examples/technology_example)에서 찾을 수 있다.
 
 공정 패키지를 구성하는 각각의 파일들에 대한 설명은 아래에 기술되어 있다.
-사용자가 직접 layermap파일을 만들 경우, 행마다 레이어 정보를 정의하는 다음 형식의 파일을 생성하면 된다 
-(상세한 내용은 예제 layermap 파일 참조).
-layername layerpurpose stream_layer_number datatype
+
 
 ## *(technology_name)*_example.layermap
 
@@ -22,14 +20,17 @@ layername layerpurpose stream_layer_number datatype
 내부 레이아웃 개체 생성 및 변환, GDS생성, Skill script출력 등에 사용된다. 
 
 해당 layermap 파일은 일반적으로 공정 PDK에서 제공된다. 
+사용자가 직접 layermap파일을 만들 경우, 행마다 레이어 정보를 정의하는 다음 형식의 파일을 생성하면 된다 
+(상세한 내용은 예제 layermap 파일 참조).
 
-laygo2의 레이아웃 생성 과정 및 결과물에 관여하는 다양한 물리적(physical), 추상적(abstract) 개체들을 
-구현한 클래스들을 포함한다. Object 패키지을 구성하는 모듈들의 종류는 다음과 같다.
+*layername layerpurpose stream_layer_number datatype*
 
-* **[physical 모듈](#physical-모듈)**: 레이아웃을 구성하는 물리 개체들에 관한 패키지.
-* **[template 모듈](#template-모듈)**: 레이아웃 인스턴스를 생성하는 다양한 종류의 템플릿을 기술하는 클래스들을 
-포함한다.
-* **[grid 모듈](#grid-모듈)**: 공정 포팅 및 파라미터화가 용이한 레이아웃 생성을 위하여 도입된 추상화된 격자들을 
-기술하는 클래스들을 포함한다.
-* **[database 모듈](#database-모듈)**: 생성된 레이아웃 디자인의 계층구조를 담는 라이브러리 및 디자인 클래스들을 
-포함한다.
+
+## *(technology_name)*_example.yaml
+
+공정 패키지의 템플릿 및 그리드 정의 파일들 (_templates.py, _grids.py)에서 사용되는 다양한 파라미터들을
+모아놓은 파일. 해당 파일은 필수적으로 요구되는 것은 아니며, 실제 templates.py, grids.py파일을 작성하는 
+형태에 따라 필요하지 않을 수 있다. 예제 공정 패키지에서는 해당 파일에서 템플릿의 크기(unit_size), 핀 정보(pins)
+구조 정보들 (rects), 그리고 그리드의 종류, 크기, 좌표들, 라우팅 그리드 정보들 (레이어, 방향, via 등)을 
+저장하고 있다.
+
