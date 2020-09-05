@@ -9,7 +9,7 @@ laygo2 제네레이터 코드에서 관련 Paython module들(template, grid)를 
 * ***(technology_name)*_grids.py**: Grid 정의 파이선 코드
 * ***(technology_name)*_templates.py**: Grid 정의 파이선 코드
 
-Laygo2의 공정 패키지 예제는 [다음 경로](../../example/technology_example)에 기술되어 있다.
+Laygo2의 공정 패키지 예제는 [다음 경로](../../examples/technology_example)에 기술되어 있다.
 
 공정 패키지를 구성하는 각각의 파일들에 대한 설명은 아래에 기술되어 있다.
 
