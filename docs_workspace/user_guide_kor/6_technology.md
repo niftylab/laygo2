@@ -53,6 +53,6 @@ load_grids()라는 함수가호출되면, 공정에서 사용될 다양한 그�
 저장하고 있다.
 
 
-## *__init__.py*
+## __init__.py
 
 패키지 로드시 load_templates / load_grids 함수들을 읽을 수 있도록 하는 코드가 들어 있다.
