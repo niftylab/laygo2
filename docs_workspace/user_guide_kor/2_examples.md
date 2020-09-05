@@ -11,7 +11,7 @@
 Laygo2프로젝트는 코드의 대량 수정이 필요한 초기 개발 단계에 있기 때문에 pip를 이용한 설치를 지원하지 않는다.
 대신 github repository를 clone하는 방법으로 쉽게 laygo2를 다운로드 할 수 있다. 
 
-    >>>> git clone XX
+    >>>> git clone https://github.com/niftylab/laygo2.git
     
 이 경우, 코드를 최신 상태로 유지하기 위하여, 주기적으로 다음 명령어를 이용하여 github에서 최신 코드를 다운로드 하기를 권장한다.
 
