@@ -3,7 +3,8 @@
 신규 공정에서 Laygo2를 설치하기 위해서는, 해당 공정에 대한 다음 파일들을 준비하여, 
 laygo2 제네레이터 코드에서 관련 Paython module들(template, grid)를 import할 수 있도록 한다.
 
-* ***(technology_name)*_example.layermap**:
+* ***(technology_name)*_example.layermap**: 공정 레이어 이름
+
 
 
 laygo2는 다음과 같은 패키지들로 구성되어 있다.
