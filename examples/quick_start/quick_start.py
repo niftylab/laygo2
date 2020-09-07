@@ -61,7 +61,6 @@ lib = laygo2.object.database.Library(name=libname)
 dsn = laygo2.object.database.Design(name=cellname)
 lib.append(dsn)
 
-'''
 # 3. Create instances.
 print("Create instances")
 in0 = tnmos.generate(name='MN0', params={'nf': nf_b})
@@ -142,4 +141,4 @@ with open(libname+'_'+cellname+'.gds', 'rb') as stream:
 # 8. Export to a template database file.
 nat_temp = dsn.export_to_template()
 laygo2.interface.yaml.export_template(nat_temp, filename=libname+'_templates.yaml', mode='append')
-'''
+
