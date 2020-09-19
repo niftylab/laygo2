@@ -137,6 +137,20 @@ class Library(BaseDatabase):
 
     libname = property(get_libname, set_libname)
     """str: library name"""
+    
+    def append(self, item):
+        if isinstance(item, list) or isinstance(item, np.ndarray):
+            item_name_list = []
+            item_list = []
+            for i in item:
+                _item_name, _item = self.append(i)
+                item_name_list.append(_item_name)
+                item_list.append(_item)
+            return item_name_list, item_list
+        else:
+            item_name, item = BaseDatabase.append(self, item)
+            item.libname = self.name  # update library name
+            return item_name, item
 
     def __init__(self, name, params=None, elements=None):
         """
@@ -245,6 +259,7 @@ class Design(BaseDatabase):
         """Returns the summary of the object information."""
         return \
             BaseDatabase.summarize(self) + " \n" + \
+            "    libname:" + str(self.libname) + " \n" + \
             "    rects:" + str(self.rects) + " \n" + \
             "    paths:" + str(self.paths) + " \n" + \
             "    pins:" + str(self.pins) + " \n" + \

@@ -916,6 +916,11 @@ class Grid:
     _xy = None
     """List[OneDimGrid]: the list contains the 1d-grid objects for x and y axes."""
 
+    @property
+    def elements(self):
+        return [self._xy[0].elements, self._xy[1].elements]
+    """List[OneDimGrid]: the list contains the 1d-grid objects for x and y axes."""
+
     phy2abs = None
     """PhyToAbsGridConverter(master=self)"""
 

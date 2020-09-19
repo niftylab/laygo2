@@ -58,6 +58,8 @@ PhysicalObject 클래스는 물리 개체들의 기본적인 동작을 구현하
     * **left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right**: *numpy.ndarray(np.int)*, 
 개체와 관련된 주요 좌표들 (pointers의 일부).
 
+![주요 포인터 위치들](../assets/img/user_guide_pointers.png "laygo2 p.")
+
 * **주요 메소드**
     * **\_\_init\_\_(xy, name, params=None)**: 생성자.
 
