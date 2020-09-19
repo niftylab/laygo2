@@ -998,6 +998,11 @@ class Grid:
         self.phy2abs = _PhyToAbsGridConverter(master=self)
         self.abs2phy = _AbsToPhyGridConverter(master=self)
 
+    @property
+    def elements(self):
+        """list: returns elements of subgrids ([_xy[0].elements, _xy[1].elements]). """
+        return [self._xy[0].elements, self._xy[1].elements]
+
     # Indexing and slicing functions
     def __getitem__(self, pos):
         return self.abs2phy.__getitem__(pos)
@@ -1098,8 +1103,8 @@ class Grid:
         return self.__repr__() + " " \
                                  "name: " + self.name + ", " + \
                "class: " + self.__class__.__name__ + ", " + \
-               "scope: " + str(self.range.tolist()) #+ ", " + \
-        #      "elements: " + str(self.elements)
+               "scope: " + str(self.range.tolist()) + ", " + \
+               "elements: " + str(self.elements)
 
 
 # Regular classes.

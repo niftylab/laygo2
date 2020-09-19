@@ -64,10 +64,10 @@ def _py2skill_list(pylist, scale=0.001):
 
 def _translate_obj(objname, obj, scale=0.001, master=None):
     """Convert an object to corresponding scale commands."""
-    if master is None:  # if the translated object has a master (e.g. VirtualInstance)
+    if master is None:  
         mxy = np.array([0, 0])
         mtf = 'R0'
-    else:
+    else: # if the translated object has a master (e.g. VirtualInstance)
         mxy = master.xy
         mtf = master.transform
     if obj.__class__ == laygo2.object.Rect:
@@ -97,6 +97,10 @@ def _translate_obj(objname, obj, scale=0.001, master=None):
         # Invoke _laygo2_generate_instance( cv name libname cellname viewname loc orient num_rows num_cols
         # sp_rows sp_cols params params_order )
         _xy = mxy + np.dot(obj.xy, tf.Mt(mtf).T)
+        if master is None:  
+            transform = obj.transform
+        else: # if the translated object has a master (e.g. VirtualInstance)
+            transform = tf.combine(obj.transform, master.transform)
         if obj.shape is None:
             num_rows = 1
             num_cols = 1
@@ -109,13 +113,13 @@ def _translate_obj(objname, obj, scale=0.001, master=None):
             sp_cols = _py2skill_number(obj.pitch[0])
         return "_laygo2_generate_instance(cv, \"%s\", \"%s\", \"%s\", \"%s\", %s, \"%s\", %d, %d, %s, %s, %s, %s) " \
                "; for the Instance object %s \n" \
-               % (objname, obj.libname, obj.cellname, obj.viewname, _py2skill_list(_xy), obj.transform,
+               % (objname, obj.libname, obj.cellname, obj.viewname, _py2skill_list(_xy), transform,
                   num_rows, num_cols, sp_rows, sp_cols, "nil", "nil", objname)
     elif obj.__class__ == laygo2.object.VirtualInstance:
         cmd = ""
         for elem_name, elem in obj.native_elements.items():
             if not elem.__class__ == laygo2.object.Pin:
-                cmd += _translate_obj(elem_name, elem, scale=scale, master=obj)
+                cmd += _translate_obj(obj.name + '_' + elem_name, elem, scale=scale, master=obj)
         return cmd
     else:
         return obj.translate_to_skill()  #

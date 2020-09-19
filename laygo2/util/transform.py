@@ -32,6 +32,29 @@ __status__ = "Prototype"
 
 import numpy as np
 
+def combine(transform1, transform2):
+    """
+    Returns the resulting transform parameter of 
+    two consecutive transforms
+    """
+    if transform1 == 'R0':
+        if transform2 == 'R0': return 'R0'
+        elif transform2 == 'MX': return 'MX'
+        elif transform2 == 'MY': return 'MY'
+        elif transform2 == 'MXY': return 'MXY'
+    elif transform1 == 'MX':
+        if transform2 == 'R0': return 'MX'
+        elif transform2 == 'MX': return 'R0'
+        elif transform2 == 'MY': return 'MXY'
+        elif transform2 == 'MXY': return 'MY'
+    elif transform1 == 'MY':
+        if transform2 == 'R0': return 'MY'
+        elif transform2 == 'MX': return 'MXY'
+        elif transform2 == 'MY': return 'R0'
+        elif transform2 == 'MXY': return 'MX'
+    raise ValueError("Transformation mapping is not matched.")
+
+
 def Mt(transform):
     """
     Returns the transform matrix.
@@ -74,8 +97,7 @@ def Mtinv(transform):
         The inverse of the transform matrix.
     """
     transform_map = {
-        'R0': np.array([[1, 0], [0, 1]]),
-        'MX': np.array([[1, 0], [0, -1]]),
+        'R0': np.array([[1, 0], [0, 1]]),    'MX': np.array([[1, 0], [0, -1]]),
         'MY': np.array([[-1, 0], [0, 1]]),
         'MXY': np.array([[0, 1], [1, 0]]),  # mirror to the y=x line.
         'R180': np.array([[-1, 0], [0, -1]]),
