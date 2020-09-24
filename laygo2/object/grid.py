@@ -1134,6 +1134,10 @@ class RoutingGrid(Grid):
     """CircularMapping: the array containing the extension of the routing wires on the vertical grid."""
     hextension = None
     """CircularMapping: the array containing the extension of the routing wires on the horizontal grid. """
+    vextension0 = None
+    """CircularMapping: the array containing the extension of the zero-length wires on the vertical grid."""
+    hextension0 = None
+    """CircularMapping: the array containing the extension of the zero-length wires on the horizontal grid. """
     vlayer = None
     """CircularMapping: the array containing the layer info [name, purpose] of the routing wires on the vertical grid."""
     hlayer = None
@@ -1149,7 +1153,7 @@ class RoutingGrid(Grid):
     Used when the direction of the routing wire is undetermined. """
 
     def __init__(self, name, vgrid, hgrid, vwidth, hwidth, vextension, hextension, vlayer, hlayer, pin_vlayer,
-                 pin_hlayer, viamap, primary_grid='vertical'):
+                 pin_hlayer, viamap, primary_grid='vertical', vextension0=None, hextension0=None):
         """
         Constructor.
 
@@ -1162,6 +1166,14 @@ class RoutingGrid(Grid):
         self.hwidth = hwidth
         self.vextension = vextension
         self.hextension = hextension
+        if vextension0 is None:
+            self.vextension0 = vextension
+        else:
+            self.vextension0 = vextension0
+        if hextension0 is None:
+            self.hextension0 = hextension
+        else:
+            self.hextension0 = hextension0
         self.vlayer = vlayer
         self.hlayer = hlayer
         self.pin_vlayer = pin_vlayer
@@ -1181,7 +1193,10 @@ class RoutingGrid(Grid):
         """
         mn = np.asarray(mn)
         _mn = list()
-        for i in range(1, mn.shape[0]):
+        for i in range(1, mn.shape[0]):  
+            # when more than two points are given,
+            # create a multi-point wire compose of sub-routing wires
+            # connecting the points given by mn in sequence.
             _mn.append([mn[i - 1, :], mn[i, :]])
         route = list()
         # via at the starting point
@@ -1197,11 +1212,11 @@ class RoutingGrid(Grid):
                 if (direction == 'vertical') or ((direction is None) and (self.primary_grid == 'vertical')):
                     width = self.vwidth[__mn[0][0]]
                     hextension = int(width/2)
-                    vextension = self.vextension[__mn[0][0]]
+                    vextension = self.vextension0[__mn[0][0]]
                     layer = self.vlayer[__mn[0][0]]
                 else:
                     width = self.hwidth[__mn[0][1]]
-                    hextension = self.hextension[__mn[0][1]]
+                    hextension = self.hextension0[__mn[0][1]]
                     vextension = int(width/2)
                     layer = self.hlayer[__mn[0][1]]
             else:
@@ -1250,6 +1265,30 @@ class RoutingGrid(Grid):
         via = tvia.generate(params=params)
         via.xy = self[mn]
         return via
+    
+    def route_via_track(self, mn, track):
+        mn = np.asarray(mn)
+        route = list()
+        if track[0] is None: #horizontal track
+            mn0 = mn[0].tolist()
+            mn1 = [mn[0, 0], track[1]] 
+            mn2 = [mn[1, 0], track[1]] 
+            mn3 = mn[1].tolist()
+        else:
+            mn0 = mn[0].tolist()
+            mn1 = [track[0], mn[0, 1]]
+            mn2 = [track[0], mn[1, 1]]
+            mn3 = mn[1].tolist()
+        if mn0 == mn1:  # no wire generated
+            route.append(None)
+        else:
+            route.append(self.route(mn=[mn0, mn1]))
+        route += self.route(mn=[mn1, mn2], via_tag=[True, True])
+        if mn2 == mn3:
+            route.append(None)
+        else:
+            route.append(self.route(mn=[mn2, mn3]))
+        return route
 
     def pin(self, name, mn, direction=None, netname=None, params=None):
         #pin0 = Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', master=rect0,

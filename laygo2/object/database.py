@@ -216,6 +216,8 @@ class Design(BaseDatabase):
         if isinstance(item, list) or isinstance(item, np.ndarray):
             return [self.append(i) for i in item]
         else:
+            if item is None:
+                return None, None  # don't do anything
             item_name, _item = BaseDatabase.append(self, item)
             if item.__class__ == laygo2.object.Rect:
                 self.rects[item_name] = item
@@ -278,6 +280,13 @@ class Design(BaseDatabase):
     def route(self, grid, mn, direction=None, via_tag=None):
         """Creates Path and Via objects over the abstract coordinates specified by mn, on this routing grid. """
         r = grid.route(mn=mn, direction=direction, via_tag=via_tag)
+        self.append(r)
+        return r
+
+    def route_via_track(self, grid, mn, track):
+        """Creates Path and Via objects over the abstract coordinates specified by mn, 
+        on the track of specified routing grid. """
+        r = grid.route_via_track(mn=mn, track=track)
         self.append(r)
         return r
 
