@@ -122,7 +122,7 @@ class Template(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def generate(self, name=None, shape=None, pitch=np.array([0, 0]), transform='R0', params=None):
+    def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None):
         """
         Generates an instance from this template.
 
@@ -300,7 +300,7 @@ class ParameterizedInstanceTemplate(Template):
         """
         return self._pins(params=params)
 
-    def generate(self, name=None, shape=None, pitch=np.array([0, 0]), transform='R0', params=None):
+    def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None):
         """
         Creates an instance from this template. See laygo2.object.template.Template.generate() for details.
         """
@@ -368,7 +368,7 @@ class UserDefinedTemplate(Template):
         """
         return self._pins(params=params)
 
-    def generate(self, name=None, shape=None, pitch=np.array([0, 0]), transform='R0', params=None):
+    def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None):
         """
         Creates an instance from this template. See laygo2.object.template.Template.generate() for details.
         """

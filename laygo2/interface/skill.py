@@ -62,8 +62,12 @@ def _py2skill_list(pylist, scale=0.001):
     return list_str
 
 
-def _translate_obj(objname, obj, scale=0.001, master=None):
-    """Convert an object to corresponding scale commands."""
+def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0])):
+    """
+    Convert an object to corresponding scale commands.
+    offset : np.array([int, int])
+        Offsets to obj.xy
+    """
     if master is None:  
         mxy = np.array([0, 0])
         mtf = 'R0'
@@ -77,7 +81,7 @@ def _translate_obj(objname, obj, scale=0.001, master=None):
         return "_laygo2_generate_rect(cv, %s, %s ) ; for the Rect object %s \n" \
                % (_py2skill_list(obj.layer), _py2skill_list(_xy, scale=scale), objname)
     elif obj.__class__ == laygo2.object.Path:
-        # TODO: implement pin export function.
+        # TODO: implement path export function.
         pass
     elif obj.__class__ == laygo2.object.Pin:
         if obj.elements is None:
@@ -117,9 +121,16 @@ def _translate_obj(objname, obj, scale=0.001, master=None):
                   num_rows, num_cols, sp_rows, sp_cols, "nil", "nil", objname)
     elif obj.__class__ == laygo2.object.VirtualInstance:
         cmd = ""
-        for elem_name, elem in obj.native_elements.items():
-            if not elem.__class__ == laygo2.object.Pin:
-                cmd += _translate_obj(obj.name + '_' + elem_name, elem, scale=scale, master=obj)
+        if obj.shape is None:
+            for elem_name, elem in obj.native_elements.items():
+                if not elem.__class__ == laygo2.object.Pin:
+                    cmd += _translate_obj(obj.name + '_' + elem_name, elem, scale=scale, master=obj)
+        else:  # arrayed VirtualInstance
+            for i, j in np.ndindex(tuple(obj.shape.tolist())):  # iterate over obj.shape
+                for elem_name, elem in obj.native_elements.items():
+                    if not elem.__class__ == laygo2.object.Pin:
+                        cmd += _translate_obj(obj.name + '_' + elem_name + str(i) + '_' + str(j), 
+                                              elem, scale=scale, master=obj[i, j])            
         return cmd
     else:
         return obj.translate_to_skill()  #

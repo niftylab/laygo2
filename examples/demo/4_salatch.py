@@ -32,6 +32,8 @@ import laygo2_tech as tech
 # Templates
 tpmos_name = 'pmos'
 tnmos_name = 'nmos'
+tntap_name = 'ntap'
+tptap_name = 'ptap'
 # Grids
 pg_name = 'placement_basic'
 r12_name = 'routing_12_cmos'
@@ -41,6 +43,7 @@ r34_name = 'routing_34_basic'
 libname = 'laygo2_test'
 cellname = 'salatch'
 # Design parameters
+nf_tap = 4  # tap
 nf_csh = 4  # current source
 nf_in = 8   # input
 nf_rgn = 6  # regeneration - n
@@ -58,6 +61,7 @@ nf_rgp_dmy = max(nf_max - nf_rgp - nf_rs, 0)
 print("Load templates")
 templates = tech.load_templates()
 tpmos, tnmos = templates[tpmos_name], templates[tnmos_name]
+tntap, tptap = templates[tntap_name], templates[tptap_name]
 #print(templates[tpmos_name], templates[tnmos_name], sep="\n")
 
 print("Load grids")
@@ -72,31 +76,46 @@ lib.append(dsn)
 
 # 3. Create instances.
 print("Create instances")
-incsp = tnmos.generate(name='MNCS0', params={'nf': nf_csh, 'nfdmyl': nf_csh_dmy, 'nfdmyr':2, 'bndr': None, 'tie': 'S'})
-incsn = tnmos.generate(name='MNCS1', params={'nf': nf_csh, 'nfdmyr': nf_csh_dmy, 'bndl': None, 'tie': 'S'})
-ininp = tnmos.generate(name='MNIN0', params={'nf': nf_in, 'nfdmyl': nf_in_dmy, 'nfdmyr':2, 'bndr': None, 'trackswap': True}, transform='MX')
-ininn = tnmos.generate(name='MNIN1', params={'nf': nf_in, 'nfdmyr': nf_in_dmy, 'bndl': None, 'trackswap': True}, transform='MX')
-inrgp = tnmos.generate(name='MNRGN0', params={'nf': nf_rgn, 'nfdmyl': nf_rgn_dmy, 'nfdmyr':2, 'bndr': None})
-inrgn = tnmos.generate(name='MNRGN1', params={'nf': nf_rgn, 'nfdmyr': nf_rgn_dmy, 'bndl': None})
-iprgp = tpmos.generate(name='MNRGP0', params={'nf': nf_rgp, 'bndr': False, 'nfdmyl': nf_rgp_dmy, 'tie':'S'}, transform='MX')
-iprsp = tpmos.generate(name='MNRSTP0', params={'nf': nf_rs, 'bndl': False, 'tie':'S', 'nfdmyr':2, 'bndr': None}, transform='MX')
-iprsn = tpmos.generate(name='MNRSTP1', params={'nf': nf_rs, 'bndr': False, 'tie':'S', 'bndl': None}, transform='MX')
-iprgn = tpmos.generate(name='MNRGP1', params={'nf': nf_rgp, 'bndl': False, 'nfdmyr': nf_rgp_dmy, 'tie':'S'}, transform='MX')
+iptapl0 = tptap.generate(name='IPTAPL0', params={'nf': nf_tap, 'tie': 'TAP0'})
+incsp = tnmos.generate(name='MNCSP', params={'nf': nf_csh, 'nfdmyl': nf_csh_dmy, 'nfdmyr':2, 'bndr': None, 'tie': 'S'})
+incsn = tnmos.generate(name='MNCSN', params={'nf': nf_csh, 'nfdmyr': nf_csh_dmy, 'bndl': None, 'tie': 'S'})
+iptapr0 = tptap.generate(name='IPTAPR0', params={'nf': nf_tap, 'tie': 'TAP0'})
+iptapl1 = tptap.generate(name='IPTAPL1', params={'nf': nf_tap, 'tie': 'TAP0'}, transform='MX')
+ininp = tnmos.generate(name='MNINP', params={'nf': nf_in, 'nfdmyl': nf_in_dmy, 'nfdmyr':2, 'bndr': None, 'trackswap': True}, transform='MX')
+ininn = tnmos.generate(name='MNINN', params={'nf': nf_in, 'nfdmyr': nf_in_dmy, 'bndl': None, 'trackswap': True}, transform='MX')
+iptapr1 = tptap.generate(name='IPTAPR1', params={'nf': nf_tap, 'tie': 'TAP0'}, transform='MX')
+iptapl2 = tptap.generate(name='IPTAPL2', params={'nf': nf_tap, 'tie': 'TAP0'})
+inrgp = tnmos.generate(name='MNRGP', params={'nf': nf_rgn, 'nfdmyl': nf_rgn_dmy, 'nfdmyr':2, 'bndr': None})
+inrgn = tnmos.generate(name='MNRGN', params={'nf': nf_rgn, 'nfdmyr': nf_rgn_dmy, 'bndl': None})
+iptapr2 = tptap.generate(name='IPTAPR2', params={'nf': nf_tap, 'tie': 'TAP0'})
+intapl0 = tntap.generate(name='INTAPL0', params={'nf': nf_tap, 'tie': 'TAP0'}, transform='MX')
+iprgp = tpmos.generate(name='MPRGP', params={'nf': nf_rgp, 'bndr': False, 'nfdmyl': nf_rgp_dmy, 'tie':'S'}, transform='MX')
+iprsp = tpmos.generate(name='MPRSP', params={'nf': nf_rs, 'bndl': False, 'tie':'S', 'nfdmyr':2, 'bndr': None}, transform='MX')
+iprsn = tpmos.generate(name='MPRSN', params={'nf': nf_rs, 'bndr': False, 'tie':'S', 'bndl': None}, transform='MX')
+iprgn = tpmos.generate(name='MPRGN', params={'nf': nf_rgp, 'bndl': False, 'nfdmyr': nf_rgp_dmy, 'tie':'S'}, transform='MX')
+intapr0 = tntap.generate(name='INTAPR0', params={'nf': nf_tap, 'tie': 'TAP0'}, transform='MX')
 #ip0 = tpmos.generate(name='MP0', transform='MX', params={'nf': nf_b, 'tie': 'S', 'gbndl': True})
 #ip1 = tpmos.generate(name='MP1', transform='MX', params={'nf': nf_a, 'trackswap': True, 'tie': 'D', 'gbndr': True})
 
 # 4. Place instances.
-dsn.place(grid=pg, inst=incsp, mn=pg.mn([0, 0]))
-dsn.place(grid=pg, inst=incsn, mn=pg.mn.bottom_right(incsp))
-dsn.place(grid=pg, inst=ininp, mn=pg.mn.top_left(incsp) + np.array([0, pg.mn.height(incsp)]))
-dsn.place(grid=pg, inst=ininn, mn=pg.mn.top_right(ininp))
-dsn.place(grid=pg, inst=inrgp, mn=pg.mn.top_left(ininp))
-dsn.place(grid=pg, inst=inrgn, mn=pg.mn.bottom_right(inrgp))
-
-dsn.place(grid=pg, inst=iprgp, mn=pg.mn.top_left(inrgp) + np.array([0, pg.mn.height(inrgp)]))
-dsn.place(grid=pg, inst=iprsp, mn=pg.mn.top_right(iprgp))
-dsn.place(grid=pg, inst=iprsn, mn=pg.mn.top_right(iprsp))
-dsn.place(grid=pg, inst=iprgn, mn=pg.mn.top_right(iprsn))
+dsn.place(grid=pg,  inst=iptapl0,   mn=pg.mn([0, 0]))
+dsn.place(grid=pg,  inst=incsp,     mn=pg.mn.bottom_right(iptapl0))
+dsn.place(grid=pg,  inst=incsn,     mn=pg.mn.bottom_right(incsp))
+dsn.place(grid=pg,  inst=iptapr0,   mn=pg.mn.bottom_right(incsn))
+dsn.place(grid=pg,  inst=iptapl1,   mn=pg.mn.top_left(iptapl0) + np.array([0, pg.mn.height(iptapl1)]))
+dsn.place(grid=pg,  inst=ininp,     mn=pg.mn.top_right(iptapl1))
+dsn.place(grid=pg,  inst=ininn,     mn=pg.mn.top_right(ininp))
+dsn.place(grid=pg,  inst=iptapr1,   mn=pg.mn.top_right(ininn))
+dsn.place(grid=pg,  inst=iptapl2,   mn=pg.mn.top_left(iptapl1)) # + np.array([0, pg.mn.height(iptapl2)]))
+dsn.place(grid=pg,  inst=inrgp,     mn=pg.mn.bottom_right(iptapl2))
+dsn.place(grid=pg,  inst=inrgn,     mn=pg.mn.bottom_right(inrgp))
+dsn.place(grid=pg,  inst=iptapr2,   mn=pg.mn.bottom_right(inrgn))
+dsn.place(grid=pg,  inst=intapl0,   mn=pg.mn.top_left(iptapl2) + np.array([0, pg.mn.height(intapl0)]))
+dsn.place(grid=pg,  inst=iprgp,     mn=pg.mn.top_right(intapl0))
+dsn.place(grid=pg,  inst=iprsp,     mn=pg.mn.top_right(iprgp))
+dsn.place(grid=pg,  inst=iprsn,     mn=pg.mn.top_right(iprsp))
+dsn.place(grid=pg,  inst=iprgn,     mn=pg.mn.top_right(iprsn))
+dsn.place(grid=pg,  inst=intapr0,   mn=pg.mn.top_right(iprgn))
 #dsn.place(grid=pg, inst=ip0, mn=pg.mn.top_left(in0) + np.array([0, pg.mn.height(ip0)]))  # +height due to MX transform
 #dsn.place(grid=pg, inst=ip1, mn=pg.mn.top_right(ip0))
 
@@ -188,23 +207,24 @@ pvss0 = dsn.pin(name='VSS0', grid=r12, mn=r12.mn.bbox(rvss0), netname='VSS:')
 pvss1 = dsn.pin(name='VSS1', grid=r12, mn=r12.mn.bbox(rvss1), netname='VSS:')
 pvss2 = dsn.pin(name='VSS2', grid=r12, mn=r12.mn.bbox(rvss2), netname='VSS:')
 pvdd0 = dsn.pin(name='VDD', grid=r12, mn=r12.mn.bbox(rvdd0))
-print(dsn)
+#print(dsn)
+
 # 7. Export to physical database.
 print("Export design")
 # Uncomment for GDS export
-"""
+'''
 #abstract = False  # export abstract
 #laygo2.interface.gds.export(lib, filename=libname+'_'+cellname+'.gds', cellname=None, scale=1e-9,
 #                            layermapfile="../technology_example/technology_example.layermap", physical_unit=1e-9, logical_unit=0.001,
 #                            pin_label_height=0.1, pin_annotate_layer=['text', 'drawing'], text_height=0.1,
 #                            abstract_instances=abstract)
-"""
+'''
 
 # Uncomment for SKILL export
-"""
+'''
 #skill_str = laygo2.interface.skill.export(lib, filename=libname+'_'+cellname+'.il', cellname=None, scale=1e-3)
 #print(skill_str)
-"""
+'''
 
 # Uncomment for BAG export
 laygo2.interface.bag.export(lib, filename=libname+'_'+cellname+'.il', cellname=None, scale=1e-3, reset_library=False, tech_library=tech.name)
