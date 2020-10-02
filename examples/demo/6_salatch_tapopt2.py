@@ -41,7 +41,7 @@ r23_name = 'routing_23_cmos_flipped'
 r34_name = 'routing_34_basic'
 # Design hierarchy
 libname = 'laygo2_test'
-cellname = 'salatch_verticaltap'
+cellname = 'salatch_tapopt2'
 # Design parameters
 #nf_tap = 4  # tap
 nf_csh = 4  # current source
