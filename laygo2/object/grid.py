@@ -751,6 +751,14 @@ class _PhyToAbsGridConverter:
             _i = self.bbox(obj)
             return abs(_i[1, 1] - _i[0, 1])
 
+    def height_vec(self, obj):
+        """numpy.ndarray(dtype=int): Returns np.array([0, height])."""
+        return np.array([0, self.height(obj)])
+
+    def width_vec(self, obj):
+        """numpy.ndarray(dtype=int): Returns np.array([width, 0])."""
+        return np.array([self.width(obj), 0])
+
     def size(self, obj):
         """Returns the size of an object on this grid."""
         return np.array([self.width(obj), self.height(obj)])
@@ -986,6 +994,16 @@ class Grid:
     def height(self):
         """float: the height of the grid."""
         return self._xy[1].width
+
+    @property
+    def height_vec(self):
+        """numpy.ndarray(dtype=int): Returns np.array([0, height])."""
+        return np.array([0, self.height])
+
+    @property
+    def width_vec(self):
+        """numpy.ndarray(dtype=int): Returns np.array([width, 0])."""
+        return np.array([self.width, 0])
 
     def __init__(self, name, vgrid, hgrid):
         """
@@ -2013,6 +2031,16 @@ class Grid():
     def width(self):
         """float: the width of the grid."""
         return abs(self.xy[1, 0]-self.xy[0, 0])
+
+    @property
+    def height_vec(self):
+        """numpy.ndarray(dtype=int): Returns np.array([0, height])."""
+        return np.array([0, self.height])
+
+    @property
+    def width_vec(self):
+        """numpy.ndarray(dtype=int): Returns np.array([width, 0])."""
+        return np.array([self.width, 0])
 
     def __init__(self, name, xy, xgrid=np.array([0]), ygrid=np.array([0])):
         """

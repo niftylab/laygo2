@@ -94,7 +94,7 @@ ip1 = tpmos.generate(name='MP1', transform='MX', params={'nf': nf_a, 'tie': 'S'}
 # 4. Place instances.
 dsn.place(grid=pg, inst=in0, mn=pg.mn[0, 0])
 dsn.place(grid=pg, inst=in1, mn=pg.mn.bottom_right(in0))  # same with pg == in0.bottom_right
-dsn.place(grid=pg, inst=ip0, mn=pg.mn.top_left(in0) + np.array([0, pg.mn.height(ip0)]))  # +height due to MX transform
+dsn.place(grid=pg, inst=ip0, mn=pg.mn.top_left(in0) + pg.mn.height_vec(ip0))  # +height_vec due to MX transform
 dsn.place(grid=pg, inst=ip1, mn=pg.mn.top_right(ip0))
 
 # 7. Export to physical database.
@@ -110,7 +110,7 @@ print("Export design")
 
 # Uncomment for SKILL export
 """
-S
+#skill_str = laygo2.interface.skill.export(lib, filename=libname+'_'+cellname+'.il', cellname=None, scale=1e-3)
 #print(skill_str)
 """
 

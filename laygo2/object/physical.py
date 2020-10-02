@@ -413,6 +413,8 @@ class Rect(PhysicalObject):
     vextension
     height
     width
+    height_vec
+    width_vec
     size
     bbox
     """
@@ -437,6 +439,16 @@ class Rect(PhysicalObject):
     def width(self):
         """int: The width of the rect"""
         return abs(self.xy[0, 0] - self.xy[1, 0])
+
+    @property
+    def height_vec(self):
+        """numpy.ndarray(dtype=int): Returns np.array([0, height])."""
+        return np.array([0, self.height])
+
+    @property
+    def width_vec(self):
+        """numpy.ndarray(dtype=int): Returns np.array([width, 0])."""
+        return np.array([self.width, 0])
 
     @property
     def size(self):
@@ -588,6 +600,16 @@ class Pin(IterablePhysicalObject):
     def size(self):
         """numpy.ndarray(dtype=int): The size of the rect."""
         return np.array([self.width, self.height])
+
+    @property
+    def height_vec(self):
+        """numpy.ndarray(dtype=int): Returns np.array([0, height])."""
+        return np.array([0, self.height])
+
+    @property
+    def width_vec(self):
+        """numpy.ndarray(dtype=int): Returns np.array([width, 0])."""
+        return np.array([self.width, 0])
 
     @property
     def bbox(self):
@@ -797,6 +819,16 @@ class Instance(IterablePhysicalObject):
     def width(self):
         """int: The width of the instance."""
         return abs(self.bbox[1][0] - self.bbox[0][0])
+
+    @property
+    def height_vec(self):
+        """numpy.ndarray(dtype=int): Returns np.array([0, height])."""
+        return np.array([0, self.height])
+
+    @property
+    def width_vec(self):
+        """numpy.ndarray(dtype=int): Returns np.array([width, 0])."""
+        return np.array([self.width, 0])
 
     def __init__(self, xy, libname, cellname, viewname='layout', shape=None, pitch=None, transform='R0',
                  unit_size=np.array([0, 0]), pins=None, name=None, params=None):

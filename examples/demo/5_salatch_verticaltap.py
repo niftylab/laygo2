@@ -36,14 +36,14 @@ tntap_name = 'ntap'
 tptap_name = 'ptap'
 # Grids
 pg_name = 'placement_basic'
-r12_name = 'routing_12_cmos'
-r23_name = 'routing_23_cmos'
+r12_name = 'routing_12_cmos_flipped'
+r23_name = 'routing_23_cmos_flipped'
 r34_name = 'routing_34_basic'
 # Design hierarchy
 libname = 'laygo2_test'
-cellname = 'salatch'
+cellname = 'salatch_verticaltap'
 # Design parameters
-nf_tap = 4  # tap
+#nf_tap = 4  # tap
 nf_csh = 4  # current source
 nf_in = 8   # input
 nf_rgn = 6  # regeneration - n
@@ -76,44 +76,36 @@ lib.append(dsn)
 
 # 3. Create instances.
 print("Create instances")
-iptapl0 = tptap.generate(name='IPTAPL0', params={'nf': nf_tap, 'tie': 'TAP0'})
+iptapp = tptap.generate(name='IPTAPP', params={'nf': nf_max, 'tie': 'TAP0'}, transform='MX')
+iptapn = tptap.generate(name='IPTAPN', params={'nf': nf_max, 'tie': 'TAP0'}, transform='MX')
 incsp = tnmos.generate(name='MNCSP', params={'nf': nf_csh, 'nfdmyl': nf_csh_dmy, 'nfdmyr':2, 'bndr': None, 'tie': 'S'})
 incsn = tnmos.generate(name='MNCSN', params={'nf': nf_csh, 'nfdmyr': nf_csh_dmy, 'bndl': None, 'tie': 'S'})
-iptapr0 = tptap.generate(name='IPTAPR0', params={'nf': nf_tap, 'tie': 'TAP0'})
-iptapl1 = tptap.generate(name='IPTAPL1', params={'nf': nf_tap, 'tie': 'TAP0'}, transform='MX')
 ininp = tnmos.generate(name='MNINP', params={'nf': nf_in, 'nfdmyl': nf_in_dmy, 'nfdmyr':2, 'bndr': None, 'trackswap': True}, transform='MX')
 ininn = tnmos.generate(name='MNINN', params={'nf': nf_in, 'nfdmyr': nf_in_dmy, 'bndl': None, 'trackswap': True}, transform='MX')
-iptapr1 = tptap.generate(name='IPTAPR1', params={'nf': nf_tap, 'tie': 'TAP0'}, transform='MX')
-iptapl2 = tptap.generate(name='IPTAPL2', params={'nf': nf_tap, 'tie': 'TAP0'})
 inrgp = tnmos.generate(name='MNRGP', params={'nf': nf_rgn, 'nfdmyl': nf_rgn_dmy, 'nfdmyr':2, 'bndr': None})
 inrgn = tnmos.generate(name='MNRGN', params={'nf': nf_rgn, 'nfdmyr': nf_rgn_dmy, 'bndl': None})
-iptapr2 = tptap.generate(name='IPTAPR2', params={'nf': nf_tap, 'tie': 'TAP0'})
-intapl0 = tntap.generate(name='INTAPL0', params={'nf': nf_tap, 'tie': 'TAP0'}, transform='MX')
 iprgp = tpmos.generate(name='MPRGP', params={'nf': nf_rgp, 'bndr': False, 'nfdmyl': nf_rgp_dmy, 'tie':'S'}, transform='MX')
 iprsp = tpmos.generate(name='MPRSP', params={'nf': nf_rs, 'bndl': False, 'tie':'S', 'nfdmyr':2, 'bndr': None}, transform='MX')
 iprsn = tpmos.generate(name='MPRSN', params={'nf': nf_rs, 'bndr': False, 'tie':'S', 'bndl': None}, transform='MX')
 iprgn = tpmos.generate(name='MPRGN', params={'nf': nf_rgp, 'bndl': False, 'nfdmyr': nf_rgp_dmy, 'tie':'S'}, transform='MX')
-intapr0 = tntap.generate(name='INTAPR0', params={'nf': nf_tap, 'tie': 'TAP0'}, transform='MX')
+intapp = tntap.generate(name='INTAPP', params={'nf': nf_max, 'tie': 'TAP0'})
+intapn = tntap.generate(name='INTAPN', params={'nf': nf_max, 'tie': 'TAP0'})
 
 # 4. Place instances.
-dsn.place(grid=pg,  inst=iptapl0,   mn=pg.mn([0, 0]))
-dsn.place(grid=pg,  inst=incsp,     mn=pg.mn.bottom_right(iptapl0))
+dsn.place(grid=pg,  inst=iptapp,    mn=pg.mn.height_vec(iptapp))
+dsn.place(grid=pg,  inst=iptapn,    mn=pg.mn.top_right(iptapp))
+dsn.place(grid=pg,  inst=incsp,     mn=pg.mn.top_left(iptapp))
 dsn.place(grid=pg,  inst=incsn,     mn=pg.mn.bottom_right(incsp))
-dsn.place(grid=pg,  inst=iptapr0,   mn=pg.mn.bottom_right(incsn))
-dsn.place(grid=pg,  inst=iptapl1,   mn=pg.mn.top_left(iptapl0) + pg.mn.height_vec(iptapl1))
-dsn.place(grid=pg,  inst=ininp,     mn=pg.mn.top_right(iptapl1))
+dsn.place(grid=pg,  inst=ininp,     mn=pg.mn.top_left(incsp) + pg.mn.height_vec(ininp))
 dsn.place(grid=pg,  inst=ininn,     mn=pg.mn.top_right(ininp))
-dsn.place(grid=pg,  inst=iptapr1,   mn=pg.mn.top_right(ininn))
-dsn.place(grid=pg,  inst=iptapl2,   mn=pg.mn.top_left(iptapl1))
-dsn.place(grid=pg,  inst=inrgp,     mn=pg.mn.bottom_right(iptapl2))
+dsn.place(grid=pg,  inst=inrgp,     mn=pg.mn.top_left(ininp))
 dsn.place(grid=pg,  inst=inrgn,     mn=pg.mn.bottom_right(inrgp))
-dsn.place(grid=pg,  inst=iptapr2,   mn=pg.mn.bottom_right(inrgn))
-dsn.place(grid=pg,  inst=intapl0,   mn=pg.mn.top_left(iptapl2) + pg.mn.height_vec(intapl0))
-dsn.place(grid=pg,  inst=iprgp,     mn=pg.mn.top_right(intapl0))
+dsn.place(grid=pg,  inst=iprgp,     mn=pg.mn.top_left(inrgp) + pg.mn.height_vec(iprgp))
 dsn.place(grid=pg,  inst=iprsp,     mn=pg.mn.top_right(iprgp))
 dsn.place(grid=pg,  inst=iprsn,     mn=pg.mn.top_right(iprsp))
 dsn.place(grid=pg,  inst=iprgn,     mn=pg.mn.top_right(iprsn))
-dsn.place(grid=pg,  inst=intapr0,   mn=pg.mn.top_right(iprgn))
+dsn.place(grid=pg,  inst=intapp,    mn=pg.mn.top_left(iprgp))
+dsn.place(grid=pg,  inst=intapn,    mn=pg.mn.bottom_right(intapp))
 
 # 5. Create and place wires.
 print("Create wires")

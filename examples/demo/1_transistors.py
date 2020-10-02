@@ -75,7 +75,7 @@ dsn.place(grid=pg, inst=in3, mn=pg.mn.bottom_right(in2))
 dsn.place(grid=pg, inst=in4, mn=pg.mn.bottom_right(in3))  
 dsn.place(grid=pg, inst=in5, mn=pg.mn.bottom_right(in4))  
 dsn.place(grid=pg, inst=in6, mn=pg.mn.bottom_right(in5))  
-dsn.place(grid=pg, inst=ip0, mn=pg.mn.top_left(in0) + np.array([0, pg.mn.height(ip0)]))  # +height due to MX transform
+dsn.place(grid=pg, inst=ip0, mn=pg.mn.top_left(in0) + pg.mn.height_vec(ip0))  # +height_vec due to MX transform
 
 # 7. Export to physical database.
 print("Export design")

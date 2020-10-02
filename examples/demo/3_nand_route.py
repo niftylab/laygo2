@@ -71,7 +71,7 @@ ip1 = tpmos.generate(name='MP1', transform='MX', params={'nf': nf_a, 'trackswap'
 # 4. Place instances.
 dsn.place(grid=pg, inst=in0, mn=pg.mn[0, 0])
 dsn.place(grid=pg, inst=in1, mn=pg.mn.bottom_right(in0))  # same with pg == in0.bottom_right
-dsn.place(grid=pg, inst=ip0, mn=pg.mn.top_left(in0) + np.array([0, pg.mn.height(ip0)]))  # +height due to MX transform
+dsn.place(grid=pg, inst=ip0, mn=pg.mn.top_left(in0) + pg.mn.height_vec(ip0))  # +height_vec due to MX transform
 dsn.place(grid=pg, inst=ip1, mn=pg.mn.top_right(ip0))
 
 # 5. Create and place wires.
@@ -102,10 +102,10 @@ pb0 = dsn.pin(name='B', grid=r23, mn=r23.mn.bbox(rb0))
 po0 = dsn.pin(name='O', grid=r23, mn=r23.mn.bbox(ro0))
 pvss0 = dsn.pin(name='VSS', grid=r12, mn=r12.mn.bbox(rvss0))
 pvdd0 = dsn.pin(name='VDD', grid=r12, mn=r12.mn.bbox(rvdd0))
-print(dsn)
 
 # 7. Export to physical database.
 print("Export design")
+print(dsn)
 # Uncomment for GDS export
 """
 #abstract = False  # export abstract
