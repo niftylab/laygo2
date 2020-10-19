@@ -1,4 +1,4 @@
-# laygo2
+# laygo2.
 
 The LAYout with Gridded Object 2 (LAYGO2) is a layout generation framework
 for custom integrated circuits.
