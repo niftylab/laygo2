@@ -64,10 +64,10 @@ lib.append(dsn)
 # 3. Create instances.
 print("Create instances")
 # 3-a basic
-in0 = tnmos.generate(name='MN0', params={'nf': nf_b, 'trackswap': True, 'tie': 'D'})
-in1 = tnmos.generate(name='MN1', params={'nf': nf_a, 'trackswap': True})
-ip0 = tpmos.generate(name='MP0', transform='MX', params={'nf': nf_b, 'tie': 'S'})
-ip1 = tpmos.generate(name='MP1', transform='MX', params={'nf': nf_a, 'tie': 'S'})
+#in0 = tnmos.generate(name='MN0', params={'nf': nf_b, 'trackswap': True, 'tie': 'D'})
+#in1 = tnmos.generate(name='MN1', params={'nf': nf_a, 'trackswap': True})
+#ip0 = tpmos.generate(name='MP0', transform='MX', params={'nf': nf_b, 'tie': 'S'})
+#ip1 = tpmos.generate(name='MP1', transform='MX', params={'nf': nf_a, 'tie': 'S'})
 # 3-b compact
 #in0 = tnmos.generate(name='MN0', params={'nf': nf_b, 'trackswap': True, 'tie': 'D', 'bndr': False})
 #in1 = tnmos.generate(name='MN1', params={'nf': nf_a, 'trackswap': True, 'bndl': False})
@@ -84,12 +84,12 @@ ip1 = tpmos.generate(name='MP1', transform='MX', params={'nf': nf_a, 'tie': 'S'}
 #ip0 = tpmos.generate(name='MP0', transform='MX', params={'nf': nf_b, 'tie': 'S', 'gbndl': True})
 #ip1 = tpmos.generate(name='MP1', transform='MX', params={'nf': nf_a, 'tie': 'S', 'gbndr': True})
 # 3-e resize
-#nf_a = 6
-#nf_b = 6
-#in0 = tnmos.generate(name='MN0', params={'nf': nf_b, 'trackswap': True, 'tie': 'D'})
-#in1 = tnmos.generate(name='MN1', params={'nf': nf_a, 'trackswap': True})
-#ip0 = tpmos.generate(name='MP0', transform='MX', params={'nf': nf_b, 'tie': 'S'})
-#ip1 = tpmos.generate(name='MP1', transform='MX', params={'nf': nf_a, 'tie': 'S'})
+nf_a = 6
+nf_b = 6
+in0 = tnmos.generate(name='MN0', params={'nf': nf_b, 'trackswap': True, 'tie': 'D'})
+in1 = tnmos.generate(name='MN1', params={'nf': nf_a, 'trackswap': True})
+ip0 = tpmos.generate(name='MP0', transform='MX', params={'nf': nf_b, 'tie': 'S'})
+ip1 = tpmos.generate(name='MP1', transform='MX', params={'nf': nf_a, 'tie': 'S'})
 
 # 4. Place instances.
 dsn.place(grid=pg, inst=in0, mn=pg.mn[0, 0])
@@ -115,7 +115,7 @@ print("Export design")
 """
 
 # Uncomment for BAG export
-laygo2.interface.bag.export(lib, filename=libname+'_'+cellname+'.il', cellname=None, scale=1e-3, reset_library=True, tech_library=tech.name)
+laygo2.interface.bag.export(lib, filename=libname+'_'+cellname+'.il', cellname=None, scale=1e-3, reset_library=False, tech_library=tech.name)
 
 # 7-a. Import the GDS file back and display
 #with open('nand_generate.gds', 'rb') as stream:
