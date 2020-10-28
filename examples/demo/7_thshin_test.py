@@ -34,9 +34,14 @@ tpmos_name = 'pmos'
 tnmos_name = 'nmos'
 # Grids
 pg_name = 'placement_basic'
+r12_name = 'routing_12_cmos'
+r23_name = 'routing_23_cmos'
 # Design hierarchy
-libname = 'laygo2_test'
-cellname = 'transistors'
+libname = 'thshin_65_to_40'
+cellname = 'thshin_test'
+# Design parameters
+nf_a = 2
+nf_b = 4
 # End of parameter definitions #######
 
 # Generation start ###################
@@ -48,8 +53,8 @@ print(templates[tpmos_name], templates[tnmos_name], sep="\n")
 
 print("Load grids")
 grids = tech.load_grids(templates=templates)
-pg = grids[pg_name]
-print(grids[pg_name])
+pg, r12, r23 = grids[pg_name], grids[r12_name], grids[r23_name]
+print(grids[pg_name], grids[r12_name], grids[r23_name], sep="\n")
 
 # 2. Create a design hierarchy.
 lib = laygo2.object.database.Library(name=libname)
@@ -58,33 +63,61 @@ lib.append(dsn)
 
 # 3. Create instances.
 print("Create instances")
-in0 = tnmos.generate(name='MN0', params={'nf': 4})  # vanilla case
-in1 = tnmos.generate(name='MN1', params={'nf': 8})  # resize
-in2 = tnmos.generate(name='MN2', params={'nf': 4, 'tie': 'D'})  # tie to VSS or VDD
-in3 = tnmos.generate(name='MN3', params={'nf': 4, 'trackswap': True})  # swap horizontal tracks
-in4 = tnmos.generate(name='MN4', params={'nf': 4, 'nfdmyl': 2, 'nfdmyr': 4})  # dummy
-in5 = tnmos.generate(name='MN5', params={'nf': 4, 'bndl': False, 'bndr': False})  # no boundary
-in6 = tnmos.generate(name='MN6', params={'nf': 4, 'gbndl': True, 'gbndr': True})  # global boundary
-ip0 = tpmos.generate(name='MP0', transform='MX', params={'nf': 4, 'tie': 'S'}) # transform
+in0 = tnmos.generate(name='MN0', params={'nf': nf_b, 'trackswap': False, 'tie': 'D', 'gbndl': True})
+in1 = tnmos.generate(name='MN1', params={'nf': nf_b, 'trackswap': True, 'tie': 'D', 'gbndl': True})
+in2 = tnmos.generate(name='MN2', params={'nf': nf_b, 'trackswap': True, 'tie': 'D', 'gbndl': True})
+in3 = tnmos.generate(name='MN3', params={'nf': nf_b, 'trackswap': True, 'gbndl': True})
+#in1 = tnmos.generate(name='MN1', params={'nf': nf_a, 'gbndr': True})
+#ip0 = tpmos.generate(name='MP0', transform='MX', params={'nf': nf_b, 'tie': 'S',11gbndl': True})
+#ip1 = tpmos.generate(name='MP1', transform='MX', params={'nf': nf_a, 'trackswap': True, 'tie': 'D', 'gbndr': True})
 
 # 4. Place instances.
-dsn.place(grid=pg, inst=in0, mn=[0, 0])                  # basic placement
-dsn.place(grid=pg, inst=in1, mn=[8, 0])                  # abstract placement
-dsn.place(grid=pg, inst=in2, mn=pg.mn.bottom_right(in1)) # same with pg == in1.bottom_right
-dsn.place(grid=pg, inst=in3, mn=pg.mn.bottom_right(in2))  
-dsn.place(grid=pg, inst=in4, mn=pg.mn.bottom_right(in3))  
-dsn.place(grid=pg, inst=in5, mn=pg.mn.bottom_right(in4))  
-dsn.place(grid=pg, inst=in6, mn=pg.mn.bottom_right(in5))  
-dsn.place(grid=pg, inst=ip0, mn=pg.mn.top_left(in0) + pg.mn.height_vec(ip0))  # +height_vec due to MX transform
-print(pg.mn.bottom_right(in1))
+dsn.place(grid=pg, inst=in0, mn=pg.mn[0, 0])
+dsn.place(grid=pg, inst=in1, mn=pg.mn.bottom_right(in0)+np.array([2, 0]))  # same with pg == in0.bottom_right
+dsn.place(grid=pg, inst=in2, mn=pg.mn.top_left(in1)+np.array([0, 4]))  # same with pg == in0.bottom_right
+dsn.place(grid=pg, inst=in3, mn=pg.mn.bottom_right(in2)+np.array([2, 0]))  # same with pg == in0.bottom_right
+
+#dsn.place(grid=pg, inst=ip0, mn=pg.mn.top_left(in0) + pg.mn.height_vec(ip0))  # +height_vec due to MX transform
+#dsn.place(grid=pg, inst=ip1, mn=pg.mn.top_right(ip0))
+
+# 5. Create and place wires.
+print("Create wires")
+# A
+#_mn = [r23.mn(in1.pins['G'])[0], r23.mn(ip1.pins['G'])[0]]
+#va0, ra0, va1 = dsn.route(grid=r23, mn=_mn, via_tag=[True, True])
+# B
+#_mn = [r23.mn(in0.pins['G'])[0], r23.mn(ip0.pins['G'])[0]]
+#vb0, rb0, vb1 = dsn.route(grid=r23, mn=_mn, via_tag=[True, True])
+# Internal
+#_mn = [r12.mn(in0.pins['S'])[0], r12.mn(in1.pins['D'])[0]]
+#ri0 = dsn.route(grid=r23, mn=_mn)
+#_mn = [r12.mn(ip0.pins['D'])[0], r12.mn(ip1.pins['S'])[0]]
+#ri1 = dsn.route(grid=r23, mn=_mn)
+# Output
+#_mn = [r23.mn(in1.pins['S'])[1], r23.mn(ip1.pins['S'])[1]]
+#_track = [r23.mn(ip1.pins['S'])[1, 0], None]
+#_, vo0, ro0, vo1, _= dsn.route_via_track(grid=r23, mn=_mn, track=_track)
+# VSS
+#rvss0 = dsn.route(grid=r12, mn=[r12.mn(in0.pins['RAIL'])[0], r12.mn(in1.pins['RAIL'])[1]])
+# VDD
+#rvdd0 = dsn.route(grid=r12, mn=[r12.mn(ip0.pins['RAIL'])[0], r12.mn(ip1.pins['RAIL'])[1]])
+
+# 6. Create pins.
+#pa0 = dsn.pin(name='A', grid=r23, mn=r23.mn.bbox(ra0))
+#pb0 = dsn.pin(name='B', grid=r23, mn=r23.mn.bbox(rb0))
+#po0 = dsn.pin(name='O', grid=r23, mn=r23.mn.bbox(ro0))
+#pvss0 = dsn.pin(name='VSS', grid=r12, mn=r12.mn.bbox(rvss0))
+#pvdd0 = dsn.pin(name='VDD', grid=r12, mn=r12.mn.bbox(rvdd0))
+
 # 7. Export to physical database.
 print("Export design")
+print(dsn)
 # Uncomment for GDS export
 """
 #abstract = False  # export abstract
 #laygo2.interface.gds.export(lib, filename=libname+'_'+cellname+'.gds', cellname=None, scale=1e-9,
 #                            layermapfile="../technology_example/technology_example.layermap", physical_unit=1e-9, logical_unit=0.001,
-
+#                            pin_label_height=0.1, pin_annotate_layer=['text', 'drawing'], text_height=0.1,
 #                            abstract_instances=abstract)
 """
 
@@ -95,8 +128,7 @@ print("Export design")
 """
 
 # Uncomment for BAG export
-laygo2.interface.bag.export(lib, filename=libname+'_'+cellname+'.il', cellname=None, scale=1e-3, reset_library=True, tech_library=tech.name)
-
+laygo2.interface.bag.export(lib, filename=libname+'_'+cellname+'.il', cellname=None, scale=1e-3, reset_library=False, tech_library=tech.name)
 
 # 7-a. Import the GDS file back and display
 #with open('nand_generate.gds', 'rb') as stream:

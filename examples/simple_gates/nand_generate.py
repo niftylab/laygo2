@@ -37,7 +37,7 @@ pg_name = 'placement_cmos'
 r12_name = 'routing_12_cmos'
 r23_name = 'routing_23_cmos'
 # Design hierarchy
-libname = 'laygo2_test'
+libname = 'laygo2_test_1'
 cellname = 'nand2'
 # Design parameters
 nf_a = 3

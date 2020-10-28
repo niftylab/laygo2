@@ -122,7 +122,7 @@ print(dsn)
 """
 
 # Uncomment for BAG export
-laygo2.interface.bag.export(lib, filename=libname+'_'+cellname+'.il', cellname=None, scale=1e-3, reset_library=True, tech_library=tech.name)
+laygo2.interface.bag.export(lib, filename=libname+'_'+cellname+'.il', cellname=None, scale=1e-3, reset_library=False, tech_library=tech.name)
 
 # 7-a. Import the GDS file back and display
 #with open('nand_generate.gds', 'rb') as stream:

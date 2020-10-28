@@ -33,7 +33,7 @@ __status__ = "Prototype"
 
 import yaml
 import os.path
-
+import laygo2
 
 def export_template(template, filename, mode='append'):
     libname = template.libname
@@ -50,4 +50,24 @@ def export_template(template, filename, mode='append'):
     db[libname][cellname] = template.export_to_dict()
     with open(filename, 'w') as stream:
         yaml.dump(db, stream)
+
+#filename=libname+'_templates.yaml'
+
+def import_template(filename):
+    # load yaml file
+    if os.path.exists(filename):
+        with open(filename, 'r') as stream:
+            db = yaml.load(stream, Loader=yaml.FullLoader)
+    libname = list(db.keys())[0]  # assuming there's only one library defined in each file.
+    # create template library
+    tlib = laygo2.object.database.TemplateLibrary(name=libname)
+    # read out the yaml file entries and build template objects
+    for tn, tdict in db[libname].items():
+        pins = dict()
+        if 'pins' in tdict:
+            for pinname, pdict in tdict['pins'].items():
+                pins[pinname] = laygo2.object.Pin(xy=pdict['xy'], layer=pdict['layer'], netname=pdict['netname'])
+        t = laygo2.object.NativeInstanceTemplate(libname=libname, cellname=tn, bbox=tdict['bbox'], pins=pins)
+        tlib.append(t)
+    return tlib
 
