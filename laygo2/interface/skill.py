@@ -76,8 +76,11 @@ def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0
         mtf = master.transform
     if obj.__class__ == laygo2.object.Rect:
         # Invoke _laygo2_generate_rect( cv layer bbox ) in {header_filename}
-        _xy = mxy + np.dot(obj.xy + np.array([[-obj.hextension, -obj.vextension], [obj.hextension, obj.vextension]]),
+        _xy = np.sort(obj.xy, axis=0)  # make sure obj.xy is sorted
+        _xy = mxy + np.dot(_xy + np.array([[-obj.hextension, -obj.vextension], [obj.hextension, obj.vextension]]),
                            tf.Mt(mtf).T)
+        #_xy = mxy + np.dot(obj.xy + np.array([[-obj.hextension, -obj.vextension], [obj.hextension, obj.vextension]]),
+        #                   tf.Mt(mtf).T)
         return "_laygo2_generate_rect(cv, %s, %s ) ; for the Rect object %s \n" \
                % (_py2skill_list(obj.layer), _py2skill_list(_xy, scale=scale), objname)
     elif obj.__class__ == laygo2.object.Path:
