@@ -1284,30 +1284,52 @@ class RoutingGrid(Grid):
         via.xy = self[mn]
         return via
     
-    def route_via_track(self, mn, track):
-        mn = np.asarray(mn)
-        route = list()
-        if track[0] is None: #horizontal track
-            mn0 = mn[0].tolist()
-            mn1 = [mn[0, 0], track[1]] 
-            mn2 = [mn[1, 0], track[1]] 
-            mn3 = mn[1].tolist()
-        else:
-            mn0 = mn[0].tolist()
-            mn1 = [track[0], mn[0, 1]]
-            mn2 = [track[0], mn[1, 1]]
-            mn3 = mn[1].tolist()
-        if mn0 == mn1:  # no wire generated
-            route.append(None)
-        else:
-            route.append(self.route(mn=[mn0, mn1]))
-        route += self.route(mn=[mn1, mn2], via_tag=[True, True])
-        if mn2 == mn3:
-            route.append(None)
-        else:
-            route.append(self.route(mn=[mn2, mn3]))
-        return route
+    def route_via_track(self, track, mn ):
+        """ create multi routes on one track
 
+
+        """
+        mn = np.array( mn )    
+        route   = list()
+        
+        if track[1] != None:                # x direction
+            t = 0                           # index of track axis
+            p = 1                           # index of perpendicular track
+            mn_pivot = track[1]
+        else:                               # y direction
+            t = 1                           
+            p = 0                           
+            mn_pivot = track[0]
+
+        mn_sorted  = mn[ np.argsort( mn[ :, t]) ]                  # sort  array lessp
+        mn_r       = np.array([ [0,0], [0,0]] )                    # 1.branch
+
+        for i in range( len(mn_sorted) ) :   
+            if np.array_equal( mn_sorted[i-1] , mn_sorted[i] )  :  # Skip
+               route.append(None)
+            else:                             
+                mn_r[0]    = mn_sorted[i]                
+                mn_r[1][t] = mn_r[0][t]
+                mn_r[1][p] = mn_pivot
+                
+                if np.array_equal( mn_r[0] , mn_r[1] ) :           #### via only
+                    
+                    route.append(self.via(mn= mn_r[0], params=None))
+                else:
+                   route.append( self.route( mn= [ mn_r[0], mn_r[1] ], via_tag=[None,True] ) )
+        
+
+        mn_track = np.array([ [0,0], [0,0]] )                       # 2.track
+        mn_track[0][t], mn_track[0][p] = mn_sorted[0][t], mn_pivot  # min
+        mn_track[1][t], mn_track[1][p] = mn_sorted[-1][t], mn_pivot # max
+         
+        if np.array_equal( mn_track[0] , mn_track[1] )  :  # Skip
+            route.append(None)
+        else:
+            route.append( self.route( mn= mn_track ) )
+        
+        return route
+ 
     def pin(self, name, mn, direction=None, netname=None, params=None):
         #pin0 = Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', master=rect0,
         #           params={'direction': 'input'})
