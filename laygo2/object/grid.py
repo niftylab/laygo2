@@ -1284,10 +1284,15 @@ class RoutingGrid(Grid):
         via.xy = self[mn]
         return via
     
-    def route_via_track(self, track, mn ):
-        """ create multi routes on one track
-
-
+    def route_via_track(self, mn, track ):
+        """
+        create multi routes on one track
+        Parameters
+        ----------
+        mn : list
+            The list of abstract point for routing, [ mn, mn...]
+        track : list
+            abstract point of track, [x, y]
         """
         mn = np.array( mn )    
         route   = list()
@@ -1301,28 +1306,28 @@ class RoutingGrid(Grid):
             p = 0                           
             mn_pivot = track[0]
 
-        mn_sorted  = mn[ np.argsort( mn[ :, t]) ]                  # sort  array lessp
-        mn_r       = np.array([ [0,0], [0,0]] )                    # 1.branch
+        mn_b       = np.array([ [0,0], [0,0]] )                    # 1.branch
+        min_t, max_t = mn[0][t], mn[0][t]
 
-        for i in range( len(mn_sorted) ) :   
-            if np.array_equal( mn_sorted[i-1] , mn_sorted[i] )  :  # Skip
-               route.append(None)
-            else:                             
-                mn_r[0]    = mn_sorted[i]                
-                mn_r[1][t] = mn_r[0][t]
-                mn_r[1][p] = mn_pivot
-                
-                if np.array_equal( mn_r[0] , mn_r[1] ) :           #### via only
-                    
-                    route.append(self.via(mn= mn_r[0], params=None))
-                else:
-                   route.append( self.route( mn= [ mn_r[0], mn_r[1] ], via_tag=[None,True] ) )
-        
+        for i in range( len(mn) ) :
+            mn_b[0]    = mn[i]
+            mn_b[1][t] = mn_b[0][t]
+            mn_b[1][p] = mn_pivot
+            if np.array_equal( mn_b[0] , mn_b[1] ) :           #### via only
+                route.append(self.via( mn= mn_b[0], params=None))
+            else:
+                route.append( self.route( mn= [ mn_b[0], mn_b[1] ], via_tag=[None,True] ) )
+
+            center_t = mn[i][t]
+            if center_t < min_t:
+                min_t = center_t
+            elif max_t < center_t:
+                max_t = center_t
 
         mn_track = np.array([ [0,0], [0,0]] )                       # 2.track
-        mn_track[0][t], mn_track[0][p] = mn_sorted[0][t], mn_pivot  # min
-        mn_track[1][t], mn_track[1][p] = mn_sorted[-1][t], mn_pivot # max
-         
+        mn_track[0][t], mn_track[0][p] = min_t, mn_pivot  # min
+        mn_track[1][t], mn_track[1][p] = max_t, mn_pivot # max
+
         if np.array_equal( mn_track[0] , mn_track[1] )  :  # Skip
             route.append(None)
         else:
