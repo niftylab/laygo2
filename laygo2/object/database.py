@@ -308,8 +308,8 @@ class Design(BaseDatabase):
                     else:
                         if element == None:
                             pass
-                        else:
-                            mn_ref = mn_ref + np.array( element )
+                        elif isinstance( element, int):
+                            mn_ref = mn_ref + [ element,0 ]
 
     def route(self, grid, mn, direction=None, via_tag=None):
         """Creates Path and Via objects over the abstract coordinates specified by mn, on this routing grid. """
