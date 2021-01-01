@@ -273,9 +273,43 @@ class Design(BaseDatabase):
     # Object creation and manipulation functions.
     def place(self, inst, grid, mn):
         """Places an instance on the specified coordinate mn, on this grid."""
-        inst = grid.place(inst, mn)
-        self.append(inst)
-        return inst
+        if isinstance(inst, ( laygo2.object.Instance, laygo2.object.VirtualInstance) ) :
+            inst = grid.place(inst, mn)
+            self.append(inst)
+            return inst
+        else:
+            matrix = np.asarray( inst )
+            size   = matrix.shape
+
+            if len(size) == 2:
+                m, n = size
+            else:
+                m, n = 1, size[0]
+                matrix = [ matrix ]
+            mn_ref = np.array(mn)
+
+            for index in range(m):
+                row = matrix[index]
+                if index != 0 :
+                    ns = 0
+                    ms = index -1
+                    while row[ns] == None:      # Right search
+                        ns = ns + 1
+                    while matrix[ms][ns] == None: # Down search
+                        ms = ms - 1
+                    mn_ref = grid.mn.top_left( matrix[ms][ns] )
+                for element in row:
+                    if isinstance( element, (laygo2.object.Instance, laygo2.object.VirtualInstance) ):
+                        mn_bl    = grid.mn.bottom_left( element )
+                        mn_comp  = mn_ref - mn_bl
+                        inst_sub = grid.place( element, mn_comp)
+                        self.append(inst_sub)
+                        mn_ref = grid.mn.bottom_right( element )
+                    else:
+                        if element == None:
+                            pass
+                        else:
+                            mn_ref = mn_ref + np.array( element )
 
     def route(self, grid, mn, direction=None, via_tag=None):
         """Creates Path and Via objects over the abstract coordinates specified by mn, on this routing grid. """
