@@ -352,23 +352,6 @@ class _AbsToPhyGridConverter:
     def __eq__(self, other):
         """Returns the absolute coordinate corresponding to other (Inverse-mapping of __getitem__(pos))."""
         return self.master.phy2abs(pos=other)
-    '''
-        if (self.master.__class__.__name__ == 'OneDimGrid') or (issubclass(self.master.__class__, OneDimGrid)):
-            return self._eq_1d(other=other)
-        if (self.master.__class__.__name__ == 'Grid') or (issubclass(self.master.__class__, Grid)):
-            return self._eq_2d(other=other)
-
-    def _eq_1d(self, other):
-        return self._getitem_1d(pos=other)
-
-    def _eq_2d(self, other):
-        return self.__getitem__(pos=other)
-        if isinstance(other[0], (int, np.integer)):
-            return np.array([self.master.x[other[0]],
-                             self.master.y[other[1]])
-        else:
-            return np.array([self._eq_2d(o) for o in other])
-    '''
 
     def __lt__(self, other):
         """Returns thi abstract coordinate corresponding to the physical coordinate that is the largest but less than
@@ -380,22 +363,56 @@ class _AbsToPhyGridConverter:
         else:
             return None
 
-    def _lt_1d(self, other):
+    @staticmethod
+    def _phy2abs_operator( other, elements, width, shape, op):
+        def phy2abs( x ):
+            if x > 0:
+                quo_coarce = 0 + x // width
+                msb_sub = 1
+            else:
+                quo_coarce = 0 + x // width
+                msb_sub = 0
+
+            remain = x % width  # positive
+            msb = quo_coarce * shape - 1
+            for i, e in np.ndenumerate(elements):
+                # print("e: %d r:%d, m:%d, i:%d off:%d phy:%d " %(e, remain, msb + i[0], i[0], lsb_offset, quo_coarce*width + e   ))
+                # print(comp( e , remain ))
+
+                if comp(e, remain) == True:  # find maximum less then remain , e < r
+                    pass
+                else:                        # when it is False, latest true index
+                    return msb + i[0] + lsb_offset
+
+            return msb + shape + lsb_offset
+
+        if op == "<":  ## max lesser
+            comp = lambda e, r: e < r
+            lsb_offset = 0
+
+        elif op == "<=":  ## eq or max lesser eq
+            comp = lambda e, r: e <= r
+            lsb_offset = 0
+
+        elif op == ">":  ## min greater
+            comp = lambda e, r: e <= r
+            lsb_offset = 1
+
+        elif op == ">=":  ## eq or min greater
+            comp = lambda e, r: e < r
+            lsb_offset = 1
+
         if isinstance(other, (int, np.integer)):
-            quo = None
-            mod = None
-            for i, e in np.ndenumerate(self.master.elements):
-                _quo = int(round(np.floor((other - e) / self.master.width)))
-                if not (_quo * self.master.width + e == other):
-                    if quo is None:
-                        quo = _quo
-                        mod = i[0]
-                    elif _quo >= quo:  # update quo
-                        quo = _quo
-                        mod = i[0]
-            return quo * self.master.elements.shape[0] + mod
+           return phy2abs(other)
         else:
-            return np.array([self._lt_1d(o) for o in other])
+            list_return = []
+            for o in other:
+                list_return.append( phy2abs(o) )
+            return np.array( list_return )
+
+
+    def _lt_1d(self,other):
+        return self._phy2abs_operator( other, self.master.elements, self.master.width, self.master.elements.shape[0], "<")
 
     def _lt_2d(self, other):
         if isinstance(other[0], (int, np.integer)):
@@ -412,20 +429,7 @@ class _AbsToPhyGridConverter:
             return self._le_2d(other=other)
 
     def _le_1d(self, other):
-        if isinstance(other, (int, np.integer)):
-            quo = None
-            mod = None
-            for i, e in np.ndenumerate(self.master.elements):
-                _quo = int(round(np.floor((other - e) / self.master.width)))
-                if quo is None:
-                    quo = _quo
-                    mod = i[0]
-                elif _quo >= quo:  # update quo
-                    quo = _quo
-                    mod = i[0]
-            return quo * self.master.elements.shape[0] + mod
-        else:
-            return np.array([self._le_1d(o) for o in other])
+        return self._phy2abs_operator(other, self.master.elements, self.master.width, self.master.elements.shape[0], "<=")
 
     def _le_2d(self, other):
         if isinstance(other[0], (int, np.integer)):
@@ -442,26 +446,12 @@ class _AbsToPhyGridConverter:
             return self._gt_2d(other=other)
 
     def _gt_1d(self, other):
-        if isinstance(other, (int, np.integer)):
-            quo = None
-            mod = None
-            for i, e in np.ndenumerate(self.master.elements):
-                _quo = int(round(np.ceil((other - e) / self.master.width)))
-                if not (_quo * self.master.width + e == other):
-                    if quo is None:
-                        quo = _quo
-                        mod = i[0]
-                    elif _quo < quo:  # update quo
-                        quo = _quo
-                        mod = i[0]
-            return quo * self.master.elements.shape[0] + mod
-        else:
-            return np.array([self.__gt__(o) for o in other])
+        return self._phy2abs_operator(other, self.master.elements, self.master.width, self.master.elements.shape[0], ">")
 
     def _gt_2d(self, other):
         if isinstance(other[0], (int, np.integer)):
-            return np.array([self.master.m > other[0],
-                             self.master.n > other[1]])
+            return np.array([self.master.x > other[0],
+                             self.master.y > other[1]])
         else:
             return np.array([self._gt_2d(o) for o in other])
 
@@ -473,20 +463,7 @@ class _AbsToPhyGridConverter:
             return self._ge_2d(other=other)
 
     def _ge_1d(self, other):
-        if isinstance(other, (int, np.integer)):
-            quo = None
-            mod = None
-            for i, e in np.ndenumerate(self.master.elements):
-                _quo = int(round(np.ceil((other - e) / self.master.width)))
-                if quo is None:
-                    quo = _quo
-                    mod = i[0]
-                elif _quo < quo:  # update quo
-                    quo = _quo
-                    mod = i[0]
-            return quo * self.master.elements.shape[0] + mod
-        else:
-            return np.array([self.__ge__(o) for o in other])
+        return self._phy2abs_operator(other, self.master.elements, self.master.width, self.master.elements.shape[0], ">=")
 
     def _ge_2d(self, other):
         if isinstance(other[0], (int, np.integer)):
@@ -611,7 +588,7 @@ class _PhyToAbsGridConverter:
     # Reverse-access operators (comparison operators are used for reverse-access).
     def __eq__(self, other):
         """Returns the physical coordinate corresponding to the abstract coordinate other."""
-        self.master.abs2phy(pos=other)
+        return self.master.abs2phy(pos=other)
     '''
         if (self.master.__class__.__name__ == 'OneDimGrid') or (issubclass(self.master.__class__, OneDimGrid)):
             return self._eq_1d(other=other)
@@ -698,9 +675,13 @@ class _PhyToAbsGridConverter:
             A numpy array representing a bounding box in physical coordinate, or a PhysicalObject.
         """
         if (obj.__class__.__name__ == 'PhysicalObject') or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
-            return self.bbox(obj.bbox)
-        mn0 = self.master.xy >= obj[0]
-        mn1 = self.master.xy <= obj[1]
+            obj = obj.bbox
+
+        # phy -> abs
+        mn0 = self.master.xy >= obj[0] ## ge than lower left
+        mn1 = self.master.xy <= obj[1] ## le than upper right
+
+
         return np.array([mn0, mn1])
 
     def bottom_left(self, obj):
@@ -788,7 +769,7 @@ class _PhyToAbsGridConverter:
         _ib = None
         for _obj in args:
             if _ib is None:
-                _ib = self.bbox(_obj)
+                _ib = self.bbox(_obj) ## shaped
             else:
                 _b = self.bbox(_obj)
                 _x = np.sort(np.array([_b[:, 0], _ib[:, 0]]), axis=None)
@@ -872,23 +853,23 @@ class OneDimGrid(CircularMapping):
     # Comparison operators
     def __eq__(self, other):
         """Returns the abstract grid coordinate that matches to other."""
-        return self.phy2abs.__eq__(other)
+        return self.abs2phy.__eq__(other)
 
     def __lt__(self, other):
         """Returns the abstract grid coordinate that is the largest but less than other."""
-        return self.phy2abs.__lt__(other)
+        return self.abs2phy.__lt__(other)
 
     def __le__(self, other):
         """Returns the index of the grid coordinate that is the largest but less than or equal to other."""
-        return self.phy2abs.__le__(other)
+        return self.abs2phy.__le__(other)
 
     def __gt__(self, other):
         """Returns the abstract grid coordinate that is the smallest but greater than other."""
-        return self.phy2abs.__gt__(other)
+        return self.abs2phy.__gt__(other)
 
     def __ge__(self, other):
         """Returns the index of the grid coordinate that is the smallest but greater than or equal to other."""
-        return self.phy2abs.__ge__(other)
+        return self.abs2phy.__ge__(other)
 
     # Informative functions
     def __str__(self):
@@ -1098,7 +1079,7 @@ class Grid:
         Returns the abstract grid coordinates corresponding to the overlap of args.
         See _PhyToAbsGridConverter.overlap() for details.
         """
-        return self.phy2abs.crossing(*args, type=type)
+        return self.phy2abs.overlap(*args, type=type)
 
     def union(self, *args):
         """
@@ -1396,8 +1377,8 @@ if __name__ == '__main__':
         [g1a[[3, 5, 7]], np.array([40, 100, 120])],
         [g1a == [-200, -180, -50, 10, 60, 110, 220, 250], np.array([-10, -8, -1, 1, None, 6, 12, 14])],
         [g1a[g1a == [-200, -180, -50, -45, 10, 60, 110, 220, 250]], np.array([-200, -180, -50, None, 10, None, 110, 220, 250])],
-        [g1a == g1b, np.array([1, 2, None])],
-        [g1a[g1a == g1b], np.array([10, 20, None])],
+        #[g1a == g1b, np.array([1, 2, None])],
+        #[g1a[g1a == g1b], np.array([10, 20, None])],
         [g1a < -60, -3],
         [g1a < 40, 2],
         [g1a < 140, 7],
