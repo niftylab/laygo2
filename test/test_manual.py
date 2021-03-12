@@ -5,35 +5,14 @@ import laygo2
 
 import test_tech as tech
 
-@pytest.fixture
-def setup():
-    tpmos_name, tnmos_name = 'pmos', 'nmos'
-    pg_name = 'placement_cmos'
-    libname = 'laygo2_test_1'
-
-    templates    = tech.load_templates()
-    tpmos, tnmos = templates[tpmos_name], templates[tnmos_name]
-
-    grids = tech.load_grids(templates=templates)
-    pg, r12, r23 = grids['placement_cmos'], grids['routing_12_cmos'], grids['routing_23_cmos']
-
-    lib = laygo2.object.database.Library(name=libname)
-    dsn = laygo2.object.database.Design(name="test", libname=libname)
-    lib.append(dsn)
-    r_list={ "tpmos":tpmos, "tnmos":tnmos, "pg":pg, "r23":r23, "dsn":dsn}
-    return(r_list)
-
-
-
 def test_grid_manual_convertion_table():
-    g1 = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50])
+    g1   = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50])
     g1_y = laygo2.object.grid.OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
     g2 = laygo2.object.grid.Grid(name='test', vgrid=g1, hgrid=g1_y)
 
     set_op1 = ("[]", "()", "==", "<", "<=", ">", ">=")
 
-    g1ap = g1.abs2phy
-    g1pa = g1.phy2abs
+    g1ap, g1pa = g1.abs2phy, g1.phy2abs
 
     set_g1         = ( g1[10], "dummy" , g1 == 10 , g1 < 10 , g1 <=10 , g1 > 10 , g1 >= 10  )
     set_g1_abs2phy = ( g1ap[10], g1ap(10), g1ap ==10, g1ap < 10 , g1ap <=10, g1ap >10, g1ap >=10 )
@@ -42,15 +21,7 @@ def test_grid_manual_convertion_table():
     set_g1_title = ("g1", "g1.abs2phy", "g1.phy2abs")
     set_g1_loop  = (set_g1, set_g1_abs2phy, set_g1_phy2abs)
 
-
-    ## g2 ##
-
-    g2x  = g2.x
-    g2y  = g2.y
-    g2xy = g2.xy
-    g2m  = g2.m
-    g2n  = g2.n
-    g2mn = g2.mn
+    g2x, g2y, g2xy, g2m, g2n, g2mn  = g2.x, g2.y, g2.xy, g2.m, g2.n, g2.mn
 
     set_g2    = ( g2[[10,10]]   , "dummy" , g2 == [ 10,10 ], g2 < [10,10 ] , g2 <= [10,10 ], g2 > [10,10 ], g2 >= [10,10 ] )
     set_g2_x  = ( g2x[10], g2x(10), g2x ==10 , g2x < 10 , g2x <= 10, g2x > 10 , g2x >= 10 )
@@ -77,7 +48,7 @@ def test_grid_manual_convertion_table():
         print(set_op1)
         print(plist)
 
-def test_grid_manual_Grid_halfplane():
+def test_grid_manual_Grid_conversion_operators():
     ## abs2phy  ##
     g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130])
     g1_y = laygo2.object.grid.OneDimGrid(name='ygrid', scope=[0, 30], elements=[0])
@@ -119,8 +90,6 @@ def test_grid_manual_Grid_halfplane():
 
     for t, mn in zip( test_title_abs2phy, test_lower_abs2phy) :
         print( t, mn )
-
-
 
 def test_grid_manual_Grid_xy():
     ## abs2phy  ##
@@ -183,6 +152,7 @@ def test_grid_manual_Grid_property():
         print(token + "  : ", value, "   :", type(value))
 
     print(g2.summarize())
+
 def test_grid_manual_Grid_bboxHandler():
     g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
     g1_y = laygo2.object.grid.OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
@@ -231,3 +201,70 @@ def test_grid_manual_Grid_bboxHandler2():
 
     for t, v in zip(set_bbox2t, set_bbox2):
         print(t, v, type(v))
+
+def test_physical_manual_PhysicalObject():
+
+    physical = laygo2.object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params={'maxI': 0.005})
+    print("start")
+    set_titile1= ("name", "xy", "bbox", "master", "params")
+    set_print=(physical.name, physical.xy, physical.bbox, physical.master, physical.params)
+
+
+    set_title2  =("pointers", "left", "right", "top", "bottom", "center", "bottom_left", "bottom_right", "top_left", "top_right")
+    set_pointer=(physical.pointers, physical.left, physical.right, physical.top, physical.bottom, physical.center, physical.bottom_left, physical.bottom_right,
+                 physical.top_left, physical.top_right
+                 )
+    for t, x in zip(set_titile1, set_print):
+        print( t  + "  " +  str(x)  + "  " + str(type(x))     )
+
+    for t, x in zip(set_title2, set_pointer):
+        print( t  + "  " +  str(x)  + "  " + str(type(x))     )
+
+    print(physical)
+
+
+def test_physical_manual_IterablePhysicalObject():
+    physical1  = laygo2.object.physical.IterablePhysicalObject( xy=[[0, 0], [100, 100]], name="test" )
+    physical2 = laygo2.object.physical.IterablePhysicalObject(xy=[[0, 0], [200, 200]], name="test")
+    physical3 = laygo2.object.physical.IterablePhysicalObject(xy=[[0, 0], [200, 200]], name="test")
+    element = [physical1, physical2, physical3]
+    iphysical = laygo2.object.physical.IterablePhysicalObject( xy=[[0, 0], [200, 200]], name="test", elements = element)
+    print(iphysical.xy)
+    iphysical.xy = [[100,100], [200,200] ]
+    print("aaa")
+    print(iphysical[0].xy)
+    print(iphysical[1].xy)
+    print(iphysical[2].xy)
+
+    print(iphysical.shape)
+
+
+def test_physical_manual_Rect():
+    pass
+
+def test_physical_manual_Path():
+    pass
+
+def test_physical_manual_Pin():
+    pass
+
+def test_physical_manual_Text():
+    pass
+
+def test_physical_manual_VirtuialInstance():
+    pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

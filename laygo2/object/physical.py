@@ -77,12 +77,6 @@ class PhysicalObject:
     top_right
     """
 
-    name = None
-    """str or None: The name of this object."""
-
-    _xy = np.zeros(2, dtype=np.int)
-    """numpy.ndarray(dtype=numpy.int): The internal variable of xy."""
-
     def _get_xy(self):
         """numpy.ndarray(dtype=numpy.int): Gets the x and y coordinate values of this object."""
         return self._xy
@@ -92,14 +86,14 @@ class PhysicalObject:
         self._xy = np.asarray(value, dtype=np.int)
         self._update_pointers()
 
+    name = None
+    """str or None: The name of this object."""
+
+    _xy = np.zeros(2, dtype=np.int)
+    """numpy.ndarray(dtype=numpy.int): The internal variable of xy."""
+
     xy = property(_get_xy, _set_xy)
     """numpy.ndarray(detype=numpy.int): The coordinate of this object represented as a Numpy array [x, y]."""
-
-    @property
-    def bbox(self):
-        """numpy.ndarray(dtype=int): The bounding box for this object, represented as a Numpy array
-        [[x_ll, y_ll], [x_ur, y_ur]]."""
-        return np.sort(np.array([self.xy, self.xy]), axis=0)
 
     master = None
     """PhysicalObject or None: The master object that this object belongs to, if exists. None if there is no master."""
@@ -111,15 +105,13 @@ class PhysicalObject:
     """dict or None: The dictionary that contains the pointers of this object, with the pointers' names as keys."""
 
     # frequently used pointers
-    left = None
-    right = None
-    top = None
-    bottom = None
-    center = None
-    bottom_left = None
-    bottom_right = None
-    top_left = None
-    top_right = None
+    left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right = None, None, None, None, None, None, None, None, None
+
+    @property
+    def bbox(self):
+        """numpy.ndarray(dtype=int): The bounding box for this object, represented as a Numpy array
+        [[x_ll, y_ll], [x_ur, y_ur]]."""
+        return np.sort(np.array([self.xy[0, :], self.xy[1, :]]), axis=0)
 
     def __init__(self, xy, name=None, params=None):
         """
@@ -134,8 +126,8 @@ class PhysicalObject:
         params : dict or None
             The dictionary that contains the parameters of this object, with parameter names as keys.
         """
-        self.name = name
 
+        self.name = name
         # Initialize pointers.
         self.pointers = dict()
         self.pointers['left'] = np.array([0, 0], dtype=np.int)
@@ -167,9 +159,9 @@ class PhysicalObject:
         name = 'None' if self.name is None else self.name
         return \
             self.__repr__() + " " \
-            "name: " + name + ", " + \
-            "class: " + self.__class__.__name__ + ", " + \
-            "xy: " + str(self.xy.tolist()) + ", " + \
+            "name: "   + name + ", " + \
+            "class: "  + self.__class__.__name__ + ", " + \
+            "xy: "     + str(self.xy.tolist()) + ", " + \
             "params: " + str(self.params) + ", " + \
             ""
 
@@ -183,6 +175,7 @@ class PhysicalObject:
         xy_bottom_right = np.diag(np.dot(np.array([[0, 1], [1, 0]]), self.bbox)).astype(np.int)
         xy_top_left = np.diag(np.dot(np.array([[1, 0], [0, 1]]), self.bbox)).astype(np.int)
         xy_top_right = np.diag(np.dot(np.array([[0, 1], [0, 1]]), self.bbox)).astype(np.int)
+        xy_center    = np.diag(np.dot(np.array([[0, 0.5], [0, 0.5]]), self.bbox)).astype(np.int)
         self.pointers['left'] = xy_left
         self.pointers['right'] = xy_right
         self.pointers['bottom'] = xy_bottom
@@ -191,6 +184,7 @@ class PhysicalObject:
         self.pointers['bottom_right'] = xy_bottom_right
         self.pointers['top_left'] = xy_top_left
         self.pointers['top_right'] = xy_top_right
+        self.pointers['center'] = xy_center
         self.left = self.pointers['left']
         self.right = self.pointers['right']
         self.bottom = self.pointers['bottom']
@@ -199,6 +193,7 @@ class PhysicalObject:
         self.bottom_right = self.pointers['bottom_right']
         self.top_left = self.pointers['top_left']
         self.top_right = self.pointers['top_right']
+        self.center = self.pointers['center']
 
 
 class IterablePhysicalObject(PhysicalObject):
@@ -216,46 +211,12 @@ class IterablePhysicalObject(PhysicalObject):
     elements = None
     """numpy.array(dtype=PhysicalObject-like): The elements of this object."""
 
-    def __getitem__(self, pos):
-        """Returns the sub-elements of this object, based on the pos parameter."""
-        return self.elements[pos]
-
-    def __setitem__(self, pos, item):
-        """Sets the sub-elements of this object, based on the pos and item parameter. """
-        self.elements[pos] = item
-
-    def __iter__(self):
-        """Iterator function. Directly mapped to the iterator of the elements attribute of this object."""
-        return self.elements.__iter__()
-
-    def __next__(self):
-        """Iterator function. Directly mapped to the iterator of the elements attribute of this object."""
-        return self.elements.__next__()
-
-    def ndenumerate(self):
-        """Enumerates over the element array. Calls np.ndenumerate() of the elements of this object."""
-        return np.ndenumerate(self.elements)
-
-    def _update_elements(self, xy_ofst):
-        """Updates xy-coordinates of this object's elements. An internal function for _set_xy()"""
-        if np.all(self.elements is not None):
-            # Update the x and y coordinate values of elements.
-            for n, e in self.ndenumerate():
-                if e is not None:
-                    e.xy = e.xy + xy_ofst
-
-    def _get_xy(self):
-        """numpy.ndarray(dtype=numpy.int): Gets the x and y coordinate values of this object."""
-        return self._xy
-
     def _set_xy(self, value):
         """numpy.ndarray(dtype=numpy.int): Sets the x and y coordinate values of this object."""
         # Update the coordinate value of its elements.
         self._update_elements(xy_ofst=value - self.xy)
         # Update the coordinate value of the object itself.
         PhysicalObject._set_xy(self, value=value)
-
-    xy = property(_get_xy, _set_xy)
 
     @property
     def shape(self):
@@ -286,6 +247,34 @@ class IterablePhysicalObject(PhysicalObject):
         else:
             self.elements = np.asarray(elements)
 
+    def __getitem__(self, pos):
+        """Returns the sub-elements of this object, based on the pos parameter."""
+        return self.elements[pos]
+
+    def __setitem__(self, pos, item):
+        """Sets the sub-elements of this object, based on the pos and item parameter. """
+        self.elements[pos] = item
+
+    def __iter__(self):
+        """Iterator function. Directly mapped to the iterator of the elements attribute of this object."""
+        return self.elements.__iter__()
+
+    def __next__(self):
+        """Iterator function. Directly mapped to the iterator of the elements attribute of this object."""
+        return self.elements.__next__()
+
+    def ndenumerate(self):
+        """Enumerates over the element array. Calls np.ndenumerate() of the elements of this object."""
+        return np.ndenumerate(self.elements)
+
+    def _update_elements(self, xy_ofst):
+        """Updates xy-coordinates of this object's elements. An internal function for _set_xy()"""
+        print("aa?")
+        if np.all(self.elements is not None):
+            # Update the x and y coordinate values of elements.
+            for n, e in self.ndenumerate():
+                if e is not None:
+                    e.xy = e.xy + xy_ofst
 
 class PhysicalObjectGroup(IterablePhysicalObject):
     """
@@ -400,7 +389,6 @@ class PhysicalObjectArray(np.ndarray):
                "  elements:" + str(np.ndarray.__str__(self)) + "\n"
 '''
 
-
 class Rect(PhysicalObject):
     """
     A rect object.
@@ -454,12 +442,6 @@ class Rect(PhysicalObject):
     def size(self):
         """numpy.ndarray(dtype=int): The size of the rect."""
         return np.array([self.width, self.height])
-
-    @property
-    def bbox(self):
-        """numpy.ndarray(dtype=int): The bounding box of the object. Its default format is
-        [[x_ll, y_ll], [x_ur, y_ur]]"""
-        return np.sort(np.array([self.xy[0, :], self.xy[1, :]]), axis=0)
 
     def __init__(self, xy, layer, hextension=0, vextension=0, name=None, netname=None, params=None):
         """
@@ -611,12 +593,6 @@ class Pin(IterablePhysicalObject):
         """numpy.ndarray(dtype=int): Returns np.array([width, 0])."""
         return np.array([self.width, 0])
 
-    @property
-    def bbox(self):
-        """numpy.ndarray(dtype=int): The bounding box of the object. Its default format is [[x0, y0], [x1, y1]], where
-        [x0, y0] is the lower-left corner of this object, and [x1, y1] is the upper-right one."""
-        return np.sort(np.array([self.xy[0, :], self.xy[1, :]]), axis=0)
-
     def __init__(self, xy, layer, name=None, netname=None, params=None, master=None, elements=None):
         """
         Constructor.
@@ -641,7 +617,6 @@ class Pin(IterablePhysicalObject):
             netname = name
         self.netname = netname
         self.master = master
-
         IterablePhysicalObject.__init__(self, xy=xy, name=name, params=params, elements=elements)
 
     def summarize(self):
@@ -659,7 +634,6 @@ class Pin(IterablePhysicalObject):
         db['name'] = self.name
         db['netname'] = self.netname
         return db
-
 
 class Text(PhysicalObject):
     """
@@ -1031,7 +1005,9 @@ if __name__ == '__main__':
                          unit_size=[100, 100], pins=inst0_pins, transform='R0')
         print("  ", inst0)
         print("  ", inst0.pointers)
+        print(inst0.elements)
         for idx, it in inst0.ndenumerate():
+            print("what?")
             print("  ", idx, it)
             print("  ", idx, it.pins['in'])
         print("Instance test - updating the instance's coordinate values.")
