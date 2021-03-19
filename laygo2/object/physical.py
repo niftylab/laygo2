@@ -417,6 +417,8 @@ class Rect(PhysicalObject):
     vextension = 0
     """int or None: the extension of the Rect object in vertical directions. Used to handle the extensions of routing
      elements."""
+    color = None
+    """str: The color of the shape. One of grayColor, mask1Color, mask2Color, etc. """
 
     @property
     def height(self):
@@ -443,7 +445,7 @@ class Rect(PhysicalObject):
         """numpy.ndarray(dtype=int): The size of the rect."""
         return np.array([self.width, self.height])
 
-    def __init__(self, xy, layer, hextension=0, vextension=0, name=None, netname=None, params=None):
+    def __init__(self, xy, layer, color, hextension=0, vextension=0, name=None, netname=None, params=None):
         """
         Constructor.
 
@@ -467,6 +469,7 @@ class Rect(PhysicalObject):
             self.netname = netname
         self.hextension = hextension
         self.vextension = vextension
+        self.color = color
         PhysicalObject.__init__(self, xy=xy, name=name, params=params)
 
     def summarize(self):

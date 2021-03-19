@@ -87,8 +87,14 @@ procedure( _laygo2_generate_instance( cv name libname cellname viewname loc orie
 );procedure
 
 ; create a rectangle
-procedure( _laygo2_generate_rect( cv layer bbox )
+procedure( _laygo2_generate_rect( cv layer bbox color )
+    ;obj = dbCreateRect(cv layer bbox)
     obj = dbCreateRect(cv layer bbox)
+;    obj = dbSetShapeColor(dbCreateRect(cv layer bbox) color) ; coloring func. added
+    if( color != "not MPT" then
+        dbSetShapeColor( obj color )
+        dbSetShapeColorLocked(obj t)
+    else )
     obj
 );procedure
 
