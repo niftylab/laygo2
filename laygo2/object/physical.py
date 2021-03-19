@@ -269,7 +269,7 @@ class IterablePhysicalObject(PhysicalObject):
 
     def _update_elements(self, xy_ofst):
         """Updates xy-coordinates of this object's elements. An internal function for _set_xy()"""
-        print("aa?")
+        #print("aa?")
         if np.all(self.elements is not None):
             # Update the x and y coordinate values of elements.
             for n, e in self.ndenumerate():

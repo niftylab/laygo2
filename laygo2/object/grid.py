@@ -1230,8 +1230,8 @@ class RoutingGrid(Grid):
                     hextension = int(width/2)
                     vextension = self.vextension[__mn[0][0]]
                     layer = self.vlayer[__mn[0][0]]
-                    if self.xcolor == 'not MPT':
-                        color = self.xcolor
+                    if self.xcolor[0] == 'not MPT':
+                        color = self.xcolor[0]
                     else:
                         if __mn[0][0]//2 == 0 or __mn[0][0] == 0: # xcolor has only two types.
                             color = self.xcolor[0][0]
@@ -1242,11 +1242,10 @@ class RoutingGrid(Grid):
                     hextension = self.hextension[__mn[0][1]]
                     vextension = int(width/2)
                     layer = self.hlayer[__mn[0][1]]
-                    if self.ycolor == 'not MPT':
-                        color = self.ycolor
+                    if self.ycolor[0] == 'not MPT':
+                        color = self.ycolor[0]
                     else:
                         color = self.ycolor[0][__mn[0][1]% len(self.ycolor[0])] # ycolor is determined by its grid layer.
-
             p = laygo2.object.physical.Rect(xy=_xy, layer=layer, hextension=hextension, vextension=vextension, color=color)
             route.append(p)
             # via placement
