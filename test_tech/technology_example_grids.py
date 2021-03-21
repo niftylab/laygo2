@@ -47,6 +47,23 @@ def load_grids(templates):
             hlayer = laygo2.object.grid.CircularMapping(elements=grid['horizontal']['layer'], dtype=object)
             pin_vlayer = laygo2.object.grid.CircularMapping(elements=grid['vertical']['pin_layer'], dtype=object)
             pin_hlayer = laygo2.object.grid.CircularMapping(elements=grid['horizontal']['pin_layer'], dtype=object)
+            xcolor = list()
+            if 'xcolor' in grid['vertical'].keys():
+                if grid['vertical']['xcolor'] == 'not MPT':
+                    xcolor = ['not MPT']
+                else:
+                    xcolor.append(grid['vertical']['xcolor'])
+            else:
+                xcolor = ['not MPT']
+
+            ycolor = list()
+            if 'ycolor' in grid['horizontal'].keys():
+                if grid['horizontal']['ycolor'] == 'not MPT':
+                    ycolor = ['not MPT']
+                else:
+                    ycolor.append(grid['horizontal']['ycolor'])
+            else:
+                ycolor = ['not MPT']
             primary_grid = grid['primary_grid']
             # Create the via map defined by the yaml file.
             vmap_original = grid['via']['map']  # viamap defined in the yaml file.
@@ -57,13 +74,14 @@ def load_grids(templates):
                     vmap_mapped_row.append(templates[vmap_org_elem])
                 vmap_mapped.append(vmap_mapped_row)
             viamap = laygo2.object.grid.CircularMappingArray(elements=vmap_mapped, dtype=object)
-
             g = laygo2.object.grid.RoutingGrid(name=gname, vgrid=gv, hgrid=gh,
                                                vwidth=vwidth, hwidth=hwidth,
                                                vextension=vextension, hextension=hextension,
                                                vlayer=vlayer, hlayer=hlayer,
                                                pin_vlayer=pin_vlayer, pin_hlayer=pin_hlayer,
-                                               viamap=viamap, primary_grid=primary_grid)
+                                               viamap=viamap, primary_grid=primary_grid,
+                                               xcolor=xcolor, ycolor=ycolor
+                                               )
             glib.append(g)
     return glib
 

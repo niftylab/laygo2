@@ -91,6 +91,127 @@ def test_grid_manual_Grid_conversion_operators():
     for t, mn in zip( test_title_abs2phy, test_lower_abs2phy) :
         print( t, mn )
 
+def test_grid_manual_CircularMapping():
+    elements = [ 0, 35, 85, 130]
+    cm = laygo2.object.CircularMapping( elements = elements)
+    test_set = [
+        [cm.dtype, "dtype"],
+        [cm.elements, "elements"],
+        [cm.shape, "shape"]
+    ]
+
+    for v, t in test_set:
+        print(t, v, type(v))
+    print(cm[5])
+    print(cm[0:10])
+
+def test_grid_manual_CircularMappingArray():
+    elementx = [0, 35, 85, 130 ]
+    elementy = [0 , 35]
+    elements  = [[0,0], [35,0], [85,0], [130,0],
+                 [35,35], [85, 35], [130,35 ]  ]
+    cm = laygo2.object.CircularMapping(elements=elements)
+    test_set = [
+        [cm.dtype, "dtype"],
+        [cm.elements, "elements"],
+        [cm.shape, "shape"]
+    ]
+    print(elements)
+    for v, t in test_set:
+        print(t, v, type(v))
+    print( cm[1] )
+    print(cm[[0, 1]])
+
+def test_grid_manual_AbsToPhyGridConverter():
+    g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50])
+    abs2phy = laygo2.object.grid._AbsToPhyGridConverter( master = g1_x)
+    print( abs2phy)
+    test_set=[
+        [abs2phy.master, "master"],
+        [abs2phy[0], "__getItem__ "],
+        [abs2phy(0), " call"],
+        [abs2phy == 35, " equal"],
+        [abs2phy < 35, "lt"],
+        [abs2phy <= 35, "te"],
+        [abs2phy > 35, "gt"],
+        [abs2phy >= 35, "ge"]
+    ]
+
+    for v, t in test_set:
+        print( t, v, type(v) )
+
+def test_grid_manual_PhyToAbsGridConverter():
+    g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50])
+    phy2abs = laygo2.object.grid._PhyToAbsGridConverter(master=g1_x)
+    print(" ")
+    print(phy2abs)
+    test_set = [
+        [phy2abs.master, "master"],
+        [phy2abs[35], "__getItem__ "],
+        [phy2abs(35), " call"],
+        [phy2abs == 1, " equal"],
+        [phy2abs < 1, "lt"],
+        [phy2abs <= 1, "te"],
+        [phy2abs > 1, "gt"],
+        [phy2abs >= 1, "ge"],
+    ]
+    for v, t in test_set:
+        print(t, v, type(v))
+
+    g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+    g1_y = laygo2.object.grid.OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+    g2 = laygo2.object.grid.Grid(name='test', vgrid=g1_x, hgrid=g1_y)
+    phy2abs = laygo2.object.grid._PhyToAbsGridConverter(master=g2)
+
+    rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0')
+    test_set2=[
+      [phy2abs.bbox(rect0), "bbox"],
+      [phy2abs.bottom_left(rect0), "bl"],
+      [phy2abs.bottom_right(rect0), "br"],
+      [phy2abs.top_left(rect0), "tl"],
+      [phy2abs.top_right(rect0), "tr"],
+      [phy2abs.width(rect0), "width"],
+      [phy2abs.height(rect0), "height"],
+      [phy2abs.size(rect0), "size"],
+    ]
+    for t,v in test_set2:
+        print(t,v, type(v))
+
+    g1_y = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 120], elements=[0, 20, 40, 60, 80, 100, 120])
+    g1_x = laygo2.object.grid.OneDimGrid(name='ygrid', scope=[0, 10], elements=[0])
+    g2 = laygo2.object.grid.Grid(name='test', vgrid=g1_x, hgrid=g1_y)
+    phy2abs=laygo2.object.grid._PhyToAbsGridConverter(master=g2)
+    rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [60, 90]], layer=['M1', 'drawing'], netname='net0',
+                                        params={'maxI': 0.005})
+    rect1 = laygo2.object.physical.Rect(xy=[[30, 30], [120, 120]], layer=['M1', 'drawing'], netname='net0',
+                                        params={'maxI': 0.005})
+    rect2 = laygo2.object.physical.Rect(xy=[[30, 30], [120, 120]], layer=['M1', 'drawing'], netname='net0',
+                                        params={'maxI': 0.005})
+
+    print("start")
+
+    set_bbox2t = ("overlap", "crossing", "union ")
+    set_bbox2 = (phy2abs.overlap(rect0, rect1), phy2abs.crossing(rect0, rect1), phy2abs.union(rect0, rect1))
+
+    for t, v in zip(set_bbox2t, set_bbox2):
+        print(t, v, type(v))
+
+def test_grid_manual_OneDimGrid():
+    g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50])
+    print("  ")
+    test_set=[
+        [g1_x.name, "name"],
+        [g1_x.range, "range"],
+        [g1_x.phy2abs, "phy2abs"],
+        [g1_x.abs2phy, "abs2phy"],
+        [g1_x.width, "width"],
+        [ g1_x.export_to_dict(), " export "]
+    ]
+
+    for v, t in test_set:
+        print(t + "   ", v, type(v) )
+    print(g1_x)
+
 def test_grid_manual_Grid_xy():
     ## abs2phy  ##
     g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50])
@@ -222,38 +343,151 @@ def test_physical_manual_PhysicalObject():
 
     print(physical)
 
-
 def test_physical_manual_IterablePhysicalObject():
-    physical1  = laygo2.object.physical.IterablePhysicalObject( xy=[[0, 0], [100, 100]], name="test" )
-    physical2 = laygo2.object.physical.IterablePhysicalObject(xy=[[0, 0], [200, 200]], name="test")
-    physical3 = laygo2.object.physical.IterablePhysicalObject(xy=[[0, 0], [200, 200]], name="test")
-    element = [physical1, physical2, physical3]
-    iphysical = laygo2.object.physical.IterablePhysicalObject( xy=[[0, 0], [200, 200]], name="test", elements = element)
-    print(iphysical.xy)
-    iphysical.xy = [[100,100], [200,200] ]
-    print("aaa")
-    print(iphysical[0].xy)
-    print(iphysical[1].xy)
-    print(iphysical[2].xy)
+    phy0  = laygo2.object.physical.IterablePhysicalObject( xy=[[0, 0], [100, 100]], name="test" )
+    phy1 = laygo2.object.physical.IterablePhysicalObject( xy=[[0, 0], [200, 200]], name="test")
+    phy2 = laygo2.object.physical.IterablePhysicalObject( xy=[[0, 0], [300, 300]], name="test")
+    element = [phy0, phy1, phy2]
+    iphy0 = laygo2.object.physical.IterablePhysicalObject( xy=[[0, 0], [300, 300]], name="test", elements = element)
 
-    print(iphysical.shape)
+    test_set=[
+        iphy0.elements,
+        iphy0.shape,
+        iphy0.ndenumerate()
+    ]
+    print(" ")
+    for v in test_set:
+        print(v)
+        print(type(v))
+    print(iphy0)
 
+def test_physical_manual_instance():
+    import numpy as np
+    inst0_pins = dict()
+    inst0_pins['in']  = laygo2.object.physical.Pin( xy = [[0, 0], [10,10]], layer = ['M1', 'drawing'], netname = 'in')
+    inst0_pins['out'] = laygo2.object.physical.Pin( xy = [[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out')
+    inst0 = laygo2.object.physical.Instance( name = "I0", xy = [ 100,100], libname="mylib", cellname="mycell"
+    , shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins, transform =  'R0')
+
+
+    test_value= [
+        [inst0.libname,  "libname"],
+        [inst0.cellname, "cellname"],
+        [inst0.unit_size, "unit_size"],
+        [inst0.transform, "transform"],
+        [inst0.pins, "pins"],
+        [inst0.xy0, "xy0"],
+        [inst0.xy1, "xy1"],
+        [inst0.size, "size"],
+        [inst0.pitch, "pitch"],
+        [inst0.spacing, " spacing "],
+        [inst0.height, " height"],
+        [inst0.width, "width"],
+        [inst0.xy, "xy"]
+    ]
+
+    for v,t  in test_value:
+        print(t, v, end="  ")
+        print(type(v))
+
+
+    for idx, it in inst0.ndenumerate():
+        print( "   ", idx, it)
+
+    print("pins")
+    print(inst0.pins["in"].shape)
+    for idx, it in inst0.pins["in"].ndenumerate():
+        print( "   ", idx, it)
+
+    print( inst0[1,0].xy0 )
+    print( inst0.pins["in"][1,1].xy)
 
 def test_physical_manual_Rect():
-    pass
+    rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', hextension=20, vextension=20)
+    test_set=[
+        [ rect0.layer, " layer"],
+        [ rect0.netname, " netname"],
+        [ rect0.hextension,  " hextension"],
+        [ rect0.vextension,  " vextension"],
+        [ rect0.height,  " height"],
+        [ rect0.width,  " width"],
+        [ rect0.size, " size"]
+    ]
+    for v, t in test_set:
+        print(t, v, end="  ")
+        print( type(v) )
+    print(rect0)
 
 def test_physical_manual_Path():
-    pass
+    path0 = laygo2.object.physical.Path(xy=[[0, 0], [0, 100]], width=10, extension=5, layer=['M1', 'drawing'], netname='net0')
+    test_set = [
+        [path0.layer, " layer"],
+        [path0.netname, " netname"],
+        [path0.extension, " extension"],
+        [path0.width, " width"],
+        ]
+    for v,t  in test_set:
+        print(t, v, end="  ")
+        print(type(v))
+    print(path0)
 
 def test_physical_manual_Pin():
-    pass
+    pin0 = laygo2.object.physical.Pin( xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0',
+               params={'direction': 'input'})
+    test_set=[
+    [pin0.layer, " layer"],
+    [pin0.netname, " netname"],
+    [pin0.height, " height"],
+    [pin0.width, " width"],
+    [pin0.size, " size"],
+    ]
+    print(" ")
+    for v, t in test_set:
+        print(t, v, end="  ")
+        print(type(v))
+
+    print( pin0 )
 
 def test_physical_manual_Text():
-    pass
+    text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=['text', 'drawing'], text='test', params=None)
+    test_set = [
+        [text0.layer, " layer"],
+        [text0.text, " text"],
+    ]
+    print(" ")
+    for v, t in test_set:
+        print(t, v, end="  ")
+        print(type(v))
 
 def test_physical_manual_VirtuialInstance():
-    pass
+    vinst0_pins = dict()
+    vinst0_pins['in']  = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], netname='in')
+    vinst0_pins['out'] = laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out')
+    vinst0_native_elements = dict()
+    vinst0_native_elements['R0'] = laygo2.object.physical.Rect(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'])
+    vinst0_native_elements['R1'] = laygo2.object.physical.Rect(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'])
+    vinst0_native_elements['R2'] = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], layer=['prBoundary', 'drawing'])
+    vinst0 = laygo2.object.physical.VirtualInstance(name='I0', libname='mylib', cellname='myvcell', xy=[500, 500],
+                            native_elements=vinst0_native_elements, shape=[3, 2], pitch=[100, 100],
+                            unit_size=[100, 100], pins=vinst0_pins, transform='R0')
 
+    test_set=[
+        [vinst0.native_elements, "native_elements"]
+    ]
+    print("  ")
+    for v, t in test_set:
+        print(t, v, end="  ")
+        print(type(v))
+
+    print("  ")
+    print("  ", vinst0)
+    for idx, it in vinst0.ndenumerate():
+        print("  ", idx, it)
+
+
+    print(" pins")
+    for idx, it in vinst0.pins['in'].ndenumerate():
+        print("  ", idx, it)
 
 
 
