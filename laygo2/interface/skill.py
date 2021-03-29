@@ -128,6 +128,10 @@ def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0
         if obj.shape is None:
             for elem_name, elem in obj.native_elements.items():
                 if not elem.__class__ == laygo2.object.Pin:
+                    if obj.name == None:
+                        obj.name='NoName'
+                    else:
+                        pass
                     cmd += _translate_obj(obj.name + '_' + elem_name, elem, scale=scale, master=obj)
         else:  # arrayed VirtualInstance
             for i, j in np.ndindex(tuple(obj.shape.tolist())):  # iterate over obj.shape
