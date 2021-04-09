@@ -1156,7 +1156,7 @@ class RoutingGrid(Grid):
     """str: The color of routing wires. Automatically extracted from grid layout. """
 
     def __init__(self, name, vgrid, hgrid, vwidth, hwidth, vextension, hextension, vlayer, hlayer, pin_vlayer,
-                 pin_hlayer, viamap, xcolor, ycolor, primary_grid='vertical', vextension0=None, hextension0=None):
+                 pin_hlayer, viamap, xcolor=None, ycolor=None, primary_grid='vertical', vextension0=None, hextension0=None):
         """
         Constructor.
 
@@ -1233,10 +1233,8 @@ class RoutingGrid(Grid):
                     if self.xcolor[0] == 'not MPT':
                         color = self.xcolor[0]
                     else:
-                        if __mn[0][0]//2 == 0 or __mn[0][0] == 0: # xcolor has only two types.
-                            color = self.xcolor[0][0]
-                        else:
-                            color = self.xcolor[0][1]
+                        color = self.xcolor[0][__mn[0][0]% len(self.xcolor[0])]
+
                 else:  # horizontal routing
                     width = self.hwidth[__mn[0][1]]
                     hextension = self.hextension[__mn[0][1]]
