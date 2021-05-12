@@ -459,6 +459,7 @@ def database_test(): ## for cut layer
             ## 1. collect top m0s & inst m0.pin & virtual.rect
             ## 2. check violation & edge
             ## 3. if location is edge & !top m0.pin -> place cut
+            ## 4. place cut when m0 space is less than space_min
 
             if rects == None:
                 rects = self.rects
@@ -468,10 +469,13 @@ def database_test(): ## for cut layer
                 vinsts == self.virtual_instances
 
             r_bboxs = []
+            space_min_edge  = space_min ## for space at edge,
 
-            def place(bbox): # temp method
+            def place( bbox_r, bbox_l ): # temp method
+                ## place cut between bbox_r & bbox_l
                 print("cut ", end=" : ")
-                r_bboxs.append(bbox)
+                bbox_c = 0.5* (bbox_r + bbox_l)
+                r_bboxs.append( bbox_c )
 
             def check_space(xl:float, xr:float, space:float):
                 delta = xr - xl
@@ -518,29 +522,29 @@ def database_test(): ## for cut layer
                 # place leftmost & rightmost
                 bbox_l = bbox_list[0]
                 bbox_r = bbox_list[index_last]
-                bl_bbox_l = bbox_l[0]
-                br_bbox_r = bbox_r[1]
 
                 skip_cut = 0
+
+                ## case1: top_l     , pin_l , ******,   pin_r , top_r
+                ## case2: top_l& cut, bbox_l, ******, bbox_r  , top_r & cut
                 for k, bbox_pin in enumerate(bboxs_pin):
-                    if np.array_equal(bbox_l - bbox_pin, ref):  #  leftmost is pin
+                    if np.array_equal( bbox_l - bbox_pin, ref):  #  leftmost is pin
+                        del bboxs_pin[k]                         # iteration reduction
+                    elif check_space( bl_top[0] , bbox_l[0][0], space_min_edge) :
+                        place(bl_top[0] - 1 , bbox_l[0][0])
+
+                    if np.array_equal(bbox_r - bbox_pin, ref):  # rightmost is pin
                         del bboxs_pin[k]
-                        if check_space( bl_top[0], bl_bbox_l[0], space_min) :
-                            skip_cut = 1
-                    elif np.array_equal(bbox_r - bbox_pin, ref):  # rightmost is pin
-                        del bboxs_pin[k]
-                        if check_space( br_bbox_r[0], br_top[0], space_min) :
-                            skip_cut = 1
-                if skip_cut == 0:
-                    place(bl_bbox_l)
-                    place(br_bbox_r)
+                    elif check_space( bbox_r[0][0], br_top[0], space_min_edge) :
+                        place( br_top[0] + 1, bbox_r[0][0])
 
                 if index_last != 0: # place between m0s
-                    for i in range(index_last - 1):
+                    for i in range(index_last - 1): ## from leftmost.r to rightmost.l
                         i0_br = bbox_list[i][1]
                         i1_bl = bbox_list[i + 1][0]
-                        if check_space(i0_br[0],  i1_bl[0], space_min ) == False :
-                            place(i0_br)
+                        if check_space( i0_br[0],  i1_bl[0], space_min ) == False :
+                            place(i0_br[0],i1_bl[0])
+
             return r_bboxs
 
     return Design_test(name="test")
