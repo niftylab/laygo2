@@ -188,3 +188,43 @@ grids:
       map:
         - [via_r23_default, via_r23_default, via_r23_default, via_r23_default,
            via_r23_default, via_r23_default, via_r23_default, via_r23_default]
+
+  routing_23_cmos_cut:
+    type: routing
+    vertical:
+      scope: [0, 15]
+      elements: [0]
+      layer:
+        - [metal3, drawing]
+      pin_layer:
+        - [metal3, pin]
+      width: [10]
+      extension: [15]
+    horizontal:
+      scope: [0, 200]
+      elements: [10, 40, 60, 90, 110, 140, 160, 190]
+      layer:
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+      pin_layer:
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+      width: [10, 10, 10, 10, 10, 10, 10, 10]
+      extension: [15, 15, 15, 15, 15, 15, 15, 15]
+    primary_grid: horizontal  # the primary routing direction
+    via:
+      map:
+        - [via_r23_default, via_r23_default, via_r23_default, via_r23_default,
+           via_r23_default, via_r23_default, via_r23_default, via_r23_default]

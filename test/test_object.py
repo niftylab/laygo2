@@ -520,7 +520,7 @@ def database_test(): ## for cut layer
             return ebbox
 
 
-        def rect_space(self, layer, grid, space_min: float, xy=None, rects = None, insts = None, vinsts= None):
+        def rect_space(self, layer, grid, grid_cut, space_min: float, xy=None, rects = None, insts = None, vinsts= None):
             from collections import defaultdict
             ## Concept: place cut layer when only space violaion occurs except the pin is placed at the edge for lateral connections
             ## 1. collect top m0s & inst m0.pin & virtual.rect
@@ -538,27 +538,24 @@ def database_test(): ## for cut layer
                 xy = self.get_xy()
 
 
-            def place( xy_w, xy_e, obj_w, obj_e, grid ): # temp method
+            def place( xy_w, xy_e, obj_w, obj_e, grid_cut ): # temp method
                 ## place cut between bbox_r & bbox_l
-                mn_w = grid.mn(xy_w)
-                mn_e = grid.mn(xy_e)
-                if None in (mn_w, mn_e):
-                    raise ValueError(" mn of xy not exist ")
-                mn_c = 0.5* (mn_w + mn_e)
-                
 
+                mn_w = grid_cut.mn(xy_w)
+                mn_e = grid_cut.mn(xy_e)
+                mn_c = ( 0.5*(mn_w + mn_e) ).astype(int)
                 print(" ")
                 print("cut!  ", end=" ")
                 print("mn :  ", mn_c       , end=" ")
-                print("LeftRgith: ",  mn_w, mn_e)
+                print("LeftRigth: ",  mn_w, mn_e)
                 print("left_obj: " ,  obj_w)
                 print("right_obj: ",  obj_e)
                 r_bboxs.append( mn_c )
 
             def check_space_ok( xw:float, xe:float, space:float ):
                 delta = xe - xw
-                print("check space", end=" ")
-                print(xw, xe, delta)
+               # print("check space", end=" ")
+               # print(xw, xe, delta)
 
                 if 0 < delta < space: # error
                     return False
@@ -599,53 +596,49 @@ def database_test(): ## for cut layer
 
                 ebbox_list  = y_bbox[key]
                 i_last      = len(ebbox_list) - 1
+                print(" ")
                 print("y-loop", key, i_last)
                 bbox_w = ebbox_list[0][0:2]
                 bbox_e = ebbox_list[i_last][0:2]
                 ## case1: top_l     , pin_l , ******,   pin_r , top_r
                 ## case2: top_l& cut, bbox_l, ******, bbox_r  , top_r & cut
                 ## when !pin  & vioration
+                skip_w = 0
+                skip_e = 0
                 for k, ebbox_pin in enumerate(pin_check):
                     if np.array_equal( bbox_w - ebbox_pin[0:2], ref):  #  leftmost is pin
-                        print("left is pin!")
                         del pin_check[k]
+                        skip_w = 1
                         pass
-
-                    elif check_space_ok( xy[0][0] , bbox_w[0][0], space_min_edge) == False :
-                        print("left")
-                        _xy_w = grid.mn( [ xy[0][0], ebbox_pin[0][1] ])
-                        place( _xy_w , _xy_w, xy, drw_check_obj[ebbox_pin[4][0]], grid )
 
                     if np.array_equal( bbox_e - ebbox_pin[0:2], ref):  # rightmost is pin
-                        print("right is pin!")
                         del pin_check[k]
+                        skip_e = 1
                         pass
-                    elif check_space_ok( bbox_e[0][0], xy[1][0], space_min_edge) == False :
-                        print("right")
-                        _xy_e = grid.mn( [ xy[1][0], ebbox_pin[1][1] ] )
-                        place( _xy_e, _xy_e , drw_check_obj[ebbox_pin[4][0] ], xy, grid )
-                    print("pin check end")
+
+                if skip_w == 0 and check_space_ok(xy[0][0], bbox_w[0][0], space_min_edge) == False:
+                    print("left")
+                    place( xy[0], xy[0], xy, drw_check_obj[ebbox_pin[4][0]], grid_cut)
+
+                if skip_e == 0 and check_space_ok( bbox_e[1][0], xy[1][0], space_min_edge) == False:
+                    print("right")
+                    place( xy[1], xy[1], drw_check_obj[ebbox_pin[4][0]], xy, grid_cut)
 
                 if i_last != 0: # place between m0s
-                    print("middle scan:",i_last)
                     iw_ebbox = ebbox_list[0]  # check br
-                    for i in range(i_last ): ## from leftmost.r to rightmost.l
+                    for i in range(i_last + 1): ## from leftmost.r to rightmost.l
                         # ie : reference
                         # iw : target
                         new_ebbox = ebbox_list[i]
-                        print(new_ebbox)
                         if new_ebbox[1][0] <= iw_ebbox[1][0] : # check br vs br
                             continue
                         else: # evaluation
-                            print("eval!")
                             ie_ebbox = new_ebbox
                             flag     = check_space_ok( iw_ebbox[1][0],  ie_ebbox[0][0], space_min )
-                            print(flag)
                             if flag == False :   # when space error
-                                print("middle")
                                 _xy_w =  iw_ebbox[1] - iw_ebbox[2]
                                 _xy_e = ie_ebbox[0] + ie_ebbox[2]
-                                place( _xy_w, _xy_e , drw_check_obj[ iw_ebbox[4][0]], drw_check_obj[ie_ebbox[4][0]], grid )
+                                place( _xy_w, _xy_e , drw_check_obj[ iw_ebbox[4][0]], drw_check_obj[ie_ebbox[4][0]], grid_cut )
                             iw_ebbox = ie_ebbox # update
 
 
@@ -669,8 +662,9 @@ def test_database_design_test(database_test):
     r23_name = 'routing_23_cmos'
 
     pg, r12, r23= grids[pg_name], grids[r12_name], grids[r23_name]
+    r23_cut =grids[ r23_name+"_cut" ]
 
-    sch_bbox    = np.array( [ [0,0], [300,300] ] ) ## instance bbox union
+    sch_bbox    = np.array( [ [0,0], [300,290] ] ) ## instance bbox union
 
     #### TestSet
 
@@ -685,24 +679,24 @@ def test_database_design_test(database_test):
     ## min space       : 60
 
     # edge with pin
-    rect    = [0]*6
-    rect_er = [0]*4
+    rect    = [0]*7
+    rect_er = [0]*3
     rect[0] = laygo2.object.physical.Rect(xy=[ [0, 10], [30, 10]],   layer=['M0', 'drawing'], netname='net0', hextension = 5, vextension = 5)
     rect[1] = laygo2.object.physical.Rect(xy=[ [0, 10], [30, 10]],   layer=['M0', 'pin'],     netname='net0', hextension = 5, vextension = 5)
 
     # center space error
     rect[2]    = laygo2.object.physical.Rect(xy=[[60,  40],  [90, 40]], layer=['M0', 'drawing'], netname='net0',hextension = 5, vextension = 5)
-    rect_er[0] = laygo2.object.physical.Rect(xy=[[120, 40],  [150, 40]], layer=['M0', 'drawing'], netname='net0',hextension = 5, vextension = 5)
+    rect_er[0] = laygo2.object.physical.Rect(xy=[[120, 40],  [150, 40]], layer=['M0', 'drawing'], netname='er0',hextension = 5, vextension = 5)
     rect[3]    = laygo2.object.physical.Rect(xy=[[210,  40], [240, 40]], layer=['M0', 'drawing'], netname='net0',hextension = 5, vextension = 5)
 
     # center & edge space error
     rect[4]    = laygo2.object.physical.Rect(xy=[[60, 60], [90, 60]], layer=['M0', 'drawing'], netname='net0',hextension = 5, vextension = 5)
-    rect_er[1] = laygo2.object.physical.Rect(xy=[[120, 60], [150, 60]], layer=['M0', 'drawing'], netname='net0',hextension = 5, vextension = 5 )
-    rect_er[2] = laygo2.object.physical.Rect(xy=[[180, 60], [270, 60]], layer=['M0', 'drawing'], netname='net0',hextension = 5, vextension = 5)
+    rect_er[1] = laygo2.object.physical.Rect(xy=[[120, 60], [150, 60]], layer=['M0', 'drawing'], netname='er1',hextension = 5, vextension = 5 )
+    rect_er[2] = laygo2.object.physical.Rect(xy=[[180, 60], [270, 60]], layer=['M0', 'drawing'], netname='er2',hextension = 5, vextension = 5)
 
     # edge with pin & overlap
     rect[5]    = laygo2.object.physical.Rect(xy=[[210, 90], [240, 90]], layer=['M0', 'drawing'], netname='net0',hextension = 5, vextension = 5)
-    rect_er[3] = laygo2.object.physical.Rect(xy=[[210, 90], [270, 90]], layer=['M0', 'pin'], netname='net0',hextension = 5, vextension = 5)
+    rect[6] = laygo2.object.physical.Rect(xy=[[210, 90], [270, 90]], layer=['M0', 'pin'], netname='net0',hextension = 5, vextension = 5)
 
     rects={}
     for i, obj in enumerate( rect + rect_er ):
@@ -716,4 +710,4 @@ def test_database_design_test(database_test):
     #    print(dsn.get_ebbox(obj))
     #print(sch_bbox)
     #print(r23.mn(sch_bbox))
-    dsn.rect_space("M0", xy = sch_bbox, rects= rects, grid=r23, space_min = 50 )
+    dsn.rect_space("M0", xy = sch_bbox, rects= rects, grid=r23, grid_cut = r23_cut, space_min = 50 )
