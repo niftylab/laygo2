@@ -544,13 +544,14 @@ def database_test(): ## for cut layer
                 mn_w = grid_cut.mn(xy_w)
                 mn_e = grid_cut.mn(xy_e)
                 mn_c = ( 0.5*(mn_w + mn_e) ).astype(int)
-                print(" ")
-                print("cut!  ", end=" ")
-                print("mn :  ", mn_c       , end=" ")
-                print("LeftRigth: ",  mn_w, mn_e)
-                print("left_obj: " ,  obj_w)
-                print("right_obj: ",  obj_e)
-                r_bboxs.append( mn_c )
+                self.via( grid=grid_cut, mn= mn_c )
+                #print(" ")
+                #print("cut!  ", end=" ")
+                #print("mn :  ", mn_c       , end=" ")
+                #print("LeftRigth: ",  mn_w, mn_e)
+                #print("left_obj: " ,  obj_w)
+                #print("right_obj: ",  obj_e)
+                #r_bboxs.append( mn_c )
 
             def check_space_ok( xw:float, xe:float, space:float ):
                 delta = xe - xw
@@ -564,7 +565,6 @@ def database_test(): ## for cut layer
 
 
 
-            r_bboxs = []
             space_min_edge = space_min  ## for space at edge,
 
             drw_check_obj = self.get_rect( [layer, "drawing"],rects=rects, insts = insts, vinsts= vinsts )
@@ -642,7 +642,6 @@ def database_test(): ## for cut layer
                             iw_ebbox = ie_ebbox # update
 
 
-            return r_bboxs
 
     return Design_test(name="test")
 
