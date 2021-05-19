@@ -432,8 +432,9 @@ class Design_test(Design):
                 obj_check.append(rect)
 
         for iname, inst in insts.items():
-            if np.array_equal( inst.pins.layer, lpp ):
-                obj_check.append(inst.pins)
+            for pname , pin in inst.pins.items():
+                if np.array_equal( pin.layer, lpp ):
+                    obj_check.append(pin)
 
         for iname, vinst in vinsts.items():
             for name, inst in vinst.native_elements.items():
@@ -592,12 +593,12 @@ class Design_test(Design):
             if skip_w == 0 and check_space_ok(xy[0][0], ebbox_w[0][0], space_min_edge) == False:
                 #print("left")
                 _xy = np.array( [ xy[0][0], ebbox_w[0][1] ] )
-                place( _xy, _xy, xy, drw_check_obj[ebbox_pin[4][0]], grid_cut)
+                place( _xy, _xy, xy, drw_check_obj[ebbox_w[4][0]], grid_cut)
 
             if skip_e == 0 and check_space_ok( ebbox_e[1][0], xy[1][0], space_min_edge) == False:
                 #print("right")
                 _xy = np.array([xy[1][0], ebbox_w[0][1]])
-                place( _xy, _xy, drw_check_obj[ebbox_pin[4][0]], xy, grid_cut)
+                place( _xy, _xy, drw_check_obj[ebbox_e[4][0]], xy, grid_cut)
 
             if i_last != 0: # place between m0s
                 iw_ebbox = ebbox_list[0]  # check br
