@@ -105,10 +105,10 @@ grids:
   placement_cmos:
     type: placement
     vertical:
-      scope: [0, 30]
+      scope: [0, 10]
       elements: [0]
     horizontal:
-      scope: [0, 100]
+      scope: [0, 10]
       elements: [0]
   routing_12_cmos:
     type: routing

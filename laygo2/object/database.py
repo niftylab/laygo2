@@ -428,19 +428,54 @@ class Design_test(Design):
         obj_check = []
 
         for rname, rect in rects.items():
-            if rect.layer == lpp:
+            if np.array_equal( rect.layer, lpp):
                 obj_check.append(rect)
 
         for iname, inst in insts.items():
-            if inst.pins.layer == lpp:
+            if np.array_equal( inst.pins.layer, lpp ):
                 obj_check.append(inst.pins)
 
         for iname, vinst in vinsts.items():
             for name, inst in vinst.native_elements.items():
                 if isinstance(inst, laygo2.object.physical.Rect):
-                    if inst.layer == lpp:
-                        obj_check.append(inst)
+                    if np.array_equal( inst.layer, lpp):
+                        tr  = vinst.transform
+                        _xy = self.get_xy_virtualInstance(vinst,inst)
+                        ninst = laygo2.object.physical.Rect(
+                            xy=_xy, layer = lpp, hextension = inst.hextension, vextension = inst.vextension
+                            ,color = inst.color )
+                        obj_check.append(ninst) ## ninst is for sort, inst is for export
         return obj_check
+
+    def get_xy_virtualInstance(self, vinst, obj ):
+        tr = vinst.transform
+        coners    = np.zeros( (4,2))
+        v_r       = np.zeros(2) # for rotation
+        bbox_raw  = obj.bbox
+        offset    = vinst.xy
+        if tr == "R0":
+            v_r = v_r +  ( 1, 1)
+            coners[0] = offset + v_r * bbox_raw[0]
+            coners[2] = offset + v_r * bbox_raw[1]
+        elif tr == "MX":
+            v_r = v_r + (1, -1)
+            coners[1] = offset + v_r * bbox_raw[0]
+            coners[3] = offset + v_r * bbox_raw[1]
+            coners[0] = coners[0] + ( coners[1][0], coners[3][1])
+            coners[2] = coners[2] + ( coners[3][0], coners[1][1])
+        elif tr == "MY":
+            v_r = v_r + (-1, 1)
+            coners[3] = offset + v_r * bbox_raw[0]
+            coners[1] = offset + v_r * bbox_raw[1]
+            coners[0] = coners[0] + (coners[1][0], coners[3][1])
+            coners[2] = coners[2] + (coners[3][0], coners[1][1])
+        elif tr == "R90":
+            v_r = v_r + (-1, -1)
+            coners[2] = offset + v_r * bbox_raw[0]
+            coners[0] = offset + v_r * bbox_raw[1]
+        else:
+            raise ValueError(" Others transfom not implemented")
+        return coners[0],coners[2]
 
     def get_ebbox(self, obj):
         ebbox = np.zeros( (5,2), dtype=np.int64 )
@@ -469,13 +504,16 @@ class Design_test(Design):
             insts = self.instances
         if vinsts ==None:
             vinsts = self.virtual_instances
-        if xy.any() == None:
+        if np.array_equal( xy , None):
             xy = self.get_xy()
-
 
         def place( xy_w, xy_e, obj_w, obj_e, grid_cut ): # temp method
             ## place cut between bbox_r & bbox_l
-
+            #print("place")
+            #print(xy_w)
+            #print(xy_e)
+            #print(grid_cut.mn(xy_w))
+            #print( grid_cut.mn(xy_e) )
             mn_w = grid_cut.mn(xy_w)
             mn_e = grid_cut.mn(xy_e)
             mn_c = ( 0.5*(mn_w + mn_e) ).astype(int)
@@ -533,31 +571,33 @@ class Design_test(Design):
             i_last      = len(ebbox_list) - 1
             print(" ")
             print("y-loop", key, i_last)
-            bbox_w = ebbox_list[0][0:2]
-            bbox_e = ebbox_list[i_last][0:2]
+            ebbox_w = ebbox_list[0]
+            ebbox_e = ebbox_list[i_last]
             ## case1: top_l     , pin_l , ******,   pin_r , top_r
             ## case2: top_l& cut, bbox_l, ******, bbox_r  , top_r & cut
             ## when !pin  & vioration
             skip_w = 0
             skip_e = 0
             for k, ebbox_pin in enumerate(pin_check):
-                if np.array_equal( bbox_w - ebbox_pin[0:2], ref):  #  leftmost is pin
+                if np.array_equal( ebbox_w[0:2] - ebbox_pin[0:2], ref):  #  leftmost is pin
                     del pin_check[k]
                     skip_w = 1
                     pass
 
-                if np.array_equal( bbox_e - ebbox_pin[0:2], ref):  # rightmost is pin
+                if np.array_equal( ebbox_e[0:2] - ebbox_pin[0:2], ref):  # rightmost is pin
                     del pin_check[k]
                     skip_e = 1
                     pass
 
-            if skip_w == 0 and check_space_ok(xy[0][0], bbox_w[0][0], space_min_edge) == False:
-                print("left")
-                place( xy[0], xy[0], xy, drw_check_obj[ebbox_pin[4][0]], grid_cut)
+            if skip_w == 0 and check_space_ok(xy[0][0], ebbox_w[0][0], space_min_edge) == False:
+                #print("left")
+                _xy = np.array( [ xy[0][0], ebbox_w[0][1] ] )
+                place( _xy, _xy, xy, drw_check_obj[ebbox_pin[4][0]], grid_cut)
 
-            if skip_e == 0 and check_space_ok( bbox_e[1][0], xy[1][0], space_min_edge) == False:
-                print("right")
-                place( xy[1], xy[1], drw_check_obj[ebbox_pin[4][0]], xy, grid_cut)
+            if skip_e == 0 and check_space_ok( ebbox_e[1][0], xy[1][0], space_min_edge) == False:
+                #print("right")
+                _xy = np.array([xy[1][0], ebbox_w[0][1]])
+                place( _xy, _xy, drw_check_obj[ebbox_pin[4][0]], xy, grid_cut)
 
             if i_last != 0: # place between m0s
                 iw_ebbox = ebbox_list[0]  # check br

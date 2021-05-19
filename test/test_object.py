@@ -430,256 +430,41 @@ def test_grid_route_via_track():
         dsn.virtual_instances.clear()
 
 
-@pytest.fixture
-def database_test(): ## for cut layer
-    class Design_test(laygo2.object.database.Design):
-        def __init__(self, name, params=None, elements=None, libname=None):
-            """
-            Constructor.
+def test_database_design_test():
 
-            Parameters
-            ----------
-            name : str
-                The name of the design.
-            libname : str
-                The library name of the design.
-            """
-            self.libname = libname
-            self.rects = dict()
-            self.paths = dict()
-            self.pins = dict()
-            self.texts = dict()
-            self.instances = dict()
-            self.virtual_instances = dict()
-            laygo2.object.database.Design.__init__(self, name=name, params=params, elements=elements)
+    g1_y     = laygo2.object.grid.OneDimGrid(name='mygrid', scope=[0, 50], elements=[0, 10, 20, 30, 40])
+    g1_x_cut = laygo2.object.grid.OneDimGrid(name='mygrid', scope=[0, 5], elements=[0])
+    g1_x     = laygo2.object.grid.OneDimGrid(name='mygrid', scope=[0, 10], elements=[0])
 
-        def get_xy(self, libname=None, cellname=None):
-            """Convert this design to a native-instance template"""
-            if libname is None:
-                libname = self.libname
-            if cellname is None:
-                cellname = self.cellname
-            # Compute boundaries
-            xy = [None, None]
-            for n, i in self.instances.items():
-                if xy[0] is None:
-                    xy[0] = i.bbox[0]
-                    xy[1] = i.bbox[1]
-                else:
-                    xy[0][0] = min(xy[0][0], i.bbox[0, 0])
-                    xy[0][1] = min(xy[0][1], i.bbox[0, 1])
-                    xy[1][0] = max(xy[1][0], i.bbox[1, 0])
-                    xy[1][1] = max(xy[1][1], i.bbox[1, 1])
-            for n, i in self.virtual_instances.items():
-                if xy[0] is None:
-                    xy[0] = i.bbox[0]
-                    xy[1] = i.bbox[1]
-                else:
-                    xy[0][0] = min(xy[0][0], i.bbox[0, 0])
-                    xy[0][1] = min(xy[0][1], i.bbox[0, 1])
-                    xy[1][0] = max(xy[1][0], i.bbox[1, 0])
-                    xy[1][1] = max(xy[1][1], i.bbox[1, 1])
-            xy = np.array(xy)
-            return(xy)
-
-        def get_rect(self, lpp , rects=None, insts=None, vinsts=None):
-            if rects == None:
-                rects = self.rects
-            if insts == None:
-                insts = self.instances
-            if vinsts ==None:
-                vinsts = self.virtual_instances
-
-            obj_check = []
-
-            for rname, rect in rects.items():
-                if rect.layer == lpp:
-                    obj_check.append(rect)
-
-            for iname, inst in insts.items():
-                if inst.pins.layer == lpp:
-                    obj_check.append(inst.pins)
-
-            for iname, vinst in vinsts.items():
-                for name, inst in vinst.native_elements.items():
-                    if isinstance(inst, laygo2.object.physical.Rect):
-                        if inst.layer == lpp:
-                            obj_check.append(inst)
-            return obj_check
-
-        def get_ebbox(self, obj):
-            ebbox = np.zeros( (5,2), dtype=np.int64 )
-            if isinstance(obj, laygo2.object.physical.Rect):
-                ebbox[0] = obj.bbox[0] - np.array([obj.hextension, 0])
-                ebbox[1] = obj.bbox[1] + np.array([obj.hextension, 0])
-                ebbox[2] = ebbox[2] + np.array([ obj.hextension, 0 ])
-                ebbox[3] = ebbox[3] + np.array([ 0, obj.vextension])
-
-            else:
-                ebbox[0:2] = obj.bbox
-            return ebbox
-
-
-        def rect_space(self, layer, grid, grid_cut, space_min: float, xy=None, rects = None, insts = None, vinsts= None):
-            from collections import defaultdict
-            ## Concept: place cut layer when only space violaion occurs except the pin is placed at the edge for lateral connections
-            ## 1. collect top m0s & inst m0.pin & virtual.rect
-            ## 2. check violation & edge
-            ## 3. if location is edge & !top m0.pin -> place cut
-            ## 4. place cut when m0 space is less than space_min
-
-            if rects == None:
-                rects = self.rects
-            if insts == None:
-                insts = self.instances
-            if vinsts ==None:
-                vinsts = self.virtual_instances
-            if xy.any() == None:
-                xy = self.get_xy()
-
-
-            def place( xy_w, xy_e, obj_w, obj_e, grid_cut ): # temp method
-                ## place cut between bbox_r & bbox_l
-
-                mn_w = grid_cut.mn(xy_w)
-                mn_e = grid_cut.mn(xy_e)
-                mn_c = ( 0.5*(mn_w + mn_e) ).astype(int)
-                self.via( grid=grid_cut, mn= mn_c )
-                #print(" ")
-                #print("cut!  ", end=" ")
-                #print("mn :  ", mn_c       , end=" ")
-                #print("LeftRigth: ",  mn_w, mn_e)
-                #print("left_obj: " ,  obj_w)
-                #print("right_obj: ",  obj_e)
-                #r_bboxs.append( mn_c )
-
-            def check_space_ok( xw:float, xe:float, space:float ):
-                delta = xe - xw
-               # print("check space", end=" ")
-               # print(xw, xe, delta)
-
-                if 0 < delta < space: # error
-                    return False
-                else:               # pass  or overlap
-                    return True
-
-
-
-            space_min_edge = space_min  ## for space at edge,
-
-            drw_check_obj = self.get_rect( [layer, "drawing"],rects=rects, insts = insts, vinsts= vinsts )
-            pin_check_obj = self.get_rect( [layer, "pin"],    rects=rects, insts = insts, vinsts= vinsts )
-            drw_check = []
-            pin_check = []
-
-            for i, obj in enumerate( drw_check_obj ):
-                ebbox=self.get_ebbox(obj)
-                ebbox[4,:] = [ i,i ]
-                drw_check.append( ebbox )    # bl, tr, [he, ve],  i
-
-            for i, obj in enumerate( pin_check_obj ):
-                ebbox = self.get_ebbox(obj)
-                ebbox[4, :] = [i, i]
-                pin_check.append( ebbox ) # bl, tr, [he,ve],  i
-
-            drw_check = np.unique(drw_check, axis=0)  ## auto sorted by bl-x
-            #print(drw_check)
-
-            y_bbox = defaultdict(list)
-            for ebbox_drw in drw_check: # packed by y-axis , assuming rect has 0 height
-                y_bbox[ ebbox_drw[0][1] ].append( ebbox_drw )
-
-            y_keys = y_bbox.keys()
-            ref = np.array([[0, 0], [0, 0]])
-
-            for key in y_keys:
-
-                ebbox_list  = y_bbox[key]
-                i_last      = len(ebbox_list) - 1
-                print(" ")
-                print("y-loop", key, i_last)
-                bbox_w = ebbox_list[0][0:2]
-                bbox_e = ebbox_list[i_last][0:2]
-                ## case1: top_l     , pin_l , ******,   pin_r , top_r
-                ## case2: top_l& cut, bbox_l, ******, bbox_r  , top_r & cut
-                ## when !pin  & vioration
-                skip_w = 0
-                skip_e = 0
-                for k, ebbox_pin in enumerate(pin_check):
-                    if np.array_equal( bbox_w - ebbox_pin[0:2], ref):  #  leftmost is pin
-                        del pin_check[k]
-                        skip_w = 1
-                        pass
-
-                    if np.array_equal( bbox_e - ebbox_pin[0:2], ref):  # rightmost is pin
-                        del pin_check[k]
-                        skip_e = 1
-                        pass
-
-                if skip_w == 0 and check_space_ok(xy[0][0], bbox_w[0][0], space_min_edge) == False:
-                    print("left")
-                    place( xy[0], xy[0], xy, drw_check_obj[ebbox_pin[4][0]], grid_cut)
-
-                if skip_e == 0 and check_space_ok( bbox_e[1][0], xy[1][0], space_min_edge) == False:
-                    print("right")
-                    place( xy[1], xy[1], drw_check_obj[ebbox_pin[4][0]], xy, grid_cut)
-
-                if i_last != 0: # place between m0s
-                    iw_ebbox = ebbox_list[0]  # check br
-                    for i in range(i_last + 1): ## from leftmost.r to rightmost.l
-                        # ie : reference
-                        # iw : target
-                        new_ebbox = ebbox_list[i]
-                        if new_ebbox[1][0] <= iw_ebbox[1][0] : # check br vs br
-                            continue
-                        else: # evaluation
-                            ie_ebbox = new_ebbox
-                            flag     = check_space_ok( iw_ebbox[1][0],  ie_ebbox[0][0], space_min )
-                            if flag == False :   # when space error
-                                _xy_w =  iw_ebbox[1] - iw_ebbox[2]
-                                _xy_e = ie_ebbox[0] + ie_ebbox[2]
-                                place( _xy_w, _xy_e , drw_check_obj[ iw_ebbox[4][0]], drw_check_obj[ie_ebbox[4][0]], grid_cut )
-                            iw_ebbox = ie_ebbox # update
-
-
-
-    return Design_test(name="test")
-
-
-
-def test_database_design_test(database_test):
-
-    ## pg & r23 are same x-asis scale?
-    ## extension, M0 x-axis
-
-    dsn = database_test
     templates = tech.load_templates()
-    grids     = tech.load_grids( templates = templates )
+    grids =tech.load_grids(templates)
+    pg = grids["placement_cmos"]
+    viamap        = 5*["via_r23_default"]
+    vmap_mapped =[]
+    for via_name in viamap:
+        vmap_mapped.append( templates[ via_name ] )
+    vmap_mapped = np.asarray([vmap_mapped])
+    vmap_mapped2 = laygo2.object.grid.CircularMappingArray(elements=vmap_mapped, dtype=object)
 
-    pg_name = 'placement_basic'
-    r12_name = 'routing_12_cmos'
-    r23_name = 'routing_23_cmos'
+    grid_cut = laygo2.object.grid.RoutingGrid(name='test', vgrid=g1_x_cut, hgrid=g1_y, viamap=vmap_mapped2
+                                              ,vwidth=np.zeros(4), hwidth=[0],
+                                              vlayer=None, hlayer=None, pin_vlayer=None, pin_hlayer=None,
+                                              vextension=None, hextension=None )
 
-    pg, r12, r23= grids[pg_name], grids[r12_name], grids[r23_name]
-    r23_cut =grids[ r23_name+"_cut" ]
+    grid     = laygo2.object.grid.RoutingGrid(name='test', vgrid=g1_x, hgrid=g1_y, viamap=vmap_mapped2
+                                              ,vwidth=np.zeros(4), hwidth=[0],
+                                              vlayer=None, hlayer=None, pin_vlayer=None, pin_hlayer=None,
+                                              vextension=None, hextension=None )
 
-    sch_bbox    = np.array( [ [0,0], [300,290] ] ) ## instance bbox union
+    dsn = laygo2.object.database.Design_test(name="test")
+    r     = grid
+    r_cut = grid_cut
 
-    #### TestSet
+    bbox_top  = np.array( [ [0,0], [300,290] ] ) ## instance bbox union
 
-    ## 1. instance_set[]
 
-    ## 2. VirtualInstaces_set=[]
-
-    ## 3. M0, M0.pin
-
-    ## virtical,   30  : [0]
-    ## horizental, 200 : [10, 40, 60, 90, 110, 140, 160, 190]
-    ## min space       : 60
-
-    # edge with pin
     rect    = [0]*7
-    rect_er = [0]*3
+    rect_er = [0]*4
     rect[0] = laygo2.object.physical.Rect(xy=[ [0, 10], [30, 10]],   layer=['M0', 'drawing'], netname='net0', hextension = 5, vextension = 5)
     rect[1] = laygo2.object.physical.Rect(xy=[ [0, 10], [30, 10]],   layer=['M0', 'pin'],     netname='net0', hextension = 5, vextension = 5)
 
@@ -697,16 +482,82 @@ def test_database_design_test(database_test):
     rect[5]    = laygo2.object.physical.Rect(xy=[[210, 90], [240, 90]], layer=['M0', 'drawing'], netname='net0',hextension = 5, vextension = 5)
     rect[6] = laygo2.object.physical.Rect(xy=[[210, 90], [270, 90]], layer=['M0', 'pin'], netname='net0',hextension = 5, vextension = 5)
 
-    rects={}
-    for i, obj in enumerate( rect + rect_er ):
-        rects[i] = obj
+
+
+    vinst0_native_elements = dict()
+    vinst0_native_elements['R0'] = laygo2.object.physical.Rect(xy=[[ 200, 100], [220, 100]], layer=['M0', 'drawing'])
+
+    vinstr0 = laygo2.object.physical.VirtualInstance(name='I0', libname='mylib', cellname='myvcell', xy=[0, 0],
+                                                     native_elements=vinst0_native_elements,
+                                                     unit_size=[300, 300], pins=None, transform='R0')
+
+    vinstmx = laygo2.object.physical.VirtualInstance(name='I1', libname='mylib', cellname='myvcell', xy=[0, 0],
+                                                     native_elements=vinst0_native_elements,
+                                                     unit_size=[300, 300], pins=None, transform='MX')
+
+    rect_er[3] = laygo2.object.physical.Rect(xy=[[100, 100], [180, 100]], layer=['M0', 'drawing'], netname='er2',
+                                             hextension=5, vextension=5)
+
+    dsn.place(grid=pg, inst=[ vinstr0, vinstmx] , mn=[0, 0])
+
+    for i, obj in enumerate( rect + rect_er):
+        dsn.append(obj)
 
     print("start!")
 
-    #rects2 = dsn.get_rect( lpp = ["M0", "pin"] , rects=rects  )
-    #for obj in rects2:
-    #    print(obj)
-    #    print(dsn.get_ebbox(obj))
-    #print(sch_bbox)
-    #print(r23.mn(sch_bbox))
-    dsn.rect_space("M0", xy = sch_bbox, rects= rects, grid=r23, grid_cut = r23_cut, space_min = 50 )
+    dsn.rect_space("M0", xy = bbox_top, grid=r, grid_cut = r_cut, space_min = 50 )
+    result=[]
+
+    golden=[[105,40],[105,60],[165,60],[190,100],[300,60]]
+    for name, obj in dsn.virtual_instances.items():
+        if "contact" in obj.native_elements:
+            result.append(obj.xy)
+
+    result=np.unique( np.array(result), axis=0 )
+
+    assert(np.array_equal(result, golden))
+
+def test_database_design_get_xy_virtualInstace():
+    dsn = laygo2.object.database.Design_test(name="test")
+    templates = tech.load_templates()
+    grids = tech.load_grids(templates=templates)
+    pg = grids["placement_cmos"]
+    vinst0_pins = dict()
+    vinst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 100], [100, 100]], layer=['M1', 'drawing'], netname='in')
+    vinst0_native_elements = dict()
+    vinst0_native_elements['R0'] = laygo2.object.physical.Rect(xy=[[ 50, 100], [400 , 100]], layer=['M1', 'drawing'])
+    vinstr0 = laygo2.object.physical.VirtualInstance(name='I0', libname='mylib', cellname='myvcell', xy=[0, 0],
+                                                    native_elements=vinst0_native_elements,
+                                                    unit_size=[500, 500], pins=vinst0_pins, transform='R0')
+    vinstmx = laygo2.object.physical.VirtualInstance(name='I1', libname='mylib', cellname='myvcell', xy=[0, 0],
+                                                    native_elements=vinst0_native_elements,
+                                                    unit_size=[500, 500], pins=vinst0_pins, transform='MX')
+    vinstmy = laygo2.object.physical.VirtualInstance(name='I2', libname='mylib', cellname='myvcell', xy=[0, 0],
+                                                    native_elements=vinst0_native_elements,
+                                                    unit_size=[500, 500], pins=vinst0_pins, transform='MY')
+    vinstr90 = laygo2.object.physical.VirtualInstance(name='I3', libname='mylib', cellname='myvcell', xy=[0, 0],
+                                                    native_elements=vinst0_native_elements,
+                                                    unit_size=[500, 500], pins=vinst0_pins, transform='R90')
+
+    insts = [vinstr0, vinstmx, vinstmy, vinstr90 ]
+    dsn.place(grid=pg, inst= insts, mn=[0,0] )
+
+    print("start")
+    for inst in insts:
+        print(inst.xy, inst.transform)
+    setr0 = np.array( [ [50,  100], [400, 100 ] ])
+    setmx= np.array(  [ [550,  400], [900, 400 ] ]) # y
+    setmy = np.array( [ [1100, 100], [1450, 100 ] ])
+    setr90 = np.array( [[1600, 400], [1950, 400 ] ]) # y
+
+
+    assert( np.array_equal( setr0, dsn.get_xy_virtualInstance(vinstr0, vinstr0.native_elements["R0"] ) ))
+    assert (np.array_equal( setmx, dsn.get_xy_virtualInstance(vinstmx, vinstmx.native_elements["R0"])))
+    assert (np.array_equal( setmy, dsn.get_xy_virtualInstance(vinstmy, vinstmy.native_elements["R0"])))
+    #assert (np.array_equal( setr90, dsn.get_xy_virtualInstance(vinstr90, vinstr90.native_elements["R0"])))
+
+
+
+
+
+
