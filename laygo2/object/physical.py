@@ -111,6 +111,7 @@ class PhysicalObject:
     def bbox(self):
         """numpy.ndarray(dtype=int): The bounding box for this object, represented as a Numpy array
         [[x_ll, y_ll], [x_ur, y_ur]]."""
+
         return np.sort(np.array([self.xy[0, :], self.xy[1, :]]), axis=0)
 
     def __init__(self, xy, name=None, params=None):
@@ -550,7 +551,6 @@ class Path(PhysicalObject):
                "layer: " + str(self.layer) + ", " + \
                "netname: " + str(self.netname)
 
-
 class Pin(IterablePhysicalObject):
     """
     A pin object.
@@ -615,7 +615,7 @@ class Pin(IterablePhysicalObject):
         params : dict or None
             The dictionary that contains the parameters of this object, with parameter names as keys.
         """
-        self.layer = layer
+        self.layer = np.asarray(layer)
         if netname is None:
             netname = name
         self.netname = netname
@@ -678,7 +678,6 @@ class Text(PhysicalObject):
         return PhysicalObject.summarize(self) + ", " + \
                                               "layer: " + str(self.layer) + ", " + \
                                               "text: " + str(self.text)
-
 
 class Instance(IterablePhysicalObject):
     """
@@ -918,7 +917,6 @@ class Instance(IterablePhysicalObject):
                "transform: " + str(self.transform) + ", " + \
                "pins: " + str(self.pins)
 
-
 class VirtualInstance(Instance):  # IterablePhysicalObject):
     """
     A virtual instance object that is composed of multiple physical object and is considered as an instance.
@@ -969,6 +967,43 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
         """Summarizes object information."""
         return Instance.summarize(self) + ", " + \
                "native elements: " + str(self.native_elements)
+
+    def get_element_position(self, obj ):
+        vinst = self
+        tr    = vinst.transform
+        coners = np.zeros((4, 2))
+        v_r = np.zeros(2)  # for rotation
+        bbox_raw = obj.bbox
+        offset = vinst.xy
+        if tr == "R0":
+            v_r = v_r + (1, 1)
+            coners[0] = offset + v_r * bbox_raw[0]
+            coners[2] = offset + v_r * bbox_raw[1]
+        elif tr == "MX":
+            v_r = v_r + (1, -1)
+            coners[1] = offset + v_r * bbox_raw[0]
+            coners[3] = offset + v_r * bbox_raw[1]
+            coners[0] = coners[0] + (coners[1][0], coners[3][1])
+            coners[2] = coners[2] + (coners[3][0], coners[1][1])
+        elif tr == "MY":
+            v_r = v_r + (-1, 1)
+            coners[3] = offset + v_r * bbox_raw[0]
+            coners[1] = offset + v_r * bbox_raw[1]
+            coners[0] = coners[0] + (coners[1][0], coners[3][1])
+            coners[2] = coners[2] + (coners[3][0], coners[1][1])
+        elif tr == "R90":
+            v_r = v_r + (-1, -1)
+            coners[2] = offset + v_r * bbox_raw[0]
+            coners[0] = offset + v_r * bbox_raw[1]
+        else:
+            raise ValueError(" Others transfom not implemented")
+        return coners[0], coners[2]
+
+
+
+
+
+
 
 
 # Test

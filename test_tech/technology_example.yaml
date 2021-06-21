@@ -97,7 +97,7 @@ grids:
   placement_basic:
     type: placement
     vertical:
-      scope: [0, 15]
+      scope: [0, 10]
       elements: [0]
     horizontal:
       scope: [0, 10]

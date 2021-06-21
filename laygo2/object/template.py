@@ -271,12 +271,12 @@ class ParameterizedInstanceTemplate(Template):
             The library name of the template.
         cellname : str 
             The cell name of the template. 
-        bbox_func : numpy.ndarray(dtype=int) or callable(params=dict())
+        bbox_func : callable(params=dict())
             The function that returns the xy-coordinates for the template boundary.
         #xy_offset : numpy.ndarray(dtype=int) or callable(params=dict())
         #    The offset of the generated instance's x and y coordinates from the template's x and y coordinates.
         #    This is used to specify the difference between the boundary of the template and the actual instance's origin.
-        pins_func : dict or callable(params=dict)
+        pins_func : callable(params=dict)
             The function that returns a dict that contains the pin information of the template.
         """
         self.libname = libname

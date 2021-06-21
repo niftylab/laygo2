@@ -429,7 +429,25 @@ def test_grid_route_via_track():
         dsn.rects.clear()
         dsn.virtual_instances.clear()
 
+def test_database_design_bbox():
+    templates = tech.load_templates()
+    grids     = tech.load_grids(templates)
+    pg        = grids["placement_basic"]
 
+    dsn   = laygo2.object.database.Design(name="test")
+    inst0 = laygo2.object.physical.Instance(name="I0", xy=[0, 0], libname="mylib", cellname="mycell", unit_size=[100, 100], pins=None,
+                                            transform='R0')
+    inst1 = laygo2.object.physical.Instance(name="I1", xy=[0, 0], libname="mylib", cellname="mycell",
+                                            unit_size=[100, 100], pins=None,
+                                            transform='R0')
+    dsn.place(grid=pg, inst= inst0, mn=[0,  0])
+    dsn.place(grid=pg, inst= inst1, mn=[10, 0])
+
+    print(dsn.bbox)
+    assert( np.array_equal( dsn.bbox, [[0,0],[200,100]]))
+
+
+"""
 def test_database_design_test():
 
     g1_y     = laygo2.object.grid.OneDimGrid(name='mygrid', scope=[0, 50], elements=[0, 10, 20, 30, 40])
@@ -437,9 +455,9 @@ def test_database_design_test():
     g1_x     = laygo2.object.grid.OneDimGrid(name='mygrid', scope=[0, 10], elements=[0])
 
     templates = tech.load_templates()
-    grids =tech.load_grids(templates)
-    pg = grids["placement_cmos"]
-    viamap        = 5*["via_r23_default"]
+    grids     = tech.load_grids(templates)
+    pg        = grids["placement_cmos"]
+    viamap    = 5*["via_r23_default"]
     vmap_mapped =[]
     for via_name in viamap:
         vmap_mapped.append( templates[ via_name ] )
@@ -516,9 +534,9 @@ def test_database_design_test():
     result=np.unique( np.array(result), axis=0 )
 
     assert(np.array_equal(result, golden))
-
-def test_database_design_get_xy_virtualInstace():
-    dsn = laygo2.object.database.Design_test(name="test")
+"""
+def test_physical_virtualInstace_get_element_position():
+    dsn = laygo2.object.database.Design(name="test")
     templates = tech.load_templates()
     grids = tech.load_grids(templates=templates)
     pg = grids["placement_cmos"]
@@ -551,9 +569,9 @@ def test_database_design_get_xy_virtualInstace():
     setr90 = np.array( [[1600, 400], [1950, 400 ] ]) # y
 
 
-    assert( np.array_equal( setr0, dsn.get_xy_virtualInstance(vinstr0, vinstr0.native_elements["R0"] ) ))
-    assert (np.array_equal( setmx, dsn.get_xy_virtualInstance(vinstmx, vinstmx.native_elements["R0"])))
-    assert (np.array_equal( setmy, dsn.get_xy_virtualInstance(vinstmy, vinstmy.native_elements["R0"])))
+    assert( np.array_equal( setr0, vinstr0.get_element_position( vinstr0.native_elements["R0"] ) ) )
+    assert (np.array_equal( setmx, vinstmx.get_element_position(vinstmx.native_elements["R0"])))
+    assert (np.array_equal( setmy, vinstmy.get_element_position(vinstmy.native_elements["R0"])))
     #assert (np.array_equal( setr90, dsn.get_xy_virtualInstance(vinstr90, vinstr90.native_elements["R0"])))
 
 

@@ -323,6 +323,18 @@ def test_grid_manual_Grid_bboxHandler2():
     for t, v in zip(set_bbox2t, set_bbox2):
         print(t, v, type(v))
 
+def test_grid_manual_Grid_PlacementGrid():
+    g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 20], elements=[0])
+    g1_y = laygo2.object.grid.OneDimGrid(name='ygrid', scope=[0, 100], elements=[0])
+    g2 = laygo2.object.grid.PlacementGrid(name='test', vgrid=g1_x, hgrid=g1_y)
+
+    #print(inst0.bbox)
+    g2.place(inst=inst0, mn=[0,0])
+    #print(inst0.xy)
+
+
+def test_grid_manual_RoutingGrid():
+    pass
 def test_physical_manual_PhysicalObject():
 
     physical = laygo2.object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params={'maxI': 0.005})
@@ -490,15 +502,147 @@ def test_physical_manual_VirtuialInstance():
         print("  ", idx, it)
 
 
+def test_template_manual_NativeInstanceTemplate():
+    print("NativeInstanceTemplate test")
+    # define pins
+    nat_temp_pins = dict()
+    nat_temp_pins['in']  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], netname='in')
+    nat_temp_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out')
+    # create a template
+    nat_temp = laygo2.object.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate', bbox=[[0, 0], [100, 100]],
+                                      pins=nat_temp_pins)
+    nat_inst = nat_temp.generate(name='mynatinst', shape=[2, 2], pitch=[100, 100], transform='R0')
+
+    test_set = [
+        [nat_temp.name,     " name"],
+        [nat_temp.libname,  " libname"],
+        [nat_temp.cellname, " cellname"],
+        [nat_temp.height(), " heightname"],
+        [nat_temp.width(),  " width"],
+        [nat_temp.size(),   " size"],
+        [nat_temp.bbox(), " bbox"],
+        [nat_temp.pins(), " pins"],
+        [nat_temp.generate(), " generatos"],
+        [nat_temp.export_to_dict(), " ex"]
+    ]
+
+    for target, text in test_set:
+        print(text, end= ":   ")
+        print(target, type(target))
+
+
+def test_template_manual_ParameterizedInstanceTemplate():
+    print("ParameterizedInstanceTemplate test")
+    pcell_temp_pins = dict()
+
+    def pcell_bbox_func(params):
+        if params==None:
+            params={}
+            params['W'] = 1
+        return np.array([[0, 0], [100 , 100* params['W']]])
+
+    # define the pin generation function.
+    def pcell_pins_func(params):
+        if params==None:
+            params={"W":1}
+        i = params['W']
+        template_pins = dict()
+        pin_in  = laygo2.object.Pin(xy =[ [ 0, 0], [100 , 0 ] ],      layer=['M1', 'pin'], netname='in')
+        pin_out = laygo2.object.Pin(xy =[ [ 0, 100], [100 , 100* i]], layer=['M1', 'pin'], netname='out')
+        template_pins['in' ] = pin_in
+        template_pins['out'] = pin_out
+        return template_pins
+
+    # create a template
+    pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname='mylib', cellname='mynattemplate', bbox_func=pcell_bbox_func,
+                                      pins_func=pcell_pins_func)
+    pcell_inst1 = pcell_temp.generate(name='I1', params={ "W":2, "L":1} )
+    pcell_inst2 = pcell_temp.generate(name='I2', params={"W": 1, "L": 1})
+
+    test_set = [
+        [pcell_temp.name,     " name"],
+        [pcell_temp.libname,  " libname"],
+        [pcell_temp.cellname, " cellname"],
+        [pcell_temp.height(), " heightname"],
+        [pcell_temp.width(),  " width"],
+        [pcell_temp.size(),   " size"],
+        [pcell_temp.bbox(), " bbox"],
+        [pcell_temp.pins(), " pins"],
+        [pcell_inst1, " generatos"],
+    ]
+
+    for target, text in test_set:
+        print(text, end= ":   ")
+        print(target, type(target))
 
 
 
+def test_template_manual_UserDefinedTemplate():
+    print("UserDefinedTemplate test")
 
+    # define the bbox computation function.
+    def user_bbox_func(params):
+        if params==None:
+            params={}
+            params['multi'] = 1
+        return np.array([[0, 0], [100 * params['multi'], 100]])
 
+    # define the pin generation function.
+    def user_pins_func(params):
+        if params==None:
+            params={}
+            params['multi'] = 1
+        i = params['multi']
+        template_pins = dict()
+        pin_in  = laygo2.object.Pin(xy =[ [ 0, 0], [100 * i, 0 ] ],   layer=['M1', 'pin'], netname='in')
+        pin_out = laygo2.object.Pin(xy=[ [ 0, 100], [100 * i, 100]], layer=['M1', 'pin'], netname='out')
+        template_pins['in' ] = pin_in
+        template_pins['out'] = pin_out
+        return template_pins
 
+    # define the instance generation function.
+    def user_generate_func(name=None, shape=None, pitch=np.array([0, 0]), transform='R0', params=None):
+        if params==None:
+            params={}
+            params['multi'] = 1
+        m = params['multi']
+        shape = np.array([1, 1])
+        inst_pins = user_pins_func(params)
+        inst_native_elements = dict()
 
+        inst_native_elements['left'] = laygo2.object.Rect(xy=[ [0, 0], [0,100]], layer=['M1', 'drawing'])
+        ofst = np.array([100, 0])
+        for i in range(m):
+            bl  = np.array([0,0])
+            tr  = np.array([100,100])
+            inst_native_elements['center'+str(i)] = laygo2.object.Rect(xy=[ i*ofst + bl , i*ofst + tr ], layer=['M3', 'drawing'])
 
+        inst_native_elements['right'] = laygo2.object.Rect(xy=[ m*ofst + [0, 0], m*ofst + [ 0 , 100]], layer=['M1', 'drawing'] )
+        inst = laygo2.object.VirtualInstance(name=name, libname='mylib', cellname='myvinst', xy=np.array([0, 0]),
+                                             native_elements=inst_native_elements, shape=shape,
+                                             pitch=pitch, unit_size=[m * 100, 100], pins=inst_pins,
+                                             transform=transform, params=params)
+        return inst
 
+    user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func,
+                                    generate_func=user_generate_func)
+    #user_inst = user_temp.generate(name='myuserinst',  params={'multi': 5})
+    print(user_temp)
+    test_set = [
+        [user_temp.name, " name"],
+        [user_temp.height(), " height"],
+        [user_temp.width(), " width"],
+        [user_temp.size(), " size"],
+        [user_temp.bbox(), " bbox"],
+        [user_temp.pins(), " pins"],
+        [user_temp.generate(), " generatos"],
 
+    ]
 
+    for target, text in test_set:
+        print(text, end=":   ")
+        print(target, type(target))
 
+    #print(user_inst)
+    #for n,i in user_inst.native_elements.items():
+    #    print(i)
