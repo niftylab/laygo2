@@ -176,7 +176,7 @@ class PhysicalObject:
         xy_bottom_right = np.diag(np.dot(np.array([[0, 1], [1, 0]]), self.bbox)).astype(np.int)
         xy_top_left = np.diag(np.dot(np.array([[1, 0], [0, 1]]), self.bbox)).astype(np.int)
         xy_top_right = np.diag(np.dot(np.array([[0, 1], [0, 1]]), self.bbox)).astype(np.int)
-        xy_center    = np.diag(np.dot(np.array([[0, 0.5], [0, 0.5]]), self.bbox)).astype(np.int)
+        xy_center    = np.diag(np.dot(np.array([[0.5, 0.5], [0.5, 0.5]]), self.bbox)).astype(np.int)
         self.pointers['left'] = xy_left
         self.pointers['right'] = xy_right
         self.pointers['bottom'] = xy_bottom

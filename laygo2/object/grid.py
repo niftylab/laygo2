@@ -679,7 +679,7 @@ class _PhyToAbsGridConverter:
 
         # phy -> abs
         mn0 = self.master.xy >= obj[0] ## ge than lower left
-        mn1 = self.master.xy <= obj[1] ## le than upper right
+        mn1 = self.master.xy <= obj[1] ## le than upper right\
 
 
         return np.array([mn0, mn1])
@@ -799,6 +799,19 @@ class _PhyToAbsGridConverter:
                 _ub = np.array([[_x[0], _y[0]], [_x[3], _y[3]]])
         return _ub
 
+    def center(self, obj):
+        """Returns the center coordinate of an object on this grid"""
+        mn0 = self.master.xy >= obj.center
+        mn1 = self.master.xy <= obj.center
+
+        point_list = [self.master.xy[mn0], self.master.xy[mn1], self.master.xy[mn0[0], mn1[1]], self.master.xy[mn1[0], mn0[1]]] # 4 physical points near the center coordinate.
+        dist_list = []
+        idx = 0
+        for point in point_list:
+            dist_list.append([idx, np.linalg.norm(point - obj.center)]) # Calculate Euclidean distances.
+            idx += 1
+        dist_sorted = sorted(dist_list, key=lambda distance : distance[1]) # Sort distances in ascending order.
+        return self.master.mn(point_list[dist_sorted[0][0]]) # Convert the closest point to abstract coordinate and then return.
 
 class OneDimGrid(CircularMapping):
     """
@@ -1087,6 +1100,13 @@ class Grid:
         See _PhyToAbsGridConverter.union() for details.
         """
         return self.phy2abs.union(*args)
+
+    def center(self, obj):
+        """
+        Returns the abstrack grid coordinates corresponding to the center point of obj.
+        See _PhyToAbsGridConverter.center for details.
+        """
+        return self.phy2abs.center(obj)
 
     # Iterators
     def __iter__(self):
