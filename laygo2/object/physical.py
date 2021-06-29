@@ -211,6 +211,9 @@ class IterablePhysicalObject(PhysicalObject):
 
     elements = None
     """numpy.array(dtype=PhysicalObject-like): The elements of this object."""
+    def _get_xy(self):
+        """numpy.ndarray(dtype=numpy.int): Gets the x and y coordinate values of this object."""
+        return self._xy
 
     def _set_xy(self, value):
         """numpy.ndarray(dtype=numpy.int): Sets the x and y coordinate values of this object."""
@@ -218,6 +221,8 @@ class IterablePhysicalObject(PhysicalObject):
         self._update_elements(xy_ofst=value - self.xy)
         # Update the coordinate value of the object itself.
         PhysicalObject._set_xy(self, value=value)
+
+    xy = property(_get_xy, _set_xy)
 
     @property
     def shape(self):
@@ -870,7 +875,6 @@ class Instance(IterablePhysicalObject):
                 _it.iternext()
 
         IterablePhysicalObject.__init__(self, xy=xy, name=name, params=params, elements=elements)
-
         # Create the pin dictionary. Can we do the same thing without generating these many Pin objects?
         self.pins = dict()
         if pins is not None:

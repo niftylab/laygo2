@@ -342,10 +342,10 @@ class Design(BaseDatabase):
         self.append(r)
         return r
 
-    def route_via_track(self, grid, mn, track):
+    def route_via_track(self, grid, mn, track, via_tag=[None, True]):
         """Creates Path and Via objects over the abstract coordinates specified by mn, 
         on the track of specified routing grid. """
-        r = grid.route_via_track(mn=mn, track=track)
+        r = grid.route_via_track(mn=mn, track=track, via_tag=via_tag)
         self.append(r)
         return r
 

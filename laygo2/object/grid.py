@@ -1284,7 +1284,7 @@ class RoutingGrid(Grid):
         """
         # If mn contains multiple coordinates (or objects), place iteratively.
         if isinstance(mn, list):
-            if isinstance(list[0], (int, np.integer)):  # It's actually a single coordinate.
+            if isinstance(mn[0], (int, np.integer)):  # It's actually a single coordinate.
                 return self.via(mn=np.asarray(mn), params=params)
             else:
                 return [self.via(mn=_mn, params=params) for _mn in mn]
@@ -1300,7 +1300,7 @@ class RoutingGrid(Grid):
         via.xy = self[mn]
         return via
     
-    def route_via_track(self, mn, track ):
+    def route_via_track(self, mn, track, via_tag=[None, True] ):
         """
         create multi routes on one track
         Parameters
@@ -1332,7 +1332,7 @@ class RoutingGrid(Grid):
             if np.array_equal( mn_b[0] , mn_b[1] ) :           #### via only
                 route.append(self.via( mn= mn_b[0], params=None))
             else:
-                route.append( self.route( mn= [ mn_b[0], mn_b[1] ], via_tag=[None,True] ) )
+                route.append( self.route( mn= [ mn_b[0], mn_b[1] ], via_tag=via_tag ) )
 
             center_t = mn[i][t]
             if center_t < min_t:
