@@ -323,18 +323,67 @@ def test_grid_manual_Grid_bboxHandler2():
     for t, v in zip(set_bbox2t, set_bbox2):
         print(t, v, type(v))
 
-def test_grid_manual_Grid_PlacementGrid():
+def test_grid_manual_PlacementGrid():
     g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 20], elements=[0])
     g1_y = laygo2.object.grid.OneDimGrid(name='ygrid', scope=[0, 100], elements=[0])
     g2 = laygo2.object.grid.PlacementGrid(name='test', vgrid=g1_x, hgrid=g1_y)
+    inst0_pins = dict()
+    inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], netname='in')
+    inst0_pins['out'] = laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out')
+    inst0 = laygo2.object.physical.Instance(name="I0", xy=[100, 100], libname="mylib", cellname="mycell"
+                                            , shape=[3, 2], pitch=[200, 200], unit_size=[100, 100], pins=inst0_pins,
+                                            transform='R0')
 
-    #print(inst0.bbox)
-    g2.place(inst=inst0, mn=[0,0])
-    #print(inst0.xy)
+    print("start")
+    print(inst0.xy)
 
+    g2.place(inst=inst0, mn=[10,10])
+    print(inst0.xy)
 
 def test_grid_manual_RoutingGrid():
-    pass
+    templates = tech.load_templates()
+    grids = tech.load_grids(templates=templates)
+    pg, r12, r23 = grids['placement_cmos'], grids['routing_12_cmos'], grids['routing_23_cmos']
+
+
+    print("start")
+    print(r23.elements)
+    test_list=[
+        ("type"  , r23.type),
+        ("vwidth", r23.vwidth),
+        ("hwidth", r23.hwidth),
+        ("vextension", r23.vextension),
+        ("hextension", r23.hextension),
+        ("vlayer", r23.vlayer),
+        ("hlayer", r23.hlayer),
+        ("pin_vlayer", r23.pin_vlayer),
+        ("pin_hlayer", r23.pin_hlayer),
+        ("viamap", r23.viamap),
+        ("primary_grid", r23.primary_grid)
+    ]
+    for t, v in test_list:
+        print(t, v, end="  ")
+        print(type(v))
+
+    mn_list = [[0, -2], [0, 1], [2, 1], [5, 1]]
+    route = r23.route(mn=mn_list, via_tag=[True, None, True, True])
+    print("route:")
+    print(route)
+    mn_list = [[0, -2], [1, 0], [2, 5]]
+    via = r23.via(mn=mn_list)
+    print("via:")
+    print(via)
+    mn_list = [[0, -2], [1, 0], [2, 5], [3, 4], [4, 5], [5, 5]]
+    track = r23.route_via_track(mn=mn_list, track=[None, 0])
+    print("track:")
+    print(track)
+    mn_list = [ [0, 0], [10, 10]]
+    pin = r23.pin(mn=mn_list, name="pin")
+    print("pin:")
+    print(pin)
+
+
+
 def test_physical_manual_PhysicalObject():
 
     physical = laygo2.object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params={'maxI': 0.005})
@@ -395,7 +444,8 @@ def test_physical_manual_instance():
         [inst0.spacing, " spacing "],
         [inst0.height, " height"],
         [inst0.width, "width"],
-        [inst0.xy, "xy"]
+        [inst0.xy, "xy"],
+        [inst0.bbox, "bbox"]
     ]
 
     for v,t  in test_value:
@@ -452,6 +502,9 @@ def test_physical_manual_Pin():
     [pin0.height, " height"],
     [pin0.width, " width"],
     [pin0.size, " size"],
+    [pin0.bbox, " bbox"],
+    [pin0.xy, " xy"]
+
     ]
     print(" ")
     for v, t in test_set:
@@ -501,7 +554,6 @@ def test_physical_manual_VirtuialInstance():
     for idx, it in vinst0.pins['in'].ndenumerate():
         print("  ", idx, it)
 
-
 def test_template_manual_NativeInstanceTemplate():
     print("NativeInstanceTemplate test")
     # define pins
@@ -529,7 +581,6 @@ def test_template_manual_NativeInstanceTemplate():
     for target, text in test_set:
         print(text, end= ":   ")
         print(target, type(target))
-
 
 def test_template_manual_ParameterizedInstanceTemplate():
     print("ParameterizedInstanceTemplate test")
@@ -574,8 +625,6 @@ def test_template_manual_ParameterizedInstanceTemplate():
     for target, text in test_set:
         print(text, end= ":   ")
         print(target, type(target))
-
-
 
 def test_template_manual_UserDefinedTemplate():
     print("UserDefinedTemplate test")
@@ -646,3 +695,48 @@ def test_template_manual_UserDefinedTemplate():
     #print(user_inst)
     #for n,i in user_inst.native_elements.items():
     #    print(i)
+
+
+def test_database_manual_BaseDatabase():
+    base = laygo2.object.BaseDatabase(name='mycell')
+
+    rect0 = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], name='R0', netname='net0', params={'maxI': 0.005})
+    rect1 = laygo2.object.Rect(xy=[[200, 0], [300, 100]], layer=['M1', 'drawing'], netname='net0', params={'maxI': 0.005})
+    pin0 = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'pin'], netname='n0', master=rect0, params={'direction': 'input'})
+
+    inst0_pins = dict()
+    inst0_pins['in'] = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], netname='in')
+    inst0_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out')
+    inst0 = laygo2.object.Instance(name='I0', xy=[100, 100], libname='mylib', cellname='mycell', shape=[3, 2], pitch=[100, 100],
+                     unit_size=[100, 100], pins=inst0_pins, transform='R0')
+
+    base.append(rect0)
+    base.append(rect1)
+    base.append(pin0)
+    base.append(inst0)
+
+    p_name = [ ( "name",base.name ), ("params", base.params), ("noname_index", base.noname_index), ("keys", base.keys()),
+    ("elements", base.elements) ]
+
+    print("start")
+    for t, v in p_name:
+        print(t, v, end="  ")
+        print(type(v))
+
+    print("__getItem__()")
+    print(base["R0"])
+    print("__setItem__()")
+    rect2 = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], name='R2', netname='net0')
+    base["R2"] = rect2
+    print("__iter__()")
+    print(base.__iter__())
+    print(type(base.__iter__()))
+    for i in base:
+        print(i)
+    print("init")
+    print(base)
+
+def test_database_manual_library():
+    lib = laygo2.object.Library(name='mylib')
+    print(lib.name)
+    print(lib)
