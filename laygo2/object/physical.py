@@ -478,6 +478,44 @@ class Rect(PhysicalObject):
         self.color = color
         PhysicalObject.__init__(self, xy=xy, name=name, params=params)
 
+    def align(self, rect2):
+        """
+            match the length of self and argument, assuming either width or height is zero
+            Parameters
+            ----------
+            rect2 : Rect
+                Rect which want to be matched
+        """
+        index = 0
+        r0 = self
+        r1 = rect2
+        if r0.xy[0][0] == r0.xy[1][0]: # width is zero
+                index = 1
+
+        pnt = np.zeros([2, 2], dtype=int)
+        pnt[0][1] = r0.bbox[1][index] # tr
+        pnt[1][1] = r1.bbox[1][index] # tr
+        pnt[0][0] = r0.bbox[0][index] # bl
+        pnt[1][0] = r1.bbox[0][index] # bl
+
+        if pnt[1][1] > pnt[0][1]:  # p1-top is upper then p0-top
+            _xy = r0.bbox  # r0 correction
+            _xy[1][index] = pnt[1][1]
+            r0.xy = _xy
+        elif pnt[1][1] < pnt[0][1]: #p1-top is lower then p0-top
+            _xy = r1.bbox  # r1 correction
+            _xy[1][index] = pnt[0][1]
+            r1.xy = _xy
+
+        if pnt[1][0] < pnt[0][0]:  # p1-bottom is lower then p0-bottom
+            _xy = r0.bbox  # r0 correction
+            _xy[0][index] = pnt[1][0]
+            r0.xy = _xy
+        elif pnt[1][0] > pnt[0][0]:
+            _xy = r1.bbox  # r1 correction
+            _xy[0][index] = pnt[0][0]
+            r1.xy = _xy
+
     def summarize(self):
         """Returns the summary of the object information."""
         return PhysicalObject.summarize(self) + ", " + \
@@ -973,6 +1011,14 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
                "native elements: " + str(self.native_elements)
 
     def get_element_position(self, obj ):
+        """
+            get element's xy-position from origin
+            Parameters
+            ----------
+            obj : element
+                element belongs to self
+        """
+
         vinst = self
         tr    = vinst.transform
         coners = np.zeros((4, 2))

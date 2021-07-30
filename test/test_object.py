@@ -446,7 +446,33 @@ def test_database_design_bbox():
     print(dsn.bbox)
     assert( np.array_equal( dsn.bbox, [[0,0],[200,100]]))
 
+def test_template_user():
+    vinst0_pins = dict()
+    pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], netname='in')
+    pin1 = laygo2.object.physical.Pin(xy=[[20, 20], [30, 30]], layer=['M1', 'drawing'], netname='in')
+    pin2 = laygo2.object.physical.Pin(xy=[[40, 40], [50, 50]], layer=['M1', 'drawing'], netname='in')
+    vinst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], netname='in', elements= [pin0,pin1,pin2])
 
+    vinst0_native_elements = dict()
+    vinst0_native_elements['R0'] = laygo2.object.physical.Rect(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'])
+    #vinst0_native_elements['R1'] = laygo2.object.physical.Rect(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'])
+    #vinst0_native_elements['R2'] = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], layer=['prBoundary', 'drawing'])
+    print("Create V Instance")
+    vinst0 = laygo2.object.physical.VirtualInstance(name='I0', libname='mylib', cellname='myvcell', xy=[100, 100],
+                                                    native_elements=vinst0_native_elements, unit_size=[100, 100], pins=vinst0_pins, transform='MX')
+
+    print("END V Instance")
+    print(vinst0.xy)
+    vinst1 = laygo2.object.physical.VirtualInstance(name='I1', libname='mylib', cellname='myvcell', xy=[100, 100],
+                                                    native_elements=vinst0_native_elements, unit_size=[100, 100],
+                                                    pins=vinst0_pins, transform='R0')
+
+    vinst0.xy=[500,500]
+    print("compare")
+    for i in range(3):
+#        print(vinst1.pins["in"][i].xy)
+        print(vinst0.pins["in"][i].xy)
+    pass
 """
 def test_database_design_test():
 

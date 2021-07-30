@@ -1171,9 +1171,9 @@ class RoutingGrid(Grid):
     """str: The primary routing direction of the grid. Should be either vertical or horizontal. 
     Used when the direction of the routing wire is undetermined. """
     xcolor = None
-    """str: The color of routing wires. Automatically extracted from grid layout. """
+    """list: The color of routing wires. Automatically extracted from grid layout. """
     ycolor = None
-    """str: The color of routing wires. Automatically extracted from grid layout. """
+    """list: The color of routing wires. Automatically extracted from grid layout. """
 
     def __init__(self, name, vgrid, hgrid, vwidth, hwidth, vextension, hextension, vlayer, hlayer, pin_vlayer,
                  pin_hlayer, viamap, xcolor=None, ycolor=None, primary_grid='vertical', vextension0=None, hextension0=None):
@@ -1380,7 +1380,8 @@ class RoutingGrid(Grid):
                 hextension = 0
                 vextension = int(width / 2)
                 layer = self.pin_hlayer[mn[0][1]]
-        _xy = np.array([[xy0[0]-hextension, xy0[1]-vextension], [xy1[0]+hextension, xy1[1]+vextension]])
+        # TODO: pin.xy differ from tech.py.
+        _xy = np.array([[xy0[0]-hextension, xy0[1]-vextension], [xy1[0]+hextension, xy1[1]+vextension]]) ## need to check
         p = laygo2.object.physical.Pin(name=name, xy=_xy, layer=layer, netname=netname, params=params)
         return p
 

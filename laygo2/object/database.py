@@ -373,7 +373,6 @@ class Design(BaseDatabase):
         pins = self.pins
         return laygo2.object.template.NativeInstanceTemplate(libname=libname, cellname=cellname, bbox=xy, pins=pins)
 
-
     def get_matchedrects_by_layer(self, lpp ):
         """ return matched objects by [ "M*", "drawing or pin"] """
         rects  = self.rects
@@ -395,17 +394,12 @@ class Design(BaseDatabase):
             for name, inst in vinst.native_elements.items():
                 if isinstance(inst, laygo2.object.physical.Rect):
                     if np.array_equal( inst.layer, lpp):
-                        _xy   = vinst.get_element_position(vinst,inst)
+                        _xy   = vinst.get_element_position(inst)
                         ninst = laygo2.object.physical.Rect(
                             xy=_xy, layer = lpp, hextension = inst.hextension, vextension = inst.vextension
                             ,color = inst.color )
                         obj_check.append(ninst)   ## ninst is for sort, inst should be frozen for implement to layout
         return obj_check
-
-
-
-
-
 
 
 if __name__ == '__main__':

@@ -170,6 +170,7 @@ def test_grid_manual_PhyToAbsGridConverter():
       [phy2abs.bottom_right(rect0), "br"],
       [phy2abs.top_left(rect0), "tl"],
       [phy2abs.top_right(rect0), "tr"],
+      [phy2abs.center(rect0), "center"],
       [phy2abs.width(rect0), "width"],
       [phy2abs.height(rect0), "height"],
       [phy2abs.size(rect0), "size"],
@@ -381,8 +382,6 @@ def test_grid_manual_RoutingGrid():
     pin = r23.pin(mn=mn_list, name="pin")
     print("pin:")
     print(pin)
-
-
 
 def test_physical_manual_PhysicalObject():
 
@@ -696,7 +695,6 @@ def test_template_manual_UserDefinedTemplate():
     #for n,i in user_inst.native_elements.items():
     #    print(i)
 
-
 def test_database_manual_BaseDatabase():
     base = laygo2.object.BaseDatabase(name='mycell')
 
@@ -715,13 +713,21 @@ def test_database_manual_BaseDatabase():
     base.append(pin0)
     base.append(inst0)
 
-    p_name = [ ( "name",base.name ), ("params", base.params), ("noname_index", base.noname_index), ("keys", base.keys()),
+    p_name = [
+    ( "name",base.name ),
+    ("params", base.params),
+    ("noname_index", base.noname_index),
+    ("keys", base.keys()),
     ("elements", base.elements) ]
 
     print("start")
     for t, v in p_name:
         print(t, v, end="  ")
         print(type(v))
+
+    print("items()")
+    print(base.items())
+    print(type(base.items()))
 
     print("__getItem__()")
     print(base["R0"])
@@ -740,3 +746,56 @@ def test_database_manual_library():
     lib = laygo2.object.Library(name='mylib')
     print(lib.name)
     print(lib)
+
+def test_database_manual_design():
+    dsn = laygo2.object.Design(name='dsn', libname="testlib")
+    print("dsn:")
+    print(dsn)
+    rect0 = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], name='R0', netname='net0', params={'maxI': 0.005})
+    pin0 = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'pin'], netname='n0', master=rect0, params={'direction': 'input'})
+
+    inst0_pins = dict()
+    inst0_pins['in'] = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], netname='in')
+    inst0_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out')
+    inst0 = laygo2.object.Instance(name='I0', xy=[100, 100], libname='mylib', cellname='mycell', shape=[3, 2], pitch=[100, 100],
+                     unit_size=[100, 100], pins=inst0_pins, transform='R0')
+
+    vinst0_pins = dict()
+    vinst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], netname='in')
+    vinst0_pins['out'] = laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out')
+    vinst0_native_elements = dict()
+    vinst0_native_elements['R0'] = laygo2.object.physical.Rect(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'])
+    vinst0 = laygo2.object.physical.VirtualInstance(name='VI0', libname='mylib', cellname='myvcell', xy=[500, 500],
+                                                    native_elements=vinst0_native_elements, shape=[3, 2],
+                                                    pitch=[100, 100],
+                                                    unit_size=[100, 100], pins=vinst0_pins, transform='R0')
+
+    text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=['text', 'drawing'], text='test', params=None)
+
+    dsn.append(rect0)
+    dsn.append(pin0)
+    dsn.append(inst0)
+    dsn.append(vinst0)
+    dsn.append(text0)
+
+
+    p_name = [
+        ("libname",dsn.libname ),
+        ("cellname", dsn.cellname),
+        ("rects", dsn.rects),
+        ("pins", dsn.pins),
+        ("texts", dsn.texts),
+        ("instnaces", dsn.instances),
+        ("virtual_instnaces", dsn.virtual_instances)
+        ]
+    print("start")
+
+    for t, v in p_name:
+        print(t, v, end="  ")
+        print(type(v))
+
+    print("get by layer")
+    print( dsn.get_matchedrects_by_layer(['M1', 'drawing']))
+    print("export to template")
+    print(dsn.export_to_template())
+    ## route, route_via_track,
