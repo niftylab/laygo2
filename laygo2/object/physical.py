@@ -451,7 +451,7 @@ class Rect(PhysicalObject):
         """numpy.ndarray(dtype=int): The size of the rect."""
         return np.array([self.width, self.height])
 
-    def __init__(self, xy, layer, color=['not MPT'], hextension=0, vextension=0, name=None, netname=None, params=None):
+    def __init__(self, xy, layer, color, hextension=0, vextension=0, name=None, netname=None, params=None):
         """
         Constructor.
 
@@ -461,6 +461,8 @@ class Rect(PhysicalObject):
             The coordinates of this object represented as a Numpy array [[x0, y0], [x1, y1]].
         layer : list(str)
             The layer information of this object. Its format is [layer, purpose]
+        color : str
+            The color shape of metal layer.
         name : str, optional
             The name of this object.
         netname : str, optional
