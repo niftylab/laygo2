@@ -451,7 +451,7 @@ class Rect(PhysicalObject):
         """numpy.ndarray(dtype=int): The size of the rect."""
         return np.array([self.width, self.height])
 
-    def __init__(self, xy, layer, color, hextension=0, vextension=0, name=None, netname=None, params=None):
+    def __init__(self, xy, layer, color=None, hextension=0, vextension=0, name=None, netname=None, params=None):
         """
         Constructor.
 

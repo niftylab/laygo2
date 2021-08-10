@@ -50,20 +50,20 @@ def load_grids(templates):
             xcolor = list()
             if 'xcolor' in grid['vertical'].keys():
                 if grid['vertical']['xcolor'] == 'not MPT':
-                    xcolor = ['not MPT']
+                    xcolor = np.array(['not MPT']*vlayer.shape[0], dtype=object)
                 else:
                     xcolor.append( grid['vertical']['xcolor'])
             else:
-                xcolor = ['not MPT']
+                xcolor = np.array(['not MPT']*vlayer.shape[0], dtype=object)
 
             ycolor = list()
             if 'ycolor' in grid['horizontal'].keys():
                 if grid['horizontal']['ycolor'] == 'not MPT':
-                    ycolor = ['not MPT']
+                    ycolor = np.array(['not MPT']*hlayer.shape[0], dtype=object)
                 else:
                     ycolor.append( grid['horizontal']['ycolor'])
             else:
-                ycolor=['not MPT']
+                ycolor = np.array(['not MPT']*hlayer.shape[0], dtype=object)
             primary_grid = grid['primary_grid']
             # Create the via map defined by the yaml file.
             vmap_original = grid['via']['map']  # viamap defined in the yaml file.
