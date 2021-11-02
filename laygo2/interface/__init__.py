@@ -28,4 +28,5 @@ from laygo2.interface import *
 import laygo2.interface.gds
 import laygo2.interface.skill
 import laygo2.interface.bag
+import laygo2.interface.skillbridge
 import laygo2.interface.yaml
