@@ -37,27 +37,33 @@ import laygo2.object
 
 class Template(metaclass=ABCMeta):
     """
-    An abstract class of templates. Templates are defined by inheriting this class and implementing the following
-    core functions in their specific ways.
-    xy(params): returns the x and y coordinates of the template for the parameters given by params.
-    pins(params): returns a dictionary that contains Pin objects of the template for the input parameters.
-    generate(params): returns a generated instance for the parameters given by params.
+    The base class that defines the functions and attributes of the template.
 
-    Three representative templates are implemented in this module, which cover most usage cases:
-    1. NativeInstanceTemplate: generates a single, non-parameterized instance.
-    2. ParameterizedInstanceTemplate: generates a single, parameterized instance (p-cell)
-    3. UserDefinedInstanceTemplate: generates a virtual instance (composed of multiple objects) from its custom generate(params) function.
+    Attributes
+    ----------
+    name : str
 
-    Or users can just inherit this Template class and implement abstract functions to build a new template.
+    Methods
+    -------
+    __init__() 
+    width()
+    size() 
+    bbox() 
+    pins() 
+    generate() 
 
+    Notes
+    -----
+    Reference in Korean:
+    Template의 기본동작과 속성을 정의한 기본 클래스.
     """
 
     name = None
-    """str: The name of this template."""
+    """str: Template name."""
 
     def __init__(self, name=None):
         """
-        Constructor.
+        Constructor function of Template class.
 
         Parameters
         ----------
@@ -67,114 +73,171 @@ class Template(metaclass=ABCMeta):
         self.name = name
 
     def __str__(self):
-        """Returns a string corresponding to this object's information."""
+        """Return a string corresponding to this object's information."""
         return self.summarize()
 
     def summarize(self):
-        """Returns the summary of the template information."""
+        """Return the summary of the template information."""
         return self.__repr__() + " " \
                                  "name: " + self.name + ", " + \
                                  "class: " + self.__class__.__name__ + ", " + \
                                  ""
 
     def height(self, params=None):
-        """int: Returns the height of the template."""
+        """int: Return the height of a template."""
         return abs(self.bbox(params=params)[0, 1] - self.bbox(params=params)[1, 1])
 
     def width(self, params=None):
-        """int: returns the width of the template."""
+        """int: Return the width of a template."""
         return abs(self.bbox(params=params)[0, 0] - self.bbox(params=params)[1, 0])
 
     def size(self, params=None):
-        """numpy.array(dtype=int): returns the size of the template."""
+        """int: Return the size of a template."""
         return np.array([self.width(params=params), self.height(params=params)])
 
     @abstractmethod
     def bbox(self, params=None):
-        """
-        Computes the xy-coordinates of the bounding box of this template, corresponding to params.
-
-        Parameters
-        ----------
-        params : dict() or None, optional.
-            The dictionary that contains the parameters of the bounding box computed.
-
-        Returns
-        -------
-        numpy.ndarray(dtype=int) : A 2x2 integer array that contains the bounding box coordinates.
-        """
+        """numpy.ndarray: (Abstract method) Return the bounding box of a template."""
         pass
 
     @abstractmethod
     def pins(self, params=None):
-        """
-        Returns the dictionary that contains the pins of this template, corresponding to params.
-
-        Parameters
-        ----------
-        params : dict() or None, optional.
-            The dictionary that contains the parameters of the pins.
-
-        Returns
-        -------
-        Dict[laygo2.object.physical.Pin] : A dictionary that contains pins of this template, with their names as keys.
-        """
+        """dict: (Abstract method) Return dict having the collection of pins of a template."""
         pass
 
     @abstractmethod
     def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None):
-        """
-        Generates an instance from this template.
-
-        Parameters
-        ----------
-        name : str or None, optional.
-            The name of the instance to be generated.
-        shape : numpy.ndarray(dtype=int) or List[int] or None, optional.
-            The shape of the instance to be generated.
-        pitch : numpy.ndarray(dtype=int) or List[int], optional.
-            The pitch between sub-elements of the generated instance.
-        transform : str, optional.
-            The transform parameter of the instance to be generated.
-        params : dict() or None, optional.
-            The dictionary that contains the parameters of the instance to be generated.
-
-        Returns
-        -------
-        laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance: the generated instance.
-        """
+        """instance: (Abstract method) Return the instance generated from a template."""
         pass
 
 
 class NativeInstanceTemplate(Template):
-    """A basic template object that generates a vanilla instance."""
+    """
+    NativeInstanceTemplate class implements the template that generate Instance.
+
+    Attributes
+    ----------
+    name : str
+    libname : str
+    cellname : str
+
+    Methods
+    -------
+    __init__() 
+    height() 
+    width() 
+    size() 
+    bbox() 
+    pins() 
+    generate() 
+    export_to_dict() 
+
+    Notes
+    -----
+    Reference in Korean:
+    NativeInstanceTemplate 클래스는 기본 Instance를 반환하는 템플릿을 구현한다.
+    """
     libname = None
-    """str: The library name of the template."""
+    """attribute
+    str: Library name of NativeInstanceTemplate object.
+
+    See Also
+    --------
+    None
+
+    Examples
+    --------
+    >>> nat_temp_pins = dict() >>> nat_temp_pins['in'] = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing’], netname='in’)
+    >>> nat_temp_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing’], netname='out’)
+    >>> nat_temp = laygo2.object.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
+    >>> nat_temp.libname 
+    “mylib”
+
+    Notes
+    -----
+    Related Images:
+    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_NativeInstanceTemplate_libname.png
+
+    Reference in Korean:
+    str: NativeInstanceTemplate 객체의 library 이름.
+    """
 
     cellname = None
-    """str: The cellname of the template."""
+    """attribute
+    str: Cellname of NativeInstanceTemplate object.
+
+    See Also
+    --------
+    None
+
+    Examples
+    --------
+    >>> nat_temp_pins = dict() >>> nat_temp_pins['in']  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing’], netname='in’)
+    >>> nat_temp_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing’], netname='out’)
+    >>> nat_temp = laygo2.object.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
+    >>> nat_temp.cellname 
+    “mynattemplate”
+
+    Notes
+    -----
+    Related Images:
+    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_NativeInstanceTemplate_cellname.png
+
+    Reference in Korean:
+    str: NativeInstanceTemplate 객체의 cellname.
+    """
 
     _bbox = np.array([[0, 0], [0, 0]])
-    """numpy.array(dtype=int): A 2x2 numpy array that specifies the bounding box of the template."""
-
+    
     _pins = None
-    """Dict[laygo2.object.Pin] or None: A dictionary that contains pin information."""
 
     def __init__(self, libname, cellname, bbox=np.array([[0, 0], [0, 0]]), pins=None):
         """
-        Constructor.
+        Constructor function of NativeInstanceTemplate class.
 
         Parameters
         ----------
         libname : str
-            The library name of the template.
+            library name.
         cellname : str
-            The cell name of the template.
-        bbox : List[int] or numpy.ndarray(dtype=int)
-            The xy-coordinates of the template or the function that returns the xy-coordinates of the template.
-        pins : Dict[laygo2.object.Pin]
-            A dict that contains the pin information of the template or a function that returns the dict.
-            The pin dictionary.
+            cell name.
+        bbox : numpy.ndarray
+            bbox.
+        pins : dict
+            dictionary having the pin object.
+
+        Returns
+        -------
+        NativeInstanceTemplate
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> nat_temp_pins = dict() 
+        >>> nat_temp_pins['in']  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing’], netname='in’)
+        >>> nat_temp_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing’], netname='out’)
+        >>> nat_temp = laygo2.object.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
+        <laygo2.object.template.NativeInstanceTemplate object>
+
+        Notes
+        -----
+        Related Images:
+        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_NativeInstanceTemplate_init.png
+
+        Reference in Korean:
+        NativeInstanceTemplate 클래스의 생성자함수.
+        파라미터
+        libname(str): library 이름
+        cellname(str): cell 이름
+        bbox(numpy.ndarray): bbox
+        pins(dict): pin 객체를 갖고있는 dictionary
+        반환값
+        laygo2.NativeInstanceTemplate
+        참조
+        없음
         """
         self.libname = libname
         self.cellname = cellname
@@ -183,7 +246,7 @@ class NativeInstanceTemplate(Template):
         Template.__init__(self, name=cellname)
 
     def summarize(self):
-        """Returns the summary of the template information."""
+        """Return the summary of the template information."""
         return self.__repr__() + " " \
                                  "name: " + self.name + ", " + \
                "class: " + self.__class__.__name__ + ", " + \
@@ -194,38 +257,139 @@ class NativeInstanceTemplate(Template):
     # Core template functions
     def bbox(self, params=None):
         """
-        Computes the xy-coordinates of the bounding box of this template, corresponding to params.
-        See laygo2.object.template.Template.bbox() for details.
+        bbox of NativeInstanceTemplate object.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        numpy.ndarray
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> nat_temp_pins = dict() 
+        >>> nat_temp_pins['in']  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing’], netname='in’)
+        >>> nat_temp_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing’], netname='out’)
+        >>> nat_temp = laygo2.object.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
+        >>> nat_temp.bbox() 
+        [[0,0], [100, 100]]
+
+        Notes
+        -----
+        Related Images:
+        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_NativeInstanceTemplate_bbox.png
+
+        Reference in Korean:
+        NativeInstanceTemplate 객체의 bbox.
+        파라미터
+        없음
+        반환값
+        numpy.ndarray
+        참조
+        없음
         """
         return self._bbox
 
     def pins(self, params=None):
         """
-        Returns the dictionary that contains the pins of this template, corresponding to params.
-        See laygo2.object.template.Template.pins() for details.
+        Return pin dictionary of NativeInstanceTemplate object.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        dict
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> nat_temp_pins = dict() 
+        >>> nat_temp_pins['in']  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing’], netname='in’)
+        >>> nat_temp_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing’], netname='out’)
+        >>> nat_temp = laygo2.object.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
+        >>> nat_temp.pins() 
+        {'in': <laygo2.object.physical.Pin object>, 'out': <laygo2.object.physical.Pin object>}
+
+        Notes
+        -----
+        Related Images:
+        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_ParameterizedInstanceTemplate_pins.png
+
+        Reference in Korean:
+        NativeInstanceTemplate 객체의 pin dictionary 반환.
+        파라미터
+        없음
+        반환값
+        dict
+        참조
+        없음
         """
         return self._pins
 
     def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None):
         """
-        Creates an instance from this template. See laygo2.object.template.Template.generate() for details.
+        Generate Instance object.
 
         Parameters
         ----------
-        name : str or None, optional.
-            The name of the instance to be generated.
-        shape : numpy.ndarray(dtype=int) or List[int] or None, optional.
-            The shape of the instance to be generated.
-        pitch : numpy.ndarray(dtype=int) or List[int], optional.
-            The pitch between sub-elements of the generated instance.
-        transform : str, optional.
-            The transform parameter of the instance to be generated.
-        params : dict() or None, optional.
-            The dictionary that contains the parameters of the instance to be generated.
-
+        name : str 
+            name of the instance to be generated.
+        shape : numpy.ndarray, optional.
+            shape of the object to be generated.
+        pitch : numpy.ndarray, optional.
+            pitch of the object to be generated.
+        params : dict, optional.
+            dictionary having the object attributes.
+        transform : str
+            transformation attribute of the object to be generated.
+        
         Returns
         -------
-        laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance: the generated instance.
+        Instance
+
+        See Also
+        --------
+        Class Instance
+
+        Examples
+        --------
+        >>> nat_temp_pins = dict()
+        >>> nat_temp_pins['in'] = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], netname='in')
+        >>> nat_temp_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out')
+        >>> nat_temp = laygo2.object.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate', bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
+        >>> nat_temp.generate(name="I1")
+        <laygo2.object.physical.Instance object>
+        >>> nat_temp.generate(name="I2")
+        <laygo2.object.physical.Instance object>
+
+        Notes
+        -----
+        Related Images:
+        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_ParameterizedInstanceTemplate_generate.png
+
+        Reference in Korean:
+        Instance 객체 생성.
+        파라미터
+        name(str): 생성할 인스턴스의 이름
+        shape(numpy.ndarray): 생성할 객체의 shape [ optional ]
+        pitch(numpy.ndarray): 생성할 객체간의 간격 [ optional ]
+        params(dict) : 객체의 속성을 갖는 Dictionary [ optional ]
+        transform(str): 생성할 객체의 변환 속성 [ optional ]
+        반환값
+        laygo2.Instance: 생성된 개체
+        참조
+        Class Instance
         """
         return laygo2.object.physical.Instance(libname=self.libname, cellname=self.cellname, xy=np.array([0, 0]),
                                                shape=shape, pitch=pitch, unit_size=self.size(params), pins=self.pins(params),
@@ -233,6 +397,44 @@ class NativeInstanceTemplate(Template):
 
     # I/O functions
     def export_to_dict(self):
+        """
+        Return Dictionary containing the information of NativeInstanceTemplate.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        dict
+
+        See Also
+        --------
+        Class Instance
+
+        Examples
+        --------
+        >>> nat_temp_pins = dict()
+        >>> nat_temp_pins['in'] = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], netname='in')
+        >>> nat_temp_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out')
+        >>> nat_temp = laygo2.object.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate', bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
+        >>> nat_temp.export_to_dict()
+        {'libname': 'mylib', 'cellname': 'mynattemplate', 'bbox': [[0, 0], [100, 100]], 'pins': {'in': {'xy': [[0, 0], [10, 10]], 'layer': ['M1', 'drawing'], 'name': None, 'netname': 'in'}, 'out': {'xy': [[90, 9 0], [100, 100]], 'layer': ['M1', 'drawing'], 'name': None, 'netname': 'out'}}}
+
+        Notes
+        -----
+        Related Images:
+        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_NativeInstanceTemplate_export_to_dict.png
+
+        Reference in Korean:
+        NativeInstanceTemplate 의 정보가 담긴 Dictonary 반환.
+        파라미터
+        없음
+        반환값
+        dict
+        참조
+        Class Instance
+        """
         db = dict()
         db['libname'] = self.libname
         db['cellname'] = self.cellname
@@ -244,40 +446,89 @@ class NativeInstanceTemplate(Template):
 
 
 class ParameterizedInstanceTemplate(Template):
-    """A parameterized-instance-based template that helps users to define the templates without implementing
-    the instantiation functions."""
+    """
+    ParameterizedInstanceTemplate class implements the template that generate ParameterizedInstnace.
+
+    Attributes
+    ----------
+    name : str
+    libname : str
+    cellname : str
+
+    Methods
+    -------
+    __init__() 
+    height() 
+    width() 
+    size() 
+    bbox() 
+    pins() 
+    generate()
+
+    Notes
+    -----
+    Reference in Korean:
+    ParameterizedInstanceTemplate 클래스는 Parameterized Instance를 반환하는 템플릿을 구현한다.
+    """
 
     libname = None
-    """str: The library name of the template."""
+    """str: Libname of the instance being generated."""
 
     cellname = None
-    """str: The cellname of the template."""
+    """str: Cellname of the instance being generated."""
 
     _bbox = None
-    """callable(params=dict()): Returns the x and y coordinates of the template. Should be replaced with a user-defined 
-    function."""
 
     _pins = None
-    """callable(params=dict()): Returns a dictionary that contains the pin information. Should be replaced with a 
-    user-defined function."""
 
     def __init__(self, libname, cellname, bbox_func=None, pins_func=None):
         """
-        Constructor.
+        Generate ParameterizedInstanceTemplate object.
 
         Parameters
         ----------
         libname : str
-            The library name of the template.
+            library name.
         cellname : str 
             The cell name of the template. 
-        bbox_func : callable(params=dict())
-            The function that returns the xy-coordinates for the template boundary.
-        #xy_offset : numpy.ndarray(dtype=int) or callable(params=dict())
-        #    The offset of the generated instance's x and y coordinates from the template's x and y coordinates.
-        #    This is used to specify the difference between the boundary of the template and the actual instance's origin.
-        pins_func : callable(params=dict)
-            The function that returns a dict that contains the pin information of the template.
+        bbox_func : callable
+            bbox.
+        pins_func : callable
+            dictionary having the pin object.
+        
+        Returns
+        -------
+        laygo2.NativeInstanceTemplate
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> def pcell_bbox_func(params): 
+            …… 
+        >>> def pcell_pins_func(params): 
+            ……
+        >>> pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox_func= pcell_bbox_func, pins_func= pcell_pins_func)
+        <laygo2.object.template.ParameterizedInstanceTemplate object>
+        
+        Notes
+        -----
+        Related Images:
+        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_ParameterizedInstanceTemplate_init.png
+
+        Reference in Korean:
+        ParameterizedInstanceTemplate 클래스의 생성자함수.
+        파라미터
+        libname(str): library 이름 
+        cellname(str): cell 이름 
+        bbox_func(callable): bbox 
+        pins_func(callable): pin 객체를 갖고있는 dictionary
+        반환값
+        laygo2.NativeInstanceTemplate
+        참조
+        없음
         """
         self.libname = libname
         self.cellname = cellname
@@ -288,21 +539,152 @@ class ParameterizedInstanceTemplate(Template):
     # Core template functions
     def bbox(self, params=None):
         """
-        Computes the xy-coordinates of the bounding box of this template, corresponding to params.
-        See laygo2.object.template.Template.bbox() for details.
+        bbox of ParameterizedInstanceTemplate object.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        numpy.ndarray
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> def pcell_bbox_func(params):
+                if params==None: 
+                    params={“W”:1}
+                return np.array([[0, 0], [100 , 100* params['W']]])
+        >>> def pcell_pins_func(params): 
+            ……
+        >>> pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox_func= pcell_bbox_func, pins_func= pcell_pins_func)
+        >>> pcell_temp.bbox 
+        [[0,0], [100,100]]
+
+        Notes
+        -----
+        Related Images:
+        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_ParameterizedInstanceTemplate_bbox.png
+
+        Reference in Korean:
+        ParameterizedInstanceTemplate 객체의 bbox.
+        파라미터
+        없음
+        반환값
+        numpy.ndarray
+        참조
+        없음
         """
         return self._bbox(params=params)
 
     def pins(self, params=None):
         """
-        Returns the dictionary that contains the pins of this template, corresponding to params.
-        See laygo2.object.template.Template.pins() for details.
+        Return pin dictionary of ParameterizedInstanceTemplate object.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        dict
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> def pcell_bbox_func(params): 
+            ……
+        >>> def pcell_pins_func(params):
+                if params==None:
+                    params={"W":1} 
+                    i = params['W']
+                template_pins = dict()
+                pin_in  = laygo2.object.Pin(xy =[ [ 0, 0], [100 , 0 ] ],      layer=['M1', 'pin'], netname='in')
+                pin_out = laygo2.object.Pin(xy =[ [ 0, 100], [100 , 100* i]], layer=['M1', 'pin’], netname='out')
+                template_pins['in' ] = pin_in
+                template_pins['out'] = pin_out
+                return template_pins
+        >>> pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox_func= pcell_bbox_func, pins_func= pcell_pins_func)
+        >>> pcell_temp.pins 
+        {'in': <laygo2.object.physical.Pin object>, 'out': <laygo2.object.physical.Pin object>}
+
+        Notes
+        -----
+        Related Images:
+        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_ParameterizedInstanceTemplate_pins.png
+
+        Reference in Korean:
+        ParameterizedInstanceTemplate 객체의 pin dictionary 반환.
+        파라미터
+        없음
+        반환값
+        dict
+        참조
+        없음
         """
         return self._pins(params=params)
 
     def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None):
         """
-        Creates an instance from this template. See laygo2.object.template.Template.generate() for details.
+        Generate ParameterizedInstance object.
+
+        Parameters
+        ----------
+        name : str
+            name of the instance to be generated.
+        shape : numpy.ndarray, optional.
+            shape of the object to be generated.
+        pitch : numpy.ndarray, optional.
+            pitch of the object to be generated.
+        params : dict, optional.
+            dictionary having the entity attributes.
+        transform : str, optional.
+            transformation attribute of the entity to be generated.
+        
+        Returns
+        -------
+        (laygo2.Instance) generated object
+
+        See Also
+        --------
+        Class Instance
+
+        Examples
+        --------
+        >>> def pcell_bbox_func(params):
+            ……
+        >>> def pins_bbox_func(params): 
+            ……
+        >>> pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox_func=pcell_bbox_func, pins_func=pcell_pins_func)
+        >>> pcell_temp.generate(name=“I1”, params={“W”=2, “L”=1}) 
+        <laygo2.object.physical.Instance object>
+        >>> pcell_temp.generate(name=“I2”, params={“W”=2, “L”=1}) 
+        <laygo2.object.physical.Instance object>
+
+        Notes
+        -----
+        Related Images:
+        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_ParameterizedInstanceTemplate_generate.png
+
+        Reference in Korean:
+        ParameterizedInstance 객체 생성.
+        파라미터
+        name(str): 생성할 인스턴스의 이름
+        shape(numpy.ndarray): 생성할 객체의 shape [ optional ]
+        pitch(numpy.ndarray): 생성할 객체간의 간격 [ optional ]
+        params(dict) : 개체의 속성을 갖는 Dictionary [ optional ]
+        transform(str):  생성할 개체의 변환 속성 [ optional ]
+        반환값
+        laygo2.Instance: 생성된 객체
+        참조
+        Class Instance
         """
         #xy = xy + np.dot(self.xy(params)[0], tf.Mt(transform).T)
         return laygo2.object.physical.Instance(libname=self.libname, cellname=self.cellname, xy=np.array([0, 0]),
@@ -311,42 +693,85 @@ class ParameterizedInstanceTemplate(Template):
 
 
 class UserDefinedTemplate(Template):
-    """A virtual-instance-based template that produce subelements by calling user-defined functions.
+    """
+    UserDefinedTemplate class implements the template that generate VirtualInstance.
+
+    Attributes
+    ----------
+    name : str
+
+    Methods
+    -------
+    __init__() 
+    height() 
+    width() 
+    size() 
+    bbox() 
+    pins() 
+    generate() 
+
+    Notes
+    -----
+    Reference in Korean:
+    UserDefinedTemplate 클래스는 VirtualInstance를 반환하는 템플릿을 구현한다.
     """
 
     _bbox = None
-    """callable(params=dict()): Returns the bounding box of the template. Should be replaced with a user-defined 
-    function."""
 
     _pins = None
-    """callable(params=dict()): Returns a dictionary that contains the pin information. Should be replaced with a 
-    user-defined function."""
 
     _generate = None
-    """callable(name, shape, pitch, transform, params): 
-    Returns a generated instance based on the input arguments.
-    
-    Should be mapped to a used-defined function that follows the definition format below:
-    
-    def generate_function_name(name=None, shape=None, pitch=np.array([0, 0]), transform='R0', params=None):
-        body_of_generate_function
-        return generated_instance
-    """
 
     def __init__(self, bbox_func, pins_func, generate_func, name=None):
         """
-        Constructor.
+        Constructor function of UserDefinedTemplate class.
 
         Parameters
         ----------
         bbox_func: callable
-            A function that computes the bounding box coordinates of the template.
+            method computing bbox.
         pins_func: callable
-            A function that produces a dictionary that contains pin information of the template.
+            method computing pins.
         generate_func: callable
-            A fucntion that generates a (virtual) instance from the template.
+            method generating VirtualInstance.
         name : str
-            The name of the template.
+            template name.
+
+        Returns
+        -------
+        laygo2.UserDefinedTemplate
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> def user_bbox_func(params):-> numpy.ndarray …  ## return bbox0 * multi 
+            …… 
+        >>> def user_pins_func(params):-> dict          …  ## pin0.bbox = pins0.bbox * multi 
+            …… 
+        >>> def user_generate_func(params): 
+            …… 
+        >>> user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
+        <laygo2.object.template.UserDefinedTemplate object>
+
+        Notes
+        -----
+        Related Images:
+        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_UserDefinedTemplate_init.png
+
+        Reference in Korean:
+        UserDefinedTemplate 클래스의 생성자함수.
+        파라미터
+        bbox_func(callable ): bbox를 연산해주는 메소드
+        pins_func(callable ): pins를 연산해주는 메소드
+        generate_func(callable ): VirtualInstance를 생성하는 메소드
+        name(str): 템플릿 이름
+        반환값
+        laygo2.UserDefinedTemplate
+        참조
+        없음
         """
         self._bbox = bbox_func
         self._pins = pins_func
@@ -356,21 +781,154 @@ class UserDefinedTemplate(Template):
     # Core template functions
     def bbox(self, params=None):
         """
-        Computes the xy-coordinates of the bounding box of this template, corresponding to params.
-        See laygo2.object.template.Template.bbox() for details.
+        Return bbox of UserDefinedTemplate object.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        numpy.ndarray
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> params={}; params[“multi”] = 10; bbox0 = [ [0,0],[100,100]]; pin0 = [ in, out ] 
+        >>> def user_bbox_func(params):-> numpy.ndarray …  ## return bbox0 * multi
+                if params==None: 
+                    params={}
+                    params['multi'] = 1
+                return np.array([[0, 0], [100 * params['multi'], 100]])
+        >>> def user_pins_func(params):-> dict          …  ## pin0.bbox = pins0.bbox * multi 
+            …… 
+        >>> def user_generate_func(params): 
+            …… 
+        >>> user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
+        >>> user_temp.bbox() 
+        [[0, 0], [100, 100]]
+
+        Notes
+        -----
+        Related Images:
+        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_UserDefinedTemplate_bbox.png
+
+        Reference in Korean:
+        UserDefinedTemplate 객체의 bbox 반환.
+        파라미터
+        없음
+        반환값
+        numpy.ndarray
+        참조
+        없음
         """
         return self._bbox(params=params)
 
     def pins(self, params=None):
         """
-        Returns the dictionary that contains the pins of this template, corresponding to params.
-        See laygo2.object.template.Template.pins() for details.
+        Pins of UserDefinedTemplate object.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        dict
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> params={}; params[“multi”] = 10; bbox0 = [ [0,0],[100,100]]; pin0 = [ in, out ] 
+        >>> def user_bbox_func(params):-> numpy.ndarray …  ## return bbox0 * multi 
+        >>> def user_pins_func(params):-> dict
+                if params==None:
+                    params={"multi":1}
+                i = params['multi']
+                template_pins = dict()
+                pin_in = laygo2.object.Pin(xy =[ [ 0, 0], [100 * i, 0 ] ],   layer=['M1', 'pin'], netname='in') 
+                pin_out = laygo2.object.Pin(xy=[ [ 0, 100], [100 * i, 100]], layer=['M1', 'pin'], netname='out') 
+                template_pins['in' ] = pin_in 
+                template_pins['out'] = pin_out 
+                return template_pins
+        >>> def user_generate_func(params):
+            …… 
+        >>> user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
+        >>> user_temp.pins()
+        {'in': <laygo2.object.physical.Pin>, 'out': <laygo2.object.physical.Pin object>}
+
+        Notes
+        -----
+        Related Images:
+        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_UserDefinedTemplate_pins.png
+
+        Reference in Korean:
+        UserDefinedTemplate 객체의 pins.
+        파라미터
+        없음
+        반환값
+        dict
+        참조
+        없음
         """
         return self._pins(params=params)
 
     def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None):
         """
-        Creates an instance from this template. See laygo2.object.template.Template.generate() for details.
+        Generate VirtualInstance object.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        laygo2.VirtualInstance
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> def user_bbox_func(params):-> numpy.ndarray …  ## return bbox0 * multi 
+        >>> def user_pins_func(params):-> dict 
+        >>> def user_generate_func(params={“multi”:1}):
+                m = params['multi'] 
+                shape = np.array([1, 1]); inst_pins = user_pins_func(params) ; inst_native_elements = dict() 
+                inst_native_elements['left'] = laygo2.object.Rect(xy=[ [0, 0], [0,100]], layer=['M1’, 'drawing']) 
+                ofst = np.array([100, 0])
+                for i in range(m):
+                    bl  = np.array([0,0]) 
+                    tr  = np.array([100,100]) 
+                    inst_native_elements['center'+str(i)] = laygo2.object.Rect(xy=[ i*ofst + bl , i*ofst + tr ]…
+                inst_native_elements['right'] = laygo2.object.Rect(xy=[ m*ofst + [0, 0], m*ofst + [ 0 , 100]], …) 
+                inst = VirtualInstance(name=name,xy=np.array([0, 0]),native_elements=inst_native_elements,……)
+        >>> user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func) 
+        >>> nat_temp.generate(name=“I1”, {“multi”=1}) 
+        <laygo2.object.physical.VirtualInstance >
+        >>> nat_temp.generate(name=“I2”, {“multi”=2}) 
+        <laygo2.object.physical.VirtualInstance >
+
+        Notes
+        -----
+        Related Images:
+        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_UserDefinedTemplate_generate.png
+
+        Reference in Korean:
+        VirtualInstance 객체 생성.
+        파라미터
+        없음
+        반환값
+        laygo2.VirtualInstance
+        참조
+        없음
         """
         return self._generate(name=name, shape=shape, pitch=pitch, transform=transform, params=params)
 
