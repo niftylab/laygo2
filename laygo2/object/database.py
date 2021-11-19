@@ -23,7 +23,7 @@
 ########################################################################################################################
 
 """
-This module implements classes for various database objects.
+Module consisting of the classes implementing a hierarchical structure database that manages design and library.
 """
 
 __author__ = "Jaeduk Han"
@@ -35,34 +35,285 @@ import numpy as np
 
 
 class BaseDatabase:
-    """class that contains iterable contents."""
+    """
+    BaseDatabase is a base class implementing basic functions of various database objects such as library and design.
+
+    Attributes
+    ----------
+    name : str
+    params : dict
+    noname_index : int
+    elements : dict
+    keys : list
+
+    Methods
+    -------
+    items()
+    __getitem__()
+    __setitem__()
+    __iter__()
+    __init__()
+
+    Notes
+    -----
+    Reference in Korean:
+    BaseDatabase는 데이터베이스 객체들의 기본 기능을 구현하는 클래스.
+    """
 
     name = None
-    """str: the name of the object."""
+    """attribute
+    str: BaseDatabase object name.
+
+    See Also
+    --------
+    None
+
+    Examples
+    --------
+    >>> base = laygo2.object.BaseDatabase(name='mycell’) 
+    >>> base.name 
+    “mycell”
+
+    Notes
+    -----
+    Reference in Korean:
+    str: BaseDatabase 이름.
+    """
 
     params = None
-    """dict or None: a dictionary that contains parameters of the design. """
+    """attribute
+    dict or None: Dictionary containing parameters of BaseDatabase object.
+
+    See Also
+    --------
+    None
+
+    Examples
+    --------
+    >>> base = laygo2.object.BaseDatabase(name='mycell’) 
+    >>> base.params 
+    None
+
+    Notes
+    -----
+    Reference in Korean:
+    dict or None: BaseDatabase의 속성.
+    """
 
     elements = None
-    """dict: the iterable elements of the design."""
+    """attribute
+    dict: Dictionary having objects.
+
+    See Also
+    --------
+    None
+
+    Examples
+    --------
+    >>> base = laygo2.object.BaseDatabase(name='mycell’) 
+    >>> rect0 = laygo2.object.Rect(name='R0’ ……) 
+    >>> rect1 = laygo2.object.Rect(xy=……) 
+    >>> pin0 = laygo2.object.Pin(xy=……) 
+    >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……) 
+    >>> base.append(rect0) 
+    >>> base.append(rect1) 
+    >>> base.append(pin0) 
+    >>> base.append(inst0)
+    >>> print(base.elements()) 
+    {'R0': <laygo2.object.physical.Rect object>, 'NoName_0': <laygo2.object.physical.Rect object>, 'NoName_1': <laygo2.object.physical.Pin object>, 'I0': <laygo2.object.physical.Instance object>}
+
+    Notes
+    -----
+    Reference in Korean:
+    BaseDatabase 객체의 구성 요소를 담고 있는 Dictionary.
+    """
 
     noname_index = 0
-    """int: the suffix index of NoName objects (objects without its name)."""
+    """attribute
+    int: A unique number used as the name of an unnamed object belonging to the database.
+
+    See Also
+    --------
+    None
+
+    Examples
+    --------
+    >>> base = laygo2.object.BaseDatabase(name='mycell’) 
+    >>> rect0 = laygo2.object.Rect(name='R0’ ……) 
+    >>> base.append(rect0) 
+    >>> print(base.noname_index) 
+    0 
+    >>> rect1 = laygo2.object.Rect(xy=……) 
+    >>> base.append(rect1)
+    >>> print(base.noname_index) 
+    1
+
+    Notes
+    -----
+    Reference in Korean:
+    int: BaseDatabase의 소속 객체들 중 이름이 정해지지 않은 객체의 이름을 사용할 때 부여되는 고유 번호.
+    """
 
     @property
     def keys(self):
-        """Returns a list that contains keys of the elements of this object."""
+        """attribute
+        list: Keys of elements.
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> base = laygo2.object.BaseDatabase(name='mycell’) 
+        >>> rect0 = laygo2.object.Rect(name='R0’ ……) 
+        >>> rect1 = laygo2.object.Rect(xy=……) 
+        >>> pin0 = laygo2.object.Pin(xy=……) 
+        >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……) 
+        >>> base.append(rect0) 
+        >>> base.append(rect1) 
+        >>> base.append(pin0) 
+        >>> base.append(inst0)
+        >>> print(base.keys()) 
+        ['R0', 'NoName_0', 'NoName_1', 'I0']
+
+        Notes
+        -----
+        Reference in Korean:
+        list: BaseDatabase 객체의 구성 요소를 담고 있는 Dictionary.
+        """
         return self.elements.keys
 
     def items(self):
-        """Matches to the items() function of its elements."""
+        """
+        key/object pair of elements.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        dict_items
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> base = laygo2.object.BaseDatabase(name='mycell’) 
+        >>> rect0 = laygo2.object.Rect(name='R0’ ……) 
+        >>> rect1 = laygo2.object.Rect(xy=……) 
+        >>> pin0 = laygo2.object.Pin(xy=……) 
+        >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……) 
+        >>> base.append(rect0) 
+        >>> base.append(rect1) 
+        >>> base.append(pin0)
+        >>> base.append(inst0) 
+        >>> print(base.items()) 
+        dict_items([('R0', <laygo2.object.physical.Rect object>),
+                    ('NoName_0', <laygo2.object.physical.Rect object>),
+                    ('NoName_1', <laygo2.object.physical.Pin object>),
+                    ('I0', <laygo2.object.physical.Instance object>)])
+        
+        Notes
+        -----
+        Reference in Korean:
+        elements의 key/object 짝 출력.
+        파라미터
+        없음
+        반환값
+        dict_items
+        참조
+        없음
+        """
         return self.elements.items()
 
     def __getitem__(self, pos):
-        """Returns its sub-elements based on pos parameter."""
+        """
+        Return the object corresponding to the key.
+
+        Parameters
+        ----------
+        key : str
+
+        Returns
+        -------
+        element
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> base = laygo2.object.BaseDatabase(name='mycell’) 
+        >>> rect0= laygo2.object.Rect(name='R0’ ……) 
+        >>> rect1= laygo2.object.Rect(xy=……) 
+        >>> pin0 = laygo2.object.Pin(xy=……) 
+        >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……) 
+        >>> base.append(rect0) 
+        >>> base.append(rect1) 
+        >>> base.append(pin0) 
+        >>> base.append(inst0)
+        >>> print(base[“R0”]) 
+        <laygo2.object.physical.Rect object> name: R0, class: Rect  ……
+
+        Notes
+        -----
+        Reference in Korean:
+        key에 해당하는 object 반환.
+        파라미터
+        key(str)
+        반환값
+        element
+        참조
+        없음
+        """
         return self.elements[pos]
 
     def __setitem__(self, key, item):
+        """
+        Add key/object pair.
+
+        Parameters
+        ----------
+        key : str
+
+        Returns
+        -------
+        list
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> base = laygo2.object.BaseDatabase(name='mycell’) 
+        >>> rect0 = laygo2.object.Rect(name='R0’ ……) 
+        >>> rect1 = laygo2.object.Rect(xy=……) 
+        >>> pin0 = laygo2.object.Pin(xy=……) 
+        >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……) 
+        >>> base.append(rect0) 
+        >>> base.append(rect1) 
+        >>> base.append(pin0) 
+        >>> base.append(inst0) 
+        >>> rect2 = laygo2.object.Rect(name=‘R2’ ……)
+        >>> base[“R2”]=rect2
+
+        Notes
+        -----
+        Reference in Korean:
+        요소 추가 함수.
+        파라미터
+        key(str)
+        반환값
+        list
+        참조
+        없음
+        """
         item.name = key
         self.append(item)
 
@@ -94,14 +345,56 @@ class BaseDatabase:
             return item_name, item
 
     def __iter__(self):
-        """Iterator function. Directly mapped to its elements."""
+        """
+        Iterator object of BaseDatabaseParameters.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        dict_keyiterator
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> base = laygo2.object.BaseDatabase(name='mycell’) 
+        >>> rect0= laygo2.object.Rect(name='R0’ ……) 
+        >>> rect1= laygo2.object.Rect(xy=……) 
+        >>> pin0 = laygo2.object.Pin(xy=……) 
+        >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……) 
+        >>> base.append(rect0) 
+        >>> base.append(rect1) 
+        >>> base.append(pin0) 
+        >>> base.append(inst0)
+        >>> for obj in base: print(obj) 
+        R0 
+        NoName_0 
+        NoName_1 
+        I0
+
+        Notes
+        -----
+        Reference in Korean:
+        BaseDatabase의 Iterable 객체 반환.
+        파라미터
+        없음
+        반환값
+        dict_keyiterator
+        참조
+        없음
+        """
         return self.elements.__iter__()
 
     def __str__(self):
         return self.summarize()
 
     def summarize(self):
-        """Returns the summary of the object information."""
+        """Return the summary of the object information."""
         return self.__repr__() + " " + \
                "name: " + self.name + ", " + \
                "params: " + str(self.params) + " \n" \
@@ -110,12 +403,43 @@ class BaseDatabase:
 
     def __init__(self, name, params=None, elements=None):
         """
-        Constructor.
+        BaseDatabase class constructor function.
 
         Parameters
         ----------
         name : str
-            The name of the object.
+            BaseDatabase object name.
+        params : dict, optional
+            parameters of BaseDatabase.
+        elements : dict, optional
+            dictionary having the elements of BaseDatabase.
+
+        Returns
+        -------
+        laygo2.object.BaseDatabase
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> base = laygo2.object.BaseDatabase(name='mycell’) 
+        >>> print(base) 
+        <laygo2.object.database.BaseDatabase object> name: mycell, params: None elements: {}>
+
+        Notes
+        -----
+        Reference in Korean:
+        BaseDatabase 클래스 생성자 함수.
+        파라미터
+        name(str): BaseDatabase 객체의 이름
+        params(dict): BaseDatabase의 parameters [optional]
+        elements(dict): BaseDatabase의 elements를 갖고 있는 dict [optional]
+        반환값
+        laygo2.object.BaseDatabase
+        참조
+        없음
         """
         self.name = name
         self.params = params
@@ -127,7 +451,30 @@ class BaseDatabase:
 
 
 class Library(BaseDatabase):
-    """This class implements layout libraries that contain designs as their child objects. """
+    """
+    Library class implements the library management function.
+
+    Attributes
+    ----------
+    name : str
+    params : dict
+    noname_index : int
+    keys : list
+    libname : str
+
+    Methods
+    -------
+    items()
+    __getitem__()
+    __setitem__()
+    __iter__()
+    __init__()
+
+    Notes
+    -----
+    Reference in Korean:
+    Library 클래스는 라이브러리 관리 기능을 구현한다.
+    """
 
     def get_libname(self):
         return self.name
@@ -136,7 +483,24 @@ class Library(BaseDatabase):
         self.name = val
 
     libname = property(get_libname, set_libname)
-    """str: library name"""
+    """attribute
+    str: Library object name.
+
+    See Also
+    --------
+    None
+
+    Examples
+    --------
+    >>> lib = laygo2.object.Library(name='mylib’) 
+    >>> print(lib.name) 
+    “mylib”
+
+    Notes
+    -----
+    Reference in Korean:
+    str: Library 객체의 이름.
+    """
     
     def append(self, item):
         if isinstance(item, list) or isinstance(item, np.ndarray):
@@ -154,17 +518,48 @@ class Library(BaseDatabase):
 
     def __init__(self, name, params=None, elements=None):
         """
-        Constructor.
+        Constructor function of Library class.
 
         Parameters
         ----------
         name : str
-            The name of the library.
+            Library object name.
+        params : dict, optional
+            Library parameters.
+        elements : dict, optional
+            Dictionary having the elements of Library.
+
+        Returns
+        -------
+        laygo2.object.Library
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> lib = laygo2.object.Library(name='mylib’) 
+        >>> print(lib) 
+        <laygo2.object.database.Library > name: mylib, params: None elements: {} >
+
+        Notes
+        -----
+        Reference in Korean:
+        Library 클래스의 생성자 함수.
+        파라미터
+        name(str): Library 객체의 이름
+        params(dict): Library의 parameters [optional]
+        elements(dict): Library의 elements를 갖고 있는 dict [optional]
+        반환값
+        laygo2.object.Library
+        참조
+        없음
         """
         BaseDatabase.__init__(self, name=name, params=params, elements=elements)
 
     def summarize(self):
-        """Returns the summary of the object information."""
+        """Return the summary of the object information."""
         return BaseDatabase.summarize(self)
 
 
@@ -181,7 +576,44 @@ class GridLibrary(Library):
 
 
 class Design(BaseDatabase):
-    """This class implements layout libraries that contain layout objects as their child objects. """
+    """
+    Design class implements the design management function.
+
+    Attributes
+    ----------
+    name : str
+    params : dict
+    noname_index : int
+    keys : list
+    libname : str
+    cellname : str
+    rects : dict
+    paths : dict
+    pins : dict
+    texts : dict
+    instances : dict
+    virtual_instances : dict
+
+    Methods
+    -------
+    items()
+    __getitem__()
+    __setitem__()
+    __iter__()
+    __init__()
+    place()
+    route()
+    route_via_track()
+    via()
+    pin()
+    get_matchedrects_by_layer()
+    export_to_template()
+
+    Notes
+    -----
+    Reference in Korean:
+    Design 클래스는 디자인 관리 기능을 구현한다.
+    """
 
     @property
     def bbox(self):
@@ -220,7 +652,34 @@ class Design(BaseDatabase):
         self._libname = val
 
     libname = property(get_libname, set_libname)
-    """str: library name"""
+    """attribute
+    str: Library name of Design object.
+
+    See Also
+    --------
+    None
+
+    Examples
+    --------
+    >>> dsn = laygo2.object.Design(name='dsn', libname="testlib") 
+    >>> rect0  = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’]……) 
+    >>> pin0   = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'pin’]……) 
+    >>> inst0  = laygo2.object.Instance(name='I0', xy=[100, 100]……) 
+    >>> vinst0 = laygo2.object.physical.VirtualInstance(name='VI0’, ……) 
+    >>> text0  = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=['text', 'drawing’]……) 
+    >>> dsn.append(rect0) 
+    >>> dsn.append(pin0) 
+    >>> dsn.append(inst0) 
+    >>> dsn.append(vinst0) 
+    >>> dsn.append(text0)
+    >>> print(dsn.libname) 
+    “testlib”
+
+    Notes
+    -----
+    Reference in Korean:
+    str: Design 객체의 라이브러리 이름.
+    """
 
     def get_cellname(self):
         return self.name
@@ -229,13 +688,180 @@ class Design(BaseDatabase):
         self.name = val
 
     cellname = property(get_cellname, set_cellname)
-    """str: cell name"""
+    """attribute
+    str: Cell name of Design object.
+
+    See Also
+    --------
+    None
+
+    Examples
+    --------
+    >>> dsn = laygo2.object.Design(name='dsn', libname="testlib") 
+    >>> rect0  = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’]……) 
+    >>> pin0   = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'pin’]……) 
+    >>> inst0  = laygo2.object.Instance(name='I0', xy=[100, 100]……) 
+    >>> vinst0 = laygo2.object.physical.VirtualInstance(name='VI0’, ……) 
+    >>> text0  = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=['text', 'drawing’]……) 
+    >>> dsn.append(rect0) 
+    >>> dsn.append(pin0) 
+    >>> dsn.append(inst0) 
+    >>> dsn.append(vinst0) 
+    >>> dsn.append(text0)
+    >>> print(dsn.cellname) 
+    “dsn”
+
+    Notes
+    -----
+    Reference in Korean:
+    str: Design 객체의 셀 이름.
+    """
     rects = None
+    """attribute
+    dict: Dictionary containing Rectangle object affiliated with Design object.
+
+    See Also
+    --------
+    None
+
+    Examples
+    --------
+    >>> dsn = laygo2.object.Design(name='dsn', libname="testlib") 
+    >>> rect0  = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’]……) 
+    >>> pin0   = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'pin’]……) 
+    >>> inst0  = laygo2.object.Instance(name='I0', xy=[100, 100]……) 
+    >>> vinst0 = laygo2.object.physical.VirtualInstance(name='VI0’, ……) 
+    >>> text0  = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=['text', 'drawing’]……) 
+    >>> dsn.append(rect0) 
+    >>> dsn.append(pin0) 
+    >>> dsn.append(inst0) 
+    >>> dsn.append(vinst0) 
+    >>> dsn.append(text0)
+    >>> print(dsn.rects) 
+    {'R0': <laygo2.object.physical.Rect object>}
+
+    Notes
+    -----
+    Reference in Korean:
+    dict: Design 객체에 소속된 Rect 객체들을 갖고 있는 dictionary.
+    """
     paths = None
     pins = None
+    """attribute
+    dict: Dictionary having the collection of Pin objects affiliated with Design object.
+
+    See Also
+    --------
+    None
+
+    Examples
+    --------
+    >>> dsn = laygo2.object.Design(name='dsn', libname="testlib") 
+    >>> rect0  = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’]……) 
+    >>> pin0   = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'pin’]……) 
+    >>> inst0  = laygo2.object.Instance(name='I0', xy=[100, 100]……) 
+    >>> vinst0 = laygo2.object.physical.VirtualInstance(name='VI0’, ……) 
+    >>> text0  = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=['text', 'drawing’]……) 
+    >>> dsn.append(rect0) 
+    >>> dsn.append(pin0) 
+    >>> dsn.append(inst0) 
+    >>> dsn.append(vinst0) 
+    >>> dsn.append(text0)
+    >>> print(dsn.pins) 
+    {'NoName_0': <laygo2.object.physical.Pin object>}
+    
+    Notes
+    -----
+    Reference in Korean:
+    dict: Design 객체에 소속된 Pin 객체들을 갖고 있는 dictionary.
+    """
     texts = None
+    """attribute
+    dict: Dictionary containing Text objects affiliated with Design object.
+
+    See Also
+    --------
+    None
+
+    Examples
+    --------
+    >>> dsn = laygo2.object.Design(name='dsn', libname="testlib") 
+    >>> rect0  = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’]……) 
+    >>> pin0   = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'pin’]……) 
+    >>> inst0  = laygo2.object.Instance(name='I0', xy=[100, 100]……) 
+    >>> vinst0 = laygo2.object.physical.VirtualInstance(name='VI0’, ……) 
+    >>> text0  = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=['text', 'drawing’]……) 
+    >>> dsn.append(rect0) 
+    >>> dsn.append(pin0) 
+    >>> dsn.append(inst0) 
+    >>> dsn.append(vinst0) 
+    >>> dsn.append(text0)
+    >>> print(dsn.texts) 
+    {'NoName_1': <laygo2.object.physical.Text object>}
+    
+    Notes
+    -----
+    Reference in Korean:
+    dict: Design 객체에 소속된 Text 객체들을 갖고 있는 dictionary.
+    """
     instances = None
+    """attribute
+    dict: Dictionary containing Instance objects affiliated with Design object.
+
+    See Also
+    --------
+    None
+
+    Examples
+    --------
+    >>> dsn = laygo2.object.Design(name='dsn', libname="testlib") 
+    >>> rect0  = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’]……) 
+    >>> pin0   = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'pin’]……) 
+    >>> inst0  = laygo2.object.Instance(name='I0', xy=[100, 100]……) 
+    >>> vinst0 = laygo2.object.physical.VirtualInstance(name='VI0’, ……) 
+    >>> text0  = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=['text', 'drawing’]……) 
+    >>> dsn.append(rect0) 
+    >>> dsn.append(pin0) 
+    >>> dsn.append(inst0) 
+    >>> dsn.append(vinst0) 
+    >>> dsn.append(text0)
+    >>> print(dsn.instances) 
+    {'I0': <laygo2.object.physical.Instance object>}
+    
+    Notes
+    -----
+    Reference in Korean:
+    dict: Design 객체에 소속된 Instance 객체들을 갖고 있는 dictionary.
+    """
     virtual_instances = None
+    """attribute
+    dict: Dictionary containing VirtualInstance objects affiliated with Design object.
+
+    See Also
+    --------
+    None
+
+    Examples
+    --------
+    >>> dsn = laygo2.object.Design(name='dsn', libname="testlib") 
+    >>> rect0  = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’]……) 
+    >>> pin0   = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'pin’]……) 
+    >>> inst0  = laygo2.object.Instance(name='I0', xy=[100, 100]……) 
+    >>> vinst0 = laygo2.object.physical.VirtualInstance(name='VI0’, ……) 
+    >>> text0  = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=['text', 'drawing’]……) 
+    >>> dsn.append(rect0) 
+    >>> dsn.append(pin0) 
+    >>> dsn.append(inst0) 
+    >>> dsn.append(vinst0) 
+    >>> dsn.append(text0)
+    >>> print(dsn.virtual_instances) 
+    virtual_instnaces {'VI0': <laygo2.object.physical.VirtualInstance object>}
+
+    Notes
+    -----
+    Reference in Korean:
+    dict: Design 객체에 소속된 VirtualInstance 객체들을 갖고 있는 dictionary.
+    """
 
     def __iter__(self):
         """Iterator function. Directly mapped to its elements."""
@@ -243,14 +869,51 @@ class Design(BaseDatabase):
 
     def __init__(self, name, params=None, elements=None, libname=None):
         """
-        Constructor.
+        Constructor function of Design class.
 
         Parameters
         ----------
         name : str
-            The name of the design.
-        libname : str
-            The library name of the design.
+            Design object name.
+        params : dict, optional
+            Design object parameters.
+        elements : dict, optional
+            Design object elements.
+
+        Returns
+        -------
+        laygo2.object.BaseDatabase
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> dsn = laygo2.object.Design(name='dsn', libname="testlib") 
+        >>> print(dsn)
+        <laygo2.object.database.Design object>  name: dsn, params: None
+            elements: {} 
+            libname:testlib 
+            rects:{} 
+            paths:{} 
+            pins:{} 
+            texts:{} 
+            instances:{} 
+            virtual instances:{}
+        
+        Notes
+        -----
+        Reference in Korean:
+        Design 클래스의 생성자 함수.
+        파라미터
+        name(str): Design 객체의 이름
+        params(dict): Design 객체의 parameters [optional]
+        elements(dict): Design 객체의 elements [optional]
+        반환값
+        laygo2.object.BaseDatabase
+        참조
+        없음
         """
         self.libname = libname
         self.rects = dict()
@@ -283,7 +946,7 @@ class Design(BaseDatabase):
             return item_name, item
 
     def summarize(self):
-        """Returns the summary of the object information."""
+        """Return the summary of the object information."""
         return \
             BaseDatabase.summarize(self) + " \n" + \
             "    libname:" + str(self.libname) + " \n" + \
@@ -297,7 +960,7 @@ class Design(BaseDatabase):
 
     # Object creation and manipulation functions.
     def place(self, inst, grid, mn):
-        """Places an instance on the specified coordinate mn, on this grid."""
+        """Place an instance on the specified coordinate mn, on this grid."""
         if isinstance(inst, ( laygo2.object.Instance, laygo2.object.VirtualInstance) ) :
             inst = grid.place(inst, mn)
             self.append(inst)
@@ -337,33 +1000,77 @@ class Design(BaseDatabase):
                             mn_ref = mn_ref + [ element,0 ]
 
     def route(self, grid, mn, direction=None, via_tag=None):
-        """Creates Path and Via objects over the abstract coordinates specified by mn, on this routing grid. """
+        """Create Path and Via objects over the abstract coordinates specified by mn, on this routing grid. """
         r = grid.route(mn=mn, direction=direction, via_tag=via_tag)
         self.append(r)
         return r
 
     def route_via_track(self, grid, mn, track, via_tag=[None, True]):
-        """Creates Path and Via objects over the abstract coordinates specified by mn, 
+        """Create Path and Via objects over the abstract coordinates specified by mn, 
         on the track of specified routing grid. """
         r = grid.route_via_track(mn=mn, track=track, via_tag=via_tag)
         self.append(r)
         return r
 
     def via(self, grid, mn, params=None):
-        """Creates a Via object over the abstract coordinates specified by mn, on this routing grid. """
+        """Create a Via object over the abstract coordinates specified by mn, on this routing grid. """
         v = grid.via(mn=mn, params=params)
         self.append(v)
         return v
 
     def pin(self, name, grid, mn, direction=None, netname=None, params=None):
-        """Creates a Pin object over the abstract coordinates specified by mn, on this routing grid. """
+        """Create a Pin object over the abstract coordinates specified by mn, on this routing grid. """
         p = grid.pin(name=name, mn=mn, direction=direction, netname=netname, params=params)
         self.append(p)
         return p
 
     # I/O functions
     def export_to_template(self, libname=None, cellname=None):
-        """Convert this design to a native-instance template"""
+        """
+        Generate NativeInstanceTemplate object corresponding to Design object.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        laygo2.NativeInstanceTemplate
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> dsn    = laygo2.object.Design(name='dsn', libname="testlib") 
+        >>> rect0  = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’]……) 
+        >>> pin0   = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'pin’]……) 
+        >>> inst0  = laygo2.object.Instance(name='I0', xy=[100, 100]……) 
+        >>> vinst0 = laygo2.object.physical.VirtualInstance(name='VI0’, ……) 
+        >>> text0  = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=['text', 'drawing’]……) 
+        >>> dsn.append(rect0) 
+        >>> dsn.append(pin0)
+        >>> dsn.append(inst0) 
+        >>> dsn.append(vinst0) 
+        >>> dsn.append(text0) 
+        >>> print(dsn.export_to_template()) 
+        <laygo2.object.template.NativeInstanceTemplate object> name: dsn,
+         class: NativeInstanceTemplate,
+         bbox: [[100, 100], [800, 700]],
+         pins: {'NoName_0': <laygo2.object.physical.Pin object>}
+
+        Notes
+        -----
+        Reference in Korean:
+        Design 객체에 해당하는 NativeInstanceTemplate 객체 생성.
+        파라미터
+        없음
+        반환값
+        laygo2.NativeInstanceTemplate
+        참조
+        없음
+        """
         if libname is None:
             libname = self.libname
         if cellname is None:
@@ -374,7 +1081,54 @@ class Design(BaseDatabase):
         return laygo2.object.template.NativeInstanceTemplate(libname=libname, cellname=cellname, bbox=xy, pins=pins)
 
     def get_matchedrects_by_layer(self, lpp ):
-        """ return matched objects by [ "M*", "drawing or pin"] """
+        """
+        Return a list containing physical objects matched with the layer input in Design object.
+
+        Parameters
+        ----------
+        layer purpose pair : list
+            layer information.
+
+        Returns
+        -------
+        list: list containing the matched Physical object.
+
+        See Also
+        --------
+        None
+
+        Examples
+        --------
+        >>> dsn    = laygo2.object.Design(name='dsn', libname="testlib") 
+        >>> rect0  = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=[‘M1’, ‘drawing’]……) 
+        >>> pin0   = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=[‘M1’, ‘pin’]……) 
+        >>> inst0  = laygo2.object.Instance(name=‘I0’, xy=[100, 100]……) 
+        >>> vinst0_pins[‘in’]  = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]], layer=[‘M1’,’drawing’]……) 
+        >>> vinst0_pins[‘out’] = laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], layer=[‘M1’, drawing’] ……) 
+        >>> vinst0 = laygo2.object.physical.VirtualInstance(name=‘VI0’, ……) 
+        >>> text0  = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=[‘text’, ‘drawing’]……) 
+        >>> dsn.append(rect0) 
+        >>> dsn.append(pin0)
+        >>> dsn.append(inst0) 
+        >>> dsn.append(vinst0) 
+        >>> dsn.append(text0) 
+        >>> print( dsn.get_matchedrects_by_layer( [“M1”, “drawing”] ) 
+        [<laygo2.object.physical.Rect object>,
+         <laygo2.object.physical.Pin object>,
+         <laygo2.object.physical.Pin object>,
+         <laygo2.object.physical.Rect object>]
+
+        Notes
+        -----
+        Reference in Korean:
+        주어진 layer와 일치되는 Physical object 갖는 list 반환.
+        파라미터
+        layer purpose pair(list): 레이어 정보
+        반환값
+        list: 매치되는 Physical object를 담고 있는 list
+        참조
+        없음
+        """
         rects  = self.rects
         insts  = self.instances
         vinsts = self.virtual_instances
