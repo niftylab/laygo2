@@ -64,9 +64,7 @@ class BaseDatabase:
     """attribute
     str: BaseDatabase object name.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -84,9 +82,7 @@ class BaseDatabase:
     """attribute
     dict or None: Dictionary containing parameters of BaseDatabase object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -104,9 +100,7 @@ class BaseDatabase:
     """attribute
     dict: Dictionary having objects.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -132,9 +126,7 @@ class BaseDatabase:
     """attribute
     int: A unique number used as the name of an unnamed object belonging to the database.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -159,9 +151,7 @@ class BaseDatabase:
         """attribute
         list: Keys of elements.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -196,9 +186,7 @@ class BaseDatabase:
         -------
         dict_items
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -242,9 +230,7 @@ class BaseDatabase:
         -------
         element
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -285,9 +271,7 @@ class BaseDatabase:
         -------
         list
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -356,9 +340,7 @@ class BaseDatabase:
         -------
         dict_keyiterator
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -418,9 +400,7 @@ class BaseDatabase:
         -------
         laygo2.object.BaseDatabase
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -486,9 +466,7 @@ class Library(BaseDatabase):
     """attribute
     str: Library object name.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -533,9 +511,7 @@ class Library(BaseDatabase):
         -------
         laygo2.object.Library
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -655,9 +631,7 @@ class Design(BaseDatabase):
     """attribute
     str: Library name of Design object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -691,9 +665,7 @@ class Design(BaseDatabase):
     """attribute
     str: Cell name of Design object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -720,9 +692,7 @@ class Design(BaseDatabase):
     """attribute
     dict: Dictionary containing Rectangle object affiliated with Design object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -750,9 +720,7 @@ class Design(BaseDatabase):
     """attribute
     dict: Dictionary having the collection of Pin objects affiliated with Design object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -779,9 +747,7 @@ class Design(BaseDatabase):
     """attribute
     dict: Dictionary containing Text objects affiliated with Design object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -808,9 +774,7 @@ class Design(BaseDatabase):
     """attribute
     dict: Dictionary containing Instance objects affiliated with Design object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -837,9 +801,7 @@ class Design(BaseDatabase):
     """attribute
     dict: Dictionary containing VirtualInstance objects affiliated with Design object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -884,9 +846,7 @@ class Design(BaseDatabase):
         -------
         laygo2.object.BaseDatabase
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1037,9 +997,7 @@ class Design(BaseDatabase):
         -------
         laygo2.NativeInstanceTemplate
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1093,9 +1051,7 @@ class Design(BaseDatabase):
         -------
         list: list containing the matched Physical object.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------

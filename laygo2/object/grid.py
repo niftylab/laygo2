@@ -137,9 +137,7 @@ class CircularMapping:
     """attribute
     list: Array consisting of the elements of circular mapping.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -161,9 +159,7 @@ class CircularMapping:
     """attribute
     type: Data type of circular mapping.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -197,9 +193,7 @@ class CircularMapping:
         """attribute
         numpy.ndarray: Shape of circular mapping.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -233,9 +227,7 @@ class CircularMapping:
         -------
         laygo2.CicularMapping
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -338,9 +330,7 @@ class CircularMappingArray(CircularMapping):
         -------
         element
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -422,9 +412,7 @@ class _AbsToPhyGridConverter:
     """attribute
     laygo2.Grid or laygo2.OneDimGrid: Coordinate system to which _AbsToPhyGridConverter object belongs.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -466,9 +454,7 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -510,9 +496,7 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -616,9 +600,7 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -660,9 +642,7 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -767,9 +747,7 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -824,9 +802,7 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -881,9 +857,7 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -968,9 +942,7 @@ class _PhyToAbsGridConverter:
     """attribute
     laygo2.Grid or laygo2.OneDimGrid: Coordinate system to which _PhyToAbsGridConverter object belongs.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -1012,9 +984,7 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1056,9 +1026,7 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1161,9 +1129,7 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1225,9 +1191,7 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1282,9 +1246,7 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1326,9 +1288,7 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1385,9 +1345,7 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1429,9 +1387,7 @@ class _PhyToAbsGridConverter:
         numy.ndarray
             abstract coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1484,9 +1440,7 @@ class _PhyToAbsGridConverter:
         numy.ndarray
             abstract coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1534,9 +1488,7 @@ class _PhyToAbsGridConverter:
         numy.ndarray
             abstract coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1584,9 +1536,7 @@ class _PhyToAbsGridConverter:
         numy.ndarray
             abstract coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1634,9 +1584,7 @@ class _PhyToAbsGridConverter:
         numy.ndarray
             abstract coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1708,9 +1656,7 @@ class _PhyToAbsGridConverter:
         numy.ndarray
             abstract coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1754,9 +1700,7 @@ class _PhyToAbsGridConverter:
         numpy.ndarray(int, int)
             abstract points.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1802,9 +1746,7 @@ class _PhyToAbsGridConverter:
         numpy.ndarray
             bbox abstract coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1867,9 +1809,7 @@ class _PhyToAbsGridConverter:
         numpy.ndarray
             bbox abstract coordinates.
 
-        See Also
-        --------
-        _PhyToAbsGridConverter
+        sGridConverter
 
         Examples
         --------
@@ -1920,9 +1860,7 @@ class _PhyToAbsGridConverter:
         numy.ndarray
             abstract coordinates.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2000,9 +1938,7 @@ class OneDimGrid(CircularMapping):
     """attribute
     str: Coordinate system name.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -2023,9 +1959,7 @@ class OneDimGrid(CircularMapping):
     """attribute
     str: Region in which the coordinate system is defined Coordinates in the defined region are repeatedly expanded.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -2046,9 +1980,7 @@ class OneDimGrid(CircularMapping):
     """attribute
     self.phy2abs (laygo2._PhyToAbsGridConverter): Object that converts physical coordinates into abstract coordinates.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -2066,9 +1998,7 @@ class OneDimGrid(CircularMapping):
     """attribute
     self.abs2phy (laygo2._AbsToPhyGridConverter): Object that converts abstract coordinates into physical coordinates.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -2087,9 +2017,7 @@ class OneDimGrid(CircularMapping):
         """attribute
         int: The size of the region in which the coordinate system is defined.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2124,9 +2052,7 @@ class OneDimGrid(CircularMapping):
         -------
         laygo2.OneDimGrid
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2209,9 +2135,7 @@ class OneDimGrid(CircularMapping):
         -------
         dict
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2285,9 +2209,7 @@ class Grid:
         numpy.ndarray: Two-dimensional element of a coordinate system.
             x elements, y elements
     
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2318,9 +2240,7 @@ class Grid:
         """attribute
         self.abs2phy (laygo2._AbsToPhyGridConverter): Two-dimensional _AbsToPhyConverter of a coordinate system.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2352,9 +2272,7 @@ class Grid:
         """attribute
         self._xy[0].abs2phy (laygo2._AbsToPhyGridConverter): One-dimensional _AbsToPhyGridConverter of the x-coordinate system.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2384,9 +2302,7 @@ class Grid:
         """attribute
         self._xy[1].abs2phy (laygo2._AbsToPhyGridConverter): One-dimensional _AbsToPhyGridConverter of the y-coordinate system.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2417,9 +2333,7 @@ class Grid:
         """attribute
         self.x (laygo2.OneDimGrid): OneDimGrid of the x-coordinate system.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2441,9 +2355,7 @@ class Grid:
         """attribute
         self.y (laygo2.OneDimGrid): OneDimGrid of the y-coordinate system.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2465,9 +2377,7 @@ class Grid:
         """attribute
         self._phy2abs (laygo2._PhyToAbsGridConverter): Two-dimensional _PhyToAbsConverter of a coordinate system.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2499,9 +2409,7 @@ class Grid:
         """attribute
         self._xy[0].phy2abs (laygo2._PhyToAbsGridConverter ): One-dimensional _PhyToAbsConverter of the x-coordinate system.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2533,9 +2441,7 @@ class Grid:
         """attribute
         self._xy[1].phy2abs (laygo2._PhyToAbsGridConverter ): One-dimensional _PhyToAbsConverter of the y-coordinate system.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2568,9 +2474,7 @@ class Grid:
         numpy.ndarray: Two-dimensional element length in a coordinate system.
             length of x-axis elements, length of y-axis elements
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2599,9 +2503,7 @@ class Grid:
     numpy.ndarray: Region in which the coordinate system is defined.
         bbox of the respective Grid
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -2623,9 +2525,7 @@ class Grid:
         numpy.int32: Width of the region in which the coordinate system is defined.
             x scope
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2648,9 +2548,7 @@ class Grid:
         numpy.int32: Height of the region in which the coordinate system is defined.
             y scope
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2673,9 +2571,7 @@ class Grid:
         numpy.ndarray: Return height as a list.
             length of the respective axis and zero
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2698,9 +2594,7 @@ class Grid:
         numpy.ndarray: Return width as a list.
             length of the respective axis and zero
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2733,9 +2627,7 @@ class Grid:
         -------
         laygo2.Grid
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2882,9 +2774,7 @@ class Grid:
         -------
         str
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2944,9 +2834,7 @@ class PlacementGrid(Grid):
         -------
         laygo2.physical.instance : instance with revised coordinates
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -3015,9 +2903,7 @@ class RoutingGrid(Grid):
     """attribute
     CircularMapping: Width of vertical wires.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -3039,9 +2925,7 @@ class RoutingGrid(Grid):
     """attribute
     CircularMapping: Width of horizontal wires.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -3063,9 +2947,7 @@ class RoutingGrid(Grid):
     """attribute
     CircularMapping: Extension of vertical wires.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -3087,9 +2969,7 @@ class RoutingGrid(Grid):
     """attribute
     CircularMapping: Extension of horizontal wires.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -3115,9 +2995,7 @@ class RoutingGrid(Grid):
     """attribute
     CircularMapping: Layer information of vertical wires.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -3139,9 +3017,7 @@ class RoutingGrid(Grid):
     """attribute
     CircularMapping: Layer information of horizontal wires.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -3163,9 +3039,7 @@ class RoutingGrid(Grid):
     """attribute
     CircularMapping: Layer information of vertical pin wires.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -3187,9 +3061,7 @@ class RoutingGrid(Grid):
     """attribute
     CircularMapping: Layer information of horizontal pine wires.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -3211,9 +3083,7 @@ class RoutingGrid(Grid):
     """attribute
     CircularMappingArray: Array containing Via objects positioned on grid crossing points.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -3235,9 +3105,7 @@ class RoutingGrid(Grid):
     """attribute
     str: Direction of wire having length 0.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -3259,9 +3127,7 @@ class RoutingGrid(Grid):
     """attribute
     CircularMapping: Color of horizontal wires.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -3283,9 +3149,7 @@ class RoutingGrid(Grid):
     """attribute
     CircularMapping: Color of vertical wires.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -3346,9 +3210,7 @@ class RoutingGrid(Grid):
         -------
         laygo2.RoutingGrid
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -3421,9 +3283,7 @@ class RoutingGrid(Grid):
         -------
         list: list containing the generated routing objects
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -3518,9 +3378,7 @@ class RoutingGrid(Grid):
         -------
         list(physical.PhysicalObject): list containing the generated via objects
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -3577,9 +3435,7 @@ class RoutingGrid(Grid):
         -------
         list: list containing the generated routing objects; the last object corresponds to the routing object on the track
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -3668,9 +3524,7 @@ class RoutingGrid(Grid):
         -------
         laygo2.physical.Pin: Pin object
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------

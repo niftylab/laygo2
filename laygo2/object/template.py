@@ -141,9 +141,7 @@ class NativeInstanceTemplate(Template):
     """attribute
     str: Library name of NativeInstanceTemplate object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -166,9 +164,7 @@ class NativeInstanceTemplate(Template):
     """attribute
     str: Cellname of NativeInstanceTemplate object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -210,9 +206,7 @@ class NativeInstanceTemplate(Template):
         -------
         NativeInstanceTemplate
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -267,9 +261,7 @@ class NativeInstanceTemplate(Template):
         -------
         numpy.ndarray
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -308,9 +300,7 @@ class NativeInstanceTemplate(Template):
         -------
         dict
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -500,9 +490,7 @@ class ParameterizedInstanceTemplate(Template):
         -------
         laygo2.NativeInstanceTemplate
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -549,9 +537,7 @@ class ParameterizedInstanceTemplate(Template):
         -------
         numpy.ndarray
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -593,9 +579,7 @@ class ParameterizedInstanceTemplate(Template):
         -------
         dict
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -741,9 +725,7 @@ class UserDefinedTemplate(Template):
         -------
         laygo2.UserDefinedTemplate
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -791,9 +773,7 @@ class UserDefinedTemplate(Template):
         -------
         numpy.ndarray
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -839,9 +819,7 @@ class UserDefinedTemplate(Template):
         -------
         dict
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -891,9 +869,7 @@ class UserDefinedTemplate(Template):
         -------
         laygo2.VirtualInstance
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------

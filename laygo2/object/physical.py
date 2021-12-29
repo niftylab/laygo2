@@ -99,9 +99,7 @@ class PhysicalObject:
     """attribute
     str: Physical object name.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -126,9 +124,7 @@ class PhysicalObject:
     numpy.ndarray: Physical object coordinates.
         xy coordinates.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -149,9 +145,7 @@ class PhysicalObject:
     """attribute
     numpy.ndarray: Physical object master.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -172,9 +166,7 @@ class PhysicalObject:
     """attribute
     dict: Physical object attributes.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -196,9 +188,7 @@ class PhysicalObject:
     dict: Major coordinates of a physical object.
         key: direction, value: Coordinate value
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -226,9 +216,7 @@ class PhysicalObject:
     """attribute
     numpy.ndarray: Left pointer of a physical object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -248,9 +236,7 @@ class PhysicalObject:
     """attribute
     numpy.ndarray: Right pointer of a physical object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -270,9 +256,7 @@ class PhysicalObject:
     """attribute
     numpy.ndarray: Top pointer of a physical object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -292,9 +276,7 @@ class PhysicalObject:
     """attribute
     numpy.ndarray: Bottom pointer of a physical object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -314,9 +296,7 @@ class PhysicalObject:
     """attribute
     numpy.ndarray: Center pointer of a physical object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -336,9 +316,7 @@ class PhysicalObject:
     """attribute
     numpy.ndarray: Bottom_left pointer of a physical object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -358,9 +336,7 @@ class PhysicalObject:
     """attribute
     numpy.ndarray: Bottom_right pointer of a physical object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -380,9 +356,7 @@ class PhysicalObject:
     """attribute
     numpy.ndarray: Top_left pointer of a physical object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -402,9 +376,7 @@ class PhysicalObject:
     """attribute
     numpy.ndarray: Top_right pointer of a physical object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -426,9 +398,7 @@ class PhysicalObject:
         """attribute
         numpy.ndarray: Physical object bbox.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -463,9 +433,7 @@ class PhysicalObject:
         -------
         laygo2.PhysicalObject
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -598,9 +566,7 @@ class IterablePhysicalObject(PhysicalObject):
     """attribute
     numpy.ndarray: The lower member of objects.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -637,9 +603,7 @@ class IterablePhysicalObject(PhysicalObject):
         """attribute
         numpy.ndarray: Shape of object element.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -887,9 +851,7 @@ class Rect(PhysicalObject):
     """attribute
     numpy.ndarray: Layer information of object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -909,9 +871,7 @@ class Rect(PhysicalObject):
     """attribute
     str: Object node name.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -928,9 +888,7 @@ class Rect(PhysicalObject):
     """attribute
     int: Extension value of object in the horizontal direction.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -950,9 +908,7 @@ class Rect(PhysicalObject):
     """attribute
     int: Extension value of object in the vertical direction.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -972,9 +928,7 @@ class Rect(PhysicalObject):
     """attribute
     int: Object color.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -996,9 +950,7 @@ class Rect(PhysicalObject):
         """attribute
         int: Object height.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1021,9 +973,7 @@ class Rect(PhysicalObject):
         """attribute
         int: Object width.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1056,9 +1006,7 @@ class Rect(PhysicalObject):
         """attribute
         numpy.ndarray: Object size.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1225,9 +1173,7 @@ class Path(PhysicalObject):
     """attribute
     str: Object node name.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -1247,9 +1193,7 @@ class Path(PhysicalObject):
     """attribute
     int: Object width.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -1269,9 +1213,7 @@ class Path(PhysicalObject):
     """attribute
     int: Extension value of object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -1393,9 +1335,7 @@ class Pin(IterablePhysicalObject):
     """attribute
     numpy.ndarray: Layer information of object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -1412,9 +1352,7 @@ class Pin(IterablePhysicalObject):
     """attribute
     str: Object node name.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -1435,9 +1373,7 @@ class Pin(IterablePhysicalObject):
         """attribute
         int: Object height.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1457,9 +1393,7 @@ class Pin(IterablePhysicalObject):
         """attribute
         int: Object width.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1479,9 +1413,7 @@ class Pin(IterablePhysicalObject):
         """attribute
         numpy.ndarray: Object size.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1599,9 +1531,7 @@ class Text(PhysicalObject):
     """attribute
     numpy.ndarray: Layer information of object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -1618,9 +1548,7 @@ class Text(PhysicalObject):
     """attribute
     str: Text content of object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -1726,9 +1654,7 @@ class Instance(IterablePhysicalObject):
     """attribute
     str: Library name of object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -1752,9 +1678,7 @@ class Instance(IterablePhysicalObject):
     """attribute
     str: Name of the cell to which the object belongs.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -1787,9 +1711,7 @@ class Instance(IterablePhysicalObject):
     """attribute
     numpy.ndarray: Unit size when the object is in array.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -1812,9 +1734,7 @@ class Instance(IterablePhysicalObject):
     """attribute
     str: Transformation attribute of object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -1838,9 +1758,7 @@ class Instance(IterablePhysicalObject):
     """attribute
     dict: Dictionary having the pins belonging to object.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -1893,9 +1811,7 @@ class Instance(IterablePhysicalObject):
         """attribute
         numpy.ndarray: Coordinates of major corner of object.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1921,9 +1837,7 @@ class Instance(IterablePhysicalObject):
         """attribute
         numpy.ndarray: Coordinates of minor corner of object.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1952,9 +1866,7 @@ class Instance(IterablePhysicalObject):
         """attribute
         numpy.ndarray: Object size.
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -1993,9 +1905,7 @@ class Instance(IterablePhysicalObject):
     """attribute
     numpy.ndarray: Pitch between unit object of the object in array.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -2025,9 +1935,7 @@ class Instance(IterablePhysicalObject):
     """attribute
     numpy.ndarray: Spacing between unit object of the object in array.
 
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
@@ -2059,9 +1967,7 @@ class Instance(IterablePhysicalObject):
         """attribute
         int: Object height
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2087,9 +1993,7 @@ class Instance(IterablePhysicalObject):
         """attribute
         int: Object width
 
-        See Also
-        --------
-        None
+        
 
         Examples
         --------
@@ -2291,9 +2195,7 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
     dict: Dictionary having physical entities constituting the object.
         Dictionary consisting of physicalObject.
     
-    See Also
-    --------
-    None
+    
 
     Examples
     --------
