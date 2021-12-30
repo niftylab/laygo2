@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>laygo2의 쉬운 예제들 &mdash; laygo2_documentation  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Laygo2의 구조" href="3_structure_link.html" />
+    <link rel="prev" title="Laygo2 사용자 안내서 (한글)" href="readme_link.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> laygo2_documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="introduction.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="readme_link.html">Laygo2 사용자 안내서 (한글)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">laygo2의 쉬운 예제들</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">빠른 설치 및 환경 설정</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">공정 셋업</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-gates">simple_gates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="3_structure_link.html">Laygo2의 구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_technology_link.html">신규 공정에서의 Laygo2 셋업</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_doc.html">API documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">laygo2_documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="introduction.html">Introduction</a> &raquo;</li>
+      <li>laygo2의 쉬운 예제들</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/2_examples_link.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="laygo2">
+<h1>laygo2의 쉬운 예제들<a class="headerlink" href="#laygo2" title="Permalink to this headline"></a></h1>
+<p>이 문서는 laygo2의 활용을 돕는 몇 가지의 간단한 예제들을 포함하고 있다.</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="#%EB%B9%A0%EB%A5%B8-%EC%84%A4%EC%B9%98-%EB%B0%8F-%ED%99%98%EA%B2%BD-%EC%84%A4%EC%A0%95">빠른 설치 및 환경 설정</a></strong>: laygo2를 리눅스 환경에서 손쉽게 설치하고 환경 설정하는 방법을 설명한다.</p></li>
+<li><p><strong><a class="reference external" href="#%EA%B3%B5%EC%A0%95-%EC%85%8B%EC%97%85">공정 셋업</a></strong>: laygo2를 새로운 환경에서 셋업하는 방법을 설명한다.</p></li>
+<li><p><strong><a class="reference external" href="#simple_gates">simple_gates</a></strong>: 간단한 로직 게이트를 laygo2를 사용하여 제작하는 방법을 설명한다.</p></li>
+</ul>
+<section id="id1">
+<h2>빠른 설치 및 환경 설정<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<p>Laygo2프로젝트는 코드의 대량 수정이 필요한 초기 개발 단계에 있기 때문에 pip를 이용한 설치를 지원하지 않는다.
+대신 github repository를 clone하는 방법으로 쉽게 laygo2를 다운로드 할 수 있다.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;&gt; git clone https://github.com/niftylab/laygo2.git
+</pre></div>
+</div>
+<p>이 경우, 코드를 최신 상태로 유지하기 위하여, 주기적으로 다음 명령어를 이용하여 github에서 최신 코드를 다운로드 하기를 권장한다.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;&gt; git pull origin master
+</pre></div>
+</div>
+<p>두 번째로, 다음과 같이 PYTHONPATH를 수정하여 laygo2패키지를 참조할 수 있도록 한다.
+(이 방법은 초보자를 위한 가장 기본적인 예제로, 고급 사용자는 venv나 docker등의 가상환경을 사용하기를 권장한다.)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># (csh/tcsh example) add the following command to your .cshrc
+setenv PYTHONPATH ${PYTHONPATH}:[LAYGO2_INSTALLATION_DIR]/laygo2
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>공정 셋업<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<p>추가 예정</p>
+</section>
+<section id="simple-gates">
+<h2>simple_gates<a class="headerlink" href="#simple-gates" title="Permalink to this headline"></a></h2>
+<p>다음 커맨드를 실행함으로서 NAND gate의 레이아웃을 생성할 수 있다.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;&gt; run ./laygo2/examples/nand_generate.py
+</pre></div>
+</div>
+<p>위 스크립트를 실행하여 생성된 NAND gate의 레이아웃은 다음과 같다.</p>
+<p><img alt="laygo2 nand gate" src="_images/user_guide_nandgate.png" /></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="readme_link.html" class="btn btn-neutral float-left" title="Laygo2 사용자 안내서 (한글)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="3_structure_link.html" class="btn btn-neutral float-right" title="Laygo2의 구조" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, niftylab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
