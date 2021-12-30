@@ -14,10 +14,11 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('../../..'))
+#sys.path.insert(0, os.path.abspath('../../user_guide_kor')) 이거 있어도 저 경로에 있는 md파일끼리 서로 링크 안됨.....
 
 # -- Project information -----------------------------------------------------
 
-project = 'laygo2'
+project = 'laygo2_documentation'
 copyright = '2021, niftylab'
 author = 'niftylab'
 
@@ -28,9 +29,13 @@ author = 'niftylab'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.intersphinx',
     'sphinx_rtd_theme',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon',
+    'myst_parser'
 ]
+
+source_suffix = ['.rst', '.md']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

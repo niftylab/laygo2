@@ -1,5 +1,5 @@
-laygo2
-======
+API documentation
+===================
 
 .. toctree::
    :maxdepth: 4
