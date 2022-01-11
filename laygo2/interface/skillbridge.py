@@ -30,9 +30,9 @@ def export(db, filename, cellname, scale=1e-3, reset_library=False, tech_library
     skill_str=laygo2.interface.skill.export(db, filename, cellname, scale, reset_library, tech_library)
 
     # Export skill script to skillbridge
-
+    import os
     from skillbridge import Workspace
-    ws = Workspace.open()
+    ws = Workspace.open(os.environ['USER'])
     ws['load'](filename)
 
     return skill_str
