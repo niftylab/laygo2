@@ -1,0 +1,8 @@
+#technology layer information
+#layername  layerpurpose stream# datatype
+text        drawing 100 0
+prBoundary  drawing 101 0
+M1      drawing 50  0
+M1      pin     50  10
+M2      drawing 51  0
+M2      pin     51  10

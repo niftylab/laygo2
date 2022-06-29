@@ -1,0 +1,190 @@
+# Technology parameters for the advanced example technology.
+templates: # Primitive template parameters
+  mos:
+    common: &mos_common # mosfet template common parameters
+      unit_size: [30, 100]
+      pins:
+        S:
+          layer: ['text', 'drawing']
+          xy: [[-10, 0], [10, 80]]
+        D:
+          layer: ['text', 'drawing']
+          xy: [[20, 0], [40, 80]]
+        G:
+          layer: ['text', 'drawing']
+          xy: [[12, 85], [18, 95]]
+    pmos:
+      <<: *mos_common
+      rects:
+        prBoundary:
+          layer: ['prBoundary', 'drawing']
+          xy: [[0, 0], [30, 100]]
+        well:
+          layer: ['nwell', 'drawing']
+          xy: [[-20, 0], [50, 100]]
+        impl:
+          layer: ['pimplant', 'drawing']
+          xy: [[-15, 20], [45, 80]]
+        diff:
+          layer: ['diffusion', 'drawing']
+          xy: [[-10, 25], [40, 75]]
+        poly:
+          layer: ['poly', 'drawing']
+          xy: [[12, 5], [18, 95]]
+        metal1_s:
+          layer: ['metal2', 'drawing']
+          xy: [[-7, 23], [7, 77]]
+        metal1_d:
+          layer: ['metal1', 'drawing']
+          xy: [[23, 23], [37, 77]]
+        metal1_g:
+          layer: ['metal1', 'drawing']
+          xy: [[12, 85], [48, 95]]
+          idx_end: -1
+    nmos:
+      <<: *mos_common
+      rects:
+        prBoundary:
+          layer: ['prBoundary', 'drawing']
+          xy: [[0, 0], [30, 100]]
+        impl:
+          layer: ['nimplant', 'drawing']
+          xy: [[-15, 20], [45, 80]]
+        diff:
+          layer: ['diffusion', 'drawing']
+          xy: [[-10, 25], [40, 75]]
+        poly:
+          layer: ['poly', 'drawing']
+          xy: [[12, 5], [18, 95]]
+        metal1_s:
+          layer: ['metal1', 'drawing']
+          xy: [[-7, 23], [7, 77]]
+        metal1_d:
+          layer: ['metal1', 'drawing']
+          xy: [[23, 23], [37, 77]]
+        metal1_g:
+          layer: ['metal1', 'drawing']
+          xy: [[12, 85], [48, 95]]
+          idx_end: -1
+  via:
+    via_r12_default:
+      rects:
+        contact:
+          layer: ['via1', 'drawing']
+          xy: [[-5, -5], [5, 5]]
+    via_r12_bottomplug:
+      rects:
+        contact:
+          layer: ['via1', 'drawing']
+          xy: [[-5, -5], [5, 5]]
+        metal1:
+          layer: ['metal1', 'drawing']
+          xy: [[-7, -7], [7, 13]]
+    via_r12_topplug:
+      rects:
+        contact:
+          layer: ['via1', 'drawing']
+          xy: [[-5, -5], [5, 5]]
+        metal1:
+          layer: ['metal1', 'drawing']
+          xy: [[-7, -13], [7, 7]]
+    via_r23_default:
+      rects:
+        contact:
+          layer: ['via2', 'drawing']
+          xy: [[-5, -5], [5, 5]]
+grids:
+  placement_basic:
+    type: placement
+    vertical:
+      scope: [0, 15]
+      elements: [0]
+    horizontal:
+      scope: [0, 10]
+      elements: [0]
+  placement_cmos:
+    type: placement
+    vertical:
+      scope: [0, 30]
+      elements: [0]
+    horizontal:
+      scope: [0, 100]
+      elements: [0]
+  routing_12_cmos:
+    type: routing
+    vertical:
+      scope: [0, 30]
+      elements: [0]
+      layer:
+        - [metal1, drawing]
+      pin_layer:
+        - [metal1, pin]
+      width: [14]
+      extension: [15]
+    horizontal:
+      scope: [0, 200]
+      elements: [10, 40, 60, 90, 110, 140, 160, 190]
+      layer:
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+      pin_layer:
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+      width: [10, 10, 10, 10, 10, 10, 10, 10]
+      extension: [15, 15, 15, 15, 15, 15, 15, 15]
+    primary_grid: horizontal  # the primary routing direction
+    via:
+      map:
+        - [via_r12_bottomplug, via_r12_default, via_r12_default, via_r12_default,
+           via_r12_default, via_r12_default, via_r12_default, via_r12_topplug]
+  routing_23_cmos:
+    type: routing
+    vertical:
+      scope: [0, 30]
+      elements: [0]
+      layer:
+        - [metal3, drawing]
+      pin_layer:
+        - [metal3, pin]
+      width: [10]
+      extension: [15]
+    horizontal:
+      scope: [0, 200]
+      elements: [10, 40, 60, 90, 110, 140, 160, 190]
+      layer:
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+      pin_layer:
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+      width: [10, 10, 10, 10, 10, 10, 10, 10]
+      extension: [15, 15, 15, 15, 15, 15, 15, 15]
+    primary_grid: horizontal  # the primary routing direction
+    via:
+      map:
+        - [via_r23_default, via_r23_default, via_r23_default, via_r23_default,
+           via_r23_default, via_r23_default, via_r23_default, via_r23_default]
