@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-with open('README.rst') as f:
+with open('README.md') as f:
     readme = f.read()
 
 with open('LICENSE') as f:
@@ -11,10 +11,11 @@ with open('LICENSE') as f:
 setup(
     name='laygo2',
     version='0.1.0',
-    description='LAYout with Gridded Object 2 - A Python Package for Scripted Layout Generation Flow',
-    long_description='readme',
     author='Jaeduk Han',
-    url='',
+    description='LAYout with Gridded Object 2 - A Python Package for Scripted IC Layout Generation Flow',
+    long_description=readme,
+    url='https://github.com/niftylab/laygo2', # project address
     license=license,
-    package=find_packages(exclude=('test', 'docs'))
+    packages=find_packages(exclude=('test', 'docs')),
+    python_requires='>=3.0',
 )

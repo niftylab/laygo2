@@ -63,12 +63,7 @@ The structures of packages and modules in laygo2 are described [here](3_structur
 1. (Optional) export the design as a new template.
 
 ## Developers
-1. Jaeduk Han (Assistant Professor at Hanyang University)
-2. Dongjun Lee (Graduate Student Research at Hanyang University)
-3. Taeho Shin (Graduate Student Research at Hanyang University)
-4. Dongwhee Kim (Graduate Student Research at Hanyang University)
-5. Gaeryun Sung (Graduate Student Research at Hanyang University)
-6. Hyungjy Park (Undergraduate Student at Hanyang University)
+See the [github repository page](https://github.com/niftylab/laygo2) for the full list of developers.
 
 ## License
 Laygo2 is distributed under the BSD 3-Clause License.
