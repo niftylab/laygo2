@@ -54,12 +54,33 @@ def _py2skill_list(pylist, scale=0.001):
             list_str += _py2skill_list(item, scale=scale) + " "
         elif isinstance(item, str):
             list_str += "\"" + str(item) + "\" "
+        elif isinstance(item, bool):
+            if item:
+                list_str += "t "
+            else:
+                list_str += "nil "
         elif isinstance(item, int) or isinstance(item, np.integer):
             # fmt_str = "%."+"%d" % (-1*log10(scale)+1)+"f "  # for truncations
             # list_str += fmt_str%(item*scale) + " "
             list_str += _py2skill_number(item, scale) + " "
     list_str += ")"
     return list_str
+
+
+def _py2skill_inst_params(value_dict, scale=0.001):
+    """Convert instance parameter dictionary to skill list"""
+    _list = []
+    for k, v in value_dict.items():
+        if isinstance(v, str):
+            _type = "string"
+        elif isinstance(v, float):
+            _type = "float"
+        elif isinstance(v, bool):
+            _type = "boolean"
+        elif isinstance(v, int) or isinstance(v, np.integer):
+            _type = "int"
+        _list.append([k, _type, v])
+    return _py2skill_list(_list, scale)
 
 
 def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0])):
@@ -119,10 +140,15 @@ def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0
             num_cols = obj.shape[0]
             sp_rows = _py2skill_number(obj.pitch[1])
             sp_cols = _py2skill_number(obj.pitch[0])
+        if obj.params is None:
+            inst_params = "nil"
+        else:
+            inst_params = _py2skill_inst_params(obj.params['pcell_params'], scale=scale)
+            #inst_params = _py2skill_list([["Wfg", "string", "500n"], ["fingers", "string", "4"], ["l", "string", "500n"]])
         return "_laygo2_generate_instance(cv, \"%s\", \"%s\", \"%s\", \"%s\", %s, \"%s\", %d, %d, %s, %s, %s, %s) " \
                "; for the Instance object %s \n" \
                % (objname, obj.libname, obj.cellname, obj.viewname, _py2skill_list(_xy), transform,
-                  num_rows, num_cols, sp_rows, sp_cols, "nil", "nil", objname)
+                  num_rows, num_cols, sp_rows, sp_cols, inst_params, "nil", objname)
     elif obj.__class__ == laygo2.object.VirtualInstance:
         cmd = ""
         if obj.shape is None:
