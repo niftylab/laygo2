@@ -1,4 +1,7 @@
 # laygo2
+
+[![PyPI version](https://badge.fury.io/py/laygo2.svg)](https://badge.fury.io/py/laygo2)
+
 (The commit history is cleaned up on 6-27-2022)
 
 The LAYout with Gridded Object 2 (LAYGO2) is a layout generation framework
