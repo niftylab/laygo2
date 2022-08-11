@@ -959,16 +959,16 @@ class Design(BaseDatabase):
                         elif isinstance( element, int):
                             mn_ref = mn_ref + [ element,0 ]
 
-    def route(self, grid, mn, direction=None, via_tag=None):
+    def route(self, grid, mn, direction=None, via_tag=None, netname= None):
         """Create Path and Via objects over the abstract coordinates specified by mn, on this routing grid. """
-        r = grid.route(mn=mn, direction=direction, via_tag=via_tag)
+        r = grid.route(mn=mn, direction=direction, via_tag=via_tag, netname= netname)
         self.append(r)
         return r
 
-    def route_via_track(self, grid, mn, track, via_tag=[None, True]):
+    def route_via_track(self, grid, mn, track, via_tag=[None, True], netname= None):
         """Create Path and Via objects over the abstract coordinates specified by mn, 
         on the track of specified routing grid. """
-        r = grid.route_via_track(mn=mn, track=track, via_tag=via_tag)
+        r = grid.route_via_track(mn=mn, track=track, via_tag=via_tag, netname= netname)
         self.append(r)
         return r
 
