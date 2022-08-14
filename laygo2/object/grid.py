@@ -3319,16 +3319,15 @@ class RoutingGrid(Grid):
             _mn.append([mn[i - 1, :], mn[i, :]])
         route = list()
         # set complete netname list 
-        _netname = list(len(_mn))
-        if netname is str or netname==None:
-            for i in range(len(_netname)):
-                _netname[i] = netname
-        elif len(_netname) <= len(netname):
-            _netname = netname
+        _netname = list() # list(len(_mn))
+        if netname==None or type(netname) is str:
+            for i in range(len(_mn)):
+                _netname.append(netname)# _netname[i] = netname
+        elif len(_mn) <= len(netname):
+            _netname.extend(netname)
         else:
-            for i in range(len(netname)):
-                _netname[i] = netname[i]
-            for i in range(len(_netname)):
+            _netname.extend(netname)
+            for i in range(len(_mn)-len(netname)):
                 _netname.append(None)
         # via at the starting point
         if via_tag is not None:

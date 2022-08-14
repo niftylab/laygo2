@@ -288,7 +288,7 @@ class NativeInstanceTemplate(Template):
         """
         return self._bbox
 
-    def pins(self, params=None):
+    def pins(self, params=None, netname=None):
         """
         Return pin dictionary of NativeInstanceTemplate object.
 
@@ -301,7 +301,6 @@ class NativeInstanceTemplate(Template):
         dict
 
         
-
         Examples
         --------
         >>> nat_temp_pins = dict() 
@@ -325,9 +324,14 @@ class NativeInstanceTemplate(Template):
         참조
         없음
         """
+        if type(netname) is dict:
+            for pinName in self._pins.keys():
+                if pinName in netname.keys():
+                    self._pins[pinName].netname = netname[pinName]
+
         return self._pins
 
-    def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None):
+    def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None, netname=None):
         """
         Generate Instance object.
 
@@ -382,7 +386,8 @@ class NativeInstanceTemplate(Template):
         Class Instance
         """
         return laygo2.object.physical.Instance(libname=self.libname, cellname=self.cellname, xy=np.array([0, 0]),
-                                               shape=shape, pitch=pitch, unit_size=self.size(params), pins=self.pins(params),
+                                               shape=shape, pitch=pitch, unit_size=self.size(params), pins=self.pins(params, 
+                                               netname),
                                                transform=transform, name=name, params=params)
 
     # I/O functions
@@ -857,7 +862,7 @@ class UserDefinedTemplate(Template):
         """
         return self._pins(params=params)
 
-    def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None):
+    def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None, netname=None):
         """
         Generate VirtualInstance object.
 
@@ -906,7 +911,7 @@ class UserDefinedTemplate(Template):
         참조
         없음
         """
-        return self._generate(name=name, shape=shape, pitch=pitch, transform=transform, params=params)
+        return self._generate(name=name, shape=shape, pitch=pitch, transform=transform, params=params, netname=netname)
 
 
 # Test
