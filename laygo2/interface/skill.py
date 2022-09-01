@@ -44,6 +44,14 @@ def _py2skill_number(value, scale=0.001):
     return fmt_str % (value * scale)
 
 
+def _py2skill_float(value, scale=0.001):
+    exp = np.ceil(-1 * log10(value) + 1)
+    fmt_str = "%." + "%d" % (-1 * log10(scale) + 1) + "f"  # for truncations
+    # convert to exponentail expression
+    print(value, exp, str(value))
+    return fmt_str % (value * (10**exp) * scale) + 'e' + str(int(-1*exp)) 
+
+
 def _py2skill_list(pylist, scale=0.001):
     """Convert a python list object to a skill list."""
     list_str = "list( "
@@ -67,7 +75,34 @@ def _py2skill_list(pylist, scale=0.001):
     return list_str
 
 
-def _py2skill_inst_params(value_dict, scale=0.001):
+def _py2skill_inst_params_list(pylist):
+    """Convert a python list object to a skill list. (for pcell parameters)"""
+    list_str = "list( "
+    for item in pylist:
+        if isinstance(item, list):  # nested list
+            list_str += _py2skill_inst_params_list(item) + " "
+        elif isinstance(item, np.ndarray):  # nested list
+            list_str += _py2skill_inst_params_list(item) + " "
+        elif isinstance(item, str):
+            list_str += "\"" + str(item) + "\" "
+        elif isinstance(item, float):
+            list_str += str(item)
+            #list_str += _py2skill_float(item, scale) + " "  
+        elif isinstance(item, bool):
+            if item:
+                list_str += "t "
+            else:
+                list_str += "nil "
+        elif isinstance(item, int) or isinstance(item, np.integer):
+            # fmt_str = "%."+"%d" % (-1*log10(scale)+1)+"f "  # for truncations
+            # list_str += fmt_str%(item*scale) + " "
+            #list_str += _py2skill_number(item, 1) + " "  # do not scale integers
+            list_str += str(item) + " "  # do not scale integers
+    list_str += ")"
+    return list_str
+
+
+def _py2skill_inst_params(value_dict):
     """Convert instance parameter dictionary to skill list"""
     _list = []
     for k, v in value_dict.items():
@@ -80,7 +115,7 @@ def _py2skill_inst_params(value_dict, scale=0.001):
         elif isinstance(v, int) or isinstance(v, np.integer):
             _type = "int"
         _list.append([k, _type, v])
-    return _py2skill_list(_list, scale)
+    return _py2skill_inst_params_list(_list)
 
 
 def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0])):
@@ -143,7 +178,7 @@ def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0
         if obj.params is None:
             inst_params = "nil"
         else:
-            inst_params = _py2skill_inst_params(obj.params['pcell_params'], scale=scale)
+            inst_params = _py2skill_inst_params(obj.params['pcell_params'])
             #inst_params = _py2skill_list([["Wfg", "string", "500n"], ["fingers", "string", "4"], ["l", "string", "500n"]])
         return "_laygo2_generate_instance(cv, \"%s\", \"%s\", \"%s\", \"%s\", %s, \"%s\", %d, %d, %s, %s, %s, %s) " \
                "; for the Instance object %s \n" \

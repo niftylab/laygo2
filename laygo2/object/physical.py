@@ -491,11 +491,10 @@ class PhysicalObject:
         name = 'None' if self.name is None else self.name
         return \
             self.__repr__() + " " \
-            "name: "   + name + ", " + \
-            "class: "  + self.__class__.__name__ + ", " + \
-            "xy: "     + str(self.xy.tolist()) + ", " + \
-            "params: " + str(self.params) + ", " + \
-            ""
+            "\n    name: "   + name + ", " + \
+            "\n    class: "  + self.__class__.__name__ + ", " + \
+            "\n    xy: "     + str(self.xy.tolist()) + ", " + \
+            "\n    params: " + str(self.params) + ", " 
 
     def _update_pointers(self):
         """Update pointers of this object. Called when the xy-coordinate of this object is updated."""
@@ -1615,9 +1614,9 @@ class Text(PhysicalObject):
 
     def summarize(self):
         """Return the summary of the object information."""
-        return PhysicalObject.summarize(self) + ", " + \
-                                              "layer: " + str(self.layer) + ", " + \
-                                              "text: " + str(self.text)
+        return PhysicalObject.summarize(self) + \
+                                              "\n    layer: " + str(self.layer) + ", " + \
+                                              "\n    text: " + str(self.text)
 
 class Instance(IterablePhysicalObject):
     """
@@ -2164,12 +2163,12 @@ class Instance(IterablePhysicalObject):
 
     def summarize(self):
         """Summarize object information."""
-        return PhysicalObject.summarize(self) + ", " + \
-               "size: " + str(self.size.tolist()) + ", " + \
-               "shape: " + str(None if self.shape is None else self.shape.tolist()) + ", " + \
-               "pitch: " + str(self.pitch.tolist()) + ", " + \
-               "transform: " + str(self.transform) + ", " + \
-               "pins: " + str(self.pins)
+        return PhysicalObject.summarize(self) + \
+               "\n    size: " + str(self.size.tolist()) + \
+               "\n    shape: " + str(None if self.shape is None else self.shape.tolist()) + \
+               "\n    pitch: " + str(self.pitch.tolist()) + \
+               "\n    transform: " + str(self.transform) + \
+               "\n    pins: " + str(self.pins)
 
 class VirtualInstance(Instance):  # IterablePhysicalObject):
     """
@@ -2298,8 +2297,7 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
 
     def summarize(self):
         """Summarize object information."""
-        return Instance.summarize(self) + ", " + \
-               "native elements: " + str(self.native_elements)
+        return Instance.summarize(self) + "\n    native elements: " + str(self.native_elements)
 
     def get_element_position(self, obj ):
         """
