@@ -346,7 +346,7 @@ class NativeInstanceTemplate(Template):
         
         Returns
         -------
-        Instance
+        (laygo2.object.physical.Instance) generated Instance object
 
         See Also
         --------
@@ -634,7 +634,7 @@ class ParameterizedInstanceTemplate(Template):
         
         Returns
         -------
-        (laygo2.Instance) generated object
+        (laygo2.object.physical.Instance) generated Instance object
 
         See Also
         --------
@@ -859,17 +859,24 @@ class UserDefinedTemplate(Template):
 
     def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None):
         """
-        Generate VirtualInstance object.
+        Generate a VirtualInstance object by calling generate_func() bound to the template.
 
         Parameters
         ----------
-        None
+        name : str
+            name of the instance to be generated.
+        shape : numpy.ndarray, optional.
+            shape of the object to be generated.
+        pitch : numpy.ndarray, optional.
+            pitch of the object to be generated.
+        params : dict, optional.
+            dictionary having the entity attributes.
+        transform : str, optional.
+            transformation attribute of the entity to be generated.
 
         Returns
         -------
-        laygo2.VirtualInstance
-
-        
+        (laygo2.object.physical.VirtualInstance) generated VirtualInstance object.
 
         Examples
         --------
