@@ -21,14 +21,6 @@ laygo2.interface.gds module
    :undoc-members:
    :show-inheritance:
 
-laygo2.interface.gds_helper module
------------------------------------
-
-.. automodule:: laygo2.interface.gds_helper
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 laygo2.interface.skill module
 -----------------------------
 
@@ -41,6 +33,14 @@ laygo2.interface.skillbridge module
 -----------------------------------
 
 .. automodule:: laygo2.interface.skillbridge
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+laygo2.interface.magic module
+-----------------------------------
+
+.. automodule:: laygo2.interface.magic
    :members:
    :undoc-members:
    :show-inheritance:

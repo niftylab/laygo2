@@ -1,7 +1,5 @@
-# Laygo2 User Guide
+# laygo2 User Guide
 
-Jaeduk Han (jdhan at hanyang dot ac dot kr)
- 
 ## Introduction
 This user guide is provided to help the use of LAYGO2, a layout scripting and automatic generation framework.
 LAYGO, the previous version of LAYGO2, is developed for one of layout generation engines in 
@@ -25,7 +23,7 @@ the level of abstraction by utilizing relative information between instances for
 1. **Grid-based wire routing**: The wire routing process is abstracted as well, by placing the interconnects 
 on process-independent routing grids. 
 
-**Laygo2 has the following improvement items over the original laygo.**
+**laygo2 has the following improvement items over the original laygo.**
 1. **Enhanced object-oriented features**: The module dependency is minimized to enhance the process portability 
 and reusability. The layout generation process is fully described in object-oriented ways.
 For examples, classes defined in the physical module can be used independently, and new template types can be 
@@ -43,17 +41,16 @@ the Numpy array to implement unlimited indexing over their defined ranges.
 1. **Code quality enhancement and refactoring**
 1. (on-going) **More documents and tests added**
 1. (on-going) **Generator code separated from the main framework**
-1. (on-going) **Supports multi-patterning**
 
-## Simple Examples
-Several examples are introduced [here](2_examples.md) to help users understand the basic behavior of laygo2.
+## Simple examples
+Several examples are introduced in **[Simple examples](2_examples.md)** to help users understand the basic behavior of laygo2.
 
-## Laygo2 structure
-The structures of packages and modules in laygo2 are described [here](3_structure.md).
+## laygo2 structure
+The structures of packages and modules in laygo2 are described in **[laygo2 structure](3_structure.md)**.
 
 ![laygo2 UML diagram](../assets/img/user_guide_uml.png "laygo2 UML diagram")
 
-## Laygo2 design flow
+## laygo2 design flow
 1. Load technology parameters, primitive templates, and grids.
 1. Generate instances from templates.
 1. Place the generated instances.
@@ -62,9 +59,9 @@ The structures of packages and modules in laygo2 are described [here](3_structur
 1. Export the generated design in proper formats.
 1. (Optional) export the design as a new template.
 
-## Developers
-See the [github repository page](https://github.com/niftylab/laygo2) for the full list of developers.
+## Developer list
+See the [github repository README](https://github.com/niftylab/laygo2) for the full list of developers.
 
 ## License
-Laygo2 is distributed under the BSD 3-Clause License.
+laygo2 is distributed under the BSD 3-Clause License.
 

@@ -1,6 +1,6 @@
-# Setting up Laygo2 for a new technology
+# Setting up laygo2 for a new technology
 
-To set up Laygo2 for a new technology, prepare the following files first to be imported in the layout generators for template and grid generations.
+To set up laygo2 for a new technology, prepare the following files first to be imported in the layout generators for template and grid generations.
 
 * ***(technology_name)*_example.layermap**: the layer information defined by process-speckfic PDK.
 * ***(technology_name)*_example.lyp**: (optional) layer display information for KLayout.

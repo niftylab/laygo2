@@ -58,7 +58,7 @@ class PhysicalObject:
     """
     The base class of physical layout objects, which has physical coordinate information.
 
-    Attributes
+    Parameters
     ----------
     name : str
     xy : numpy.ndarray
@@ -410,7 +410,7 @@ class PhysicalObject:
         -----
         Related Images:
         https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_physical_PhysicalObject_bbox.png
-
+        
         Reference in Korean:
         numpy.ndarray: Physical 객체의 bbox.
         """
@@ -532,7 +532,7 @@ class IterablePhysicalObject(PhysicalObject):
     The base class for iterable objects among physics objects.
     Basic class of entities capable of iterable operation among physical entities.
 
-    Attributes
+    Parameters
     ----------
     name : str
     xy : numpy.ndarray
@@ -825,7 +825,7 @@ class Rect(PhysicalObject):
     """
     Rectangle object class.
 
-    Attributes
+    Parameters
     ----------
     layer : [str, str]
     netname : str
@@ -1141,7 +1141,7 @@ class Path(PhysicalObject):
     """
     Path object class
 
-    Attributes
+    Parameters
     ----------
     layer : list
     netname : str
@@ -1311,7 +1311,7 @@ class Pin(IterablePhysicalObject):
     """
     Pin object class.
 
-    Attributes
+    Parameters
     ----------
     layer : list
     netname : str
@@ -1512,7 +1512,7 @@ class Text(PhysicalObject):
     """
     Text object class.
 
-    Attributes
+    Parameters
     ----------
     layer : list
     text : str
@@ -1622,13 +1622,13 @@ class Instance(IterablePhysicalObject):
     """
     Instance object class.
 
-    Attributes
+    Parameters
     ----------
-    libname : str
-    cellname : str
-    unit_size : numpy.ndarray
-    transform : str
-    pins : dict
+    libname : :obj:`str`
+    cellname : :obj:`str`
+    unit_size : :obj:`numpy.ndarray`
+    transform : :obj:`str`
+    pins : :obj:`dict`
     xy0 : numpy.ndarray
     xy1 : numpy.ndarray
     size : numpy.ndarray
@@ -2174,7 +2174,7 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
     """
     VirtualInstance object class.
 
-    Attributes
+    Parameters
     ----------
     native_elemnets : dict
 

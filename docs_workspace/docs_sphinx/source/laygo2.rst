@@ -1,7 +1,18 @@
-laygo2 package
-==============
+laygo2 API documentation
+========================
 
-The laygo2 package implements the top-level functionality of the layout automation task and contains the following subpackages. 
+The LAYout with Gridded Object 2 (laygo2) package is a Python-based layout generation framework with the following goals:
+
+* Automation and reuse of layout generation process.
+
+* Parametrized layout generation.
+
+* Layout automation in advanced technologies such as FinFET.
+
+* Code-based layout generation. 
+
+
+Laygo2 contains the following subpackages:
 
 * laygo2.object: implements core object classes for physical layout structures and design hierarchies.
 

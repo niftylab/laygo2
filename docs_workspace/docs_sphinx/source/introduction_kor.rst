@@ -1,4 +1,4 @@
-Introduction (in Korean)
+Documentation in Korean
 =========================
 .. toctree::
    :maxdepth: 2

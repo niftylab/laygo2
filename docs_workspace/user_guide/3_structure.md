@@ -1,4 +1,4 @@
-# Laygo2 Structure
+# laygo2 Structure
 
 laygo2 is composed of the following sub-packages.
 * **[object package](#object-package)** implements various physical and abstract objects that compose layouts.

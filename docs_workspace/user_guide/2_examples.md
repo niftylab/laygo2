@@ -2,19 +2,22 @@
 
 This document introduces setup procedures and several design examples for begineers.
 
+<!--
 * **[Quick installation and setup](#Quick-Installation-and-Setup)** describes the installation and set up procedure of 
 laygo in linux environments.
 * **[Technology setup](#Technology-Setup)** illustrates how to set up laygo2 for new technology nodes.
 * **[simple-gates](#Simple-Gates)**: introduces layout generators for simple logic gates.
+-->
 
-## Quick Installation and Setup
+## Installation 
 
-Currently, laygo2 does not support pip installation as the project is in an early development phase, which often 
-requires frequent code updates. Instead, users can easily download and install the laygo2 package by cloning its github 
+### From github repository
+
+Users can easily download and install the laygo2 package by cloning its github 
 repository by using the following command.
 
-    >>>> git clone XX
-    
+    >>>> git clone https://github.com/niftylab/laygo2.git
+
 It is highly recommended that the following command is used periodically to maintain the code to the latest version.
 
     >>>> git pull origin master
@@ -26,11 +29,17 @@ advanced users.)
     # (csh/tcsh example) add the following command to your .cshrc
     setenv PYTHONPATH ${PYTHONPATH}:[LAYGO2_INSTALLATION_DIR]/laygo2
 
-## Technology Setup for Laygo2
+### From Pypi (not verified)
+
+Instead of cloning github repository, laygo2 package can be installed by running the following pip command:
+
+    >>>> pip install laygo2
+
+## Technology setup for laygo2
 
 To be added
 
-## Simple Gates
+## Simple gate generation
 
 Running the following command will generate a NAND gate layout.
 

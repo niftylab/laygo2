@@ -6,13 +6,27 @@
 LAYGO2-LAYout with Gridded Objects2
 ====================================
 
+The LAYout with Gridded Object 2 (laygo2) package is a Python-based layout generation framework with the following goals:
+
+* Automation and reuse of layout generation process.
+
+* Parameter-based layout generation.
+
+* Layout automation in advanced technologies such as FinFET.
+
+* Code-based layout generation. 
+
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   introduction
+   introduction_link 
+   examples_link 
+   structure_link 
+   technology_link 
    introduction_kor
-   api_doc
+   laygo2
 
 
 Indices and tables

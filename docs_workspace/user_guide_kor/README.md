@@ -65,11 +65,7 @@ Laygo2를 구성하는 패키지 및 모듈들의 구조가 [이 문서](3_struc
 신규 공정에서 Laygo2용 공정 패키지를 제작하는 방법이 [이 문서](6_technology.md)에 서술되어 있다.
 
 ## 주요 기여자들
-1. 한재덕 (한양대학교 융합전자공학부 조교수)
-2. 이동준 (한양대학교)
-3. 신태호 (한양대학교)
-4. 김동휘 (한양대학교)
-5. 성개륜 (한양대학교)
+See the [github repository README](https://github.com/niftylab/laygo2) for the full list of developers.
 
 ## 라이센싱 및 배포
 Laygo2는 BSD라이센스 형태로 배포되며, 오픈소스의 형태로 개발된다.
