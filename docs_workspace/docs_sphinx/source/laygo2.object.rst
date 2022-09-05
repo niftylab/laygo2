@@ -6,7 +6,7 @@ laygo2.object package
    :show-inheritance:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
    laygo2.object.physical
    laygo2.object.template

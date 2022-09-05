@@ -31,9 +31,20 @@ author = 'niftylab'
 extensions = [
     'sphinx.ext.intersphinx',
     'sphinx_rtd_theme',
+    #'sphinxcontrib.napoleon',
     'sphinx.ext.napoleon',
+    'sphinx.ext.doctest',
+    'sphinx.ext.coverage',
+    'sphinx.ext.viewcode',
     'myst_parser'
 ]
+
+intersphinx_mapping = {
+  'pockets': ('https://pockets.readthedocs.io/en/latest/', None),
+  'python': ('https://docs.python.org/3', None),
+  'sphinx': ('http://sphinx.readthedocs.io/en/latest/', None),
+  'numpy': ('https://numpy.org/doc/stable', None),
+}
 
 source_suffix = ['.rst', '.md']
 
@@ -45,6 +56,14 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
+# The name of the Pygments (syntax highlighting) style to use.
+pygments_style = 'sphinx'
+
+# Output file base name for HTML help builder.
+htmlhelp_basename = 'napoleondoc'
+
+autoclass_content = 'both'
+
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -52,8 +71,23 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme ="sphinx_rtd_theme" # 'alabaster'
+#html_theme ="default"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+
+# -- Autodoc configuration -----------------------------------------------------
+autoclass_content = 'class'
+autodoc_member_order = 'bysource'
+autodoc_default_flags = ['members']
+autodoc_default_options = {
+    'members': True,
+    'member-order': 'bysource',
+    'special-members': '__init__',
+    'undoc-members': True,
+}
+
+

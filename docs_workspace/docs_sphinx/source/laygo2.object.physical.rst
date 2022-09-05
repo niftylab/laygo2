@@ -6,3 +6,8 @@ laygo2.object.physical module
    :undoc-members:
    :show-inheritance:
 
+.. toctree::
+   :maxdepth: 4
+
+   laygo2.object.physical.PhysicalObject
+
