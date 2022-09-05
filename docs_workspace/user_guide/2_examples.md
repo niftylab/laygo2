@@ -1,4 +1,4 @@
-# laygo2 Design Examples
+# laygo2 Quick Trial
 
 This document introduces setup procedures and several design examples for begineers.
 

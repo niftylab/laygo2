@@ -1,4 +1,4 @@
-laygo2 API documentation
+laygo2 API Reference
 ========================
 
 The LAYout with Gridded Object 2 (laygo2) package is a Python-based layout generation framework with the following goals:
@@ -23,7 +23,7 @@ Laygo2 contains the following subpackages:
 Use the following link to get information about its subpackages and modules.
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 6
 
    laygo2.object
    laygo2.interface

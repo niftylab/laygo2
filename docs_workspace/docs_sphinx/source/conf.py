@@ -36,13 +36,16 @@ extensions = [
     'sphinx.ext.doctest',
     'sphinx.ext.coverage',
     'sphinx.ext.viewcode',
-    'myst_parser'
+    'myst_parser',
+    'autoclasstoc',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
 ]
 
 intersphinx_mapping = {
   'pockets': ('https://pockets.readthedocs.io/en/latest/', None),
   'python': ('https://docs.python.org/3', None),
-  'sphinx': ('http://sphinx.readthedocs.io/en/latest/', None),
+  #'sphinx': ('http://sphinx.readthedocs.io/en/latest/', None),
   'numpy': ('https://numpy.org/doc/stable', None),
 }
 
@@ -70,24 +73,32 @@ autoclass_content = 'both'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme ="sphinx_rtd_theme" # 'alabaster'
+html_theme ="pydata_sphinx_theme"
+#html_theme ="sphinx_rtd_theme" # 'alabaster'
 #html_theme ="default"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+#html_static_path = ['_static']
+#html_css_files = ['css/custom.css']
 
 
 # -- Autodoc configuration -----------------------------------------------------
 autoclass_content = 'class'
 autodoc_member_order = 'bysource'
-autodoc_default_flags = ['members']
+#autodoc_default_flags = ['members']
 autodoc_default_options = {
-    'members': True,
+    #'members': True,
     'member-order': 'bysource',
     'special-members': '__init__',
-    'undoc-members': True,
+    #'undoc-members': True,
 }
+
+# -- Autoclasstoc configuration --------------------------------------------
+autoclasstoc_sections = [
+    'public-attrs',
+    'public-methods',
+]
 
 

@@ -21,12 +21,12 @@ The LAYout with Gridded Object 2 (laygo2) package is a Python-based layout gener
    :maxdepth: 2
    :caption: Contents:
 
-   introduction_link 
-   examples_link 
-   structure_link 
-   technology_link 
-   introduction_kor
-   laygo2
+   User Guide<introduction_link>
+   Trial<examples_link>
+   Structure<structure_link>
+   Tech Setup<technology_link>
+   Korean<introduction_kor>
+   API Reference<laygo2>
 
 
 Indices and tables

@@ -58,59 +58,12 @@ class PhysicalObject:
     """
     The base class of physical layout objects, which has physical coordinate information.
 
-    Parameters
-    ----------
-    name : str
-        Name of the object. 
-        Check :obj:`name` for details.
-    xy : numpy.ndarray
-        Physical coordinate of the object. 
-        Check :obj:`xy` for details.
-    bbox : numpy.ndarray
-        Physical bounding box of the object.
-        Check :obj:`bbox` for details.
-    master : PhysicalObject or None
-        Master object of the current object.
-        Check :obj:`master` for details.
-    params : dict
-        Dictionary that contains the object parameters.
-        Check :obj:`params` for details.
-    pointers : dict
-        Dictionary that contains major physical coordinates of the object. 
-        Check :obj:`pointers` for details.
-    left : numpy.ndarray
-        The left-center coordinate of the object.
-        Check :obj:`left` for details.
-    right : numpy.ndarray
-        The right-center coordinate of the object.
-        Check :obj:`right` for details.
-    top : numpy.ndarray
-        The top-center coordinate of the object.
-        Check :obj:`top` for details.
-    bottom : numpy.ndarray
-        The bottom-center coordinate of the object.
-        Check :obj:`bottom` for details.
-    center : numpy.ndarray
-        The center-center coordinate of the object.
-        Check :obj:`center` for details.
-    bottom_left : numpy.ndarray
-        The bottom-left coordinate of the object.
-        Check :obj:`bottom-left` for details.
-    bottom_right : numpy.ndarray
-        The bottom-right coordinate of the object.
-        Check :obj:`bottom-right` for details.
-    top_left : numpy.ndarray
-        The top-left coordinate of the object.
-        Check :obj:`top-left` for details.
-    top_right : numpy.ndarray
-        The top-right coordinate of the object.
-        Check :obj:`top-right` for details.
+    Notes
+    -----
+    * **Reference in Korean**: 물리 객체들의 기본 클래스, 물리적 좌표정보를 갖고 있다. 
 
 
-    **Reference in Korean**: 물리 객체들의 기본 클래스, 물리적 좌표정보를 갖고 있다.  
-    
     """
-
 
     def _get_xy(self):
         """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of this object."""
@@ -124,8 +77,7 @@ class PhysicalObject:
 
 
     name = None
-    """
-    str: Name of the object.
+    """str: The name of the object.
 
     Example
     --------
@@ -135,7 +87,10 @@ class PhysicalObject:
 
     
     .. image:: ../assets/img/object_physical_PhysicalObject_name.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: Physical 객체의 이름.
     """
 
@@ -145,8 +100,7 @@ class PhysicalObject:
 
 
     xy = property(_get_xy, _set_xy)
-    """
-    numpy.ndarray: Physical coordinates of the object.
+    """numpy.ndarray: The physical coordinates [bottom_left, top_right] of the object.
 
     Example
     --------
@@ -156,14 +110,16 @@ class PhysicalObject:
 
     
     .. image:: ../assets/img/object_physical_PhysicalObject_xy.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: Physical 객체의 좌표.
     """
 
 
     master = None
-    """
-    numpy.ndarray: Physical object master.
+    """numpy.ndarray: The master of the current object (for array and pin objects).
 
     Example
     --------
@@ -171,13 +127,14 @@ class PhysicalObject:
     >>> physical.master
     None
 
+    Notes
+    -----
     **Reference in Korean**: Physical 객체의 master.
     """
 
 
     params = None
-    """
-    dict: A dictionary that contains the object parameters.
+    """dict: The dictionary that contains the object parameters.
 
     Example
     --------
@@ -185,13 +142,14 @@ class PhysicalObject:
     >>> physical.params 
     {‘maxI’: 0.005 }
 
+    Notes
+    -----
     **Reference in Korean**: Physical 객체의 속성.
     """
 
 
     pointers = None
-    """
-    dict: Dictionary that contains major physical coordinates of the object. 
+    """dict: The dictionary that contains major physical coordinates of the object. 
     Possible keys include left, right, top, bottom, bottom_left, center, etc.
 
     Example
@@ -206,15 +164,17 @@ class PhysicalObject:
     }
 
     .. image:: ../assets/img/object_physical_PhysicalObject_pointers.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: Physical 객체의 주요좌표들.
     """
 
 
     # Frequently used pointers
     left = None
-    """
-    numpy.ndarray: The left-center coordinate of the object.
+    """numpy.ndarray: The left-center coordinate of the object.
 
     Example
     --------
@@ -224,14 +184,16 @@ class PhysicalObject:
 
     
     .. image:: ../assets/img/object_physical_PhysicalObject_left.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: Physical 객체의 left pointer.
     """
 
 
     right = None
-    """
-    numpy.ndarray: The right-center coordinate of the object.
+    """numpy.ndarray: The right-center coordinate of the object.
 
     Example
     --------
@@ -241,14 +203,16 @@ class PhysicalObject:
 
     
     .. image:: ../assets/img/object_physical_PhysicalObject_right.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: Physical 객체의 right pointer.
     """ 
 
 
     top = None
-    """
-    numpy.ndarray: The top-center coordinate of the object.
+    """numpy.ndarray: The top-center coordinate of the object.
 
     Example
     --------
@@ -258,14 +222,16 @@ class PhysicalObject:
 
     
     .. image:: ../assets/img/object_physical_PhysicalObject_top.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: Physical 객체의 top pointer.
     """
 
 
     bottom = None
-    """
-    numpy.ndarray: The bottom-center coordinate of the object.
+    """numpy.ndarray: The bottom-center coordinate of the object.
 
     Example
     --------
@@ -275,14 +241,16 @@ class PhysicalObject:
 
     
     .. image:: ../assets/img/object_physical_PhysicalObject_bottom.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: Physical 객체의 bottom pointer.
     """ 
 
 
     center = None
-    """
-    numpy.ndarray: The center-center coordinate of the object.
+    """numpy.ndarray: The center-center coordinate of the object.
 
     Example
     --------
@@ -292,14 +260,16 @@ class PhysicalObject:
 
     
     .. image:: ../assets/img/object_physical_PhysicalObject_center.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: Physical 객체의 center pointer.
     """ 
 
 
     bottom_left = None 
-    """
-    numpy.ndarray: The bottom-left coordinate of the object.
+    """numpy.ndarray: The bottom-left coordinate of the object.
 
     Example
     --------
@@ -309,14 +279,16 @@ class PhysicalObject:
 
     
     .. image:: ../assets/img/object_physical_PhysicalObject_bottom_left.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: Physical 객체의 bottom_left pointer.
     """
 
 
     bottom_right = None
-    """
-    numpy.ndarray: The bottom-right coordinate of the object.
+    """numpy.ndarray: The bottom-right coordinate of the object.
 
     Example
     --------
@@ -326,14 +298,16 @@ class PhysicalObject:
 
     
     .. image:: ../assets/img/object_physical_PhysicalObject_bottom_right.png 
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: Physical 객체의 bottom_right pointer.
     """ 
 
 
     top_left = None
-    """
-    numpy.ndarray: The top-left coordinate of the object.
+    """numpy.ndarray: The top-left coordinate of the object.
 
     Example
     --------
@@ -343,14 +317,16 @@ class PhysicalObject:
 
     
     .. image:: ../assets/img/object_physical_PhysicalObject_top_left.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: Physical 객체의 top_left pointer.
     """
 
 
     top_right = None
-    """
-    numpy.ndarray: The top-right coordinate of the object.
+    """numpy.ndarray: The top-right coordinate of the object.
 
     Example
     --------
@@ -360,15 +336,17 @@ class PhysicalObject:
 
     
     .. image:: ../assets/img/object_physical_PhysicalObject_top_right.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: Physical 객체의 top_right pointer.
     """
 
 
     @property
     def bbox(self):
-        """
-        numpy.ndarray: Physical bounding box of the object.
+        """numpy.ndarray: The physical bounding box of the object.
 
         Example
         --------
@@ -378,14 +356,17 @@ class PhysicalObject:
 
         
         .. image:: ../assets/img/object_physical_PhysicalObject_bbox.png
+          :height: 250
         
-        **Reference in Korean**:     numpy.ndarray: Physical 객체의 bbox.
+        Notes
+        -----
+        **Reference in Korean**: numpy.ndarray: Physical 객체의 bbox.
         """
         return np.sort(np.array([self.xy[0, :], self.xy[1, :]]), axis=0)
 
     def __init__(self, xy, name=None, params=None):
         """
-        Constructor function of PhysicalObject class.
+        The constructor function of PhysicalObject class.
 
         Parameters
         ----------
@@ -411,15 +392,22 @@ class PhysicalObject:
          params: {'maxI': 0.005}
         
         
+        Notes
+        -----
         **Reference in Korean**:     PhysicalObject 클래스의 생성자 함수.
+
         파라미터
+
         xy(numpy.ndarray): 객체의 물리적 좌표, bbox
+
         name(str): 객체의 이름
+
         params(dict): 속성을 갖고 있는 Dictionary
+
         반환값
+
         laygo2.PhysicalObject
-        참조
-        없음
+
         """
 
         self.name = name
@@ -492,37 +480,17 @@ class PhysicalObject:
 
 class IterablePhysicalObject(PhysicalObject):
     """
-    The base class for iterable objects among physics objects.
     Basic class of entities capable of iterable operation among physical entities.
 
-    Parameters
-    ----------
-    name : str
-    xy : numpy.ndarray
-    bbox : numpy.ndarray
-    master : PhysicalObject or None
-    params : dict
-    pointers : dict
-    left : numpy.ndarray
-    right : numpy.ndarray
-    top : numpy.ndarray
-    bottom : numpy.ndarray
-    center : numpy.ndarray
-    bottom_left : numpy.ndarray
-    bottom_right : numpy.ndarray
-    top_left : numpy.ndarray
-    top_right : numpy.ndarray
-    elements : numpy.ndarray
-    shape : numpy.ndarray
-
-
+    Notes
+    -----
     **Reference in Korean**: 물리 객체들 중 iterable 연산이 가능한 객체들의 기본 클래스.
 
     """
 
     elements = None
     """
-    numpy.ndarray: The lower member of objects.
+    numpy.ndarray: The numpy array that contains this object's subelements as its elements.
 
     Example
     --------
@@ -536,6 +504,8 @@ class IterablePhysicalObject(PhysicalObject):
      physical.IterablePhysicalObject object,
      physical.IterablePhysicalObject object ]
 
+    Notes
+    -----
     **Reference in Korean**: 객체의 하위 구성원.
 
     """
@@ -554,10 +524,7 @@ class IterablePhysicalObject(PhysicalObject):
 
     @property
     def shape(self):
-        """
-        numpy.ndarray: Shape of object element.
-
-        
+        """The array dimension of this object.
 
         Example
         --------
@@ -570,6 +537,8 @@ class IterablePhysicalObject(PhysicalObject):
         [3]
 
         
+        Notes
+        -----
         **Reference in Korean**:     numpy.ndarray: 객체의 element의 shape.
         """
         if self.elements is None:
@@ -584,13 +553,13 @@ class IterablePhysicalObject(PhysicalObject):
         Parameters
         ----------
         xy : numpy.ndarray
-            physical coordinates of object, bbox.
+            The physical coordinates [bottom_left,top_right] of the object.
         name : str
-            object name.
+            The name of the object.
         params : dict
-            dictionary having attributes.
+            The dictionary containing attributes of the object.
         elements : dict
-            dictionary having unit object.
+            The dictionary containing element objects that compose the object.
         
         Returns
         -------
@@ -613,15 +582,26 @@ class IterablePhysicalObject(PhysicalObject):
         xy: [[0, 0], [300, 300]], params: None
 
         
+        Notes
+        -----
         **Reference in Korean**:     IterablePhysicalObject 클래스의 생성자 함수.
+
         파라미터
+
         xy(numpy.ndarray): 객체의 물리적 좌표, bbox
+
         name(str): 객체의 이름
+
         params(dict): 속성을 갖는 Dictionary
+
         elements(dict): 단위 객체를 갖는 Dictionary
+
         반환값
+
         laygo2.IterablePhysicalObject
+
         참조
+
         Class PhysicalObject
         """
         PhysicalObject.__init__(self, xy=xy, name=name, params=params)
@@ -690,6 +670,7 @@ class PhysicalObjectGroup(IterablePhysicalObject):
 
 '''
 # Deprecated as PhysicalObjectGroup can be used instead in most cases.
+# But the code is preserved for reference.
 class PhysicalObjectArray(np.ndarray):
     """LayoutObject array class for containing multiple layout objects. Subclassing ndarray to utilize advance slicing
      functions."""
@@ -776,29 +757,14 @@ class Rect(PhysicalObject):
     """
     Rectangle object class.
 
-    Parameters
-    ----------
-    layer : [str, str]
-    netname : str
-    hextension : int
-    vextension : int
-    height : int
-    width : int
-    color : str
-    size : np.array(dtype=np.int)
-
-    Methods
-    -------
-    __init__()
-
-    
+    Notes
+    -----
     **Reference in Korean**: 사각형 객체 클래스.
     """
 
-
     layer = None
     """
-    numpy.ndarray: Layer information of object.
+    numpy.ndarray: The layer information [name, purpose] of the object.
 
     Example
     --------
@@ -806,13 +772,15 @@ class Rect(PhysicalObject):
     >>> rect0.layer 
     [ ‘M1’, ‘drawing’ ]
 
+    Notes
+    -----
     **Reference in Korean**: 객체의 Layer 정보.
     """
 
 
     netname = None
     """
-    str: Object node name.
+    str: The net name of the object.
 
     Example
     --------
@@ -820,13 +788,15 @@ class Rect(PhysicalObject):
     >>> rect0.netname 
     “net0”
     
+    Notes
+    -----
     **Reference in Korean**: 객체의 노드명.
     """
 
 
     hextension = 0
     """
-    int: Extension value of object in the horizontal direction.
+    int: The extension of the rect object in horizontal direction.
 
     Example
     --------
@@ -835,14 +805,17 @@ class Rect(PhysicalObject):
     20
 
     .. image:: ../assets/img/object_physical_rect_hextension.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: 객체의 수평방향으로의 확장값.
     """
 
 
     vextension = 0
     """
-    int: Extension value of object in the vertical direction.
+    int: The extension of the rect object in vertical direction.
 
     Example
     --------
@@ -851,14 +824,17 @@ class Rect(PhysicalObject):
     20
 
     .. image:: ../assets/img/object_physical_rect_vextension.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: 객체의 수직방향으로의 확장값.
     """
 
 
     color = None
     """
-    int: Object color.
+    int: The color (multi-patterning ID) parameter of the object.
 
     Example
     --------
@@ -866,13 +842,15 @@ class Rect(PhysicalObject):
     >>> rect0.color 
     “notMPT”
 
+    Notes
+    -----
     **Reference in Korean**: 객체의 color.
     """
 
     @property
     def height(self):
         """
-        int: Object height.
+        int: The height of the object.
 
         Example
         --------
@@ -881,7 +859,10 @@ class Rect(PhysicalObject):
         100
 
         .. image:: ../assets/img/object_physical_rect_height.png
+          :height: 250
 
+        Notes
+        -----
         **Reference in Korean**:     int: 객체의 높이.
         """
         return abs(self.xy[0, 1] - self.xy[1, 1])
@@ -889,7 +870,7 @@ class Rect(PhysicalObject):
     @property
     def width(self):
         """
-        int: Object width.
+        int: The width of the object.
 
         Example
         --------
@@ -898,25 +879,28 @@ class Rect(PhysicalObject):
         100
         
         .. image:: ../assets/img/object_physical_rect_width.png
+          :height: 250
 
+        Notes
+        -----
         **Reference in Korean**:     int: 객체의 폭.
         """
         return abs(self.xy[0, 0] - self.xy[1, 0])
 
     @property
     def height_vec(self):
-        """numpy.ndarray(dtype=int): Return np.array([0, height])."""
+        """numpy.ndarray(dtype=int): The height vector [0, height]."""
         return np.array([0, self.height])
 
     @property
     def width_vec(self):
-        """numpy.ndarray(dtype=int): Return np.array([width, 0])."""
+        """numpy.ndarray(dtype=int): The width vector [width, 0]."""
         return np.array([self.width, 0])
 
     @property
     def size(self):
         """
-        numpy.ndarray: Object size.
+        numpy.ndarray: The size of the object.
 
         Example
         --------
@@ -925,33 +909,36 @@ class Rect(PhysicalObject):
         [100, 100]
 
         .. image:: ../assets/img/object_physical_rect_size.png
+          :height: 250
 
+        Notes
+        -----
         **Reference in Korean**:     numpy.ndarray: 객체의 크기.
         """
         return np.array([self.width, self.height])
 
     def __init__(self, xy, layer, color=None, hextension=0, vextension=0, name=None, netname=None, params=None):
         """
-        Constructor function of Rectangle class.
+        The constructor function.
 
         Parameters
         ----------
         xy : numpy.ndarray
-            physical coordinates of object, bbox.
+            The physical coordinates [bottom_left, top_right] of the object.
         layer : list
-            layer information of object.
+            The layer information of the object.
         hextension : int
-            horizontal extension value of object.
+            The horizontal extension value of the object.
         vextension : int
-            vertical extension value of object.
+            The vertical extension value of the object.
         name : str
-            object name.
+            The name of the object.
         netname : str
-            node name of object.
+            The net name of the object.
         params : dict
-            dictionary having attributes.
+            The dictionary containing attributes of the object.
         color : str, optional.
-            object color.
+            The coloring information of the object.
         
         Returns
         -------
@@ -969,20 +956,36 @@ class Rect(PhysicalObject):
 
         
         .. image:: ../assets/img/object_physical_rect_init.png
+          :height: 250
 
+        Notes
+        -----
         **Reference in Korean**:     Rect 클래스의 생성자 함수
+
         파라미터
+
         xy(numpy.ndarray): 객체의 물리적 좌표, bbox
+
         layer(list): 객체의 layer 정보
+
         hextension(int): 객체의 수평부 확장값
+
         vextension(int): 객체의 수직 확장값
+
         name(str): 객체의 이름
+
         netname(str): 객체의 노드 명
+
         params(dict): 속성을 갖는 Dictionary [optional]
+
         color(str): 객체의 color [optional]
+
         반환값
+
         laygo2.Pin
+
         참조
+
         Class PhysicalObject
         """
         self.layer = layer
@@ -995,9 +998,10 @@ class Rect(PhysicalObject):
         self.color = color
         PhysicalObject.__init__(self, xy=xy, name=name, params=params)
 
+
     def align(self, rect2):
         """
-        Match the length of self and argument, assuming either width or height is zero.
+        Match the length of self and rect2 wires, when either width or height of the two objects is zero.
 
         Parameters
         ----------
@@ -1043,20 +1047,10 @@ class Rect(PhysicalObject):
 
 class Path(PhysicalObject):
     """
-    Path object class
+    Path object class.
 
-    Parameters
-    ----------
-    layer : list
-    netname : str
-    width : int
-    extension : int
-
-    Methods
-    -------
-    __int__()
-
-    
+    Notes
+    -----
     **Reference in Korean**: Path 객체 클래스.
     """
     # TODO: implement pointers.
@@ -1064,15 +1058,17 @@ class Path(PhysicalObject):
 
     layer = None
     """
-    list: Layer information of object.
+    list: The layer information [name, purpose] of object.
     
+    Notes
+    -----
     **Reference in Korean**: list: 객체의 레이어 정보.
     """
 
 
     netname = None
     """
-    str: Object node name.
+    str: The net name of the object.
 
     Example
     --------
@@ -1081,14 +1077,17 @@ class Path(PhysicalObject):
     “net0”
     
     .. image:: ../assets/img/object_physical_path_netname.png 
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: 객체의 노드명.
     """
 
 
     width = None
     """
-    int: Object width.
+    int: the width of the object.
 
     Example
     --------
@@ -1097,14 +1096,17 @@ class Path(PhysicalObject):
     10
 
     .. image:: ../assets/img/object_physical_path_width.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: 객체의 폭.
     """
 
 
     extension = 0
     """
-    int: Extension value of object.
+    int: The extension of the path object.
 
     Example
     --------
@@ -1113,12 +1115,16 @@ class Path(PhysicalObject):
     5
     
     .. image:: ../assets/img/object_physical_path_extension.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: 객체의 확장값.
     """
 
     @property
     def bbox(self):
+        """The bounding box [bottom_left, top_right] information of the object."""
         return np.sort(np.array([self.xy[0], self.xy[-1]]), axis=0)
 
     def _update_pointers(self):
@@ -1127,24 +1133,24 @@ class Path(PhysicalObject):
 
     def __init__(self, xy, layer, width, extension=0, name=None, netname=None, params=None):
         """
-        Generate Path object.
+        The constructor function.
 
         Parameters
         ----------
         xy : numpy.ndarray
-            physical coordinates of object, bbox.
+            The physical coordinates [bottom_left, top_right] of the object.
         layer : list
-            layer information of object.
+            The layer information of the object.
         width : int
-            object width.
+            The width of the object.
         extension : int
-            extension value of object.
+            The extension value of the object.
         name : str
-            object name.
+            The name of the object.
         netname : str
-            node name of object.
+            The net name of the object.
         params : dict
-            dictionary having attributes.
+            The dictionary containing attributes of the object.
 
         Returns
         -------
@@ -1162,19 +1168,34 @@ class Path(PhysicalObject):
 
         
         .. image:: ../assets/img/object_physical_path_init.png
+          :height: 250
 
+        Notes
+        -----
         **Reference in Korean**:     Path 객체 생성
+
         파라미터
+
         xy(numpy.ndarray): 객체의 물리적 좌표, bbox
+
         layer(list): 객체의 layer 정보
+
         width(int): 객체의 폭
+
         extension(int): 객체의 확장값
+
         name(str): 객체의 이름
+
         netname(str): 객체의 노드 명
+
         params(dict): 속성을 갖는 Dictionary
+
         반환값
+
         numpy.ndarray
+
         참조
+
         Class PhysicalObject
         """
         self.layer = layer
@@ -1197,26 +1218,14 @@ class Pin(IterablePhysicalObject):
     """
     Pin object class.
 
-    Parameters
-    ----------
-    layer : list
-    netname : str
-    height : int
-    width : int
-    size : numpy.ndarray
-
-    Methods
-    -------
-    __init__()
-    ndenumerate()
-
-    
+    Notes
+    -----
     **Reference in Korean**: Pin 객체 클래스.
     """
 
     layer = None
     """
-    numpy.ndarray: Layer information of object.
+    numpy.ndarray: The layer information of the object.
 
     Example
     --------
@@ -1230,7 +1239,7 @@ class Pin(IterablePhysicalObject):
 
     netname = None
     """
-    str: Object node name.
+    str: The net name of the object.
 
     Example
     --------
@@ -1248,7 +1257,7 @@ class Pin(IterablePhysicalObject):
     @property
     def height(self):
         """
-        int: Object height.
+        int: The height of the object.
 
         Example
         --------
@@ -1256,6 +1265,8 @@ class Pin(IterablePhysicalObject):
         >>> pin0.height 
         100
         
+        Notes
+        -----
         **Reference in Korean**:     int: 객체의 높이.
         """
         return abs(self.xy[0, 1] - self.xy[1, 1])
@@ -1263,7 +1274,7 @@ class Pin(IterablePhysicalObject):
     @property
     def width(self):
         """
-        int: Object width.
+        int: The width of the object.
 
         Example
         --------
@@ -1271,6 +1282,8 @@ class Pin(IterablePhysicalObject):
         >>> pin0.width 
         100
         
+        Notes
+        -----
         **Reference in Korean**:     int: 객체의 폭.
         """
         return abs(self.xy[0, 0] - self.xy[1, 0])
@@ -1278,7 +1291,7 @@ class Pin(IterablePhysicalObject):
     @property
     def size(self):
         """
-        numpy.ndarray: Object size.
+        numpy.ndarray: The size of the object.
 
         Example
         --------
@@ -1286,6 +1299,8 @@ class Pin(IterablePhysicalObject):
         >>> pin0.size 
         [100, 100]
         
+        Notes
+        -----
         **Reference in Korean**:     numpy.ndarray: 객체의 크기.
         """
         return np.array([self.width, self.height])
@@ -1302,20 +1317,20 @@ class Pin(IterablePhysicalObject):
 
     def __init__(self, xy, layer, name=None, netname=None, params=None, master=None, elements=None):
         """
-        Constructor function of Pin class.
+        The constructor function of Pin class.
 
         Parameters
         ----------
         xy : numpy.ndarray
-            physical coordinates of object, bbox.
+            The physical coordinates [bottom_left, top_right] of the object.
         layer : list
-            layer information of object.
+            The layer information of the object.
         name : str
-            object name.
+            The name of the object.
         netname : str
-            node name of object.
+            The net name of the object.
         params : dict
-            dictionary having attributes.
+            The dictionary containing attributes of the object.
         
         Returns
         -------
@@ -1334,16 +1349,28 @@ class Pin(IterablePhysicalObject):
          layer: ['M1', 'drawing'], netname: net0, shape: None, master: None
 
         
+        Notes
+        -----
         **Reference in Korean**:     Pin 클래스의 생성자 함수
+
         파라미터
+
         xy(numpy.ndarray): 객체의 물리적 좌표, bbox
+
         layer(list): 객체의 layer 정보
+
         name(str): 객체의 이름
+
         netname(str): 객체의 노드 명
+
         params(dict): 속성을 갖는 Dictionary
+
         반환값
+
         laygo2.Pin
+
         참조
+
         Class IterablePhysicalObject
         """
         self.layer = np.asarray(layer)
@@ -1373,16 +1400,8 @@ class Text(PhysicalObject):
     """
     Text object class.
 
-    Parameters
-    ----------
-    layer : list
-    text : str
-
-    Methods
-    -------
-    __init__()
-
-    
+    Notes
+    -----
     **Reference in Korean**: Text 객체 클래스.
     """
     layer = None
@@ -1395,6 +1414,8 @@ class Text(PhysicalObject):
     >>> text0.layer 
     ['text', 'drawing']
 
+    Notes
+    -----
     **Reference in Korean**: 객체의 Layer 정보.
     """
 
@@ -1409,26 +1430,28 @@ class Text(PhysicalObject):
     >>> text0.text 
     ”text”
     
+    Notes
+    -----
     **Reference in Korean**: 객체의 텍스트 내용.
     """
 
 
     def __init__(self, xy, layer, text, name=None, params=None):
         """
-        Constructor function of Text class.
+        The constructor function of Text class.
 
         Parameters
         ----------
         xy : numpy.ndarray
-            physical coordinates of object, bbox.
+            The physical coordinates [bottom_left, top_right] of the object.
         layer : list
-            layer information of object.
+            The layer information of the object.
         text : str
-            text content.
+            The text content.
         name : str
-            object name.
+            The name of the object.
         params : dict
-            dictionary having attributes.
+            The dictionary containing attributes of the object.
         
         Returns
         -------
@@ -1445,16 +1468,28 @@ class Text(PhysicalObject):
         [100, 100]
 
         
+        Notes
+        -----
         **Reference in Korean**:     Text 클래스의 생성자 함수
+
         파라미터
+
         xy(numpy.ndarray): 객체의 물리적 좌표, bbox
+
         layer(list): 객체의 layer 정보
+
         text(str): 텍스트 내용
+
         name(str): 객체의 이름
+
         params(dict): 속성을 갖는 Dictionary
+
         반환값
+
         laygo2.Text
+
         참조
+
         Class PhysicalObject
         """
         self.layer = layer
@@ -1472,33 +1507,15 @@ class Instance(IterablePhysicalObject):
     """
     Instance object class.
 
-    Parameters
-    ----------
-    libname : str
-    cellname : str
-    unit_size : numpy.ndarray
-    transform : str
-    pins : dict
-    xy0 : numpy.ndarray
-    xy1 : numpy.ndarray
-    size : numpy.ndarray
-    pitch : numpy.ndarray
-    spacing : numpy.ndarray
-    height : int
-    width : int
-
-    Methods
-    -------
-    __init__()
-    ndenumerate()
-    
+    Notes
+    -----
     **Reference in Korean**: Instance 객체 클래스.
     """
     # TODO: update (maybe) xy and sub-elements after transform property is updated.
 
     libname = None
     """
-    str: Library name of object.
+    str: The library name of the object.
 
     Example
     --------
@@ -1510,14 +1527,17 @@ class Instance(IterablePhysicalObject):
     mylib
     
     .. image:: ../assets/img/object_physical_instance_libname.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: 객체의 라이브러리 이름.
     """
 
 
     cellname = None
     """
-    str: Name of the cell to which the object belongs.
+    str: The cellname of the instance object.
 
     Example
     --------
@@ -1529,7 +1549,10 @@ class Instance(IterablePhysicalObject):
     mycell
     
     .. image:: ../assets/img/object_physical_instance_cellname.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: 객체가 속한 셀 이름.
     """
 
@@ -1544,7 +1567,7 @@ class Instance(IterablePhysicalObject):
 
     unit_size = None
     """
-    numpy.ndarray: Unit size when the object is in array.
+    numpy.ndarray: Unit size when the object is constructed in array.
 
     Example
     --------
@@ -1556,14 +1579,17 @@ class Instance(IterablePhysicalObject):
     [100, 100]
     
     .. image:: ../assets/img/object_physical_instance_unit_size.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: 객체가 배열로 구성되었을 때 단위 크기.
     """
 
 
     transform = 'R0'
     """
-    str: Transformation attribute of object.
+    str: The transformation attribute of the object.
 
     Example
     --------
@@ -1575,14 +1601,17 @@ class Instance(IterablePhysicalObject):
     “R0”
     
     .. image:: ../assets/img/object_physical_instance_transform.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: 객체의 변환 속성.
     """
 
 
     pins = None
     """
-    dict: Dictionary having the pins belonging to object.
+    dict: The dictionary having the pins belonging to the object.
 
     Example
     --------
@@ -1600,7 +1629,10 @@ class Instance(IterablePhysicalObject):
     [ [300, 300], [310, 310] ]
     
     .. image:: ../assets/img/object_physical_instance_pins.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: 객체에 속한 핀들을 갖는 Dict.
     """
 
@@ -1629,7 +1661,7 @@ class Instance(IterablePhysicalObject):
     @property
     def xy0(self):
         """
-        numpy.ndarray: Coordinates of major corner of object.
+        numpy.ndarray: The coordinates of the primary corner of the object.
 
         Example
         --------
@@ -1641,7 +1673,10 @@ class Instance(IterablePhysicalObject):
         [100, 100]
 
         .. image:: ../assets/img/object_physical_instance_xy0.png
+          :height: 250
 
+        Notes
+        -----
         **Reference in Korean**:     numpy.ndarray: 객체의 주 코너 좌표.
         """
         return self.xy
@@ -1649,7 +1684,7 @@ class Instance(IterablePhysicalObject):
     @property
     def xy1(self):
         """
-        numpy.ndarray: Coordinates of minor corner of object.
+        numpy.ndarray: The coordinates of the secondary corner of the object.
 
         Example
         --------
@@ -1661,7 +1696,10 @@ class Instance(IterablePhysicalObject):
         [600, 400]
         
         .. image:: ../assets/img/object_physical_instance_xy1.png
+          :height: 250
 
+        Notes
+        -----
         **Reference in Korean**:     numpy.ndarray: 객체의 보조 코너 좌표.
         """
         if self.size is None:
@@ -1672,7 +1710,7 @@ class Instance(IterablePhysicalObject):
     @property
     def size(self):
         """
-        numpy.ndarray: Object size.
+        numpy.ndarray: The size of the object.
 
         Example
         --------
@@ -1684,7 +1722,10 @@ class Instance(IterablePhysicalObject):
         [500, 300]
         
         .. image:: ../assets/img/object_physical_instance_size.png
+          :height: 250
 
+        Notes
+        -----
         **Reference in Korean**:     numpy.ndarray: 객체의 크기.
         """
         if self.shape is None:
@@ -1717,7 +1758,10 @@ class Instance(IterablePhysicalObject):
     [200, 200]
     
     .. image:: ../assets/img/object_physical_instance_pitch.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: 배열로 구성된 객체의 단위객체간 간격.
     """
 
@@ -1741,7 +1785,10 @@ class Instance(IterablePhysicalObject):
     [200, 200]
     
     .. image:: ../assets/img/object_physical_instance_spacing.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: 배열로 구성된 객체의 단위객체간 간격.
     """
 
@@ -1755,7 +1802,7 @@ class Instance(IterablePhysicalObject):
     @property
     def height(self):
         """
-        int: Object height
+        int: The height of the object.
 
         Example
         --------
@@ -1767,7 +1814,10 @@ class Instance(IterablePhysicalObject):
         300
         
         .. image:: ../assets/img/object_physical_instance_height.png
+          :height: 250
 
+        Notes
+        -----
         **Reference in Korean**:     int: 객체의 높이.
         """
         return abs(self.bbox[1][1] - self.bbox[0][1])
@@ -1775,7 +1825,7 @@ class Instance(IterablePhysicalObject):
     @property
     def width(self):
         """
-        int: Object width
+        int: The width of the object.
 
         Example
         --------
@@ -1787,48 +1837,51 @@ class Instance(IterablePhysicalObject):
         500
         
         .. image:: ../assets/img/object_physical_instance_width.png
+          :height: 250
 
+        Notes
+        -----
         **Reference in Korean**:     int: 객체의 폭.
         """
         return abs(self.bbox[1][0] - self.bbox[0][0])
 
     @property
     def height_vec(self):
-        """numpy.ndarray(dtype=int): Return np.array([0, height])."""
+        """numpy.ndarray(dtype=int): The height vector [0, height]."""
         return np.array([0, self.height])
 
     @property
     def width_vec(self):
-        """numpy.ndarray(dtype=int): Return np.array([width, 0])."""
+        """numpy.ndarray(dtype=int): The width vector [width, 0]."""
         return np.array([self.width, 0])
 
     def __init__(self, xy, libname, cellname, viewname='layout', shape=None, pitch=None, transform='R0',
                  unit_size=np.array([0, 0]), pins=None, name=None, params=None):
         """
-        Constructor function of Instance class.
+        The constructor function of Instance class.
 
         Parameters
         ----------
         xy : numpy.ndarray
-            major coordinates of object. [x0, y0]
+            The primary coordinate [x0, y0] of the object.
         libname : str
-            library name of object.
+            The library name of the object.
         cellname : str
-            cell name of object.
+            The cell name of the object.
         shape : numpy.ndarray
-            shape of elements. [column, row]
+            The shape [col, row] of the elements.
         pitch : numpy.ndarray
-            pitch between lower members of the object in array.
+            Pitch between the elements of the object in array.
         transform : str
-            transformation attribute of the object.
+            The transformation attribute of the object.
         unit_size : list
-            unit size of object.
+            Unit size of the object.
         pins : dict
-            dictionary having pins belonging to the object.
+            The dictionary containing pins belonging to the object.
         name : str
-            object name.
+            The name of the object.
         params : dict
-            dictionary having attributes of the object.
+            The dictionary containing attributes of the object.
         
         Returns
         -------
@@ -1848,22 +1901,40 @@ class Instance(IterablePhysicalObject):
         [ 300, 100 ]
 
         .. image:: ../assets/img/object_physical_instance_init.png
+          :height: 250
 
+        Notes
+        -----
         **Reference in Korean**:     Instance 클래스의 생성함수
+
         파라미터
+
         xy(numpy.ndarray): 객체의 주좌표 [x0, y0]
+
         libname(str): 객체의 library 이름
+
         cellname(str): 객체의 cell이름
+
         shape(numpy.ndarray): elements 의 shape, [column, row]
+
         pitch(numpy.ndarray): 배열로 구성된 객체의 하위객체간 간격
+
         transform(str): 객체의 변환 속성
+
         unit_size(list): 객체의 단위 크기
+
         pins(dict): 객체에 속한 핀들을 갖는 Dictionary
+
         name(str): 객체의 이름
+
         params(dict): 객체의 속성을 갖는 Dictionary
+
         반환값
+
         object (laygo2.Instance)
+
         참조
+
         Class IterablePhysicalObject
         """
         # Assign parameters.
@@ -1949,22 +2020,14 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
     """
     VirtualInstance object class.
 
-    Parameters
-    ----------
-    native_elemnets : dict
-
-    Methods
-    -------
-    __init__()
-    ndenumerate()
-    
+    Notes
+    -----
     **Reference in Korean**: VirtualInstance 객체 클래스.
     """
 
     native_elements = None
     """
-    dict: Dictionary having physical entities constituting the object.
-    Dictionary consisting of physicalObject.
+    dict: The dictionary containing physical entities constituting the object.
 
     Example
     --------
@@ -1980,41 +2043,43 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
     { ‘R0’ : physical.Rect, ‘R1’ : physical.Rect, ‘R2’ : physical.Rect }
 
     .. image:: ../assets/img/object_physical_VirtualInstance_native_elements.png
+      :height: 250
 
+    Notes
+    -----
     **Reference in Korean**: 객체를 구성하는 물리객체들을 갖고있는 Dict.
-        PhysicalObject로 구성된 Dictionary.
     """
     # Dict[PhysicalObject] the elements that compose the virtual instance. Its keys represent the names of the elements.
 
     def __init__(self, xy, libname, cellname, native_elements, viewname='layout', shape=None, pitch=None,
                  transform='R0', unit_size=np.array([0, 0]), pins=None, name=None, params=None):
         """
-        Constructor function of VirtualInstance class.
+        The constructor function of VirtualInstance class.
 
         Parameters
         ----------
         xy : numpy.ndarray
-            major coordinates of object [x0, y0].
+            The primary coordinate [x0, y0] of the object.
         libname : str
-            library name of object.
+            The library name of the object.
         cellname : str
-            cell name of object.
+            The cell name of the object.
         native_elements : dict
-            dictionary having physical entities constituting the object.
+            The dictionary containing physical entities constituting the object.
         shape : numpy.ndarray
-            shape of elements.
+            The shape [col, row] of the elements.
         pitch : numpy.ndarray
-            pitch between lower members of the object in array.
+            Pitch between elements of the object in array.
         transform : str
-            transformation attribute of the object.
+            The transformation attribute of the object.
         unit_size : list
-            unit size of object.
+            Unit size of object.
         pins : dict
-            dictionary having pins belonging to the object.
+            The dictionary containing pins belonging to the object.
         name : str
-            object name.
+            The name of the object.
         params : dict
-            dictionary having attributes of the object.
+            The dictionary containing attributes of the object.
 
         Returns
         -------
@@ -2031,31 +2096,48 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
         { ‘R0’ : physical.Rect, ‘R1’ : physical.Rect, ‘R2’ : physical.Rect }
 
         .. image:: ../assets/img/object_physical_VirtualInstance_init.png
+          :height: 250
 
+        Notes
+        -----
         **Reference in Korean**:     VirtualInstance 클래스의 생성자 함수
+
         파라미터
+
         xy(numpy.ndarray): 객체의 주좌표 [x0, y0]
+
         libname(str): 객체의 library 이름
+
         cellname(str): 객체의 cell이름
+
         native_elements(dict): 객체를 구성하는 물리객체를 갖는 Dict
+
         shape(numpy.ndarray): elements 의 shape
+
         pitch(numpy.ndarray): 배열로 구성된 객체의 하위객체간 간격 
+
         transform(str): 객체의 변환 속성
+
         unit_size(list): 객체의 단위 크기
+
         pins(dict): 객체에 속한 핀들을 갖는 Dictionary
+
         name(str): 객체의 이름
+
         params(dict): 객체의 속성을 갖는 Dictionary
+
         반환값
+
         object (laygo2.VirtualInstance)
+
         참조
+
         Class Instance
         """
         self.native_elements = native_elements
 
         Instance.__init__(self, xy=xy, libname=libname, cellname=cellname, viewname=viewname, shape=shape, pitch=pitch,
                           transform=transform, unit_size=unit_size, pins=pins, name=name, params=params)
-        #Instance.__init__(self, xy=xy, libname='VirtualInstance', cellname='VirtualInstance', shape=shape, pitch=pitch,
-        #                  transform=transform, unit_size=unit_size, pins=pins, name=name, params=params)
 
     def summarize(self):
         """Summarize object information."""
@@ -2063,7 +2145,7 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
 
     def get_element_position(self, obj ):
         """
-        Get element's xy-position from origin
+        Get element's xy-position from origin.
         
         Parameters
         ----------
