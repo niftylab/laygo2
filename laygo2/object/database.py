@@ -38,22 +38,6 @@ class BaseDatabase:
     """
     BaseDatabase is a base class implementing basic functions of various database objects such as library and design.
 
-    Attributes
-    ----------
-    name : str
-    params : dict
-    noname_index : int
-    elements : dict
-    keys : list
-
-    Methods
-    -------
-    items()
-    __getitem__()
-    __setitem__()
-    __iter__()
-    __init__()
-
     Notes
     -----
     Reference in Korean:
@@ -434,22 +418,6 @@ class Library(BaseDatabase):
     """
     Library class implements the library management function.
 
-    Attributes
-    ----------
-    name : str
-    params : dict
-    noname_index : int
-    keys : list
-    libname : str
-
-    Methods
-    -------
-    items()
-    __getitem__()
-    __setitem__()
-    __iter__()
-    __init__()
-
     Notes
     -----
     Reference in Korean:
@@ -554,36 +522,6 @@ class GridLibrary(Library):
 class Design(BaseDatabase):
     """
     Design class implements the design management function.
-
-    Attributes
-    ----------
-    name : str
-    params : dict
-    noname_index : int
-    keys : list
-    libname : str
-    cellname : str
-    rects : dict
-    paths : dict
-    pins : dict
-    texts : dict
-    instances : dict
-    virtual_instances : dict
-
-    Methods
-    -------
-    items()
-    __getitem__()
-    __setitem__()
-    __iter__()
-    __init__()
-    place()
-    route()
-    route_via_track()
-    via()
-    pin()
-    get_matchedrects_by_layer()
-    export_to_template()
 
     Notes
     -----
