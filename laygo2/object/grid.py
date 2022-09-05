@@ -114,30 +114,15 @@ class CircularMapping:
     """
     Basic circular mapping class (index number expands infinitely).
 
-    Attributes
-    ----------
-    dtype : data-type
-    elements : numpy.ndarray
-    shape : numpy.ndarray
-
-    Methods
-    -------
-    __init__()
-    __getitem__()
-    __iter__()
-    __next__()
-
     Notes
     -----
     Reference in Korean:
     기본적인 순환맵핑(인덱싱 넘버가 무한히 확장) 클래스.
+
     """
 
     _elements = None
-    """attribute
-    list: Array consisting of the elements of circular mapping.
-
-    
+    """list: Array consisting of the elements of circular mapping.
 
     Examples
     --------
@@ -146,18 +131,18 @@ class CircularMapping:
     >>> cm.elements
     [ 0, 35, 85, 130, 180 ]
 
+    .. image:: ../assets/img/object_grid_CircularMapping_elements.png
+           :height: 250 
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_CircularMapping_elements.png 
-
     Reference in Korean:
     순환 맵핑의 구성 요소로 이루어진 배열. 
+
     """
 
     dtype = np.int
-    """attribute
-    type: Data type of circular mapping.
+    """type: Data type of circular mapping.
 
     
 
@@ -168,11 +153,11 @@ class CircularMapping:
     >>> cm.dtype
     int
 
+    .. image:: ../assets/img/object_grid_CircularMapping_dtype.png
+           :height: 250
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_CircularMapping_dtype.png
-
     Reference in Korean:
     순환 맵핑의 데이터 유형.
     """
@@ -190,8 +175,7 @@ class CircularMapping:
 
     @property
     def shape(self):
-        """attribute
-        numpy.ndarray: Shape of circular mapping.
+        """numpy.ndarray: Shape of circular mapping.
 
         
 
@@ -202,11 +186,11 @@ class CircularMapping:
         >>> cm.shape 
         [4]
 
+        .. image:: ../assets/img/object_grid_CircularMapping_shape.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_CircularMapping_shape.png
-
         Reference in Korean:
         순환 맵핑의 shape. 
         """
@@ -240,11 +224,11 @@ class CircularMapping:
         >>> cm[0:10] 
         [0, 35, 85, 130, 0, 35, 85, 130, 0, 35]
 
+        .. image:: ../assets/img/object_grid_CircularMapping_init.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_CircularMapping_init.png
-
         Reference in Korean:
         CircularMapping 클래스의 생성자함수
         파라미터
@@ -297,25 +281,13 @@ class CircularMapping:
 
 class CircularMappingArray(CircularMapping):
     """
-    Multi dimensional circular mapping class (index number expands infinitely).
-
-    Attributes
-    ----------
-    dtype : data-type
-    elements : numpy.ndarray
-    shape : numpy.ndarray
-
-    Methods
-    -------
-    __getitem__()
-    __iter__()
-    __next__()
-    __init__()
+    Multi-dimensional circular mapping class (index number expands infinitely).
 
     Notes
     -----
     Reference in Korean:
     다차원 순환맵핑(인덱싱 넘버가 무한히 확장) 클래스.
+
     """
     def __getitem__(self, pos):
         """
@@ -341,11 +313,11 @@ class CircularMappingArray(CircularMapping):
         >>> cm[3] 
         [ 130, 0 ]
 
+        .. image:: ../assets/img/object_grid_CircularMappingArray_getitem.png
+           :height: 250 
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_CircularMappingArray_getitem.png 
-
         Reference in Korean:
         순환 맵핑의 요소 접근함수
         파라미터
@@ -387,30 +359,15 @@ class _AbsToPhyGridConverter:
     """
     A class that converts abstract coordinates into physical coordinates. Conversely, conditional operation converts physical coordinates into abstract coordinates.
 
-    Attributes
-    ----------
-    master : laygo2.OneDimGrid or laygo2.Grid
-
-    Methods
-    -------
-    __init__()
-    __getitem__()
-    __call__()
-    __eq__()
-    __lt__()
-    __le__()
-    __gt__()
-    __ge__()
-
     Notes
     -----
     Reference in Korean:
     추상 좌표를 물리 좌표로 변환하는 클래스, 조건부연산은 반대로 물리좌표를 추상좌표로 변환한다.
+
     """
 
     master = None
-    """attribute
-    laygo2.Grid or laygo2.OneDimGrid: Coordinate system to which _AbsToPhyGridConverter object belongs.
+    """laygo2.Grid or laygo2.OneDimGrid: Coordinate system to which _AbsToPhyGridConverter object belongs.
 
     
 
@@ -466,11 +423,11 @@ class _AbsToPhyGridConverter:
         >>> g2.xy(0,0) 
         [0,0]
 
+        .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_call.png
+           :height: 250 
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_AbsToPhyGridConverter_call.png 
-
         Reference in Korean:
         추상 좌표를 master 좌표계에서 대응되는 물리 좌표로 변환.
         파라미터
@@ -508,11 +465,11 @@ class _AbsToPhyGridConverter:
         >>> g2.xy(0,0) 
         [0,0]
 
+        .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_getitem.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_AbsToPhyGridConverter_getitem.png
-
         Reference in Korean:
         추상 좌표를 master 좌표계에서 대응되는 물리 좌표로 변환.
         파라미터
@@ -612,11 +569,11 @@ class _AbsToPhyGridConverter:
         >>> g2.xy == [35,35] 
         [1,None]
 
+        .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_eq.png
+           :height: 250 
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_AbsToPhyGridConverter_eq.png 
-
         Reference in Korean:
         물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         파라미터
@@ -654,11 +611,11 @@ class _AbsToPhyGridConverter:
         >>> g2.xy < [35,35] 
         [0,1]
 
+        .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_lt.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_AbsToPhyGridConverter_lt.png
-
         Reference in Korean:
         물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         파라미터
@@ -759,11 +716,11 @@ class _AbsToPhyGridConverter:
         >>> g2.xy <= [35,35] 
         [1,1]
 
+        .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_le.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_AbsToPhyGridConverter_le.png
-
         Reference in Korean:
         물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         파라미터
@@ -814,11 +771,11 @@ class _AbsToPhyGridConverter:
         >>> g2.xy > [35,35] 
         [2,2]
 
+        .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_gt.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_AbsToPhyGridConverter_gt.png
-
         Reference in Korean:
         물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         파라미터
@@ -869,11 +826,11 @@ class _AbsToPhyGridConverter:
         >>> g2.xy >= [35,35] 
         [1,2]
 
+        .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_ge.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_AbsToPhyGridConverter_ge.png
-
         Reference in Korean:
         물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         파라미터
@@ -905,44 +862,15 @@ class _PhyToAbsGridConverter:
     Conversely, conditional operations convert abstract coordinates into physical coordinates.
     Implements the function of converting abstract coordinates to physical coordinates and supports the inverse conversion function.
 
-    Attributes
-    ----------
-    master : laygo2.OneDimGrid or laygo2.Grid
-
-    Methods
-    -------
-    __init__()
-    __call__()
-    __getitem__()
-    __eq__()
-    __lt__()
-    __le__()
-    __gt__()
-    __ge__()
-    bbox()
-    bottom_left()
-    bottom_right()
-    top_left()
-    top_right()
-    center()
-    width()
-    height()
-    size()
-    crossing()
-    overlap()
-    union()
-
     Notes
     -----
     Reference in Korean:
     물리 좌표를 추상 좌표로 변환하는 클래스, 조건부연산은 반대로 추상 좌표를 물리 좌표로 변환한다.
+
     """
 
     master = None
-    """attribute
-    laygo2.Grid or laygo2.OneDimGrid: Coordinate system to which _PhyToAbsGridConverter object belongs.
-
-    
+    """laygo2.Grid or laygo2.OneDimGrid: Coordinate system to which _PhyToAbsGridConverter object belongs.
 
     Examples
     --------
@@ -996,11 +924,11 @@ class _PhyToAbsGridConverter:
         >>> g2.mn( [[35,35]]) 
         [1,None]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_call.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_call.png
-
         Reference in Korean:
         물리 좌표를 master 좌표계에서 대응되는 추상 좌표로 변환.
         파라미터
@@ -1038,11 +966,11 @@ class _PhyToAbsGridConverter:
         >>> g2.mn( [[35,35]]) 
         [1,None]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_getItem.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_getItem.png
-
         Reference in Korean:
         물리 좌표를 master 좌표계에서 대응되는 추상 좌표로 변환.
         파라미터
@@ -1141,11 +1069,11 @@ class _PhyToAbsGridConverter:
         >>> g2.mn == [1,1] 
         [35,30]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_eq.png
+           :height: 250 
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_eq.png 
-
         Reference in Korean:
         추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환. 
         파라미터
@@ -1203,11 +1131,11 @@ class _PhyToAbsGridConverter:
         >>> g2.mn < [1,1] 
         [0,0]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_lt.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_lt.png
-
         Reference in Korean:
         추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환. 
         파라미터
@@ -1258,11 +1186,11 @@ class _PhyToAbsGridConverter:
         >>> g2.mn <= [1,1] 
         [35,30]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_le.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_le.png
-
         Reference in Korean:
         추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환. 
         파라미터
@@ -1300,11 +1228,11 @@ class _PhyToAbsGridConverter:
         >>> g2.mn > [1,1] 
         [85,60]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_gt.png
+           :height: 250 
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_gt.png 
-
         Reference in Korean:
         추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환. 
         파라미터
@@ -1357,11 +1285,11 @@ class _PhyToAbsGridConverter:
         >>> g2.mn >=[1,1] 
         [35,30]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_ge.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_ge.png
-
         Reference in Korean:
         추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환. 
         파라미터
@@ -1401,11 +1329,11 @@ class _PhyToAbsGridConverter:
         >>> g2.mn.bbox(rect0) 
         [[0, 0] , [4, 4]]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_bbox.png
+           :height: 250 
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_bbox.png 
-
         Reference in Korean:
         객체의 bounding box를 master 좌표계의 추상 좌표로 변환.
         _AbsToPhyGridConverter 객체의 >=, <=를 사용하므로 추상면적이 작아질수있다.
@@ -1454,11 +1382,11 @@ class _PhyToAbsGridConverter:
         >>> g2.mn.bottom_left(rect0) 
         [0, 0]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_bottom_left.png
+           :height: 250 
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_bottom_left.png 
-
         Reference in Korean:
         객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         파라미터
@@ -1502,11 +1430,11 @@ class _PhyToAbsGridConverter:
         >>> g2.mn.bottom_right(rect0) 
         [4, 0]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_bottom_right.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_bottom_right.png
-
         Reference in Korean:
         객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         파라미터
@@ -1550,11 +1478,11 @@ class _PhyToAbsGridConverter:
         >>> g2.mn.top_left(rect0) 
         [0, 4]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_top_left.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_top_left.png
-
         Reference in Korean:
         객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         파라미터
@@ -1598,11 +1526,11 @@ class _PhyToAbsGridConverter:
         >>> g2.mn.top_right(rect0) 
         [4, 4]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_top_right.png
+           :height: 250 
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_top_right.png 
-
         Reference in Korean:
         객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         파라미터
@@ -1670,11 +1598,11 @@ class _PhyToAbsGridConverter:
         >>> g2.mn.size(rect0) 
         [4, 4]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_size.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_size.png
-
         Reference in Korean:
         객체의 크기([width, height])를 master 좌표계의 추상 좌표로 변환.
         파라미터
@@ -1692,15 +1620,13 @@ class _PhyToAbsGridConverter:
 
         Parameters
         ----------
-        *args : laygo2.Physical
+        args : laygo2.Physical
             physical object having bbox.
 
         Returns
         -------
         numpy.ndarray(int, int)
             abstract points.
-
-        
 
         Examples
         --------
@@ -1715,15 +1641,15 @@ class _PhyToAbsGridConverter:
         >>> g2.mn.crossing(rect0, rect1) 
         [3, 2]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_crossing.png
+           :height: 250 
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_crossing.png 
-
         Reference in Korean:
         객체들의 물리적 교차점을 master 좌표계의 추상 좌표로 변환.
         파라미터
-        *args(laygo2.Physical): bbox를 가지고있는 physical 객체
+        args(laygo2.Physical): bbox를 가지고있는 physical 객체
         반환값
         numpy.ndarray( int, int )): abstract points
         참조
@@ -1738,7 +1664,7 @@ class _PhyToAbsGridConverter:
 
         Parameters
         ----------
-        *args : laygo2.Physical
+        args : laygo2.Physical
             physical object having bbox.
         
         Returns
@@ -1761,15 +1687,15 @@ class _PhyToAbsGridConverter:
         >>> g2.mn.overlap(rect0, rect1) 
         [[3, 2], [6,4]]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_overlap.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_overlap.png
-
         Reference in Korean:
         객체들의 겹치는 면적을 master 좌표계의 추상 좌표로 변환후 type에 따른 형태로 반환, 'bbox'인 경우, bounding box로 반환, 'array' 인경우 모든 교점을 2차원 array로 반환, 'list' 인경우 모든 교점을 1차원 list로 변환.
         파라미터
-        *args(laygo2.Physical): bbox를 가지고있는 physical 객체
+        args(laygo2.Physical): bbox를 가지고있는 physical 객체
         반환값
         numpy.ndarray: bbox 추상좌표
         참조
@@ -1801,7 +1727,7 @@ class _PhyToAbsGridConverter:
 
         Parameters
         ----------
-        *args : laygo2.Physical
+        args : laygo2.Physical
             physical object having bbox.
         
         Returns
@@ -1821,15 +1747,15 @@ class _PhyToAbsGridConverter:
         >>> g2.mn.union(rect0, rect1) 
         [[0, 0], [12,7]]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_union.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_union.png
-
         Reference in Korean:
         객체들을 모두 포함하는 bounding box를 master 좌표계의 추상 좌표로 변환. 
         파라미터
-        *args(laygo2.Physical): bbox를 가지고있는 physical 객체
+        args(laygo2.Physical): bbox를 가지고있는 physical 객체
         반환값
         numpy.ndarray: bbox 추상좌표
         참조
@@ -1874,11 +1800,11 @@ class _PhyToAbsGridConverter:
         >>> g2.mn.center(rect0) 
         [3, 3]
 
+        .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_center.png
+           :height: 250 
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_PhyToAbsGridConverter_center.png 
-
         Reference in Korean:
         객체의 물리 중앙 좌표를 master 좌표계의 추상 좌표로 변환.
         파라미터
@@ -1904,39 +1830,16 @@ class OneDimGrid(CircularMapping):
     """
     Class implementing one-dimensional abstract coordinates.
 
-    Attributes
-    ----------
-    dtype : data-type
-    elements : numpy.ndarray
-    shape : numpy.ndarray
-    name : str
-    range : numpy.ndarray
-    phy2abs : laygo2._PhyToAbsGridConverter
-    abs2phy : laygo2._AbsToPhyGridConverter
-    width : int
-
-    Methods
-    -------
-    __init__()
-    export_to_dict()
-    __getitem__()
-    __call__()
-    __eq__()
-    __lt__()
-    __le__()
-    __gt__()
-    __ge__()
-
     Notes
     -----
     Reference in Korean:
     1차원 추상좌표를 구현하는 클래스.
+
     """
 
     # Member variables and properties
     name = None
-    """attribute
-    str: Coordinate system name.
+    """str: Coordinate system name.
 
     
 
@@ -1946,18 +1849,17 @@ class OneDimGrid(CircularMapping):
     >>> g1_x.name
     “xgrid”
 
+    .. image:: ../assets/img/object_grid_OneDimGrid_name.png
+           :height: 250
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_OneDimGrid_name.png
-
     Reference in Korean:
     좌표계 이름.
     """
 
     range = None
-    """attribute
-    str: Region in which the coordinate system is defined Coordinates in the defined region are repeatedly expanded.
+    """str: Region in which the coordinate system is defined Coordinates in the defined region are repeatedly expanded.
 
     
 
@@ -1967,18 +1869,17 @@ class OneDimGrid(CircularMapping):
     >>> g1_x.range
     [0, 180]
     
+    .. image:: ../assets/img/object_grid_OneDimGrid_range.png
+           :height: 250
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_OneDimGrid_range.png
-
     Reference in Korean:
     좌표계가 정의된 영역. 정의된 영역의 좌표들이 반복되는 형태로 확장된다.
     """
 
     phy2abs = None
-    """attribute
-    self.phy2abs (laygo2._PhyToAbsGridConverter): Object that converts physical coordinates into abstract coordinates.
+    """self.phy2abs (laygo2._PhyToAbsGridConverter): Object that converts physical coordinates into abstract coordinates.
 
     
 
@@ -1995,8 +1896,7 @@ class OneDimGrid(CircularMapping):
     """
 
     abs2phy = None
-    """attribute
-    self.abs2phy (laygo2._AbsToPhyGridConverter): Object that converts abstract coordinates into physical coordinates.
+    """self.abs2phy (laygo2._AbsToPhyGridConverter): Object that converts abstract coordinates into physical coordinates.
 
     
 
@@ -2014,8 +1914,7 @@ class OneDimGrid(CircularMapping):
 
     @property
     def width(self):
-        """attribute
-        int: The size of the region in which the coordinate system is defined.
+        """int: The size of the region in which the coordinate system is defined.
 
         
 
@@ -2025,11 +1924,11 @@ class OneDimGrid(CircularMapping):
         >>> g1_x.width
         180
 
+        .. image:: ../assets/img/object_grid_OneDimGrid_width.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_OneDimGrid_width.png
-
         Reference in Korean:
         좌표계가 정의된 영역의 크기. 
         """
@@ -2060,11 +1959,11 @@ class OneDimGrid(CircularMapping):
         >>> print(g1_x)
         OneDimGrid object name: xgrid, class: OneDimGrid, scope: [0, 180], elements: [0, 35, 85, 130  50]
 
+        .. image:: ../assets/img/object_grid_OneDimGrid_init.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_OneDimGrid_init.png
-
         Reference in Korean:
         OneDimGrid 클래스의 생성자함수.
         파라미터
@@ -2143,11 +2042,11 @@ class OneDimGrid(CircularMapping):
         >>> g1_x.export_to_dict()
         {'scope': [0, 180], 'elements': [0, 35, 85, 130, 50]}
 
+        .. image:: ../assets/img/object_grid_OneDimGrid_export_to_dict.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_OneDimGrid_export_to_dict.png
-
         Reference in Korean:
         그리드의 정보를 담은 dict객체 반환.
         파라미터
@@ -2168,33 +2067,11 @@ class Grid:
     """
     A base class having conversion operators and the mapping information (element) between two-dimensional physical coordinates and abstract coordinates.
 
-    Attributes
-    ----------
-    name : str
-    elements : numpy.ndarray
-    xy : laygo2._AbsToPhyGridConverter
-    x : laygo2._AbsToPhyGridConverter
-    y : laygo2._AbsToPhyGridConverter
-    v : laygo2.OneDimGrid
-    h : laygo2.OneDimGrid
-    mn : laygo2._PhyToAbsGridConverter
-    m : laygo2._PhyToAbsGridConverter
-    n : laygo2._PhyToAbsGridConverter
-    shape : int
-    width : int
-    height : int
-    height_vec : numpy.ndarray
-    width_vec : numpy.ndarray
-    range : numpy.ndarry
-
-    Methods
-    -------
-    __init__()
-
     Notes
     -----
     Reference in Korean:
     2차원 물리좌표와 추상좌표간 mapping 정보(element) 를 갖고 있으며 해당 element를 활용하는 좌표 연산자를 가지고 있는 기본 클래스.
+
     """
 
     name = None
@@ -2205,8 +2082,7 @@ class Grid:
 
     @property
     def elements(self):
-        """attribute
-        numpy.ndarray: Two-dimensional element of a coordinate system.
+        """numpy.ndarray: Two-dimensional element of a coordinate system.
             x elements, y elements
     
         
@@ -2218,11 +2094,11 @@ class Grid:
         >>> g_cmos_m2.elements 
         [ array([0]), array( [0, 35, 85, 130] ) ]
 
+        .. image:: ../assets/img/object_grid_Grid_Elements.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_Grid_Elements.png
-
         Reference in Korean:
         좌표계 2차원 element.
         """
@@ -2237,8 +2113,7 @@ class Grid:
 
     @property
     def xy(self):
-        """attribute
-        self.abs2phy (laygo2._AbsToPhyGridConverter): Two-dimensional _AbsToPhyConverter of a coordinate system.
+        """self.abs2phy (laygo2._AbsToPhyGridConverter): Two-dimensional _AbsToPhyConverter of a coordinate system.
 
         
 
@@ -2269,8 +2144,7 @@ class Grid:
 
     @property
     def x(self):
-        """attribute
-        self._xy[0].abs2phy (laygo2._AbsToPhyGridConverter): One-dimensional _AbsToPhyGridConverter of the x-coordinate system.
+        """self._xy[0].abs2phy (laygo2._AbsToPhyGridConverter): One-dimensional _AbsToPhyGridConverter of the x-coordinate system.
 
         
 
@@ -2299,8 +2173,7 @@ class Grid:
 
     @property
     def y(self):
-        """attribute
-        self._xy[1].abs2phy (laygo2._AbsToPhyGridConverter): One-dimensional _AbsToPhyGridConverter of the y-coordinate system.
+        """self._xy[1].abs2phy (laygo2._AbsToPhyGridConverter): One-dimensional _AbsToPhyGridConverter of the y-coordinate system.
 
         
 
@@ -2330,8 +2203,7 @@ class Grid:
 
     @property
     def v(self):
-        """attribute
-        self.x (laygo2.OneDimGrid): OneDimGrid of the x-coordinate system.
+        """self.x (laygo2.OneDimGrid): OneDimGrid of the x-coordinate system.
 
         
 
@@ -2352,8 +2224,7 @@ class Grid:
 
     @property
     def h(self):
-        """attribute
-        self.y (laygo2.OneDimGrid): OneDimGrid of the y-coordinate system.
+        """self.y (laygo2.OneDimGrid): OneDimGrid of the y-coordinate system.
 
         
 
@@ -2374,8 +2245,7 @@ class Grid:
 
     @property
     def mn(self):
-        """attribute
-        self._phy2abs (laygo2._PhyToAbsGridConverter): Two-dimensional _PhyToAbsConverter of a coordinate system.
+        """self._phy2abs (laygo2._PhyToAbsGridConverter): Two-dimensional _PhyToAbsConverter of a coordinate system.
 
         
 
@@ -2406,8 +2276,7 @@ class Grid:
 
     @property
     def m(self):
-        """attribute
-        self._xy[0].phy2abs (laygo2._PhyToAbsGridConverter ): One-dimensional _PhyToAbsConverter of the x-coordinate system.
+        """self._xy[0].phy2abs (laygo2._PhyToAbsGridConverter ): One-dimensional _PhyToAbsConverter of the x-coordinate system.
 
         
 
@@ -2438,8 +2307,7 @@ class Grid:
 
     @property
     def n(self):
-        """attribute
-        self._xy[1].phy2abs (laygo2._PhyToAbsGridConverter ): One-dimensional _PhyToAbsConverter of the y-coordinate system.
+        """self._xy[1].phy2abs (laygo2._PhyToAbsGridConverter ): One-dimensional _PhyToAbsConverter of the y-coordinate system.
 
         
 
@@ -2470,8 +2338,7 @@ class Grid:
 
     @property
     def shape(self):
-        """attribute
-        numpy.ndarray: Two-dimensional element length in a coordinate system.
+        """numpy.ndarray: Two-dimensional element length in a coordinate system.
             length of x-axis elements, length of y-axis elements
 
         
@@ -2499,8 +2366,7 @@ class Grid:
         self._xy[1].range = np.transpose(value)[1]
 
     range = property(get_range, set_range)
-    """attribute
-    numpy.ndarray: Region in which the coordinate system is defined.
+    """numpy.ndarray: Region in which the coordinate system is defined.
         bbox of the respective Grid
 
     
@@ -2521,8 +2387,7 @@ class Grid:
 
     @property
     def width(self):
-        """attribute
-        numpy.int32: Width of the region in which the coordinate system is defined.
+        """numpy.int32: Width of the region in which the coordinate system is defined.
             x scope
 
         
@@ -2544,11 +2409,7 @@ class Grid:
 
     @property
     def height(self):
-        """attribute
-        numpy.int32: Height of the region in which the coordinate system is defined.
-            y scope
-
-        
+        """numpy.int32: Height of the region in which the coordinate system is defined.
 
         Examples
         --------
@@ -2567,11 +2428,7 @@ class Grid:
 
     @property
     def height_vec(self):
-        """attribute
-        numpy.ndarray: Return height as a list.
-            length of the respective axis and zero
-
-        
+        """numpy.ndarray: Return the height vector [0, h].
 
         Examples
         --------
@@ -2590,8 +2447,7 @@ class Grid:
 
     @property
     def width_vec(self):
-        """attribute
-        numpy.ndarray: Return width as a list.
+        """numpy.ndarray: Return width as a list.
             length of the respective axis and zero
 
         
@@ -2807,15 +2663,11 @@ class PlacementGrid(Grid):
     """
     PlacementGrid class implements a grid for placement of Instance and VirtualInstance.
 
-    Methods
-    -------
-    __init__()
-    place()
-
     Notes
     -----
     Reference in Korean:
     PlacementGrid 클래스는 Instance 및 VirtualInstance 개체들의 배치를 위한 격자 그리드를 구현한다.
+
     """
     type = 'placement'
 
@@ -2868,40 +2720,16 @@ class RoutingGrid(Grid):
     """
     A class that implements wire connections in an abstract coordinate system.
 
-    Attributes
-    ----------
-    type : str
-    vwidth : CircularMapping
-    hwidth : CircularMapping
-    vextension : CircularMapping
-    hextension : CircularMapping
-    vlayer : CircularMapping
-    hlayer : CircularMapping
-    pin_vlayer : CircularMapping
-    pin_hlayer : CircularMapping
-    viamap : CircularMapping
-    xcolor : CircularMapping
-    ycolor : CircularMapping
-    primary_grid : str
-
-    Methods
-    -------
-    __init__()
-    route()
-    via()
-    route_via_track()
-    pin()
-
     Notes
     -----
     Reference in Korean:
     추상 좌표계 상의 배선 동작을 구현하는 클래스.
+
     """
     type = 'routing'
 
     vwidth = None
-    """attribute
-    CircularMapping: Width of vertical wires.
+    """CircularMapping: Width of vertical wires.
 
     
 
@@ -2913,17 +2741,16 @@ class RoutingGrid(Grid):
     >>> print(r23.vwitdh) 
     <laygo2.object.grid.CircularMapping object > class: CircularMapping, elements: [10]
 
+    .. image:: ../assets/img/object_grid_RoutingGrid_vwidth.png
+           :height: 250
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_vwidth.png
-
     Reference in Korean:
     수직 wire 들의 폭.
     """
     hwidth = None
-    """attribute
-    CircularMapping: Width of horizontal wires.
+    """CircularMapping: Width of horizontal wires.
 
     
 
@@ -2935,17 +2762,16 @@ class RoutingGrid(Grid):
     >>> print(r23.hwitdh) 
     <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [10 10 10 10 10 10 10 10]
 
+    .. image:: ../assets/img/object_grid_RoutingGrid_hwidth.png
+           :height: 250 
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_hwidth.png 
-
     Reference in Korean:
     수평 wire들의 폭.
     """
     vextension = None
-    """attribute
-    CircularMapping: Extension of vertical wires.
+    """CircularMapping: Extension of vertical wires.
 
     
 
@@ -2957,17 +2783,16 @@ class RoutingGrid(Grid):
     >>> print(r23.vextension) 
     <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [15]
 
+    .. image:: ../assets/img/object_grid_RoutingGrid_vextension.png
+           :height: 250
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_vextension.png
-
     Reference in Korean:
     수직 wire들의 extension.
     """
     hextension = None
-    """attribute
-    CircularMapping: Extension of horizontal wires.
+    """CircularMapping: Extension of horizontal wires.
 
     
 
@@ -2979,11 +2804,11 @@ class RoutingGrid(Grid):
     >>> print(r23.hextension) 
     <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [15 15 15 15 15 15 15 15]
 
+    .. image:: ../assets/img/object_grid_RoutingGrid_hextension.png
+           :height: 250 
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_hextension.png 
-
     Reference in Korean:
     수평 wire들의 extension.
     """
@@ -2992,8 +2817,7 @@ class RoutingGrid(Grid):
     hextension0 = None
     """CircularMapping: the array containing the extension of the zero-length wires on the horizontal grid. """
     vlayer = None
-    """attribute
-    CircularMapping: Layer information of vertical wires.
+    """CircularMapping: Layer information of vertical wires.
 
     
 
@@ -3005,17 +2829,16 @@ class RoutingGrid(Grid):
     >>> print(r23.vlayer) 
     <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [['metal3' 'drawing']]
 
+    .. image:: ../assets/img/object_grid_RoutingGrid_vlayer.png
+           :height: 250
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_vlayer.png
-
     Reference in Korean:
     수직 wire들의 레이어 정보.
     """
     hlayer = None
-    """attribute
-    CircularMapping: Layer information of horizontal wires.
+    """CircularMapping: Layer information of horizontal wires.
 
     
 
@@ -3027,17 +2850,16 @@ class RoutingGrid(Grid):
     >>> print(r23.hlayer) 
     <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [['metal2' 'drawing'], ['metal2' 'drawing'], ['metal2' 'drawing'], ['metal2' 'drawing'], ['metal2' 'drawing'], ['metal2' 'drawing'], ['metal2' 'drawing'], ['metal2' 'drawing']]
 
+    .. image:: ../assets/img/object_grid_RoutingGrid_hlayer.png
+           :height: 250
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_hlayer.png
-
     Reference in Korean:
     수평 wire들의 레이어정보.
     """
     pin_vlayer = None
-    """attribute
-    CircularMapping: Layer information of vertical pin wires.
+    """CircularMapping: Layer information of vertical pin wires.
 
     
 
@@ -3049,17 +2871,16 @@ class RoutingGrid(Grid):
     >>> print(r23.pin_vlayer) 
     <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [['metal3' 'pin']]
 
+    .. image:: ../assets/img/object_grid_RoutingGrid_pin_vlayer.png
+           :height: 250
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_pin_vlayer.png
-
     Reference in Korean:
     수직 pin wire들의 레이어 정보.
     """
     pin_hlayer = None
-    """attribute
-    CircularMapping: Layer information of horizontal pine wires.
+    """CircularMapping: Layer information of horizontal pine wires.
 
     
 
@@ -3071,17 +2892,16 @@ class RoutingGrid(Grid):
     >>> print(r23.pin_hlayer) 
     <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [['metal2' 'pin'], ['metal2' 'pin'], ['metal2' 'pin'], ['metal2' 'pin'], ['metal2' 'pin'], ['metal2' 'pin'], ['metal2' 'pin'], ['metal2' 'pin']]
 
+    .. image:: ../assets/img/object_grid_RoutingGrid_pin_hlayer.png
+           :height: 250
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_pin_hlayer.png
-
     Reference in Korean:
     수평 pin wire 들의 레이어정보.
     """
     viamap = None
-    """attribute
-    CircularMappingArray: Array containing Via objects positioned on grid crossing points.
+    """CircularMappingArray: Array containing Via objects positioned on grid crossing points.
 
     
 
@@ -3093,17 +2913,16 @@ class RoutingGrid(Grid):
     >>> print(r23.viamap) 
     <laygo2.object.grid.CircularMappingArray object> class: CircularMappingArray, elements: [[<laygo2.object.template.UserDefinedTemplate object>, <laygo2.object.template.UserDefinedTemplate object>, <laygo2.object.template.UserDefinedTemplate object>, <laygo2.object.template.UserDefinedTemplate object>, <laygo2.object.template.UserDefinedTemplate object>, <laygo2.object.template.UserDefinedTemplate object>, <laygo2.object.template.UserDefinedTemplate object>, <laygo2.object.template.UserDefinedTemplate object>]]
 
+    .. image:: ../assets/img/object_grid_RoutingGrid_viamap.png
+           :height: 250
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_viamap.png
-
     Reference in Korean:
     그리드 교차점에 위치하는 via개채들을 담고있는배열.
     """
     primary_grid = 'vertical'
-    """attribute
-    str: Direction of wire having length 0.
+    """str: Direction of wire having length 0.
 
     
 
@@ -3115,17 +2934,16 @@ class RoutingGrid(Grid):
     >>> print(r23.primary_grid) 
     “horizontal”
 
+    .. image:: ../assets/img/object_grid_RoutingGrid_primary_grid.png
+           :height: 250
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_primary_grid.png
-
     Reference in Korean:
     길이가 0인 wire방향.
     """
     xcolor = None
-    """attribute
-    CircularMapping: Color of horizontal wires.
+    """CircularMapping: Color of horizontal wires.
 
     
 
@@ -3137,17 +2955,16 @@ class RoutingGrid(Grid):
     >>> print(r23.xcolor) 
     <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [[“colorA”], [“colorB”], [“colorA”], [“colorB”], [“colorA”], [“colorB”], [“colorA”], [“colorB”]]
 
+    .. image:: ../assets/img/object_grid_RoutingGrid_xcolor.png
+           :height: 250
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_xcolor.png
-
     Reference in Korean:
     수평 wire 들의 color.
     """
     ycolor = None
-    """attribute
-    CircularMapping: Color of vertical wires.
+    """CircularMapping: Color of vertical wires.
 
     
 
@@ -3159,11 +2976,11 @@ class RoutingGrid(Grid):
     >>> print(r23.ycolor) 
     <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [[“colorA”]]
 
+    .. image:: ../assets/img/object_grid_RoutingGrid_ycolor.png
+           :height: 250
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_ycolor.png
-
     Reference in Korean:
     수직 wire들의 color.
     """
@@ -3216,11 +3033,11 @@ class RoutingGrid(Grid):
         --------
         None
 
+        .. image:: ../assets/img/object_grid_RoutingGrid_init.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_init.png
-
         Reference in Korean:
         RoutingGrid 클래스의 생성자함수.
         파라미터
@@ -3293,11 +3110,11 @@ class RoutingGrid(Grid):
         >>> print(route)
         [<laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>]
 
+        .. image:: ../assets/img/object_grid_RoutingGrid_route.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_route.png
-
         Reference in Korean:
         wire 라우팅 함수, rect object를 생성.
         파라미터
@@ -3390,11 +3207,11 @@ class RoutingGrid(Grid):
         >>> print(via)
         [<laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.VirtualInstance object>]
 
+        .. image:: ../assets/img/object_grid_RoutingGrid_via.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_via.png
-
         Reference in Korean:
         via 생성함수.
         파라미터
@@ -3447,11 +3264,11 @@ class RoutingGrid(Grid):
         >>> print(track)
         [[<laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>], <laygo2.object.physical.VirtualInstance object>, [<laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>], [<laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>], [<laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>], [<laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>], <laygo2.object.physical.Rect object>]
 
+        .. image:: ../assets/img/object_grid_RoutingGrid_route_via_track.png
+           :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_grid_RoutingGrid_route_via_track.png
-
         Reference in Korean:
         wire 라우팅 함수, track을 기준점으로 routing을 진행한다.
         파라미터

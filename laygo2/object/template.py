@@ -39,23 +39,11 @@ class Template(metaclass=ABCMeta):
     """
     The base class that defines the functions and attributes of the template.
 
-    Attributes
-    ----------
-    name : str
-
-    Methods
-    -------
-    __init__() 
-    width()
-    size() 
-    bbox() 
-    pins() 
-    generate() 
-
     Notes
     -----
-    Reference in Korean:
-    Template의 기본동작과 속성을 정의한 기본 클래스.
+    **Reference in Korean**: Template의 기본동작과 속성을 정의한 기본 클래스.
+
+
     """
 
     name = None
@@ -115,27 +103,10 @@ class NativeInstanceTemplate(Template):
     """
     NativeInstanceTemplate class implements the template that generate Instance.
 
-    Attributes
-    ----------
-    name : str
-    libname : str
-    cellname : str
-
-    Methods
-    -------
-    __init__() 
-    height() 
-    width() 
-    size() 
-    bbox() 
-    pins() 
-    generate() 
-    export_to_dict() 
-
     Notes
     -----
-    Reference in Korean:
-    NativeInstanceTemplate 클래스는 기본 Instance를 반환하는 템플릿을 구현한다.
+    **Reference in Korean**: NativeInstanceTemplate 클래스는 기본 Instance를 반환하는 템플릿을 구현한다.
+
     """
     libname = None
     """attribute
@@ -151,13 +122,15 @@ class NativeInstanceTemplate(Template):
     >>> nat_temp.libname 
     “mylib”
 
+    
+    .. image:: ../assets/img/object_template_NativeInstanceTemplate_libname.png
+          :height: 250
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_NativeInstanceTemplate_libname.png
-
-    Reference in Korean:
+    **Reference in Korean**: 
     str: NativeInstanceTemplate 객체의 library 이름.
+
     """
 
     cellname = None
@@ -174,13 +147,15 @@ class NativeInstanceTemplate(Template):
     >>> nat_temp.cellname 
     “mynattemplate”
 
+    
+    .. image:: ../assets/img/object_template_NativeInstanceTemplate_cellname.png
+          :height: 250
+
     Notes
     -----
-    Related Images:
-    https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_NativeInstanceTemplate_cellname.png
-
-    Reference in Korean:
+    **Reference in Korean**:
     str: NativeInstanceTemplate 객체의 cellname.
+
     """
 
     _bbox = np.array([[0, 0], [0, 0]])
@@ -206,8 +181,6 @@ class NativeInstanceTemplate(Template):
         -------
         NativeInstanceTemplate
 
-        
-
         Examples
         --------
         >>> nat_temp_pins = dict() 
@@ -216,12 +189,13 @@ class NativeInstanceTemplate(Template):
         >>> nat_temp = laygo2.object.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
         <laygo2.object.template.NativeInstanceTemplate object>
 
+        
+        .. image:: ../assets/img/object_template_NativeInstanceTemplate_init.png
+          :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_NativeInstanceTemplate_init.png
-
-        Reference in Korean:
+        **Reference in Korean**:
         NativeInstanceTemplate 클래스의 생성자함수.
         파라미터
         libname(str): library 이름
@@ -230,8 +204,7 @@ class NativeInstanceTemplate(Template):
         pins(dict): pin 객체를 갖고있는 dictionary
         반환값
         laygo2.NativeInstanceTemplate
-        참조
-        없음
+
         """
         self.libname = libname
         self.cellname = cellname
@@ -272,19 +245,19 @@ class NativeInstanceTemplate(Template):
         >>> nat_temp.bbox() 
         [[0,0], [100, 100]]
 
+        
+        .. image:: ../assets/img/object_template_NativeInstanceTemplate_bbox.png
+          :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_NativeInstanceTemplate_bbox.png
-
-        Reference in Korean:
+        **Reference in Korean**:
         NativeInstanceTemplate 객체의 bbox.
         파라미터
         없음
         반환값
         numpy.ndarray
-        참조
-        없음
+
         """
         return self._bbox
 
@@ -311,19 +284,19 @@ class NativeInstanceTemplate(Template):
         >>> nat_temp.pins() 
         {'in': <laygo2.object.physical.Pin object>, 'out': <laygo2.object.physical.Pin object>}
 
+        
+        .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_pins.png
+          :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_ParameterizedInstanceTemplate_pins.png
-
-        Reference in Korean:
+        **Reference in Korean**:
         NativeInstanceTemplate 객체의 pin dictionary 반환.
         파라미터
         없음
         반환값
         dict
-        참조
-        없음
+
         """
         return self._pins
 
@@ -363,12 +336,13 @@ class NativeInstanceTemplate(Template):
         >>> nat_temp.generate(name="I2")
         <laygo2.object.physical.Instance object>
 
+        
+        .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_generate.png
+          :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_ParameterizedInstanceTemplate_generate.png
-
-        Reference in Korean:
+        **Reference in Korean**:
         Instance 객체 생성.
         파라미터
         name(str): 생성할 인스턴스의 이름
@@ -380,6 +354,7 @@ class NativeInstanceTemplate(Template):
         laygo2.Instance: 생성된 개체
         참조
         Class Instance
+
         """
         return laygo2.object.physical.Instance(libname=self.libname, cellname=self.cellname, xy=np.array([0, 0]),
                                                shape=shape, pitch=pitch, unit_size=self.size(params), pins=self.pins(params),
@@ -411,12 +386,13 @@ class NativeInstanceTemplate(Template):
         >>> nat_temp.export_to_dict()
         {'libname': 'mylib', 'cellname': 'mynattemplate', 'bbox': [[0, 0], [100, 100]], 'pins': {'in': {'xy': [[0, 0], [10, 10]], 'layer': ['M1', 'drawing'], 'name': None, 'netname': 'in'}, 'out': {'xy': [[90, 9 0], [100, 100]], 'layer': ['M1', 'drawing'], 'name': None, 'netname': 'out'}}}
 
+        
+        .. image:: ../assets/img/object_template_NativeInstanceTemplate_export_to_dict.png
+          :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_NativeInstanceTemplate_export_to_dict.png
-
-        Reference in Korean:
+        **Reference in Korean**:
         NativeInstanceTemplate 의 정보가 담긴 Dictonary 반환.
         파라미터
         없음
@@ -424,6 +400,7 @@ class NativeInstanceTemplate(Template):
         dict
         참조
         Class Instance
+
         """
         db = dict()
         db['libname'] = self.libname
@@ -439,26 +416,10 @@ class ParameterizedInstanceTemplate(Template):
     """
     ParameterizedInstanceTemplate class implements the template that generate ParameterizedInstnace.
 
-    Attributes
-    ----------
-    name : str
-    libname : str
-    cellname : str
-
-    Methods
-    -------
-    __init__() 
-    height() 
-    width() 
-    size() 
-    bbox() 
-    pins() 
-    generate()
-
     Notes
     -----
-    Reference in Korean:
-    ParameterizedInstanceTemplate 클래스는 Parameterized Instance를 반환하는 템플릿을 구현한다.
+    **Reference in Korean**: ParameterizedInstanceTemplate 클래스는 Parameterized Instance를 반환하는 템플릿을 구현한다.
+
     """
 
     libname = None
@@ -501,12 +462,13 @@ class ParameterizedInstanceTemplate(Template):
         >>> pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox_func= pcell_bbox_func, pins_func= pcell_pins_func)
         <laygo2.object.template.ParameterizedInstanceTemplate object>
         
+        
+        .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_init.png
+          :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_ParameterizedInstanceTemplate_init.png
-
-        Reference in Korean:
+        **Reference in Korean**:
         ParameterizedInstanceTemplate 클래스의 생성자함수.
         파라미터
         libname(str): library 이름 
@@ -517,6 +479,7 @@ class ParameterizedInstanceTemplate(Template):
         laygo2.NativeInstanceTemplate
         참조
         없음
+
         """
         self.libname = libname
         self.cellname = cellname
@@ -551,12 +514,13 @@ class ParameterizedInstanceTemplate(Template):
         >>> pcell_temp.bbox 
         [[0,0], [100,100]]
 
+        
+        .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_bbox.png
+          :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_ParameterizedInstanceTemplate_bbox.png
-
-        Reference in Korean:
+        **Reference in Korean**:
         ParameterizedInstanceTemplate 객체의 bbox.
         파라미터
         없음
@@ -564,6 +528,7 @@ class ParameterizedInstanceTemplate(Template):
         numpy.ndarray
         참조
         없음
+
         """
         return self._bbox(params=params)
 
@@ -599,12 +564,13 @@ class ParameterizedInstanceTemplate(Template):
         >>> pcell_temp.pins 
         {'in': <laygo2.object.physical.Pin object>, 'out': <laygo2.object.physical.Pin object>}
 
+        
+        .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_pins.png
+          :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_ParameterizedInstanceTemplate_pins.png
-
-        Reference in Korean:
+        **Reference in Korean**:
         ParameterizedInstanceTemplate 객체의 pin dictionary 반환.
         파라미터
         없음
@@ -612,6 +578,7 @@ class ParameterizedInstanceTemplate(Template):
         dict
         참조
         없음
+
         """
         return self._pins(params=params)
 
@@ -652,12 +619,13 @@ class ParameterizedInstanceTemplate(Template):
         >>> pcell_temp.generate(name=“I2”, params={“W”=2, “L”=1}) 
         <laygo2.object.physical.Instance object>
 
+        
+        .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_generate.png
+          :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_ParameterizedInstanceTemplate_generate.png
-
-        Reference in Korean:
+        **Reference in Korean**:
         ParameterizedInstance 객체 생성.
         파라미터
         name(str): 생성할 인스턴스의 이름
@@ -669,6 +637,7 @@ class ParameterizedInstanceTemplate(Template):
         laygo2.Instance: 생성된 객체
         참조
         Class Instance
+
         """
         #xy = xy + np.dot(self.xy(params)[0], tf.Mt(transform).T)
         return laygo2.object.physical.Instance(libname=self.libname, cellname=self.cellname, xy=np.array([0, 0]),
@@ -680,24 +649,10 @@ class UserDefinedTemplate(Template):
     """
     UserDefinedTemplate class implements the template that generate VirtualInstance.
 
-    Attributes
-    ----------
-    name : str
-
-    Methods
-    -------
-    __init__() 
-    height() 
-    width() 
-    size() 
-    bbox() 
-    pins() 
-    generate() 
-
     Notes
     -----
-    Reference in Korean:
-    UserDefinedTemplate 클래스는 VirtualInstance를 반환하는 템플릿을 구현한다.
+    **Reference in Korean**: UserDefinedTemplate 클래스는 VirtualInstance를 반환하는 템플릿을 구현한다.
+
     """
 
     _bbox = None
@@ -738,12 +693,13 @@ class UserDefinedTemplate(Template):
         >>> user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
         <laygo2.object.template.UserDefinedTemplate object>
 
+        
+        .. image:: ../assets/img/object_template_UserDefinedTemplate_init.png
+          :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_UserDefinedTemplate_init.png
-
-        Reference in Korean:
+        **Reference in Korean**:
         UserDefinedTemplate 클래스의 생성자함수.
         파라미터
         bbox_func(callable ): bbox를 연산해주는 메소드
@@ -754,6 +710,7 @@ class UserDefinedTemplate(Template):
         laygo2.UserDefinedTemplate
         참조
         없음
+
         """
         self._bbox = bbox_func
         self._pins = pins_func
@@ -791,12 +748,13 @@ class UserDefinedTemplate(Template):
         >>> user_temp.bbox() 
         [[0, 0], [100, 100]]
 
+        
+        .. image:: ../assets/img/object_template_UserDefinedTemplate_bbox.png
+          :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_UserDefinedTemplate_bbox.png
-
-        Reference in Korean:
+        **Reference in Korean**:
         UserDefinedTemplate 객체의 bbox 반환.
         파라미터
         없음
@@ -804,6 +762,7 @@ class UserDefinedTemplate(Template):
         numpy.ndarray
         참조
         없음
+
         """
         return self._bbox(params=params)
 
@@ -841,12 +800,13 @@ class UserDefinedTemplate(Template):
         >>> user_temp.pins()
         {'in': <laygo2.object.physical.Pin>, 'out': <laygo2.object.physical.Pin object>}
 
+        
+        .. image:: ../assets/img/object_template_UserDefinedTemplate_pins.png
+          :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_UserDefinedTemplate_pins.png
-
-        Reference in Korean:
+        **Reference in Korean**:
         UserDefinedTemplate 객체의 pins.
         파라미터
         없음
@@ -854,6 +814,7 @@ class UserDefinedTemplate(Template):
         dict
         참조
         없음
+
         """
         return self._pins(params=params)
 
@@ -899,12 +860,13 @@ class UserDefinedTemplate(Template):
         >>> nat_temp.generate(name=“I2”, {“multi”=2}) 
         <laygo2.object.physical.VirtualInstance >
 
+        
+        .. image:: ../assets/img/object_template_UserDefinedTemplate_generate.png
+          :height: 250
+
         Notes
         -----
-        Related Images:
-        https://github.com/niftylab/laygo2/tree/master/docs_workspace/assets/img/object_template_UserDefinedTemplate_generate.png
-
-        Reference in Korean:
+        **Reference in Korean**:
         VirtualInstance 객체 생성.
         파라미터
         없음
@@ -912,6 +874,7 @@ class UserDefinedTemplate(Template):
         laygo2.VirtualInstance
         참조
         없음
+
         """
         return self._generate(name=name, shape=shape, pitch=pitch, transform=transform, params=params)
 
