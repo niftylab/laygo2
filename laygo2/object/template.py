@@ -288,7 +288,7 @@ class NativeInstanceTemplate(Template):
         """
         return self._bbox
 
-    def pins(self, params=None, netname=None):
+    def pins(self, params=None):
         """
         Return pin dictionary of NativeInstanceTemplate object.
 
@@ -324,10 +324,6 @@ class NativeInstanceTemplate(Template):
         참조
         없음
         """
-        if type(netname) is dict:
-            for pinName in self._pins.keys():
-                if pinName in netname.keys():
-                    self._pins[pinName].netname = netname[pinName]
 
         return self._pins
 
@@ -385,11 +381,20 @@ class NativeInstanceTemplate(Template):
         참조
         Class Instance
         """
-        return laygo2.object.physical.Instance(libname=self.libname, cellname=self.cellname, xy=np.array([0, 0]),
-                                               shape=shape, pitch=pitch, unit_size=self.size(params), pins=self.pins(params, 
-                                               netname),
+        ninst =  laygo2.object.physical.Instance(libname=self.libname, cellname=self.cellname, xy=np.array([0, 0]),
+                                               shape=shape, pitch=pitch, unit_size=self.size(params), pins=self.pins(params),
                                                transform=transform, name=name, params=params)
-
+        if type(netname) is dict:
+            for pinName,pin in ninst.pins.items():
+                if pinName in netname.keys():
+                    pin.netname = netname[pinName]
+                else:
+                    pin.netname = name+'/'+pin.netname
+        else:
+            for pin in ninst.pins.values():
+                pin.netname = name+'/'+pin.netname
+        return ninst       
+        
     # I/O functions
     def export_to_dict(self):
         """
