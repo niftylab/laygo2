@@ -47,6 +47,6 @@ This yaml file contains various parameters for template and grid generation func
 This file is not a mendatory one, as the py files can be described without using any external parameter files. 
 The example file contains various technology parameters such as unit resolutons, pin locations, structure sizes, and grid parameters.
 
-## __init__.py
+## \_\_init\_\_.py
 
 This initialization file contains code to read out load_templates / load_grids funtions when the package is loaded.
