@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('../../..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'LAYGO2 Documentation'
+project = 'laygo2'
 copyright = '2021, Niftylab at Hanyang University, South Korea'
 author = 'niftylab'
 

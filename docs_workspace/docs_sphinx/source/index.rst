@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-LAYGO2-LAYout with Gridded Objects2
-====================================
+laygo2-LAYout with Gridded Objects 2
+=====================================
 
 The LAYout with Gridded Object 2 (laygo2) package is a Python-based layout generation framework with the following goals:
 
@@ -16,6 +16,7 @@ The LAYout with Gridded Object 2 (laygo2) package is a Python-based layout gener
 
 * Code-based layout generation. 
 
+laygo2 is currently being developed/maintained by the `Nifty Chips Laboratory <https://niftylab.github.io>`_ at Hanyang University.
 
 .. toctree::
    :maxdepth: 2
