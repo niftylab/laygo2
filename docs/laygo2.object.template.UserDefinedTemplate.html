@@ -1,0 +1,747 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>UserDefinedTemplate class &#8212; LAYGO2 Documentation  documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/autoclasstoc.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="laygo2.object.grid module" href="laygo2.object.grid.html" />
+    <link rel="prev" title="ParameterizedInstanceTemplate class" href="laygo2.object.template.ParameterizedInstanceTemplate.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="index.html">
+<p class="title">LAYGO2 Documentation</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_link.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="examples_link.html">
+  Trial
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="structure_link.html">
+  Structure
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="technology_link.html">
+  Tech Setup
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_kor.html">
+  Korean
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="laygo2.html">
+  API Reference
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="laygo2.object.html">
+   laygo2.object package
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.physical.html">
+     laygo2.object.physical module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.PhysicalObject.html">
+       PhysicalObject class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.IterablePhysicalObject.html">
+       IterablePhysicalObject class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.PhysicalObjectGroup.html">
+       PhysicalObjectGroup class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Rect.html">
+       Rect class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Path.html">
+       Path class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Pin.html">
+       Pin class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Text.html">
+       Text class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Instance.html">
+       Instance class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.VirtualInstance.html">
+       VirtualInstance class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="laygo2.object.template.html">
+     laygo2.object.template module
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.Template.html">
+       Template class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.NativeInstanceTemplate.html">
+       NativeInstanceTemplate class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.ParameterizedInstanceTemplate.html">
+       ParameterizedInstanceTemplate class
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       UserDefinedTemplate class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.grid.html">
+     laygo2.object.grid module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.CircularMapping.html">
+       CircularMapping class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html">
+       CircularMappingArray class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid._AbsToPhyGridConverter.html">
+       _AbsToPhyGridConverter class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid._PhyToAbsGridConverter.html">
+       _PhyToAbsGridConverter class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.OneDimGrid.html">
+       OneDimGrid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.Grid.html">
+       Grid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.PlacementGrid.html">
+       PlacementGrid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.RoutingGrid.html">
+       RoutingGrid class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.database.html">
+     laygo2.object.database module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.BaseDatabase.html">
+       BaseDatabase class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.Library.html">
+       Library class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.Design.html">
+       Design class
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laygo2.interface.html">
+   laygo2.interface package
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laygo2.util.html">
+   laygo2.util package
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="userdefinedtemplate-class">
+<h1>UserDefinedTemplate class<a class="headerlink" href="#userdefinedtemplate-class" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">laygo2.object.template.</span></span><span class="sig-name descname"><span class="pre">UserDefinedTemplate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pins_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generate_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template.html#UserDefinedTemplate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="laygo2.object.template.Template.html#laygo2.object.template.Template" title="laygo2.object.template.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">laygo2.object.template.Template</span></code></a></p>
+<p>UserDefinedTemplate class implements the template that generate VirtualInstance.</p>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: UserDefinedTemplate 클래스는 VirtualInstance를 반환하는 템플릿을 구현한다.</p>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Data Attributes:</p>
+<details><summary>Inherited from <a class="reference internal" href="laygo2.object.template.Template.html#laygo2.object.template.Template" title="laygo2.object.template.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">Template</span></code></a></summary><table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.UserDefinedTemplate.name" title="laygo2.object.template.UserDefinedTemplate.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></p></td>
+<td><p>Template name.</p></td>
+</tr>
+</tbody>
+</table>
+</details></div>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Methods:</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.UserDefinedTemplate.__init__" title="laygo2.object.template.UserDefinedTemplate.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(bbox_func, pins_func, generate_func)</p></td>
+<td><p>Constructor function of UserDefinedTemplate class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.template.UserDefinedTemplate.bbox" title="laygo2.object.template.UserDefinedTemplate.bbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bbox</span></code></a>([params])</p></td>
+<td><p>Return bbox of UserDefinedTemplate object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.UserDefinedTemplate.pins" title="laygo2.object.template.UserDefinedTemplate.pins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pins</span></code></a>([params])</p></td>
+<td><p>Pins of UserDefinedTemplate object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.template.UserDefinedTemplate.generate" title="laygo2.object.template.UserDefinedTemplate.generate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate</span></code></a>([name, shape, pitch, transform, params])</p></td>
+<td><p>Generate a VirtualInstance object by calling generate_func() bound to the template.</p></td>
+</tr>
+</tbody>
+</table>
+<details><summary>Inherited from <a class="reference internal" href="laygo2.object.template.Template.html#laygo2.object.template.Template" title="laygo2.object.template.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">Template</span></code></a></summary><table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.UserDefinedTemplate.__init__" title="laygo2.object.template.UserDefinedTemplate.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(bbox_func, pins_func, generate_func)</p></td>
+<td><p>Constructor function of UserDefinedTemplate class.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__str__</span></code>()</p></td>
+<td><p>Return a string corresponding to this object's information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.UserDefinedTemplate.summarize" title="laygo2.object.template.UserDefinedTemplate.summarize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summarize</span></code></a>()</p></td>
+<td><p>Return the summary of the template information.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.template.UserDefinedTemplate.height" title="laygo2.object.template.UserDefinedTemplate.height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code></a>([params])</p></td>
+<td><p>int: Return the height of a template.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.UserDefinedTemplate.width" title="laygo2.object.template.UserDefinedTemplate.width"><code class="xref py py-obj docutils literal notranslate"><span class="pre">width</span></code></a>([params])</p></td>
+<td><p>int: Return the width of a template.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.template.UserDefinedTemplate.size" title="laygo2.object.template.UserDefinedTemplate.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code></a>([params])</p></td>
+<td><p>int: Return the size of a template.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.UserDefinedTemplate.bbox" title="laygo2.object.template.UserDefinedTemplate.bbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bbox</span></code></a>([params])</p></td>
+<td><p>Return bbox of UserDefinedTemplate object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.template.UserDefinedTemplate.pins" title="laygo2.object.template.UserDefinedTemplate.pins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pins</span></code></a>([params])</p></td>
+<td><p>Pins of UserDefinedTemplate object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.UserDefinedTemplate.generate" title="laygo2.object.template.UserDefinedTemplate.generate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate</span></code></a>([name, shape, pitch, transform, params])</p></td>
+<td><p>Generate a VirtualInstance object by calling generate_func() bound to the template.</p></td>
+</tr>
+</tbody>
+</table>
+</details></div>
+<hr class="docutils" />
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pins_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generate_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template.html#UserDefinedTemplate.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor function of UserDefinedTemplate class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bbox_func</strong> (<em>callable</em>) – method computing bbox.</p></li>
+<li><p><strong>pins_func</strong> (<em>callable</em>) – method computing pins.</p></li>
+<li><p><strong>generate_func</strong> (<em>callable</em>) – method generating VirtualInstance.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – template name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>laygo2.UserDefinedTemplate</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; def user_bbox_func(params):-&gt; numpy.ndarray …  ## return bbox0 * multi
+    ……
+&gt;&gt;&gt; def user_pins_func(params):-&gt; dict          …  ## pin0.bbox = pins0.bbox * multi
+    ……
+&gt;&gt;&gt; def user_generate_func(params):
+    ……
+&gt;&gt;&gt; user_temp = laygo2.object.UserDefinedTemplate(name=&#39;myusertemplate&#39;, bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
+&lt;laygo2.object.template.UserDefinedTemplate object&gt;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_template_UserDefinedTemplate_init.png"><img alt="_images/object_template_UserDefinedTemplate_init.png" src="_images/object_template_UserDefinedTemplate_init.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:
+UserDefinedTemplate 클래스의 생성자함수.
+파라미터
+bbox_func(callable ): bbox를 연산해주는 메소드
+pins_func(callable ): pins를 연산해주는 메소드
+generate_func(callable ): VirtualInstance를 생성하는 메소드
+name(str): 템플릿 이름
+반환값
+laygo2.UserDefinedTemplate
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate.bbox">
+<span class="sig-name descname"><span class="pre">bbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template.html#UserDefinedTemplate.bbox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate.bbox" title="Permalink to this definition"></a></dt>
+<dd><p>Return bbox of UserDefinedTemplate object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; params={}; params[“multi”] = 10; bbox0 = [ [0,0],[100,100]]; pin0 = [ in, out ]
+&gt;&gt;&gt; def user_bbox_func(params):-&gt; numpy.ndarray …  ## return bbox0 * multi
+        if params==None:
+            params={}
+            params[&#39;multi&#39;] = 1
+        return np.array([[0, 0], [100 * params[&#39;multi&#39;], 100]])
+&gt;&gt;&gt; def user_pins_func(params):-&gt; dict          …  ## pin0.bbox = pins0.bbox * multi
+    ……
+&gt;&gt;&gt; def user_generate_func(params):
+    ……
+&gt;&gt;&gt; user_temp = laygo2.object.UserDefinedTemplate(name=&#39;myusertemplate&#39;, bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
+&gt;&gt;&gt; user_temp.bbox()
+[[0, 0], [100, 100]]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_template_UserDefinedTemplate_bbox.png"><img alt="_images/object_template_UserDefinedTemplate_bbox.png" src="_images/object_template_UserDefinedTemplate_bbox.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:
+UserDefinedTemplate 객체의 bbox 반환.
+파라미터
+없음
+반환값
+numpy.ndarray
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'R0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template.html#UserDefinedTemplate.generate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate.generate" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a VirtualInstance object by calling generate_func() bound to the template.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – name of the instance to be generated.</p></li>
+<li><p><strong>shape</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a><em>, </em><em>optional.</em>) – shape of the object to be generated.</p></li>
+<li><p><strong>pitch</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a><em>, </em><em>optional.</em>) – pitch of the object to be generated.</p></li>
+<li><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a><em>, </em><em>optional.</em>) – dictionary having the entity attributes.</p></li>
+<li><p><strong>transform</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional.</em>) – transformation attribute of the entity to be generated.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(<a class="reference internal" href="laygo2.object.physical.VirtualInstance.html#laygo2.object.physical.VirtualInstance" title="laygo2.object.physical.VirtualInstance">laygo2.object.physical.VirtualInstance</a>) generated VirtualInstance object.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; def user_bbox_func(params):-&gt; numpy.ndarray …  ## return bbox0 * multi
+&gt;&gt;&gt; def user_pins_func(params):-&gt; dict
+&gt;&gt;&gt; def user_generate_func(params={“multi”:1}):
+        m = params[&#39;multi&#39;]
+        shape = np.array([1, 1]); inst_pins = user_pins_func(params) ; inst_native_elements = dict()
+        inst_native_elements[&#39;left&#39;] = laygo2.object.Rect(xy=[ [0, 0], [0,100]], layer=[&#39;M1’, &#39;drawing&#39;])
+        ofst = np.array([100, 0])
+        for i in range(m):
+            bl  = np.array([0,0])
+            tr  = np.array([100,100])
+            inst_native_elements[&#39;center&#39;+str(i)] = laygo2.object.Rect(xy=[ i*ofst + bl , i*ofst + tr ]…
+        inst_native_elements[&#39;right&#39;] = laygo2.object.Rect(xy=[ m*ofst + [0, 0], m*ofst + [ 0 , 100]], …)
+        inst = VirtualInstance(name=name,xy=np.array([0, 0]),native_elements=inst_native_elements,……)
+&gt;&gt;&gt; user_temp = laygo2.object.UserDefinedTemplate(name=&#39;myusertemplate&#39;, bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
+&gt;&gt;&gt; nat_temp.generate(name=“I1”, {“multi”=1})
+&lt;laygo2.object.physical.VirtualInstance &gt;
+&gt;&gt;&gt; nat_temp.generate(name=“I2”, {“multi”=2})
+&lt;laygo2.object.physical.VirtualInstance &gt;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_template_UserDefinedTemplate_generate.png"><img alt="_images/object_template_UserDefinedTemplate_generate.png" src="_images/object_template_UserDefinedTemplate_generate.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:
+VirtualInstance 객체 생성.
+파라미터
+없음
+반환값
+laygo2.VirtualInstance
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate.height">
+<span class="sig-name descname"><span class="pre">height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate.height" title="Permalink to this definition"></a></dt>
+<dd><p>int: Return the height of a template.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate.pins">
+<span class="sig-name descname"><span class="pre">pins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template.html#UserDefinedTemplate.pins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate.pins" title="Permalink to this definition"></a></dt>
+<dd><p>Pins of UserDefinedTemplate object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; params={}; params[“multi”] = 10; bbox0 = [ [0,0],[100,100]]; pin0 = [ in, out ]
+&gt;&gt;&gt; def user_bbox_func(params):-&gt; numpy.ndarray …  ## return bbox0 * multi
+&gt;&gt;&gt; def user_pins_func(params):-&gt; dict
+        if params==None:
+            params={&quot;multi&quot;:1}
+        i = params[&#39;multi&#39;]
+        template_pins = dict()
+        pin_in = laygo2.object.Pin(xy =[ [ 0, 0], [100 * i, 0 ] ],   layer=[&#39;M1&#39;, &#39;pin&#39;], netname=&#39;in&#39;)
+        pin_out = laygo2.object.Pin(xy=[ [ 0, 100], [100 * i, 100]], layer=[&#39;M1&#39;, &#39;pin&#39;], netname=&#39;out&#39;)
+        template_pins[&#39;in&#39; ] = pin_in
+        template_pins[&#39;out&#39;] = pin_out
+        return template_pins
+&gt;&gt;&gt; def user_generate_func(params):
+    ……
+&gt;&gt;&gt; user_temp = laygo2.object.UserDefinedTemplate(name=&#39;myusertemplate&#39;, bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
+&gt;&gt;&gt; user_temp.pins()
+{&#39;in&#39;: &lt;laygo2.object.physical.Pin&gt;, &#39;out&#39;: &lt;laygo2.object.physical.Pin object&gt;}
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_template_UserDefinedTemplate_pins.png"><img alt="_images/object_template_UserDefinedTemplate_pins.png" src="_images/object_template_UserDefinedTemplate_pins.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:
+UserDefinedTemplate 객체의 pins.
+파라미터
+없음
+반환값
+dict
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate.size">
+<span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate.size" title="Permalink to this definition"></a></dt>
+<dd><p>int: Return the size of a template.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate.summarize">
+<span class="sig-name descname"><span class="pre">summarize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate.summarize" title="Permalink to this definition"></a></dt>
+<dd><p>Return the summary of the template information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate.width">
+<span class="sig-name descname"><span class="pre">width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate.width" title="Permalink to this definition"></a></dt>
+<dd><p>int: Return the width of a template.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate._abc_cache">
+<span class="sig-name descname"><span class="pre">_abc_cache</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_weakrefset.WeakSet</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate._abc_cache" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate._abc_negative_cache">
+<span class="sig-name descname"><span class="pre">_abc_negative_cache</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_weakrefset.WeakSet</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate._abc_negative_cache" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate._abc_negative_cache_version">
+<span class="sig-name descname"><span class="pre">_abc_negative_cache_version</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">47</span></em><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate._abc_negative_cache_version" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate._abc_registry">
+<span class="sig-name descname"><span class="pre">_abc_registry</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_weakrefset.WeakSet</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate._abc_registry" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate._bbox">
+<span class="sig-name descname"><span class="pre">_bbox</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate._bbox" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate._generate">
+<span class="sig-name descname"><span class="pre">_generate</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate._generate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate._pins">
+<span class="sig-name descname"><span class="pre">_pins</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate._pins" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.UserDefinedTemplate.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.template.UserDefinedTemplate.name" title="Permalink to this definition"></a></dt>
+<dd><p>Template name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="laygo2.object.template.ParameterizedInstanceTemplate.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">ParameterizedInstanceTemplate class</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="laygo2.object.grid.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">laygo2.object.grid module</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Niftylab at Hanyang University, South Korea.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

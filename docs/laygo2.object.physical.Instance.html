@@ -1,0 +1,1422 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Instance class &#8212; LAYGO2 Documentation  documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/autoclasstoc.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="VirtualInstance class" href="laygo2.object.physical.VirtualInstance.html" />
+    <link rel="prev" title="Text class" href="laygo2.object.physical.Text.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="index.html">
+<p class="title">LAYGO2 Documentation</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_link.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="examples_link.html">
+  Trial
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="structure_link.html">
+  Structure
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="technology_link.html">
+  Tech Setup
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_kor.html">
+  Korean
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="laygo2.html">
+  API Reference
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="laygo2.object.html">
+   laygo2.object package
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="laygo2.object.physical.html">
+     laygo2.object.physical module
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.PhysicalObject.html">
+       PhysicalObject class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.IterablePhysicalObject.html">
+       IterablePhysicalObject class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.PhysicalObjectGroup.html">
+       PhysicalObjectGroup class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Rect.html">
+       Rect class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Path.html">
+       Path class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Pin.html">
+       Pin class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Text.html">
+       Text class
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Instance class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.VirtualInstance.html">
+       VirtualInstance class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.template.html">
+     laygo2.object.template module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.Template.html">
+       Template class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.NativeInstanceTemplate.html">
+       NativeInstanceTemplate class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.ParameterizedInstanceTemplate.html">
+       ParameterizedInstanceTemplate class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.UserDefinedTemplate.html">
+       UserDefinedTemplate class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.grid.html">
+     laygo2.object.grid module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.CircularMapping.html">
+       CircularMapping class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html">
+       CircularMappingArray class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid._AbsToPhyGridConverter.html">
+       _AbsToPhyGridConverter class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid._PhyToAbsGridConverter.html">
+       _PhyToAbsGridConverter class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.OneDimGrid.html">
+       OneDimGrid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.Grid.html">
+       Grid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.PlacementGrid.html">
+       PlacementGrid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.RoutingGrid.html">
+       RoutingGrid class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.database.html">
+     laygo2.object.database module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.BaseDatabase.html">
+       BaseDatabase class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.Library.html">
+       Library class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.Design.html">
+       Design class
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laygo2.interface.html">
+   laygo2.interface package
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laygo2.util.html">
+   laygo2.util package
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="instance-class">
+<h1>Instance class<a class="headerlink" href="#instance-class" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">laygo2.object.physical.</span></span><span class="sig-name descname"><span class="pre">Instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">libname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">viewname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'layout'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'R0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0,</span> <span class="pre">0])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/physical.html#Instance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.physical.Instance" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="laygo2.object.physical.IterablePhysicalObject.html#laygo2.object.physical.IterablePhysicalObject" title="laygo2.object.physical.IterablePhysicalObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">laygo2.object.physical.IterablePhysicalObject</span></code></a></p>
+<p>Instance object class.</p>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: Instance 객체 클래스.</p>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Data Attributes:</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.libname" title="laygo2.object.physical.Instance.libname"><code class="xref py py-obj docutils literal notranslate"><span class="pre">libname</span></code></a></p></td>
+<td><p>The library name of the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.cellname" title="laygo2.object.physical.Instance.cellname"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cellname</span></code></a></p></td>
+<td><p>The cellname of the instance object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.viewname" title="laygo2.object.physical.Instance.viewname"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viewname</span></code></a></p></td>
+<td><p>The view name of the instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.shape" title="laygo2.object.physical.Instance.shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shape</span></code></a></p></td>
+<td><p>The shape of the instance mosaic.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.unit_size" title="laygo2.object.physical.Instance.unit_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unit_size</span></code></a></p></td>
+<td><p>Unit size when the object is constructed in array.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.transform" title="laygo2.object.physical.Instance.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a></p></td>
+<td><p>The transformation attribute of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.pins" title="laygo2.object.physical.Instance.pins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pins</span></code></a></p></td>
+<td><p>The dictionary having the pins belonging to the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.xy" title="laygo2.object.physical.Instance.xy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xy</span></code></a></p></td>
+<td><p>Get the x and y coordinate values of this object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.xy0" title="laygo2.object.physical.Instance.xy0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xy0</span></code></a></p></td>
+<td><p>The coordinates of the primary corner of the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.xy1" title="laygo2.object.physical.Instance.xy1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xy1</span></code></a></p></td>
+<td><p>The coordinates of the secondary corner of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.size" title="laygo2.object.physical.Instance.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code></a></p></td>
+<td><p>The size of the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.pitch" title="laygo2.object.physical.Instance.pitch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pitch</span></code></a></p></td>
+<td><p>Pitch between unit object of the object in array.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.spacing" title="laygo2.object.physical.Instance.spacing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spacing</span></code></a></p></td>
+<td><p>Spacing between unit object of the object in array.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.bbox" title="laygo2.object.physical.Instance.bbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bbox</span></code></a></p></td>
+<td><p>The physical bounding box of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.height" title="laygo2.object.physical.Instance.height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code></a></p></td>
+<td><p>The height of the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.width" title="laygo2.object.physical.Instance.width"><code class="xref py py-obj docutils literal notranslate"><span class="pre">width</span></code></a></p></td>
+<td><p>The width of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.height_vec" title="laygo2.object.physical.Instance.height_vec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">height_vec</span></code></a></p></td>
+<td><p>The height vector [0, height].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.width_vec" title="laygo2.object.physical.Instance.width_vec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">width_vec</span></code></a></p></td>
+<td><p>The width vector [width, 0].</p></td>
+</tr>
+</tbody>
+</table>
+<details><summary>Inherited from <a class="reference internal" href="laygo2.object.physical.IterablePhysicalObject.html#laygo2.object.physical.IterablePhysicalObject" title="laygo2.object.physical.IterablePhysicalObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">IterablePhysicalObject</span></code></a></summary><table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.elements" title="laygo2.object.physical.Instance.elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">elements</span></code></a></p></td>
+<td><p>The numpy array that contains this object's subelements as its elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.xy" title="laygo2.object.physical.Instance.xy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xy</span></code></a></p></td>
+<td><p>Get the x and y coordinate values of this object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.shape" title="laygo2.object.physical.Instance.shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shape</span></code></a></p></td>
+<td><p>The shape of the instance mosaic.</p></td>
+</tr>
+</tbody>
+</table>
+</details><details><summary>Inherited from <a class="reference internal" href="laygo2.object.physical.PhysicalObject.html#laygo2.object.physical.PhysicalObject" title="laygo2.object.physical.PhysicalObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalObject</span></code></a></summary><table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.name" title="laygo2.object.physical.Instance.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></p></td>
+<td><p>The name of the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.xy" title="laygo2.object.physical.Instance.xy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xy</span></code></a></p></td>
+<td><p>Get the x and y coordinate values of this object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.master" title="laygo2.object.physical.Instance.master"><code class="xref py py-obj docutils literal notranslate"><span class="pre">master</span></code></a></p></td>
+<td><p>The master of the current object (for array and pin objects).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.params" title="laygo2.object.physical.Instance.params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">params</span></code></a></p></td>
+<td><p>The dictionary that contains the object parameters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.pointers" title="laygo2.object.physical.Instance.pointers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pointers</span></code></a></p></td>
+<td><p>The dictionary that contains major physical coordinates of the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.left" title="laygo2.object.physical.Instance.left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">left</span></code></a></p></td>
+<td><p>The left-center coordinate of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.right" title="laygo2.object.physical.Instance.right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">right</span></code></a></p></td>
+<td><p>The right-center coordinate of the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.top" title="laygo2.object.physical.Instance.top"><code class="xref py py-obj docutils literal notranslate"><span class="pre">top</span></code></a></p></td>
+<td><p>The top-center coordinate of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.bottom" title="laygo2.object.physical.Instance.bottom"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bottom</span></code></a></p></td>
+<td><p>The bottom-center coordinate of the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.center" title="laygo2.object.physical.Instance.center"><code class="xref py py-obj docutils literal notranslate"><span class="pre">center</span></code></a></p></td>
+<td><p>The center-center coordinate of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.bottom_left" title="laygo2.object.physical.Instance.bottom_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bottom_left</span></code></a></p></td>
+<td><p>The bottom-left coordinate of the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.bottom_right" title="laygo2.object.physical.Instance.bottom_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bottom_right</span></code></a></p></td>
+<td><p>The bottom-right coordinate of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.top_left" title="laygo2.object.physical.Instance.top_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">top_left</span></code></a></p></td>
+<td><p>The top-left coordinate of the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.top_right" title="laygo2.object.physical.Instance.top_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">top_right</span></code></a></p></td>
+<td><p>The top-right coordinate of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.bbox" title="laygo2.object.physical.Instance.bbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bbox</span></code></a></p></td>
+<td><p>The physical bounding box of the object.</p></td>
+</tr>
+</tbody>
+</table>
+</details></div>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Methods:</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.get_pitch" title="laygo2.object.physical.Instance.get_pitch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pitch</span></code></a>()</p></td>
+<td><p>numpy.ndarray(dtype=int): Get the pitch of the instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.set_pitch" title="laygo2.object.physical.Instance.set_pitch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pitch</span></code></a>(value)</p></td>
+<td><p>numpy.ndarray(dtype=int): Set the pitch of the instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.get_spacing" title="laygo2.object.physical.Instance.get_spacing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_spacing</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.set_spacing" title="laygo2.object.physical.Instance.set_spacing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_spacing</span></code></a>(value)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.__init__" title="laygo2.object.physical.Instance.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(xy, libname, cellname[, viewname, ...])</p></td>
+<td><p>The constructor function of Instance class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.summarize" title="laygo2.object.physical.Instance.summarize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summarize</span></code></a>()</p></td>
+<td><p>Summarize object information.</p></td>
+</tr>
+</tbody>
+</table>
+<details><summary>Inherited from <a class="reference internal" href="laygo2.object.physical.IterablePhysicalObject.html#laygo2.object.physical.IterablePhysicalObject" title="laygo2.object.physical.IterablePhysicalObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">IterablePhysicalObject</span></code></a></summary><table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.__init__" title="laygo2.object.physical.Instance.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(xy, libname, cellname[, viewname, ...])</p></td>
+<td><p>The constructor function of Instance class.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__getitem__</span></code>(pos)</p></td>
+<td><p>Return the sub-elements of this object, based on the pos parameter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__setitem__</span></code>(pos, item)</p></td>
+<td><p>Set the sub-elements of this object, based on the pos and item parameter.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__iter__</span></code>()</p></td>
+<td><p>Iterator function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__next__</span></code>()</p></td>
+<td><p>Iterator function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.ndenumerate" title="laygo2.object.physical.Instance.ndenumerate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndenumerate</span></code></a>()</p></td>
+<td><p>Enumerate over the element array.</p></td>
+</tr>
+</tbody>
+</table>
+</details><details><summary>Inherited from <a class="reference internal" href="laygo2.object.physical.PhysicalObject.html#laygo2.object.physical.PhysicalObject" title="laygo2.object.physical.PhysicalObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalObject</span></code></a></summary><table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.__init__" title="laygo2.object.physical.Instance.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(xy, libname, cellname[, viewname, ...])</p></td>
+<td><p>The constructor function of Instance class.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__str__</span></code>()</p></td>
+<td><p>Return the summary of this object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.physical.Instance.summarize" title="laygo2.object.physical.Instance.summarize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summarize</span></code></a>()</p></td>
+<td><p>Summarize object information.</p></td>
+</tr>
+</tbody>
+</table>
+</details></div>
+<hr class="docutils" />
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">libname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">viewname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'layout'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'R0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0,</span> <span class="pre">0])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/physical.html#Instance.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.physical.Instance.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor function of Instance class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xy</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a>) – The primary coordinate [x0, y0] of the object.</p></li>
+<li><p><strong>libname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The library name of the object.</p></li>
+<li><p><strong>cellname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The cell name of the object.</p></li>
+<li><p><strong>shape</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a>) – The shape [col, row] of the elements.</p></li>
+<li><p><strong>pitch</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a>) – Pitch between the elements of the object in array.</p></li>
+<li><p><strong>transform</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The transformation attribute of the object.</p></li>
+<li><p><strong>unit_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – Unit size of the object.</p></li>
+<li><p><strong>pins</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – The dictionary containing pins belonging to the object.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The name of the object.</p></li>
+<li><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – The dictionary containing attributes of the object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)">object</a> (laygo2.Instance)</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Class</span></code></p>
+</div>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; inst0_pins = dict()
+&gt;&gt;&gt; inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = [&#39;M1&#39;, &#39;drawing&#39;], netname = &#39;in’)
+&gt;&gt;&gt; inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;out’)
+&gt;&gt;&gt; inst0 = physical.Instance( name = &quot;I0&quot;, xy = [ 100,100], libname=&quot;mylib&quot;, cellname=&quot;mycell&quot;, shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  &#39;R0’)
+&gt;&gt;&gt; print( inst0[1,0].xy0 )
+[ 300, 100 ]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_instance_init.png"><img alt="_images/object_physical_instance_init.png" src="_images/object_physical_instance_init.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:     Instance 클래스의 생성함수</p>
+<p>파라미터</p>
+<p>xy(numpy.ndarray): 객체의 주좌표 [x0, y0]</p>
+<p>libname(str): 객체의 library 이름</p>
+<p>cellname(str): 객체의 cell이름</p>
+<p>shape(numpy.ndarray): elements 의 shape, [column, row]</p>
+<p>pitch(numpy.ndarray): 배열로 구성된 객체의 하위객체간 간격</p>
+<p>transform(str): 객체의 변환 속성</p>
+<p>unit_size(list): 객체의 단위 크기</p>
+<p>pins(dict): 객체에 속한 핀들을 갖는 Dictionary</p>
+<p>name(str): 객체의 이름</p>
+<p>params(dict): 객체의 속성을 갖는 Dictionary</p>
+<p>반환값</p>
+<p>object (laygo2.Instance)</p>
+<p>참조</p>
+<p>Class IterablePhysicalObject</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance._get_xy">
+<span class="sig-name descname"><span class="pre">_get_xy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/physical.html#Instance._get_xy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.physical.Instance._get_xy" title="Permalink to this definition"></a></dt>
+<dd><p>numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of this object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance._set_xy">
+<span class="sig-name descname"><span class="pre">_set_xy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/physical.html#Instance._set_xy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.physical.Instance._set_xy" title="Permalink to this definition"></a></dt>
+<dd><p>numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of this object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance._update_elements">
+<span class="sig-name descname"><span class="pre">_update_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xy_ofst</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.physical.Instance._update_elements" title="Permalink to this definition"></a></dt>
+<dd><p>Update xy-coordinates of this object’s elements. An internal function for _set_xy()</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance._update_pins">
+<span class="sig-name descname"><span class="pre">_update_pins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xy_ofst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/physical.html#Instance._update_pins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.physical.Instance._update_pins" title="Permalink to this definition"></a></dt>
+<dd><p>Update xy-coordinates of this object’s pins. An internal function for _set_xy()</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance._update_pointers">
+<span class="sig-name descname"><span class="pre">_update_pointers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.physical.Instance._update_pointers" title="Permalink to this definition"></a></dt>
+<dd><p>Update pointers of this object. Called when the xy-coordinate of this object is updated.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.get_pitch">
+<span class="sig-name descname"><span class="pre">get_pitch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/physical.html#Instance.get_pitch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.physical.Instance.get_pitch" title="Permalink to this definition"></a></dt>
+<dd><p>numpy.ndarray(dtype=int): Get the pitch of the instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.get_spacing">
+<span class="sig-name descname"><span class="pre">get_spacing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/physical.html#Instance.get_spacing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.physical.Instance.get_spacing" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.ndenumerate">
+<span class="sig-name descname"><span class="pre">ndenumerate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.physical.Instance.ndenumerate" title="Permalink to this definition"></a></dt>
+<dd><p>Enumerate over the element array. Calls np.ndenumerate() of the elements of this object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.set_pitch">
+<span class="sig-name descname"><span class="pre">set_pitch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/physical.html#Instance.set_pitch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.physical.Instance.set_pitch" title="Permalink to this definition"></a></dt>
+<dd><p>numpy.ndarray(dtype=int): Set the pitch of the instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.set_spacing">
+<span class="sig-name descname"><span class="pre">set_spacing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/physical.html#Instance.set_spacing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.physical.Instance.set_spacing" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.summarize">
+<span class="sig-name descname"><span class="pre">summarize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/physical.html#Instance.summarize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.physical.Instance.summarize" title="Permalink to this definition"></a></dt>
+<dd><p>Summarize object information.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance._pitch">
+<span class="sig-name descname"><span class="pre">_pitch</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance._pitch" title="Permalink to this definition"></a></dt>
+<dd><p>The internal variable for pitch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>np.array([<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)">int</a>]) or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance._xy">
+<span class="sig-name descname"><span class="pre">_xy</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([0,</span> <span class="pre">0])</span></em><a class="headerlink" href="#laygo2.object.physical.Instance._xy" title="Permalink to this definition"></a></dt>
+<dd><p>The internal variable of xy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a>(dtype=numpy.int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.bbox">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bbox</span></span><a class="headerlink" href="#laygo2.object.physical.Instance.bbox" title="Permalink to this definition"></a></dt>
+<dd><p>The physical bounding box of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">PhysicalObject</span><span class="p">(</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span><span class="o">.</span><span class="n">xy</span>
+<span class="go">[ [0,0], [200,200] ]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_PhysicalObject_bbox.png"><img alt="_images/object_physical_PhysicalObject_bbox.png" src="_images/object_physical_PhysicalObject_bbox.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: numpy.ndarray: Physical 객체의 bbox.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.bottom">
+<span class="sig-name descname"><span class="pre">bottom</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.bottom" title="Permalink to this definition"></a></dt>
+<dd><p>The bottom-center coordinate of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">PhysicalObject</span><span class="p">(</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span><span class="o">.</span><span class="n">bottom</span>
+<span class="go">[ 100, 0 ]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_PhysicalObject_bottom.png"><img alt="_images/object_physical_PhysicalObject_bottom.png" src="_images/object_physical_PhysicalObject_bottom.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: Physical 객체의 bottom pointer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.bottom_left">
+<span class="sig-name descname"><span class="pre">bottom_left</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.bottom_left" title="Permalink to this definition"></a></dt>
+<dd><p>The bottom-left coordinate of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">PhysicalObject</span><span class="p">(</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span><span class="o">.</span><span class="n">bottom_left</span>
+<span class="go">[ 0,0 ]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_PhysicalObject_bottom_left.png"><img alt="_images/object_physical_PhysicalObject_bottom_left.png" src="_images/object_physical_PhysicalObject_bottom_left.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: Physical 객체의 bottom_left pointer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.bottom_right">
+<span class="sig-name descname"><span class="pre">bottom_right</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.bottom_right" title="Permalink to this definition"></a></dt>
+<dd><p>The bottom-right coordinate of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">PhysicalObject</span><span class="p">(</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span><span class="o">.</span><span class="n">bottom_right</span>
+<span class="go">[200, 0]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_PhysicalObject_bottom_right.png"><img alt="_images/object_physical_PhysicalObject_bottom_right.png" src="_images/object_physical_PhysicalObject_bottom_right.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: Physical 객체의 bottom_right pointer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.cellname">
+<span class="sig-name descname"><span class="pre">cellname</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.cellname" title="Permalink to this definition"></a></dt>
+<dd><p>The cellname of the instance object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; inst0_pins = dict()
+&gt;&gt;&gt; inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = [&#39;M1&#39;, &#39;drawing&#39;], netname = &#39;in’)
+&gt;&gt;&gt; inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;out’)
+&gt;&gt;&gt; inst0 = physical.Instance( name = &quot;I0&quot;, xy = [ 100,100], libname=&quot;mylib&quot;, cellname=&quot;mycell&quot;, shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  &#39;R0’)
+&gt;&gt;&gt; inst0.cellname
+mycell
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_instance_cellname.png"><img alt="_images/object_physical_instance_cellname.png" src="_images/object_physical_instance_cellname.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: 객체가 속한 셀 이름.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.center">
+<span class="sig-name descname"><span class="pre">center</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.center" title="Permalink to this definition"></a></dt>
+<dd><p>The center-center coordinate of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">PhysicalObject</span><span class="p">(</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span><span class="o">.</span><span class="n">center</span>
+<span class="go">[ 100, 100 ]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_PhysicalObject_center.png"><img alt="_images/object_physical_PhysicalObject_center.png" src="_images/object_physical_PhysicalObject_center.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: Physical 객체의 center pointer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.elements">
+<span class="sig-name descname"><span class="pre">elements</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.elements" title="Permalink to this definition"></a></dt>
+<dd><p>The numpy array that contains this object’s subelements as its elements.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">phy0</span> <span class="o">=</span> <span class="n">physical</span><span class="o">.</span><span class="n">IterablePhysicalObject</span><span class="p">(</span> <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy1</span> <span class="o">=</span> <span class="n">physical</span><span class="o">.</span><span class="n">IterablePhysicalObject</span><span class="p">(</span> <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy2</span> <span class="o">=</span> <span class="n">physical</span><span class="o">.</span><span class="n">IterablePhysicalObject</span><span class="p">(</span> <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">element</span> <span class="o">=</span> <span class="p">[</span><span class="n">phy0</span><span class="p">,</span> <span class="n">phy1</span><span class="p">,</span> <span class="n">phy2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iphy0</span> <span class="o">=</span> <span class="n">physical</span><span class="o">.</span><span class="n">IterablePhysicalObject</span><span class="p">(</span> <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">elements</span> <span class="o">=</span> <span class="n">element</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iphy0</span><span class="o">.</span><span class="n">elements</span>
+<span class="go">[physical.IterablePhysicalObject object,</span>
+<span class="go"> physical.IterablePhysicalObject object,</span>
+<span class="go"> physical.IterablePhysicalObject object ]</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: 객체의 하위 구성원.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.height">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#laygo2.object.physical.Instance.height" title="Permalink to this definition"></a></dt>
+<dd><p>The height of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; inst0_pins = dict()
+&gt;&gt;&gt; inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = [&#39;M1&#39;, &#39;drawing&#39;], netname = &#39;in’)
+&gt;&gt;&gt; inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;out’)
+&gt;&gt;&gt; inst0 = physical.Instance( name = &quot;I0&quot;, xy = [ 100,100], libname=&quot;mylib&quot;, cellname=&quot;mycell&quot;, shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  &#39;R0’)
+&gt;&gt;&gt; inst0.height
+300
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_instance_height.png"><img alt="_images/object_physical_instance_height.png" src="_images/object_physical_instance_height.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:     int: 객체의 높이.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.height_vec">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height_vec</span></span><a class="headerlink" href="#laygo2.object.physical.Instance.height_vec" title="Permalink to this definition"></a></dt>
+<dd><p>The height vector [0, height].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a>(dtype=int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.left">
+<span class="sig-name descname"><span class="pre">left</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.left" title="Permalink to this definition"></a></dt>
+<dd><p>The left-center coordinate of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">PhysicalObject</span><span class="p">(</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span><span class="o">.</span><span class="n">left</span>
+<span class="go">[ 0, 100 ]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_PhysicalObject_left.png"><img alt="_images/object_physical_PhysicalObject_left.png" src="_images/object_physical_PhysicalObject_left.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: Physical 객체의 left pointer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.libname">
+<span class="sig-name descname"><span class="pre">libname</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.libname" title="Permalink to this definition"></a></dt>
+<dd><p>The library name of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; inst0_pins = dict()
+&gt;&gt;&gt; inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = [&#39;M1&#39;, &#39;drawing&#39;], netname = &#39;in’)
+&gt;&gt;&gt; inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;out’)
+&gt;&gt;&gt; inst0 = physical.Instance( name = &quot;I0&quot;, xy = [ 100,100], libname=&quot;mylib&quot;, cellname=&quot;mycell&quot;, shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform = &#39;R0’)
+&gt;&gt;&gt; inst0.libname
+mylib
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_instance_libname.png"><img alt="_images/object_physical_instance_libname.png" src="_images/object_physical_instance_libname.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: 객체의 라이브러리 이름.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.master">
+<span class="sig-name descname"><span class="pre">master</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.master" title="Permalink to this definition"></a></dt>
+<dd><p>The master of the current object (for array and pin objects).</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">PhysicalObject</span><span class="p">(</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span><span class="o">.</span><span class="n">master</span>
+<span class="go">None</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: Physical 객체의 master.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">PhysicalObject</span><span class="p">(</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span><span class="o">.</span><span class="n">name</span>
+<span class="go">“test”</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_PhysicalObject_name.png"><img alt="_images/object_physical_PhysicalObject_name.png" src="_images/object_physical_PhysicalObject_name.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: Physical 객체의 이름.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.params">
+<span class="sig-name descname"><span class="pre">params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.params" title="Permalink to this definition"></a></dt>
+<dd><p>The dictionary that contains the object parameters.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">PhysicalObject</span><span class="p">(</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="n">maxI</span><span class="o">=</span><span class="mf">0.005</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span><span class="o">.</span><span class="n">params</span>
+<span class="go">{‘maxI’: 0.005 }</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: Physical 객체의 속성.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.pins">
+<span class="sig-name descname"><span class="pre">pins</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.pins" title="Permalink to this definition"></a></dt>
+<dd><p>The dictionary having the pins belonging to the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; inst0_pins = dict()
+&gt;&gt;&gt; inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = [&#39;M1&#39;, &#39;drawing&#39;], netname = &#39;in’)
+&gt;&gt;&gt; inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;out’)
+&gt;&gt;&gt; inst0 = physical.Instance( name = &quot;I0&quot;, xy = [ 100,100], libname=&quot;mylib&quot;, cellname=&quot;mycell&quot;, shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  &#39;R0’)
+&gt;&gt;&gt; inst0.pins
+{&#39;in&#39;: &lt;laygo2.object.physical.Pin object at 0x000001CA76EE1348&gt;, &#39;out&#39;: &lt;laygo2.object.physical.Pin object at 0x000001CA7709BD48&gt;}
+&gt;&gt;&gt; inst0.pins[“in”].shape
+[3,2]
+&gt;&gt;&gt; inst0.pins[“out”].shape
+[3,2]
+&gt;&gt;&gt; inst0.pins[“in”][1,1].xy
+[ [300, 300], [310, 310] ]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_instance_pins.png"><img alt="_images/object_physical_instance_pins.png" src="_images/object_physical_instance_pins.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: 객체에 속한 핀들을 갖는 Dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.pitch">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pitch</span></span><a class="headerlink" href="#laygo2.object.physical.Instance.pitch" title="Permalink to this definition"></a></dt>
+<dd><p>Pitch between unit object of the object in array.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; inst0_pins = dict()
+&gt;&gt;&gt; inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = [&#39;M1&#39;, &#39;drawing&#39;], netname = &#39;in’)
+&gt;&gt;&gt; inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;out’)
+&gt;&gt;&gt; inst0 = physical.Instance( name = &quot;I0&quot;, xy = [ 100,100], libname=&quot;mylib&quot;, cellname=&quot;mycell&quot;, shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  &#39;R0’)
+&gt;&gt;&gt; inst0.pitch
+[200, 200]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_instance_pitch.png"><img alt="_images/object_physical_instance_pitch.png" src="_images/object_physical_instance_pitch.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: 배열로 구성된 객체의 단위객체간 간격.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.pointers">
+<span class="sig-name descname"><span class="pre">pointers</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.pointers" title="Permalink to this definition"></a></dt>
+<dd><p>The dictionary that contains major physical coordinates of the object.
+Possible keys include left, right, top, bottom, bottom_left, center, etc.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">PhysicalObject</span><span class="p">(</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span><span class="o">.</span><span class="n">pointers</span>
+<span class="go">{&#39;left&#39;: array([0, 100]), &#39;right&#39;: array([200, 100]),</span>
+<span class="go"> &#39;bottom&#39;: array([100, 0]), &#39;top&#39;: array([100, 200]),</span>
+<span class="go"> &#39;bottom_left&#39;: array([0, 0]), &#39;bottom_right&#39;: array([200, 0]),</span>
+<span class="go"> &#39;top_left&#39;: array([0, 200]), &#39;top_right&#39;: array([200, 200]),</span>
+<span class="go"> ‘center’: array( [100, 100] )</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_PhysicalObject_pointers.png"><img alt="_images/object_physical_PhysicalObject_pointers.png" src="_images/object_physical_PhysicalObject_pointers.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: Physical 객체의 주요좌표들.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.right">
+<span class="sig-name descname"><span class="pre">right</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.right" title="Permalink to this definition"></a></dt>
+<dd><p>The right-center coordinate of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">PhysicalObject</span><span class="p">(</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span><span class="o">.</span><span class="n">right</span>
+<span class="go">[ 200, 100 ]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_PhysicalObject_right.png"><img alt="_images/object_physical_PhysicalObject_right.png" src="_images/object_physical_PhysicalObject_right.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: Physical 객체의 right pointer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.shape">
+<span class="sig-name descname"><span class="pre">shape</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.shape" title="Permalink to this definition"></a></dt>
+<dd><p>The shape of the instance mosaic. None if the instance is non-mosaic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>np.array([<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)">int</a>]) or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.size">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#laygo2.object.physical.Instance.size" title="Permalink to this definition"></a></dt>
+<dd><p>The size of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; inst0_pins = dict()
+&gt;&gt;&gt; inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = [&#39;M1&#39;, &#39;drawing&#39;], netname = &#39;in’)
+&gt;&gt;&gt; inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;out’)
+&gt;&gt;&gt; inst0 = physical.Instance( name = &quot;I0&quot;, xy = [ 100,100], libname=&quot;mylib&quot;, cellname=&quot;mycell&quot;, shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  &#39;R0’)
+&gt;&gt;&gt; inst0.size
+[500, 300]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_instance_size.png"><img alt="_images/object_physical_instance_size.png" src="_images/object_physical_instance_size.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:     numpy.ndarray: 객체의 크기.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.spacing">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spacing</span></span><a class="headerlink" href="#laygo2.object.physical.Instance.spacing" title="Permalink to this definition"></a></dt>
+<dd><p>Spacing between unit object of the object in array.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; inst0_pins = dict()
+&gt;&gt;&gt; inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = [&#39;M1&#39;, &#39;drawing&#39;], netname = &#39;in’)
+&gt;&gt;&gt; inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;out’)
+&gt;&gt;&gt; inst0 = physical.Instance( name = &quot;I0&quot;, xy = [ 100,100], libname=&quot;mylib&quot;, cellname=&quot;mycell&quot;, shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  &#39;R0’)
+&gt;&gt;&gt; inst0.spacing
+[200, 200]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_instance_spacing.png"><img alt="_images/object_physical_instance_spacing.png" src="_images/object_physical_instance_spacing.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: 배열로 구성된 객체의 단위객체간 간격.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.top">
+<span class="sig-name descname"><span class="pre">top</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.top" title="Permalink to this definition"></a></dt>
+<dd><p>The top-center coordinate of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">PhysicalObject</span><span class="p">(</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span><span class="o">.</span><span class="n">top</span>
+<span class="go">[ 100, 200 ]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_PhysicalObject_top.png"><img alt="_images/object_physical_PhysicalObject_top.png" src="_images/object_physical_PhysicalObject_top.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: Physical 객체의 top pointer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.top_left">
+<span class="sig-name descname"><span class="pre">top_left</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.top_left" title="Permalink to this definition"></a></dt>
+<dd><p>The top-left coordinate of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">PhysicalObject</span><span class="p">(</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span><span class="o">.</span><span class="n">top_left</span>
+<span class="go">[ 0, 200 ]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_PhysicalObject_top_left.png"><img alt="_images/object_physical_PhysicalObject_top_left.png" src="_images/object_physical_PhysicalObject_top_left.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: Physical 객체의 top_left pointer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.top_right">
+<span class="sig-name descname"><span class="pre">top_right</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.top_right" title="Permalink to this definition"></a></dt>
+<dd><p>The top-right coordinate of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">PhysicalObject</span><span class="p">(</span> <span class="n">xy</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">]],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">physical</span><span class="o">.</span><span class="n">top_right</span>
+<span class="go">[200, 200]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_PhysicalObject_top_right.png"><img alt="_images/object_physical_PhysicalObject_top_right.png" src="_images/object_physical_PhysicalObject_top_right.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: Physical 객체의 top_right pointer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'R0'</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.transform" title="Permalink to this definition"></a></dt>
+<dd><p>The transformation attribute of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; inst0_pins = dict()
+&gt;&gt;&gt; inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = [&#39;M1&#39;, &#39;drawing&#39;], netname = &#39;in’)
+&gt;&gt;&gt; inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;out’)
+&gt;&gt;&gt; inst0 = physical.Instance( name = &quot;I0&quot;, xy = [ 100,100], libname=&quot;mylib&quot;, cellname=&quot;mycell&quot;, shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  &#39;R0’)
+&gt;&gt;&gt; inst0.transform
+“R0”
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_instance_transform.png"><img alt="_images/object_physical_instance_transform.png" src="_images/object_physical_instance_transform.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: 객체의 변환 속성.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.unit_size">
+<span class="sig-name descname"><span class="pre">unit_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.unit_size" title="Permalink to this definition"></a></dt>
+<dd><p>Unit size when the object is constructed in array.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; inst0_pins = dict()
+&gt;&gt;&gt; inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = [&#39;M1&#39;, &#39;drawing&#39;], netname = &#39;in’)
+&gt;&gt;&gt; inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;out’)
+&gt;&gt;&gt; inst0 = physical.Instance( name = &quot;I0&quot;, xy = [ 100,100], libname=&quot;mylib&quot;, cellname=&quot;mycell&quot;, shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  &#39;R0’)
+&gt;&gt;&gt; inst0.unit_size
+[100, 100]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_instance_unit_size.png"><img alt="_images/object_physical_instance_unit_size.png" src="_images/object_physical_instance_unit_size.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: 객체가 배열로 구성되었을 때 단위 크기.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.viewname">
+<span class="sig-name descname"><span class="pre">viewname</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.physical.Instance.viewname" title="Permalink to this definition"></a></dt>
+<dd><p>The view name of the instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.width">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#laygo2.object.physical.Instance.width" title="Permalink to this definition"></a></dt>
+<dd><p>The width of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; inst0_pins = dict()
+&gt;&gt;&gt; inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = [&#39;M1&#39;, &#39;drawing&#39;], netname = &#39;in’)
+&gt;&gt;&gt; inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;out’)
+&gt;&gt;&gt; inst0 = physical.Instance( name = &quot;I0&quot;, xy = [ 100,100], libname=&quot;mylib&quot;, cellname=&quot;mycell&quot;, shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  &#39;R0’)
+&gt;&gt;&gt; inst0.width
+500
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_instance_width.png"><img alt="_images/object_physical_instance_width.png" src="_images/object_physical_instance_width.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:     int: 객체의 폭.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.width_vec">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width_vec</span></span><a class="headerlink" href="#laygo2.object.physical.Instance.width_vec" title="Permalink to this definition"></a></dt>
+<dd><p>The width vector [width, 0].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a>(dtype=int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.xy">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">xy</span></span><a class="headerlink" href="#laygo2.object.physical.Instance.xy" title="Permalink to this definition"></a></dt>
+<dd><p>Get the x and y coordinate values of this object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a>(dtype=numpy.int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.xy0">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">xy0</span></span><a class="headerlink" href="#laygo2.object.physical.Instance.xy0" title="Permalink to this definition"></a></dt>
+<dd><p>The coordinates of the primary corner of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; inst0_pins = dict()
+&gt;&gt;&gt; inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = [&#39;M1&#39;, &#39;drawing&#39;], netname = &#39;in’)
+&gt;&gt;&gt; inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;out’)
+&gt;&gt;&gt; inst0 = physical.Instance( name = &quot;I0&quot;, xy = [ 100,100], libname=&quot;mylib&quot;, cellname=&quot;mycell&quot;, shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  &#39;R0’)
+&gt;&gt;&gt; inst0.xy0
+[100, 100]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_instance_xy0.png"><img alt="_images/object_physical_instance_xy0.png" src="_images/object_physical_instance_xy0.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:     numpy.ndarray: 객체의 주 코너 좌표.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.physical.Instance.xy1">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">xy1</span></span><a class="headerlink" href="#laygo2.object.physical.Instance.xy1" title="Permalink to this definition"></a></dt>
+<dd><p>The coordinates of the secondary corner of the object.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; inst0_pins = dict()
+&gt;&gt;&gt; inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = [&#39;M1&#39;, &#39;drawing&#39;], netname = &#39;in’)
+&gt;&gt;&gt; inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;out’)
+&gt;&gt;&gt; inst0 = physical.Instance( name = &quot;I0&quot;, xy = [ 100,100], libname=&quot;mylib&quot;, cellname=&quot;mycell&quot;, shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  &#39;R0’)
+&gt;&gt;&gt; inst0.xy1
+[600, 400]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_physical_instance_xy1.png"><img alt="_images/object_physical_instance_xy1.png" src="_images/object_physical_instance_xy1.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:     numpy.ndarray: 객체의 보조 코너 좌표.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="laygo2.object.physical.Text.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Text class</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="laygo2.object.physical.VirtualInstance.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">VirtualInstance class</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Niftylab at Hanyang University, South Korea.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

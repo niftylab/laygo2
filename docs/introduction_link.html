@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>laygo2 User Guide &#8212; LAYGO2 Documentation  documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/autoclasstoc.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="laygo2 Quick Trial" href="examples_link.html" />
+    <link rel="prev" title="LAYGO2-LAYout with Gridded Objects2" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="index.html">
+<p class="title">LAYGO2 Documentation</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="examples_link.html">
+  Trial
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="structure_link.html">
+  Structure
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="technology_link.html">
+  Tech Setup
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_kor.html">
+  Korean
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="laygo2.html">
+  API Reference
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-examples">
+   Simple examples
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#laygo2-structure">
+   laygo2 structure
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#laygo2-design-flow">
+   laygo2 design flow
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#developer-list">
+   Developer list
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#license">
+   License
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="laygo2-user-guide">
+<h1>laygo2 User Guide<a class="headerlink" href="#laygo2-user-guide" title="Permalink to this headline"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>This user guide is provided to help the use of LAYGO2, a layout scripting and automatic generation framework.
+LAYGO, the previous version of LAYGO2, is developed for one of layout generation engines in
+Berkeley Analog Generator2 (BAG2), and LAYGO2 extends the LAYGO’s functions and capabilities.
+LAYGO2 can be launched either in standalone mode or in combination with BAG2.</p>
+<p><strong>LAYGO2 is optimized to IC layout generations in the following conditions.</strong></p>
+<ol class="arabic simple">
+<li><p>Automations and reuse of layout design flow.</p></li>
+<li><p>Parameter-based layout generation.</p></li>
+<li><p>Layout in advanced processes (e.g. FinFET CMOS).</p></li>
+<li><p>Code-based layout generation.</p></li>
+</ol>
+<p><strong>The major features supported by both LAYGO and LAYGO2 are summarized below:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Template and grid-based device placements</strong>: LAYGO enhances the portability and reusability of layout
+generation process by using abstract grids and instances (templates), without directly dealing with physical
+instances and coordinates.</p></li>
+<li><p><strong>Instance placements based on relative information</strong>: The process portability is maximized by enhancing
+the level of abstraction by utilizing relative information between instances for their placements.</p></li>
+<li><p><strong>Grid-based wire routing</strong>: The wire routing process is abstracted as well, by placing the interconnects
+on process-independent routing grids.</p></li>
+</ol>
+<p><strong>laygo2 has the following improvement items over the original laygo.</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Enhanced object-oriented features</strong>: The module dependency is minimized to enhance the process portability
+and reusability. The layout generation process is fully described in object-oriented ways.
+For examples, classes defined in the physical module can be used independently, and new template types can be
+easily implemented by inheriting the base Template class.</p></li>
+<li><p><strong>Integer-based grid computations</strong>: laygo originally used real-number-based grid systems. laygo2 converted
+all grid systems to integer-based ones to avoid floating-point operations. The integer number coordinates are
+converted to real numbers during the final export phase.</p></li>
+<li><p><strong>Advanced template generation</strong>: In additional to the single-instance-based template (NativeInstanceTemplate),
+laygo2 implements various ways of template types, including parameterized-instance-based template
+(ParameterizedInstanceTemplate) and user-defined templates (UserDefinedTemplate). laygo2 supports inheritance
+of the primitive template class (Template) for new template definitions.</p></li>
+<li><p><strong>Advanced instanced and grid indexing</strong>: Instance and grid objects are tightly integrated to Numpy
+array objects, to support advanced indexing and slicing functions. The grid objects especially extend
+the Numpy array to implement unlimited indexing over their defined ranges.</p></li>
+<li><p><strong>Code quality enhancement and refactoring</strong></p></li>
+<li><p>(on-going) <strong>More documents and tests added</strong></p></li>
+<li><p>(on-going) <strong>Generator code separated from the main framework</strong></p></li>
+</ol>
+</section>
+<section id="simple-examples">
+<h2>Simple examples<a class="headerlink" href="#simple-examples" title="Permalink to this headline"></a></h2>
+<p>Several examples are introduced in <strong><span class="xref myst">Simple examples</span></strong> to help users understand the basic behavior of laygo2.</p>
+</section>
+<section id="laygo2-structure">
+<h2>laygo2 structure<a class="headerlink" href="#laygo2-structure" title="Permalink to this headline"></a></h2>
+<p>The structures of packages and modules in laygo2 are described in <strong><span class="xref myst">laygo2 structure</span></strong>.</p>
+<p><img alt="laygo2 UML diagram" src="_images/user_guide_uml.png" /></p>
+</section>
+<section id="laygo2-design-flow">
+<h2>laygo2 design flow<a class="headerlink" href="#laygo2-design-flow" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Load technology parameters, primitive templates, and grids.</p></li>
+<li><p>Generate instances from templates.</p></li>
+<li><p>Place the generated instances.</p></li>
+<li><p>Route wires and vias between the instances’ terminals.</p></li>
+<li><p>Pin creation.</p></li>
+<li><p>Export the generated design in proper formats.</p></li>
+<li><p>(Optional) export the design as a new template.</p></li>
+</ol>
+</section>
+<section id="developer-list">
+<h2>Developer list<a class="headerlink" href="#developer-list" title="Permalink to this headline"></a></h2>
+<p>See the <a class="reference external" href="https://github.com/niftylab/laygo2">github repository README</a> for the full list of developers.</p>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline"></a></h2>
+<p>laygo2 is distributed under the BSD 3-Clause License.</p>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">LAYGO2-LAYout with Gridded Objects2</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="examples_link.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">laygo2 Quick Trial</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Niftylab at Hanyang University, South Korea.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

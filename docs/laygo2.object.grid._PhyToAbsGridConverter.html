@@ -1,0 +1,1004 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>_PhyToAbsGridConverter class &#8212; LAYGO2 Documentation  documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/autoclasstoc.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="OneDimGrid class" href="laygo2.object.grid.OneDimGrid.html" />
+    <link rel="prev" title="_AbsToPhyGridConverter class" href="laygo2.object.grid._AbsToPhyGridConverter.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="index.html">
+<p class="title">LAYGO2 Documentation</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_link.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="examples_link.html">
+  Trial
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="structure_link.html">
+  Structure
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="technology_link.html">
+  Tech Setup
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_kor.html">
+  Korean
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="laygo2.html">
+  API Reference
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="laygo2.object.html">
+   laygo2.object package
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.physical.html">
+     laygo2.object.physical module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.PhysicalObject.html">
+       PhysicalObject class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.IterablePhysicalObject.html">
+       IterablePhysicalObject class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.PhysicalObjectGroup.html">
+       PhysicalObjectGroup class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Rect.html">
+       Rect class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Path.html">
+       Path class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Pin.html">
+       Pin class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Text.html">
+       Text class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Instance.html">
+       Instance class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.VirtualInstance.html">
+       VirtualInstance class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.template.html">
+     laygo2.object.template module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.Template.html">
+       Template class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.NativeInstanceTemplate.html">
+       NativeInstanceTemplate class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.ParameterizedInstanceTemplate.html">
+       ParameterizedInstanceTemplate class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.UserDefinedTemplate.html">
+       UserDefinedTemplate class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="laygo2.object.grid.html">
+     laygo2.object.grid module
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.CircularMapping.html">
+       CircularMapping class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html">
+       CircularMappingArray class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid._AbsToPhyGridConverter.html">
+       _AbsToPhyGridConverter class
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       _PhyToAbsGridConverter class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.OneDimGrid.html">
+       OneDimGrid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.Grid.html">
+       Grid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.PlacementGrid.html">
+       PlacementGrid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.RoutingGrid.html">
+       RoutingGrid class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.database.html">
+     laygo2.object.database module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.BaseDatabase.html">
+       BaseDatabase class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.Library.html">
+       Library class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.Design.html">
+       Design class
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laygo2.interface.html">
+   laygo2.interface package
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laygo2.util.html">
+   laygo2.util package
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="phytoabsgridconverter-class">
+<h1>_PhyToAbsGridConverter class<a class="headerlink" href="#phytoabsgridconverter-class" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">laygo2.object.grid.</span></span><span class="sig-name descname"><span class="pre">_PhyToAbsGridConverter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A class that converts physical coordinates into abstract coordinates.
+Conversely, conditional operations convert abstract coordinates into physical coordinates.
+Implements the function of converting abstract coordinates to physical coordinates and supports the inverse conversion function.</p>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+물리 좌표를 추상 좌표로 변환하는 클래스, 조건부연산은 반대로 추상 좌표를 물리 좌표로 변환한다.</p>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Data Attributes:</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.master" title="laygo2.object.grid._PhyToAbsGridConverter.master"><code class="xref py py-obj docutils literal notranslate"><span class="pre">master</span></code></a></p></td>
+<td><p>Coordinate system to which _PhyToAbsGridConverter object belongs.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Methods:</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.__init__" title="laygo2.object.grid._PhyToAbsGridConverter.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(master)</p></td>
+<td><p>Constructor function of _PhyToAbsGridConverter class.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(pos)</p></td>
+<td><p>Convert physical coordinates into the corresponding abstract coordinates of the master grid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__getitem__</span></code>(pos)</p></td>
+<td><p>Convert physical coordinates into the corresponding abstract coordinates of the master grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__eq__</span></code>(other)</p></td>
+<td><p>Convert abstract coordinates into physical coordinates satisfying conditional operations in the master grid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__lt__</span></code>(other)</p></td>
+<td><p>Convert abstract coordinates into physical coordinates satisfying conditional operations in the master grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__le__</span></code>(other)</p></td>
+<td><p>Convert abstract coordinates into physical coordinates satisfying conditional operations in the master grid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__gt__</span></code>(other)</p></td>
+<td><p>Convert abstract coordinates into physical coordinates satisfying conditional operations in the master grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__ge__</span></code>(other)</p></td>
+<td><p>Convert abstract coordinates into physical coordinates satisfying conditional operations in the master grid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.bbox" title="laygo2.object.grid._PhyToAbsGridConverter.bbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bbox</span></code></a>(obj)</p></td>
+<td><p>Convert the bounding box of the object into the abstract coordinates of the master grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.bottom_left" title="laygo2.object.grid._PhyToAbsGridConverter.bottom_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bottom_left</span></code></a>(obj)</p></td>
+<td><p>Convert an object's physical corner coordinates into abstract coordinates of the master grid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.bottom_right" title="laygo2.object.grid._PhyToAbsGridConverter.bottom_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bottom_right</span></code></a>(obj)</p></td>
+<td><p>Convert an object's physical corner coordinates into abstract coordinates of the master grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.top_left" title="laygo2.object.grid._PhyToAbsGridConverter.top_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">top_left</span></code></a>(obj)</p></td>
+<td><p>Convert an object's physical corner coordinates into abstract coordinates of the master grid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.top_right" title="laygo2.object.grid._PhyToAbsGridConverter.top_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">top_right</span></code></a>(obj)</p></td>
+<td><p>Convert an object's physical corner coordinates into abstract coordinates of the master grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.width" title="laygo2.object.grid._PhyToAbsGridConverter.width"><code class="xref py py-obj docutils literal notranslate"><span class="pre">width</span></code></a>(obj)</p></td>
+<td><p>Return the width of an object on this grid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.height" title="laygo2.object.grid._PhyToAbsGridConverter.height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code></a>(obj)</p></td>
+<td><p>Return the height of an object on this grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.height_vec" title="laygo2.object.grid._PhyToAbsGridConverter.height_vec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">height_vec</span></code></a>(obj)</p></td>
+<td><p>numpy.ndarray(dtype=int): Return np.array([0, height]).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.width_vec" title="laygo2.object.grid._PhyToAbsGridConverter.width_vec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">width_vec</span></code></a>(obj)</p></td>
+<td><p>numpy.ndarray(dtype=int): Return np.array([width, 0]).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.size" title="laygo2.object.grid._PhyToAbsGridConverter.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code></a>(obj)</p></td>
+<td><p>Convert an object's size ([width, height]) into abstract coordinates of the master grid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.crossing" title="laygo2.object.grid._PhyToAbsGridConverter.crossing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">crossing</span></code></a>(*args)</p></td>
+<td><p>Convert the physical intersections of objects into abstract coordinates of the master grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.overlap" title="laygo2.object.grid._PhyToAbsGridConverter.overlap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">overlap</span></code></a>(*args[, type])</p></td>
+<td><p>Convert the overlapping area of objects into abstract coordinates of the master grid and return in a format specified in type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.union" title="laygo2.object.grid._PhyToAbsGridConverter.union"><code class="xref py py-obj docutils literal notranslate"><span class="pre">union</span></code></a>(*args)</p></td>
+<td><p>Convert the bounding box containing all objects into abstract coordinates of the master grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid._PhyToAbsGridConverter.center" title="laygo2.object.grid._PhyToAbsGridConverter.center"><code class="xref py py-obj docutils literal notranslate"><span class="pre">center</span></code></a>(obj)</p></td>
+<td><p>Convert an object's physical center coordinates into abstract coordinates of the master grid.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor function of _PhyToAbsGridConverter class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter._getitem_1d">
+<span class="sig-name descname"><span class="pre">_getitem_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter._getitem_1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter._getitem_1d" title="Permalink to this definition"></a></dt>
+<dd><p>An internal function of __getitem__() for 1-d grids.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter._getitem_2d">
+<span class="sig-name descname"><span class="pre">_getitem_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter._getitem_2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter._getitem_2d" title="Permalink to this definition"></a></dt>
+<dd><p>An internal function of __getitem__() for 2-d grid.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter._gt_1d">
+<span class="sig-name descname"><span class="pre">_gt_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter._gt_1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter._gt_1d" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter._gt_2d">
+<span class="sig-name descname"><span class="pre">_gt_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter._gt_2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter._gt_2d" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter._lt_1d">
+<span class="sig-name descname"><span class="pre">_lt_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter._lt_1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter._lt_1d" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter._lt_2d">
+<span class="sig-name descname"><span class="pre">_lt_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter._lt_2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter._lt_2d" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.bbox">
+<span class="sig-name descname"><span class="pre">bbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter.bbox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.bbox" title="Permalink to this definition"></a></dt>
+<dd><p>Convert the bounding box of the object into the abstract coordinates of the master grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>laygo2.physical</em>) – object having physical coordinate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>abstract coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span>    <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;xgrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1_y</span>    <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ygrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span>      <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">vgrid</span><span class="o">=</span><span class="n">g1_x</span><span class="p">,</span> <span class="n">hgrid</span><span class="o">=</span><span class="n">g1_y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy2abs</span> <span class="o">=</span> <span class="n">_PhyToAbsGridConverter</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="n">g2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rect0</span> <span class="o">=</span> <span class="n">physical</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;net0’)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy2abs</span><span class="o">.</span><span class="n">bbox</span><span class="p">(</span><span class="n">rect0</span><span class="p">)</span>
+<span class="go">[[0, 0] , [4, 4]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span><span class="o">.</span><span class="n">mn</span><span class="o">.</span><span class="n">bbox</span><span class="p">(</span><span class="n">rect0</span><span class="p">)</span>
+<span class="go">[[0, 0] , [4, 4]]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_PhyToAbsGridConverter_bbox.png"><img alt="_images/object_grid_PhyToAbsGridConverter_bbox.png" src="_images/object_grid_PhyToAbsGridConverter_bbox.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+객체의 bounding box를 master 좌표계의 추상 좌표로 변환.
+_AbsToPhyGridConverter 객체의 &gt;=, &lt;=를 사용하므로 추상면적이 작아질수있다.
+파라미터
+obj(laygo2.physical): 물리좌표정보를 갖고있는 객체
+반환값
+numpy.ndarray: 추상 좌표
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.bottom_left">
+<span class="sig-name descname"><span class="pre">bottom_left</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter.bottom_left"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.bottom_left" title="Permalink to this definition"></a></dt>
+<dd><p>Convert an object’s physical corner coordinates into abstract coordinates of the master grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>laygo2.physical</em>) – object having physical coordinate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>abstract coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span>    <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;xgrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1_y</span>    <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ygrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span>      <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">vgrid</span><span class="o">=</span><span class="n">g1_x</span><span class="p">,</span> <span class="n">hgrid</span><span class="o">=</span><span class="n">g1_y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy2abs</span> <span class="o">=</span> <span class="n">_PhyToAbsGridConverter</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="n">g2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rect0</span> <span class="o">=</span> <span class="n">physical</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;net0’)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy2abs</span><span class="o">.</span><span class="n">bottom_left</span><span class="p">(</span><span class="n">rect0</span><span class="p">)</span>
+<span class="go">[0, 0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span><span class="o">.</span><span class="n">mn</span><span class="o">.</span><span class="n">bottom_left</span><span class="p">(</span><span class="n">rect0</span><span class="p">)</span>
+<span class="go">[0, 0]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_PhyToAbsGridConverter_bottom_left.png"><img alt="_images/object_grid_PhyToAbsGridConverter_bottom_left.png" src="_images/object_grid_PhyToAbsGridConverter_bottom_left.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
+파라미터
+obj(laygo2.physical): 물리좌표정보를 갖고있는 객체
+반환값
+numpy.ndarray: 추상 좌표
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.bottom_right">
+<span class="sig-name descname"><span class="pre">bottom_right</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter.bottom_right"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.bottom_right" title="Permalink to this definition"></a></dt>
+<dd><p>Convert an object’s physical corner coordinates into abstract coordinates of the master grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>laygo2.physical</em>) – object having physical coordinate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>abstract coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span>    <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;xgrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1_y</span>    <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ygrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span>      <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">vgrid</span><span class="o">=</span><span class="n">g1_x</span><span class="p">,</span> <span class="n">hgrid</span><span class="o">=</span><span class="n">g1_y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy2abs</span> <span class="o">=</span> <span class="n">_PhyToAbsGridConverter</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="n">g2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rect0</span> <span class="o">=</span> <span class="n">physical</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;net0’)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy2abs</span><span class="o">.</span><span class="n">bottom_right</span><span class="p">(</span><span class="n">rect0</span><span class="p">)</span>
+<span class="go">[4, 0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span><span class="o">.</span><span class="n">mn</span><span class="o">.</span><span class="n">bottom_right</span><span class="p">(</span><span class="n">rect0</span><span class="p">)</span>
+<span class="go">[4, 0]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_PhyToAbsGridConverter_bottom_right.png"><img alt="_images/object_grid_PhyToAbsGridConverter_bottom_right.png" src="_images/object_grid_PhyToAbsGridConverter_bottom_right.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
+파라미터
+obj(laygo2.physical): 물리좌표정보를 갖고있는 객체
+반환값
+numpy.ndarray: 추상 좌표
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.center">
+<span class="sig-name descname"><span class="pre">center</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter.center"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.center" title="Permalink to this definition"></a></dt>
+<dd><p>Convert an object’s physical center coordinates into abstract coordinates of the master grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>laygo2.physical</em>) – object having physical coordinate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>abstract coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span>    <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;xgrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1_y</span>    <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ygrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span>      <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">vgrid</span><span class="o">=</span><span class="n">g1_x</span><span class="p">,</span> <span class="n">hgrid</span><span class="o">=</span><span class="n">g1_y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy2abs</span> <span class="o">=</span> <span class="n">_PhyToAbsGridConverter</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="n">g2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rect0</span> <span class="o">=</span> <span class="n">physical</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;net0’)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy2abs</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="n">rect0</span><span class="p">)</span>
+<span class="go">[3, 3]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span><span class="o">.</span><span class="n">mn</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="n">rect0</span><span class="p">)</span>
+<span class="go">[3, 3]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_PhyToAbsGridConverter_center.png"><img alt="_images/object_grid_PhyToAbsGridConverter_center.png" src="_images/object_grid_PhyToAbsGridConverter_center.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+객체의 물리 중앙 좌표를 master 좌표계의 추상 좌표로 변환.
+파라미터
+obj(laygo2.physical): 물리좌표정보를 갖고있는 객체
+반환값
+numpy.ndarray: 추상 좌표
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.crossing">
+<span class="sig-name descname"><span class="pre">crossing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter.crossing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.crossing" title="Permalink to this definition"></a></dt>
+<dd><p>Convert the physical intersections of objects into abstract coordinates of the master grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>laygo2.Physical</em>) – physical object having bbox.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>abstract points.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)">int</a>)</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 10], elements=[0])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 120], elements=[0, 20, 40, 80, 100, 120])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; phy2abs = _PhyToAbsGridConverter(master=g2)
+&gt;&gt;&gt; rect0= physical.Rect(xy=[[0, 0], [60, 90]])
+&gt;&gt;&gt; rect1= physical.Rect(xy=[[30, 30], [120, 120]])
+&gt;&gt;&gt; phy2abs.crossing(rect0, rect1)
+[3, 2]
+&gt;&gt;&gt; g2.mn.crossing(rect0, rect1)
+[3, 2]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_PhyToAbsGridConverter_crossing.png"><img alt="_images/object_grid_PhyToAbsGridConverter_crossing.png" src="_images/object_grid_PhyToAbsGridConverter_crossing.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+객체들의 물리적 교차점을 master 좌표계의 추상 좌표로 변환.
+파라미터
+args(laygo2.Physical): bbox를 가지고있는 physical 객체
+반환값
+numpy.ndarray( int, int )): abstract points
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.height">
+<span class="sig-name descname"><span class="pre">height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter.height"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.height" title="Permalink to this definition"></a></dt>
+<dd><p>Return the height of an object on this grid.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.height_vec">
+<span class="sig-name descname"><span class="pre">height_vec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter.height_vec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.height_vec" title="Permalink to this definition"></a></dt>
+<dd><p>numpy.ndarray(dtype=int): Return np.array([0, height]).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.overlap">
+<span class="sig-name descname"><span class="pre">overlap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bbox'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter.overlap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.overlap" title="Permalink to this definition"></a></dt>
+<dd><p>Convert the overlapping area of objects into abstract coordinates of the master grid and return in a format specified in type.
+A bounding box is returned if type=’bbox’, all coordinates in the overlapped region are returned in a two-dimensional array if type=’array’, and an one-dimensional list is returned if type=’list’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>laygo2.Physical</em>) – physical object having bbox.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>bbox abstract coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 10], elements=[0])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 120], elements=[0, 20, 40, 80, 100, 120])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; phy2abs = _PhyToAbsGridConverter(master=g2)
+&gt;&gt;&gt; rect0= physical.Rect(xy=[[0, 0], [60, 90]])
+&gt;&gt;&gt; rect1= physical.Rect(xy=[[30, 30], [120, 120]])
+&gt;&gt;&gt; phy2abs.overlap(rect0, rect1)
+[[3, 2], [6,4]]
+&gt;&gt;&gt; g2.mn.overlap(rect0, rect1)
+[[3, 2], [6,4]]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_PhyToAbsGridConverter_overlap.png"><img alt="_images/object_grid_PhyToAbsGridConverter_overlap.png" src="_images/object_grid_PhyToAbsGridConverter_overlap.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+객체들의 겹치는 면적을 master 좌표계의 추상 좌표로 변환후 type에 따른 형태로 반환, ‘bbox’인 경우, bounding box로 반환, ‘array’ 인경우 모든 교점을 2차원 array로 반환, ‘list’ 인경우 모든 교점을 1차원 list로 변환.
+파라미터
+args(laygo2.Physical): bbox를 가지고있는 physical 객체
+반환값
+numpy.ndarray: bbox 추상좌표
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.size">
+<span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter.size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.size" title="Permalink to this definition"></a></dt>
+<dd><p>Convert an object’s size ([width, height]) into abstract coordinates of the master grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>laygo2.physical</em>) – object having physical coordinate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>abstract coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span>    <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;xgrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1_y</span>    <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ygrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span>      <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">vgrid</span><span class="o">=</span><span class="n">g1_x</span><span class="p">,</span> <span class="n">hgrid</span><span class="o">=</span><span class="n">g1_y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy2abs</span> <span class="o">=</span> <span class="n">_PhyToAbsGridConverter</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="n">g2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rect0</span> <span class="o">=</span> <span class="n">physical</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;net0’)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy2abs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">rect0</span><span class="p">)</span>
+<span class="go">[4, 4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span><span class="o">.</span><span class="n">mn</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">rect0</span><span class="p">)</span>
+<span class="go">[4, 4]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_PhyToAbsGridConverter_size.png"><img alt="_images/object_grid_PhyToAbsGridConverter_size.png" src="_images/object_grid_PhyToAbsGridConverter_size.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+객체의 크기([width, height])를 master 좌표계의 추상 좌표로 변환.
+파라미터
+obj(laygo2.physical): 물리좌표정보를 갖고있는 객체
+반환값
+numpy.ndarray: 추상 좌표
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.top_left">
+<span class="sig-name descname"><span class="pre">top_left</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter.top_left"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.top_left" title="Permalink to this definition"></a></dt>
+<dd><p>Convert an object’s physical corner coordinates into abstract coordinates of the master grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>laygo2.physical</em>) – object having physical coordinate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>abstract coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span>    <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;xgrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1_y</span>    <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ygrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span>      <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">vgrid</span><span class="o">=</span><span class="n">g1_x</span><span class="p">,</span> <span class="n">hgrid</span><span class="o">=</span><span class="n">g1_y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy2abs</span> <span class="o">=</span> <span class="n">_PhyToAbsGridConverter</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="n">g2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rect0</span> <span class="o">=</span> <span class="n">physical</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;net0’)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy2abs</span><span class="o">.</span><span class="n">top_left</span><span class="p">(</span><span class="n">rect0</span><span class="p">)</span>
+<span class="go">[0, 4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span><span class="o">.</span><span class="n">mn</span><span class="o">.</span><span class="n">top_left</span><span class="p">(</span><span class="n">rect0</span><span class="p">)</span>
+<span class="go">[0, 4]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_PhyToAbsGridConverter_top_left.png"><img alt="_images/object_grid_PhyToAbsGridConverter_top_left.png" src="_images/object_grid_PhyToAbsGridConverter_top_left.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
+파라미터
+obj(laygo2.physical): 물리좌표정보를 갖고있는 객체
+반환값
+numpy.ndarray: 추상 좌표
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.top_right">
+<span class="sig-name descname"><span class="pre">top_right</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter.top_right"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.top_right" title="Permalink to this definition"></a></dt>
+<dd><p>Convert an object’s physical corner coordinates into abstract coordinates of the master grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>laygo2.physical</em>) – object having physical coordinate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>abstract coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span>    <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;xgrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1_y</span>    <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ygrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span>      <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">vgrid</span><span class="o">=</span><span class="n">g1_x</span><span class="p">,</span> <span class="n">hgrid</span><span class="o">=</span><span class="n">g1_y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy2abs</span> <span class="o">=</span> <span class="n">_PhyToAbsGridConverter</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="n">g2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rect0</span> <span class="o">=</span> <span class="n">physical</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;net0’)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phy2abs</span><span class="o">.</span><span class="n">top_right</span><span class="p">(</span><span class="n">rect0</span><span class="p">)</span>
+<span class="go">[4, 4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span><span class="o">.</span><span class="n">mn</span><span class="o">.</span><span class="n">top_right</span><span class="p">(</span><span class="n">rect0</span><span class="p">)</span>
+<span class="go">[4, 4]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_PhyToAbsGridConverter_top_right.png"><img alt="_images/object_grid_PhyToAbsGridConverter_top_right.png" src="_images/object_grid_PhyToAbsGridConverter_top_right.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
+파라미터
+obj(laygo2.physical): 물리좌표정보를 갖고있는 객체
+반환값
+numpy.ndarray: 추상 좌표
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.union">
+<span class="sig-name descname"><span class="pre">union</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter.union"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.union" title="Permalink to this definition"></a></dt>
+<dd><p>Convert the bounding box containing all objects into abstract coordinates of the master grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>laygo2.Physical</em>) – physical object having bbox.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>numpy.ndarray</em> – bbox abstract coordinates.</p></li>
+<li><p><em>sGridConverter</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 10], elements=[0])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 120], elements=[0, 20, 40, 80, 100, 120 )
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; rect0= physical.Rect(xy=[[0, 0], [60, 90]])
+&gt;&gt;&gt; rect1= physical.Rect(xy=[[30, 30], [120, 120]])
+&gt;&gt;&gt; g2.mn.union(rect0, rect1)
+[[0, 0], [12,7]]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_PhyToAbsGridConverter_union.png"><img alt="_images/object_grid_PhyToAbsGridConverter_union.png" src="_images/object_grid_PhyToAbsGridConverter_union.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+객체들을 모두 포함하는 bounding box를 master 좌표계의 추상 좌표로 변환.
+파라미터
+args(laygo2.Physical): bbox를 가지고있는 physical 객체
+반환값
+numpy.ndarray: bbox 추상좌표
+참조
+_PhyToAbsGridConverter</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.width">
+<span class="sig-name descname"><span class="pre">width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter.width"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.width" title="Permalink to this definition"></a></dt>
+<dd><p>Return the width of an object on this grid.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.width_vec">
+<span class="sig-name descname"><span class="pre">width_vec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#_PhyToAbsGridConverter.width_vec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.width_vec" title="Permalink to this definition"></a></dt>
+<dd><p>numpy.ndarray(dtype=int): Return np.array([width, 0]).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid._PhyToAbsGridConverter.master">
+<span class="sig-name descname"><span class="pre">master</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid._PhyToAbsGridConverter.master" title="Permalink to this definition"></a></dt>
+<dd><p>Coordinate system to which _PhyToAbsGridConverter object belongs.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span> <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;xgrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">180</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1_y</span> <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ygrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span>   <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">vgrid</span><span class="o">=</span><span class="n">g1_x</span><span class="p">,</span> <span class="n">hgrid</span><span class="o">=</span><span class="n">g1_y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">g1_x</span><span class="o">.</span><span class="n">phy2abs</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.grid._PhyToAbsGridConverter object&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">g2</span><span class="o">.</span><span class="n">mn</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.grid._PhyToAbsGridConverter object&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">g1_x</span><span class="o">.</span><span class="n">phy2abs</span><span class="o">.</span><span class="n">master</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.grid.OneDimGrid object&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">g2</span><span class="o">.</span><span class="n">mn</span><span class="o">.</span><span class="n">master</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.grid.Grid object&gt;</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+_PhyToAbsGridConverter 객체가 속한 좌표계.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>laygo2.Grid or laygo2.OneDimGrid</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="laygo2.object.grid._AbsToPhyGridConverter.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">_AbsToPhyGridConverter class</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="laygo2.object.grid.OneDimGrid.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">OneDimGrid class</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Niftylab at Hanyang University, South Korea.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

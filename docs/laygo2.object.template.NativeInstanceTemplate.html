@@ -1,0 +1,808 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>NativeInstanceTemplate class &#8212; LAYGO2 Documentation  documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/autoclasstoc.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ParameterizedInstanceTemplate class" href="laygo2.object.template.ParameterizedInstanceTemplate.html" />
+    <link rel="prev" title="Template class" href="laygo2.object.template.Template.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="index.html">
+<p class="title">LAYGO2 Documentation</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_link.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="examples_link.html">
+  Trial
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="structure_link.html">
+  Structure
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="technology_link.html">
+  Tech Setup
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_kor.html">
+  Korean
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="laygo2.html">
+  API Reference
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="laygo2.object.html">
+   laygo2.object package
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.physical.html">
+     laygo2.object.physical module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.PhysicalObject.html">
+       PhysicalObject class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.IterablePhysicalObject.html">
+       IterablePhysicalObject class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.PhysicalObjectGroup.html">
+       PhysicalObjectGroup class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Rect.html">
+       Rect class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Path.html">
+       Path class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Pin.html">
+       Pin class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Text.html">
+       Text class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Instance.html">
+       Instance class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.VirtualInstance.html">
+       VirtualInstance class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="laygo2.object.template.html">
+     laygo2.object.template module
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.Template.html">
+       Template class
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       NativeInstanceTemplate class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.ParameterizedInstanceTemplate.html">
+       ParameterizedInstanceTemplate class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.UserDefinedTemplate.html">
+       UserDefinedTemplate class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.grid.html">
+     laygo2.object.grid module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.CircularMapping.html">
+       CircularMapping class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html">
+       CircularMappingArray class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid._AbsToPhyGridConverter.html">
+       _AbsToPhyGridConverter class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid._PhyToAbsGridConverter.html">
+       _PhyToAbsGridConverter class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.OneDimGrid.html">
+       OneDimGrid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.Grid.html">
+       Grid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.PlacementGrid.html">
+       PlacementGrid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.RoutingGrid.html">
+       RoutingGrid class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.database.html">
+     laygo2.object.database module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.BaseDatabase.html">
+       BaseDatabase class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.Library.html">
+       Library class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.Design.html">
+       Design class
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laygo2.interface.html">
+   laygo2.interface package
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laygo2.util.html">
+   laygo2.util package
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="nativeinstancetemplate-class">
+<h1>NativeInstanceTemplate class<a class="headerlink" href="#nativeinstancetemplate-class" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">laygo2.object.template.</span></span><span class="sig-name descname"><span class="pre">NativeInstanceTemplate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">libname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[0,</span> <span class="pre">0],</span> <span class="pre">[0,</span> <span class="pre">0]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template.html#NativeInstanceTemplate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="laygo2.object.template.Template.html#laygo2.object.template.Template" title="laygo2.object.template.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">laygo2.object.template.Template</span></code></a></p>
+<p>NativeInstanceTemplate class implements the template that generate Instance.</p>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>: NativeInstanceTemplate 클래스는 기본 Instance를 반환하는 템플릿을 구현한다.</p>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Data Attributes:</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.libname" title="laygo2.object.template.NativeInstanceTemplate.libname"><code class="xref py py-obj docutils literal notranslate"><span class="pre">libname</span></code></a></p></td>
+<td><p>attribute str: Library name of NativeInstanceTemplate object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.cellname" title="laygo2.object.template.NativeInstanceTemplate.cellname"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cellname</span></code></a></p></td>
+<td><p>attribute str: Cellname of NativeInstanceTemplate object.</p></td>
+</tr>
+</tbody>
+</table>
+<details><summary>Inherited from <a class="reference internal" href="laygo2.object.template.Template.html#laygo2.object.template.Template" title="laygo2.object.template.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">Template</span></code></a></summary><table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.name" title="laygo2.object.template.NativeInstanceTemplate.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></p></td>
+<td><p>Template name.</p></td>
+</tr>
+</tbody>
+</table>
+</details></div>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Methods:</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.__init__" title="laygo2.object.template.NativeInstanceTemplate.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(libname, cellname[, bbox, pins])</p></td>
+<td><p>Constructor function of NativeInstanceTemplate class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.summarize" title="laygo2.object.template.NativeInstanceTemplate.summarize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summarize</span></code></a>()</p></td>
+<td><p>Return the summary of the template information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.bbox" title="laygo2.object.template.NativeInstanceTemplate.bbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bbox</span></code></a>([params])</p></td>
+<td><p>bbox of NativeInstanceTemplate object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.pins" title="laygo2.object.template.NativeInstanceTemplate.pins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pins</span></code></a>([params])</p></td>
+<td><p>Return pin dictionary of NativeInstanceTemplate object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.generate" title="laygo2.object.template.NativeInstanceTemplate.generate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate</span></code></a>([name, shape, pitch, transform, params])</p></td>
+<td><p>Generate Instance object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.export_to_dict" title="laygo2.object.template.NativeInstanceTemplate.export_to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_to_dict</span></code></a>()</p></td>
+<td><p>Return Dictionary containing the information of NativeInstanceTemplate.</p></td>
+</tr>
+</tbody>
+</table>
+<details><summary>Inherited from <a class="reference internal" href="laygo2.object.template.Template.html#laygo2.object.template.Template" title="laygo2.object.template.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">Template</span></code></a></summary><table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.__init__" title="laygo2.object.template.NativeInstanceTemplate.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(libname, cellname[, bbox, pins])</p></td>
+<td><p>Constructor function of NativeInstanceTemplate class.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__str__</span></code>()</p></td>
+<td><p>Return a string corresponding to this object's information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.summarize" title="laygo2.object.template.NativeInstanceTemplate.summarize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summarize</span></code></a>()</p></td>
+<td><p>Return the summary of the template information.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.height" title="laygo2.object.template.NativeInstanceTemplate.height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code></a>([params])</p></td>
+<td><p>int: Return the height of a template.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.width" title="laygo2.object.template.NativeInstanceTemplate.width"><code class="xref py py-obj docutils literal notranslate"><span class="pre">width</span></code></a>([params])</p></td>
+<td><p>int: Return the width of a template.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.size" title="laygo2.object.template.NativeInstanceTemplate.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code></a>([params])</p></td>
+<td><p>int: Return the size of a template.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.bbox" title="laygo2.object.template.NativeInstanceTemplate.bbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bbox</span></code></a>([params])</p></td>
+<td><p>bbox of NativeInstanceTemplate object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.pins" title="laygo2.object.template.NativeInstanceTemplate.pins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pins</span></code></a>([params])</p></td>
+<td><p>Return pin dictionary of NativeInstanceTemplate object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate.generate" title="laygo2.object.template.NativeInstanceTemplate.generate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate</span></code></a>([name, shape, pitch, transform, params])</p></td>
+<td><p>Generate Instance object.</p></td>
+</tr>
+</tbody>
+</table>
+</details></div>
+<hr class="docutils" />
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">libname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[0,</span> <span class="pre">0],</span> <span class="pre">[0,</span> <span class="pre">0]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template.html#NativeInstanceTemplate.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor function of NativeInstanceTemplate class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>libname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – library name.</p></li>
+<li><p><strong>cellname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – cell name.</p></li>
+<li><p><strong>bbox</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a>) – bbox.</p></li>
+<li><p><strong>pins</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary having the pin object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#laygo2.object.template.NativeInstanceTemplate" title="laygo2.object.template.NativeInstanceTemplate">NativeInstanceTemplate</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; nat_temp_pins = dict()
+&gt;&gt;&gt; nat_temp_pins[&#39;in&#39;]  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;in’)
+&gt;&gt;&gt; nat_temp_pins[&#39;out&#39;] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;out’)
+&gt;&gt;&gt; nat_temp = laygo2.object.NativeInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
+&lt;laygo2.object.template.NativeInstanceTemplate object&gt;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_template_NativeInstanceTemplate_init.png"><img alt="_images/object_template_NativeInstanceTemplate_init.png" src="_images/object_template_NativeInstanceTemplate_init.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:
+NativeInstanceTemplate 클래스의 생성자함수.
+파라미터
+libname(str): library 이름
+cellname(str): cell 이름
+bbox(numpy.ndarray): bbox
+pins(dict): pin 객체를 갖고있는 dictionary
+반환값
+laygo2.NativeInstanceTemplate</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate.bbox">
+<span class="sig-name descname"><span class="pre">bbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template.html#NativeInstanceTemplate.bbox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate.bbox" title="Permalink to this definition"></a></dt>
+<dd><p>bbox of NativeInstanceTemplate object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; nat_temp_pins = dict()
+&gt;&gt;&gt; nat_temp_pins[&#39;in&#39;]  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;in’)
+&gt;&gt;&gt; nat_temp_pins[&#39;out&#39;] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;out’)
+&gt;&gt;&gt; nat_temp = laygo2.object.NativeInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
+&gt;&gt;&gt; nat_temp.bbox()
+[[0,0], [100, 100]]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_template_NativeInstanceTemplate_bbox.png"><img alt="_images/object_template_NativeInstanceTemplate_bbox.png" src="_images/object_template_NativeInstanceTemplate_bbox.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:
+NativeInstanceTemplate 객체의 bbox.
+파라미터
+없음
+반환값
+numpy.ndarray</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate.export_to_dict">
+<span class="sig-name descname"><span class="pre">export_to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template.html#NativeInstanceTemplate.export_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate.export_to_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Return Dictionary containing the information of NativeInstanceTemplate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Class</span></code></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nat_temp_pins</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nat_temp_pins</span><span class="p">[</span><span class="s1">&#39;in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nat_temp_pins</span><span class="p">[</span><span class="s1">&#39;out&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;out&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nat_temp</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">NativeInstanceTemplate</span><span class="p">(</span><span class="n">libname</span><span class="o">=</span><span class="s1">&#39;mylib&#39;</span><span class="p">,</span> <span class="n">cellname</span><span class="o">=</span><span class="s1">&#39;mynattemplate&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span> <span class="n">pins</span><span class="o">=</span><span class="n">nat_temp_pins</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nat_temp</span><span class="o">.</span><span class="n">export_to_dict</span><span class="p">()</span>
+<span class="go">{&#39;libname&#39;: &#39;mylib&#39;, &#39;cellname&#39;: &#39;mynattemplate&#39;, &#39;bbox&#39;: [[0, 0], [100, 100]], &#39;pins&#39;: {&#39;in&#39;: {&#39;xy&#39;: [[0, 0], [10, 10]], &#39;layer&#39;: [&#39;M1&#39;, &#39;drawing&#39;], &#39;name&#39;: None, &#39;netname&#39;: &#39;in&#39;}, &#39;out&#39;: {&#39;xy&#39;: [[90, 9 0], [100, 100]], &#39;layer&#39;: [&#39;M1&#39;, &#39;drawing&#39;], &#39;name&#39;: None, &#39;netname&#39;: &#39;out&#39;}}}</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_template_NativeInstanceTemplate_export_to_dict.png"><img alt="_images/object_template_NativeInstanceTemplate_export_to_dict.png" src="_images/object_template_NativeInstanceTemplate_export_to_dict.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:
+NativeInstanceTemplate 의 정보가 담긴 Dictonary 반환.
+파라미터
+없음
+반환값
+dict
+참조
+Class Instance</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'R0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template.html#NativeInstanceTemplate.generate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate.generate" title="Permalink to this definition"></a></dt>
+<dd><p>Generate Instance object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – name of the instance to be generated.</p></li>
+<li><p><strong>shape</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a><em>, </em><em>optional.</em>) – shape of the object to be generated.</p></li>
+<li><p><strong>pitch</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a><em>, </em><em>optional.</em>) – pitch of the object to be generated.</p></li>
+<li><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a><em>, </em><em>optional.</em>) – dictionary having the object attributes.</p></li>
+<li><p><strong>transform</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – transformation attribute of the object to be generated.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(<a class="reference internal" href="laygo2.object.physical.Instance.html#laygo2.object.physical.Instance" title="laygo2.object.physical.Instance">laygo2.object.physical.Instance</a>) generated Instance object</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Class</span></code></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nat_temp_pins</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nat_temp_pins</span><span class="p">[</span><span class="s1">&#39;in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nat_temp_pins</span><span class="p">[</span><span class="s1">&#39;out&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;out&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nat_temp</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">NativeInstanceTemplate</span><span class="p">(</span><span class="n">libname</span><span class="o">=</span><span class="s1">&#39;mylib&#39;</span><span class="p">,</span> <span class="n">cellname</span><span class="o">=</span><span class="s1">&#39;mynattemplate&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span> <span class="n">pins</span><span class="o">=</span><span class="n">nat_temp_pins</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nat_temp</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;I1&quot;</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.physical.Instance object&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nat_temp</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;I2&quot;</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.physical.Instance object&gt;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_template_ParameterizedInstanceTemplate_generate.png"><img alt="_images/object_template_ParameterizedInstanceTemplate_generate.png" src="_images/object_template_ParameterizedInstanceTemplate_generate.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:
+Instance 객체 생성.
+파라미터
+name(str): 생성할 인스턴스의 이름
+shape(numpy.ndarray): 생성할 객체의 shape [ optional ]
+pitch(numpy.ndarray): 생성할 객체간의 간격 [ optional ]
+params(dict) : 객체의 속성을 갖는 Dictionary [ optional ]
+transform(str): 생성할 객체의 변환 속성 [ optional ]
+반환값
+laygo2.Instance: 생성된 개체
+참조
+Class Instance</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate.height">
+<span class="sig-name descname"><span class="pre">height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate.height" title="Permalink to this definition"></a></dt>
+<dd><p>int: Return the height of a template.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate.pins">
+<span class="sig-name descname"><span class="pre">pins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template.html#NativeInstanceTemplate.pins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate.pins" title="Permalink to this definition"></a></dt>
+<dd><p>Return pin dictionary of NativeInstanceTemplate object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; nat_temp_pins = dict()
+&gt;&gt;&gt; nat_temp_pins[&#39;in&#39;]  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;in’)
+&gt;&gt;&gt; nat_temp_pins[&#39;out&#39;] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;out’)
+&gt;&gt;&gt; nat_temp = laygo2.object.NativeInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
+&gt;&gt;&gt; nat_temp.pins()
+{&#39;in&#39;: &lt;laygo2.object.physical.Pin object&gt;, &#39;out&#39;: &lt;laygo2.object.physical.Pin object&gt;}
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_template_ParameterizedInstanceTemplate_pins.png"><img alt="_images/object_template_ParameterizedInstanceTemplate_pins.png" src="_images/object_template_ParameterizedInstanceTemplate_pins.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:
+NativeInstanceTemplate 객체의 pin dictionary 반환.
+파라미터
+없음
+반환값
+dict</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate.size">
+<span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate.size" title="Permalink to this definition"></a></dt>
+<dd><p>int: Return the size of a template.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate.summarize">
+<span class="sig-name descname"><span class="pre">summarize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template.html#NativeInstanceTemplate.summarize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate.summarize" title="Permalink to this definition"></a></dt>
+<dd><p>Return the summary of the template information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate.width">
+<span class="sig-name descname"><span class="pre">width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate.width" title="Permalink to this definition"></a></dt>
+<dd><p>int: Return the width of a template.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate._abc_cache">
+<span class="sig-name descname"><span class="pre">_abc_cache</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_weakrefset.WeakSet</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate._abc_cache" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate._abc_negative_cache">
+<span class="sig-name descname"><span class="pre">_abc_negative_cache</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_weakrefset.WeakSet</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate._abc_negative_cache" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate._abc_negative_cache_version">
+<span class="sig-name descname"><span class="pre">_abc_negative_cache_version</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">47</span></em><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate._abc_negative_cache_version" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate._abc_registry">
+<span class="sig-name descname"><span class="pre">_abc_registry</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_weakrefset.WeakSet</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate._abc_registry" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate._bbox">
+<span class="sig-name descname"><span class="pre">_bbox</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([[0,</span> <span class="pre">0],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[0,</span> <span class="pre">0]])</span></em><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate._bbox" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate._pins">
+<span class="sig-name descname"><span class="pre">_pins</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate._pins" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate.cellname">
+<span class="sig-name descname"><span class="pre">cellname</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate.cellname" title="Permalink to this definition"></a></dt>
+<dd><p>attribute
+str: Cellname of NativeInstanceTemplate object.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; nat_temp_pins = dict() &gt;&gt;&gt; nat_temp_pins[&#39;in&#39;]  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;in’)
+&gt;&gt;&gt; nat_temp_pins[&#39;out&#39;] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;out’)
+&gt;&gt;&gt; nat_temp = laygo2.object.NativeInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
+&gt;&gt;&gt; nat_temp.cellname
+“mynattemplate”
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_template_NativeInstanceTemplate_cellname.png"><img alt="_images/object_template_NativeInstanceTemplate_cellname.png" src="_images/object_template_NativeInstanceTemplate_cellname.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:
+str: NativeInstanceTemplate 객체의 cellname.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate.libname">
+<span class="sig-name descname"><span class="pre">libname</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate.libname" title="Permalink to this definition"></a></dt>
+<dd><p>attribute
+str: Library name of NativeInstanceTemplate object.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; nat_temp_pins = dict() &gt;&gt;&gt; nat_temp_pins[&#39;in&#39;] = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;in’)
+&gt;&gt;&gt; nat_temp_pins[&#39;out&#39;] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;out’)
+&gt;&gt;&gt; nat_temp = laygo2.object.NativeInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
+&gt;&gt;&gt; nat_temp.libname
+“mylib”
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_template_NativeInstanceTemplate_libname.png"><img alt="_images/object_template_NativeInstanceTemplate_libname.png" src="_images/object_template_NativeInstanceTemplate_libname.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p><strong>Reference in Korean</strong>:
+str: NativeInstanceTemplate 객체의 library 이름.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.NativeInstanceTemplate.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.template.NativeInstanceTemplate.name" title="Permalink to this definition"></a></dt>
+<dd><p>Template name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="laygo2.object.template.Template.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Template class</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="laygo2.object.template.ParameterizedInstanceTemplate.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ParameterizedInstanceTemplate class</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Niftylab at Hanyang University, South Korea.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,1239 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Laygo2의 구조 &#8212; LAYGO2 Documentation  documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/autoclasstoc.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="신규 공정에서의 Laygo2 셋업" href="6_technology_kor_link.html" />
+    <link rel="prev" title="laygo2의 쉬운 예제들" href="2_examples_kor_link.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="index.html">
+<p class="title">LAYGO2 Documentation</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_link.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="examples_link.html">
+  Trial
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="structure_link.html">
+  Structure
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="technology_link.html">
+  Tech Setup
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="introduction_kor.html">
+  Korean
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="laygo2.html">
+  API Reference
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="readme_kor_link.html">
+   Laygo2 사용자 안내서
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2_examples_kor_link.html">
+   laygo2의 쉬운 예제들
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Laygo2의 구조
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="6_technology_kor_link.html">
+   신규 공정에서의 Laygo2 셋업
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#object">
+   object 패키지
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#physical">
+     physical 모듈
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#physicalobject">
+       PhysicalObject 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#iterablephysicalobject">
+       IterablePhysicalObject 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#physicalobjectgroup">
+       PhysicalObjectGroup 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#rect">
+       Rect 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#path">
+       Path 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pin">
+       Pin 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#text">
+       Text 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#instance">
+       Instance 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#virtualinstance">
+       VirtualInstance 클래스
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#template">
+     template 모듈
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Template 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nativeinstancetemplate">
+       NativeInstanceTemplate 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#parameterizedinstancetemplate">
+       ParameterizedInstanceTemplate 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#userdefinedtemplate">
+       UserDefinedTemplate 클래스
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grid">
+     grid 모듈
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#circularmapping">
+       CircularMapping 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#circularmappingarray">
+       CircularMappingArray 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#abstophygridconverter">
+       _AbsToPhyGridConverter 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#phytoabsgridconverter">
+       _PhyToAbsGridConverter 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#onedimgrid">
+       OneDimGrid 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Grid 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#placementgrid">
+       PlacementGrid 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#routinggrid">
+       RoutingGrid 클래스
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#database">
+     database 모둘
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#basedatabase">
+       BaseDatabase 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#library">
+       Library 클래스
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#design">
+       Design 클래스
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interface">
+   interface 패키지
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#util">
+   util 패키지
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="laygo2">
+<h1>Laygo2의 구조<a class="headerlink" href="#laygo2" title="Permalink to this headline"></a></h1>
+<p>laygo2는 다음과 같은 패키지들로 구성되어 있다.</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="#object-%ED%8C%A8%ED%82%A4%EC%A7%80">object 패키지</a></strong>: laygo2를 구성하는 다양한 물리적 추상적 개체들을 구현하는 모들.</p></li>
+<li><p><strong><a class="reference external" href="#interface-%ED%8C%A8%ED%82%A4%EC%A7%80">interface 패키지</a></strong>: laygo2와 외부(EDA tools, data structures, files)와의 상호작용 개체 및
+함수들에 관한 패키지.</p></li>
+<li><p><strong><a class="reference external" href="#util-%ED%8C%A8%ED%82%A4%EC%A7%80">util 패키지</a></strong>: 다른 패키지들에서 사용되는 유용한 함수들을 모아놓은 패키지.</p></li>
+</ul>
+<p>laygo2의 UML diagram이 다음 그림에 나타나 있다.
+<img alt="laygo2 UML diagram" src="_images/user_guide_uml.png" /></p>
+<p>각각의 패키지들에 대한 설명은 아래에 기술되어 있으며, 각 함수 및 클래스, 클래스 변수, 클래스 메소드에 대한 상세한 설명은
+API-documentation(예정)을 참조.</p>
+<section id="object">
+<h2>object 패키지<a class="headerlink" href="#object" title="Permalink to this headline"></a></h2>
+<p>laygo2의 레이아웃 생성 과정 및 결과물에 관여하는 다양한 물리적(physical), 추상적(abstract) 개체들을
+구현한 클래스들을 포함한다. Object 패키지을 구성하는 모듈들의 종류는 다음과 같다.</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="#physical-%EB%AA%A8%EB%93%88">physical 모듈</a></strong>: 레이아웃을 구성하는 물리 개체들에 관한 패키지.</p></li>
+<li><p><strong><a class="reference external" href="#template-%EB%AA%A8%EB%93%88">template 모듈</a></strong>: 레이아웃 인스턴스를 생성하는 다양한 종류의 템플릿을 기술하는 클래스들을
+포함한다.</p></li>
+<li><p><strong><a class="reference external" href="#grid-%EB%AA%A8%EB%93%88">grid 모듈</a></strong>: 공정 포팅 및 파라미터화가 용이한 레이아웃 생성을 위하여 도입된 추상화된 격자들을
+기술하는 클래스들을 포함한다.</p></li>
+<li><p><strong><a class="reference external" href="#database-%EB%AA%A8%EB%93%88">database 모듈</a></strong>: 생성된 레이아웃 디자인의 계층구조를 담는 라이브러리 및 디자인 클래스들을
+포함한다.</p></li>
+</ul>
+<section id="physical">
+<h3>physical 모듈<a class="headerlink" href="#physical" title="Permalink to this headline"></a></h3>
+<p>physical 모듈은 레이아웃을 구성하는 다양한 물리 개체들을 기술하는 다음과 같은 클래스들로 구성된 모듈이다.
+이 모듈은 다음과 같은 클래스들을 구현한다.</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a></strong>: 물리 개체들의 기본 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a></strong>(PhysicalObject):
+물리 개체들 중 iterable 연산이 가능한 개체들의 기본 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#PhysicalObjectGroup-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObjectGroup</a></strong>(IterablePhysicalObject):
+(예정) 물리 개체들의 그룹을 위한 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#Rect-%ED%81%B4%EB%9E%98%EC%8A%A4">Rect</a></strong>(PhysucalObject): 사각형 개체 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#Path-%ED%81%B4%EB%9E%98%EC%8A%A4">Path</a></strong>(PhysicalObject): Path 개체 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#Pin-%ED%81%B4%EB%9E%98%EC%8A%A4">Pin</a></strong>(IterablePhysicalObject): Pin 개체 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#Text-%ED%81%B4%EB%9E%98%EC%8A%A4">Text</a></strong>(PhysicalObject): Text 개체 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#Instance-%ED%81%B4%EB%9E%98%EC%8A%A4">Instance</a></strong>(IterablePhysicalObject): Instance 개체 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#VirtualInstance-%ED%81%B4%EB%9E%98%EC%8A%A4">VirtualInstance</a></strong>(IterablePhysicalObject): Instance 개체 클래스.</p></li>
+</ul>
+<p>Physical 모듈에 속한 다양한 개체들을 생성한 예시들이 아래 그림에 나타나 있다.</p>
+<p><img alt="laygo2 physical_objects" src="_images/user_guide_physical.png" /></p>
+<section id="physicalobject">
+<h4>PhysicalObject 클래스<a class="headerlink" href="#physicalobject" title="Permalink to this headline"></a></h4>
+<p>PhysicalObject 클래스는 물리 개체들의 기본적인 동작을 구현하며, 다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <em>str</em>, 개체의 이름.</p></li>
+<li><p><strong>xy</strong>: <em>numpy.ndarray(np.int)</em>, 개체의 위치 좌표.</p></li>
+<li><p><strong>bbox</strong>: <em>numpy.ndarray(np.int)</em>, 개체의 bounding box.</p></li>
+<li><p><strong>master</strong>: <em>PhysicalObject or None</em>, (개체가 다른 개체의 구성원일 때) 개체가 속한 주인 개체.</p></li>
+<li><p><strong>params</strong>: <em>Dict</em>, 개체의 속성.</p></li>
+<li><p><strong>pointers</strong>: <em>Dict</em>, 개체와 관련된 주요 좌표들.</p></li>
+<li><p><strong>left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right</strong>: <em>numpy.ndarray(np.int)</em>,
+개체와 관련된 주요 좌표들 (pointers의 일부).</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="주요 포인터 위치들" src="_images/user_guide_pointers.png" /></p>
+<ul class="simple">
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(xy, name, params=None)</strong>: 생성자.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="iterablephysicalobject">
+<h4>IterablePhysicalObject 클래스<a class="headerlink" href="#iterablephysicalobject" title="Permalink to this headline"></a></h4>
+<p>IterablePhysicalObject 클래스는 iteration이 가능한 물리 개체를 구현한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>xy</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>bbox</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>master</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>params</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>pointers</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right</strong>:
+<a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>elements</strong>: <em>numpy.ndarray(PhysicalObject)</em>, 개체의 구성원.</p></li>
+<li><p><strong>shape</strong>: <em>numpy.ndarray(np.int)</em>, elements의 shape.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(xy, name=None, params=None, elements=None)</strong>: 생성자.</p></li>
+<li><p><strong>ndenumerate()</strong>: 개체의 구성원들(elements)에 대해 ndenumerate() 수행.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="physicalobjectgroup">
+<h4>PhysicalObjectGroup 클래스<a class="headerlink" href="#physicalobjectgroup" title="Permalink to this headline"></a></h4>
+<p>(구현 예정) PhysicalObjectGroup 클래스는 물리 개체들로 구성된 그룹을 구현한다.</p>
+</section>
+<section id="rect">
+<h4>Rect 클래스<a class="headerlink" href="#rect" title="Permalink to this headline"></a></h4>
+<p>Rect 클래스는 사각형 개체를 구현한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>xy</strong>: <em>np.ndarray(dtype=np.int)</em>, 개체의 bottom-left 및 top-right 코너 좌표들.</p></li>
+<li><p><strong>bbox</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>master</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>params</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>pointers</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>layer</strong>: <em>[str, str]</em>, 개체의 레이어 정보.</p></li>
+<li><p><strong>netname</strong>: <em>str</em>, 개체의 노드명.</p></li>
+<li><p><strong>hextension</strong>: <em>int</em>, 개체의 수평방향으로의 확장 값.</p></li>
+<li><p><strong>vextension</strong>: <em>int</em>, 개체의 수직방향으로의 확장 값.</p></li>
+<li><p><strong>height</strong>: <em>int</em>, 개체의 높이.</p></li>
+<li><p><strong>width</strong>: <em>int</em>, 개체의 폭.</p></li>
+<li><p><strong>size</strong>: <em>np.array(dtype=np.int)</em>, 개체의 크기.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(xy, layer, hextension=0, vextension=0, name=None, netname=None, params=None)</strong>: 생성자.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="path">
+<h4>Path 클래스<a class="headerlink" href="#path" title="Permalink to this headline"></a></h4>
+<p>Path 클래스는 경로 개체를 구현한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>xy</strong>: <em>np.ndarray(dtype=np.int)</em>, 개체의 경로점 좌표들.</p></li>
+<li><p><strong>bbox</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>master</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>params</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>layer</strong>: <em>[str, str]</em>, 개체의 레이어 정보.</p></li>
+<li><p><strong>netname</strong>: <em>str</em>, 개체의 노드명.</p></li>
+<li><p><strong>extension</strong>: <em>int</em>, 개체의 말단부에서의 확장 값.</p></li>
+<li><p><strong>width</strong>: <em>int</em>, 개체의 폭.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(xy, layer, width, extension=0, name=None, netname=None, params=None)</strong>: 생성자.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="pin">
+<h4>Pin 클래스<a class="headerlink" href="#pin" title="Permalink to this headline"></a></h4>
+<p>Pin 클래스는 디자인 또는 인스턴스의 라우팅을 위한 핀(포트, 터미널) 개체를 구현한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>xy</strong>: 개체의 bottom-left 및 top-right 코너 좌표들.</p></li>
+<li><p><strong>bbox</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>master</strong>: <em>Instance or VirtualInstance</em>, (해당 개체가 특정 인스턴스에 속한 핀일 때)
+핀 개체의 마스터 인스턴스.</p></li>
+<li><p><strong>params</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>pointers</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right</strong>:
+<a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>elements</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>shape</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>layer</strong>: <em>[str, str]</em>, 개체의 레이어 정보.</p></li>
+<li><p><strong>netname</strong>: <em>str</em>, 개체의 노드명.</p></li>
+<li><p><strong>height</strong>: <em>int</em>, 개체의 높이.</p></li>
+<li><p><strong>width</strong>: <em>int</em>, 개체의 폭.</p></li>
+<li><p><strong>size</strong>: <em>np.array(dtype=np.int)</em>, 개체의 크기.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(xy, layer, name=None, netname=None, params=None, master=None, elements=None)</strong>: 생성자.</p></li>
+<li><p><strong>ndenumerate()</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>export_to_Dict()</strong>: 개체의 정보를 담은 Dict를 반환.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="text">
+<h4>Text 클래스<a class="headerlink" href="#text" title="Permalink to this headline"></a></h4>
+<p>Text 클래스는 텍스트 표식 개체를 구현한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>xy</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>bbox</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>master</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>params</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>pointers</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right</strong>: <a class="reference external" href="#PhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">PhysicalObject</a> 참조.</p></li>
+<li><p><strong>layer</strong>: <em>[str, str]</em>, 개체의 레이어 정보.</p></li>
+<li><p><strong>text</strong>: <em>str</em>, 개체의 텍스트 내용.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p>**__init__(xy, layer, text, name=None, params=None): 생성자.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="instance">
+<h4>Instance 클래스<a class="headerlink" href="#instance" title="Permalink to this headline"></a></h4>
+<p>Instance 클래스는 독립된 하나의 인스턴스 또는 인스턴스 배열을 구성한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>xy</strong>: 개체의 bottom-left 및 top-right 코너 좌표들.</p></li>
+<li><p><strong>bbox</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>master</strong>: <em>Instance or VirtualInstance</em>, (해당 개체가 특정 인스턴스에 속한 하위 인스턴스일 때)
+개체의 마스터 인스턴스.</p></li>
+<li><p><strong>params</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>pointers</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right</strong>:
+<a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>elements</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>shape</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>libname</strong>: <em>str</em>, 개체가 속한 라이브러리 이름.</p></li>
+<li><p><strong>cellname</strong>: <em>str</em>, 개체가 속한 셀 이름.</p></li>
+<li><p><strong>unit_size</strong>: <em>np.array(dtype=np.int)</em> 개체가 배열로 구성되어 있을 때 단위 크기.</p></li>
+<li><p><strong>transform</strong>: <em>str</em>, 개체의 변환 속성.</p></li>
+<li><p><strong>pins</strong>: <em>Dict[Pin]</em>, 개체에 속한 핀들을 모아놓은 Dict.</p></li>
+<li><p><strong>xy0</strong>: <em>np.array(dtype=np.int)</em>, 개체의 주 코너 좌표.</p></li>
+<li><p><strong>xy1</strong>: <em>np.array(dtype=np.int)</em>, 개체의 보조 코너 좌표.</p></li>
+<li><p><strong>size</strong>: <em>np.array(dtype=np.int)</em>, 개체의 크기.</p></li>
+<li><p><strong>pitch</strong>: <em>np.array(dtype=np.int)</em>, 배열로 구성된 개체의 단위 개체간 간격.</p></li>
+<li><p><strong>spacing</strong>: pitch와 동일 <em>(GDS-II와 용어를 맞추기 위하여 도입됨).</em></p></li>
+<li><p><strong>height</strong>: <em>int</em>, 개체의 높이.</p></li>
+<li><p><strong>width</strong>: <em>int</em>, 개체의 폭.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(xy, libname, cellname, shape=None, pitch=None, transform=’R0’, unit_size=np.array([0, 0]),
+pins=None, name=None, params=None)</strong>: 생성자.</p></li>
+<li><p><strong>ndenumerate()</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="virtualinstance">
+<h4>VirtualInstance 클래스<a class="headerlink" href="#virtualinstance" title="Permalink to this headline"></a></h4>
+<p>VirtualInstance 클래스는 복수 개의 물리 개체로 구성된 하나의 가상 인스턴스 또는 가상 인스턴스의 배열을 구현한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>xy</strong>: 개체의 bottom-left 및 top-right 코너 좌표들.</p></li>
+<li><p><strong>bbox</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>master</strong>: <em>Instance or VirtualInstance</em>, (해당 개체가 특정 인스턴스에 속한 하위 인스턴스일 때)
+개체의 마스터 인스턴스.</p></li>
+<li><p><strong>params</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>pointers</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right</strong>:
+<a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>elements</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>shape</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+<li><p><strong>libname</strong>: <a class="reference external" href="#Instance-%ED%81%B4%EB%9E%98%EC%8A%A4">Instance</a> 참조.</p></li>
+<li><p><strong>cellname</strong>: <a class="reference external" href="#Instance-%ED%81%B4%EB%9E%98%EC%8A%A4">Instance</a> 참조.</p></li>
+<li><p><strong>unit_size</strong>: <a class="reference external" href="#Instance-%ED%81%B4%EB%9E%98%EC%8A%A4">Instance</a> 참조.</p></li>
+<li><p><strong>transform</strong>: <a class="reference external" href="#Instance-%ED%81%B4%EB%9E%98%EC%8A%A4">Instance</a> 참조.</p></li>
+<li><p><strong>pins</strong>: <a class="reference external" href="#Instance-%ED%81%B4%EB%9E%98%EC%8A%A4">Instance</a> 참조.</p></li>
+<li><p><strong>xy0</strong>: <a class="reference external" href="#Instance-%ED%81%B4%EB%9E%98%EC%8A%A4">Instance</a> 참조.</p></li>
+<li><p><strong>xy1</strong>: <a class="reference external" href="#Instance-%ED%81%B4%EB%9E%98%EC%8A%A4">Instance</a> 참조.</p></li>
+<li><p><strong>size</strong>: <a class="reference external" href="#Instance-%ED%81%B4%EB%9E%98%EC%8A%A4">Instance</a> 참조.</p></li>
+<li><p><strong>pitch</strong>: <a class="reference external" href="#Instance-%ED%81%B4%EB%9E%98%EC%8A%A4">Instance</a> 참조.</p></li>
+<li><p><strong>spacing</strong>: <a class="reference external" href="#Instance-%ED%81%B4%EB%9E%98%EC%8A%A4">Instance</a> 참조.</p></li>
+<li><p><strong>height</strong>: <a class="reference external" href="#Instance-%ED%81%B4%EB%9E%98%EC%8A%A4">Instance</a> 참조.</p></li>
+<li><p><strong>width</strong>: <a class="reference external" href="#Instance-%ED%81%B4%EB%9E%98%EC%8A%A4">Instance</a> 참조.</p></li>
+<li><p><strong>native_elements</strong>: <em>Dict[PhysicalObject]</em>, 가상 인스턴스를 구성하는 물리 개체들을 모아 놓은 Dict.
+해당 Dict의 key는 물리 개체들의 이름으로 구성하여야 한다.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(xy, libname, cellname, native_elements, shape=None, pitch=None, transform=’R0’, unit_size=np.array([0, 0]),
+pins=None, name=None, params=None)</strong>: 생성자.</p></li>
+<li><p><strong>ndenumerate()</strong>: <a class="reference external" href="#IterablePhysicalObject-%ED%81%B4%EB%9E%98%EC%8A%A4">IterablePhysicalObject</a> 참조.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="template">
+<h3>template 모듈<a class="headerlink" href="#template" title="Permalink to this headline"></a></h3>
+<p>template 모듈은 인스턴스 및 가상 인스턴스를 추상화하는 템플릿 클래스들로 구성된 모듈이다.
+이 모듈은 다음과 같은 클래스들을 구현한다.</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="#Template-%ED%81%B4%EB%9E%98%EC%8A%A4">Template</a></strong>: 기본 템플릿 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#NativeInstanceTemplate-%ED%81%B4%EB%9E%98%EC%8A%A4">NativeInstanceTemplate</a></strong>(Template):
+기본 Instance 개체를 생성하는 템플릿 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#ParameterizedInstanceTemplate-%ED%81%B4%EB%9E%98%EC%8A%A4">ParameterizedInstanceTemplate</a></strong>(Template):
+사용자 정의된 bbox function을 활용하여 Parameterized Instance 개체를 생성하는 템플릿 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#UserDefinedTemplate-%ED%81%B4%EB%9E%98%EC%8A%A4">UserDefinedTemplate</a></strong>(Template):
+사용자 정의된 bbox / pins / generate function들을 활용하여 VirtualInstance 개체를 생성하는 템플릿 클래스.</p></li>
+</ul>
+<section id="id1">
+<h4>Template 클래스<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h4>
+<p>Template 클래스는 기본적인 템플릿 기능을 구현하며, 다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <em>str</em>, 템플릿의 이름.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(name)</strong>: 생성자.</p></li>
+<li><p><strong>height(params=None)</strong>: 템플릿의 높이를 반환.</p></li>
+<li><p><strong>width(params=None)</strong>: 템플릿의 폭을 반환.</p></li>
+<li><p><strong>size(params=None)</strong>: 템플릿의 크기를 반환.</p></li>
+<li><p><strong>bbox(params=None)</strong>: (추상 메소드) 템플릿의 bounding box를 반환.</p></li>
+<li><p><strong>pins(params=None)</strong>: (추상 메소드) 템플릿의 pin을 모아놓은 dict를 반환.</p></li>
+<li><p><strong>generate(name=None, shape=None, pitch=np.array([0, 0]), transform=’R0’, params=None)</strong>:
+(추상 메소드) 템플릿으로부터 생성된 인스턴스 개체를 반환.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="nativeinstancetemplate">
+<h4>NativeInstanceTemplate 클래스<a class="headerlink" href="#nativeinstancetemplate" title="Permalink to this headline"></a></h4>
+<p>NativeInstanceTemplate 클래스는 기본 Instance를 반환하는 템플릿을 구현하며, 다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <a class="reference external" href="#Template-%ED%81%B4%EB%9E%98%EC%8A%A4">Template</a> 참조.</p></li>
+<li><p><strong>libname</strong>: <em>str</em>, 생성되는 인스턴스의 libname.</p></li>
+<li><p><strong>cellname</strong>: <em>str</em>, 생성되는 인스턴스의 cellname.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(libname, cellname, bbox=np.array([[0, 0], [0, 0]]), pins=None)</strong>: 생성자.</p></li>
+<li><p><strong>bbox(params=None)</strong>: <a class="reference external" href="#Template-%ED%81%B4%EB%9E%98%EC%8A%A4">Template</a> 참조.</p></li>
+<li><p><strong>pins(params=None)</strong>: <a class="reference external" href="#Template-%ED%81%B4%EB%9E%98%EC%8A%A4">Template</a> 참조.</p></li>
+<li><p><strong>generate(name=None, shape=None, pitch=np.array([0, 0]), transform=’R0’, params=None)</strong>:
+<a class="reference external" href="#Template-%ED%81%B4%EB%9E%98%EC%8A%A4">Template</a> 참조.</p></li>
+<li><p><strong>export_to_dict()</strong>: 템플릿을 dict의 형태로 반환</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="parameterizedinstancetemplate">
+<h4>ParameterizedInstanceTemplate 클래스<a class="headerlink" href="#parameterizedinstancetemplate" title="Permalink to this headline"></a></h4>
+<p>ParameterizedInstanceTemplate 클래스는 Parameterized Instance를 반환하는 템플릿을 구현하며, 다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <a class="reference external" href="#Template-%ED%81%B4%EB%9E%98%EC%8A%A4">Template</a> 참조.</p></li>
+<li><p><strong>libname</strong>: <a class="reference external" href="#NativeInstanceTemplate-%ED%81%B4%EB%9E%98%EC%8A%A4">NativeInstanceTemplate</a> 참조.</p></li>
+<li><p><strong>cellname</strong>: <a class="reference external" href="#NativeInstanceTemplate-%ED%81%B4%EB%9E%98%EC%8A%A4">NativeInstanceTemplate</a> 참조.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(libname, cellname, bbox_func=None, pins_func=None)</strong>: 생성자.</p></li>
+<li><p><strong>bbox(params=None)</strong>: <a class="reference external" href="#Template-%ED%81%B4%EB%9E%98%EC%8A%A4">Template</a> 참조.</p></li>
+<li><p><strong>pins(params=None)</strong>: <a class="reference external" href="#Template-%ED%81%B4%EB%9E%98%EC%8A%A4">Template</a> 참조.</p></li>
+<li><p><strong>generate(name=None, shape=None, pitch=np.array([0, 0]), transform=’R0’, params=None)</strong>:
+<a class="reference external" href="#Template-%ED%81%B4%EB%9E%98%EC%8A%A4">Template</a> 참조.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="userdefinedtemplate">
+<h4>UserDefinedTemplate 클래스<a class="headerlink" href="#userdefinedtemplate" title="Permalink to this headline"></a></h4>
+<p>UserDefinedTemplate 클래스는 VirtualInstance를 반환하는 템플릿을 구현하며, 다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <a class="reference external" href="#Template-%ED%81%B4%EB%9E%98%EC%8A%A4">Template</a> 참조.</p></li>
+<li><p><strong>libname</strong>: <a class="reference external" href="#NativeInstanceTemplate-%ED%81%B4%EB%9E%98%EC%8A%A4">NativeInstanceTemplate</a> 참조.</p></li>
+<li><p><strong>cellname</strong>: <a class="reference external" href="#NativeInstanceTemplate-%ED%81%B4%EB%9E%98%EC%8A%A4">NativeInstanceTemplate</a> 참조.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(bbox_func, pins_func, generate_func, name=None)</strong>: 생성자.</p></li>
+<li><p><strong>bbox(params=None)</strong>: <a class="reference external" href="#Template-%ED%81%B4%EB%9E%98%EC%8A%A4">Template</a> 참조.</p></li>
+<li><p><strong>pins(params=None)</strong>: <a class="reference external" href="#Template-%ED%81%B4%EB%9E%98%EC%8A%A4">Template</a> 참조.</p></li>
+<li><p><strong>generate(name=None, shape=None, pitch=np.array([0, 0]), transform=’R0’, params=None)</strong>:
+<a class="reference external" href="#Template-%ED%81%B4%EB%9E%98%EC%8A%A4">Template</a> 참조.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="grid">
+<h3>grid 모듈<a class="headerlink" href="#grid" title="Permalink to this headline"></a></h3>
+<p>grid 모듈은 물리 좌표계(physical coordinate system)를 추상화하는 추상 좌표계(abstract coordinate system)를
+구현하는 클래스들로 구성된 모듈이다.</p>
+<p>laygo2는 공정 및 소자 파라미터에 영향을 받지 않는 추상 좌표계(abstract-coordinate system)를 기반으로 레이아웃을 생성한다 (아래 그림 참조).</p>
+<p><img alt="laygo2 grid" src="_images/user_guide_grid.png" /></p>
+<p>Grid 모듈은 다음과 같은 클래스들을 구현한다.</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="#CircularMapping-%ED%81%B4%EB%9E%98%EC%8A%A4">CircularMapping</a></strong>: 기본 순환 맵핑 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#CircularMappingArray-%ED%81%B4%EB%9E%98%EC%8A%A4">CircularMappingArray</a></strong>(CircularMapping): 다차원 순환 맵핑 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#_AbsToPhyGridConverter-%ED%81%B4%EB%9E%98%EC%8A%A4">_AbsToPhyGridConverter</a></strong>: 내부 추상-물리 좌표 변환기 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#_PhyToAbsGridConverter-%ED%81%B4%EB%9E%98%EC%8A%A4">_PhyToAbsGridConverter</a></strong>: 내부 물리-추장 좌표 변환기 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#OneDimGrid-%ED%81%B4%EB%9E%98%EC%8A%A4">OneDimGrid</a></strong>(CircularMapping): 1차원 격자 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a></strong>: 2차원 격자 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#PlacementGrid-%ED%81%B4%EB%9E%98%EC%8A%A4">PlacementGrid</a></strong>(Grid): 인스턴스 배치용 2차원 격자 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#RoutingGrid-%ED%81%B4%EB%9E%98%EC%8A%A4">RoutingGrid</a></strong>(Grid): 배선 라우팅용 2차원 격자 클래스.</p></li>
+</ul>
+<section id="circularmapping">
+<h4>CircularMapping 클래스<a class="headerlink" href="#circularmapping" title="Permalink to this headline"></a></h4>
+<p>CircularMapping 클래스는 기본적인 순환 맵핑 (인덱싱 넘버가 순환하며 무한히 확장)을 구현한다.
+CircularMapping의 사용 예시가 다음 코드 블록에 나타나 있다.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; map = CircularMapping(elements=[100, 200, 300])
+&gt;&gt;&gt; print(map[0])
+100
+&gt;&gt;&gt; print(map[2])
+300
+&gt;&gt;&gt; print(map[4])
+200
+&gt;&gt;&gt; print(map[-3])
+100
+&gt;&gt;&gt; print(map[[2, 3, -2])
+[300, 100, 200]
+&gt;&gt;&gt; print(map[2:7])
+[300, 100, 200, 300, 100]
+</pre></div>
+</div>
+<p>CircularMapping 클래스는 다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>dtype</strong>: <em>type</em>, 순환 맵핑의 데이터 유형.</p></li>
+<li><p><strong>elements</strong>: <em>numpy.array(dtype=self.dtype)</em>, 순환 맵핑의 구성 요소로 이루어진 배열.</p></li>
+<li><p><strong>shape</strong>: <em>numpy.array(dtype=numpy.int)</em>, 순환 맵핑의 shape.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(elements, dtype=np.int)</strong>: 생성자.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: 순환 맵핑의 요소 접근 함수.</p></li>
+<li><p><strong>__iter__()</strong>: 순환 맵핑의 iteration 함수.</p></li>
+<li><p><strong>__next__()</strong>: 순환 맵핑의 다음 요소 접근 함수.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="circularmappingarray">
+<h4>CircularMappingArray 클래스<a class="headerlink" href="#circularmappingarray" title="Permalink to this headline"></a></h4>
+<p>CircularMappingArray 클래스는 다차원 순환 맵핑 (인덱싱 넘버가 순환하며 무한히 확장)을 구현하며,
+순환 맵핑이 필요한 1차원 이상의 배열 구조를 표현하는데 사용된다 (예) 2차원 Via map).
+CircularMappingArray는 다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>dtype</strong>:
+<a class="reference external" href="#CircularMapping-%ED%81%B4%EB%9E%98%EC%8A%A4">CircularMapping</a> 참조.</p></li>
+<li><p><strong>elements</strong>: <a class="reference external" href="#CircularMapping-%ED%81%B4%EB%9E%98%EC%8A%A4">CircularMapping</a> 참조.</p></li>
+<li><p><strong>shape</strong>: <a class="reference external" href="#CircularMapping-%ED%81%B4%EB%9E%98%EC%8A%A4">CircularMapping</a> 참조.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(elements, dtype=np.int)</strong>: <a class="reference external" href="#CircularMapping-%ED%81%B4%EB%9E%98%EC%8A%A4">CircularMapping</a> 참조.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: <a class="reference external" href="#CircularMapping-%ED%81%B4%EB%9E%98%EC%8A%A4">CircularMapping</a> 참조.</p></li>
+<li><p><strong>__iter__()</strong>: <a class="reference external" href="#CircularMapping-%ED%81%B4%EB%9E%98%EC%8A%A4">CircularMapping</a> 참조.</p></li>
+<li><p><strong>__next__()</strong>: <a class="reference external" href="#CircularMapping-%ED%81%B4%EB%9E%98%EC%8A%A4">CircularMapping</a> 참조.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="abstophygridconverter">
+<h4>_AbsToPhyGridConverter 클래스<a class="headerlink" href="#abstophygridconverter" title="Permalink to this headline"></a></h4>
+<p>_AbsToPhyGridConverter 내부 클래스는 추상 좌표를 물리 좌표로 변환하는 기능을 구현한다.
+이 클래스는 역변환(물리-&gt;추상)을 비교 연산자를 통하여 지원하며, 역변환 기능을 위해서 항상 _PhyToAbsGridConverter
+와 쌍으로 동작한다.</p>
+<p><img alt="laygo2 abs2phy" src="_images/user_guide_abs2phy.png" /></p>
+<p>_AbsToPhyGridConverter 클래스는 다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>master</strong>: <em>OneDimGrid or Grid</em>, 클래스가 속한 좌표계.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(master)</strong>: 생성자.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: 요소 접근 함수. 추상 좌표를 입력(pos)으로 받아 대응되는 물리 좌표 반환.</p></li>
+<li><p><strong>__call__(pos)</strong>: 요소 접근 함수. 추상 좌표를 입력(pos)으로 받아 대응되는 물리 좌표 반환.</p></li>
+<li><p><strong>__eq__(other), __lt__(other), __le__(other), __gt__(other), __ge__(other)</strong>:
+(역변환 함수) 부등식 조건을 만족하는 추상 좌표 반환.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="phytoabsgridconverter">
+<h4>_PhyToAbsGridConverter 클래스<a class="headerlink" href="#phytoabsgridconverter" title="Permalink to this headline"></a></h4>
+<p>_PhyToAbsGridConverter 내부 클래스는 물리 좌표를 추상 좌표로 변환하는 기능을 구현하며,
+이 클래스는 역변환(추상-&gt;물리)을 비교 연산자를 통하여 지원하며, 역변환 기능을 위해서 항상 _AbsToPhyGridConverter</p>
+<p><img alt="laygo2 phy2abs" src="_images/user_guide_phy2abs.png" /></p>
+<p>_PhyToAbsGridConverter 클래스는 다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>master</strong>: <em>OneDimGrid or Grid</em>, 클래스가 속한 좌표계.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(master)</strong>: 생성자.</p></li>
+<li><p><strong>__call__(pos)</strong>: 요소 접근 함수. 물리 좌표를 입력(pos)으로 받아 대응되는 추상 좌표 반환.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: 요소 접근 함수. 물리 좌표를 입력(pos)으로 받아 대응되는 추상 좌표 반환.</p></li>
+<li><p><strong>__eq__(other), __lt__(other), __le__(other), __gt__(other), __ge__(other)</strong>:
+부등식 조건을 만족하는 물리 좌표 반환.</p></li>
+<li><p><strong>bbox(obj)</strong>: obj의 bounding box를 추상 좌표로 변환하여 반환.</p></li>
+<li><p><strong>bottom_left(obj)</strong>: obj의 bottom-left 코너 좌표를 추상 좌표로 변환하여 반환.</p></li>
+<li><p><strong>bottom_right(obj)</strong>: obj의 bottom-right 코너 좌표를 추상 좌표로 변환하여 반환.</p></li>
+<li><p><strong>top_left(obj)</strong>: obj의 top-left 코너 좌표를 추상 좌표로 변환하여 반환.</p></li>
+<li><p><strong>top_right(obj)</strong>: obj의 top-right 코너 좌표를 추상 좌표로 변환하여 반환.</p></li>
+<li><p><strong>width(obj)</strong>: obj의 가로 폭을 추상 좌표로 변환하여 반환.</p></li>
+<li><p><strong>height(obj)</strong>: obj의 세로 높이를 추상 좌표로 변환하여 반환.</p></li>
+<li><p><strong>size(obj)</strong>: obj의 크기([width, height])를 추상 좌표로 변환하여 반환.</p></li>
+<li><p><strong>crossing(*args)</strong>: *args로 입력받은 개체들의 교차점을 추상 좌표로 변환하여 반환.</p></li>
+<li><p><strong>overlap(*args, type=’bbox’)</strong>: *args로 입력받은 개체들의 겹치는 영역을 추상 좌표로 변환하여, type에 명시된 형태로
+반환. type=’bbox’인 경우, bounding box의 형태로 반환하고, type=’array’의 경우, 겹치는 영역 내에 존재하는 모든 좌표들을
+2차원 형태의 배열로 반환하며, type=’list’의 경우는 1차원 리스트로 반환.</p></li>
+<li><p><strong>union(*args)</strong>: *args로 입력받은 개체들을 모두 포괄하는 bounding box를 추상 좌표로 변환하여 반환.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="onedimgrid">
+<h4>OneDimGrid 클래스<a class="headerlink" href="#onedimgrid" title="Permalink to this headline"></a></h4>
+<p>OneDimGrid 클래스는 1차원 추상 좌표계를 구현하며,
+다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <em>str</em>, 좌표계 이름.</p></li>
+<li><p><strong>range</strong>: <em>numpy.ndarray(dtype=np.int)</em>, 좌표계가 정의된 영역. 좌표계는 정의된 영역의 좌표들이 반복되는 형태로 확장된다.</p></li>
+<li><p><strong>phy2abs</strong>: <em>_PhyToAbsConverter</em>, 물리-추상 좌표 변환 개체.</p></li>
+<li><p><strong>abs2phy</strong>: <em>_AbsToPhyConverter</em>, 추상-물리 좌표 변환 개체.</p></li>
+<li><p><strong>width</strong>: <em>int</em>, 좌표계가 정의된 영역의 크기.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(name, scope, elements=np.array([0]))</strong>: 생성자.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: 요소 접근 함수. 추상 좌표를 입력(pos)으로 받아 대응되는 물리 좌표 반환.</p></li>
+<li><p><strong>__eq__(other), __lt__(other), __le__(other), __gt__(other), __ge__(other)</strong>:
+부등식 조건을 만족하는 물리 좌표 반환.</p></li>
+<li><p><strong>export_to_dict()</strong>: 그리드의 정보를 담은 dict개체 반환.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id2">
+<h4>Grid 클래스<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h4>
+<p>Grid 클래스는 2차원 물리 좌표계로 맵핑되는 추상 좌표계를 구현한다.</p>
+<p>Grid 클래스와 하위 개체들은 다양한 좌표 변환 동작을 지원하며, 아래 그림은 좌표 변환 방식의 예들을 나타낸 것이다.</p>
+<p><img alt="laygo2 grid_conversion" src="_images/user_guide_grid_conversion.png" /></p>
+<p>Grid 클래스는 다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <em>str</em>, 좌표계 이름.</p></li>
+<li><p><strong>range</strong>: <em>numpy.ndarray(dtype=np.int)</em>, 좌표계가 정의된 영역. 좌표계는 정의된 영역의 좌표들이 반복되는 형태로 확장된다.</p></li>
+<li><p><strong>phy2abs</strong>: <em>PhyToAbsConverter</em>, 물리-추상 좌표 변환 개체.</p></li>
+<li><p><strong>abs2phy</strong>: <em>AbsToPhyConverter</em>, 추상-물리 좌표 변환 개체.</p></li>
+<li><p><strong>xy</strong>: <em>List[OneDimGrid]</em>, x, y축을 구성하는 추상 좌표계를 모아놓은 list ([x, y]).</p></li>
+<li><p><strong>x</strong>: <em>OneDimGrid</em>, x축 방향의 추상 좌표계.</p></li>
+<li><p><strong>y</strong>: <em>OneDimGrid</em>, y축 방향의 추상 좌표계.</p></li>
+<li><p><strong>v</strong>: x와 동일.</p></li>
+<li><p><strong>h</strong>: y와 동일.</p></li>
+<li><p><strong>mn</strong>: abs2phy와 동일</p></li>
+<li><p><strong>width</strong>: <em>int</em>, 좌표계가 정의된 영역의 폭.</p></li>
+<li><p><strong>height</strong>: <em>int</em>, 좌표계가 정의된 영역의 높이.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(name, scope, elements=np.array([0]))</strong>: 생성자.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: 요소 접근 함수. 추상 좌표를 입력(pos)으로 받아 대응되는 물리 좌표 반환.</p></li>
+<li><p><strong>__eq__(other), __lt__(other), __le__(other), __gt__(other), __ge__(other)</strong>:
+부등식 조건을 만족하는 물리 좌표 반환.</p></li>
+<li><p><strong>bbox(obj)</strong>: <a class="reference external" href="#_PhyToAbsGridConverter-%ED%81%B4%EB%9E%98%EC%8A%A4">_PhyToAbsGridConverter</a> 참조.</p></li>
+<li><p><strong>bottom_left(obj)</strong>: <a class="reference external" href="#_PhyToAbsGridConverter-%ED%81%B4%EB%9E%98%EC%8A%A4">_PhyToAbsGridConverter</a> 참조.</p></li>
+<li><p><strong>bottom_right(obj)</strong>: <a class="reference external" href="#_PhyToAbsGridConverter-%ED%81%B4%EB%9E%98%EC%8A%A4">_PhyToAbsGridConverter</a> 참조.</p></li>
+<li><p><strong>top_left(obj)</strong>: <a class="reference external" href="#_PhyToAbsGridConverter-%ED%81%B4%EB%9E%98%EC%8A%A4">_PhyToAbsGridConverter</a> 참조.</p></li>
+<li><p><strong>top_right(obj)</strong>: <a class="reference external" href="#_PhyToAbsGridConverter-%ED%81%B4%EB%9E%98%EC%8A%A4">_PhyToAbsGridConverter</a> 참조.</p></li>
+<li><p><strong>width(obj)</strong>: <a class="reference external" href="#_PhyToAbsGridConverter-%ED%81%B4%EB%9E%98%EC%8A%A4">_PhyToAbsGridConverter</a> 참조.</p></li>
+<li><p><strong>height(obj)</strong>: <a class="reference external" href="#_PhyToAbsGridConverter-%ED%81%B4%EB%9E%98%EC%8A%A4">_PhyToAbsGridConverter</a> 참조.</p></li>
+<li><p><strong>size(obj)</strong>: <a class="reference external" href="#_PhyToAbsGridConverter-%ED%81%B4%EB%9E%98%EC%8A%A4">_PhyToAbsGridConverter</a> 참조.</p></li>
+<li><p><strong>crossing(*args)</strong>: <a class="reference external" href="#_PhyToAbsGridConverter-%ED%81%B4%EB%9E%98%EC%8A%A4">_PhyToAbsGridConverter</a> 참조.</p></li>
+<li><p><strong>overlap(*args, type=’bbox’)</strong>: <a class="reference external" href="#_PhyToAbsGridConverter-%ED%81%B4%EB%9E%98%EC%8A%A4">_PhyToAbsGridConverter</a> 참조.</p></li>
+<li><p><strong>union(*args)</strong>: <a class="reference external" href="#_PhyToAbsGridConverter-%ED%81%B4%EB%9E%98%EC%8A%A4">_PhyToAbsGridConverter</a> 참조.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="placementgrid">
+<h4>PlacementGrid 클래스<a class="headerlink" href="#placementgrid" title="Permalink to this headline"></a></h4>
+<p>PlacementGrid 클래스는 Instance 및 VirtualInstance 개체들의 배치를 위한 격자 그리드를 구현하며,
+다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>range</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>phy2abs</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>abs2phy</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>xy</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>x</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>y</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>v</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>h</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>mn</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>width</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>height</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>type</strong>: <em>str</em>, 격자 유형. placement로 고정.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(name, scope, elements=np.array([0]))</strong>: 생성자.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: 요소 접근 함수. 추상 좌표를 입력(pos)으로 받아 대응되는 물리 좌표 반환.</p></li>
+<li><p><strong>__eq__(other), __lt__(other), __le__(other), __gt__(other), __ge__(other)</strong>:
+부등식 조건을 만족하는 물리 좌표 반환.</p></li>
+<li><p><strong>bbox(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>bottom_left(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>bottom_right(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>top_left(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>top_right(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>width(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>height(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>size(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>crossing(*args)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>overlap(*args, type=’bbox’)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>union(*args)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="routinggrid">
+<h4>RoutingGrid 클래스<a class="headerlink" href="#routinggrid" title="Permalink to this headline"></a></h4>
+<p>RoutingGrid 클래스는 Routing Wire/Via들의 배치를 위한 격자 그리드를 구현하며,
+다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>range</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>phy2abs</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>abs2phy</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>xy</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>x</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>y</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>v</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>h</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>mn</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>width</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>height</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>type</strong>: <em>str</em>, 격자 유형. routing으로 고정.</p></li>
+<li><p><strong>vwidth</strong>: <em>CircularMapping</em>, 수직 wire들의 폭.</p></li>
+<li><p><strong>hwidth</strong>: <em>CircularMapping</em>, 수평 wire들의 폭.</p></li>
+<li><p><strong>vextension</strong>: <em>CircularMapping</em>, 수직 wire들의 extension.</p></li>
+<li><p><strong>hextension</strong>: <em>CircularMapping</em>, 수평 wire들의 extension.</p></li>
+<li><p><strong>vlayer</strong>: <em>CircularMapping</em>, 수직 wire들의 레이어 정보.</p></li>
+<li><p><strong>hlayer</strong>: <em>CircularMapping</em>, 수평 wire들의 레이어 정보.</p></li>
+<li><p><strong>pin_vlayer</strong>: <em>CircularMapping</em>, 수직 pin wire들의 레이어 정보.</p></li>
+<li><p><strong>pin_hlayer</strong>: <em>CircularMapping</em>, 수평 pin wire들의 레이어 정보.</p></li>
+<li><p><strong>viamap</strong>: <em>CircularMappingArray</em>, 그리드 교차점에 위치하는 Via개체들을 담고 있는 배열.</p></li>
+<li><p><strong>primary_grid</strong>: str, 길이가 0인 wire의 방향.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>__init__(name, scope, elements=np.array([0]))</strong>: 생성자.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: 요소 접근 함수. 추상 좌표를 입력(pos)으로 받아 대응되는 물리 좌표 반환.</p></li>
+<li><p><strong>__eq__(other), __lt__(other), __le__(other), __gt__(other), __ge__(other)</strong>:
+부등식 조건을 만족하는 물리 좌표 반환.</p></li>
+<li><p><strong>bbox(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>bottom_left(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>bottom_right(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>top_left(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>top_right(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>width(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>height(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>size(obj)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>crossing(*args)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>overlap(*args, type=’bbox’)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>union(*args)</strong>: <a class="reference external" href="#Grid-%ED%81%B4%EB%9E%98%EC%8A%A4">Grid</a> 참조.</p></li>
+<li><p><strong>route(mn, direction=None, via_tag=None)</strong>: wire라우팅 함수. Routing의 기본 direction과 시작,중간,끝 지점의 Via
+배치 유무를 선택 인자로 받음.</p></li>
+<li><p><strong>via(mn=np.array([0, 0]), params=None)</strong>: via배치 함수.</p></li>
+<li><p><strong>pin(name, mn, direction=None, netname=None, params=None)</strong>: pin배치 함수.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="database">
+<h3>database 모둘<a class="headerlink" href="#database" title="Permalink to this headline"></a></h3>
+<p>database 모듈은 디자인과 라이브러리를 관리하는 계층 구조형 데이터베이스를 구현하는 클래스들로 구성된 모듈이다.
+database 모듈은 다음과 같은 클래스들을 구현한다.</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a></strong>: 기본 데이터베이스 관리 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#Library-%ED%81%B4%EB%9E%98%EC%8A%A4">Library</a></strong>(BaseDatabase): 라이브러리 관리 클래스.</p></li>
+<li><p><strong><a class="reference external" href="#Design-%ED%81%B4%EB%9E%98%EC%8A%A4">Design</a></strong>(BaseDatabase): 디자인 관리 클래스.</p></li>
+</ul>
+<section id="basedatabase">
+<h4>BaseDatabase 클래스<a class="headerlink" href="#basedatabase" title="Permalink to this headline"></a></h4>
+<p>BaseDatabase 클래스는 기본적인 데이터베이스 관리 기능을 구현하며,
+다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <em>str</em>, 데이터베이스 이름.</p></li>
+<li><p><strong>params</strong>: <em>dict or None</em>, 데이터베이스의 파라미터.</p></li>
+<li><p><strong>noname_index</strong>: <em>int</em>, 데이터베이스의 소속 개체들 중 이름이 정해지지 않은 개체의 이름을 사용할 때 부여되는 고유 번호.</p></li>
+<li><p><strong>keys</strong>: <em>list</em>, 소속 개체들을 저장한 dict의 key들.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>items()</strong>: 소속 개체들의 iteration 함수.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: 순환 맵핑의 요소 접근 함수.</p></li>
+<li><p><strong>__setitem__(key, item)</strong>: 순환 맵핑의 요소 추가 함수.</p></li>
+<li><p><strong>append(item)</strong>: 요소 추가 함수.</p></li>
+<li><p><strong>__iter__()</strong>: 순환 맵핑의 iteration 함수.</p></li>
+<li><p><strong>__init__(name, params=None, elements=None)</strong>: 생성자.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="library">
+<h4>Library 클래스<a class="headerlink" href="#library" title="Permalink to this headline"></a></h4>
+<p>Library 클래스는 라이브러리 관리 기능을 구현하며,
+다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>params</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>noname_index</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>keys</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>libname</strong>: <em>str</em>, 라이브러리 이름.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>items()</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>__setitem__(key, item)</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>append(item)</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>__iter__()</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>__init__(name, params=None, elements=None)</strong>: 생성자.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="design">
+<h4>Design 클래스<a class="headerlink" href="#design" title="Permalink to this headline"></a></h4>
+<p>Design 클래스는 디자인 관리 기능을 구현하며,
+다음과 같은 주요 속성과 메소드들을 내포한다.</p>
+<ul class="simple">
+<li><p><strong>주요 속성</strong></p>
+<ul>
+<li><p><strong>name</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>params</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>noname_index</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>keys</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>libname</strong>: <em>str</em>, 라이브러리 이름.</p></li>
+<li><p><strong>cellname</strong>: <em>str</em>, 셀 이름.</p></li>
+<li><p><strong>rects</strong>: <em>dict</em>, 소속 Rect 개체들을 모아놓은 dictionary.</p></li>
+<li><p><strong>paths</strong>: <em>dict</em>, 소속 Path 개체들을 모아놓은 dictionary.</p></li>
+<li><p><strong>pins</strong>: <em>dict</em>, 소속 Pin 개체들을 모아놓은 dictionary.</p></li>
+<li><p><strong>texts</strong>: <em>dict</em>, 소속 Text 개체들을 모아놓은 dictionary.</p></li>
+<li><p><strong>instances</strong>: <em>dict</em>, 소속 Instance 개체들을 모아놓은 dictionary.</p></li>
+<li><p><strong>virtual_instances</strong>: <em>dict</em>, 소속 VirtualInstance 개체들을 모아놓은 dictionary.</p></li>
+</ul>
+</li>
+<li><p><strong>주요 메소드</strong></p>
+<ul>
+<li><p><strong>items()</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>__setitem__(key, item)</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>append(item)</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>__iter__()</strong>: <a class="reference external" href="#BaseDatabase-%ED%81%B4%EB%9E%98%EC%8A%A4">BaseDatabase</a> 참조.</p></li>
+<li><p><strong>__init__(name, params=None, elements=None, libname=None)</strong>: 생성자.</p></li>
+<li><p><strong>place(inst, grid, mn)</strong>: 개체를 주어진 그리드를 참조하여 디자인에 배치.</p></li>
+<li><p><strong>route(grid, mn, direction=None, via_tag=None)</strong>: Wire를 주어진 그리드를 참조하여 디자인에 배치.</p></li>
+<li><p><strong>via(grid, mn, params=None)</strong>: Via를 주어진 그리드를 참조하여 디자인에 배치.</p></li>
+<li><p><strong>pin(name, grid, mn, direction=None, netname=None, params=None)</strong>: Pin을 주어진 그리드를 참조하여 디자인에 배치.</p></li>
+<li><p><strong>export_to_template(libname=None, cellname=None)</strong>: 디자인에 해당하는 템플릿 생성.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="interface">
+<h2>interface 패키지<a class="headerlink" href="#interface" title="Permalink to this headline"></a></h2>
+<p>interface 패키지는 아래 그림과 같이 laygo2와 외부 EDA 및 데이터 구조들과 상호작용하는 클래스 및 함수들을 포함한다.</p>
+<p><img alt="laygo2 interface" src="_images/user_guide_interface.png" /></p>
+<ul class="simple">
+<li><p><strong>gds 모듈</strong>: 레이아웃 구조들을 저장하는데 가장 많이 사용되는 파일 형식인 GDS-II 포맷으로 laygo2
+디자인들을 입출력하는 함수들을 포함한다.</p></li>
+<li><p><strong>yaml 모듈</strong>: 데이터 구조를 직관적으로 표현하는 형식인 yaml 포맷으로 laygo2 디자인(특히 템플릿)들을
+입출력하는 함수들을 포함한다.</p></li>
+<li><p><strong>virtuoso 모듈</strong>: 대표적인 EDA툴인 Cadence의 virtuoso 프로그램에서 사용하는 skill language 포멧으로
+laygo2 디자인들을 입출력하는 함수들을 포함한다.</p></li>
+</ul>
+</section>
+<section id="util">
+<h2>util 패키지<a class="headerlink" href="#util" title="Permalink to this headline"></a></h2>
+<p>좌표 변환 및 변형 등 다른 패키지에서 유용하게 사용되는 기능들을 구현한 함수들을 포함한다.</p>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="2_examples_kor_link.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">laygo2의 쉬운 예제들</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="6_technology_kor_link.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">신규 공정에서의 Laygo2 셋업</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Niftylab at Hanyang University, South Korea.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

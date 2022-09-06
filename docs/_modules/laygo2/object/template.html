@@ -1,0 +1,1169 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>laygo2.object.template &#8212; LAYGO2 Documentation  documentation</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/autoclasstoc.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../../index.html">
+<p class="title">LAYGO2 Documentation</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../introduction_link.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../examples_link.html">
+  Trial
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../structure_link.html">
+  Structure
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../technology_link.html">
+  Tech Setup
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../introduction_kor.html">
+  Korean
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../laygo2.html">
+  API Reference
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for laygo2.object.template</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1">########################################################################################################################</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2014, Regents of the University of California</span>
+<span class="c1"># All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># Redistribution and use in source and binary forms, with or without modification, are permitted provided that the</span>
+<span class="c1"># following conditions are met:</span>
+<span class="c1">#</span>
+<span class="c1"># 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following</span>
+<span class="c1">#   disclaimer.</span>
+<span class="c1"># 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the</span>
+<span class="c1">#    following disclaimer in the documentation and/or other materials provided with the distribution.</span>
+<span class="c1">#</span>
+<span class="c1"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES,</span>
+<span class="c1"># INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span>
+<span class="c1"># DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</span>
+<span class="c1"># SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR</span>
+<span class="c1"># SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,</span>
+<span class="c1"># WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</span>
+<span class="c1"># OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<span class="c1">#</span>
+<span class="c1">########################################################################################################################</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module implements classes for various layout template objects.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Jaeduk Han&quot;</span>
+<span class="n">__maintainer__</span> <span class="o">=</span> <span class="s2">&quot;Jaeduk Han&quot;</span>
+<span class="n">__status__</span> <span class="o">=</span> <span class="s2">&quot;Prototype&quot;</span>
+
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">laygo2.object</span>
+
+
+<div class="viewcode-block" id="Template"><a class="viewcode-back" href="../../../laygo2.object.template.Template.html#laygo2.object.template.Template">[docs]</a><span class="k">class</span> <span class="nc">Template</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The base class that defines the functions and attributes of the template.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **Reference in Korean**: Template의 기본동작과 속성을 정의한 기본 클래스.</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;str: Template name.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Template.__init__"><a class="viewcode-back" href="../../../laygo2.object.template.Template.html#laygo2.object.template.Template.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor function of Template class.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str or None, optional.</span>
+<span class="sd">            The name of this template.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span></div>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a string corresponding to this object&#39;s information.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">summarize</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Template.summarize"><a class="viewcode-back" href="../../../laygo2.object.template.Template.html#laygo2.object.template.Template.summarize">[docs]</a>    <span class="k">def</span> <span class="nf">summarize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the summary of the template information.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> \
+                                 <span class="s2">&quot;name: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> \
+                                 <span class="s2">&quot;class: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> \
+                                 <span class="s2">&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="Template.height"><a class="viewcode-back" href="../../../laygo2.object.template.Template.html#laygo2.object.template.Template.height">[docs]</a>    <span class="k">def</span> <span class="nf">height</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;int: Return the height of a template.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bbox</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">bbox</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Template.width"><a class="viewcode-back" href="../../../laygo2.object.template.Template.html#laygo2.object.template.Template.width">[docs]</a>    <span class="k">def</span> <span class="nf">width</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;int: Return the width of a template.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bbox</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">bbox</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Template.size"><a class="viewcode-back" href="../../../laygo2.object.template.Template.html#laygo2.object.template.Template.size">[docs]</a>    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;int: Return the size of a template.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)])</span></div>
+
+<div class="viewcode-block" id="Template.bbox"><a class="viewcode-back" href="../../../laygo2.object.template.Template.html#laygo2.object.template.Template.bbox">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">bbox</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;numpy.ndarray: (Abstract method) Return the bounding box of a template.&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Template.pins"><a class="viewcode-back" href="../../../laygo2.object.template.Template.html#laygo2.object.template.Template.pins">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">pins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;dict: (Abstract method) Return dict having the collection of pins of a template.&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Template.generate"><a class="viewcode-back" href="../../../laygo2.object.template.Template.html#laygo2.object.template.Template.generate">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pitch</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="s1">&#39;R0&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;instance: (Abstract method) Return the instance generated from a template.&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+
+
+<div class="viewcode-block" id="NativeInstanceTemplate"><a class="viewcode-back" href="../../../laygo2.object.template.NativeInstanceTemplate.html#laygo2.object.template.NativeInstanceTemplate">[docs]</a><span class="k">class</span> <span class="nc">NativeInstanceTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    NativeInstanceTemplate class implements the template that generate Instance.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **Reference in Korean**: NativeInstanceTemplate 클래스는 기본 Instance를 반환하는 템플릿을 구현한다.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">libname</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;attribute</span>
+<span class="sd">    str: Library name of NativeInstanceTemplate object.</span>
+
+<span class="sd">    </span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; nat_temp_pins = dict() &gt;&gt;&gt; nat_temp_pins[&#39;in&#39;] = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;in’)</span>
+<span class="sd">    &gt;&gt;&gt; nat_temp_pins[&#39;out&#39;] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;out’)</span>
+<span class="sd">    &gt;&gt;&gt; nat_temp = laygo2.object.NativeInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)</span>
+<span class="sd">    &gt;&gt;&gt; nat_temp.libname </span>
+<span class="sd">    “mylib”</span>
+
+<span class="sd">    </span>
+<span class="sd">    .. image:: ../assets/img/object_template_NativeInstanceTemplate_libname.png</span>
+<span class="sd">          :height: 250</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **Reference in Korean**: </span>
+<span class="sd">    str: NativeInstanceTemplate 객체의 library 이름.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">cellname</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;attribute</span>
+<span class="sd">    str: Cellname of NativeInstanceTemplate object.</span>
+
+<span class="sd">    </span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; nat_temp_pins = dict() &gt;&gt;&gt; nat_temp_pins[&#39;in&#39;]  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;in’)</span>
+<span class="sd">    &gt;&gt;&gt; nat_temp_pins[&#39;out&#39;] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;out’)</span>
+<span class="sd">    &gt;&gt;&gt; nat_temp = laygo2.object.NativeInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)</span>
+<span class="sd">    &gt;&gt;&gt; nat_temp.cellname </span>
+<span class="sd">    “mynattemplate”</span>
+
+<span class="sd">    </span>
+<span class="sd">    .. image:: ../assets/img/object_template_NativeInstanceTemplate_cellname.png</span>
+<span class="sd">          :height: 250</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **Reference in Korean**:</span>
+<span class="sd">    str: NativeInstanceTemplate 객체의 cellname.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_bbox</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+    
+    <span class="n">_pins</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="NativeInstanceTemplate.__init__"><a class="viewcode-back" href="../../../laygo2.object.template.NativeInstanceTemplate.html#laygo2.object.template.NativeInstanceTemplate.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">libname</span><span class="p">,</span> <span class="n">cellname</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span> <span class="n">pins</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor function of NativeInstanceTemplate class.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        libname : str</span>
+<span class="sd">            library name.</span>
+<span class="sd">        cellname : str</span>
+<span class="sd">            cell name.</span>
+<span class="sd">        bbox : numpy.ndarray</span>
+<span class="sd">            bbox.</span>
+<span class="sd">        pins : dict</span>
+<span class="sd">            dictionary having the pin object.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        NativeInstanceTemplate</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp_pins = dict() </span>
+<span class="sd">        &gt;&gt;&gt; nat_temp_pins[&#39;in&#39;]  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;in’)</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp_pins[&#39;out&#39;] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;out’)</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp = laygo2.object.NativeInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)</span>
+<span class="sd">        &lt;laygo2.object.template.NativeInstanceTemplate object&gt;</span>
+
+<span class="sd">        </span>
+<span class="sd">        .. image:: ../assets/img/object_template_NativeInstanceTemplate_init.png</span>
+<span class="sd">          :height: 250</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **Reference in Korean**:</span>
+<span class="sd">        NativeInstanceTemplate 클래스의 생성자함수.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">        libname(str): library 이름</span>
+<span class="sd">        cellname(str): cell 이름</span>
+<span class="sd">        bbox(numpy.ndarray): bbox</span>
+<span class="sd">        pins(dict): pin 객체를 갖고있는 dictionary</span>
+<span class="sd">        반환값</span>
+<span class="sd">        laygo2.NativeInstanceTemplate</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">libname</span> <span class="o">=</span> <span class="n">libname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cellname</span> <span class="o">=</span> <span class="n">cellname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bbox</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">bbox</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">bbox</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pins</span> <span class="o">=</span> <span class="n">pins</span>
+        <span class="n">Template</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">cellname</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NativeInstanceTemplate.summarize"><a class="viewcode-back" href="../../../laygo2.object.template.NativeInstanceTemplate.html#laygo2.object.template.NativeInstanceTemplate.summarize">[docs]</a>    <span class="k">def</span> <span class="nf">summarize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the summary of the template information.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> \
+                                 <span class="s2">&quot;name: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> \
+               <span class="s2">&quot;class: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> \
+               <span class="s2">&quot;bbox: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bbox</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> \
+               <span class="s2">&quot;pins: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pins</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> \
+               <span class="s2">&quot;&quot;</span></div>
+
+    <span class="c1"># Core template functions</span>
+<div class="viewcode-block" id="NativeInstanceTemplate.bbox"><a class="viewcode-back" href="../../../laygo2.object.template.NativeInstanceTemplate.html#laygo2.object.template.NativeInstanceTemplate.bbox">[docs]</a>    <span class="k">def</span> <span class="nf">bbox</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        bbox of NativeInstanceTemplate object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        numpy.ndarray</span>
+
+<span class="sd">        </span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp_pins = dict() </span>
+<span class="sd">        &gt;&gt;&gt; nat_temp_pins[&#39;in&#39;]  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;in’)</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp_pins[&#39;out&#39;] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;out’)</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp = laygo2.object.NativeInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp.bbox() </span>
+<span class="sd">        [[0,0], [100, 100]]</span>
+
+<span class="sd">        </span>
+<span class="sd">        .. image:: ../assets/img/object_template_NativeInstanceTemplate_bbox.png</span>
+<span class="sd">          :height: 250</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **Reference in Korean**:</span>
+<span class="sd">        NativeInstanceTemplate 객체의 bbox.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">        없음</span>
+<span class="sd">        반환값</span>
+<span class="sd">        numpy.ndarray</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bbox</span></div>
+
+<div class="viewcode-block" id="NativeInstanceTemplate.pins"><a class="viewcode-back" href="../../../laygo2.object.template.NativeInstanceTemplate.html#laygo2.object.template.NativeInstanceTemplate.pins">[docs]</a>    <span class="k">def</span> <span class="nf">pins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return pin dictionary of NativeInstanceTemplate object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+
+<span class="sd">        </span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp_pins = dict() </span>
+<span class="sd">        &gt;&gt;&gt; nat_temp_pins[&#39;in&#39;]  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;in’)</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp_pins[&#39;out&#39;] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing’], netname=&#39;out’)</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp = laygo2.object.NativeInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp.pins() </span>
+<span class="sd">        {&#39;in&#39;: &lt;laygo2.object.physical.Pin object&gt;, &#39;out&#39;: &lt;laygo2.object.physical.Pin object&gt;}</span>
+
+<span class="sd">        </span>
+<span class="sd">        .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_pins.png</span>
+<span class="sd">          :height: 250</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **Reference in Korean**:</span>
+<span class="sd">        NativeInstanceTemplate 객체의 pin dictionary 반환.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">        없음</span>
+<span class="sd">        반환값</span>
+<span class="sd">        dict</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pins</span></div>
+
+<div class="viewcode-block" id="NativeInstanceTemplate.generate"><a class="viewcode-back" href="../../../laygo2.object.template.NativeInstanceTemplate.html#laygo2.object.template.NativeInstanceTemplate.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pitch</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="s1">&#39;R0&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate Instance object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str </span>
+<span class="sd">            name of the instance to be generated.</span>
+<span class="sd">        shape : numpy.ndarray, optional.</span>
+<span class="sd">            shape of the object to be generated.</span>
+<span class="sd">        pitch : numpy.ndarray, optional.</span>
+<span class="sd">            pitch of the object to be generated.</span>
+<span class="sd">        params : dict, optional.</span>
+<span class="sd">            dictionary having the object attributes.</span>
+<span class="sd">        transform : str</span>
+<span class="sd">            transformation attribute of the object to be generated.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        (laygo2.object.physical.Instance) generated Instance object</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        Class Instance</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp_pins = dict()</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp_pins[&#39;in&#39;] = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;in&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp_pins[&#39;out&#39;] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;out&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp = laygo2.object.NativeInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate&#39;, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp.generate(name=&quot;I1&quot;)</span>
+<span class="sd">        &lt;laygo2.object.physical.Instance object&gt;</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp.generate(name=&quot;I2&quot;)</span>
+<span class="sd">        &lt;laygo2.object.physical.Instance object&gt;</span>
+
+<span class="sd">        </span>
+<span class="sd">        .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_generate.png</span>
+<span class="sd">          :height: 250</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **Reference in Korean**:</span>
+<span class="sd">        Instance 객체 생성.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">        name(str): 생성할 인스턴스의 이름</span>
+<span class="sd">        shape(numpy.ndarray): 생성할 객체의 shape [ optional ]</span>
+<span class="sd">        pitch(numpy.ndarray): 생성할 객체간의 간격 [ optional ]</span>
+<span class="sd">        params(dict) : 객체의 속성을 갖는 Dictionary [ optional ]</span>
+<span class="sd">        transform(str): 생성할 객체의 변환 속성 [ optional ]</span>
+<span class="sd">        반환값</span>
+<span class="sd">        laygo2.Instance: 생성된 개체</span>
+<span class="sd">        참조</span>
+<span class="sd">        Class Instance</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">Instance</span><span class="p">(</span><span class="n">libname</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">libname</span><span class="p">,</span> <span class="n">cellname</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cellname</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+                                               <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span> <span class="n">pitch</span><span class="o">=</span><span class="n">pitch</span><span class="p">,</span> <span class="n">unit_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">params</span><span class="p">),</span> <span class="n">pins</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pins</span><span class="p">(</span><span class="n">params</span><span class="p">),</span>
+                                               <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span></div>
+
+    <span class="c1"># I/O functions</span>
+<div class="viewcode-block" id="NativeInstanceTemplate.export_to_dict"><a class="viewcode-back" href="../../../laygo2.object.template.NativeInstanceTemplate.html#laygo2.object.template.NativeInstanceTemplate.export_to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">export_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return Dictionary containing the information of NativeInstanceTemplate.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        Class Instance</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp_pins = dict()</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp_pins[&#39;in&#39;] = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;in&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp_pins[&#39;out&#39;] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=[&#39;M1&#39;, &#39;drawing&#39;], netname=&#39;out&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp = laygo2.object.NativeInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate&#39;, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp.export_to_dict()</span>
+<span class="sd">        {&#39;libname&#39;: &#39;mylib&#39;, &#39;cellname&#39;: &#39;mynattemplate&#39;, &#39;bbox&#39;: [[0, 0], [100, 100]], &#39;pins&#39;: {&#39;in&#39;: {&#39;xy&#39;: [[0, 0], [10, 10]], &#39;layer&#39;: [&#39;M1&#39;, &#39;drawing&#39;], &#39;name&#39;: None, &#39;netname&#39;: &#39;in&#39;}, &#39;out&#39;: {&#39;xy&#39;: [[90, 9 0], [100, 100]], &#39;layer&#39;: [&#39;M1&#39;, &#39;drawing&#39;], &#39;name&#39;: None, &#39;netname&#39;: &#39;out&#39;}}}</span>
+
+<span class="sd">        </span>
+<span class="sd">        .. image:: ../assets/img/object_template_NativeInstanceTemplate_export_to_dict.png</span>
+<span class="sd">          :height: 250</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **Reference in Korean**:</span>
+<span class="sd">        NativeInstanceTemplate 의 정보가 담긴 Dictonary 반환.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">        없음</span>
+<span class="sd">        반환값</span>
+<span class="sd">        dict</span>
+<span class="sd">        참조</span>
+<span class="sd">        Class Instance</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">db</span><span class="p">[</span><span class="s1">&#39;libname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">libname</span>
+        <span class="n">db</span><span class="p">[</span><span class="s1">&#39;cellname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cellname</span>
+        <span class="n">db</span><span class="p">[</span><span class="s1">&#39;bbox&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bbox</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">db</span><span class="p">[</span><span class="s1">&#39;pins&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">pn</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pins</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">db</span><span class="p">[</span><span class="s1">&#39;pins&#39;</span><span class="p">][</span><span class="n">pn</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">export_to_dict</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">db</span></div></div>
+
+
+<div class="viewcode-block" id="ParameterizedInstanceTemplate"><a class="viewcode-back" href="../../../laygo2.object.template.ParameterizedInstanceTemplate.html#laygo2.object.template.ParameterizedInstanceTemplate">[docs]</a><span class="k">class</span> <span class="nc">ParameterizedInstanceTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ParameterizedInstanceTemplate class implements the template that generate ParameterizedInstnace.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **Reference in Korean**: ParameterizedInstanceTemplate 클래스는 Parameterized Instance를 반환하는 템플릿을 구현한다.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">libname</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;str: Libname of the instance being generated.&quot;&quot;&quot;</span>
+
+    <span class="n">cellname</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;str: Cellname of the instance being generated.&quot;&quot;&quot;</span>
+
+    <span class="n">_bbox</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">_pins</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="ParameterizedInstanceTemplate.__init__"><a class="viewcode-back" href="../../../laygo2.object.template.ParameterizedInstanceTemplate.html#laygo2.object.template.ParameterizedInstanceTemplate.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">libname</span><span class="p">,</span> <span class="n">cellname</span><span class="p">,</span> <span class="n">bbox_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pins_func</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate ParameterizedInstanceTemplate object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        libname : str</span>
+<span class="sd">            library name.</span>
+<span class="sd">        cellname : str </span>
+<span class="sd">            The cell name of the template. </span>
+<span class="sd">        bbox_func : callable</span>
+<span class="sd">            bbox.</span>
+<span class="sd">        pins_func : callable</span>
+<span class="sd">            dictionary having the pin object.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        laygo2.NativeInstanceTemplate</span>
+
+<span class="sd">        </span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; def pcell_bbox_func(params): </span>
+<span class="sd">            …… </span>
+<span class="sd">        &gt;&gt;&gt; def pcell_pins_func(params): </span>
+<span class="sd">            ……</span>
+<span class="sd">        &gt;&gt;&gt; pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate’, bbox_func= pcell_bbox_func, pins_func= pcell_pins_func)</span>
+<span class="sd">        &lt;laygo2.object.template.ParameterizedInstanceTemplate object&gt;</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_init.png</span>
+<span class="sd">          :height: 250</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **Reference in Korean**:</span>
+<span class="sd">        ParameterizedInstanceTemplate 클래스의 생성자함수.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">        libname(str): library 이름 </span>
+<span class="sd">        cellname(str): cell 이름 </span>
+<span class="sd">        bbox_func(callable): bbox </span>
+<span class="sd">        pins_func(callable): pin 객체를 갖고있는 dictionary</span>
+<span class="sd">        반환값</span>
+<span class="sd">        laygo2.NativeInstanceTemplate</span>
+<span class="sd">        참조</span>
+<span class="sd">        없음</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">libname</span> <span class="o">=</span> <span class="n">libname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cellname</span> <span class="o">=</span> <span class="n">cellname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bbox</span> <span class="o">=</span> <span class="n">bbox_func</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pins</span> <span class="o">=</span> <span class="n">pins_func</span>
+        <span class="n">Template</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">cellname</span><span class="p">)</span></div>
+
+    <span class="c1"># Core template functions</span>
+<div class="viewcode-block" id="ParameterizedInstanceTemplate.bbox"><a class="viewcode-back" href="../../../laygo2.object.template.ParameterizedInstanceTemplate.html#laygo2.object.template.ParameterizedInstanceTemplate.bbox">[docs]</a>    <span class="k">def</span> <span class="nf">bbox</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        bbox of ParameterizedInstanceTemplate object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        numpy.ndarray</span>
+
+<span class="sd">        </span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; def pcell_bbox_func(params):</span>
+<span class="sd">                if params==None: </span>
+<span class="sd">                    params={“W”:1}</span>
+<span class="sd">                return np.array([[0, 0], [100 , 100* params[&#39;W&#39;]]])</span>
+<span class="sd">        &gt;&gt;&gt; def pcell_pins_func(params): </span>
+<span class="sd">            ……</span>
+<span class="sd">        &gt;&gt;&gt; pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate’, bbox_func= pcell_bbox_func, pins_func= pcell_pins_func)</span>
+<span class="sd">        &gt;&gt;&gt; pcell_temp.bbox </span>
+<span class="sd">        [[0,0], [100,100]]</span>
+
+<span class="sd">        </span>
+<span class="sd">        .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_bbox.png</span>
+<span class="sd">          :height: 250</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **Reference in Korean**:</span>
+<span class="sd">        ParameterizedInstanceTemplate 객체의 bbox.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">        없음</span>
+<span class="sd">        반환값</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">        참조</span>
+<span class="sd">        없음</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bbox</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ParameterizedInstanceTemplate.pins"><a class="viewcode-back" href="../../../laygo2.object.template.ParameterizedInstanceTemplate.html#laygo2.object.template.ParameterizedInstanceTemplate.pins">[docs]</a>    <span class="k">def</span> <span class="nf">pins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return pin dictionary of ParameterizedInstanceTemplate object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+
+<span class="sd">        </span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; def pcell_bbox_func(params): </span>
+<span class="sd">            ……</span>
+<span class="sd">        &gt;&gt;&gt; def pcell_pins_func(params):</span>
+<span class="sd">                if params==None:</span>
+<span class="sd">                    params={&quot;W&quot;:1} </span>
+<span class="sd">                    i = params[&#39;W&#39;]</span>
+<span class="sd">                template_pins = dict()</span>
+<span class="sd">                pin_in  = laygo2.object.Pin(xy =[ [ 0, 0], [100 , 0 ] ],      layer=[&#39;M1&#39;, &#39;pin&#39;], netname=&#39;in&#39;)</span>
+<span class="sd">                pin_out = laygo2.object.Pin(xy =[ [ 0, 100], [100 , 100* i]], layer=[&#39;M1&#39;, &#39;pin’], netname=&#39;out&#39;)</span>
+<span class="sd">                template_pins[&#39;in&#39; ] = pin_in</span>
+<span class="sd">                template_pins[&#39;out&#39;] = pin_out</span>
+<span class="sd">                return template_pins</span>
+<span class="sd">        &gt;&gt;&gt; pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate’, bbox_func= pcell_bbox_func, pins_func= pcell_pins_func)</span>
+<span class="sd">        &gt;&gt;&gt; pcell_temp.pins </span>
+<span class="sd">        {&#39;in&#39;: &lt;laygo2.object.physical.Pin object&gt;, &#39;out&#39;: &lt;laygo2.object.physical.Pin object&gt;}</span>
+
+<span class="sd">        </span>
+<span class="sd">        .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_pins.png</span>
+<span class="sd">          :height: 250</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **Reference in Korean**:</span>
+<span class="sd">        ParameterizedInstanceTemplate 객체의 pin dictionary 반환.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">        없음</span>
+<span class="sd">        반환값</span>
+<span class="sd">        dict</span>
+<span class="sd">        참조</span>
+<span class="sd">        없음</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pins</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ParameterizedInstanceTemplate.generate"><a class="viewcode-back" href="../../../laygo2.object.template.ParameterizedInstanceTemplate.html#laygo2.object.template.ParameterizedInstanceTemplate.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pitch</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="s1">&#39;R0&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate ParameterizedInstance object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            name of the instance to be generated.</span>
+<span class="sd">        shape : numpy.ndarray, optional.</span>
+<span class="sd">            shape of the object to be generated.</span>
+<span class="sd">        pitch : numpy.ndarray, optional.</span>
+<span class="sd">            pitch of the object to be generated.</span>
+<span class="sd">        params : dict, optional.</span>
+<span class="sd">            dictionary having the entity attributes.</span>
+<span class="sd">        transform : str, optional.</span>
+<span class="sd">            transformation attribute of the entity to be generated.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        (laygo2.object.physical.Instance) generated Instance object</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        Class Instance</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; def pcell_bbox_func(params):</span>
+<span class="sd">            ……</span>
+<span class="sd">        &gt;&gt;&gt; def pins_bbox_func(params): </span>
+<span class="sd">            ……</span>
+<span class="sd">        &gt;&gt;&gt; pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname=&#39;mylib&#39;, cellname=&#39;mynattemplate’, bbox_func=pcell_bbox_func, pins_func=pcell_pins_func)</span>
+<span class="sd">        &gt;&gt;&gt; pcell_temp.generate(name=“I1”, params={“W”=2, “L”=1}) </span>
+<span class="sd">        &lt;laygo2.object.physical.Instance object&gt;</span>
+<span class="sd">        &gt;&gt;&gt; pcell_temp.generate(name=“I2”, params={“W”=2, “L”=1}) </span>
+<span class="sd">        &lt;laygo2.object.physical.Instance object&gt;</span>
+
+<span class="sd">        </span>
+<span class="sd">        .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_generate.png</span>
+<span class="sd">          :height: 250</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **Reference in Korean**:</span>
+<span class="sd">        ParameterizedInstance 객체 생성.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">        name(str): 생성할 인스턴스의 이름</span>
+<span class="sd">        shape(numpy.ndarray): 생성할 객체의 shape [ optional ]</span>
+<span class="sd">        pitch(numpy.ndarray): 생성할 객체간의 간격 [ optional ]</span>
+<span class="sd">        params(dict) : 개체의 속성을 갖는 Dictionary [ optional ]</span>
+<span class="sd">        transform(str):  생성할 개체의 변환 속성 [ optional ]</span>
+<span class="sd">        반환값</span>
+<span class="sd">        laygo2.Instance: 생성된 객체</span>
+<span class="sd">        참조</span>
+<span class="sd">        Class Instance</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#xy = xy + np.dot(self.xy(params)[0], tf.Mt(transform).T)</span>
+        <span class="k">return</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">Instance</span><span class="p">(</span><span class="n">libname</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">libname</span><span class="p">,</span> <span class="n">cellname</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cellname</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+                                               <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span> <span class="n">pitch</span><span class="o">=</span><span class="n">pitch</span><span class="p">,</span> <span class="n">unit_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">params</span><span class="p">),</span>
+                                               <span class="n">pins</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pins</span><span class="p">(</span><span class="n">params</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="UserDefinedTemplate"><a class="viewcode-back" href="../../../laygo2.object.template.UserDefinedTemplate.html#laygo2.object.template.UserDefinedTemplate">[docs]</a><span class="k">class</span> <span class="nc">UserDefinedTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    UserDefinedTemplate class implements the template that generate VirtualInstance.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **Reference in Korean**: UserDefinedTemplate 클래스는 VirtualInstance를 반환하는 템플릿을 구현한다.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_bbox</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">_pins</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">_generate</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="UserDefinedTemplate.__init__"><a class="viewcode-back" href="../../../laygo2.object.template.UserDefinedTemplate.html#laygo2.object.template.UserDefinedTemplate.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bbox_func</span><span class="p">,</span> <span class="n">pins_func</span><span class="p">,</span> <span class="n">generate_func</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor function of UserDefinedTemplate class.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        bbox_func: callable</span>
+<span class="sd">            method computing bbox.</span>
+<span class="sd">        pins_func: callable</span>
+<span class="sd">            method computing pins.</span>
+<span class="sd">        generate_func: callable</span>
+<span class="sd">            method generating VirtualInstance.</span>
+<span class="sd">        name : str</span>
+<span class="sd">            template name.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        laygo2.UserDefinedTemplate</span>
+
+<span class="sd">        </span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; def user_bbox_func(params):-&gt; numpy.ndarray …  ## return bbox0 * multi </span>
+<span class="sd">            …… </span>
+<span class="sd">        &gt;&gt;&gt; def user_pins_func(params):-&gt; dict          …  ## pin0.bbox = pins0.bbox * multi </span>
+<span class="sd">            …… </span>
+<span class="sd">        &gt;&gt;&gt; def user_generate_func(params): </span>
+<span class="sd">            …… </span>
+<span class="sd">        &gt;&gt;&gt; user_temp = laygo2.object.UserDefinedTemplate(name=&#39;myusertemplate&#39;, bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)</span>
+<span class="sd">        &lt;laygo2.object.template.UserDefinedTemplate object&gt;</span>
+
+<span class="sd">        </span>
+<span class="sd">        .. image:: ../assets/img/object_template_UserDefinedTemplate_init.png</span>
+<span class="sd">          :height: 250</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **Reference in Korean**:</span>
+<span class="sd">        UserDefinedTemplate 클래스의 생성자함수.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">        bbox_func(callable ): bbox를 연산해주는 메소드</span>
+<span class="sd">        pins_func(callable ): pins를 연산해주는 메소드</span>
+<span class="sd">        generate_func(callable ): VirtualInstance를 생성하는 메소드</span>
+<span class="sd">        name(str): 템플릿 이름</span>
+<span class="sd">        반환값</span>
+<span class="sd">        laygo2.UserDefinedTemplate</span>
+<span class="sd">        참조</span>
+<span class="sd">        없음</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bbox</span> <span class="o">=</span> <span class="n">bbox_func</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pins</span> <span class="o">=</span> <span class="n">pins_func</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_generate</span> <span class="o">=</span> <span class="n">generate_func</span>
+        <span class="n">Template</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span></div>
+
+    <span class="c1"># Core template functions</span>
+<div class="viewcode-block" id="UserDefinedTemplate.bbox"><a class="viewcode-back" href="../../../laygo2.object.template.UserDefinedTemplate.html#laygo2.object.template.UserDefinedTemplate.bbox">[docs]</a>    <span class="k">def</span> <span class="nf">bbox</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return bbox of UserDefinedTemplate object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        numpy.ndarray</span>
+
+<span class="sd">        </span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; params={}; params[“multi”] = 10; bbox0 = [ [0,0],[100,100]]; pin0 = [ in, out ] </span>
+<span class="sd">        &gt;&gt;&gt; def user_bbox_func(params):-&gt; numpy.ndarray …  ## return bbox0 * multi</span>
+<span class="sd">                if params==None: </span>
+<span class="sd">                    params={}</span>
+<span class="sd">                    params[&#39;multi&#39;] = 1</span>
+<span class="sd">                return np.array([[0, 0], [100 * params[&#39;multi&#39;], 100]])</span>
+<span class="sd">        &gt;&gt;&gt; def user_pins_func(params):-&gt; dict          …  ## pin0.bbox = pins0.bbox * multi </span>
+<span class="sd">            …… </span>
+<span class="sd">        &gt;&gt;&gt; def user_generate_func(params): </span>
+<span class="sd">            …… </span>
+<span class="sd">        &gt;&gt;&gt; user_temp = laygo2.object.UserDefinedTemplate(name=&#39;myusertemplate&#39;, bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)</span>
+<span class="sd">        &gt;&gt;&gt; user_temp.bbox() </span>
+<span class="sd">        [[0, 0], [100, 100]]</span>
+
+<span class="sd">        </span>
+<span class="sd">        .. image:: ../assets/img/object_template_UserDefinedTemplate_bbox.png</span>
+<span class="sd">          :height: 250</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **Reference in Korean**:</span>
+<span class="sd">        UserDefinedTemplate 객체의 bbox 반환.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">        없음</span>
+<span class="sd">        반환값</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">        참조</span>
+<span class="sd">        없음</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bbox</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UserDefinedTemplate.pins"><a class="viewcode-back" href="../../../laygo2.object.template.UserDefinedTemplate.html#laygo2.object.template.UserDefinedTemplate.pins">[docs]</a>    <span class="k">def</span> <span class="nf">pins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Pins of UserDefinedTemplate object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+
+<span class="sd">        </span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; params={}; params[“multi”] = 10; bbox0 = [ [0,0],[100,100]]; pin0 = [ in, out ] </span>
+<span class="sd">        &gt;&gt;&gt; def user_bbox_func(params):-&gt; numpy.ndarray …  ## return bbox0 * multi </span>
+<span class="sd">        &gt;&gt;&gt; def user_pins_func(params):-&gt; dict</span>
+<span class="sd">                if params==None:</span>
+<span class="sd">                    params={&quot;multi&quot;:1}</span>
+<span class="sd">                i = params[&#39;multi&#39;]</span>
+<span class="sd">                template_pins = dict()</span>
+<span class="sd">                pin_in = laygo2.object.Pin(xy =[ [ 0, 0], [100 * i, 0 ] ],   layer=[&#39;M1&#39;, &#39;pin&#39;], netname=&#39;in&#39;) </span>
+<span class="sd">                pin_out = laygo2.object.Pin(xy=[ [ 0, 100], [100 * i, 100]], layer=[&#39;M1&#39;, &#39;pin&#39;], netname=&#39;out&#39;) </span>
+<span class="sd">                template_pins[&#39;in&#39; ] = pin_in </span>
+<span class="sd">                template_pins[&#39;out&#39;] = pin_out </span>
+<span class="sd">                return template_pins</span>
+<span class="sd">        &gt;&gt;&gt; def user_generate_func(params):</span>
+<span class="sd">            …… </span>
+<span class="sd">        &gt;&gt;&gt; user_temp = laygo2.object.UserDefinedTemplate(name=&#39;myusertemplate&#39;, bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)</span>
+<span class="sd">        &gt;&gt;&gt; user_temp.pins()</span>
+<span class="sd">        {&#39;in&#39;: &lt;laygo2.object.physical.Pin&gt;, &#39;out&#39;: &lt;laygo2.object.physical.Pin object&gt;}</span>
+
+<span class="sd">        </span>
+<span class="sd">        .. image:: ../assets/img/object_template_UserDefinedTemplate_pins.png</span>
+<span class="sd">          :height: 250</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **Reference in Korean**:</span>
+<span class="sd">        UserDefinedTemplate 객체의 pins.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">        없음</span>
+<span class="sd">        반환값</span>
+<span class="sd">        dict</span>
+<span class="sd">        참조</span>
+<span class="sd">        없음</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pins</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UserDefinedTemplate.generate"><a class="viewcode-back" href="../../../laygo2.object.template.UserDefinedTemplate.html#laygo2.object.template.UserDefinedTemplate.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pitch</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="s1">&#39;R0&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a VirtualInstance object by calling generate_func() bound to the template.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            name of the instance to be generated.</span>
+<span class="sd">        shape : numpy.ndarray, optional.</span>
+<span class="sd">            shape of the object to be generated.</span>
+<span class="sd">        pitch : numpy.ndarray, optional.</span>
+<span class="sd">            pitch of the object to be generated.</span>
+<span class="sd">        params : dict, optional.</span>
+<span class="sd">            dictionary having the entity attributes.</span>
+<span class="sd">        transform : str, optional.</span>
+<span class="sd">            transformation attribute of the entity to be generated.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        (laygo2.object.physical.VirtualInstance) generated VirtualInstance object.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; def user_bbox_func(params):-&gt; numpy.ndarray …  ## return bbox0 * multi </span>
+<span class="sd">        &gt;&gt;&gt; def user_pins_func(params):-&gt; dict </span>
+<span class="sd">        &gt;&gt;&gt; def user_generate_func(params={“multi”:1}):</span>
+<span class="sd">                m = params[&#39;multi&#39;] </span>
+<span class="sd">                shape = np.array([1, 1]); inst_pins = user_pins_func(params) ; inst_native_elements = dict() </span>
+<span class="sd">                inst_native_elements[&#39;left&#39;] = laygo2.object.Rect(xy=[ [0, 0], [0,100]], layer=[&#39;M1’, &#39;drawing&#39;]) </span>
+<span class="sd">                ofst = np.array([100, 0])</span>
+<span class="sd">                for i in range(m):</span>
+<span class="sd">                    bl  = np.array([0,0]) </span>
+<span class="sd">                    tr  = np.array([100,100]) </span>
+<span class="sd">                    inst_native_elements[&#39;center&#39;+str(i)] = laygo2.object.Rect(xy=[ i*ofst + bl , i*ofst + tr ]…</span>
+<span class="sd">                inst_native_elements[&#39;right&#39;] = laygo2.object.Rect(xy=[ m*ofst + [0, 0], m*ofst + [ 0 , 100]], …) </span>
+<span class="sd">                inst = VirtualInstance(name=name,xy=np.array([0, 0]),native_elements=inst_native_elements,……)</span>
+<span class="sd">        &gt;&gt;&gt; user_temp = laygo2.object.UserDefinedTemplate(name=&#39;myusertemplate&#39;, bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func) </span>
+<span class="sd">        &gt;&gt;&gt; nat_temp.generate(name=“I1”, {“multi”=1}) </span>
+<span class="sd">        &lt;laygo2.object.physical.VirtualInstance &gt;</span>
+<span class="sd">        &gt;&gt;&gt; nat_temp.generate(name=“I2”, {“multi”=2}) </span>
+<span class="sd">        &lt;laygo2.object.physical.VirtualInstance &gt;</span>
+
+<span class="sd">        </span>
+<span class="sd">        .. image:: ../assets/img/object_template_UserDefinedTemplate_generate.png</span>
+<span class="sd">          :height: 250</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **Reference in Korean**:</span>
+<span class="sd">        VirtualInstance 객체 생성.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">        없음</span>
+<span class="sd">        반환값</span>
+<span class="sd">        laygo2.VirtualInstance</span>
+<span class="sd">        참조</span>
+<span class="sd">        없음</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span> <span class="n">pitch</span><span class="o">=</span><span class="n">pitch</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span></div></div>
+
+
+<span class="c1"># Test</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">test_native_template</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">test_pcell_template</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">test_user_template</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="kn">import</span> <span class="nn">laygo2.object</span>
+
+    <span class="k">if</span> <span class="n">test_native_template</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NativeInstanceTemplate test&quot;</span><span class="p">)</span>
+        <span class="c1"># define pins</span>
+        <span class="n">nat_temp_pins</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">nat_temp_pins</span><span class="p">[</span><span class="s1">&#39;in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">)</span>
+        <span class="n">nat_temp_pins</span><span class="p">[</span><span class="s1">&#39;out&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;out&#39;</span><span class="p">)</span>
+        <span class="c1"># create a template</span>
+        <span class="n">nat_temp</span> <span class="o">=</span> <span class="n">NativeInstanceTemplate</span><span class="p">(</span><span class="n">libname</span><span class="o">=</span><span class="s1">&#39;mylib&#39;</span><span class="p">,</span> <span class="n">cellname</span><span class="o">=</span><span class="s1">&#39;mynattemplate&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span>
+                                          <span class="n">pins</span><span class="o">=</span><span class="n">nat_temp_pins</span><span class="p">)</span>
+        <span class="c1"># generate</span>
+        <span class="n">nat_inst</span> <span class="o">=</span> <span class="n">nat_temp</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;mynatinst&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">pitch</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">transform</span><span class="o">=</span><span class="s1">&#39;R0&#39;</span><span class="p">)</span>
+        <span class="c1"># display</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">nat_temp</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">nat_inst</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">test_pcell_template</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ParameterizedInstanceTemplate test&quot;</span><span class="p">)</span>
+
+        <span class="c1"># define the bbox computation function.</span>
+        <span class="k">def</span> <span class="nf">pcell_bbox_func</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span> <span class="o">*</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;mult&#39;</span><span class="p">],</span> <span class="mi">100</span><span class="p">]])</span>
+
+        <span class="c1"># define the pin generation function.</span>
+        <span class="k">def</span> <span class="nf">pcell_pins_func</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+            <span class="n">template_pins</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;mult&#39;</span><span class="p">]):</span>
+                <span class="n">template_pins</span><span class="p">[</span><span class="s1">&#39;in&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span>
+                                                                 <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;in&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+                <span class="n">template_pins</span><span class="p">[</span><span class="s1">&#39;out&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span>
+                                                                  <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;out&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">template_pins</span>
+
+        <span class="c1"># create a template.</span>
+        <span class="n">pcell_temp</span> <span class="o">=</span> <span class="n">ParameterizedInstanceTemplate</span><span class="p">(</span><span class="n">libname</span><span class="o">=</span><span class="s1">&#39;mylib&#39;</span><span class="p">,</span> <span class="n">cellname</span><span class="o">=</span><span class="s1">&#39;mypcelltemplate&#39;</span><span class="p">,</span>
+                                                   <span class="n">bbox_func</span><span class="o">=</span><span class="n">pcell_bbox_func</span><span class="p">,</span> <span class="n">pins_func</span><span class="o">=</span><span class="n">pcell_pins_func</span><span class="p">)</span>
+        <span class="c1"># generate based on the parameter assigned.</span>
+        <span class="n">pcell_inst_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;mult&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+        <span class="n">pcell_inst_size</span> <span class="o">=</span> <span class="n">pcell_temp</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">pcell_inst_params</span><span class="p">)</span>
+        <span class="n">pcell_inst</span> <span class="o">=</span> <span class="n">pcell_temp</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;mypcellinst&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">pitch</span><span class="o">=</span><span class="n">pcell_inst_size</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="s1">&#39;R0&#39;</span><span class="p">,</span>
+                                         <span class="n">params</span><span class="o">=</span><span class="n">pcell_inst_params</span><span class="p">)</span>
+        <span class="c1"># display</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">pcell_temp</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">pcell_inst</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">test_user_template</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;UserDefinedTemplate test&quot;</span><span class="p">)</span>
+
+        <span class="c1"># define the bbox computation function.</span>
+        <span class="k">def</span> <span class="nf">user_bbox_func</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span> <span class="o">*</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;mult&#39;</span><span class="p">],</span> <span class="mi">100</span><span class="p">]])</span>
+
+        <span class="c1"># define the pin generation function.</span>
+        <span class="k">def</span> <span class="nf">user_pins_func</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+            <span class="n">template_pins</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;mult&#39;</span><span class="p">]):</span>
+                <span class="n">template_pins</span><span class="p">[</span><span class="s1">&#39;in&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span>
+                                                                 <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;in&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+                <span class="n">template_pins</span><span class="p">[</span><span class="s1">&#39;out&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span>
+                                                                  <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s1">&#39;out&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">template_pins</span>
+
+        <span class="c1"># define the instance generation function.</span>
+        <span class="k">def</span> <span class="nf">user_generate_func</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pitch</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">transform</span><span class="o">=</span><span class="s1">&#39;R0&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;mult&#39;</span><span class="p">]</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">shape</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+
+            <span class="n">inst_pins</span> <span class="o">=</span> <span class="n">user_pins_func</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">inst_native_elements</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+                <span class="n">ofst</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">100</span>
+                <span class="n">inst_native_elements</span><span class="p">[</span><span class="s1">&#39;R0_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="n">ofst</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">ofst</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span>
+                                                                          <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">])</span>
+                <span class="n">inst_native_elements</span><span class="p">[</span><span class="s1">&#39;R1_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="n">ofst</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="p">[</span><span class="n">ofst</span> <span class="o">+</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span>
+                                                                          <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">])</span>
+            <span class="n">inst_native_elements</span><span class="p">[</span><span class="s1">&#39;R2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">m</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span>
+                                                            <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;prBoundary&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">])</span>
+            <span class="n">inst</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">VirtualInstance</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">libname</span><span class="o">=</span><span class="s1">&#39;mylib&#39;</span><span class="p">,</span> <span class="n">cellname</span><span class="o">=</span><span class="s1">&#39;myvinst&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+                                                 <span class="n">native_elements</span><span class="o">=</span><span class="n">inst_native_elements</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span>
+                                                 <span class="n">pitch</span><span class="o">=</span><span class="n">pitch</span><span class="p">,</span> <span class="n">unit_size</span><span class="o">=</span><span class="p">[</span><span class="n">m</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">pins</span><span class="o">=</span><span class="n">inst_pins</span><span class="p">,</span>
+                                                 <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">inst</span>
+
+        <span class="n">user_temp</span> <span class="o">=</span> <span class="n">UserDefinedTemplate</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myusertemplate&#39;</span><span class="p">,</span> <span class="n">bbox_func</span><span class="o">=</span><span class="n">user_bbox_func</span><span class="p">,</span> <span class="n">pins_func</span><span class="o">=</span><span class="n">user_pins_func</span><span class="p">,</span>
+                                        <span class="n">generate_func</span><span class="o">=</span><span class="n">user_generate_func</span><span class="p">)</span>
+        <span class="n">user_inst</span> <span class="o">=</span> <span class="n">user_temp</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myuserinst&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;mult&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">user_temp</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">user_inst</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">user_inst</span><span class="o">.</span><span class="n">bbox</span><span class="p">)</span>
+</pre></div>
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Niftylab at Hanyang University, South Korea.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

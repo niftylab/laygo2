@@ -1,0 +1,1668 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>RoutingGrid class &#8212; LAYGO2 Documentation  documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/autoclasstoc.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="laygo2.object.database module" href="laygo2.object.database.html" />
+    <link rel="prev" title="PlacementGrid class" href="laygo2.object.grid.PlacementGrid.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="index.html">
+<p class="title">LAYGO2 Documentation</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_link.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="examples_link.html">
+  Trial
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="structure_link.html">
+  Structure
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="technology_link.html">
+  Tech Setup
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_kor.html">
+  Korean
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="laygo2.html">
+  API Reference
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="laygo2.object.html">
+   laygo2.object package
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.physical.html">
+     laygo2.object.physical module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.PhysicalObject.html">
+       PhysicalObject class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.IterablePhysicalObject.html">
+       IterablePhysicalObject class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.PhysicalObjectGroup.html">
+       PhysicalObjectGroup class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Rect.html">
+       Rect class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Path.html">
+       Path class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Pin.html">
+       Pin class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Text.html">
+       Text class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Instance.html">
+       Instance class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.VirtualInstance.html">
+       VirtualInstance class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.template.html">
+     laygo2.object.template module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.Template.html">
+       Template class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.NativeInstanceTemplate.html">
+       NativeInstanceTemplate class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.ParameterizedInstanceTemplate.html">
+       ParameterizedInstanceTemplate class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.UserDefinedTemplate.html">
+       UserDefinedTemplate class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="laygo2.object.grid.html">
+     laygo2.object.grid module
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.CircularMapping.html">
+       CircularMapping class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html">
+       CircularMappingArray class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid._AbsToPhyGridConverter.html">
+       _AbsToPhyGridConverter class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid._PhyToAbsGridConverter.html">
+       _PhyToAbsGridConverter class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.OneDimGrid.html">
+       OneDimGrid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.Grid.html">
+       Grid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.PlacementGrid.html">
+       PlacementGrid class
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       RoutingGrid class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.database.html">
+     laygo2.object.database module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.BaseDatabase.html">
+       BaseDatabase class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.Library.html">
+       Library class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.Design.html">
+       Design class
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laygo2.interface.html">
+   laygo2.interface package
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laygo2.util.html">
+   laygo2.util package
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="routinggrid-class">
+<h1>RoutingGrid class<a class="headerlink" href="#routinggrid-class" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">laygo2.object.grid.</span></span><span class="sig-name descname"><span class="pre">RoutingGrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vgrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hgrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vwidth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hwidth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vextension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hextension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlayer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hlayer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pin_vlayer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pin_hlayer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">viamap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xcolor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycolor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'vertical'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vextension0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hextension0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#RoutingGrid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.RoutingGrid" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid" title="laygo2.object.grid.Grid"><code class="xref py py-class docutils literal notranslate"><span class="pre">laygo2.object.grid.Grid</span></code></a></p>
+<p>A class that implements wire connections in an abstract coordinate system.</p>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+추상 좌표계 상의 배선 동작을 구현하는 클래스.</p>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Data Attributes:</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.type" title="laygo2.object.grid.RoutingGrid.type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">type</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.vwidth" title="laygo2.object.grid.RoutingGrid.vwidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vwidth</span></code></a></p></td>
+<td><p>Width of vertical wires.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.hwidth" title="laygo2.object.grid.RoutingGrid.hwidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hwidth</span></code></a></p></td>
+<td><p>Width of horizontal wires.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.vextension" title="laygo2.object.grid.RoutingGrid.vextension"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vextension</span></code></a></p></td>
+<td><p>Extension of vertical wires.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.hextension" title="laygo2.object.grid.RoutingGrid.hextension"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hextension</span></code></a></p></td>
+<td><p>Extension of horizontal wires.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.vextension0" title="laygo2.object.grid.RoutingGrid.vextension0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vextension0</span></code></a></p></td>
+<td><p>the array containing the extension of the zero-length wires on the vertical grid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.hextension0" title="laygo2.object.grid.RoutingGrid.hextension0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hextension0</span></code></a></p></td>
+<td><p>the array containing the extension of the zero-length wires on the horizontal grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.vlayer" title="laygo2.object.grid.RoutingGrid.vlayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vlayer</span></code></a></p></td>
+<td><p>Layer information of vertical wires.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.hlayer" title="laygo2.object.grid.RoutingGrid.hlayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hlayer</span></code></a></p></td>
+<td><p>Layer information of horizontal wires.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.pin_vlayer" title="laygo2.object.grid.RoutingGrid.pin_vlayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pin_vlayer</span></code></a></p></td>
+<td><p>Layer information of vertical pin wires.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.pin_hlayer" title="laygo2.object.grid.RoutingGrid.pin_hlayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pin_hlayer</span></code></a></p></td>
+<td><p>Layer information of horizontal pine wires.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.viamap" title="laygo2.object.grid.RoutingGrid.viamap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viamap</span></code></a></p></td>
+<td><p>Array containing Via objects positioned on grid crossing points.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.primary_grid" title="laygo2.object.grid.RoutingGrid.primary_grid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">primary_grid</span></code></a></p></td>
+<td><p>Direction of wire having length 0.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.xcolor" title="laygo2.object.grid.RoutingGrid.xcolor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xcolor</span></code></a></p></td>
+<td><p>Color of horizontal wires.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.ycolor" title="laygo2.object.grid.RoutingGrid.ycolor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ycolor</span></code></a></p></td>
+<td><p>Color of vertical wires.</p></td>
+</tr>
+</tbody>
+</table>
+<details><summary>Inherited from <a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid" title="laygo2.object.grid.Grid"><code class="xref py py-class docutils literal notranslate"><span class="pre">Grid</span></code></a></summary><table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.name" title="laygo2.object.grid.RoutingGrid.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></p></td>
+<td><p>the name of the grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.elements" title="laygo2.object.grid.RoutingGrid.elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">elements</span></code></a></p></td>
+<td><p>return elements of subgrids ([_xy[0].elements, _xy[1].elements]).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.phy2abs" title="laygo2.object.grid.RoutingGrid.phy2abs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">phy2abs</span></code></a></p></td>
+<td><p>PhyToAbsGridConverter(master=self)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.abs2phy" title="laygo2.object.grid.RoutingGrid.abs2phy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abs2phy</span></code></a></p></td>
+<td><p>AbsToPhyGridConverter(master=self)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.xy" title="laygo2.object.grid.RoutingGrid.xy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xy</span></code></a></p></td>
+<td><p>Two-dimensional _AbsToPhyConverter of a coordinate system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.x" title="laygo2.object.grid.RoutingGrid.x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">x</span></code></a></p></td>
+<td><p>One-dimensional _AbsToPhyGridConverter of the x-coordinate system.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.y" title="laygo2.object.grid.RoutingGrid.y"><code class="xref py py-obj docutils literal notranslate"><span class="pre">y</span></code></a></p></td>
+<td><p>One-dimensional _AbsToPhyGridConverter of the y-coordinate system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.v" title="laygo2.object.grid.RoutingGrid.v"><code class="xref py py-obj docutils literal notranslate"><span class="pre">v</span></code></a></p></td>
+<td><p>OneDimGrid of the x-coordinate system.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.h" title="laygo2.object.grid.RoutingGrid.h"><code class="xref py py-obj docutils literal notranslate"><span class="pre">h</span></code></a></p></td>
+<td><p>OneDimGrid of the y-coordinate system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.mn" title="laygo2.object.grid.RoutingGrid.mn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mn</span></code></a></p></td>
+<td><p>Two-dimensional _PhyToAbsConverter of a coordinate system.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.m" title="laygo2.object.grid.RoutingGrid.m"><code class="xref py py-obj docutils literal notranslate"><span class="pre">m</span></code></a></p></td>
+<td><p>One-dimensional _PhyToAbsConverter of the x-coordinate system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.n" title="laygo2.object.grid.RoutingGrid.n"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code></a></p></td>
+<td><p>One-dimensional _PhyToAbsConverter of the y-coordinate system.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.shape" title="laygo2.object.grid.RoutingGrid.shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shape</span></code></a></p></td>
+<td><p>Two-dimensional element length in a coordinate system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.range" title="laygo2.object.grid.RoutingGrid.range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">range</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.width" title="laygo2.object.grid.RoutingGrid.width"><code class="xref py py-obj docutils literal notranslate"><span class="pre">width</span></code></a></p></td>
+<td><p>Width of the region in which the coordinate system is defined.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.height" title="laygo2.object.grid.RoutingGrid.height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code></a></p></td>
+<td><p>Height of the region in which the coordinate system is defined.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.height_vec" title="laygo2.object.grid.RoutingGrid.height_vec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">height_vec</span></code></a></p></td>
+<td><p>Return the height vector [0, h].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.width_vec" title="laygo2.object.grid.RoutingGrid.width_vec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">width_vec</span></code></a></p></td>
+<td><p>Return width as a list.</p></td>
+</tr>
+</tbody>
+</table>
+</details></div>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Methods:</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.__init__" title="laygo2.object.grid.RoutingGrid.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(name, vgrid, hgrid, vwidth, hwidth, ...)</p></td>
+<td><p>Constructor function of RoutingGrid class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.route" title="laygo2.object.grid.RoutingGrid.route"><code class="xref py py-obj docutils literal notranslate"><span class="pre">route</span></code></a>(mn[, direction, via_tag])</p></td>
+<td><p>Wire routing function, generate Rect object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.via" title="laygo2.object.grid.RoutingGrid.via"><code class="xref py py-obj docutils literal notranslate"><span class="pre">via</span></code></a>([mn, params])</p></td>
+<td><p>Via generating function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.route_via_track" title="laygo2.object.grid.RoutingGrid.route_via_track"><code class="xref py py-obj docutils literal notranslate"><span class="pre">route_via_track</span></code></a>(mn, track[, via_tag])</p></td>
+<td><p>Wire routing function; performs routing with track as a reference point.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.pin" title="laygo2.object.grid.RoutingGrid.pin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pin</span></code></a>(name, mn[, direction, netname, params])</p></td>
+<td><p>Pin generating function.</p></td>
+</tr>
+</tbody>
+</table>
+<details><summary>Inherited from <a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid" title="laygo2.object.grid.Grid"><code class="xref py py-class docutils literal notranslate"><span class="pre">Grid</span></code></a></summary><table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.get_range" title="laygo2.object.grid.RoutingGrid.get_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_range</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.set_range" title="laygo2.object.grid.RoutingGrid.set_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_range</span></code></a>(value)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.__init__" title="laygo2.object.grid.RoutingGrid.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(name, vgrid, hgrid, vwidth, hwidth, ...)</p></td>
+<td><p>Constructor function of RoutingGrid class.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__getitem__</span></code>(pos)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__eq__</span></code>(other)</p></td>
+<td><p>Return the physical grid coordinate that matches to other.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__lt__</span></code>(other)</p></td>
+<td><p>Return the index of the grid coordinate that is the largest but less than other.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__le__</span></code>(other)</p></td>
+<td><p>Return the index of the grid coordinate that is the largest but less than or equal to other.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__gt__</span></code>(other)</p></td>
+<td><p>Return the index of the grid coordinate that is the smallest but greater than other.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__ge__</span></code>(other)</p></td>
+<td><p>Return the index of the grid coordinate that is the smallest but greater than or equal to other.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.bbox" title="laygo2.object.grid.RoutingGrid.bbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bbox</span></code></a>(obj)</p></td>
+<td><p>Return the abstract grid coordinates corresponding to the 'internal' bounding box of obj.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.bottom_left" title="laygo2.object.grid.RoutingGrid.bottom_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bottom_left</span></code></a>(obj)</p></td>
+<td><p>Return the abstract grid coordinates corresponding to the bottom-left corner of obj.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.bottom_right" title="laygo2.object.grid.RoutingGrid.bottom_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bottom_right</span></code></a>(obj)</p></td>
+<td><p>Return the abstract grid coordinates corresponding to the bottom-right corner of obj.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.top_left" title="laygo2.object.grid.RoutingGrid.top_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">top_left</span></code></a>(obj)</p></td>
+<td><p>Return the abstract grid coordinates corresponding to the top-left corner of obj.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.top_right" title="laygo2.object.grid.RoutingGrid.top_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">top_right</span></code></a>(obj)</p></td>
+<td><p>Return the abstract grid coordinates corresponding to the top-right corner of obj.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.crossing" title="laygo2.object.grid.RoutingGrid.crossing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">crossing</span></code></a>(*args)</p></td>
+<td><p>Return the abstract grid coordinates corresponding to the crossing point of args.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.overlap" title="laygo2.object.grid.RoutingGrid.overlap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">overlap</span></code></a>(*args[, type])</p></td>
+<td><p>Return the abstract grid coordinates corresponding to the overlap of args.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.union" title="laygo2.object.grid.RoutingGrid.union"><code class="xref py py-obj docutils literal notranslate"><span class="pre">union</span></code></a>(*args)</p></td>
+<td><p>Return the abstract grid coordinates corresponding to union of args.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.center" title="laygo2.object.grid.RoutingGrid.center"><code class="xref py py-obj docutils literal notranslate"><span class="pre">center</span></code></a>(obj)</p></td>
+<td><p>Return the abstrack grid coordinates corresponding to the center point of obj.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__iter__</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__next__</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__str__</span></code>()</p></td>
+<td><p>Return the string representation of the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.RoutingGrid.summarize" title="laygo2.object.grid.RoutingGrid.summarize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summarize</span></code></a>()</p></td>
+<td><p>Output the information of the respective grid.</p></td>
+</tr>
+</tbody>
+</table>
+</details></div>
+<hr class="docutils" />
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vgrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hgrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vwidth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hwidth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vextension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hextension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlayer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hlayer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pin_vlayer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pin_hlayer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">viamap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xcolor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycolor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'vertical'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vextension0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hextension0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#RoutingGrid.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor function of RoutingGrid class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Routing object name</p></li>
+<li><p><strong>vgrid</strong> (<em>laygo2.OneDimGrid</em>) – OneDimGrid of x-coordinate system</p></li>
+<li><p><strong>hgrid</strong> (<em>laygo2.OneDimGrid</em>) – OneDimGrid of y-coordinate system</p></li>
+<li><p><strong>vwidth</strong> (<a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping"><em>CircularMapping</em></a>) – x-coordinate system width</p></li>
+<li><p><strong>hwidth</strong> (<a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping"><em>CircularMapping</em></a>) – y-coordinate system width</p></li>
+<li><p><strong>vextension</strong> (<a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping"><em>CircularMapping</em></a>) – x-coordinate system extension</p></li>
+<li><p><strong>hextension</strong> (<a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping"><em>CircularMapping</em></a>) – y-coordinate system extension</p></li>
+<li><p><strong>vlayer</strong> (<a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping"><em>CircularMapping</em></a>) – x-coordinate system layer</p></li>
+<li><p><strong>hlayer</strong> (<a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping"><em>CircularMapping</em></a>) – y-coordinate system layer</p></li>
+<li><p><strong>pin_vlayer</strong> (<a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping"><em>CircularMapping</em></a>) – layer of x-coordinate system pin</p></li>
+<li><p><strong>pin_hlayer</strong> (<a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping"><em>CircularMapping</em></a>) – layer of y-coordinate system pin</p></li>
+<li><p><strong>xcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – x-coordinate system color</p></li>
+<li><p><strong>ycolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – y-coordinate system color</p></li>
+<li><p><strong>viamap</strong> (<a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html#laygo2.object.grid.CircularMappingArray" title="laygo2.object.grid.CircularMappingArray"><em>CircularMappingArray</em></a>) – Via map of Grid</p></li>
+<li><p><strong>primary_grid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – direction of wire having length 0</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>laygo2.RoutingGrid</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>None</p>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_init.png"><img alt="_images/object_grid_RoutingGrid_init.png" src="_images/object_grid_RoutingGrid_init.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+RoutingGrid 클래스의 생성자함수.
+파라미터
+name(str): Routing 객체의 이름
+vgrid(laygo2.OneDimGrid): x좌표계 OneDimGrid
+hgrid(laygo2.OneDimGrid): y좌표계 OneDimGrid
+vwidth(CircularMapping): x좌표계 Width
+hwidth(CircularMapping): y좌표계 Width
+vextension(CircularMapping): x좌표계의 extension
+hextension(CircularMapping): y좌표계의 extension
+vlayer(CircularMapping): x좌표계의 layer
+hlayer(CircularMapping): y좌표계의 layer
+pin_vlayer(CircularMapping): x좌표계 pin의 layer
+pin_hlayer(CircularMapping): y좌표계 pin의 layer
+xcolor(list): x좌표계 color
+ycolor(list): y좌표계 color
+viamap(CircularMappingArray): Grid의 Via map
+primary_grid(str): 길이가 0인 Wire방향
+반환값
+laygo2.RoutingGrid
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.bbox">
+<span class="sig-name descname"><span class="pre">bbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.bbox" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to the ‘internal’ bounding box of obj.
+See _PhyToAbsGridConverter.bbox() for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.bottom_left">
+<span class="sig-name descname"><span class="pre">bottom_left</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.bottom_left" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to the bottom-left corner of obj.
+See _PhyToAbsGridConverter.bottom_left() for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.bottom_right">
+<span class="sig-name descname"><span class="pre">bottom_right</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.bottom_right" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to the bottom-right corner of obj.
+See _PhyToAbsGridConverter.bottom_right() for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.center">
+<span class="sig-name descname"><span class="pre">center</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.center" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstrack grid coordinates corresponding to the center point of obj.
+See _PhyToAbsGridConverter.center for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.crossing">
+<span class="sig-name descname"><span class="pre">crossing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.crossing" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to the crossing point of args.
+See _PhyToAbsGridConverter.crossing() for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.get_range">
+<span class="sig-name descname"><span class="pre">get_range</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.get_range" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.overlap">
+<span class="sig-name descname"><span class="pre">overlap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bbox'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.overlap" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to the overlap of args.
+See _PhyToAbsGridConverter.overlap() for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.pin">
+<span class="sig-name descname"><span class="pre">pin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">netname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#RoutingGrid.pin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.pin" title="Permalink to this definition"></a></dt>
+<dd><p>Pin generating function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Pin name</p></li>
+<li><p><strong>mn</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a>) – Abstract coordinates for generating Pin</p></li>
+<li><p><strong>direction</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional.</em>) – Direction</p></li>
+<li><p><strong>netname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional.</em>) – Net name of Pin</p></li>
+<li><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a><em>, </em><em>optional</em>) – Pin attribute</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>laygo2.physical.Pin</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Pin object</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mn_list</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pin</span> <span class="o">=</span> <span class="n">r23</span><span class="o">.</span><span class="n">pin</span><span class="p">(</span><span class="n">mn</span><span class="o">=</span><span class="n">mn_list</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pin&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pin&quot;</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.physical.Pin object&gt; name: pin, class: Pin, xy: [[0, 5], [300, 265]]……</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+pin 생성함수.
+파라미터
+name(str): Pin 이름
+mn(numpy.ndarray): Pin을 생성할 abstract 좌표
+direction(str): 방향 [optional]
+netname(str): Pin의 net이름 [optional]
+params(dict): Pin 속성 [optional]
+반환값
+laygo2.physical.Pin: Pin object
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.route">
+<span class="sig-name descname"><span class="pre">route</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">via_tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#RoutingGrid.route"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.route" title="Permalink to this definition"></a></dt>
+<dd><p>Wire routing function, generate Rect object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mn</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a><em>(</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a><em>)</em>) – list containing two or more mn coordinates being connected</p></li>
+<li><p><strong>direction</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional.</em>) – None or “vertical” ; decides the direction of path as vertical or horizontal</p></li>
+<li><p><strong>via_tag</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a><em>(</em><em>Boolean</em><em>)</em><em>, </em><em>optional.</em>) – list of switches deciding whether to form via on the path</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>list</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list containing the generated routing objects</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; r23=grids[“routing_23_cmos”]
+&gt;&gt;&gt; mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
+&gt;&gt;&gt; route = r23.route(grid=mygrid, mn=mn_list, via_tag=[True, None, True, True])
+&gt;&gt;&gt; print(route)
+[&lt;laygo2.object.physical.VirtualInstance object&gt;, &lt;laygo2.object.physical.Rect object&gt;, &lt;laygo2.object.physical.Rect object&gt;, &lt;laygo2.object.physical.VirtualInstance object&gt;, &lt;laygo2.object.physical.Rect object&gt;, &lt;laygo2.object.physical.VirtualInstance object&gt;]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_route.png"><img alt="_images/object_grid_RoutingGrid_route.png" src="_images/object_grid_RoutingGrid_route.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+wire 라우팅 함수, rect object를 생성.
+파라미터
+mn(list(numpy.ndarray)): 2개이상의 연결할 mn 좌표를 갖고있는 list
+direction(str): None or “vertical”; path의 방향을 수평 or 수직을 결정 [optional]
+via_tag(list(Boolean)): Path에 via를 형성할지 switch들의 list [optional]
+반환값
+list: 생성된 routing object들을 담고 있는 list.
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.route_via_track">
+<span class="sig-name descname"><span class="pre">route_via_track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">track</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">via_tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[None,</span> <span class="pre">True]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#RoutingGrid.route_via_track"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.route_via_track" title="Permalink to this definition"></a></dt>
+<dd><p>Wire routing function; performs routing with track as a reference point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mn</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a><em>(</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a><em>)</em>) – list containing coordinates of the points being connected through a track</p></li>
+<li><p><strong>track</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a>) – list containing coordinate values and direction of a track Vertical track has [v, None] format, while horizontal track has [None, v] format (v is the coordinates of the track)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>list</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list containing the generated routing objects; the last object corresponds to the routing object on the track</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; r23=grids[“routing_23_cmos”]
+&gt;&gt;&gt; mn_list = [[0, -2], [1, 0], [2, 5], [3, 4], [4, 5], [5, 5]]
+&gt;&gt;&gt; track = r23.route_via_track(mn=mn_list, track=[None,0])
+&gt;&gt;&gt; print(track)
+[[&lt;laygo2.object.physical.Rect object&gt;, &lt;laygo2.object.physical.VirtualInstance object&gt;], &lt;laygo2.object.physical.VirtualInstance object&gt;, [&lt;laygo2.object.physical.Rect object&gt;, &lt;laygo2.object.physical.VirtualInstance object&gt;], [&lt;laygo2.object.physical.Rect object&gt;, &lt;laygo2.object.physical.VirtualInstance object&gt;], [&lt;laygo2.object.physical.Rect object&gt;, &lt;laygo2.object.physical.VirtualInstance object&gt;], [&lt;laygo2.object.physical.Rect object&gt;, &lt;laygo2.object.physical.VirtualInstance object&gt;], &lt;laygo2.object.physical.Rect object&gt;]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_route_via_track.png"><img alt="_images/object_grid_RoutingGrid_route_via_track.png" src="_images/object_grid_RoutingGrid_route_via_track.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+wire 라우팅 함수, track을 기준점으로 routing을 진행한다.
+파라미터
+track(numpy.ndarray): track의 좌표값과 방향을 담고 있는 list. 수직 트랙일 경우 [v, None], 수평 트랙일 경우 [None, v]의 형태를 가지고 있다 (v는 track의 좌표값).
+mn(list(numpy.ndarray)): track을 통해 연결될 지점들의 좌표를 담고 있는 list.
+반환값
+list: 생성된 routing object들을 담고 있는 list. 마지막 object가 track위의 routing object에 해당.
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.set_range">
+<span class="sig-name descname"><span class="pre">set_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.set_range" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.summarize">
+<span class="sig-name descname"><span class="pre">summarize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.summarize" title="Permalink to this definition"></a></dt>
+<dd><p>Output the information of the respective grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.summarize()
+&lt;laygo2.object.grid.Grid object&gt; name: test, class: Grid, scope: [[0, 0], [100, 100]], elements: [array([ 0, 10, 20, 40, 50]), array([10, 20, 40, 50, 60])
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+해당 Grid의 정보 출력.
+파라미터
+없음
+반환값
+str
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.top_left">
+<span class="sig-name descname"><span class="pre">top_left</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.top_left" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to the top-left corner of obj.
+See _PhyToAbsGridConverter.top_left() for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.top_right">
+<span class="sig-name descname"><span class="pre">top_right</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.top_right" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to the top-right corner of obj.
+See _PhyToAbsGridConverter.top_right() for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.union">
+<span class="sig-name descname"><span class="pre">union</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.union" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to union of args.
+See _PhyToAbsGridConverter.union() for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.via">
+<span class="sig-name descname"><span class="pre">via</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0,</span> <span class="pre">0])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#RoutingGrid.via"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.via" title="Permalink to this definition"></a></dt>
+<dd><p>Via generating function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mn</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a><em>(</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a><em>)</em>) – mn coordinates for generating via, 2 or more</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>list(physical.PhysicalObject)</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list containing the generated via objects</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; r23=grids[“routing_23_cmos”]
+&gt;&gt;&gt; mn_list = [[0, -2], [1, 0], [2, 5]]
+&gt;&gt;&gt; via = r23.via(mn=mn_list)
+&gt;&gt;&gt; print(via)
+[&lt;laygo2.object.physical.VirtualInstance object&gt;, &lt;laygo2.object.physical.VirtualInstance object&gt;, &lt;laygo2.object.physical.VirtualInstance object&gt;]
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_via.png"><img alt="_images/object_grid_RoutingGrid_via.png" src="_images/object_grid_RoutingGrid_via.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+via 생성함수.
+파라미터
+mn(list(numpy.ndarray)): via를 생성할 mn좌표, 2개이상 가능
+반환값
+list(physical.PhysicalObject)): 생성된 via object들을 담고 있는 list
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid._xy">
+<span class="sig-name descname"><span class="pre">_xy</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid._xy" title="Permalink to this definition"></a></dt>
+<dd><p>the list contains the 1d-grid objects for x and y axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid" title="laygo2.object.grid.OneDimGrid">OneDimGrid</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.abs2phy">
+<span class="sig-name descname"><span class="pre">abs2phy</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.abs2phy" title="Permalink to this definition"></a></dt>
+<dd><p>AbsToPhyGridConverter(master=self)</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.elements">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">elements</span></span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.elements" title="Permalink to this definition"></a></dt>
+<dd><p>return elements of subgrids ([_xy[0].elements, _xy[1].elements]).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.h">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">h</span></span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.h" title="Permalink to this definition"></a></dt>
+<dd><p>OneDimGrid of the y-coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.h
+g1_y
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+y좌표계 OneDimGrid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self.y (laygo2.OneDimGrid)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.height">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.height" title="Permalink to this definition"></a></dt>
+<dd><p>Height of the region in which the coordinate system is defined.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.height
+100
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+좌표계가 정의된 영역의 높이.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.int32</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.height_vec">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height_vec</span></span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.height_vec" title="Permalink to this definition"></a></dt>
+<dd><p>Return the height vector [0, h].</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.height_vec
+[0, 100]
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+height를 list로 반환.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.hextension">
+<span class="sig-name descname"><span class="pre">hextension</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.hextension" title="Permalink to this definition"></a></dt>
+<dd><p>Extension of horizontal wires.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">templates</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_templates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grids</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_grids</span><span class="p">(</span><span class="n">templates</span><span class="o">=</span><span class="n">templates</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r23</span>   <span class="o">=</span> <span class="n">grids</span><span class="p">[</span><span class="s1">&#39;routing_23_cmos’]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">r23</span><span class="o">.</span><span class="n">hextension</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.grid.CircularMapping object&gt; class: CircularMapping, elements: [15 15 15 15 15 15 15 15]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_hextension.png"><img alt="_images/object_grid_RoutingGrid_hextension.png" src="_images/object_grid_RoutingGrid_hextension.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+수평 wire들의 extension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping">CircularMapping</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.hextension0">
+<span class="sig-name descname"><span class="pre">hextension0</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.hextension0" title="Permalink to this definition"></a></dt>
+<dd><p>the array containing the extension of the zero-length wires on the horizontal grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping">CircularMapping</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.hlayer">
+<span class="sig-name descname"><span class="pre">hlayer</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.hlayer" title="Permalink to this definition"></a></dt>
+<dd><p>Layer information of horizontal wires.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">templates</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_templates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grids</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_grids</span><span class="p">(</span><span class="n">templates</span><span class="o">=</span><span class="n">templates</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r23</span>   <span class="o">=</span> <span class="n">grids</span><span class="p">[</span><span class="s1">&#39;routing_23_cmos’]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">r23</span><span class="o">.</span><span class="n">hlayer</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.grid.CircularMapping object&gt; class: CircularMapping, elements: [[&#39;metal2&#39; &#39;drawing&#39;], [&#39;metal2&#39; &#39;drawing&#39;], [&#39;metal2&#39; &#39;drawing&#39;], [&#39;metal2&#39; &#39;drawing&#39;], [&#39;metal2&#39; &#39;drawing&#39;], [&#39;metal2&#39; &#39;drawing&#39;], [&#39;metal2&#39; &#39;drawing&#39;], [&#39;metal2&#39; &#39;drawing&#39;]]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_hlayer.png"><img alt="_images/object_grid_RoutingGrid_hlayer.png" src="_images/object_grid_RoutingGrid_hlayer.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+수평 wire들의 레이어정보.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping">CircularMapping</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.hwidth">
+<span class="sig-name descname"><span class="pre">hwidth</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.hwidth" title="Permalink to this definition"></a></dt>
+<dd><p>Width of horizontal wires.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">templates</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_templates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grids</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_grids</span><span class="p">(</span><span class="n">templates</span><span class="o">=</span><span class="n">templates</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r23</span>   <span class="o">=</span> <span class="n">grids</span><span class="p">[</span><span class="s1">&#39;routing_23_cmos’]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">r23</span><span class="o">.</span><span class="n">hwitdh</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.grid.CircularMapping object&gt; class: CircularMapping, elements: [10 10 10 10 10 10 10 10]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_hwidth.png"><img alt="_images/object_grid_RoutingGrid_hwidth.png" src="_images/object_grid_RoutingGrid_hwidth.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+수평 wire들의 폭.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping">CircularMapping</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.m">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">m</span></span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.m" title="Permalink to this definition"></a></dt>
+<dd><p>One-dimensional _PhyToAbsConverter of the x-coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.n[40]
+2
+&gt;&gt;&gt; g2.n(40)
+2
+&gt;&gt;&gt; g2.n &lt;  40
+760
+&gt;&gt;&gt; g2.n &lt;= 40
+810
+&gt;&gt;&gt; g2.n &gt;  40
+820
+&gt;&gt;&gt; g2.n &gt;= 40
+810
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+x좌표계 1차원 _PhyToAbsConverter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self._xy[0].phy2abs (laygo2._PhyToAbsGridConverter )</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.mn">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mn</span></span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.mn" title="Permalink to this definition"></a></dt>
+<dd><p>Two-dimensional _PhyToAbsConverter of a coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.mn[40,40]
+[3, 2]
+&gt;&gt;&gt; g2.mn([40, 40])
+[3, 2]
+&gt;&gt;&gt; g2.mn &lt;  [40,40]
+[750, 760]
+&gt;&gt;&gt; g2.mn &lt;= [40,40]
+[800, 810]
+&gt;&gt;&gt; g2.mn &gt;  [40,40]
+[810, 820]
+&gt;&gt;&gt; g2.mn &gt;= [40,40]
+[800, 810]
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+좌표계 2차원 _PhyToAbsConverter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self._phy2abs (laygo2._PhyToAbsGridConverter)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.n">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n</span></span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.n" title="Permalink to this definition"></a></dt>
+<dd><p>One-dimensional _PhyToAbsConverter of the y-coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.n[40]
+2
+&gt;&gt;&gt; g2.n(40)
+2
+&gt;&gt;&gt; g2.n &lt;  40
+760
+&gt;&gt;&gt; g2.n &lt;= 40
+810
+&gt;&gt;&gt; g2.n &gt;  40
+820
+&gt;&gt;&gt; g2.n &gt;= 40
+810
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+y좌표계 1차원 _PhyToAbsConverter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self._xy[1].phy2abs (laygo2._PhyToAbsGridConverter )</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.name" title="Permalink to this definition"></a></dt>
+<dd><p>the name of the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.phy2abs">
+<span class="sig-name descname"><span class="pre">phy2abs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.phy2abs" title="Permalink to this definition"></a></dt>
+<dd><p>PhyToAbsGridConverter(master=self)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.pin_hlayer">
+<span class="sig-name descname"><span class="pre">pin_hlayer</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.pin_hlayer" title="Permalink to this definition"></a></dt>
+<dd><p>Layer information of horizontal pine wires.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">templates</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_templates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grids</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_grids</span><span class="p">(</span><span class="n">templates</span><span class="o">=</span><span class="n">templates</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r23</span>   <span class="o">=</span> <span class="n">grids</span><span class="p">[</span><span class="s1">&#39;routing_23_cmos’]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">r23</span><span class="o">.</span><span class="n">pin_hlayer</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.grid.CircularMapping object&gt; class: CircularMapping, elements: [[&#39;metal2&#39; &#39;pin&#39;], [&#39;metal2&#39; &#39;pin&#39;], [&#39;metal2&#39; &#39;pin&#39;], [&#39;metal2&#39; &#39;pin&#39;], [&#39;metal2&#39; &#39;pin&#39;], [&#39;metal2&#39; &#39;pin&#39;], [&#39;metal2&#39; &#39;pin&#39;], [&#39;metal2&#39; &#39;pin&#39;]]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_pin_hlayer.png"><img alt="_images/object_grid_RoutingGrid_pin_hlayer.png" src="_images/object_grid_RoutingGrid_pin_hlayer.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+수평 pin wire 들의 레이어정보.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping">CircularMapping</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.pin_vlayer">
+<span class="sig-name descname"><span class="pre">pin_vlayer</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.pin_vlayer" title="Permalink to this definition"></a></dt>
+<dd><p>Layer information of vertical pin wires.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">templates</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_templates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grids</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_grids</span><span class="p">(</span><span class="n">templates</span><span class="o">=</span><span class="n">templates</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r23</span>   <span class="o">=</span> <span class="n">grids</span><span class="p">[</span><span class="s1">&#39;routing_23_cmos’]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">r23</span><span class="o">.</span><span class="n">pin_vlayer</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.grid.CircularMapping object&gt; class: CircularMapping, elements: [[&#39;metal3&#39; &#39;pin&#39;]]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_pin_vlayer.png"><img alt="_images/object_grid_RoutingGrid_pin_vlayer.png" src="_images/object_grid_RoutingGrid_pin_vlayer.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+수직 pin wire들의 레이어 정보.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping">CircularMapping</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.primary_grid">
+<span class="sig-name descname"><span class="pre">primary_grid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'vertical'</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.primary_grid" title="Permalink to this definition"></a></dt>
+<dd><p>Direction of wire having length 0.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">templates</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_templates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grids</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_grids</span><span class="p">(</span><span class="n">templates</span><span class="o">=</span><span class="n">templates</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r23</span>   <span class="o">=</span> <span class="n">grids</span><span class="p">[</span><span class="s1">&#39;routing_23_cmos’]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">r23</span><span class="o">.</span><span class="n">primary_grid</span><span class="p">)</span>
+<span class="go">“horizontal”</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_primary_grid.png"><img alt="_images/object_grid_RoutingGrid_primary_grid.png" src="_images/object_grid_RoutingGrid_primary_grid.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+길이가 0인 wire방향.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.range">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">range</span></span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.range" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shape</span></span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.shape" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Two-dimensional element length in a coordinate system.</dt><dd><p>length of x-axis elements, length of y-axis elements</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.shape
+[5, 5]
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+좌표게 2차원 element의 길이.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'routing'</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.v">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">v</span></span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.v" title="Permalink to this definition"></a></dt>
+<dd><p>OneDimGrid of the x-coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.v
+g1_x
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+x좌표계 OneDimGrid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self.x (laygo2.OneDimGrid)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.vextension">
+<span class="sig-name descname"><span class="pre">vextension</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.vextension" title="Permalink to this definition"></a></dt>
+<dd><p>Extension of vertical wires.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">templates</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_templates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grids</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_grids</span><span class="p">(</span><span class="n">templates</span><span class="o">=</span><span class="n">templates</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r23</span>   <span class="o">=</span> <span class="n">grids</span><span class="p">[</span><span class="s1">&#39;routing_23_cmos’]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">r23</span><span class="o">.</span><span class="n">vextension</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.grid.CircularMapping object&gt; class: CircularMapping, elements: [15]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_vextension.png"><img alt="_images/object_grid_RoutingGrid_vextension.png" src="_images/object_grid_RoutingGrid_vextension.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+수직 wire들의 extension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping">CircularMapping</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.vextension0">
+<span class="sig-name descname"><span class="pre">vextension0</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.vextension0" title="Permalink to this definition"></a></dt>
+<dd><p>the array containing the extension of the zero-length wires on the vertical grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping">CircularMapping</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.viamap">
+<span class="sig-name descname"><span class="pre">viamap</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.viamap" title="Permalink to this definition"></a></dt>
+<dd><p>Array containing Via objects positioned on grid crossing points.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">templates</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_templates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grids</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_grids</span><span class="p">(</span><span class="n">templates</span><span class="o">=</span><span class="n">templates</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r23</span>   <span class="o">=</span> <span class="n">grids</span><span class="p">[</span><span class="s1">&#39;routing_23_cmos’]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">r23</span><span class="o">.</span><span class="n">viamap</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.grid.CircularMappingArray object&gt; class: CircularMappingArray, elements: [[&lt;laygo2.object.template.UserDefinedTemplate object&gt;, &lt;laygo2.object.template.UserDefinedTemplate object&gt;, &lt;laygo2.object.template.UserDefinedTemplate object&gt;, &lt;laygo2.object.template.UserDefinedTemplate object&gt;, &lt;laygo2.object.template.UserDefinedTemplate object&gt;, &lt;laygo2.object.template.UserDefinedTemplate object&gt;, &lt;laygo2.object.template.UserDefinedTemplate object&gt;, &lt;laygo2.object.template.UserDefinedTemplate object&gt;]]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_viamap.png"><img alt="_images/object_grid_RoutingGrid_viamap.png" src="_images/object_grid_RoutingGrid_viamap.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+그리드 교차점에 위치하는 via개채들을 담고있는배열.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html#laygo2.object.grid.CircularMappingArray" title="laygo2.object.grid.CircularMappingArray">CircularMappingArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.vlayer">
+<span class="sig-name descname"><span class="pre">vlayer</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.vlayer" title="Permalink to this definition"></a></dt>
+<dd><p>Layer information of vertical wires.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">templates</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_templates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grids</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_grids</span><span class="p">(</span><span class="n">templates</span><span class="o">=</span><span class="n">templates</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r23</span>   <span class="o">=</span> <span class="n">grids</span><span class="p">[</span><span class="s1">&#39;routing_23_cmos’]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">r23</span><span class="o">.</span><span class="n">vlayer</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.grid.CircularMapping object&gt; class: CircularMapping, elements: [[&#39;metal3&#39; &#39;drawing&#39;]]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_vlayer.png"><img alt="_images/object_grid_RoutingGrid_vlayer.png" src="_images/object_grid_RoutingGrid_vlayer.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+수직 wire들의 레이어 정보.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping">CircularMapping</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.vwidth">
+<span class="sig-name descname"><span class="pre">vwidth</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.vwidth" title="Permalink to this definition"></a></dt>
+<dd><p>Width of vertical wires.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">templates</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_templates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grids</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_grids</span><span class="p">(</span><span class="n">templates</span><span class="o">=</span><span class="n">templates</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r23</span>   <span class="o">=</span> <span class="n">grids</span><span class="p">[</span><span class="s1">&#39;routing_23_cmos’]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">r23</span><span class="o">.</span><span class="n">vwitdh</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.grid.CircularMapping object &gt; class: CircularMapping, elements: [10]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_vwidth.png"><img alt="_images/object_grid_RoutingGrid_vwidth.png" src="_images/object_grid_RoutingGrid_vwidth.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+수직 wire 들의 폭.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping">CircularMapping</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.width">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.width" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Width of the region in which the coordinate system is defined.</dt><dd><p>x scope</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.width
+100
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+좌표계가 정의된 영역의 폭.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.int32</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.width_vec">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width_vec</span></span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.width_vec" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Return width as a list.</dt><dd><p>length of the respective axis and zero</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.width_vec
+[100, 0]
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+width를 list로 반환.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.x">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.x" title="Permalink to this definition"></a></dt>
+<dd><p>One-dimensional _AbsToPhyGridConverter of the x-coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.x[10]
+200
+&gt;&gt;&gt; g2.x &lt;  10
+[0]
+&gt;&gt;&gt; g2.x &lt;= 10
+[1]
+&gt;&gt;&gt; g2.x &gt;  10
+[2]
+&gt;&gt;&gt; g2.x &gt;= 10
+[1]
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+x좌표계 1차원 _AbsToPhyGridConverter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self._xy[0].abs2phy (laygo2._AbsToPhyGridConverter)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.xcolor">
+<span class="sig-name descname"><span class="pre">xcolor</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.xcolor" title="Permalink to this definition"></a></dt>
+<dd><p>Color of horizontal wires.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">templates</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_templates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grids</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_grids</span><span class="p">(</span><span class="n">templates</span><span class="o">=</span><span class="n">templates</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r23</span>   <span class="o">=</span> <span class="n">grids</span><span class="p">[</span><span class="s1">&#39;routing_23_cmos’]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">r23</span><span class="o">.</span><span class="n">xcolor</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.grid.CircularMapping object&gt; class: CircularMapping, elements: [[“colorA”], [“colorB”], [“colorA”], [“colorB”], [“colorA”], [“colorB”], [“colorA”], [“colorB”]]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_xcolor.png"><img alt="_images/object_grid_RoutingGrid_xcolor.png" src="_images/object_grid_RoutingGrid_xcolor.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+수평 wire 들의 color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping">CircularMapping</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.xy">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">xy</span></span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.xy" title="Permalink to this definition"></a></dt>
+<dd><p>Two-dimensional _AbsToPhyConverter of a coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.xy[10,10]
+[200 210]
+&gt;&gt;&gt; g2.xy([10, 10])
+[200 210]
+&gt;&gt;&gt; g2.xy &lt; [10,10]
+[0,-1]
+&gt;&gt;&gt; g2.xy &lt;= [10,10]
+[1,0]
+&gt;&gt;&gt; g2.xy &gt; [10,10]
+[2,1]
+&gt;&gt;&gt; g2.xy &gt;= [10,10]
+[1,0]
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+좌표계 2차원 _AbsToPhyConverter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self.abs2phy (laygo2._AbsToPhyGridConverter)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.y">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.y" title="Permalink to this definition"></a></dt>
+<dd><p>One-dimensional _AbsToPhyGridConverter of the y-coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.y[10]
+210
+&gt;&gt;&gt; g2.y &lt;  10
+[-1]
+&gt;&gt;&gt; g2.y &lt;= 10
+[0]
+&gt;&gt;&gt; g2.y &gt;  10
+[1]
+&gt;&gt;&gt; g2.y &gt;= 10
+[0]
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+y좌표계 1차원 _AbsToPhyGridConverter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self._xy[1].abs2phy (laygo2._AbsToPhyGridConverter)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.RoutingGrid.ycolor">
+<span class="sig-name descname"><span class="pre">ycolor</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.RoutingGrid.ycolor" title="Permalink to this definition"></a></dt>
+<dd><p>Color of vertical wires.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">templates</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_templates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grids</span> <span class="o">=</span> <span class="n">tech</span><span class="o">.</span><span class="n">load_grids</span><span class="p">(</span><span class="n">templates</span><span class="o">=</span><span class="n">templates</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r23</span>   <span class="o">=</span> <span class="n">grids</span><span class="p">[</span><span class="s1">&#39;routing_23_cmos’]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">r23</span><span class="o">.</span><span class="n">ycolor</span><span class="p">)</span>
+<span class="go">&lt;laygo2.object.grid.CircularMapping object&gt; class: CircularMapping, elements: [[“colorA”]]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_RoutingGrid_ycolor.png"><img alt="_images/object_grid_RoutingGrid_ycolor.png" src="_images/object_grid_RoutingGrid_ycolor.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+수직 wire들의 color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping">CircularMapping</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="laygo2.object.grid.PlacementGrid.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">PlacementGrid class</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="laygo2.object.database.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">laygo2.object.database module</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Niftylab at Hanyang University, South Korea.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,789 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>OneDimGrid class &#8212; LAYGO2 Documentation  documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/autoclasstoc.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Grid class" href="laygo2.object.grid.Grid.html" />
+    <link rel="prev" title="_PhyToAbsGridConverter class" href="laygo2.object.grid._PhyToAbsGridConverter.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="index.html">
+<p class="title">LAYGO2 Documentation</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_link.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="examples_link.html">
+  Trial
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="structure_link.html">
+  Structure
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="technology_link.html">
+  Tech Setup
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_kor.html">
+  Korean
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="laygo2.html">
+  API Reference
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="laygo2.object.html">
+   laygo2.object package
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.physical.html">
+     laygo2.object.physical module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.PhysicalObject.html">
+       PhysicalObject class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.IterablePhysicalObject.html">
+       IterablePhysicalObject class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.PhysicalObjectGroup.html">
+       PhysicalObjectGroup class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Rect.html">
+       Rect class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Path.html">
+       Path class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Pin.html">
+       Pin class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Text.html">
+       Text class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Instance.html">
+       Instance class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.VirtualInstance.html">
+       VirtualInstance class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.template.html">
+     laygo2.object.template module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.Template.html">
+       Template class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.NativeInstanceTemplate.html">
+       NativeInstanceTemplate class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.ParameterizedInstanceTemplate.html">
+       ParameterizedInstanceTemplate class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.UserDefinedTemplate.html">
+       UserDefinedTemplate class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="laygo2.object.grid.html">
+     laygo2.object.grid module
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.CircularMapping.html">
+       CircularMapping class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html">
+       CircularMappingArray class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid._AbsToPhyGridConverter.html">
+       _AbsToPhyGridConverter class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid._PhyToAbsGridConverter.html">
+       _PhyToAbsGridConverter class
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       OneDimGrid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.Grid.html">
+       Grid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.PlacementGrid.html">
+       PlacementGrid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.RoutingGrid.html">
+       RoutingGrid class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.database.html">
+     laygo2.object.database module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.BaseDatabase.html">
+       BaseDatabase class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.Library.html">
+       Library class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.Design.html">
+       Design class
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laygo2.interface.html">
+   laygo2.interface package
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laygo2.util.html">
+   laygo2.util package
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="onedimgrid-class">
+<h1>OneDimGrid class<a class="headerlink" href="#onedimgrid-class" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="laygo2.object.grid.OneDimGrid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">laygo2.object.grid.</span></span><span class="sig-name descname"><span class="pre">OneDimGrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scope</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0])</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#OneDimGrid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.OneDimGrid" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping"><code class="xref py py-class docutils literal notranslate"><span class="pre">laygo2.object.grid.CircularMapping</span></code></a></p>
+<p>Class implementing one-dimensional abstract coordinates.</p>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+1차원 추상좌표를 구현하는 클래스.</p>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Data Attributes:</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.OneDimGrid.name" title="laygo2.object.grid.OneDimGrid.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></p></td>
+<td><p>Coordinate system name.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.OneDimGrid.range" title="laygo2.object.grid.OneDimGrid.range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">range</span></code></a></p></td>
+<td><p>Region in which the coordinate system is defined Coordinates in the defined region are repeatedly expanded.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.OneDimGrid.phy2abs" title="laygo2.object.grid.OneDimGrid.phy2abs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">phy2abs</span></code></a></p></td>
+<td><p>Object that converts physical coordinates into abstract coordinates.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.OneDimGrid.abs2phy" title="laygo2.object.grid.OneDimGrid.abs2phy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abs2phy</span></code></a></p></td>
+<td><p>Object that converts abstract coordinates into physical coordinates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.OneDimGrid.width" title="laygo2.object.grid.OneDimGrid.width"><code class="xref py py-obj docutils literal notranslate"><span class="pre">width</span></code></a></p></td>
+<td><p>The size of the region in which the coordinate system is defined.</p></td>
+</tr>
+</tbody>
+</table>
+<details><summary>Inherited from <a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping"><code class="xref py py-class docutils literal notranslate"><span class="pre">CircularMapping</span></code></a></summary><table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.OneDimGrid.elements" title="laygo2.object.grid.OneDimGrid.elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">elements</span></code></a></p></td>
+<td><p>get the elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.OneDimGrid.shape" title="laygo2.object.grid.OneDimGrid.shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shape</span></code></a></p></td>
+<td><p>Shape of circular mapping.</p></td>
+</tr>
+</tbody>
+</table>
+</details></div>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Methods:</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.OneDimGrid.__init__" title="laygo2.object.grid.OneDimGrid.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(name, scope[, elements])</p></td>
+<td><p>Constructor function of OneDimGrid class.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__getitem__</span></code>(pos)</p></td>
+<td><p>Return the physical coordinate corresponding to the abstract coordinate pos.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__eq__</span></code>(other)</p></td>
+<td><p>Return the abstract grid coordinate that matches to other.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__lt__</span></code>(other)</p></td>
+<td><p>Return the abstract grid coordinate that is the largest but less than other.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__le__</span></code>(other)</p></td>
+<td><p>Return the index of the grid coordinate that is the largest but less than or equal to other.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__gt__</span></code>(other)</p></td>
+<td><p>Return the abstract grid coordinate that is the smallest but greater than other.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__ge__</span></code>(other)</p></td>
+<td><p>Return the index of the grid coordinate that is the smallest but greater than or equal to other.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__str__</span></code>()</p></td>
+<td><p>Return the string representation of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.OneDimGrid.summarize" title="laygo2.object.grid.OneDimGrid.summarize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summarize</span></code></a>()</p></td>
+<td><p>Return the summary of the object information.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.OneDimGrid.export_to_dict" title="laygo2.object.grid.OneDimGrid.export_to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_to_dict</span></code></a>()</p></td>
+<td><p>Return dict object containing grid information.</p></td>
+</tr>
+</tbody>
+</table>
+<details><summary>Inherited from <a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping" title="laygo2.object.grid.CircularMapping"><code class="xref py py-class docutils literal notranslate"><span class="pre">CircularMapping</span></code></a></summary><table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.OneDimGrid.get_elements" title="laygo2.object.grid.OneDimGrid.get_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_elements</span></code></a>()</p></td>
+<td><p>numpy.ndarray: get the elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.OneDimGrid.set_elements" title="laygo2.object.grid.OneDimGrid.set_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_elements</span></code></a>(value)</p></td>
+<td><p>numpy.ndarray: set the elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.OneDimGrid.__init__" title="laygo2.object.grid.OneDimGrid.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(name, scope[, elements])</p></td>
+<td><p>Constructor function of OneDimGrid class.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__getitem__</span></code>(pos)</p></td>
+<td><p>Return the physical coordinate corresponding to the abstract coordinate pos.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__iter__</span></code>()</p></td>
+<td><p>Iteration function of circular mapping.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__next__</span></code>()</p></td>
+<td><p>Next element access function of circular mapping.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__str__</span></code>()</p></td>
+<td><p>Return the string representation of the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.OneDimGrid.summarize" title="laygo2.object.grid.OneDimGrid.summarize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summarize</span></code></a>()</p></td>
+<td><p>Return the summary of the object information.</p></td>
+</tr>
+</tbody>
+</table>
+</details></div>
+<hr class="docutils" />
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.OneDimGrid.dtype">
+<span class="sig-name descname"><span class="pre">dtype</span></span><a class="headerlink" href="#laygo2.object.grid.OneDimGrid.dtype" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.OneDimGrid.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scope</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0])</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#OneDimGrid.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.OneDimGrid.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor function of OneDimGrid class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – </p></li>
+<li><p><strong>scope</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a>) – scope of one-dimensional coordinate system</p></li>
+<li><p><strong>elements</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a>) – members of one-dimensional coordinate system</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>laygo2.OneDimGrid</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span> <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;xgrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">g1_x</span><span class="p">)</span>
+<span class="go">OneDimGrid object name: xgrid, class: OneDimGrid, scope: [0, 180], elements: [0, 35, 85, 130  50]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_OneDimGrid_init.png"><img alt="_images/object_grid_OneDimGrid_init.png" src="_images/object_grid_OneDimGrid_init.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+OneDimGrid 클래스의 생성자함수.
+파라미터
+name(str): 이름
+scope(numpy.ndarray): 1차원 좌표계의 범위
+elements(numpy.ndarray): 1차원 좌표계 의 구성원
+반환값
+laygo2.OneDimGrid
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.OneDimGrid.export_to_dict">
+<span class="sig-name descname"><span class="pre">export_to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#OneDimGrid.export_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.OneDimGrid.export_to_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Return dict object containing grid information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span> <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;xgrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span><span class="o">.</span><span class="n">export_to_dict</span><span class="p">()</span>
+<span class="go">{&#39;scope&#39;: [0, 180], &#39;elements&#39;: [0, 35, 85, 130, 50]}</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_OneDimGrid_export_to_dict.png"><img alt="_images/object_grid_OneDimGrid_export_to_dict.png" src="_images/object_grid_OneDimGrid_export_to_dict.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+그리드의 정보를 담은 dict객체 반환.
+파라미터
+없음
+반환값
+dict
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.OneDimGrid.get_elements">
+<span class="sig-name descname"><span class="pre">get_elements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.grid.OneDimGrid.get_elements" title="Permalink to this definition"></a></dt>
+<dd><p>numpy.ndarray: get the elements.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.OneDimGrid.set_elements">
+<span class="sig-name descname"><span class="pre">set_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.grid.OneDimGrid.set_elements" title="Permalink to this definition"></a></dt>
+<dd><p>numpy.ndarray: set the elements.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.OneDimGrid.summarize">
+<span class="sig-name descname"><span class="pre">summarize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#OneDimGrid.summarize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.OneDimGrid.summarize" title="Permalink to this definition"></a></dt>
+<dd><p>Return the summary of the object information.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.OneDimGrid._elements">
+<span class="sig-name descname"><span class="pre">_elements</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.OneDimGrid._elements" title="Permalink to this definition"></a></dt>
+<dd><p>Array consisting of the elements of circular mapping.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elements</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">180</span> <span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cm</span> <span class="o">=</span> <span class="n">CircularMapping</span><span class="p">(</span> <span class="n">elements</span> <span class="o">=</span> <span class="n">elements</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cm</span><span class="o">.</span><span class="n">elements</span>
+<span class="go">[ 0, 35, 85, 130, 180 ]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_CircularMapping_elements.png"><img alt="_images/object_grid_CircularMapping_elements.png" src="_images/object_grid_CircularMapping_elements.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+순환 맵핑의 구성 요소로 이루어진 배열.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.OneDimGrid.abs2phy">
+<span class="sig-name descname"><span class="pre">abs2phy</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.OneDimGrid.abs2phy" title="Permalink to this definition"></a></dt>
+<dd><p>Object that converts abstract coordinates into physical coordinates.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span> <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;xgrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span><span class="o">.</span><span class="n">abs2phy</span>
+<span class="go">&lt;_AbsToPhyGridConverter object&gt;</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+추상 좌표에서 물리 좌표로 변환연산을 해주는 객체.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self.abs2phy (laygo2._AbsToPhyGridConverter)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.OneDimGrid.elements">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">elements</span></span><a class="headerlink" href="#laygo2.object.grid.OneDimGrid.elements" title="Permalink to this definition"></a></dt>
+<dd><p>get the elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.OneDimGrid.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.OneDimGrid.name" title="Permalink to this definition"></a></dt>
+<dd><p>Coordinate system name.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span> <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;xgrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span><span class="o">.</span><span class="n">name</span>
+<span class="go">“xgrid”</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_OneDimGrid_name.png"><img alt="_images/object_grid_OneDimGrid_name.png" src="_images/object_grid_OneDimGrid_name.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+좌표계 이름.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.OneDimGrid.phy2abs">
+<span class="sig-name descname"><span class="pre">phy2abs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.OneDimGrid.phy2abs" title="Permalink to this definition"></a></dt>
+<dd><p>Object that converts physical coordinates into abstract coordinates.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span>  <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;xgrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span><span class="o">.</span><span class="n">phy2abs</span>
+<span class="go">&lt;_PhyToAbsGridConverter object&gt;</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+물리 좌표에서 추상 좌표로 변환연산을 해주는 객체.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self.phy2abs (laygo2._PhyToAbsGridConverter)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.OneDimGrid.range">
+<span class="sig-name descname"><span class="pre">range</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.OneDimGrid.range" title="Permalink to this definition"></a></dt>
+<dd><p>Region in which the coordinate system is defined Coordinates in the defined region are repeatedly expanded.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span> <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;xgrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span><span class="o">.</span><span class="n">range</span>
+<span class="go">[0, 180]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_OneDimGrid_range.png"><img alt="_images/object_grid_OneDimGrid_range.png" src="_images/object_grid_OneDimGrid_range.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+좌표계가 정의된 영역. 정의된 영역의 좌표들이 반복되는 형태로 확장된다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.OneDimGrid.shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shape</span></span><a class="headerlink" href="#laygo2.object.grid.OneDimGrid.shape" title="Permalink to this definition"></a></dt>
+<dd><p>Shape of circular mapping.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">elements</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">180</span> <span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cm</span> <span class="o">=</span> <span class="n">CircularMapping</span><span class="p">(</span> <span class="n">elements</span> <span class="o">=</span> <span class="n">elements</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">[4]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_CircularMapping_shape.png"><img alt="_images/object_grid_CircularMapping_shape.png" src="_images/object_grid_CircularMapping_shape.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+순환 맵핑의 shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.OneDimGrid.width">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#laygo2.object.grid.OneDimGrid.width" title="Permalink to this definition"></a></dt>
+<dd><p>The size of the region in which the coordinate system is defined.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span> <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;xgrid&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1_x</span><span class="o">.</span><span class="n">width</span>
+<span class="go">180</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_grid_OneDimGrid_width.png"><img alt="_images/object_grid_OneDimGrid_width.png" src="_images/object_grid_OneDimGrid_width.png" style="height: 250px;" /></a>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+좌표계가 정의된 영역의 크기.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="laygo2.object.grid._PhyToAbsGridConverter.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">_PhyToAbsGridConverter class</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="laygo2.object.grid.Grid.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Grid class</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Niftylab at Hanyang University, South Korea.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

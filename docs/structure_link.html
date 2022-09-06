@@ -1,0 +1,1230 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>laygo2 Structure &#8212; LAYGO2 Documentation  documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/autoclasstoc.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Setting up laygo2 for a new technology" href="technology_link.html" />
+    <link rel="prev" title="laygo2 Quick Trial" href="examples_link.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="index.html">
+<p class="title">LAYGO2 Documentation</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_link.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="examples_link.html">
+  Trial
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  Structure
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="technology_link.html">
+  Tech Setup
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_kor.html">
+  Korean
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="laygo2.html">
+  API Reference
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#object-package">
+   object package
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#physical-module">
+     physical module
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#physicalobject-class">
+       PhysicalObject class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#iterablephysicalobject-class">
+       IterablePhysicalObject class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#physicalobjectgroup-class">
+       PhysicalObjectGroup class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#rect-class">
+       Rect class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#path-class">
+       Path class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pin-class">
+       Pin class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#text-class">
+       Text class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#instance-class">
+       Instance class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#virtualinstance-class">
+       VirtualInstance class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#template-module">
+     template module
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#template-class">
+       Template class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nativeinstancetemplate-class">
+       NativeInstanceTemplate class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#parameterizedinstancetemplate-class">
+       ParameterizedInstanceTemplate class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#userdefinedtemplate-class">
+       UserDefinedTemplate class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grid-module">
+     grid module
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#circularmapping-class">
+       CircularMapping class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#circularmappingarray-class">
+       CircularMappingArray class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#abstophygridconverter-class">
+       _AbsToPhyGridConverter class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#phytoabsgridconverter-class">
+       _PhyToAbsGridConverter class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#onedimgrid-class">
+       OneDimGrid class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#grid-class">
+       Grid class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#placementgrid-class">
+       PlacementGrid class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#routinggrid-class">
+       RoutingGrid class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#database-module">
+     database module
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#basedatabase-class">
+       BaseDatabase class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#library-class">
+       Library class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#design-class">
+       Design class
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interface-package">
+   interface package
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#util-package">
+   util package
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="laygo2-structure">
+<h1>laygo2 Structure<a class="headerlink" href="#laygo2-structure" title="Permalink to this headline"></a></h1>
+<p>laygo2 is composed of the following sub-packages.</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="#object-package">object package</a></strong> implements various physical and abstract objects that compose layouts.</p></li>
+<li><p><strong><a class="reference external" href="#interface-package">interface package</a></strong> handles various interactions between laygo2 and external objects
+(EDA tools, data structures, files).</p></li>
+<li><p><strong><a class="reference external" href="#util-package">util package</a></strong> contains useful functions for other sub-packages.</p></li>
+</ul>
+<p>The following figure illustrates a UML diagram of laygo2.
+<img alt="laygo2 UML diagram" src="_images/user_guide_uml.png" /></p>
+<p>Introductions to the sub-packages can be found in the following sections, and see the API documentation
+(to be added) for more detailed explanations.</p>
+<section id="object-package">
+<h2>object package<a class="headerlink" href="#object-package" title="Permalink to this headline"></a></h2>
+<p>The object package includes various classes that are related to various physical and abstract object for
+layout generation processes and final results. There are various modules that compose the object package:</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="#physical-module">physical module</a></strong> is about physical objects that compose actual IC layouts.</p></li>
+<li><p><strong><a class="reference external" href="#template-module">template module</a></strong> describes various classes for templates that generate various
+instance objects.</p></li>
+<li><p><strong><a class="reference external" href="#grid-module">grid module</a></strong> includes grid classes that are implemented for process portability and
+parameterizations.</p></li>
+<li><p><strong><a class="reference external" href="#database-module">database module</a></strong> implements the hierarchy of designs for database management.</p></li>
+</ul>
+<section id="physical-module">
+<h3>physical module<a class="headerlink" href="#physical-module" title="Permalink to this headline"></a></h3>
+<p>The physical module consists of classes corresponding to various physical objects for IC layout design.
+Here are the summary of classes in the physical module:</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="#PhysicalObject-class">PhysicalObject</a></strong> is the most basic class for physical objects.</p></li>
+<li><p><strong><a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a></strong>(PhysicalObject) is the most basic class for
+‘iterable’ physical objects (e.g. arrays and groups).</p></li>
+<li><p><strong><a class="reference external" href="#PhysicalObjectGroup-class">PhysicalObjectGroup</a></strong>(IterablePhysicalObject) is a dedicated class for
+physical object groups (to be implemented).</p></li>
+<li><p><strong><a class="reference external" href="#Rect-class">Rect</a></strong>(PhysucalObject) is for rect objects.</p></li>
+<li><p><strong><a class="reference external" href="#Path-class">Path</a></strong>(PhysicalObject) is for path objects.</p></li>
+<li><p><strong><a class="reference external" href="#Pin-class">Pin</a></strong>(IterablePhysicalObject) is for pin objects.</p></li>
+<li><p><strong><a class="reference external" href="#Text-class">Text</a></strong>(PhysicalObject) is for text objects.</p></li>
+<li><p><strong><a class="reference external" href="#Instance-class">Instance</a></strong>(IterablePhysicalObject) is for instances.</p></li>
+<li><p><strong><a class="reference external" href="#VirtualInstance-class">VirtualInstance</a></strong>(IterablePhysicalObject) is for virtual instances
+(instances that do not exist explict in design hierarachies).</p></li>
+</ul>
+<p>The following figure shows various examples of generating physical objects using the classes introduced.</p>
+<p><img alt="laygo2 physical_objects" src="_images/user_guide_physical.png" /></p>
+<section id="physicalobject-class">
+<h4>PhysicalObject class<a class="headerlink" href="#physicalobject-class" title="Permalink to this headline"></a></h4>
+<p>PhysicalObject class implements basic physical objects and their operations, with their properties and
+methods introduced here:</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: <em>str</em>, the name of the object.</p></li>
+<li><p><strong>xy</strong>: <em>numpy.ndarray(np.int)</em>, the position of the object, in physical(xy) coordinate.</p></li>
+<li><p><strong>bbox</strong>: <em>numpy.ndarray(np.int)</em>, the bounding box of the object.</p></li>
+<li><p><strong>master</strong>: <em>PhysicalObject or None</em>, (if the object is an element of another object)
+the object’s master object.</p></li>
+<li><p><strong>params</strong>: <em>Dict</em>, the object’s properties.</p></li>
+<li><p><strong>pointers</strong>: <em>Dict</em>, major points (coordinates) related to the object.</p></li>
+<li><p><strong>left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right</strong>:
+<em>numpy.ndarray(np.int)</em>, major points (coordinates) related to the object.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(xy, name, params=None)</strong>: constructor.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="iterablephysicalobject-class">
+<h4>IterablePhysicalObject class<a class="headerlink" href="#iterablephysicalobject-class" title="Permalink to this headline"></a></h4>
+<p>IterablePhysicalObject class implements iterable and/or arrayed objects with attributes and methods
+described as follows:</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: Refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>xy</strong>: Refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>bbox</strong>: Refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>master</strong>: Refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>params</strong>: Refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>pointers</strong>: Refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right</strong>:
+Refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>elements</strong>: <em>numpy.ndarray(PhysicalObject)</em>, the elements of the object.</p></li>
+<li><p><strong>shape</strong>: <em>numpy.ndarray(np.int)</em>, the shape of the elements.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(xy, name=None, params=None, elements=None)</strong>: constructor.</p></li>
+<li><p><strong>ndenumerate()</strong>: run ndenumerate() over the object’s elements.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="physicalobjectgroup-class">
+<h4>PhysicalObjectGroup class<a class="headerlink" href="#physicalobjectgroup-class" title="Permalink to this headline"></a></h4>
+<p>(To be implemented) PhysicalObjectGroup class implements a group of physical objects.</p>
+</section>
+<section id="rect-class">
+<h4>Rect class<a class="headerlink" href="#rect-class" title="Permalink to this headline"></a></h4>
+<p>Rect class implements rectangular objects.</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>xy</strong>: <em>np.ndarray(dtype=np.int)</em>, xy-coordinate values of bottom-left top-right corners.</p></li>
+<li><p><strong>bbox</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>master</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>params</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>pointers</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>layer</strong>: <em>[str, str]</em>, the layer information of the object.</p></li>
+<li><p><strong>netname</strong>: <em>str</em>, the net name of the object.</p></li>
+<li><p><strong>hextension</strong>: <em>int</em>, the extension of the object in horizontal directions.</p></li>
+<li><p><strong>vextension</strong>: <em>int</em>, the extension of the object in vertical directions.</p></li>
+<li><p><strong>height</strong>: <em>int</em>, the height of the object.</p></li>
+<li><p><strong>width</strong>: <em>int</em>, the width of the object.</p></li>
+<li><p><strong>size</strong>: <em>np.array(dtype=np.int)</em>, the size [width, height] of the object.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(xy, layer, hextension=0, vextension=0, name=None, netname=None, params=None)</strong>: constructor.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="path-class">
+<h4>Path class<a class="headerlink" href="#path-class" title="Permalink to this headline"></a></h4>
+<p>Path class implements path objects.</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>xy</strong>: <em>np.ndarray(dtype=np.int)</em>, the xy-coordinates of the path object.</p></li>
+<li><p><strong>bbox</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>master</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>params</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>layer</strong>: <em>[str, str]</em>, the layer information of the path.</p></li>
+<li><p><strong>netname</strong>: <em>str</em>, the net name of the path.</p></li>
+<li><p><strong>extension</strong>: <em>int</em>, the extension of the path.</p></li>
+<li><p><strong>width</strong>: <em>int</em>, the width of the object.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(xy, layer, width, extension=0, name=None, netname=None, params=None)</strong>: constructor.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="pin-class">
+<h4>Pin class<a class="headerlink" href="#pin-class" title="Permalink to this headline"></a></h4>
+<p>Pin classes implements pin objects for terminals of designs and instances.</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>xy</strong>: the xy-coordinates of bottom-left and top-right corners of the object.</p></li>
+<li><p><strong>bbox</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>master</strong>: <em>Instance or VirtualInstance</em>, (if the pin object belongs to an instance)
+the master instance of the pin object.</p></li>
+<li><p><strong>params</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>pointers</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right</strong>:
+<a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>elements</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>shape</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>layer</strong>: <em>[str, str]</em>, the layer information of the object.</p></li>
+<li><p><strong>netname</strong>: <em>str</em>, the net name of the object.</p></li>
+<li><p><strong>height</strong>: <em>int</em>, the height of the object.</p></li>
+<li><p><strong>width</strong>: <em>int</em>, the width of the object.</p></li>
+<li><p><strong>size</strong>: <em>np.array(dtype=np.int)</em>, the size of the object.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(xy, layer, name=None, netname=None, params=None, master=None, elements=None)</strong>: constructor.</p></li>
+<li><p><strong>ndenumerate()</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>export_to_Dict()</strong>: returns a dictionary that contains the object’s information.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="text-class">
+<h4>Text class<a class="headerlink" href="#text-class" title="Permalink to this headline"></a></h4>
+<p>Text class implements text labels.</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>xy</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>bbox</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>master</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>params</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>pointers</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right</strong>: refer to <a class="reference external" href="#PhysicalObject-class">PhysicalObject</a>.</p></li>
+<li><p><strong>layer</strong>: <em>[str, str]</em>, the layer information of the object.</p></li>
+<li><p><strong>text</strong>: <em>str</em>, the text information of the object.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p>**__init__(xy, layer, text, name=None, params=None): constructor.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="instance-class">
+<h4>Instance class<a class="headerlink" href="#instance-class" title="Permalink to this headline"></a></h4>
+<p>Instance class impelments single instances or instance arrays.</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>xy</strong>: the xy-coordinates of bottom-left and top-right corners.</p></li>
+<li><p><strong>bbox</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>master</strong>: <em>Instance or VirtualInstance</em>, (if the instance belongs to a specific instance)
+the object’s master instance.</p></li>
+<li><p><strong>params</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>pointers</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right</strong>:
+<a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>elements</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>shape</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>libname</strong>: <em>str</em>, the library name of the object.</p></li>
+<li><p><strong>cellname</strong>: <em>str</em>, the cell name of the object.</p></li>
+<li><p><strong>unit_size</strong>: <em>np.array(dtype=np.int)</em> the unit-size of the instance, when the instance is an array.</p></li>
+<li><p><strong>transform</strong>: <em>str</em>, the transform parameter of the object.</p></li>
+<li><p><strong>pins</strong>: <em>Dict[Pin]</em>, the dictionary that contains the instance’s pins.</p></li>
+<li><p><strong>xy0</strong>: <em>np.array(dtype=np.int)</em>, the xy-coordinate values of the object’s primary corner.</p></li>
+<li><p><strong>xy1</strong>: <em>np.array(dtype=np.int)</em>, the xy-coordinate values of the object’s secondary corner.</p></li>
+<li><p><strong>size</strong>: <em>np.array(dtype=np.int)</em>, the size of the object.</p></li>
+<li><p><strong>pitch</strong>: <em>np.array(dtype=np.int)</em>, the pitch between unit-cells of the object.</p></li>
+<li><p><strong>spacing</strong>: same as pitch <em>(introduced to align the notation with GDS-II).</em></p></li>
+<li><p><strong>height</strong>: <em>int</em>, the height of the object.</p></li>
+<li><p><strong>width</strong>: <em>int</em>, the width of the object.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(xy, libname, cellname, shape=None, pitch=None, transform=’R0’, unit_size=np.array([0, 0]),
+pins=None, name=None, params=None)</strong>: constructor.</p></li>
+<li><p><strong>ndenumerate()</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="virtualinstance-class">
+<h4>VirtualInstance class<a class="headerlink" href="#virtualinstance-class" title="Permalink to this headline"></a></h4>
+<p>VirtualInstance class implements single virtual instances or virtual instance arrays that are composed of
+multiple physical objects.</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>xy</strong>: the xy-coordinates of bottom-left and top-right corners.</p></li>
+<li><p><strong>bbox</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>master</strong>: <em>Instance or VirtualInstance</em>, (if the instance belongs to another instance,
+e.g., unit cell of an instance array)
+the object’s master instance.</p></li>
+<li><p><strong>params</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>pointers</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right</strong>:
+<a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>elements</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>shape</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+<li><p><strong>libname</strong>: refer to <a class="reference external" href="#Instance-class">Instance</a>.</p></li>
+<li><p><strong>cellname</strong>: refer to <a class="reference external" href="#Instance-class">Instance</a>.</p></li>
+<li><p><strong>unit_size</strong>: refer to <a class="reference external" href="#Instance-class">Instance</a>.</p></li>
+<li><p><strong>transform</strong>: refer to <a class="reference external" href="#Instance-class">Instance</a>.</p></li>
+<li><p><strong>pins</strong>: refer to <a class="reference external" href="#Instance-class">Instance</a>.</p></li>
+<li><p><strong>xy0</strong>: refer to <a class="reference external" href="#Instance-class">Instance</a>.</p></li>
+<li><p><strong>xy1</strong>: refer to <a class="reference external" href="#Instance-class">Instance</a>.</p></li>
+<li><p><strong>size</strong>: refer to <a class="reference external" href="#Instance-class">Instance</a>.</p></li>
+<li><p><strong>pitch</strong>: refer to <a class="reference external" href="#Instance-class">Instance</a>.</p></li>
+<li><p><strong>spacing</strong>: refer to <a class="reference external" href="#Instance-class">Instance</a>.</p></li>
+<li><p><strong>height</strong>: refer to <a class="reference external" href="#Instance-class">Instance</a>.</p></li>
+<li><p><strong>width</strong>: refer to <a class="reference external" href="#Instance-class">Instance</a>.</p></li>
+<li><p><strong>native_elements</strong>: <em>Dict[PhysicalObject]</em>, the dictionary that contains physical objects that compose
+the virtual instance. Its key names are the names of the physical objects.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(xy, libname, cellname, native_elements, shape=None, pitch=None, transform=’R0’, unit_size=np.array([0, 0]),
+pins=None, name=None, params=None)</strong>: constructor.</p></li>
+<li><p><strong>ndenumerate()</strong>: refer to <a class="reference external" href="#IterablePhysicalObject-class">IterablePhysicalObject</a>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="template-module">
+<h3>template module<a class="headerlink" href="#template-module" title="Permalink to this headline"></a></h3>
+<p>template module is composed of classes that abstract instances and virtual instances described as follows:</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="#Template-class">Template</a></strong> is the basic templates class.</p></li>
+<li><p><strong><a class="reference external" href="#NativeInstanceTemplate-class">NativeInstanceTemplate</a></strong>(Template) is a template class that generates Instance
+objects.</p></li>
+<li><p><strong><a class="reference external" href="#ParameterizedInstanceTemplate-class">ParameterizedInstanceTemplate</a></strong>(Template)
+generates ParameterizedInstance objects with its user-defined bbox function.</p></li>
+<li><p><strong><a class="reference external" href="#UserDefinedTemplate-class">UserDefinedTemplate</a></strong>(Template)
+generates VirtualInstance objects with its bbox / pins / generate functions.</p></li>
+</ul>
+<section id="template-class">
+<h4>Template class<a class="headerlink" href="#template-class" title="Permalink to this headline"></a></h4>
+<p>Template class implements basic template functions with its attributes and methods described as follows:</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: <em>str</em>, the name of the template.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(name)</strong>: constructor.</p></li>
+<li><p><strong>height(params=None)</strong>: returns the height of the template corresponding to params.</p></li>
+<li><p><strong>width(params=None)</strong>: returns the width of the template corresponding to params.</p></li>
+<li><p><strong>size(params=None)</strong>: returns the size of the template.</p></li>
+<li><p><strong>bbox(params=None)</strong>: (abstract method) returns the bounding box of the template.</p></li>
+<li><p><strong>pins(params=None)</strong>: (abstract method) returns a dictionary that contains the pins of the template.</p></li>
+<li><p><strong>generate(name=None, shape=None, pitch=np.array([0, 0]), transform=’R0’, params=None)</strong>:
+(abstract method) returns an instance object generated from the template.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="nativeinstancetemplate-class">
+<h4>NativeInstanceTemplate class<a class="headerlink" href="#nativeinstancetemplate-class" title="Permalink to this headline"></a></h4>
+<p>NativeInstanceTemplate class implements templates that returns basic Instance objects with its attributes and methods
+described as follows:</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: refer to <a class="reference external" href="#Template-class">Template</a>.</p></li>
+<li><p><strong>libname</strong>: <em>str</em>, the library name of the generated instance.</p></li>
+<li><p><strong>cellname</strong>: <em>str</em>, the cell name of the generated instance.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(libname, cellname, bbox=np.array([[0, 0], [0, 0]]), pins=None)</strong>: constructor.</p></li>
+<li><p><strong>bbox(params=None)</strong>: refer to <a class="reference external" href="#Template-class">Template</a>.</p></li>
+<li><p><strong>pins(params=None)</strong>: refer to <a class="reference external" href="#Template-class">Template</a>.</p></li>
+<li><p><strong>generate(name=None, shape=None, pitch=np.array([0, 0]), transform=’R0’, params=None)</strong>:
+<a class="reference external" href="#Template-class">Template</a>.</p></li>
+<li><p><strong>export_to_dict()</strong>: returns a dictionary that contains the template’s information.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="parameterizedinstancetemplate-class">
+<h4>ParameterizedInstanceTemplate class<a class="headerlink" href="#parameterizedinstancetemplate-class" title="Permalink to this headline"></a></h4>
+<p>ParameterizedInstanceTemplate class implements a template that returns parameterized Instance objects,
+with its attributes and methods described as follows:</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: refer to <a class="reference external" href="#Template-class">Template</a>.</p></li>
+<li><p><strong>libname</strong>: refer to <a class="reference external" href="#NativeInstanceTemplate-class">NativeInstanceTemplate</a>.</p></li>
+<li><p><strong>cellname</strong>: refer to <a class="reference external" href="#NativeInstanceTemplate-class">NativeInstanceTemplate</a>.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(libname, cellname, bbox_func=None, pins_func=None)</strong>: constructor.</p></li>
+<li><p><strong>bbox(params=None)</strong>: refer to <a class="reference external" href="#Template-class">Template</a>.</p></li>
+<li><p><strong>pins(params=None)</strong>: refer to <a class="reference external" href="#Template-class">Template</a>.</p></li>
+<li><p><strong>generate(name=None, shape=None, pitch=np.array([0, 0]), transform=’R0’, params=None)</strong>:
+<a class="reference external" href="#Template-class">Template</a>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="userdefinedtemplate-class">
+<h4>UserDefinedTemplate class<a class="headerlink" href="#userdefinedtemplate-class" title="Permalink to this headline"></a></h4>
+<p>UserDefinedTemplate class implements a template that returns VirtualInstance objects, with its attributes
+and methods described as follows:</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: refer to <a class="reference external" href="#Template-class">Template</a>.</p></li>
+<li><p><strong>libname</strong>: refer to <a class="reference external" href="#NativeInstanceTemplate-class">NativeInstanceTemplate</a>.</p></li>
+<li><p><strong>cellname</strong>: refer to <a class="reference external" href="#NativeInstanceTemplate-class">NativeInstanceTemplate</a>.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(bbox_func, pins_func, generate_func, name=None)</strong>: constructor.</p></li>
+<li><p><strong>bbox(params=None)</strong>: refer to <a class="reference external" href="#Template-class">Template</a>.</p></li>
+<li><p><strong>pins(params=None)</strong>: refer to <a class="reference external" href="#Template-class">Template</a>.</p></li>
+<li><p><strong>generate(name=None, shape=None, pitch=np.array([0, 0]), transform=’R0’, params=None)</strong>:
+<a class="reference external" href="#Template-class">Template</a>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="grid-module">
+<h3>grid module<a class="headerlink" href="#grid-module" title="Permalink to this headline"></a></h3>
+<p>grid module is composed of classes that implement abstract coordinate systems that are interacting with
+technology-specific physical coordinate systems.</p>
+<p>laygo2 implements the layout designs based on the abstract coordinate system.</p>
+<p><img alt="laygo2 grid" src="_images/user_guide_grid.png" /></p>
+<p>Grid module implements the following classes.</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="#CircularMapping-class">CircularMapping</a></strong>: basic circular mapping class.</p></li>
+<li><p><strong><a class="reference external" href="#CircularMappingArray-class">CircularMappingArray</a></strong>(CircularMapping): a multi-dimensional circular mapping class.</p></li>
+<li><p><strong><a class="reference external" href="#_AbsToPhyGridConverter-class">_AbsToPhyGridConverter</a></strong>: an abstract-to-physical coordinate converter class.</p></li>
+<li><p><strong><a class="reference external" href="#_PhyToAbsGridConverter-class">_PhyToAbsGridConverter</a></strong>: a physical-to-abstract coordinate converter class.</p></li>
+<li><p><strong><a class="reference external" href="#OneDimGrid-class">OneDimGrid</a></strong>(CircularMapping): an one-dimensional grid classes</p></li>
+<li><p><strong><a class="reference external" href="#Grid-class">Grid</a></strong>: a two-dimensional grid classes.</p></li>
+<li><p><strong><a class="reference external" href="#PlacementGrid-class">PlacementGrid</a></strong>(Grid): a 2-dimensional grid class for instance placement.</p></li>
+<li><p><strong><a class="reference external" href="#RoutingGrid-class">RoutingGrid</a></strong>(Grid): a 2-dimensional grid class for wire routing.</p></li>
+</ul>
+<section id="circularmapping-class">
+<h4>CircularMapping class<a class="headerlink" href="#circularmapping-class" title="Permalink to this headline"></a></h4>
+<p>CircularMapping class implements basic circular mappings (their indices extend to the entire axis with cyclic mapping).
+The following code block shows several examples of using CircularMapping objects.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; map = CircularMapping(elements=[100, 200, 300])
+&gt;&gt;&gt; print(map[0])
+100
+&gt;&gt;&gt; print(map[2])
+300
+&gt;&gt;&gt; print(map[4])
+200
+&gt;&gt;&gt; print(map[-3])
+100
+&gt;&gt;&gt; print(map[[2, 3, -2])
+[300, 100, 200]
+&gt;&gt;&gt; print(map[2:7])
+[300, 100, 200, 300, 100]
+</pre></div>
+</div>
+<p>CircularMapping class contains various attributes and methods described as follows:</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>dtype</strong>: <em>type</em>, the data type of the mapping.</p></li>
+<li><p><strong>elements</strong>: <em>numpy.array(dtype=self.dtype)</em>, the array that contains the components of the circular mapping.</p></li>
+<li><p><strong>shape</strong>: <em>numpy.array(dtype=numpy.int)</em>, the shape of the circular mapping.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(elements, dtype=np.int)</strong>: constructor.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: accesses component(s) of the circular mapping.</p></li>
+<li><p><strong>__iter__()</strong>: the iteration function of the circular mapping.</p></li>
+<li><p><strong>__next__()</strong>: the next element access function of the circular mapping.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="circularmappingarray-class">
+<h4>CircularMappingArray class<a class="headerlink" href="#circularmappingarray-class" title="Permalink to this headline"></a></h4>
+<p>CircularMappingArray class implements multi-dimensional circular mappings (their indices extend to the entire axis with
+cyclic mapping) and is used for expressing multi-dimensional arrays with cyclic indexing (e.g. a 2-dim via map).
+CircularMappingArray includes the following attributes and methods.</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>dtype</strong>:
+<a class="reference external" href="#CircularMapping-class">CircularMapping</a>.</p></li>
+<li><p><strong>elements</strong>: refer to <a class="reference external" href="#CircularMapping-class">CircularMapping</a>.</p></li>
+<li><p><strong>shape</strong>: refer to <a class="reference external" href="#CircularMapping-class">CircularMapping</a>.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(elements, dtype=np.int)</strong>: refer to <a class="reference external" href="#CircularMapping-class">CircularMapping</a>.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: refer to <a class="reference external" href="#CircularMapping-class">CircularMapping</a>.</p></li>
+<li><p><strong>__iter__()</strong>: refer to <a class="reference external" href="#CircularMapping-class">CircularMapping</a>.</p></li>
+<li><p><strong>__next__()</strong>: refer to <a class="reference external" href="#CircularMapping-class">CircularMapping</a>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="abstophygridconverter-class">
+<h4>_AbsToPhyGridConverter class<a class="headerlink" href="#abstophygridconverter-class" title="Permalink to this headline"></a></h4>
+<p>_AbsToPhyGridConverter is an internal class that converts abstract coordinates to physical coordinates.
+It also supports reverse conversions (physical-to-abstract) with comparison operators
+(which requires its pair converter class, _PhyToAbsGridConverter defined in its master grid object).</p>
+<p><img alt="laygo2 abs2phy" src="_images/user_guide_abs2phy.png" /></p>
+<p>_AbsToPhyGridConverter class contains various attributes and methods described as follows:</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>master</strong>: <em>OneDimGrid or Grid</em>, the grid object which the object belongs to.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(master)</strong>: constructor.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: element access function for the object. Receives the abstract coordinate as its input
+and converts it to a physical coordinate.</p></li>
+<li><p><strong>__call__(pos)</strong>: element access function for the object. Receives the abstract coordinate as its input</p></li>
+<li><p><strong>__eq__(other), __lt__(other), __le__(other), __gt__(other), __ge__(other)</strong>:
+(reverse conversion function) Returns abstract coordinates that meet the comparison operator conditions.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="phytoabsgridconverter-class">
+<h4>_PhyToAbsGridConverter class<a class="headerlink" href="#phytoabsgridconverter-class" title="Permalink to this headline"></a></h4>
+<p>_PhyToAbsGridConverter is an internal class that converts physical coordinates to abstract coordinates.
+It also supports reverse conversions (abstract-to-physical) with comparison operators
+(which requires its pair converter class, _AbsToPhyGridConverter defined in its master grid object).</p>
+<p><img alt="laygo2 phy2abs" src="_images/user_guide_phy2abs.png" /></p>
+<p>_PhyToAbsGridConverter class contains various attributes and methods described as follows:</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>master</strong>: <em>OneDimGrid or Grid</em>, the grid object which the object belongs to.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(master)</strong>: constructor.</p></li>
+<li><p><strong>__call__(pos)</strong>: element access function. Receives a physical coordinate as its input
+and converts it to an abstract coordinate.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: element access function. Receives a physical coordinate as its input
+and converts it to an abstract coordinate.</p></li>
+<li><p><strong>__eq__(other), __lt__(other), __le__(other), __gt__(other), __ge__(other)</strong>:
+(reverse conversion function) Returns physical coordinates that meet the comparison operator conditions.</p></li>
+<li><p><strong>bbox(obj)</strong>: converts the bounding box of obj to abstract coordinates.</p></li>
+<li><p><strong>bottom_left(obj)</strong>: returns the bottom-left corner of obj in abstract coordinate.</p></li>
+<li><p><strong>bottom_right(obj)</strong>: returns the bottom-right corner of obj in abstract coordinate.</p></li>
+<li><p><strong>top_left(obj)</strong>: returns the top-left corner of obj in abstract coordinate.</p></li>
+<li><p><strong>top_right(obj)</strong>: returns the top-right corner of obj in abstract coordinate.</p></li>
+<li><p><strong>width(obj)</strong>: returns the width of obj.</p></li>
+<li><p><strong>height(obj)</strong>: returns the height of obj.</p></li>
+<li><p><strong>size(obj)</strong>: returns the size([width, height]) of obj.</p></li>
+<li><p><strong>crossing(*args)</strong>: returns the crossing point of *args in abstract coordinate.</p></li>
+<li><p><strong>overlap(*args, type=’bbox’)</strong>: converts the overlap region of *args to abstract coordinates, in the type
+specified in the type argument.
+If type=’bbox’, a bounding box corresponding to the overlap region is returned.
+If type=’array’, all points on the abstract grid inside the bounding box are returned as the form of a 2-d array.
+If type=’list’, all points on the abstract grid inside the bounding box are returned as the form of a 1-d list.</p></li>
+<li><p><strong>union(*args)</strong>: returns the union of *args, in the form of a bounding box.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="onedimgrid-class">
+<h4>OneDimGrid class<a class="headerlink" href="#onedimgrid-class" title="Permalink to this headline"></a></h4>
+<p>OneDimGrid class implements a one-dimensional abstract coordinate system, with the attributes and methods introduced.</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: <em>str</em>, the name of coordinate system.</p></li>
+<li><p><strong>range</strong>: <em>numpy.ndarray(dtype=np.int)</em>, the region where the coordinate system is defined.
+The grid system extends over the defined range, repeating the coordinate values.</p></li>
+<li><p><strong>phy2abs</strong>: <em>_PhyToAbsConverter</em>, a physical-to-abstract coordinate converter.</p></li>
+<li><p><strong>abs2phy</strong>: <em>_AbsToPhyConverter</em>, a abstract-to-physical coordinate converter.</p></li>
+<li><p><strong>width</strong>: <em>int</em>, the width of the range where the grid is defined.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(name, scope, elements=np.array([0]))</strong>: constructor.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: element access function. Receives an abstract coordinate and convert it to a physical
+coordinate.</p></li>
+<li><p><strong>__eq__(other), __lt__(other), __le__(other), __gt__(other), __ge__(other)</strong>:
+Returns a physical coordinate that meets the comparison operation condition.</p></li>
+<li><p><strong>export_to_dict()</strong>: returns a dict that contains the grid’s information.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="grid-class">
+<h4>Grid class<a class="headerlink" href="#grid-class" title="Permalink to this headline"></a></h4>
+<p>Grid class implements an abstract coordinate that is mapped to a 2-dimensional physical coordinate system.</p>
+<p>The Grid class and its objects support various coordinate conversion functions, with their examples introduced in the
+following figure.</p>
+<p><img alt="laygo2 grid_conversion" src="_images/user_guide_grid_conversion.png" /></p>
+<p>The grid class contains the following attributes and methods.</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: <em>str</em>, the name of the grid.</p></li>
+<li><p><strong>range</strong>: <em>numpy.ndarray(dtype=np.int)</em>, the range where the grid system is defined.
+The grid system extends over the defined range, repeating the coordinate values.</p></li>
+<li><p><strong>phy2abs</strong>: <em>PhyToAbsConverter</em>, a physical-to-abstract grid converter object.</p></li>
+<li><p><strong>abs2phy</strong>: <em>AbsToPhyConverter</em>, an abstract-to-physical grid converter object.</p></li>
+<li><p><strong>xy</strong>: <em>List[OneDimGrid]</em>, a list that contains 1-dimensional grids for x and y axises.</p></li>
+<li><p><strong>x</strong>: <em>OneDimGrid</em>, a one-dimensional grid system in x-axis.</p></li>
+<li><p><strong>y</strong>: <em>OneDimGrid</em>, a one-dimensional grid system in y-axis.</p></li>
+<li><p><strong>v</strong>: same as x.</p></li>
+<li><p><strong>h</strong>: same as y.</p></li>
+<li><p><strong>mn</strong>: same as abs2phy.</p></li>
+<li><p><strong>width</strong>: <em>int</em>, the width of the region where the grid system is defined.</p></li>
+<li><p><strong>height</strong>: <em>int</em>, the height of the region where the grid system is defined.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(name, scope, elements=np.array([0]))</strong>: constructor.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: element access function. Receives abstract coordinates and convert them to physical
+ones.</p></li>
+<li><p><strong>__eq__(other), __lt__(other), __le__(other), __gt__(other), __ge__(other)</strong>:
+returns physical coordinates that meet the comparison conditions.</p></li>
+<li><p><strong>bbox(obj)</strong>: refer to <a class="reference external" href="#_PhyToAbsGridConverter-class">_PhyToAbsGridConverter</a>.</p></li>
+<li><p><strong>bottom_left(obj)</strong>: refer to <a class="reference external" href="#_PhyToAbsGridConverter-class">_PhyToAbsGridConverter</a>.</p></li>
+<li><p><strong>bottom_right(obj)</strong>: refer to <a class="reference external" href="#_PhyToAbsGridConverter-class">_PhyToAbsGridConverter</a>.</p></li>
+<li><p><strong>top_left(obj)</strong>: refer to <a class="reference external" href="#_PhyToAbsGridConverter-class">_PhyToAbsGridConverter</a>.</p></li>
+<li><p><strong>top_right(obj)</strong>: refer to <a class="reference external" href="#_PhyToAbsGridConverter-class">_PhyToAbsGridConverter</a>.</p></li>
+<li><p><strong>width(obj)</strong>: refer to <a class="reference external" href="#_PhyToAbsGridConverter-class">_PhyToAbsGridConverter</a>.</p></li>
+<li><p><strong>height(obj)</strong>: refer to <a class="reference external" href="#_PhyToAbsGridConverter-class">_PhyToAbsGridConverter</a>.</p></li>
+<li><p><strong>size(obj)</strong>: refer to <a class="reference external" href="#_PhyToAbsGridConverter-class">_PhyToAbsGridConverter</a>.</p></li>
+<li><p><strong>crossing(*args)</strong>: refer to <a class="reference external" href="#_PhyToAbsGridConverter-class">_PhyToAbsGridConverter</a>.</p></li>
+<li><p><strong>overlap(*args, type=’bbox’)</strong>: refer to <a class="reference external" href="#_PhyToAbsGridConverter-class">_PhyToAbsGridConverter</a>.</p></li>
+<li><p><strong>union(*args)</strong>: refer to <a class="reference external" href="#_PhyToAbsGridConverter-class">_PhyToAbsGridConverter</a>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="placementgrid-class">
+<h4>PlacementGrid class<a class="headerlink" href="#placementgrid-class" title="Permalink to this headline"></a></h4>
+<p>PlacementGrid class implements abstract grids for placing Instance and VirtualInstance objects with the attributes and
+methods described as follows:</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>range</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>phy2abs</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>abs2phy</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>xy</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>x</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>y</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>v</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>h</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>mn</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>width</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>height</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>type</strong>: <em>str</em>, the type of the grid. Its value should be ‘placement’ for PlacementGrid objects.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(name, scope, elements=np.array([0]))</strong>: constructor.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: element access function. Receives abstract coordinates and convert them to physical
+ones.</p></li>
+<li><p><strong>__eq__(other), __lt__(other), __le__(other), __gt__(other), __ge__(other)</strong>:
+returns physical coordinates that meet the comparison conditions.</p></li>
+<li><p><strong>bbox(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>bottom_left(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>bottom_right(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>top_left(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>top_right(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>width(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>height(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>size(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>crossing(*args)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>overlap(*args, type=’bbox’)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>union(*args)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="routinggrid-class">
+<h4>RoutingGrid class<a class="headerlink" href="#routinggrid-class" title="Permalink to this headline"></a></h4>
+<p>RoutingGrid class implements abstract grids for routing wires and vias with the attributes and
+methods described as follows:</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>range</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>phy2abs</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>abs2phy</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>xy</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>x</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>y</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>v</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>h</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>mn</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>width</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>height</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>type</strong>: <em>str</em>, the type of the grid. Its value should be ‘routing’ for RoutingGrid objects.</p></li>
+<li><p><strong>vwidth</strong>: <em>CircularMapping</em>, the widths of vertical wires.</p></li>
+<li><p><strong>hwidth</strong>: <em>CircularMapping</em>, the widths of horizontal wires.</p></li>
+<li><p><strong>vextension</strong>: <em>CircularMapping</em>, the extensions of vertical wires.</p></li>
+<li><p><strong>hextension</strong>: <em>CircularMapping</em>, the extensions of horizontal wires.</p></li>
+<li><p><strong>vlayer</strong>: <em>CircularMapping</em>, the layer information of vertical wires.</p></li>
+<li><p><strong>hlayer</strong>: <em>CircularMapping</em>, the layer information of horizontal wires.</p></li>
+<li><p><strong>pin_vlayer</strong>: <em>CircularMapping</em>, the layer information of vertical pin wires.</p></li>
+<li><p><strong>pin_hlayer</strong>: <em>CircularMapping</em>, the layer information of horizontal pin wires.</p></li>
+<li><p><strong>viamap</strong>: <em>CircularMappingArray</em>, the array that contains via objects located at the intersection of vertical
+and horizontal grids.</p></li>
+<li><p><strong>primary_grid</strong>: str, the default direction of wires (the direction of wires with their sizes 0).</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>__init__(name, scope, elements=np.array([0]))</strong>: constructor.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: element access function. Receives abstract coordinates and convert them to physical
+ones.</p></li>
+<li><p><strong>__eq__(other), __lt__(other), __le__(other), __gt__(other), __ge__(other)</strong>:
+returns physical coordinates that meet the comparison conditions.</p></li>
+<li><p><strong>bbox(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>bottom_left(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>bottom_right(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>top_left(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>top_right(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>width(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>height(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>size(obj)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>crossing(*args)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>overlap(*args, type=’bbox’)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>union(*args)</strong>: refer to <a class="reference external" href="#Grid-class">Grid</a>.</p></li>
+<li><p><strong>route(mn, direction=None, via_tag=None)</strong>: the wire routing function. Receives the default direction of wires,
+and via placement options at the starting, internal, and end points as its arguments.</p></li>
+<li><p><strong>via(mn=np.array([0, 0]), params=None)</strong>: the via placement function.</p></li>
+<li><p><strong>pin(name, mn, direction=None, netname=None, params=None)</strong>: the pin creation function.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="database-module">
+<h3>database module<a class="headerlink" href="#database-module" title="Permalink to this headline"></a></h3>
+<p>database module consists classes that implement design hierarchy to manage designs and libraries with its component
+classes described as follows:</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="#BaseDatabase-class">BaseDatabase</a></strong> is the basic database management class.</p></li>
+<li><p><strong><a class="reference external" href="#Library-class">Library</a></strong>(BaseDatabase) is the library management class.</p></li>
+<li><p><strong><a class="reference external" href="#Design-class">Design</a></strong>(BaseDatabase) is the design management class.</p></li>
+</ul>
+<section id="basedatabase-class">
+<h4>BaseDatabase class<a class="headerlink" href="#basedatabase-class" title="Permalink to this headline"></a></h4>
+<p>BaseDatabase class implements the basic database management functions, with its attributes and methods described as
+follows:</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: <em>str</em>, the name of the database.</p></li>
+<li><p><strong>params</strong>: <em>dict or None</em>, the database’s parameters.</p></li>
+<li><p><strong>noname_index</strong>: <em>int</em>, the index of unnamed objects added to the database.</p></li>
+<li><p><strong>keys</strong>: <em>list</em>, keys of the dictionary that stores the component objects of the database.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>items()</strong>: the iteration function for its component objects.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: element access function for the database.</p></li>
+<li><p><strong>__setitem__(key, item)</strong>: element setting function for the database.</p></li>
+<li><p><strong>append(item)</strong>: element adding function.</p></li>
+<li><p><strong>__iter__()</strong>: the iteration for the mapping.</p></li>
+<li><p><strong>__init__(name, params=None, elements=None)</strong>: constructor.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="library-class">
+<h4>Library class<a class="headerlink" href="#library-class" title="Permalink to this headline"></a></h4>
+<p>Library class implements the library management functions, with its attributes and methods described as follows:</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>params</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>noname_index</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>keys</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>libname</strong>: <em>str</em>, the name of the library.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>items()</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>__setitem__(key, item)</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>append(item)</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>__iter__()</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>__init__(name, params=None, elements=None)</strong>: constructor.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="design-class">
+<h4>Design class<a class="headerlink" href="#design-class" title="Permalink to this headline"></a></h4>
+<p>Design class implements design management functions, with its attributes and methods described as follows:</p>
+<ul class="simple">
+<li><p><strong>Major attributes</strong></p>
+<ul>
+<li><p><strong>name</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>params</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>noname_index</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>keys</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>libname</strong>: <em>str</em>, the library name.</p></li>
+<li><p><strong>cellname</strong>: <em>str</em>, the cell name.</p></li>
+<li><p><strong>rects</strong>: <em>dict</em>, the dictionary that contains its Rect objects.</p></li>
+<li><p><strong>paths</strong>: <em>dict</em>, the dictionary that contains its Path objects.</p></li>
+<li><p><strong>pins</strong>: <em>dict</em>, the dictionary that contains its Pin objects.</p></li>
+<li><p><strong>texts</strong>: <em>dict</em>, the dictionary that contains its Text objects.</p></li>
+<li><p><strong>instances</strong>: <em>dict</em>, the dictionary that contains its Instance objects.</p></li>
+<li><p><strong>virtual_instances</strong>: <em>dict</em>, the dictionary that contains its VirtualInstance objects.</p></li>
+</ul>
+</li>
+<li><p><strong>Major methods</strong></p>
+<ul>
+<li><p><strong>items()</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>__getitem__(pos)</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>__setitem__(key, item)</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>append(item)</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>__iter__()</strong>: refer to <a class="reference external" href="#BaseDatabase-class">BaseDatabase</a>.</p></li>
+<li><p><strong>__init__(name, params=None, elements=None, libname=None)</strong>: constructor.</p></li>
+<li><p><strong>place(inst, grid, mn)</strong>: places an instance on the specified grid.</p></li>
+<li><p><strong>route(grid, mn, direction=None, via_tag=None)</strong>: routes a wire on the specified grid.</p></li>
+<li><p><strong>via(grid, mn, params=None)</strong>: places a via on the specified grid.</p></li>
+<li><p><strong>pin(name, grid, mn, direction=None, netname=None, params=None)</strong>: places a pin on the specified grid.</p></li>
+<li><p><strong>export_to_template(libname=None, cellname=None)</strong>: generates a template for the design.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="interface-package">
+<h2>interface package<a class="headerlink" href="#interface-package" title="Permalink to this headline"></a></h2>
+<p>interface package includes classes and functions that interact with laygo2 and external EDA tools or data structures.</p>
+<p><img alt="laygo2 interface" src="_images/user_guide_interface.png" /></p>
+<ul class="simple">
+<li><p><strong>gds module</strong> contains various functions to store the layout structures in GDS-II format, which is the most popular
+format to store layout structures.</p></li>
+<li><p><strong>yaml module</strong> contains various I/O functions to express designs in yaml format.</p></li>
+<li><p><strong>virtuoso module</strong> contains various functions that interacts with Cadence Virtuoso using Skill language.</p></li>
+</ul>
+</section>
+<section id="util-package">
+<h2>util package<a class="headerlink" href="#util-package" title="Permalink to this headline"></a></h2>
+<p>util package contains various functions used in other packages.</p>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="examples_link.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">laygo2 Quick Trial</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="technology_link.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Setting up laygo2 for a new technology</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Niftylab at Hanyang University, South Korea.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

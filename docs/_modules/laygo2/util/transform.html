@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>laygo2.util.transform &#8212; LAYGO2 Documentation  documentation</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/autoclasstoc.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../../index.html">
+<p class="title">LAYGO2 Documentation</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../introduction_link.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../examples_link.html">
+  Trial
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../structure_link.html">
+  Structure
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../technology_link.html">
+  Tech Setup
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../introduction_kor.html">
+  Korean
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../laygo2.html">
+  API Reference
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for laygo2.util.transform</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1">########################################################################################################################</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2014, Regents of the University of California</span>
+<span class="c1"># All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># Redistribution and use in source and binary forms, with or without modification, are permitted provided that the</span>
+<span class="c1"># following conditions are met:</span>
+<span class="c1">#</span>
+<span class="c1"># 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following</span>
+<span class="c1">#   disclaimer.</span>
+<span class="c1"># 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the</span>
+<span class="c1">#    following disclaimer in the documentation and/or other materials provided with the distribution.</span>
+<span class="c1">#</span>
+<span class="c1"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES,</span>
+<span class="c1"># INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span>
+<span class="c1"># DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</span>
+<span class="c1"># SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR</span>
+<span class="c1"># SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,</span>
+<span class="c1"># WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</span>
+<span class="c1"># OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<span class="c1">#</span>
+<span class="c1">########################################################################################################################</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Utility functions for coordinate tranformations.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Jaeduk Han&quot;</span>
+<span class="n">__maintainer__</span> <span class="o">=</span> <span class="s2">&quot;Jaeduk Han&quot;</span>
+<span class="n">__status__</span> <span class="o">=</span> <span class="s2">&quot;Prototype&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<div class="viewcode-block" id="combine"><a class="viewcode-back" href="../../../laygo2.util.html#laygo2.util.transform.combine">[docs]</a><span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="n">transform1</span><span class="p">,</span> <span class="n">transform2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the resulting transform parameter of </span>
+<span class="sd">    two consecutive transforms</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">transform1</span> <span class="o">==</span> <span class="s1">&#39;R0&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">transform2</span> <span class="o">==</span> <span class="s1">&#39;R0&#39;</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;R0&#39;</span>
+        <span class="k">elif</span> <span class="n">transform2</span> <span class="o">==</span> <span class="s1">&#39;MX&#39;</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;MX&#39;</span>
+        <span class="k">elif</span> <span class="n">transform2</span> <span class="o">==</span> <span class="s1">&#39;MY&#39;</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;MY&#39;</span>
+        <span class="k">elif</span> <span class="n">transform2</span> <span class="o">==</span> <span class="s1">&#39;MXY&#39;</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;MXY&#39;</span>
+    <span class="k">elif</span> <span class="n">transform1</span> <span class="o">==</span> <span class="s1">&#39;MX&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">transform2</span> <span class="o">==</span> <span class="s1">&#39;R0&#39;</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;MX&#39;</span>
+        <span class="k">elif</span> <span class="n">transform2</span> <span class="o">==</span> <span class="s1">&#39;MX&#39;</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;R0&#39;</span>
+        <span class="k">elif</span> <span class="n">transform2</span> <span class="o">==</span> <span class="s1">&#39;MY&#39;</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;MXY&#39;</span>
+        <span class="k">elif</span> <span class="n">transform2</span> <span class="o">==</span> <span class="s1">&#39;MXY&#39;</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;MY&#39;</span>
+    <span class="k">elif</span> <span class="n">transform1</span> <span class="o">==</span> <span class="s1">&#39;MY&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">transform2</span> <span class="o">==</span> <span class="s1">&#39;R0&#39;</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;MY&#39;</span>
+        <span class="k">elif</span> <span class="n">transform2</span> <span class="o">==</span> <span class="s1">&#39;MX&#39;</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;MXY&#39;</span>
+        <span class="k">elif</span> <span class="n">transform2</span> <span class="o">==</span> <span class="s1">&#39;MY&#39;</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;R0&#39;</span>
+        <span class="k">elif</span> <span class="n">transform2</span> <span class="o">==</span> <span class="s1">&#39;MXY&#39;</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;MX&#39;</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Transformation mapping is not matched.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Mt"><a class="viewcode-back" href="../../../laygo2.util.html#laygo2.util.transform.Mt">[docs]</a><span class="k">def</span> <span class="nf">Mt</span><span class="p">(</span><span class="n">transform</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the transform matrix.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    transform : str</span>
+<span class="sd">        The transform parameter. Possible values are &#39;R0&#39;, &#39;MX&#39;, &#39;MY&#39;, &#39;MXY&#39;, and &#39;R180&#39;.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    numpy.ndarray(dtype=int)</span>
+<span class="sd">        The transform matrix corresponding to the transform parameter.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">transform_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;R0&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>
+        <span class="s1">&#39;R90&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span>
+        <span class="s1">&#39;R180&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]),</span>
+        <span class="s1">&#39;R270&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span>
+        <span class="s1">&#39;MX&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]),</span>
+        <span class="s1">&#39;MY&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>
+        <span class="s1">&#39;MXY&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span>  <span class="c1"># mirror to the y=x line.</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">transform_map</span><span class="p">[</span><span class="n">transform</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Mtinv"><a class="viewcode-back" href="../../../laygo2.util.html#laygo2.util.transform.Mtinv">[docs]</a><span class="k">def</span> <span class="nf">Mtinv</span><span class="p">(</span><span class="n">transform</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the inverse of the transform matrix.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    transform : str</span>
+<span class="sd">        The transform parameter. possible values are &#39;R0&#39;, &#39;MX&#39;, &#39;MY&#39;, &#39;MXY&#39;, and &#39;R180&#39;.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    numpy.ndarray(dtype=int)</span>
+<span class="sd">        The inverse of the transform matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">transform_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;R0&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>    <span class="s1">&#39;MX&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]),</span>
+        <span class="s1">&#39;MY&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>
+        <span class="s1">&#39;MXY&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span>  <span class="c1"># mirror to the y=x line.</span>
+        <span class="s1">&#39;R180&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]),</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">transform_map</span><span class="p">[</span><span class="n">transform</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Md"><a class="viewcode-back" href="../../../laygo2.util.html#laygo2.util.transform.Md">[docs]</a><span class="k">def</span> <span class="nf">Md</span><span class="p">(</span><span class="n">direction</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the direction(projection) matrix. The direction matrix is used when placing an object based on relative</span>
+<span class="sd">    information to other instance(s). For example, if an instance&#39;s center is located at xyc0=[xc0, yc0],</span>
+<span class="sd">    the xy-coordinate of the center of the new instance xyc1 can be computed from the following equation:</span>
+
+<span class="sd">    (1) xyc1 = xyc0 + 0.5 * Md * (xys0 + xys1)</span>
+
+<span class="sd">    where xys0, xys1 are the size of the reference and the new instance, respectively, and Md is the direction matrix</span>
+<span class="sd">    corresponding to the direction of the placement.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    direction : str</span>
+<span class="sd">        The direction parameter. Possible values are &#39;left&#39;, &#39;right&#39;, &#39;top&#39;, &#39;bottom&#39;, &#39;omni&#39;, &#39;x&#39;, &#39;y&#39;.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.array([[int, int], [int, int]])</span>
+<span class="sd">        The direction matrix.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The following equation will be used instead of (1) in the future versions, to avoid the 0.5 scaling that increases</span>
+<span class="sd">    the precision requirement.</span>
+
+<span class="sd">    (2) xy1 = xy0 + 0.5 * [(Md + Mt0) * xys0 + (Md - Mt1) * xys1]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">direction_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;left&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span>
+        <span class="s1">&#39;right&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span>
+        <span class="s1">&#39;top&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>
+        <span class="s1">&#39;bottom&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]),</span>
+        <span class="s1">&#39;omni&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>  <span class="c1"># omnidirectional</span>
+        <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span>
+        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">direction_map</span><span class="p">[</span><span class="n">direction</span><span class="p">]</span></div>
+
+
+</pre></div>
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Niftylab at Hanyang University, South Korea.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

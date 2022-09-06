@@ -1,0 +1,1132 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Grid class &#8212; LAYGO2 Documentation  documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/autoclasstoc.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="PlacementGrid class" href="laygo2.object.grid.PlacementGrid.html" />
+    <link rel="prev" title="OneDimGrid class" href="laygo2.object.grid.OneDimGrid.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="index.html">
+<p class="title">LAYGO2 Documentation</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_link.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="examples_link.html">
+  Trial
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="structure_link.html">
+  Structure
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="technology_link.html">
+  Tech Setup
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="introduction_kor.html">
+  Korean
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="laygo2.html">
+  API Reference
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="laygo2.object.html">
+   laygo2.object package
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.physical.html">
+     laygo2.object.physical module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.PhysicalObject.html">
+       PhysicalObject class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.IterablePhysicalObject.html">
+       IterablePhysicalObject class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.PhysicalObjectGroup.html">
+       PhysicalObjectGroup class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Rect.html">
+       Rect class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Path.html">
+       Path class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Pin.html">
+       Pin class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Text.html">
+       Text class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.Instance.html">
+       Instance class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.physical.VirtualInstance.html">
+       VirtualInstance class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.template.html">
+     laygo2.object.template module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.Template.html">
+       Template class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.NativeInstanceTemplate.html">
+       NativeInstanceTemplate class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.ParameterizedInstanceTemplate.html">
+       ParameterizedInstanceTemplate class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.template.UserDefinedTemplate.html">
+       UserDefinedTemplate class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="laygo2.object.grid.html">
+     laygo2.object.grid module
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.CircularMapping.html">
+       CircularMapping class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html">
+       CircularMappingArray class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid._AbsToPhyGridConverter.html">
+       _AbsToPhyGridConverter class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid._PhyToAbsGridConverter.html">
+       _PhyToAbsGridConverter class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.OneDimGrid.html">
+       OneDimGrid class
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Grid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.PlacementGrid.html">
+       PlacementGrid class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.grid.RoutingGrid.html">
+       RoutingGrid class
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="laygo2.object.database.html">
+     laygo2.object.database module
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.BaseDatabase.html">
+       BaseDatabase class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.Library.html">
+       Library class
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="laygo2.object.database.Design.html">
+       Design class
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laygo2.interface.html">
+   laygo2.interface package
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laygo2.util.html">
+   laygo2.util package
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="grid-class">
+<h1>Grid class<a class="headerlink" href="#grid-class" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">laygo2.object.grid.</span></span><span class="sig-name descname"><span class="pre">Grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vgrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hgrid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#Grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.Grid" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A base class having conversion operators and the mapping information (element) between two-dimensional physical coordinates and abstract coordinates.</p>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+2차원 물리좌표와 추상좌표간 mapping 정보(element) 를 갖고 있으며 해당 element를 활용하는 좌표 연산자를 가지고 있는 기본 클래스.</p>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Data Attributes:</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.name" title="laygo2.object.grid.Grid.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></p></td>
+<td><p>the name of the grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.elements" title="laygo2.object.grid.Grid.elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">elements</span></code></a></p></td>
+<td><p>return elements of subgrids ([_xy[0].elements, _xy[1].elements]).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.phy2abs" title="laygo2.object.grid.Grid.phy2abs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">phy2abs</span></code></a></p></td>
+<td><p>PhyToAbsGridConverter(master=self)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.abs2phy" title="laygo2.object.grid.Grid.abs2phy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abs2phy</span></code></a></p></td>
+<td><p>AbsToPhyGridConverter(master=self)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.xy" title="laygo2.object.grid.Grid.xy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xy</span></code></a></p></td>
+<td><p>Two-dimensional _AbsToPhyConverter of a coordinate system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.x" title="laygo2.object.grid.Grid.x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">x</span></code></a></p></td>
+<td><p>One-dimensional _AbsToPhyGridConverter of the x-coordinate system.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.y" title="laygo2.object.grid.Grid.y"><code class="xref py py-obj docutils literal notranslate"><span class="pre">y</span></code></a></p></td>
+<td><p>One-dimensional _AbsToPhyGridConverter of the y-coordinate system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.v" title="laygo2.object.grid.Grid.v"><code class="xref py py-obj docutils literal notranslate"><span class="pre">v</span></code></a></p></td>
+<td><p>OneDimGrid of the x-coordinate system.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.h" title="laygo2.object.grid.Grid.h"><code class="xref py py-obj docutils literal notranslate"><span class="pre">h</span></code></a></p></td>
+<td><p>OneDimGrid of the y-coordinate system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.mn" title="laygo2.object.grid.Grid.mn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mn</span></code></a></p></td>
+<td><p>Two-dimensional _PhyToAbsConverter of a coordinate system.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.m" title="laygo2.object.grid.Grid.m"><code class="xref py py-obj docutils literal notranslate"><span class="pre">m</span></code></a></p></td>
+<td><p>One-dimensional _PhyToAbsConverter of the x-coordinate system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.n" title="laygo2.object.grid.Grid.n"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code></a></p></td>
+<td><p>One-dimensional _PhyToAbsConverter of the y-coordinate system.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.shape" title="laygo2.object.grid.Grid.shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shape</span></code></a></p></td>
+<td><p>Two-dimensional element length in a coordinate system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.range" title="laygo2.object.grid.Grid.range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">range</span></code></a></p></td>
+<td><p>Region in which the coordinate system is defined.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.width" title="laygo2.object.grid.Grid.width"><code class="xref py py-obj docutils literal notranslate"><span class="pre">width</span></code></a></p></td>
+<td><p>Width of the region in which the coordinate system is defined.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.height" title="laygo2.object.grid.Grid.height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code></a></p></td>
+<td><p>Height of the region in which the coordinate system is defined.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.height_vec" title="laygo2.object.grid.Grid.height_vec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">height_vec</span></code></a></p></td>
+<td><p>Return the height vector [0, h].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.width_vec" title="laygo2.object.grid.Grid.width_vec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">width_vec</span></code></a></p></td>
+<td><p>Return width as a list.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Methods:</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.get_range" title="laygo2.object.grid.Grid.get_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_range</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.set_range" title="laygo2.object.grid.Grid.set_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_range</span></code></a>(value)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.__init__" title="laygo2.object.grid.Grid.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(name, vgrid, hgrid)</p></td>
+<td><p>Constructor function of Grid class.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__getitem__</span></code>(pos)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__eq__</span></code>(other)</p></td>
+<td><p>Return the physical grid coordinate that matches to other.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__lt__</span></code>(other)</p></td>
+<td><p>Return the index of the grid coordinate that is the largest but less than other.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__le__</span></code>(other)</p></td>
+<td><p>Return the index of the grid coordinate that is the largest but less than or equal to other.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__gt__</span></code>(other)</p></td>
+<td><p>Return the index of the grid coordinate that is the smallest but greater than other.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__ge__</span></code>(other)</p></td>
+<td><p>Return the index of the grid coordinate that is the smallest but greater than or equal to other.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.bbox" title="laygo2.object.grid.Grid.bbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bbox</span></code></a>(obj)</p></td>
+<td><p>Return the abstract grid coordinates corresponding to the 'internal' bounding box of obj.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.bottom_left" title="laygo2.object.grid.Grid.bottom_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bottom_left</span></code></a>(obj)</p></td>
+<td><p>Return the abstract grid coordinates corresponding to the bottom-left corner of obj.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.bottom_right" title="laygo2.object.grid.Grid.bottom_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bottom_right</span></code></a>(obj)</p></td>
+<td><p>Return the abstract grid coordinates corresponding to the bottom-right corner of obj.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.top_left" title="laygo2.object.grid.Grid.top_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">top_left</span></code></a>(obj)</p></td>
+<td><p>Return the abstract grid coordinates corresponding to the top-left corner of obj.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.top_right" title="laygo2.object.grid.Grid.top_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">top_right</span></code></a>(obj)</p></td>
+<td><p>Return the abstract grid coordinates corresponding to the top-right corner of obj.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.crossing" title="laygo2.object.grid.Grid.crossing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">crossing</span></code></a>(*args)</p></td>
+<td><p>Return the abstract grid coordinates corresponding to the crossing point of args.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.overlap" title="laygo2.object.grid.Grid.overlap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">overlap</span></code></a>(*args[, type])</p></td>
+<td><p>Return the abstract grid coordinates corresponding to the overlap of args.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.union" title="laygo2.object.grid.Grid.union"><code class="xref py py-obj docutils literal notranslate"><span class="pre">union</span></code></a>(*args)</p></td>
+<td><p>Return the abstract grid coordinates corresponding to union of args.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.center" title="laygo2.object.grid.Grid.center"><code class="xref py py-obj docutils literal notranslate"><span class="pre">center</span></code></a>(obj)</p></td>
+<td><p>Return the abstrack grid coordinates corresponding to the center point of obj.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__iter__</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__next__</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__str__</span></code>()</p></td>
+<td><p>Return the string representation of the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#laygo2.object.grid.Grid.summarize" title="laygo2.object.grid.Grid.summarize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summarize</span></code></a>()</p></td>
+<td><p>Output the information of the respective grid.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vgrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hgrid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#Grid.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.Grid.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor function of Grid class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – </p></li>
+<li><p><strong>vgrid</strong> (<em>laygo2.object.grid.OndDimGrid</em>) – OneDimGrid object of the x-coordinate system</p></li>
+<li><p><strong>hgrid</strong> (<em>laygo2.object.grid.OndDimGrid</em>) – OneDimGrid object of the y-coordinate system</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>laygo2.Grid</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; print(g2)
+&lt;laygo2.object.grid.Grid object&gt; name: test, class: Grid, scope: [[0, 0], [100, 100]], elements: [array([ 0, 10, 20, 40, 50]), array([10, 20, 40, 50, 60])
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+Grid 클래스의 생성자함수.
+파라미터
+name(str): 이름
+vgrid(laygo2.OneDimGrid): x좌표계 OneDimGrid 객체
+hgrid(laygo2.OneDimGrid): y좌표계 OneDimGrid 객체
+반환값
+laygo2.Grid
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.bbox">
+<span class="sig-name descname"><span class="pre">bbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#Grid.bbox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.Grid.bbox" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to the ‘internal’ bounding box of obj.
+See _PhyToAbsGridConverter.bbox() for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.bottom_left">
+<span class="sig-name descname"><span class="pre">bottom_left</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#Grid.bottom_left"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.Grid.bottom_left" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to the bottom-left corner of obj.
+See _PhyToAbsGridConverter.bottom_left() for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.bottom_right">
+<span class="sig-name descname"><span class="pre">bottom_right</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#Grid.bottom_right"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.Grid.bottom_right" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to the bottom-right corner of obj.
+See _PhyToAbsGridConverter.bottom_right() for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.center">
+<span class="sig-name descname"><span class="pre">center</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#Grid.center"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.Grid.center" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstrack grid coordinates corresponding to the center point of obj.
+See _PhyToAbsGridConverter.center for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.crossing">
+<span class="sig-name descname"><span class="pre">crossing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#Grid.crossing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.Grid.crossing" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to the crossing point of args.
+See _PhyToAbsGridConverter.crossing() for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.get_range">
+<span class="sig-name descname"><span class="pre">get_range</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#Grid.get_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.Grid.get_range" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.overlap">
+<span class="sig-name descname"><span class="pre">overlap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bbox'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#Grid.overlap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.Grid.overlap" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to the overlap of args.
+See _PhyToAbsGridConverter.overlap() for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.set_range">
+<span class="sig-name descname"><span class="pre">set_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#Grid.set_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.Grid.set_range" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.summarize">
+<span class="sig-name descname"><span class="pre">summarize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#Grid.summarize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.Grid.summarize" title="Permalink to this definition"></a></dt>
+<dd><p>Output the information of the respective grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.summarize()
+&lt;laygo2.object.grid.Grid object&gt; name: test, class: Grid, scope: [[0, 0], [100, 100]], elements: [array([ 0, 10, 20, 40, 50]), array([10, 20, 40, 50, 60])
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+해당 Grid의 정보 출력.
+파라미터
+없음
+반환값
+str
+참조
+없음</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.top_left">
+<span class="sig-name descname"><span class="pre">top_left</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#Grid.top_left"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.Grid.top_left" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to the top-left corner of obj.
+See _PhyToAbsGridConverter.top_left() for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.top_right">
+<span class="sig-name descname"><span class="pre">top_right</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#Grid.top_right"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.Grid.top_right" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to the top-right corner of obj.
+See _PhyToAbsGridConverter.top_right() for details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.union">
+<span class="sig-name descname"><span class="pre">union</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/grid.html#Grid.union"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.grid.Grid.union" title="Permalink to this definition"></a></dt>
+<dd><p>Return the abstract grid coordinates corresponding to union of args.
+See _PhyToAbsGridConverter.union() for details.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid._xy">
+<span class="sig-name descname"><span class="pre">_xy</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.Grid._xy" title="Permalink to this definition"></a></dt>
+<dd><p>the list contains the 1d-grid objects for x and y axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid" title="laygo2.object.grid.OneDimGrid">OneDimGrid</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.abs2phy">
+<span class="sig-name descname"><span class="pre">abs2phy</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.Grid.abs2phy" title="Permalink to this definition"></a></dt>
+<dd><p>AbsToPhyGridConverter(master=self)</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.elements">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">elements</span></span><a class="headerlink" href="#laygo2.object.grid.Grid.elements" title="Permalink to this definition"></a></dt>
+<dd><p>return elements of subgrids ([_xy[0].elements, _xy[1].elements]).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.h">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">h</span></span><a class="headerlink" href="#laygo2.object.grid.Grid.h" title="Permalink to this definition"></a></dt>
+<dd><p>OneDimGrid of the y-coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.h
+g1_y
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+y좌표계 OneDimGrid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self.y (laygo2.OneDimGrid)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.height">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#laygo2.object.grid.Grid.height" title="Permalink to this definition"></a></dt>
+<dd><p>Height of the region in which the coordinate system is defined.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.height
+100
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+좌표계가 정의된 영역의 높이.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.int32</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.height_vec">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height_vec</span></span><a class="headerlink" href="#laygo2.object.grid.Grid.height_vec" title="Permalink to this definition"></a></dt>
+<dd><p>Return the height vector [0, h].</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.height_vec
+[0, 100]
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+height를 list로 반환.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.m">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">m</span></span><a class="headerlink" href="#laygo2.object.grid.Grid.m" title="Permalink to this definition"></a></dt>
+<dd><p>One-dimensional _PhyToAbsConverter of the x-coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.n[40]
+2
+&gt;&gt;&gt; g2.n(40)
+2
+&gt;&gt;&gt; g2.n &lt;  40
+760
+&gt;&gt;&gt; g2.n &lt;= 40
+810
+&gt;&gt;&gt; g2.n &gt;  40
+820
+&gt;&gt;&gt; g2.n &gt;= 40
+810
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+x좌표계 1차원 _PhyToAbsConverter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self._xy[0].phy2abs (laygo2._PhyToAbsGridConverter )</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.mn">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mn</span></span><a class="headerlink" href="#laygo2.object.grid.Grid.mn" title="Permalink to this definition"></a></dt>
+<dd><p>Two-dimensional _PhyToAbsConverter of a coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.mn[40,40]
+[3, 2]
+&gt;&gt;&gt; g2.mn([40, 40])
+[3, 2]
+&gt;&gt;&gt; g2.mn &lt;  [40,40]
+[750, 760]
+&gt;&gt;&gt; g2.mn &lt;= [40,40]
+[800, 810]
+&gt;&gt;&gt; g2.mn &gt;  [40,40]
+[810, 820]
+&gt;&gt;&gt; g2.mn &gt;= [40,40]
+[800, 810]
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+좌표계 2차원 _PhyToAbsConverter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self._phy2abs (laygo2._PhyToAbsGridConverter)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.n">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n</span></span><a class="headerlink" href="#laygo2.object.grid.Grid.n" title="Permalink to this definition"></a></dt>
+<dd><p>One-dimensional _PhyToAbsConverter of the y-coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.n[40]
+2
+&gt;&gt;&gt; g2.n(40)
+2
+&gt;&gt;&gt; g2.n &lt;  40
+760
+&gt;&gt;&gt; g2.n &lt;= 40
+810
+&gt;&gt;&gt; g2.n &gt;  40
+820
+&gt;&gt;&gt; g2.n &gt;= 40
+810
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+y좌표계 1차원 _PhyToAbsConverter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self._xy[1].phy2abs (laygo2._PhyToAbsGridConverter )</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.Grid.name" title="Permalink to this definition"></a></dt>
+<dd><p>the name of the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.phy2abs">
+<span class="sig-name descname"><span class="pre">phy2abs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.grid.Grid.phy2abs" title="Permalink to this definition"></a></dt>
+<dd><p>PhyToAbsGridConverter(master=self)</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.range">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">range</span></span><a class="headerlink" href="#laygo2.object.grid.Grid.range" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Region in which the coordinate system is defined.</dt><dd><p>bbox of the respective Grid</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.range
+[ [0, 0], [100, 100 ]]
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+좌표계가 정의된 영역.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shape</span></span><a class="headerlink" href="#laygo2.object.grid.Grid.shape" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Two-dimensional element length in a coordinate system.</dt><dd><p>length of x-axis elements, length of y-axis elements</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.shape
+[5, 5]
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+좌표게 2차원 element의 길이.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.v">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">v</span></span><a class="headerlink" href="#laygo2.object.grid.Grid.v" title="Permalink to this definition"></a></dt>
+<dd><p>OneDimGrid of the x-coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.v
+g1_x
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+x좌표계 OneDimGrid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self.x (laygo2.OneDimGrid)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.width">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#laygo2.object.grid.Grid.width" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Width of the region in which the coordinate system is defined.</dt><dd><p>x scope</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.width
+100
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+좌표계가 정의된 영역의 폭.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.int32</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.width_vec">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width_vec</span></span><a class="headerlink" href="#laygo2.object.grid.Grid.width_vec" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Return width as a list.</dt><dd><p>length of the respective axis and zero</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.width_vec
+[100, 0]
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+width를 list로 반환.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.x">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#laygo2.object.grid.Grid.x" title="Permalink to this definition"></a></dt>
+<dd><p>One-dimensional _AbsToPhyGridConverter of the x-coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.x[10]
+200
+&gt;&gt;&gt; g2.x &lt;  10
+[0]
+&gt;&gt;&gt; g2.x &lt;= 10
+[1]
+&gt;&gt;&gt; g2.x &gt;  10
+[2]
+&gt;&gt;&gt; g2.x &gt;= 10
+[1]
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+x좌표계 1차원 _AbsToPhyGridConverter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self._xy[0].abs2phy (laygo2._AbsToPhyGridConverter)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.xy">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">xy</span></span><a class="headerlink" href="#laygo2.object.grid.Grid.xy" title="Permalink to this definition"></a></dt>
+<dd><p>Two-dimensional _AbsToPhyConverter of a coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.xy[10,10]
+[200 210]
+&gt;&gt;&gt; g2.xy([10, 10])
+[200 210]
+&gt;&gt;&gt; g2.xy &lt; [10,10]
+[0,-1]
+&gt;&gt;&gt; g2.xy &lt;= [10,10]
+[1,0]
+&gt;&gt;&gt; g2.xy &gt; [10,10]
+[2,1]
+&gt;&gt;&gt; g2.xy &gt;= [10,10]
+[1,0]
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+좌표계 2차원 _AbsToPhyConverter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self.abs2phy (laygo2._AbsToPhyGridConverter)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="laygo2.object.grid.Grid.y">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#laygo2.object.grid.Grid.y" title="Permalink to this definition"></a></dt>
+<dd><p>One-dimensional _AbsToPhyGridConverter of the y-coordinate system.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; g1_x = OneDimGrid(name=‘xgrid&#39;, scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+&gt;&gt;&gt; g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+&gt;&gt;&gt; g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+&gt;&gt;&gt; g2.y[10]
+210
+&gt;&gt;&gt; g2.y &lt;  10
+[-1]
+&gt;&gt;&gt; g2.y &lt;= 10
+[0]
+&gt;&gt;&gt; g2.y &gt;  10
+[1]
+&gt;&gt;&gt; g2.y &gt;= 10
+[0]
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Reference in Korean:
+y좌표계 1차원 _AbsToPhyGridConverter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>self._xy[1].abs2phy (laygo2._AbsToPhyGridConverter)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="laygo2.object.grid.OneDimGrid.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">OneDimGrid class</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="laygo2.object.grid.PlacementGrid.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">PlacementGrid class</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Niftylab at Hanyang University, South Korea.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
