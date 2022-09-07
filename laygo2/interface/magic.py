@@ -155,12 +155,12 @@ def _translate_obj(libpath, objname, obj, scale=1, master=None, offset=np.array(
 
 def export(db, filename=None, cellname=None, libpath=None, scale=1, reset_library=False, tech_library=None):
     """
-    Export a design object to magic(tcl) code.
+    Export design(s) to magic's tcl code.
 
     Parameters
     ----------
     db: laygo2.database.Library
-        Design to export
+        The library database to be exported.
     filename: str, optional
         If specified, the generated magic(tcl) script is stored in filename.
     cellname: str or List[str]
@@ -171,7 +171,12 @@ def export(db, filename=None, cellname=None, libpath=None, scale=1, reset_librar
         If True, the library to export the cells is reset.
     tech_library: str, optional
         The name of technology library to be attached to the resetted library.
+
+    Returns
+    -------
+    str: the string object contains corresponding tcl scripts.
     """
+
     # parse header functions.
     cmd = "# laygo2 layout export magic(tcl) script.\n\n"
     import os

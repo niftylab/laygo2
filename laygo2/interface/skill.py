@@ -208,12 +208,12 @@ def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0
 
 def export(db, filename=None, cellname=None, scale=1e-3, reset_library=False, tech_library=None):
     """
-    Export a design object to skill code.
+    Export design(s) to skill code.
 
     Parameters
     ----------
     db: laygo2.database.Library
-        Design to export
+        The library database to exported.
     filename: str, optional
         If specified, the generated skill script is stored in filename.
     cellname: str or List[str]
@@ -224,6 +224,10 @@ def export(db, filename=None, cellname=None, scale=1e-3, reset_library=False, te
         If True, the library to export the cells is reset.
     tech_library: str, optional
         The name of technology library to be attached to the resetted library.
+
+    Returns
+    -------
+    str: the string object contains corresponding skill scripts.
     """
     # parse header functions.
     cmd = "; laygo2 layout export skill script.\n\n"

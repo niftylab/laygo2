@@ -28,6 +28,28 @@ import laygo2.interface
 
 def export(db, filename, cellname, scale=1e-3, reset_library=False, tech_library=None):
     skill_str=laygo2.interface.skill.export(db, filename, cellname, scale, reset_library, tech_library)
+    """
+    Export design(s) to BAG2.
+
+    Parameters
+    ----------
+    db: laygo2.database.Library
+        The library database to be exported.
+    filename: str, optional
+        The path of the intermediate skill scipt file.
+    cellname: str or List[str]
+        The name(s) of cell(s) to be exported.
+    scale: float
+        The scaling factor between laygo2's integer coordinats actual physical coordinates.
+    reset_library: bool, optional
+        If True, the library to export the cells is reset.
+    tech_library: str, optional
+        The name of technology library to be attached to the resetted library.
+
+    Returns
+    -------
+    str: the string object contains corresponding skill scripts.
+    """
 
     import bag
     prj=bag.BagProject()
