@@ -1,6 +1,4 @@
-import pytest
 import numpy as np
-import pprint
 import laygo2
 
 import test_tech as tech

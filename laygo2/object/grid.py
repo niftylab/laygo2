@@ -2986,7 +2986,7 @@ class RoutingGrid(Grid):
     """
 
     def __init__(self, name, vgrid, hgrid, vwidth, hwidth, vextension, hextension, vlayer, hlayer, pin_vlayer,
-                 pin_hlayer, viamap, xcolor, ycolor, primary_grid='vertical', vextension0=None, hextension0=None):
+                 pin_hlayer, viamap, xcolor=None, ycolor=None, primary_grid='vertical', vextension0=None, hextension0=None):
         """
         Constructor function of RoutingGrid class.
 
@@ -3149,27 +3149,33 @@ class RoutingGrid(Grid):
                     hextension = int(width/2)
                     vextension = self.vextension0[__mn[0][0]]
                     layer = self.vlayer[__mn[0][0]]
-                    color = self.xcolor[__mn[0][0]%self.xcolor.shape[0]] # xcolor is determined by its grid layer.
+                    if self.xcolor is not None:
+                        color = self.xcolor[__mn[0][0]%self.xcolor.shape[0]] # xcolor is determined by its grid layer.
                 else:
                     width = self.hwidth[__mn[0][1]]
                     hextension = self.hextension0[__mn[0][1]]
                     vextension = int(width/2)
                     layer = self.hlayer[__mn[0][1]]
-                    color = self.ycolor[__mn[0][1]%self.ycolor.shape[0]] # ycolor is determined by its grid layer.
+                    if self.ycolor is not None:
+                        color = self.ycolor[__mn[0][1]%self.ycolor.shape[0]] # ycolor is determined by its grid layer.
             else:
                 if (xy0[0] == xy1[0]) or (direction == 'vertical'):  # vertical routing
                     width = self.vwidth[__mn[0][0]]
                     hextension = int(width/2)
                     vextension = self.vextension[__mn[0][0]]
                     layer = self.vlayer[__mn[0][0]]
-                    color = self.xcolor[__mn[0][0]%self.xcolor.shape[0]] # xcolor is determined by its grid layer.
+                    if self.xcolor is not None:
+                        color = self.xcolor[__mn[0][0]%self.xcolor.shape[0]] # xcolor is determined by its grid layer.
 
                 else:  # horizontal routing
                     width = self.hwidth[__mn[0][1]]
                     hextension = self.hextension[__mn[0][1]]
                     vextension = int(width/2)
                     layer = self.hlayer[__mn[0][1]]
-                    color = self.ycolor[__mn[0][1]%self.ycolor.shape[0]] # ycolor is determined by its grid layer.
+                    if self.ycolor is not None:
+                        color = self.ycolor[__mn[0][1]%self.ycolor.shape[0]] # ycolor is determined by its grid layer.
+            if (self.xcolor is None) and (self.ycolor is None):
+                color = None
             p = laygo2.object.physical.Rect(xy=_xy, layer=layer, hextension=hextension, vextension=vextension, color=color)
             route.append(p)
             # via placement
