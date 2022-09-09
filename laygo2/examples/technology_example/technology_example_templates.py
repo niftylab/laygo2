@@ -22,27 +22,17 @@
 #
 ########################################################################################################################
 
+"""Template library for the advanced example technology. (advtech)"""
+
+import numpy as np
+
 import laygo2.object.template
 import laygo2.object.physical
 import laygo2.object.database
+import laygo2.examples.technology_example as tech
 
-import numpy as np
-import yaml
-import pprint
 
-# Template library for the advanced example technology (advtech).
-
-# Technology parameters
-if __name__ == '__main__':
-    tech_fname = './technology_example.yaml'
-else:
-    tech_fname = '../technology_example/technology_example.yaml'
-with open(tech_fname, 'r') as stream:
-    try:
-        tech_params = yaml.safe_load(stream)
-    except yaml.YAMLError as exc:
-        print(exc)
-
+tech_params = tech.tech_params
 
 # Primitive devices
 def mos_bbox_func(devtype, params):
