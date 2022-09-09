@@ -3151,6 +3151,8 @@ class RoutingGrid(Grid):
                     layer = self.vlayer[__mn[0][0]]
                     if self.xcolor is not None:
                         color = self.xcolor[__mn[0][0]%self.xcolor.shape[0]] # xcolor is determined by its grid layer.
+                    else:
+                        color = np.array(['not MPT']*layer.shape[0], dtype=object)
                 else:
                     width = self.hwidth[__mn[0][1]]
                     hextension = self.hextension0[__mn[0][1]]
@@ -3158,6 +3160,8 @@ class RoutingGrid(Grid):
                     layer = self.hlayer[__mn[0][1]]
                     if self.ycolor is not None:
                         color = self.ycolor[__mn[0][1]%self.ycolor.shape[0]] # ycolor is determined by its grid layer.
+                    else:
+                        color = np.array(['not MPT']*layer.shape[0], dtype=object)
             else:
                 if (xy0[0] == xy1[0]) or (direction == 'vertical'):  # vertical routing
                     width = self.vwidth[__mn[0][0]]
@@ -3166,7 +3170,8 @@ class RoutingGrid(Grid):
                     layer = self.vlayer[__mn[0][0]]
                     if self.xcolor is not None:
                         color = self.xcolor[__mn[0][0]%self.xcolor.shape[0]] # xcolor is determined by its grid layer.
-
+                    else:
+                        color = np.array(['not MPT']*layer.shape[0], dtype=object)
                 else:  # horizontal routing
                     width = self.hwidth[__mn[0][1]]
                     hextension = self.hextension[__mn[0][1]]
@@ -3174,7 +3179,9 @@ class RoutingGrid(Grid):
                     layer = self.hlayer[__mn[0][1]]
                     if self.ycolor is not None:
                         color = self.ycolor[__mn[0][1]%self.ycolor.shape[0]] # ycolor is determined by its grid layer.
-            if (self.xcolor is None) and (self.ycolor is None):
+                    else:
+                        color = np.array(['not MPT']*layer.shape[0], dtype=object)
+                        if (self.xcolor is None) and (self.ycolor is None):
                 color = None
             p = laygo2.object.physical.Rect(xy=_xy, layer=layer, hextension=hextension, vextension=vextension, color=color)
             route.append(p)
