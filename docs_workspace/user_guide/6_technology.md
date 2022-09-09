@@ -7,7 +7,7 @@ To set up laygo2 for a new technology, prepare the following files first to be i
 * ***(technology_name)*_templates.py**: Python code for template definitions.
 * ***(technology_name)*_grids.py**: Python code for grid definitions.
 * ***(technology_name)*_example.yaml**: (if used by _template.py, _grid.py files) an yaml file that contains layer information.
-* ***__init__.py***: Package definition file.
+* ***\_\_init\_\_.py***: Package definition file.
 
 A simple example for the technology setup for Laygo2 can be found [here](../../examples/technology_example).
 
