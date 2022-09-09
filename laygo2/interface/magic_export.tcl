@@ -59,6 +59,7 @@ proc _laygo2_generate_rect {layer bbox} {
         M2 { paint metal2 }
         M3 { paint metal3 }
         M4 { paint metal4 }
+        M5 { paint metal5 }
         default { paint $layer }
     }
 }; #create a rectangle
@@ -73,6 +74,7 @@ proc _laygo2_generate_pin {name layer bbox} {
         M2 { set layer_real metal2 }
         M3 { set layer_real metal3 }
         M4 { set layer_real metal4 }
+        M5 { set layer_real metal5 }
         default { set layer_real $layer }
     }
     if {$pin_w >= $pin_h} {
