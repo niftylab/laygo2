@@ -24,6 +24,17 @@
 
 """Advanced example technology module"""
 
+from importlib.resources import files
+import yaml
+
+# Technology parameters
+tech_path = files(__package__) / "technology_example.yaml"
+
+with open(tech_path, 'r') as stream:
+    try:
+        tech_params = yaml.safe_load(stream)
+    except yaml.YAMLError as exc:
+        print(exc)
+
 from .technology_example_templates import load_templates
 from .technology_example_grids import load_grids
-

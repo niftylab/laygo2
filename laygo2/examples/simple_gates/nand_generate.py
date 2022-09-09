@@ -26,7 +26,7 @@ import numpy as np
 import pprint
 import laygo2
 import laygo2.interface
-import examples.technology_example as tech
+import laygo2.examples.technology_example as tech
 
 # Parameter definitions ##############
 # Templates
