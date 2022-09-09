@@ -1,0 +1,19 @@
+# Conda development environment definition file
+name: laygo2-dev
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.9
+  - nose
+  - numpy
+  # documentation
+  - sphinx
+  - myst-parser
+  - pydata-sphinx-theme
+  - pip
+  - pip:
+      - autoclasstoc
+#  - virtue

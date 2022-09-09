@@ -3,5 +3,4 @@ numpy
 sphinx
 myst-parser
 pydata-sphinx-theme
-pydata
 autoclasstoc
