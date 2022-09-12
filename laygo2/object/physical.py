@@ -60,8 +60,7 @@ class PhysicalObject:
 
     Notes
     -----
-    * **Reference in Korean**: 물리 객체들의 기본 클래스, physical 좌표 정보를 갖고 있다. 
-
+    * **Reference in Korean**: 물리 객체들의 기본 클래스, 물리 좌표 정보를 갖고 있다. 
 
     """
 
@@ -91,7 +90,7 @@ class PhysicalObject:
 
     Notes
     -----
-    **Reference in Korean**: Physical 객체의 이름.
+    **Reference in Korean**: 객체의 이름.
     """
 
 
@@ -114,7 +113,7 @@ class PhysicalObject:
 
     Notes
     -----
-    **Reference in Korean**: Physical 객체의 좌표.
+    **Reference in Korean**: 객체의 좌표.
     """
 
 
@@ -129,7 +128,7 @@ class PhysicalObject:
 
     Notes
     -----
-    **Reference in Korean**: Physical 객체의 master.
+    **Reference in Korean**: 객체의 master (배열 element 또는 pin 객체들의 master 객체에 연결).
     """
 
 
@@ -144,7 +143,7 @@ class PhysicalObject:
 
     Notes
     -----
-    **Reference in Korean**: Physical 객체의 속성.
+    **Reference in Korean**: 객체의 속성.
     """
 
 
@@ -168,7 +167,7 @@ class PhysicalObject:
 
     Notes
     -----
-    **Reference in Korean**: Physical 객체의 주요좌표들.
+    **Reference in Korean**: 객체의 주요 좌표들을 담고 있는 dict.
     """
 
 
@@ -188,7 +187,7 @@ class PhysicalObject:
 
     Notes
     -----
-    **Reference in Korean**: Physical 객체의 left pointer.
+    **Reference in Korean**: 객체의 left-center 좌표.
     """
 
 
@@ -207,7 +206,7 @@ class PhysicalObject:
 
     Notes
     -----
-    **Reference in Korean**: Physical 객체의 right pointer.
+    **Reference in Korean**: 객체의 right-center 좌표.
     """ 
 
 
@@ -226,7 +225,7 @@ class PhysicalObject:
 
     Notes
     -----
-    **Reference in Korean**: Physical 객체의 top pointer.
+    **Reference in Korean**: 객체의 top-center 좌표.
     """
 
 
@@ -245,7 +244,7 @@ class PhysicalObject:
 
     Notes
     -----
-    **Reference in Korean**: Physical 객체의 bottom pointer.
+    **Reference in Korean**: 객체의 bottom-center 좌표.
     """ 
 
 
@@ -264,7 +263,7 @@ class PhysicalObject:
 
     Notes
     -----
-    **Reference in Korean**: Physical 객체의 center pointer.
+    **Reference in Korean**: 객체의 center-center 좌표.
     """ 
 
 
@@ -283,7 +282,7 @@ class PhysicalObject:
 
     Notes
     -----
-    **Reference in Korean**: Physical 객체의 bottom_left pointer.
+    **Reference in Korean**: 객체의 bottom-left 좌표.
     """
 
 
@@ -302,7 +301,7 @@ class PhysicalObject:
 
     Notes
     -----
-    **Reference in Korean**: Physical 객체의 bottom_right pointer.
+    **Reference in Korean**: 객체의 bottom-right 좌표.
     """ 
 
 
@@ -321,7 +320,7 @@ class PhysicalObject:
 
     Notes
     -----
-    **Reference in Korean**: Physical 객체의 top_left pointer.
+    **Reference in Korean**: 객체의 top-left 좌표.
     """
 
 
@@ -340,7 +339,7 @@ class PhysicalObject:
 
     Notes
     -----
-    **Reference in Korean**: Physical 객체의 top_right pointer.
+    **Reference in Korean**: 객체의 top-right 좌표.
     """
 
 
@@ -360,7 +359,7 @@ class PhysicalObject:
         
         Notes
         -----
-        **Reference in Korean**: numpy.ndarray: Physical 객체의 bbox.
+        **Reference in Korean**: numpy.ndarray: 객체의 bbox (bounding box).
         """
         return np.sort(np.array([self.xy[0, :], self.xy[1, :]]), axis=0)
 
@@ -394,15 +393,15 @@ class PhysicalObject:
         
         Notes
         -----
-        **Reference in Korean**: PhysicalObject 클래스의 생성자 함수.
+        **Reference in Korean**: PhysicalObject 클래스의 생성자.
 
         파라미터
 
-        xy(numpy.ndarray): 객체의 물리적 좌표, bbox.
+        xy(numpy.ndarray): 객체의 물리적 좌표 (bbox).
 
         name(str): 객체의 이름.
 
-        params(dict): 속성을 갖고 있는 dictionary.
+        params(dict): 객체의 주요 속성을 갖고 있는 dict.
 
         반환값
 
