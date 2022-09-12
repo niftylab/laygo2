@@ -567,7 +567,7 @@ class IterablePhysicalObject(PhysicalObject):
 
         See Also
         --------
-        Class PhysicalObject
+        PhysicalObject : The base physical object class.
 
         Example
         --------
