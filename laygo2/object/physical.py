@@ -60,7 +60,7 @@ class PhysicalObject:
 
     Notes
     -----
-    * **Reference in Korean**: 물리 객체들의 기본 클래스, 물리적 좌표정보를 갖고 있다. 
+    * **Reference in Korean**: 물리 객체들의 기본 클래스, physical 좌표 정보를 갖고 있다. 
 
 
     """
@@ -394,15 +394,15 @@ class PhysicalObject:
         
         Notes
         -----
-        **Reference in Korean**:     PhysicalObject 클래스의 생성자 함수.
+        **Reference in Korean**: PhysicalObject 클래스의 생성자 함수.
 
         파라미터
 
-        xy(numpy.ndarray): 객체의 물리적 좌표, bbox
+        xy(numpy.ndarray): 객체의 물리적 좌표, bbox.
 
-        name(str): 객체의 이름
+        name(str): 객체의 이름.
 
-        params(dict): 속성을 갖고 있는 Dictionary
+        params(dict): 속성을 갖고 있는 dictionary.
 
         반환값
 
@@ -482,9 +482,9 @@ class IterablePhysicalObject(PhysicalObject):
     """
     Basic class of entities capable of iterable operation among physical entities.
 
-    Notes
-    -----
-    **Reference in Korean**: 물리 객체들 중 iterable 연산이 가능한 객체들의 기본 클래스.
+    #Notes
+    #-----
+    물리 객체들 중 iterable 연산이 가능한 객체들의 기본 클래스.
 
     """
 
@@ -565,10 +565,6 @@ class IterablePhysicalObject(PhysicalObject):
         -------
         laygo2.IterablePhysicalObject
 
-        See Also
-        --------
-        PhysicalObject : The base physical object class.
-
         Example
         --------
         >>> phy0 = physical.IterablePhysicalObject( xy=[[0, 0], [100, 100]], name="test" ) 
@@ -588,13 +584,13 @@ class IterablePhysicalObject(PhysicalObject):
 
         파라미터
 
-        xy(numpy.ndarray): 객체의 물리적 좌표, bbox
+        xy(numpy.ndarray): 객체의 물리적 좌표, bbox.
 
-        name(str): 객체의 이름
+        name(str): 객체의 이름.
 
-        params(dict): 속성을 갖는 Dictionary
+        params(dict): 속성을 갖는 dictionary.
 
-        elements(dict): 단위 객체를 갖는 Dictionary
+        elements(dict): 단위 객체를 갖는 dictionary.
 
         반환값
 
@@ -760,6 +756,7 @@ class Rect(PhysicalObject):
     Notes
     -----
     **Reference in Korean**: 사각형 객체 클래스.
+
     """
 
     layer = None
@@ -964,21 +961,21 @@ class Rect(PhysicalObject):
 
         파라미터
 
-        xy(numpy.ndarray): 객체의 물리적 좌표, bbox
+        xy(numpy.ndarray): 객체의 물리적 좌표, bbox.
 
-        layer(list): 객체의 layer 정보
+        layer(list): 객체의 layer 정보.
 
-        hextension(int): 객체의 수평부 확장값
+        hextension(int): 객체의 수평부 확장값.
 
-        vextension(int): 객체의 수직 확장값
+        vextension(int): 객체의 수직 확장값.
 
-        name(str): 객체의 이름
+        name(str): 객체의 이름.
 
-        netname(str): 객체의 노드 명
+        netname(str): 객체의 노드 명.
 
-        params(dict): 속성을 갖는 Dictionary [optional]
+        params(dict): 속성을 갖는 dictionary [optional].
 
-        color(str): 객체의 color [optional]
+        color(str): 객체의 color [optional].
 
         반환값
 
@@ -1172,23 +1169,23 @@ class Path(PhysicalObject):
 
         Notes
         -----
-        **Reference in Korean**:     Path 객체 생성
+        **Reference in Korean**:     Path 객체 생성.
 
         파라미터
 
-        xy(numpy.ndarray): 객체의 물리적 좌표, bbox
+        xy(numpy.ndarray): 객체의 물리적 좌표, bbox.
 
-        layer(list): 객체의 layer 정보
+        layer(list): 객체의 layer 정보.
 
-        width(int): 객체의 폭
+        width(int): 객체의 폭.
 
-        extension(int): 객체의 확장값
+        extension(int): 객체의 확장값.
 
-        name(str): 객체의 이름
+        name(str): 객체의 이름.
 
-        netname(str): 객체의 노드 명
+        netname(str): 객체의 노드 명.
 
-        params(dict): 속성을 갖는 Dictionary
+        params(dict): 속성을 갖는 dictionary.
 
         반환값
 
@@ -1355,15 +1352,15 @@ class Pin(IterablePhysicalObject):
 
         파라미터
 
-        xy(numpy.ndarray): 객체의 물리적 좌표, bbox
+        xy(numpy.ndarray): 객체의 물리적 좌표, bbox.
 
-        layer(list): 객체의 layer 정보
+        layer(list): 객체의 layer 정보.
 
-        name(str): 객체의 이름
+        name(str): 객체의 이름.
 
-        netname(str): 객체의 노드 명
+        netname(str): 객체의 노드 명.
 
-        params(dict): 속성을 갖는 Dictionary
+        params(dict): 속성을 갖는 dictionary.
 
         반환값
 
@@ -1470,19 +1467,19 @@ class Text(PhysicalObject):
         
         Notes
         -----
-        **Reference in Korean**:     Text 클래스의 생성자 함수
+        **Reference in Korean**: Text 클래스의 생성자 함수.
 
         파라미터
 
-        xy(numpy.ndarray): 객체의 물리적 좌표, bbox
+        xy(numpy.ndarray): 객체의 물리적 좌표, bbox.
 
-        layer(list): 객체의 layer 정보
+        layer(list): 객체의 layer 정보.
 
-        text(str): 텍스트 내용
+        text(str): 텍스트 내용.
 
-        name(str): 객체의 이름
+        name(str): 객체의 이름.
 
-        params(dict): 속성을 갖는 Dictionary
+        params(dict): 속성을 갖는 dictionary.
 
         반환값
 
@@ -1909,25 +1906,25 @@ class Instance(IterablePhysicalObject):
 
         파라미터
 
-        xy(numpy.ndarray): 객체의 주좌표 [x0, y0]
+        xy(numpy.ndarray): 객체의 주좌표 [x0, y0].
 
-        libname(str): 객체의 library 이름
+        libname(str): 객체의 library 이름.
 
-        cellname(str): 객체의 cell이름
+        cellname(str): 객체의 cell 이름.
 
-        shape(numpy.ndarray): elements 의 shape, [column, row]
+        shape(numpy.ndarray): elements의 shape, [column, row].
 
-        pitch(numpy.ndarray): 배열로 구성된 객체의 하위객체간 간격
+        pitch(numpy.ndarray): 배열로 구성된 객체의 하위객체간 간격.
 
-        transform(str): 객체의 변환 속성
+        transform(str): 객체의 변환 속성.
 
-        unit_size(list): 객체의 단위 크기
+        unit_size(list): 객체의 단위 크기.
 
-        pins(dict): 객체에 속한 핀들을 갖는 Dictionary
+        pins(dict): 객체에 속한 핀들을 갖는 dictionary.
 
-        name(str): 객체의 이름
+        name(str): 객체의 이름.
 
-        params(dict): 객체의 속성을 갖는 Dictionary
+        params(dict): 객체의 속성을 갖는 dictionary.
 
         반환값
 
@@ -2100,31 +2097,31 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
 
         Notes
         -----
-        **Reference in Korean**:     VirtualInstance 클래스의 생성자 함수
+        **Reference in Korean**: VirtualInstance 클래스의 생성자 함수.
 
         파라미터
 
-        xy(numpy.ndarray): 객체의 주좌표 [x0, y0]
+        xy(numpy.ndarray): 객체의 주좌표 [x0, y0].
 
-        libname(str): 객체의 library 이름
+        libname(str): 객체의 library 이름.
 
-        cellname(str): 객체의 cell이름
+        cellname(str): 객체의 cell이름.
 
-        native_elements(dict): 객체를 구성하는 물리객체를 갖는 Dict
+        native_elements(dict): 객체를 구성하는 물리객체를 갖는 dict.
 
-        shape(numpy.ndarray): elements 의 shape
+        shape(numpy.ndarray): elements 의 shape.
 
-        pitch(numpy.ndarray): 배열로 구성된 객체의 하위객체간 간격 
+        pitch(numpy.ndarray): 배열로 구성된 객체의 하위객체간 간격.
 
-        transform(str): 객체의 변환 속성
+        transform(str): 객체의 변환 속성.
 
-        unit_size(list): 객체의 단위 크기
+        unit_size(list): 객체의 단위 크기.
 
-        pins(dict): 객체에 속한 핀들을 갖는 Dictionary
+        pins(dict): 객체에 속한 핀들을 갖는 dict.
 
-        name(str): 객체의 이름
+        name(str): 객체의 이름.
 
-        params(dict): 객체의 속성을 갖는 Dictionary
+        params(dict): 객체의 속성을 갖는 dictionary.
 
         반환값
 
