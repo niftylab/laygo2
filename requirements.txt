@@ -1,5 +1,6 @@
-nose
 numpy
+pyyaml
+nose
 sphinx
 myst-parser
 pydata-sphinx-theme
