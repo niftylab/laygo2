@@ -52,7 +52,8 @@ Running the following command will generate a NAND gate layout.
 
     (after git clone)
     >>>> cd laygo2 
-    >>>> run quick_start.py
+    >>>> python -m quick_start.py
+    (or you can run ipython and type run 'quick_start.py' instead)
     
 The resulting layout of the NAND gate is shown in the figure below:
 
