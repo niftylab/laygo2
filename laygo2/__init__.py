@@ -39,5 +39,8 @@ from laygo2 import object
 from laygo2 import interface
 #from . import util
 
+# Util
+from laygo2 import util
+
 #__all__ = ['object', 'util']
 #__all__ = ['object', 'PrimitiveUtil']
