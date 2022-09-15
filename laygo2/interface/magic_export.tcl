@@ -25,6 +25,20 @@ proc _laygo2_create_layout {libpath _cellname techname} {
     load $_cellname
     select top cell
     edit
+# if same named cell already exist, erase it.
+    set ilist [cellname list childinst]
+    set len [llength $ilist]
+    for { set idx 0 } { $idx < $len } { incr idx 1 } {
+        set bracket [string first \\ [lindex $ilist $idx]]
+        if { $bracket != -1 } {
+            set instname [string range [lindex $ilist $idx] 0 [expr $bracket - 1] ]
+        } else {
+            set instname [lindex $ilist $idx]
+        }
+        select cell $instname
+        delete
+    }
+    select top cell
     select area
     delete
 }; # create new edit cell
