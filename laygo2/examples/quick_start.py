@@ -26,7 +26,7 @@ import numpy as np
 import pprint
 import laygo2
 import laygo2.interface
-import quick_start_tech as tech
+import laygo2_tech as tech
 
 # Parameter definitions ##############
 # Templates

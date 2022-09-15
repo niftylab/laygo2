@@ -28,7 +28,7 @@ from importlib.resources import files
 import yaml
 
 # Technology parameters
-tech_path = files(__package__) / "technology_example.yaml"
+tech_path = files(__package__) / "laygo2_tech.yaml"
 
 with open(tech_path, 'r') as stream:
     try:
@@ -36,5 +36,5 @@ with open(tech_path, 'r') as stream:
     except yaml.YAMLError as exc:
         print(exc)
 
-from .technology_example_templates import load_templates
-from .technology_example_grids import load_grids
+from .laygo2_tech_templates import load_templates
+from .laygo2_tech_grids import load_grids
