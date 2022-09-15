@@ -1,1 +1,1 @@
-laygo2/examples/quick_start/quick_start.py
+./laygo2/examples/quick_start.py

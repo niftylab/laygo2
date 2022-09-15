@@ -24,13 +24,12 @@
 
 """Advanced example technology module"""
 
-from importlib.resources import files
 import yaml
 
 # Technology parameters
-tech_path = files(__package__) / "laygo2_tech.yaml"
+tech_param_path = "laygo2_tech/laygo2_tech.yaml"
 
-with open(tech_path, 'r') as stream:
+with open(tech_param_path, 'r') as stream:
     try:
         tech_params = yaml.safe_load(stream)
     except yaml.YAMLError as exc:
