@@ -13,5 +13,29 @@ with several advanced concepts such templates and grids.
 
 For further documentation, see [https://laygo2.github.io/](https://laygo2.github.io/).
 
-Contributors: 
-Jaeduk Han, Taeho Shin, Dongjun Lee, Dongwhee Kim, Gaeryun Sung, Wookjin Shin, Yunseong Jo, Hyungjoo Park, Seonghyun Park, Youngmin Oh, Taeseung Kang
+List of developers and contributers: 
+
+Jaeduk Han
+
+Taeho Shin
+
+Dongjun Lee
+
+Dongwhee Kim
+
+Gaeryun Sung
+
+Wookjin Shin, 
+
+Yunseong Jo
+
+Hyungjoo Park
+
+Seonghyun Park
+
+Youngmin Oh
+
+Taeseung Kang
+
+Curtis Mayberry
+
