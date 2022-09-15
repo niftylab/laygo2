@@ -2,19 +2,19 @@
 
 To set up laygo2 for a new technology, prepare the following files first to be imported in the layout generators for template and grid generations.
 
-* ***(technology_name)*_example.layermap**: the layer information defined by process-speckfic PDK.
-* ***(technology_name)*_example.lyp**: (optional) layer display information for KLayout.
-* ***(technology_name)*_templates.py**: Python code for template definitions.
-* ***(technology_name)*_grids.py**: Python code for grid definitions.
-* ***(technology_name)*_example.yaml**: (if used by _template.py, _grid.py files) an yaml file that contains layer information.
-* ***\_\_init\_\_.py***: Package definition file.
+* ***\_\_init\_\_.py***: The package definition file.
+* **laygo2_tech_templates.py**: Contains code for template definitions.
+* **laygo2_tech_grids.py**: Contains code for grid definitions.
+* **laygo2_tech.yaml**: Contains technology-related parameters (used by _template.py, _grid.py files).
+* **laygo2_tech.layermap**: (optional) Contains layer information defined by process-speckfic PDK.
+* **laygo2_tech.lyp**: (optional) Contains layer display information for KLayout.
 
-A simple example for the technology setup for Laygo2 can be found [here](../../examples/technology_example).
+A simple example for the technology setup for Laygo2 can be found [here](https://github.com/niftylab/laygo2/tree/master/laygo2/examples/laygo2_tech).
 
 Please find detailed descriptions for the listed files below:
 
 
-## *(technology_name)*_example.layermap
+## laygo2_tech.layermap
 
 Contains layer mapping information for the target technology, which is used for layout object generation, gds export, and skill export.
 
@@ -26,7 +26,7 @@ If the layermap file is created manually by users, please use the following form
 (please find the example layermap file for reference).
 
 
-## *(technology_name)*_templates.py
+## laygo2_tech_templates.py
 
 The python module that contains technology-specific templates. When the load_templates() in the module is called,
 it produces various template objects(MOSFET, Capacitors, Resistors) and returns them as a TemplateLibrary object.
@@ -35,13 +35,13 @@ The template can be either one of NativeInstanceTemplate(for vanilla instances),
 UserDefinedTemplate(for user-defined virtual instances), or newly defined types by users.
 
 
-## *(technology_name)*_grids.py
+## laygo2_tech_grids.py
 
 This module contains various placement/routing grids for the target process. When the load_girds() function is called,
 it produces various grid objects for the target technology and returns them as a GridLibrary object.
 
 
-## *(technology_name)*_example.yaml
+## laygo2_tech.yaml
 
 This yaml file contains various parameters for template and grid generation functions in the _template.py and _grid.py files.
 This file is not a mendatory one, as the py files can be described without using any external parameter files. 

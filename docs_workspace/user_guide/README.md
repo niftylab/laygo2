@@ -42,8 +42,8 @@ the Numpy array to implement unlimited indexing over their defined ranges.
 1. (on-going) **More documents and tests added**
 1. (on-going) **Generator code separated from the main framework**
 
-## Simple examples
-Several examples are introduced in **[Simple examples](2_examples.md)** to help users understand the basic behavior of laygo2.
+## Quick Trials
+Example procedures to install and generate simple structures are introduced in **[Simple examples](2_examples.md)** to help users to understand the basic dynamics of laygo2.
 
 ## laygo2 structure
 The structures of packages and modules in laygo2 are described in **[laygo2 structure](3_structure.md)**.
@@ -60,7 +60,7 @@ The structures of packages and modules in laygo2 are described in **[laygo2 stru
 1. (Optional) export the design as a new template.
 
 ## Developer list
-See the [github repository README](https://github.com/niftylab/laygo2) for the full list of developers.
+See the [github repository README](https://github.com/niftylab/laygo2) for the full list of developers and contributors.
 
 ## License
 laygo2 is distributed under the BSD 3-Clause License.
