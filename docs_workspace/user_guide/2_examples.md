@@ -11,10 +11,12 @@ laygo in linux environments.
 
 ## Installation 
 
-### From github repository
+There are two ways of installing laygo2 on your environment; 1) cloning from github and 2) running pip.
 
-Users can easily download and install the laygo2 package by cloning its github 
-repository by using the following command.
+### Installing laygo2 from github
+
+Users can download and install the laygo2 package by cloning its github 
+repository by typing the following command:
 
     >>>> git clone https://github.com/niftylab/laygo2.git
 
@@ -22,14 +24,12 @@ It is highly recommended that the following command is used periodically to main
 
     >>>> git pull origin master
 
-Secondly, update the PHTHONPATH environment variable to import the laygo2 package.
-(The example shown below is the simplest one for beginners, and we recommend to use a virtual environment for 
-advanced users.)
+After that, update the PHTHONPATH environment variable to point out the laygo2 package path for importing.
 
     # (csh/tcsh example) add the following command to your .cshrc
     setenv PYTHONPATH ${PYTHONPATH}:[LAYGO2_INSTALLATION_DIR]/laygo2
 
-### From Pypi (not verified)
+### From Pypi 
 
 Instead of cloning github repository, laygo2 package can be installed by running the following pip command:
 
