@@ -42,11 +42,11 @@ the Numpy array to implement unlimited indexing over their defined ranges.
 1. (on-going) **More documents and tests added**
 1. (on-going) **Generator code separated from the main framework**
 
-## Quick Trials
-Example procedures to install and generate simple structures are introduced in **[Simple examples](2_examples.md)** to help users to understand the basic dynamics of laygo2.
+## Quick trials
+Example procedures to install and generate simple structures are introduced in the **[Trial](trial.md)** page to help users to understand the basic dynamics of laygo2.
 
 ## laygo2 structure
-The structures of packages and modules in laygo2 are described in **[laygo2 structure](3_structure.md)**.
+The structures of packages and modules in laygo2 are described in the **[Structure](structure.md)** page.
 
 ![laygo2 UML diagram](../assets/img/user_guide_uml.png "laygo2 UML diagram")
 

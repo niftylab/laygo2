@@ -24,10 +24,10 @@ laygo2 is currently being developed/maintained by the `Nifty Chips Laboratory <h
    :maxdepth: 2
    :caption: Contents:
 
-   User Guide<introduction_link>
-   Trial<examples_link>
-   Structure<structure_link>
-   Tech Setup<technology_link>
+   Overview<overview>
+   Trial<trial>
+   Structure<structure>
+   Tech Setup<technology>
    Korean<introduction_kor>
    API Reference<laygo2>
 
