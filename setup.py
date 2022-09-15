@@ -1,5 +1,14 @@
 # -*- coding: utf-8 -*-
 
+'''
+Pypi update instruction:
+1) update the version number in setup.py.
+2) run 'python setup.py sdist bdist_wheel' to build whl.
+3) run 'python -m twine upload dist/*'.
+4) type username and password.
+
+'''
+
 from setuptools import setup, find_packages
 
 with open('README.md') as f:
