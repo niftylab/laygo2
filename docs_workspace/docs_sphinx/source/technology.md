@@ -14,18 +14,6 @@ A simple example for the technology setup for Laygo2 can be found [here](https:/
 Please find detailed descriptions for the listed files below:
 
 
-## laygo2_tech.layermap
-
-Contains layer mapping information for the target technology, which is used for layout object generation, gds export, and skill export.
-
-The layermap file is normally provided by the technology ventor.
-If the layermap file is created manually by users, please use the following format to define layer information.
-
-*layername layerpurpose stream_layer_number datatype*
-
-(please find the example layermap file for reference).
-
-
 ## laygo2_tech_templates.py
 
 The python module that contains technology-specific templates. When the load_templates() in the module is called,
@@ -47,6 +35,21 @@ This yaml file contains various parameters for template and grid generation func
 This file is not a mendatory one, as the py files can be described without using any external parameter files. 
 The example file contains various technology parameters such as unit resolutons, pin locations, structure sizes, and grid parameters.
 
+
 ## \_\_init\_\_.py
 
 This initialization file contains code to read out load_templates / load_grids funtions when the package is loaded.
+
+
+## laygo2_tech.layermap
+
+Contains layer mapping information for the target technology, which is used for layout object generation, gds export, and skill export.
+
+The layermap file is normally provided by the technology ventor.
+If the layermap file is created manually by users, please use the following format to define layer information.
+
+*layername layerpurpose stream_layer_number datatype*
+
+(please find the example layermap file for reference).
+
+
