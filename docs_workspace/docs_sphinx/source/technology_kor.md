@@ -15,18 +15,6 @@ Laygo2의 공정 패키지 예제는 [다음 경로](../../examples/technology_e
 공정 패키지를 구성하는 각각의 파일들에 대한 설명은 아래에 기술되어 있다.
 
 
-## *(technology_name)*_example.layermap
-
-사용되는 공정 PDK에서 사용되는 layer 맵핑 정보를 가지고 있는 파일이며, 해당 layer정보들은 
-내부 레이아웃 개체 생성 및 변환, GDS생성, Skill script출력 등에 사용된다. 
-
-해당 layermap 파일은 일반적으로 공정 PDK에서 제공된다. 
-사용자가 직접 layermap파일을 만들 경우, 행마다 레이어 정보를 정의하는 다음 형식의 파일을 생성하면 된다 
-(상세한 내용은 예제 layermap 파일 참조).
-
-*layername layerpurpose stream_layer_number datatype*
-
-
 ## *(technology_name)*_templates.py
 
 공정 패키지에서 제공되는 템플릿들을 정의하고 있는 파이썬 코드이며, 해당 파일의 load_templates()라는 함수가
@@ -56,3 +44,16 @@ load_grids()라는 함수가호출되면, 공정에서 사용될 다양한 그�
 ## __init__.py
 
 패키지 로드시 load_templates / load_grids 함수들을 읽을 수 있도록 하는 코드가 들어 있다.
+
+
+## *(technology_name)*_example.layermap
+
+사용되는 공정 PDK에서 사용되는 layer 맵핑 정보를 가지고 있는 파일이며, 해당 layer정보들은 
+내부 레이아웃 개체 생성 및 변환, GDS생성, Skill script출력 등에 사용된다. 
+
+해당 layermap 파일은 일반적으로 공정 PDK에서 제공된다. 
+사용자가 직접 layermap파일을 만들 경우, 행마다 레이어 정보를 정의하는 다음 형식의 파일을 생성하면 된다 
+(상세한 내용은 예제 layermap 파일 참조).
+
+*layername layerpurpose stream_layer_number datatype*
+

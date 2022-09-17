@@ -28,8 +28,8 @@ laygo2 is currently being developed/maintained by the `Nifty Chips Laboratory <h
    Trial<trial>
    Structure<structure>
    Tech Setup<technology>
-   Korean<introduction_kor>
    API Reference<laygo2>
+   Korean<kor>
 
 
 Indices and tables
