@@ -39,12 +39,9 @@ converted to real numbers during the final export phase.
 laygo2 implements various ways of template types, including parameterized-instance-based template
 (ParameterizedInstanceTemplate) and user-defined templates (UserDefinedTemplate). laygo2 supports inheritance 
 of the primitive template class (Template) for new template definitions.
-1. **Advanced instanced and grid indexing**: Instance and grid objects are tightly integrated to Numpy 
+1. **Advanced instantiation and grid indexing**: Instance and grid objects are tightly integrated to Numpy 
 array objects, to support advanced indexing and slicing functions. The grid objects especially extend 
 the Numpy array to implement unlimited indexing over their defined ranges.
-1. **Code quality enhancement and refactoring**.
-1. (on-going) **More documents and tests added**.
-1. (on-going) **Generator code separated from the main framework**.
 
 ## Quick trial
 Example procedures to install and generate simple structures are introduced in the **[Trial](trial.md)** page to help users to understand the basic dynamics of laygo2.
