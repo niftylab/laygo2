@@ -14,31 +14,32 @@ A simple example for the technology setup for Laygo2 can be found [here](https:/
 Please find detailed descriptions for the listed files below:
 
 
+## \_\_init\_\_.py
+
+Contains import statements for technlogy-specific functions such as load_templates() and load_grids().
+
+
 ## laygo2_tech_templates.py
 
-The python module that contains technology-specific templates. When the load_templates() in the module is called,
-it produces various template objects(MOSFET, Capacitors, Resistors) and returns them as a TemplateLibrary object.
+Implements technology-specific templates and their functions. It also contains load_template() function, 
+which returns a TemplateLibrary object containing template objects (MOSFET, Capacitors, Resistors) of core devices.
 
-The template can be either one of NativeInstanceTemplate(for vanilla instances), ParameterizedInstanceTemplate(for PCell instances), 
-UserDefinedTemplate(for user-defined virtual instances), or newly defined types by users.
+The templates are typically implemented by utilizing on of the predefined template classes, 
+such as NativeInstanceTemplate(for vanilla instances), ParameterizedInstanceTemplate(for PCell instances), 
+UserDefinedTemplate(for user-defined virtual instances). Or users can define their own template classes.
 
 
 ## laygo2_tech_grids.py
 
-This module contains various placement/routing grids for the target process. When the load_girds() function is called,
-it produces various grid objects for the target technology and returns them as a GridLibrary object.
+Implements technology-specific placement/routing grids and their function. It also contains load_grid() function,
+which returns a GridLibrary object containing grid objects.
 
 
 ## laygo2_tech.yaml
 
-This yaml file contains various parameters for template and grid generation functions in the _template.py and _grid.py files.
-This file is not a mendatory one, as the py files can be described without using any external parameter files. 
-The example file contains various technology parameters such as unit resolutons, pin locations, structure sizes, and grid parameters.
-
-
-## \_\_init\_\_.py
-
-This initialization file contains code to read out load_templates / load_grids funtions when the package is loaded.
+This yaml file contains technology-specific parameters (such as unit resolution, pin location, structure size, and grid parameters) 
+for template and grid generation functions in the _template.py and _grid.py files.
+Instead of using the yaml file to store technology information, users can hard-code all required numeric files in the template and grid files.
 
 
 ## laygo2_tech.layermap
@@ -46,7 +47,7 @@ This initialization file contains code to read out load_templates / load_grids f
 Contains layer mapping information for the target technology, which is used for layout object generation, gds export, and skill export.
 
 The layermap file is normally provided by the technology ventor.
-If the layermap file is created manually by users, please use the following format to define layer information.
+If the layermap file is created manually by users, please use the following format to define layer parameters.
 
 *layername layerpurpose stream_layer_number datatype*
 

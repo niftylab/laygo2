@@ -1,17 +1,21 @@
 # laygo2 User Guide
 
 ## Introduction
-This user guide is provided to help the use of LAYGO2, a layout scripting and automatic generation framework.
-LAYGO, the previous version of LAYGO2, is developed for one of layout generation engines in 
-Berkeley Analog Generator2 (BAG2), and LAYGO2 extends the LAYGO's functions and capabilities.
+This guide is provided to help the use of LAYGO2, a layout scripting and automatic generation framework.
+LAYGO, the previous version of LAYGO2, is developed as one of layout generation engines in 
+Berkeley Analog Generator2 (BAG2), and LAYGO2 extends the origial LAYGO's functions and capabilities.
 LAYGO2 can be launched either in standalone mode or in combination with BAG2.
 
-**LAYGO2 is optimized to IC layout generations in the following conditions.**
+**LAYGO2 is aiming to achive the following goals:**
 
-1. Automations and reuse of layout design flow.
-1. Parameter-based layout generation.
-1. Layout in advanced processes (e.g. FinFET CMOS).
-1. Code-based layout generation.
+* Automated layout creation.
+
+* Parameterized layout generation.
+
+* Layout automation in advanced technologies such as FinFET.
+
+* Code-based, reuse-centric layout generation. 
+
 
 **The major features supported by both LAYGO and LAYGO2 are summarized below:**
 
@@ -23,7 +27,7 @@ the level of abstraction by utilizing relative information between instances for
 1. **Grid-based wire routing**: The wire routing process is abstracted as well, by placing the interconnects 
 on process-independent routing grids. 
 
-**laygo2 has the following improvement items over the original laygo.**
+**laygo2 has the following improvement items compared to the original laygo.**
 1. **Enhanced object-oriented features**: The module dependency is minimized to enhance the process portability 
 and reusability. The layout generation process is fully described in object-oriented ways.
 For examples, classes defined in the physical module can be used independently, and new template types can be 
