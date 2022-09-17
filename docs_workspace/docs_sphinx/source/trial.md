@@ -1,6 +1,6 @@
 # laygo2 Quick Trial
 
-This document introduces setup procedures and several design examples for begineers.
+This document introduces setup procedure and trial example for begineers.
 
 <!--
 * **[Quick installation and setup](#Quick-Installation-and-Setup)** describes the installation and set up procedure of 
@@ -13,7 +13,7 @@ laygo in linux environments.
 
 There are two ways of installing laygo2 in your environment; 1) cloning from github and 2) using pip.
 
-### Installing laygo2 from github
+### Installing laygo2 from [Github](https://github.com/niftylab/laygo2.git)
 
 Users can download and install the laygo2 package by cloning its github 
 repository by typing the following command:
@@ -29,7 +29,7 @@ After that, update the PHTHONPATH environment variable to point out the laygo2 p
     # (csh/tcsh example) add the following command to your .cshrc
     setenv PYTHONPATH ${PYTHONPATH}:[LAYGO2_INSTALLATION_DIR]/laygo2
 
-### Installing laygo2 from Pypi 
+### Installing laygo2 from [Pypi](https://pypi.org/project/laygo2) 
 
 Instead of cloning github repository, laygo2 package can be installed by running the following pip command:
 
@@ -44,7 +44,7 @@ Users need to set up the following files in laygo_tech.py to enable laygo2 for a
     laygo2_tech.yaml          # for technology parameters
 
 A bare-minimum tech setup for quick_start.py can be found [here](https://github.com/niftylab/laygo2/tree/master/laygo2/examples/laygo2_tech).
-A more complete tech setup example for gpdk045 can be found [here](https://github.com/niftylab/laygo2_workspace_gpdk045/tree/master/laygo2_tech_example).
+A more complete tech setup example for **gpdk045** can be found [here](https://github.com/niftylab/laygo2_workspace_gpdk045/tree/master/laygo2_tech_example).
 
 ## Simple gate generation
 

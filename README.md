@@ -4,7 +4,7 @@
 
 (The commit history is cleaned up on 6-27-2022)
 
-The LAYout with Gridded Object 2 (LAYGO2) is a layout generation framework
+The LAYout with Gridded Object 2 (laygo2) is an automated layout generation framework
 for custom integrated circuits. [\[Source code\]](https://github.com/niftylab/laygo2) [\[Documentation\]](https://laygo2.github.io/)
 
 

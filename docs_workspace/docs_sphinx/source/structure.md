@@ -1,10 +1,10 @@
 # laygo2 Structure
 
 laygo2 is composed of the following three sub-packages.
-* **[object package](#object-package)** implements various physical and abstract objects that compose layouts.
-* **[interface package](#interface-package)** handles various interactions between laygo2 and external objects 
+* **[object](#object-package)** package implements various physical and abstract objects that compose layouts.
+* **[interface](#interface-package)** package handles various interactions between laygo2 and external objects 
 (EDA tools, data structures, files).
-* **[util package](#util-package)** contains useful functions for other sub-packages.
+* **[util](#util-package)** package contains useful functions for other sub-packages.
 
 Brief explanations on the sub-packages can be found in the following sections, 
 and check the API reference for details on key classes and functions.
@@ -13,12 +13,12 @@ and check the API reference for details on key classes and functions.
 The object package includes various classes for physical and abstract objects.
 The folowing modules compose the object package:
 
-* **[physical module](#physical-module)** is defining classes for physical objects that compose actual IC layouts.
-* **[template module](#template-module)** describes classes for templates that generate various 
+* **[physical](#physical-module)** module is defining classes for physical objects that compose actual IC layout.
+* **[template](#template-module)** module describes classes for templates that generate various 
 instance objects for target technology and design parameters.
-* **[grid module](#grid-module)** describes grid classes to abstract placement and routing coordinates.
+* **[grid](#grid-module)** module describes grid classes to abstract placement and routing coordinates.
 parameterizations.
-* **[database module](#database-module)** implements classes for design hierarchy management.
+* **[database](#database-module)** module implements classes for design hierarchy management.
 
 The following figure illustrates a UML diagram of the object package.
 ![laygo2 UML diagram](../assets/img/user_guide_uml.png "laygo2.object UML diagram")

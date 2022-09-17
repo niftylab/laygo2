@@ -12,8 +12,6 @@ laygo2 - LAYout with Gridded Objects 2
 
 laygo2 is currently being maintained by the `Nifty Chips Laboratory <https://niftylab.github.io>`_ at Hanyang University, South Korea.
 
-Check the following items for details.
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
