@@ -1,46 +1,46 @@
 # laygo2 Structure
 
-laygo2 is composed of the following sub-packages.
+laygo2 is composed of the following three sub-packages.
 * **[object package](#object-package)** implements various physical and abstract objects that compose layouts.
 * **[interface package](#interface-package)** handles various interactions between laygo2 and external objects 
 (EDA tools, data structures, files).
 * **[util package](#util-package)** contains useful functions for other sub-packages.
 
-The following figure illustrates a UML diagram of laygo2.
-![laygo2 UML diagram](../assets/img/user_guide_uml.png "laygo2 UML diagram")
-
-Introductions to the sub-packages can be found in the following sections, and see the API documentation 
-(to be added) for more detailed explanations.
+Brief explanations on the sub-packages can be found in the following sections, 
+and check the API reference for details on key classes and functions.
 
 ## object package
-The object package includes various classes that are related to various physical and abstract object for 
-layout generation processes and final results. There are various modules that compose the object package:
+The object package includes various classes for physical and abstract objects.
+The folowing modules compose the object package:
 
-* **[physical module](#physical-module)** is about physical objects that compose actual IC layouts.
-* **[template module](#template-module)** describes various classes for templates that generate various 
-instance objects.
-* **[grid module](#grid-module)** includes grid classes that are implemented for process portability and 
+* **[physical module](#physical-module)** is defining classes for physical objects that compose actual IC layouts.
+* **[template module](#template-module)** describes classes for templates that generate various 
+instance objects for target technology and design parameters.
+* **[grid module](#grid-module)** describes grid classes to abstract placement and routing coordinates.
 parameterizations.
-* **[database module](#database-module)** implements the hierarchy of designs for database management.
+* **[database module](#database-module)** implements classes for design hierarchy management.
+
+The following figure illustrates a UML diagram of the object package.
+![laygo2 UML diagram](../assets/img/user_guide_uml.png "laygo2.object UML diagram")
 
 ### physical module
-The physical module consists of classes corresponding to various physical objects for IC layout design.
+The physical module implments classes for physical layout objects.
 Here are the summary of classes in the physical module:
 
-* **[PhysicalObject](#PhysicalObject-class)** is the most basic class for physical objects.
-* **[IterablePhysicalObject](#IterablePhysicalObject-class)**(PhysicalObject) is the most basic class for 
-'iterable' physical objects (e.g. arrays and groups).
+* **[PhysicalObject](#PhysicalObject-class)** is the base class for physical objects.
+* **[IterablePhysicalObject](#IterablePhysicalObject-class)**(PhysicalObject) is the base class for 
+'iterable' physical objects (such as arrays and groups).
 * **[PhysicalObjectGroup](#PhysicalObjectGroup-class)**(IterablePhysicalObject) is a dedicated class for 
-physical object groups (to be implemented).
+groups of physical objects (not implemented yet).
 * **[Rect](#Rect-class)**(PhysucalObject) is for rect objects.
 * **[Path](#Path-class)**(PhysicalObject) is for path objects.
 * **[Pin](#Pin-class)**(IterablePhysicalObject) is for pin objects.
 * **[Text](#Text-class)**(PhysicalObject) is for text objects.
 * **[Instance](#Instance-class)**(IterablePhysicalObject) is for instances.
 * **[VirtualInstance](#VirtualInstance-class)**(IterablePhysicalObject) is for virtual instances 
-(instances that do not exist explict in design hierarachies).
+(a group of objects that acts as a single instance).
 
-The following figure shows various examples of generating physical objects using the classes introduced.
+The following figure illustrates examples of the physical objects from one of the classes.
 
 ![laygo2 physical_objects](../assets/img/user_guide_physical.png "laygo2 physical objects.")
 

@@ -1,23 +1,23 @@
-# laygo2 User Guide
+# laygo2 Overview
+
 
 ## Introduction
-This guide is provided to help the use of LAYGO2, a layout scripting and automatic generation framework.
-LAYGO, the previous version of LAYGO2, is developed as one of layout generation engines in 
-Berkeley Analog Generator2 (BAG2), and LAYGO2 extends the origial LAYGO's functions and capabilities.
-LAYGO2 can be launched either in standalone mode or in combination with BAG2.
 
-**LAYGO2 is aiming to achive the following goals:**
+The LAYout with Gridded Object 2 (laygo2) package is a Python-based layout generation framework with the following goals:
 
-* Automated layout creation.
+* Automation and reuse of layout generation process.
 
-* Parameterized layout generation.
+* Parametrized layout generation.
 
 * Layout automation in advanced technologies such as FinFET.
 
-* Code-based, reuse-centric layout generation. 
+* Code-based layout generation. 
 
+LAYGO, the previous version of laygo2, is orignally developed as one of layout generation engines in 
+Berkeley Analog Generator2 (BAG2), and laygo2 extends the origial LAYGO's functions and capabilities.
+laygo2 can be launched either in standalone mode or in combination with BAG2.
 
-**The major features supported by both LAYGO and LAYGO2 are summarized below:**
+**The major features supported by both LAYGO and laygo2 are summarized below:**
 
 1. **Template and grid-based device placements**: LAYGO enhances the portability and reusability of layout 
 generation process by using abstract grids and instances (templates), without directly dealing with physical 

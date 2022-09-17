@@ -11,7 +11,7 @@ laygo in linux environments.
 
 ## Installation 
 
-There are two ways of installing laygo2 on your environment; 1) cloning from github and 2) running pip.
+There are two ways of installing laygo2 in your environment; 1) cloning from github and 2) using pip.
 
 ### Installing laygo2 from github
 
