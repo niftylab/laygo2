@@ -29,7 +29,8 @@ import numpy as np
 import laygo2.object.template
 import laygo2.object.physical
 import laygo2.object.database
-import laygo2_tech as tech
+# Should be 'import laygo2_tech as tech' for actual use.
+import laygo2_tech_quick_start as tech
 
 
 tech_params = tech.tech_params

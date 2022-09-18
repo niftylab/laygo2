@@ -27,7 +27,7 @@ import pprint
 import laygo2
 import laygo2.interface
 # should be 'import laygo2_tech as tech' for actual use.
-import laygo2_tech_quickstart as tech  
+import laygo2_tech_quick_start as tech  
 
 # Parameter definitions ##############
 # Templates

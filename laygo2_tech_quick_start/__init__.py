@@ -27,7 +27,8 @@
 import yaml
 
 # Technology parameters
-tech_param_path = "laygo2_tech/laygo2_tech.yaml"
+# should be tech_param_path = "laygo2_tech/laygo2_tech.yaml" for actual use
+tech_param_path = "laygo2_tech_quick_start/laygo2_tech.yaml"
 
 with open(tech_param_path, 'r') as stream:
     try:

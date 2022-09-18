@@ -3,7 +3,8 @@
 
 import laygo2.object.database
 import laygo2.object.grid
-import laygo2_tech as tech
+# should be 'import laygo2_tech as tech' for actual use
+import laygo2_tech_quick_start as tech
 
 
 tech_params = tech.tech_params
