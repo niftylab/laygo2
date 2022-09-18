@@ -30,7 +30,7 @@ author = 'niftylab'
 # ones.
 extensions = [
     'sphinx.ext.intersphinx',
-    'sphinx_rtd_theme',
+    #'sphinx_rtd_theme',
     #'sphinxcontrib.napoleon',
     'sphinx.ext.napoleon',
     'sphinx.ext.doctest',
@@ -45,7 +45,7 @@ extensions = [
 intersphinx_mapping = {
   'pockets': ('https://pockets.readthedocs.io/en/latest/', None),
   'python': ('https://docs.python.org/3', None),
-  #'sphinx': ('http://sphinx.readthedocs.io/en/latest/', None),
+  'sphinx': ('http://sphinx.readthedocs.io/en/latest/', None),
   'numpy': ('https://numpy.org/doc/stable', None),
 }
 
@@ -76,6 +76,8 @@ autoclass_content = 'both'
 html_theme ="pydata_sphinx_theme"
 #html_theme ="sphinx_rtd_theme" # 'alabaster'
 #html_theme ="default"
+#html_logo = "https://niftylab.github.io/assets/img/nifty_logo.png"
+html_title = "laygo2"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

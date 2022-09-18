@@ -1,4 +1,4 @@
-laygo2 API Reference
+API Reference
 ========================
 
 The LAYout with Gridded Object 2 (laygo2) package is a Python-based layout generation framework with the following goals:

@@ -1,4 +1,4 @@
-# Setting up laygo2 for a new technology
+# Tech Setup
 
 To set up laygo2 for a new technology, prepare the following files first to be imported in the layout generators for template and grid generations.
 

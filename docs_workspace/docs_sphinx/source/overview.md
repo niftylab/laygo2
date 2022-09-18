@@ -1,4 +1,4 @@
-# laygo2 Overview
+# Overview
 
 
 ## Introduction

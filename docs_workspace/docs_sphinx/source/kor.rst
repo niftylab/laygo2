@@ -1,4 +1,4 @@
-Documentation in Korean
+Korean
 =========================
 
 `[Source Code] <https://www.github.com/niftylab/laygo2>`_

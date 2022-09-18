@@ -1,4 +1,4 @@
-# laygo2 Quick Trial
+# Trial
 
 This document introduces setup procedure and trial example for begineers.
 
