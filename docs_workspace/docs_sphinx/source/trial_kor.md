@@ -2,36 +2,53 @@
 
 이 문서는 laygo2의 활용을 돕는 몇 가지의 간단한 예제들을 포함하고 있다.
 
-* **[빠른 설치 및 환경 설정](#빠른-설치-및-환경-설정)**: laygo2를 리눅스 환경에서 손쉽게 설치하고 환경 설정하는 방법을 설명한다.
-* **[공정 셋업](#공정-셋업)**: laygo2를 새로운 환경에서 셋업하는 방법을 설명한다.
-* **[simple_gates](#simple_gates)**: 간단한 로직 게이트를 laygo2를 사용하여 제작하는 방법을 설명한다.
+## 설치 및 환경 설정
 
-## 빠른 설치 및 환경 설정
+laygo2를 설치하는 방법은 크게 1) github repository에서 clone하는 방법과 2) pip를 이용하여 설치하는 방법이 있다. 현재 빈번한 업데이트가 이루어지고 있기 때문에 방법 1)을 사용하는 것을 권장한다.
 
-Laygo2프로젝트는 코드의 대량 수정이 필요한 초기 개발 단계에 있기 때문에 pip를 이용한 설치를 지원하지 않는다.
-대신 github repository를 clone하는 방법으로 쉽게 laygo2를 다운로드 할 수 있다. 
+### [Github](https://github.com/niftylab/laygo2.git)에서 설치.
+
+아래 명령을 통해 laygo2를 clone 및 설치 가능하다.
 
     >>>> git clone https://github.com/niftylab/laygo2.git
     
-이 경우, 코드를 최신 상태로 유지하기 위하여, 주기적으로 다음 명령어를 이용하여 github에서 최신 코드를 다운로드 하기를 권장한다.
+코드를 최신 상태로 유지하기 위하여, 주기적으로 다음 명령어를 이용하여 github에서 최신 코드를 다운로드 하기를 권장한다.
 
     >>>> git pull origin master
 
-두 번째로, 다음과 같이 PYTHONPATH를 수정하여 laygo2패키지를 참조할 수 있도록 한다. 
-(이 방법은 초보자를 위한 가장 기본적인 예제로, 고급 사용자는 venv나 docker등의 가상환경을 사용하기를 권장한다.)
+또한, 다음과 같이 PYTHONPATH를 수정하여 laygo2패키지를 참조할 수 있도록 한다.
 
     # (csh/tcsh example) add the following command to your .cshrc
-    setenv PYTHONPATH ${PYTHONPATH}:[LAYGO2_INSTALLATION_DIR]/laygo2
+    setenv PYTHONPATH ${PYTHONPATH}:[LAYGO2_INSTALLATION_PATH]/laygo2
+
+ 이는 python script/console에서 sys.path.append('\[LAYGO_INSTALLATION_PATH\]/laygo2')를 수행한 것과 동일하며, IPython의 경우 .ipython/profile_default/ipython_config.py에서 path를 설정할 수도 있다 [참고1](https://github.com/niftylab/gpdk045/blob/master/workspace_setup/ipython_config.py), [참고2](https://github.com/niftylab/bag_workspace_gpdk045/blob/master/bag_startup.py). 
+
+### [Pypi](https://pypi.org/project/laygo2)에서 설치.
+
+다음 pip명령을 laygo2를 설치할 수도 있다.
+
+    >>>> pip install laygo2
 
 ## 공정 셋업
 
-추가 예정
+새로운 공정을 위해 laygo2를 셋업하기 위해서는, 다음 3개의 파일들이 **laygo2_tech**폴더 안에 준비되어야 한다.
+
+    laygo2_tech_templayes.py  # for templates
+    laygo2_tech_grids.py      # for grids
+    laygo2_tech.yaml          # for technology parameters
+
+또한, 템플릿을 구성하는 방식에 따라, microtemplate library를 제작할 필요가 있을 수 있다. 
+아래 quick_start.py 예제를 위한 가장 기초적인 공정 셋업은 [여기](https://github.com/niftylab/laygo2/tree/master/laygo2/examples/laygo2_tech)에서 찾을 수 있다.
+좀 더 완성된 형태의 셋업이 **gpdk045** 공정을 위해 준비되어 있으며 [여기](https://github.com/niftylab/laygo2_workspace_gpdk045/tree/master/laygo2_tech_example)에서 찾을 수 있다.
 
 ## simple_gates
 
-다음 커맨드를 실행함으로서 NAND gate의 레이아웃을 생성할 수 있다.
+다음 커맨드를 실행함으로서 간단한 NAND gate의 레이아웃을 생성할 수 있다.
 
-    >>>> run ./laygo2/examples/nand_generate.py
+    (after git clone)
+    >>>> cd laygo2 
+    >>>> python -m quick_start.py
+    (or you can run ipython and type run 'quick_start.py' instead)
     
 위 스크립트를 실행하여 생성된 NAND gate의 레이아웃은 다음과 같다.
 

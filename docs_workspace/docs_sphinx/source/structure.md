@@ -84,6 +84,42 @@ The grid module implements the following classes.
 * **[PlacementGrid](https://laygo2.github.io/laygo2.object.grid.PlacementGrid.html)**(Grid): a 2-dimensional grid class for instance placement.
 * **[RoutingGrid](https://laygo2.github.io/laygo2.object.grid.RoutingGrid.html)**(Grid): a 2-dimensional grid class for wire routing.
 
+
+#### CircularMapping class
+CircularMapping class implements basic circular mappings (their indices extend to the entire axis with cyclic mapping).
+The following code block shows several examples of using CircularMapping objects.
+
+    >>> map = CircularMapping(elements=[100, 200, 300])
+    >>> print(map[0])
+    100
+    >>> print(map[2])
+    300
+    >>> print(map[4])
+    200
+    >>> print(map[-3])
+    100
+    >>> print(map[[2, 3, -2])
+    [300, 100, 200]
+    >>> print(map[2:7])
+    [300, 100, 200, 300, 100]
+    
+
+#### _AbsToPhyGridConverter class
+_AbsToPhyGridConverter is an internal class that converts abstract coordinates to physical coordinates. 
+It also supports reverse conversions (physical-to-abstract) with comparison operators 
+(which requires its pair converter class, _PhyToAbsGridConverter defined in its master grid object).
+
+![laygo2 abs2phy](../assets/img/user_guide_abs2phy.png "Abstract-to-Physical Grid Converter.")
+
+
+#### _PhyToAbsGridConverter class
+_PhyToAbsGridConverter is an internal class that converts physical coordinates to abstract coordinates.
+It also supports reverse conversions (abstract-to-physical) with comparison operators
+(which requires its pair converter class, _AbsToPhyGridConverter defined in its master grid object).
+
+![laygo2 phy2abs](../assets/img/user_guide_phy2abs.png "Physical-to-Abstract Grid Converter.")
+
+
 #### Grid class
 Grid class implements an abstract coordinate that is mapped to a 2-dimensional physical coordinate system.
 

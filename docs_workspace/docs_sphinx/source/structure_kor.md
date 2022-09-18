@@ -1,45 +1,45 @@
 # Laygo2의 구조
 
 laygo2는 다음과 같은 패키지들로 구성되어 있다.
-* **[object 패키지](#object-패키지)**: laygo2를 구성하는 다양한 물리적 추상적 개체들을 구현하는 모들.
+* **[object 패키지](#object-패키지)**: laygo2를 구성하는 다양한 물리적 추상적 개체들을 구현하는 모들 ([API ref](https://laygo2.github.io/laygo2.object.html)).
 * **[interface 패키지](#interface-패키지)**: laygo2와 외부(EDA tools, data structures, files)와의 상호작용 개체 및 
-함수들에 관한 패키지.
-* **[util 패키지](#util-패키지)**: 다른 패키지들에서 사용되는 유용한 함수들을 모아놓은 패키지.
+함수들에 관한 패키지 ([API ref](https://laygo2.github.io/laygo2.interface.html)).
+* **[util 패키지](#util-패키지)**: 다른 패키지들에서 사용되는 유용한 함수들을 모아놓은 패키지 ([API ref](https://laygo2.github.io/laygo2.util.html)).
 
-laygo2의 UML diagram이 다음 그림에 나타나 있다.
-![laygo2 UML diagram](../assets/img/user_guide_uml.png "laygo2 UML diagram")
-
-각각의 패키지들에 대한 설명은 아래에 기술되어 있으며, 각 함수 및 클래스, 클래스 변수, 클래스 메소드에 대한 상세한 설명은
-API-documentation(예정)을 참조. 
+각각의 패키지들에 대한 설명은 아래에 기술되어 있으며, 각 함수 및 클래스, 클래스 변수, 클래스 메소드에 대한 상세한 설명은 상단 메뉴의
+[**API reference**](https://laygo2.github.io/laygo2.html)를 참조. 
 
 ## object 패키지
 laygo2의 레이아웃 생성 과정 및 결과물에 관여하는 다양한 물리적(physical), 추상적(abstract) 개체들을 
 구현한 클래스들을 포함한다. Object 패키지을 구성하는 모듈들의 종류는 다음과 같다.
 
-* **[physical 모듈](#physical-모듈)**: 레이아웃을 구성하는 물리 개체들에 관한 패키지.
+* **[physical 모듈](#physical-모듈)**: 레이아웃을 구성하는 물리 개체들에 관한 패키지 ([API ref](https://laygo2.github.io/laygo2.object.physical.html)).
 * **[template 모듈](#template-모듈)**: 레이아웃 인스턴스를 생성하는 다양한 종류의 템플릿을 기술하는 클래스들을 
-포함한다.
+포함한다 ([API ref](https://laygo2.github.io/laygo2.object.template.html)).
 * **[grid 모듈](#grid-모듈)**: 공정 포팅 및 파라미터화가 용이한 레이아웃 생성을 위하여 도입된 추상화된 격자들을 
-기술하는 클래스들을 포함한다.
+기술하는 클래스들을 포함한다 ([API ref](https://laygo2.github.io/laygo2.object.grid.html)).
 * **[database 모듈](#database-모듈)**: 생성된 레이아웃 디자인의 계층구조를 담는 라이브러리 및 디자인 클래스들을 
-포함한다.
+포함한다 ([API ref](https://laygo2.github.io/laygo2.object.database.html)).
+
+laygo2.object package의 UML diagram이 다음 그림에 나타나 있다.
+![laygo2 UML diagram](../assets/img/user_guide_uml.png "laygo2 UML diagram")
 
 
 ### physical 모듈
 physical 모듈은 레이아웃을 구성하는 다양한 물리 개체들을 기술하는 다음과 같은 클래스들로 구성된 모듈이다.
 이 모듈은 다음과 같은 클래스들을 구현한다.
 
-* **[PhysicalObject](#PhysicalObject-클래스)**: 물리 개체들의 기본 클래스.
+* **[PhysicalObject](#PhysicalObject-클래스)**(object): 물리 개체들의 기본 클래스 ([API ref](https://laygo2.github.io/laygo2.object.physical.PhysicalObject.html#)).
 * **[IterablePhysicalObject](#IterablePhysicalObject-클래스)**(PhysicalObject): 
-물리 개체들 중 iterable 연산이 가능한 개체들의 기본 클래스.
+물리 개체들 중 iterable 연산이 가능한 개체들의 기본 클래스 ([API ref](https://laygo2.github.io/laygo2.object.physical.IterablePhysicalObject.html)).
 * **[PhysicalObjectGroup](#PhysicalObjectGroup-클래스)**(IterablePhysicalObject): 
-(예정) 물리 개체들의 그룹을 위한 클래스.
-* **[Rect](#Rect-클래스)**(PhysucalObject): 사각형 개체 클래스.
-* **[Path](#Path-클래스)**(PhysicalObject): Path 개체 클래스.
-* **[Pin](#Pin-클래스)**(IterablePhysicalObject): Pin 개체 클래스.
-* **[Text](#Text-클래스)**(PhysicalObject): Text 개체 클래스.
-* **[Instance](#Instance-클래스)**(IterablePhysicalObject): Instance 개체 클래스.
-* **[VirtualInstance](#VirtualInstance-클래스)**(IterablePhysicalObject): Instance 개체 클래스.
+(예정) 물리 개체들의 그룹을 위한 클래스 ([API ref](https://laygo2.github.io/laygo2.object.physical.PhysicalObjectGroup.html)).
+* **[Rect](#Rect-클래스)**(PhysucalObject): 사각형 개체 클래스 ([API ref](https://laygo2.github.io/laygo2.object.physical.Rect.html)).
+* **[Path](#Path-클래스)**(PhysicalObject): Path 개체 클래스 ([API ref](https://laygo2.github.io/laygo2.object.physical.Path.html)).
+* **[Pin](#Pin-클래스)**(IterablePhysicalObject): Pin 개체 클래스 ([API ref](https://laygo2.github.io/laygo2.object.physical.Pin.html)).
+* **[Text](#Text-클래스)**(PhysicalObject): Text 개체 클래스 ([API ref](https://laygo2.github.io/laygo2.object.physical.Text.html)).
+* **[Instance](#Instance-클래스)**(IterablePhysicalObject): Instance 개체 클래스 ([API ref](https://laygo2.github.io/laygo2.object.physical.Instance.html)).
+* **[VirtualInstance](#VirtualInstance-클래스)**(IterablePhysicalObject): Instance 개체 클래스 ([API ref](https://laygo2.github.io/laygo2.object.physical.VirtualInstance.html)).
 
 Physical 모듈에 속한 다양한 개체들을 생성한 예시들이 아래 그림에 나타나 있다.
 
@@ -58,7 +58,7 @@ PhysicalObject 클래스는 물리 개체들의 기본적인 동작을 구현하
     * **left, right, top, bottom, center, bottom_left, bottom_right, top_left, top_right**: *numpy.ndarray(np.int)*, 
 개체와 관련된 주요 좌표들 (pointers의 일부).
 
-![주요 포인터 위치들](../assets/img/user_guide_pointers.png "laygo2 p.")
+    ![주요 포인터 위치들](../assets/img/user_guide_pointers.png "laygo2 p.")
 
 * **주요 메소드**
     * **\_\_init\_\_(xy, name, params=None)**: 생성자.
@@ -237,16 +237,16 @@ VirtualInstance 클래스는 복수 개의 물리 개체로 구성된 하나의 
 
 
 ### template 모듈
-template 모듈은 인스턴스 및 가상 인스턴스를 추상화하는 템플릿 클래스들로 구성된 모듈이다.
+template 모듈은 인스턴스 및 가상 인스턴스를 추상화하는 템플릿 클래스들로 구성된 모듈이다 ([API ref](https://laygo2.github.io/laygo2.object.template.html)).
 이 모듈은 다음과 같은 클래스들을 구현한다.
 
-* **[Template](#Template-클래스)**: 기본 템플릿 클래스.
-* **[NativeInstanceTemplate](#NativeInstanceTemplate-클래스)**(Template): 
-기본 Instance 개체를 생성하는 템플릿 클래스.
-* **[ParameterizedInstanceTemplate](#ParameterizedInstanceTemplate-클래스)**(Template): 
-사용자 정의된 bbox function을 활용하여 Parameterized Instance 개체를 생성하는 템플릿 클래스.
-* **[UserDefinedTemplate](#UserDefinedTemplate-클래스)**(Template): 
-사용자 정의된 bbox / pins / generate function들을 활용하여 VirtualInstance 개체를 생성하는 템플릿 클래스.
+* **[Template](https://laygo2.github.io/laygo2.object.template.Template.html)**: 기본 템플릿 클래스 ([API ref](https://laygo2.github.io/laygo2.object.template.Template.html)).
+* **[NativeInstanceTemplate](https://laygo2.github.io/laygo2.object.template.NativeInstanceTemplate.html)**(Template): 
+기본 Instance 개체를 생성하는 템플릿 클래스 ([API ref](https://laygo2.github.io/laygo2.object.template.NativeInstanceTemplate.html)).
+* **[ParameterizedInstanceTemplate](https://laygo2.github.io/laygo2.object.template.ParameterizedInstanceTemplate.html)**(Template): 
+사용자 정의된 bbox function을 활용하여 Parameterized Instance 개체를 생성하는 템플릿 클래스 ([API ref](https://laygo2.github.io/laygo2.object.template.ParameterizedInstanceTemplate.html)).
+* **[UserDefinedTemplate](https://laygo2.github.io/laygo2.object.template.UserDefinedTemplate.html)**(Template): 
+사용자 정의된 bbox / pins / generate function들을 활용하여 VirtualInstance 개체를 생성하는 템플릿 클래스 ([API ref](https://laygo2.github.io/laygo2.object.template.UserDefinedTemplate.html)).
 
 #### Template 클래스
 Template 클래스는 기본적인 템플릿 기능을 구현하며, 다음과 같은 주요 속성과 메소드들을 내포한다.
@@ -321,14 +321,14 @@ laygo2는 공정 및 소자 파라미터에 영향을 받지 않는 추상 좌�
 
 Grid 모듈은 다음과 같은 클래스들을 구현한다.
 
-* **[CircularMapping](#CircularMapping-클래스)**: 기본 순환 맵핑 클래스.
-* **[CircularMappingArray](#CircularMappingArray-클래스)**(CircularMapping): 다차원 순환 맵핑 클래스.
-* **[_AbsToPhyGridConverter](#_AbsToPhyGridConverter-클래스)**: 내부 추상-물리 좌표 변환기 클래스.
-* **[_PhyToAbsGridConverter](#_PhyToAbsGridConverter-클래스)**: 내부 물리-추장 좌표 변환기 클래스.
-* **[OneDimGrid](#OneDimGrid-클래스)**(CircularMapping): 1차원 격자 클래스.
-* **[Grid](#Grid-클래스)**: 2차원 격자 클래스.
-* **[PlacementGrid](#PlacementGrid-클래스)**(Grid): 인스턴스 배치용 2차원 격자 클래스.
-* **[RoutingGrid](#RoutingGrid-클래스)**(Grid): 배선 라우팅용 2차원 격자 클래스.
+* **[CircularMapping](#CircularMapping-클래스)**: 기본 순환 맵핑 클래스 ([API ref](https://laygo2.github.io/laygo2.object.grid.CircularMapping.html)).
+* **[CircularMappingArray](#CircularMappingArray-클래스)**(CircularMapping): 다차원 순환 맵핑 클래스 ([API ref](https://laygo2.github.io/laygo2.object.grid.CircularMappingArray.html)).
+* **[_AbsToPhyGridConverter](#_AbsToPhyGridConverter-클래스)**: 내부 추상-물리 좌표 변환기 클래스 ([API ref](https://laygo2.github.io/laygo2.object.grid._AbsToPhyGridConverter.html)).
+* **[_PhyToAbsGridConverter](#_PhyToAbsGridConverter-클래스)**: 내부 물리-추장 좌표 변환기 클래스 ([API ref](https://laygo2.github.io/laygo2.object.grid._PhyToAbsGridConverter.html#)).
+* **[OneDimGrid](#OneDimGrid-클래스)**(CircularMapping): 1차원 격자 클래스 ([API ref](https://laygo2.github.io/laygo2.object.grid.OneDimGrid.html#)).
+* **[Grid](#Grid-클래스)**: 2차원 격자 클래스 ([API ref](https://laygo2.github.io/laygo2.object.grid.Grid.html)).
+* **[PlacementGrid](#PlacementGrid-클래스)**(Grid): 인스턴스 배치용 2차원 격자 클래스 ([API ref](https://laygo2.github.io/laygo2.object.grid.PlacementGrid.html)).
+* **[RoutingGrid](#RoutingGrid-클래스)**(Grid): 배선 라우팅용 2차원 격자 클래스 ([API ref](https://laygo2.github.io/laygo2.object.grid.RoutingGrid.html)).
 
 #### CircularMapping 클래스
 CircularMapping 클래스는 기본적인 순환 맵핑 (인덱싱 넘버가 순환하며 무한히 확장)을 구현한다.
@@ -574,12 +574,12 @@ RoutingGrid 클래스는 Routing Wire/Via들의 배치를 위한 격자 그리�
 
 
 ### database 모둘
-database 모듈은 디자인과 라이브러리를 관리하는 계층 구조형 데이터베이스를 구현하는 클래스들로 구성된 모듈이다.
+database 모듈은 디자인과 라이브러리를 관리하는 계층 구조형 데이터베이스를 구현하는 클래스들로 구성된 모듈이다 ([API ref](https://laygo2.github.io/laygo2.object.database.html)).
 database 모듈은 다음과 같은 클래스들을 구현한다.
 
-* **[BaseDatabase](#BaseDatabase-클래스)**: 기본 데이터베이스 관리 클래스.
-* **[Library](#Library-클래스)**(BaseDatabase): 라이브러리 관리 클래스.
-* **[Design](#Design-클래스)**(BaseDatabase): 디자인 관리 클래스.
+* **[BaseDatabase](#BaseDatabase-클래스)**: 기본 데이터베이스 관리 클래스 ([API ref](https://laygo2.github.io/laygo2.object.database.BaseDatabase.html)).
+* **[Library](#Library-클래스)**(BaseDatabase): 라이브러리 관리 클래스 ([API ref](https://laygo2.github.io/laygo2.object.database.Library.html)).
+* **[Design](#Design-클래스)**(BaseDatabase): 디자인 관리 클래스 ([API ref](https://laygo2.github.io/laygo2.object.database.Design.html)).
 
 #### BaseDatabase 클래스
 BaseDatabase 클래스는 기본적인 데이터베이스 관리 기능을 구현하며,
@@ -663,8 +663,6 @@ interface 패키지는 아래 그림과 같이 laygo2와 외부 EDA 및 데이�
 laygo2 디자인들을 입출력하는 함수들을 포함한다.
 
 
-
-
 ## util 패키지
-좌표 변환 및 변형 등 다른 패키지에서 유용하게 사용되는 기능들을 구현한 함수들을 포함한다.
+좌표 변환 및 변형 등 다른 패키지에서 유용하게 사용되는 기능들을 구현한 함수들을 포함한다 ([API ref](https://laygo2.github.io/laygo2.util.html)).
 

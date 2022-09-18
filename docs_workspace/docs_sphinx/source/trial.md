@@ -27,7 +27,7 @@ It is highly recommended that the following command is used periodically to main
 After that, update the PHTHONPATH environment variable to point out the laygo2 package path for importing.
 
     # (csh/tcsh example) add the following command to your .cshrc
-    setenv PYTHONPATH ${PYTHONPATH}:[LAYGO2_INSTALLATION_DIR]/laygo2
+    setenv PYTHONPATH ${PYTHONPATH}:[LAYGO2_INSTALLATION_PATH]/laygo2
 
 ### Installing laygo2 from [Pypi](https://pypi.org/project/laygo2) 
 
@@ -35,9 +35,9 @@ Instead of cloning github repository, laygo2 package can be installed by running
 
     >>>> pip install laygo2
 
-## Technology setup for laygo2
+## Technology setup
 
-Users need to set up the following files in laygo_tech.py to enable laygo2 for a new technology:
+Users need to set up the following files in the **laygo_tech** directory to enable laygo2 for a new technology:
 
     laygo2_tech_templayes.py  # for templates
     laygo2_tech_grids.py      # for grids

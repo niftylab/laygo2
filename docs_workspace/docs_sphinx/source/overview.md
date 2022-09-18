@@ -13,13 +13,13 @@
 
 * Code-based layout generation. 
 
-**LAYGO**, the previous version of laygo2, is orignally developed as one of layout generation engines in 
+**[LAYGO](https://ieeexplore.ieee.org/document/9314047)**, the previous version of laygo2, is orignally developed as one of layout generation engines in 
 **Berkeley Analog Generator2 (BAG2)**, and laygo2 extends the origial LAYGO's functions and capabilities.
 laygo2 can be launched either in standalone mode or in combination with BAG2.
 
 **The major features supported by both LAYGO and laygo2 are summarized below:**
 
-1. **Template and grid-based device placements**: LAYGO/laygo2 enhances the portability and reusability of layout 
+1. **Template and grid-based device placements**: Both LAYGO and laygo2 enhance the portability and reusability of layout 
 generation process by using abstract grids and instances (templates), without directly dealing with physical 
 instances and coordinates.
 1. **Instance placements based on relative information**: The process portability is maximized by enhancing 
