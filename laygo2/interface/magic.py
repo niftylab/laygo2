@@ -153,7 +153,8 @@ def _translate_obj(libpath, objname, obj, scale=1, master=None, offset=np.array(
 
     return ""
 
-def export(db, filename=None, cellname=None, libpath=None, scale=1, reset_library=False, tech_library=None):
+def export(db, filename=None, cellname=None, libpath=None, scale=1, 
+           reset_library=False, tech_library=None, gds_filename=None):
     """
     Export design(s) to magic's tcl code.
 
@@ -171,6 +172,8 @@ def export(db, filename=None, cellname=None, libpath=None, scale=1, reset_librar
         If True, the library to export the cells is reset.
     tech_library: str, optional
         The name of technology library to be attached to the resetted library.
+    gds_filename: str, optional
+        If specified, export a gds file with the filename provided.
 
     Returns
     -------
@@ -187,19 +190,20 @@ def export(db, filename=None, cellname=None, libpath=None, scale=1, reset_librar
 
     cellname = db.keys() if cellname is None else cellname  # export all cells if cellname is not given.
     cellname = [cellname] if isinstance(cellname, str) else cellname  # convert to a list for iteration.
-    # if reset_library:
-    #     cmd += "_laygo2_reset_library(\"%s\" \"%s\")\n" % (db.name, tech_library)
+    # if reset_library: (not implemented)
     for cn in cellname:
         cmd += "\n# exporting %s__%s\n" % (db.name, cn)  # open the design.
         logging.debug('Export_to_MAGIC: Cellname:' + cn)
-    #    cmd += "let( (cv) \n"  # limit the scope of cv
         cmd += "_laygo2_create_layout %s %s %s\n" % ((libpath+'/'+db.name), (db.name+'_'+cn), tech_library)  # open the design, /WORK/magc_layout -> temp libpath
         # export objects
         for objname, obj in db[cn].items():
             cmd += _translate_obj(libpath, objname, obj, scale=scale)
         cmd += "save\n"
-    #    cmd += "_laygo2_save_and_close_layout(cv)\n"  # close the layout
-    #    cmd += ");let\n"
+    
+    # gds export
+    if gds_filename is not None:
+        cmd += "gds write "+gds_filename+"\n"
+
     if filename is not None:  # export to a file.
         with open(filename, "w") as f:
             f.write(cmd)
