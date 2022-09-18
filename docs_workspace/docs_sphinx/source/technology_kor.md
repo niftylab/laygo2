@@ -3,7 +3,7 @@
 신규 공정에서 Laygo2를 설치하기 위해서는, 해당 공정에 대한 다음 파일들을 작업 경로 내의 laygo2_tech내에 패키지의 형태로 준비하여, 
 레이아웃 생성 스크립트들이 관련 Paython module들(template, grid)를 import할 수 있도록 한다.
 
-* ***__init__.py***: 패키지 정의 파일
+* ***\_\_init\_\_.py***: 패키지 정의 파일
 * **laygo2_tech_templates.py**: Template 정의 파이썬 코드
 * **laygo2_tech_grids.py**: Grid 정의 파이썬 코드
 * **laygo2_tech.yaml**: (_template.py, _grid.py파일들에 의하여 사용될 수 있는) 공정 관련 파라미터들
@@ -14,7 +14,7 @@ Laygo2의 공정 패키지 셋업 예제는 [여기](https://github.com/niftylab
 
 공정 패키지를 구성하는 각각의 파일들에 대한 설명은 아래에 기술되어 있다.
 
-## __init__.py
+## \_\_init\_\_.py
 
 패키지 import 시 load_templates / load_grids 함수들에 접근할 수 있도록 하는 선언문이 들어 있다.
 

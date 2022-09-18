@@ -3,7 +3,7 @@ Documentation in Korean
 
 `[Source Code] <https://www.github.com/niftylab/laygo2>`_
 
-**LAYout with Gridded Object 2 (laygo2)** 는 회로 레이아웃 자동화를 위해
+LAYout with Gridded Object 2 (laygo2) 는 회로 레이아웃 자동화를 위해
  개발된 패키지이다.
 
 laygo2는 현재 
