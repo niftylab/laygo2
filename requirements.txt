@@ -6,5 +6,3 @@ myst-parser
 pydata-sphinx-theme
 sphinx-rtd-theme
 autoclasstoc
-gdstk
-cairosvg
