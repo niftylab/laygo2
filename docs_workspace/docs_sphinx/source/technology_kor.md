@@ -10,7 +10,7 @@
 * **laygo2_tech.layermap**: (optional) 공정 PDK에 의해 정의된 레이아웃 레이어 정보
 * **laygo2_tech.lyp**: (optional) KLayout용 레이어 디스플레이 정보
 
-Laygo2의 공정 패키지 셋업 예제는 [여기]([../../examples/technology_example](https://github.com/niftylab/laygo2/tree/master/laygo2/examples/laygo2_tech))에서 찾을 수 있다.
+Laygo2의 공정 패키지 셋업 예제는 [여기](https://github.com/niftylab/laygo2/tree/master/laygo2/examples/laygo2_tech)에서 찾을 수 있다.
 
 공정 패키지를 구성하는 각각의 파일들에 대한 설명은 아래에 기술되어 있다.
 
