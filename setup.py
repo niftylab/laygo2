@@ -19,7 +19,7 @@ with open('LICENSE') as f:
 
 setup(
     name='laygo2',
-    version='0.1.9',
+    version='0.2.0',
     author='Jaeduk Han',
     description='LAYout with Gridded Object 2 - A Python Package for Scripted IC Layout Generation Flow',
     long_description=readme,
