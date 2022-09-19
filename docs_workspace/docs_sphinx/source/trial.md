@@ -9,6 +9,11 @@ laygo in linux environments.
 * **[simple-gates](#Simple-Gates)**: introduces layout generators for simple logic gates.
 -->
 
+## Colab tutorial
+
+The easiest way of exercising laygo2 without installing it locally is using Colab; 
+the example tutorial can be found [here](https://colab.research.google.com/drive/1tpuUvqb6BujzZI6RBf2cFdAfMqBsxpep?usp=sharing).
+
 ## Installation 
 
 There are two ways of installing laygo2 in your environment; 1) cloning from github and 2) using pip.

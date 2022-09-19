@@ -7,6 +7,7 @@ laygo2 - LAYout with Gridded Objects 2
 =======================================
 
 `[Source Code] <https://www.github.com/niftylab/laygo2>`_
+`[Colab Tutorial] <https://colab.research.google.com/drive/1tpuUvqb6BujzZI6RBf2cFdAfMqBsxpep?usp=sharing>`_
 
 The **LAYout with Gridded Object 2 (laygo2)** package is a Python 
 package for automatic IC layout generation.
