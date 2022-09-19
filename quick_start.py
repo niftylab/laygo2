@@ -127,19 +127,22 @@ print(dsn)
 
 # 7. Export to physical database.
 print("Export design")
-abstract = False  # export abstract
-laygo2.interface.gds.export(lib, filename=libname+'_'+cellname+'.gds', cellname=None, scale=1e-9,
-                            layermapfile="./quick_start_tech/technology_example.layermap", physical_unit=1e-9, logical_unit=0.001,
-                            pin_label_height=0.1, pin_annotate_layer=['text', 'drawing'], text_height=0.1,
-                            abstract_instances=abstract)
+#abstract = False  # export abstract
+filename = libname + '_' + cellname
+laygo2.interface.gdspy.export(lib, filename=filename+'.gds', cellname=None, scale=1e-9,
+                            layermapfile="./laygo2_tech_quick_start/laygo2_tech.layermap", physical_unit=1e-9, logical_unit=0.001,
+                            pin_label_height=0.1, svg_filename=filename+'.svg', png_filename=filename+'.png')
+                            # pin_annotation_layer=['text', 'drawing'], text_height=0.1,abstract_instances=abstract)
 skill_str = laygo2.interface.skill.export(lib, filename=libname+'_'+cellname+'.il', cellname=None, scale=1e-3)
 print(skill_str)
 
 # 7-a. Import the GDS file back and display
-with open(libname+'_'+cellname+'.gds', 'rb') as stream:
-    pprint.pprint(laygo2.interface.gds.readout(stream, scale=1e-9))
+#with open(libname+'_'+cellname+'.gds', 'rb') as stream:
+#    pprint.pprint(laygo2.interface.gds.readout(stream, scale=1e-9))
 
-# 8. Export to a template database file.
+# 8. Export to a template database file.#nat_temp = dsn.export_to_template()
 nat_temp = dsn.export_to_template()
 laygo2.interface.yaml.export_template(nat_temp, filename=libname+'_templates.yaml', mode='append')
+
+
 

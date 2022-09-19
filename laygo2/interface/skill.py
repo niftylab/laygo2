@@ -120,7 +120,7 @@ def _py2skill_inst_params(value_dict):
 
 def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0])):
     """
-    Convert an object to corresponding scale commands.
+    Convert an object to corresponding skill commands.
     offset : np.array([int, int])
         Offsets to obj.xy
     """

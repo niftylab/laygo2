@@ -25,9 +25,10 @@
 """laygo2 interface package implements all interfaces to external data structure and tools (yaml, gds, skill, skillbridge, bag)."""
 
 from laygo2.interface import *
-import laygo2.interface.gds
-import laygo2.interface.skill
-import laygo2.interface.bag
-import laygo2.interface.skillbridge
-import laygo2.interface.yaml
-import laygo2.interface.magic
+import laygo2.interface.gds         # gds (to be deprecated)
+import laygo2.interface.gdspy       # gdspy
+import laygo2.interface.skill       # Cadence skill
+import laygo2.interface.bag         # Berkeley Analog Generator
+import laygo2.interface.skillbridge # Uni. Heidelberg's skillbridge
+import laygo2.interface.yaml        # Pyyaml
+import laygo2.interface.magic       # Magic's tcl
