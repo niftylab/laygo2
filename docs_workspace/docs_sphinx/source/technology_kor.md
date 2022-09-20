@@ -1,6 +1,6 @@
-# 신규 공정에서의 Laygo2 셋업
+# 신규 공정에서의 laygo2 셋업
 
-신규 공정에서 Laygo2를 설치하기 위해서는, 해당 공정에 대한 다음 파일들을 작업 경로 내의 laygo2_tech내에 패키지의 형태로 준비하여, 
+신규 공정에서 laygo2를 설치하기 위해서는, 해당 공정에 대한 다음 파일들을 작업 경로 내의 laygo2_tech내에 패키지의 형태로 준비하여, 
 레이아웃 생성 스크립트들이 관련 Paython module들(template, grid)를 import할 수 있도록 한다.
 
 * ***\_\_init\_\_.py***: 패키지 정의 파일
@@ -10,7 +10,7 @@
 * **laygo2_tech.layermap**: (optional) 공정 PDK에 의해 정의된 레이아웃 레이어 정보
 * **laygo2_tech.lyp**: (optional) KLayout용 레이어 디스플레이 정보
 
-Laygo2의 공정 패키지 셋업 예제는 [여기](https://github.com/niftylab/laygo2/tree/master/laygo2/examples/laygo2_tech)에서 찾을 수 있다.
+laygo2의 공정 패키지 셋업 예제는 [여기](https://github.com/niftylab/laygo2/tree/master/laygo2/examples/laygo2_tech)에서 찾을 수 있다.
 
 공정 패키지를 구성하는 각각의 파일들에 대한 설명은 아래에 기술되어 있다.
 

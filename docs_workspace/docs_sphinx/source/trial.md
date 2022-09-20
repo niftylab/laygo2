@@ -63,3 +63,11 @@ Running the following command will generate a NAND gate layout.
 The resulting layout of the NAND gate is shown in the figure below:
 
 ![laygo2 nand gate](../assets/img/user_guide_nandgate.png "laygo2 NAND gate layout")
+
+## Trial in SKY130 technology
+
+An example tutorial of laygo2 in SkyWater [SKY130](https://skywater-pdk.readthedocs.io/en/main/)
+ technology can be found in this [link](https://laygo2-sky130-docs.readthedocs.io/en/latest/).
+
+
+

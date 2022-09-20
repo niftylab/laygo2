@@ -1,4 +1,4 @@
-# Laygo2 사용자 안내서 
+# laygo2 사용자 안내서 
 
 ## 서론
 
@@ -23,7 +23,7 @@ coordinates) 직접 사용하지 않고, 템플릿 형태로 추상화 된 인�
 구현함으로서, 배선 작업의 공정 이식성을 향상하였다.                                                                                         
 
 
-**기존 Laygo와 비교하여 Laygo2가 갖는 장점은 다음과 같다.**
+**기존 laygo와 비교하여 laygo2가 갖는 장점은 다음과 같다.**
 1. **객체 지향 요소의 강화**: 구성 요소 및 기능들을 독립 모듈들로 구현하여, 이식성과 재사용성을 증대하고, 
 객체 지향 프로그래밍 기법을 활용하여 레이아웃 생성 과정을 효과적으로 기술할 수 있도록 하였다.
 일례로, Physical 모듈의 클래스들은 다른 모듈들과 독립적으로 사용이 가능하며, Template 클래스들은 
@@ -75,7 +75,7 @@ laygo2를 구성하는 패키지 및 모듈들의 구조가 [이 문서](structu
    
    참고 링크: [interface.yaml.export_template()](https://laygo2.github.io/laygo2.interface.html#laygo2.interface.yaml.export_template)
 
-## 신규 공정에서의 Laygo2 설치
+## 신규 공정에서의 laygo2 설치
 신규 공정에서 laygo2를 셋업하는 방법이 [이 문서](technology_kor.md)에 서술되어 있다.
 
 ## 주요 기여자들

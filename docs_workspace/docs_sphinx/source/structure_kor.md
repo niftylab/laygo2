@@ -1,4 +1,4 @@
-# Laygo2의 구조
+# laygo2의 구조
 
 laygo2는 다음과 같은 패키지들로 구성되어 있다.
 * **[object 패키지](#object-패키지)**: laygo2를 구성하는 다양한 물리적 추상적 개체들을 구현하는 모들 ([API ref](https://laygo2.github.io/laygo2.object.html)).

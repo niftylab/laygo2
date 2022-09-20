@@ -2,6 +2,12 @@
 
 이 문서는 laygo2의 활용을 돕는 몇 가지의 간단한 예제들을 포함하고 있다.
 
+## Colab tutorial
+
+The easiest way of exercising laygo2 without installing it locally is using Colab; 
+the example tutorial can be found [here](https://colab.research.google.com/drive/1tpuUvqb6BujzZI6RBf2cFdAfMqBsxpep?usp=sharing).
+
+
 ## 설치 및 환경 설정
 
 laygo2를 설치하는 방법은 크게 1) github repository에서 clone하는 방법과 2) pip를 이용하여 설치하는 방법이 있다. 현재 빈번한 업데이트가 이루어지고 있기 때문에 방법 1)을 사용하는 것을 권장한다.
@@ -53,3 +59,11 @@ laygo2를 설치하는 방법은 크게 1) github repository에서 clone하는 �
 위 스크립트를 실행하여 생성된 NAND gate의 레이아웃은 다음과 같다.
 
 ![laygo2 nand gate](../assets/img/user_guide_nandgate.png "laygo2 NAND gate layout")
+
+## Trial in SKY130 technology
+
+An example tutorial of laygo2 in SkyWater [SKY130](https://skywater-pdk.readthedocs.io/en/main/)
+ technology can be found in this [link](https://laygo2-sky130-docs.readthedocs.io/en/latest/).
+
+
+
