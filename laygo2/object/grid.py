@@ -2673,20 +2673,19 @@ class PlacementGrid(Grid):
 
     def place(self, inst, mn):
         """
-        Maps abstract coordinates with instance xy attribute.
+        Place the instance on the specified coordinate mn, on this grid.
 
         Parameters
         ----------
-        inst : laygo2.physical.instance
-            instance to be placed
+        inst : laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance
+            The instance to be placed on the grid.
         mn : numpy.ndarray or list
-            abstract coordinates to place instance
+            The abstract coordinate [m, n] to place the instance.
 
         Returns
         -------
-        laygo2.physical.instance : instance with revised coordinates
-
-        
+        laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance : 
+            The placed instance.
 
         Examples
         --------
@@ -3085,22 +3084,21 @@ class RoutingGrid(Grid):
 
     def route(self, mn, direction=None, via_tag=None):
         """
-        Wire routing function, generate Rect object.
+        Create a rect wire object for routing.
 
         Parameters
         ----------
         mn : list(numpy.ndarray)
-            list containing two or more mn coordinates being connected
+            The list containing two or more mn coordinates to be connected.
         direction : str, optional.
-            None or “vertical” ; decides the direction of path as vertical or horizontal
+            None or “vertical” or "horizontal". The direction of the routing object.
         via_tag : list(Boolean), optional.
-            list of switches deciding whether to form via on the path
+            The list containing switches deciding whether to place via at the edges.
         
         Returns
         -------
-        list: list containing the generated routing objects
-
-        
+        laygo2.object.physical.Rect or list : 
+            The generated routing object(s). Check the example code for details. 
 
         Examples
         --------

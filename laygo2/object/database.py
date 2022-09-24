@@ -858,7 +858,23 @@ class Design(BaseDatabase):
 
     # Object creation and manipulation functions.
     def place(self, inst, grid, mn):
-        """Place an instance on the specified coordinate mn, on this grid."""
+        """
+        Place the instance on the abstract coordinate mn, on the abstract grid.
+        
+        Parameters
+        ----------
+        inst : laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance
+            The instance to be placed.
+        grid : laygo2.object.grid.PlacementGrid
+            The placement grid where the instance is placed on.
+        mn : numpy.ndarray or list
+            The abstract coordinate value [m, n] to place the instance.
+
+        Returns
+        -------
+        laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance : 
+            The placed instance.
+        """
         if isinstance(inst, ( laygo2.object.Instance, laygo2.object.VirtualInstance) ) :
             inst = grid.place(inst, mn)
             self.append(inst)
@@ -898,7 +914,32 @@ class Design(BaseDatabase):
                             mn_ref = mn_ref + [ element,0 ]
 
     def route(self, grid, mn, direction=None, via_tag=None):
-        """Create Path and Via objects over the abstract coordinates specified by mn, on this routing grid. """
+        """
+        Create a rect wire object for routing.
+
+        Parameters
+        ----------
+        grid : laygo2.object.grid.RoutingGrid
+            The placement grid where the wire is placed on.
+        mn : list(numpy.ndarray)
+            The list containing two or more mn coordinates to be connected.
+        direction : str, optional.
+            None or “vertical” or "horizontal". The direction of the routing object.
+        via_tag : list(Boolean), optional.
+            The list containing switches deciding whether to place via at the edges.
+        
+        Returns
+        -------
+        laygo2.object.physical.Rect or list : 
+            The generated routing object(s). 
+            Check the example code in laygo2.object.grid.RoutingGrid.route for details. 
+
+        See Also
+        --------
+        laygo2.object.grid.RoutingGrid.route
+
+        """
+
         r = grid.route(mn=mn, direction=direction, via_tag=via_tag)
         self.append(r)
         return r
