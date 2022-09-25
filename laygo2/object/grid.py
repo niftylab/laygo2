@@ -3084,7 +3084,7 @@ class RoutingGrid(Grid):
 
     def route(self, mn, direction=None, via_tag=None):
         """
-        Create a rect wire object for routing.
+        Create wire object(s) for routing.
 
         Parameters
         ----------
@@ -3102,9 +3102,9 @@ class RoutingGrid(Grid):
 
         Examples
         --------
-        >>> r23=grids[“routing_23_cmos”]
+        >>> mygrid=grids[“routing_23_cmos”]  # assuming that the routing grid is available.
         >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ] 
-        >>> route = r23.route(grid=mygrid, mn=mn_list, via_tag=[True, None, True, True]) 
+        >>> route = mygrid.route(mn=mn_list, via_tag=[True, None, True, True]) 
         >>> print(route)
         [<laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>]
 
@@ -3114,15 +3114,13 @@ class RoutingGrid(Grid):
         Notes
         -----
         Reference in Korean:
-        wire 라우팅 함수, rect object를 생성.
+        추상 좌표 위에 라우팅을 수행 하는 함수.
         파라미터
-        mn(list(numpy.ndarray)): 2개이상의 연결할 mn 좌표를 갖고있는 list
-        direction(str): None or “vertical”; path의 방향을 수평 or 수직을 결정 [optional]
-        via_tag(list(Boolean)): Path에 via를 형성할지 switch들의 list [optional]
+        mn(list(numpy.ndarray)): 배선을 수행할 2개 이상의 mn 좌표를 담고 있는 list.
+        direction(str): None or “vertical”; path의 방향을 결정 (수평 or 수직) [optional].
+        via_tag(list(Boolean)): Path에 via를 형성 할지를 결정하는 switch들을 담고 있는 list [optional].
         반환값
         list: 생성된 routing object들을 담고 있는 list.
-        참조
-        없음
         """
         mn = np.asarray(mn)
         _mn = list()
@@ -3195,24 +3193,23 @@ class RoutingGrid(Grid):
 
     def via(self, mn=np.array([0, 0]), params=None):
         """
-        Via generating function.
+        Create Via object(s) on abstract grid.
 
         Parameters
         ----------
         mn : list(numpy.ndarray)
-            mn coordinates for generating via, 2 or more
+            Abstract coordinate(s) that specify location(s) to insert via(s).
 
         Returns
         -------
-        list(physical.PhysicalObject): list containing the generated via objects
-
-        
+        list(physical.PhysicalObject): 
+            The list containing the generated via objects.
 
         Examples
         --------
-        >>> r23=grids[“routing_23_cmos”]
+        >>> mygrid=grids[“routing_23_cmos”]
         >>> mn_list = [[0, -2], [1, 0], [2, 5]]
-        >>> via = r23.via(mn=mn_list)
+        >>> via = mygrid.via(mn=mn_list)
         >>> print(via)
         [<laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.VirtualInstance object>]
 
@@ -3224,11 +3221,9 @@ class RoutingGrid(Grid):
         Reference in Korean:
         via 생성함수.
         파라미터
-        mn(list(numpy.ndarray)): via를 생성할 mn좌표, 2개이상 가능
+        mn(list(numpy.ndarray)): via를 생성할 mn좌표. 복수 개 입력 가능.
         반환값
-        list(physical.PhysicalObject)): 생성된 via object들을 담고 있는 list
-        참조
-        없음
+        list(physical.PhysicalObject)): 생성된 via object들을 담고 있는 list.
         """
         # If mn contains multiple coordinates (or objects), place iteratively.
         if isinstance(mn, list):
@@ -3250,20 +3245,22 @@ class RoutingGrid(Grid):
     
     def route_via_track(self, mn, track, via_tag=[None, True] ):
         """
-        Wire routing function; performs routing with track as a reference point.
+        Perform routing on the specified track with accessing wires to mn.
 
         Parameters
         ----------
         mn : list(numpy.ndarray)
             list containing coordinates of the points being connected through a track
         track : numpy.ndarray
-            list containing coordinate values and direction of a track Vertical track has [v, None] format, while horizontal track has [None, v] format (v is the coordinates of the track)
+            list containing coordinate values and direction of a track.
+            Vertical tracks have [v, None] format, while horizontal tracks have [None, v] format
+            (v is the coordinates of the track).
 
         Returns
         -------
-        list: list containing the generated routing objects; the last object corresponds to the routing object on the track
-
-        
+        list: 
+            The list containing the generated routing objects;
+            The last object corresponds to the routing object on the track.        
 
         Examples
         --------
@@ -3285,8 +3282,6 @@ class RoutingGrid(Grid):
         mn(list(numpy.ndarray)): track을 통해 연결될 지점들의 좌표를 담고 있는 list.
         반환값
         list: 생성된 routing object들을 담고 있는 list. 마지막 object가 track위의 routing object에 해당.
-        참조
-        없음
         """
         mn = np.array( mn )    
         route   = list()
@@ -3333,31 +3328,30 @@ class RoutingGrid(Grid):
         #pin0 = Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', master=rect0,
         #           params={'direction': 'input'})
         """
-        Pin generating function.
+        Create a Pin object over the abstract coordinates specified by mn,
+        on the specified routing grid. 
 
         Parameters
         ----------
         name : str
-            Pin name
+            Pin name.
         mn : numpy.ndarray
-            Abstract coordinates for generating Pin
+            Abstract coordinates for generating Pin.
         direction : str, optional.
-            Direction
+            Direction.
         netname : str, optional.
-            Net name of Pin
+            Net name of Pin.
         params : dict, optional
-            Pin attribute
+            Pin attributes.
 
         Returns
         -------
-        laygo2.physical.Pin: Pin object
-
-        
+        laygo2.physical.Pin: The generated pin object.
 
         Examples
         --------
-        >>> mn_list = [ [0, 0], [10, 10]] 
-        >>> pin = r23.pin(mn=mn_list, name="pin")
+        >>> mn = [[0, 0], [10, 10]] 
+        >>> pin = mygrid.pin(mn=mn, name="pin")
         >>> print("pin") 
         <laygo2.object.physical.Pin object> name: pin, class: Pin, xy: [[0, 5], [300, 265]]……
 
@@ -3373,8 +3367,6 @@ class RoutingGrid(Grid):
         params(dict): Pin 속성 [optional]
         반환값
         laygo2.physical.Pin: Pin object
-        참조
-        없음
         """
         xy0 = self.abs2phy[mn[0]]
         xy1 = self.abs2phy[mn[1]]

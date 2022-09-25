@@ -170,8 +170,6 @@ class BaseDatabase:
         -------
         dict_items
 
-        
-
         Examples
         --------
         >>> base = laygo2.object.BaseDatabase(name='mycell’) 
@@ -784,8 +782,6 @@ class Design(BaseDatabase):
         -------
         laygo2.object.BaseDatabase
 
-        
-
         Examples
         --------
         >>> dsn = laygo2.object.Design(name='dsn', libname="testlib") 
@@ -874,6 +870,35 @@ class Design(BaseDatabase):
         -------
         laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance : 
             The placed instance.
+
+        Examples
+        --------
+        >>> dsn = Design(name='mycell', libname="testlib")
+        >>> g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 20], elements=[0]) 
+        >>> g1_y = laygo2.object.grid.OneDimGrid(name='ygrid', scope=[0, 100], elements=[0]) 
+        >>> g2   = laygo2.object.grid.PlacementGrid(name='test', vgrid=g1_x, hgrid=g1_y) 
+        >>> inst0= laygo2.object.physical.Instance(name="I0", xy=[100, 100], transform=‘R0’……)
+        >>> print(inst0.xy) 
+        [100, 100]
+        >>> dsn.place(inst=inst0, grid=g2, mn=[10,10]) 
+        >>> print(inst0.xy) 
+        [200, 1000]
+
+        See Also
+        --------
+        laygo2.object.grid.PlacementGrid.place
+
+        Notes
+        -----
+        Reference in Korean:
+        인스턴스를 grid위 추상 좌표 mn에 배치함.
+        파라미터
+        inst(laygo2.physical.instance): 배치할 인스턴스
+        mn(numpy.ndarray or list): 인스턴스를 배치할 추상좌표
+        반환값
+        laygo2.physical.instance: 좌표가 수정된 인스턴스
+        참조
+        없음
         """
         if isinstance(inst, ( laygo2.object.Instance, laygo2.object.VirtualInstance) ) :
             inst = grid.place(inst, mn)
@@ -915,7 +940,7 @@ class Design(BaseDatabase):
 
     def route(self, grid, mn, direction=None, via_tag=None):
         """
-        Create a rect wire object for routing.
+        Create wire object(s) for routing.
 
         Parameters
         ----------
@@ -934,31 +959,173 @@ class Design(BaseDatabase):
             The generated routing object(s). 
             Check the example code in laygo2.object.grid.RoutingGrid.route for details. 
 
+        Examples
+        --------
+        >>> dsn = Design(name='mycell', libname="testlib")
+        >>> mygrid = grids[“routing_23_cmos”]
+        >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ] 
+        >>> route = dsn.route(grid=mygrid, mn=mn_list, via_tag=[True, None, True, True]) 
+        >>> print(route)
+        [<laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>]
+
+        .. image:: ../assets/img/object_grid_RoutingGrid_route.png
+           :height: 250
+
         See Also
         --------
         laygo2.object.grid.RoutingGrid.route
 
+        Notes
+        -----
+        Reference in Korean:
+        추상 좌표 위에 라우팅을 수행 하는 함수.
+        파라미터
+        mn(list(numpy.ndarray)): 배선을 수행할 2개 이상의 mn 좌표를 담고 있는 list.
+        direction(str): None or “vertical”; path의 방향을 결정 (수평 or 수직) [optional].
+        via_tag(list(Boolean)): Path에 via를 형성 할지를 결정하는 switch들을 담고 있는 list [optional].
+        반환값
+        list: 생성된 routing object들을 담고 있는 list.
         """
-
         r = grid.route(mn=mn, direction=direction, via_tag=via_tag)
         self.append(r)
         return r
 
-    def route_via_track(self, grid, mn, track, via_tag=[None, True]):
-        """Create Path and Via objects over the abstract coordinates specified by mn, 
-        on the track of specified routing grid. """
-        r = grid.route_via_track(mn=mn, track=track, via_tag=via_tag)
-        self.append(r)
-        return r
-
     def via(self, grid, mn, params=None):
-        """Create a Via object over the abstract coordinates specified by mn, on this routing grid. """
+        """
+        Create Via object(s) on abstract grid.
+
+        Parameters
+        ----------
+        mn : list(numpy.ndarray)
+            Abstract coordinate(s) that specify location(s) to insert via(s).
+
+        Returns
+        -------
+        list(physical.PhysicalObject): 
+            The list containing the generated via objects.
+
+        Examples
+        --------
+        >>> dsn = Design(name='mycell', libname="testlib")
+        >>> mygrid=grids[“routing_23_cmos”]
+        >>> mn_list = [[0, -2], [1, 0], [2, 5]]
+        >>> via = dsn.via(grid=mygrid, mn=mn_list)
+        >>> print(via)
+        [<laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.VirtualInstance object>]
+
+        .. image:: ../assets/img/object_grid_RoutingGrid_via.png
+           :height: 250
+           
+        See Also
+        --------
+        laygo2.object.grid.RoutingGrid.via
+        
+        Notes
+        -----
+        Reference in Korean:
+        via 생성함수.
+        파라미터
+        mn(list(numpy.ndarray)): via를 생성할 mn좌표. 복수 개 입력 가능.
+        반환값
+        list(physical.PhysicalObject)): 생성된 via object들을 담고 있는 list.
+        """
         v = grid.via(mn=mn, params=params)
         self.append(v)
         return v
 
+    def route_via_track(self, grid, mn, track, via_tag=[None, True]):
+        """
+        Perform routing on the specified track with accessing wires to mn.
+
+        Parameters
+        ----------
+        mn : list(numpy.ndarray)
+            list containing coordinates of the points being connected through a track
+        track : numpy.ndarray
+            list containing coordinate values and direction of a track.
+            Vertical tracks have [v, None] format, while horizontal tracks have [None, v] format
+            (v is the coordinates of the track).
+
+        Returns
+        -------
+        list: 
+            The list containing the generated routing objects;
+            The last object corresponds to the routing object on the track.        
+
+        Examples
+        --------
+        >>> r23=grids[“routing_23_cmos”]
+        >>> mn_list = [[0, -2], [1, 0], [2, 5], [3, 4], [4, 5], [5, 5]]
+        >>> track = r23.route_via_track(mn=mn_list, track=[None,0])
+        >>> print(track)
+        [[<laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>], <laygo2.object.physical.VirtualInstance object>, [<laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>], [<laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>], [<laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>], [<laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>], <laygo2.object.physical.Rect object>]
+
+        .. image:: ../assets/img/object_grid_RoutingGrid_route_via_track.png
+           :height: 250
+           
+        See Also
+        --------
+        laygo2.object.grid.RoutingGrid.route_via_track
+
+        Notes
+        -----
+        Reference in Korean:
+        wire 라우팅 함수, track을 기준점으로 routing을 진행한다.
+        파라미터
+        track(numpy.ndarray): track의 좌표값과 방향을 담고 있는 list. 수직 트랙일 경우 [v, None], 수평 트랙일 경우 [None, v]의 형태를 가지고 있다 (v는 track의 좌표값).
+        mn(list(numpy.ndarray)): track을 통해 연결될 지점들의 좌표를 담고 있는 list.
+        반환값
+        list: 생성된 routing object들을 담고 있는 list. 마지막 object가 track위의 routing object에 해당.
+        """
+        r = grid.route_via_track(mn=mn, track=track, via_tag=via_tag)
+        self.append(r)
+        return r
+
     def pin(self, name, grid, mn, direction=None, netname=None, params=None):
-        """Create a Pin object over the abstract coordinates specified by mn, on this routing grid. """
+        """
+        Create a Pin object over the abstract coordinates specified by mn,
+        on the specified routing grid. 
+
+        Parameters
+        ----------
+        name : str
+            Pin name.
+        mn : numpy.ndarray
+            Abstract coordinates for generating Pin.
+        direction : str, optional.
+            Direction.
+        netname : str, optional.
+            Net name of Pin.
+        params : dict, optional
+            Pin attributes.
+
+        Returns
+        -------
+        laygo2.physical.Pin: The generated pin object.
+
+        Examples
+        --------
+        >>> dsn = Design(name='mycell', libname="testlib")
+        >>> mygrid = grids[“routing_23_cmos”]
+        >>> mn = [[0, 0], [10, 10]] 
+        >>> pin = dsn.pin(name="pin", grid=mygrid, mn=mn)
+        >>> print("pin") 
+        <laygo2.object.physical.Pin object> name: pin, class: Pin, xy: [[0, 5], [300, 265]]……
+
+        Notes
+        -----
+        Reference in Korean:
+        pin 생성함수.
+        파라미터
+        name(str): Pin 이름.
+        mn(numpy.ndarray): Pin을 생성할 abstract 좌표.
+        direction(str): 방향 [optional].
+        netname(str): Pin의 net이름 [optional].
+        params(dict): Pin 속성 [optional].
+        반환값
+        laygo2.physical.Pin: Pin object.
+        
+        """
         p = grid.pin(name=name, mn=mn, direction=direction, netname=netname, params=params)
         self.append(p)
         return p
@@ -970,13 +1137,14 @@ class Design(BaseDatabase):
 
         Parameters
         ----------
-        None
+        libname: str
+            The library name.
+        cellname: str
+            The cell name.
 
         Returns
         -------
-        laygo2.NativeInstanceTemplate
-
-        
+        laygo2.NativeInstanceTemplate: The generated template object.
 
         Examples
         --------
@@ -1005,8 +1173,6 @@ class Design(BaseDatabase):
         없음
         반환값
         laygo2.NativeInstanceTemplate
-        참조
-        없음
         """
         if libname is None:
             libname = self.libname
