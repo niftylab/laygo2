@@ -1017,20 +1017,18 @@ class Design(BaseDatabase):
         pins = self.pins
         return laygo2.object.template.NativeInstanceTemplate(libname=libname, cellname=cellname, bbox=xy, pins=pins)
 
-    def get_matchedrects_by_layer(self, lpp ):
+    def get_matched_rects_by_layer(self, layer ):
         """
         Return a list containing physical objects matched with the layer input in Design object.
 
         Parameters
         ----------
-        layer purpose pair : list
-            layer information.
+        layer : list
+            The layer information. Format is [name, purpose].
 
         Returns
         -------
-        list: list containing the matched Physical object.
-
-        
+        list: The list containing the matched Physical objects.
 
         Examples
         --------
@@ -1071,21 +1069,21 @@ class Design(BaseDatabase):
         obj_check = []
 
         for rname, rect in rects.items():
-            if np.array_equal( rect.layer, lpp):
+            if np.array_equal( rect.layer, layer):
                 obj_check.append(rect)
 
         for iname, inst in insts.items():
             for pname , pin in inst.pins.items():
-                if np.array_equal( pin.layer, lpp ):
+                if np.array_equal( pin.layer, layer ):
                     obj_check.append(pin)
 
         for iname, vinst in vinsts.items():
             for name, inst in vinst.native_elements.items():
                 if isinstance(inst, laygo2.object.physical.Rect):
-                    if np.array_equal( inst.layer, lpp):
+                    if np.array_equal( inst.layer, layer):
                         _xy   = vinst.get_element_position(inst)
                         ninst = laygo2.object.physical.Rect(
-                            xy=_xy, layer = lpp, hextension = inst.hextension, vextension = inst.vextension
+                            xy=_xy, layer = layer, hextension = inst.hextension, vextension = inst.vextension
                             ,color = inst.color )
                         obj_check.append(ninst)   ## ninst is for sort, inst should be frozen for implement to layout
         return obj_check
