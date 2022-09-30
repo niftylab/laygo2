@@ -382,18 +382,19 @@ class PhysicalObject:
 
         Example
         --------
-        >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params={'maxI’: 0.005}) 
+        >>> import laygo2
+        >>> physical = laygo2.object.physical.PhysicalObject( 
+            xy = [[0, 0], [200, 200]], name="test", params={'maxI': 0.005}) 
         >>> print(physical) 
         <laygo2.object.physical.PhysicalObject object at 0x000001ECF0022948>
          name: test,
          class: PhysicalObject,
          xy: [[0, 0], [200, 200]],
-         params: {'maxI': 0.005}
-        
+         params: {'maxI': 0.005},
         
         Notes
         -----
-        **Reference in Korean**: PhysicalObject 클래스의 생성자.
+        **(Korean)** PhysicalObject 클래스의 생성자.
 
         파라미터
 
