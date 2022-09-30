@@ -135,20 +135,20 @@ class BaseDatabase:
         """attribute
         list: Keys of elements.
 
-        
+
 
         Examples
         --------
-        >>> base = laygo2.object.BaseDatabase(name='mycell’) 
-        >>> rect0 = laygo2.object.Rect(name='R0’ ……) 
-        >>> rect1 = laygo2.object.Rect(xy=……) 
-        >>> pin0 = laygo2.object.Pin(xy=……) 
-        >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……) 
-        >>> base.append(rect0) 
-        >>> base.append(rect1) 
-        >>> base.append(pin0) 
+        >>> base = laygo2.object.BaseDatabase(name='mycell’)
+        >>> rect0 = laygo2.object.Rect(name='R0’ ……)
+        >>> rect1 = laygo2.object.Rect(xy=……)
+        >>> pin0 = laygo2.object.Pin(xy=……)
+        >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……)
+        >>> base.append(rect0)
+        >>> base.append(rect1)
+        >>> base.append(pin0)
         >>> base.append(inst0)
-        >>> print(base.keys()) 
+        >>> print(base.keys())
         ['R0', 'NoName_0', 'NoName_1', 'I0']
 
         Notes
@@ -172,21 +172,21 @@ class BaseDatabase:
 
         Examples
         --------
-        >>> base = laygo2.object.BaseDatabase(name='mycell’) 
-        >>> rect0 = laygo2.object.Rect(name='R0’ ……) 
-        >>> rect1 = laygo2.object.Rect(xy=……) 
-        >>> pin0 = laygo2.object.Pin(xy=……) 
-        >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……) 
-        >>> base.append(rect0) 
-        >>> base.append(rect1) 
+        >>> base = laygo2.object.BaseDatabase(name='mycell’)
+        >>> rect0 = laygo2.object.Rect(name='R0’ ……)
+        >>> rect1 = laygo2.object.Rect(xy=……)
+        >>> pin0 = laygo2.object.Pin(xy=……)
+        >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……)
+        >>> base.append(rect0)
+        >>> base.append(rect1)
         >>> base.append(pin0)
-        >>> base.append(inst0) 
-        >>> print(base.items()) 
+        >>> base.append(inst0)
+        >>> print(base.items())
         dict_items([('R0', <laygo2.object.physical.Rect object>),
                     ('NoName_0', <laygo2.object.physical.Rect object>),
                     ('NoName_1', <laygo2.object.physical.Pin object>),
                     ('I0', <laygo2.object.physical.Instance object>)])
-        
+
         Notes
         -----
         Reference in Korean:
@@ -212,20 +212,20 @@ class BaseDatabase:
         -------
         element
 
-        
+
 
         Examples
         --------
-        >>> base = laygo2.object.BaseDatabase(name='mycell’) 
-        >>> rect0= laygo2.object.Rect(name='R0’ ……) 
-        >>> rect1= laygo2.object.Rect(xy=……) 
-        >>> pin0 = laygo2.object.Pin(xy=……) 
-        >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……) 
-        >>> base.append(rect0) 
-        >>> base.append(rect1) 
-        >>> base.append(pin0) 
+        >>> base = laygo2.object.BaseDatabase(name='mycell’)
+        >>> rect0= laygo2.object.Rect(name='R0’ ……)
+        >>> rect1= laygo2.object.Rect(xy=……)
+        >>> pin0 = laygo2.object.Pin(xy=……)
+        >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……)
+        >>> base.append(rect0)
+        >>> base.append(rect1)
+        >>> base.append(pin0)
         >>> base.append(inst0)
-        >>> print(base[“R0”]) 
+        >>> print(base[“R0”])
         <laygo2.object.physical.Rect object> name: R0, class: Rect  ……
 
         Notes
@@ -253,19 +253,19 @@ class BaseDatabase:
         -------
         list
 
-        
+
 
         Examples
         --------
-        >>> base = laygo2.object.BaseDatabase(name='mycell’) 
-        >>> rect0 = laygo2.object.Rect(name='R0’ ……) 
-        >>> rect1 = laygo2.object.Rect(xy=……) 
-        >>> pin0 = laygo2.object.Pin(xy=……) 
-        >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……) 
-        >>> base.append(rect0) 
-        >>> base.append(rect1) 
-        >>> base.append(pin0) 
-        >>> base.append(inst0) 
+        >>> base = laygo2.object.BaseDatabase(name='mycell’)
+        >>> rect0 = laygo2.object.Rect(name='R0’ ……)
+        >>> rect1 = laygo2.object.Rect(xy=……)
+        >>> pin0 = laygo2.object.Pin(xy=……)
+        >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……)
+        >>> base.append(rect0)
+        >>> base.append(rect1)
+        >>> base.append(pin0)
+        >>> base.append(inst0)
         >>> rect2 = laygo2.object.Rect(name=‘R2’ ……)
         >>> base[“R2”]=rect2
 
@@ -292,13 +292,13 @@ class BaseDatabase:
                 item_name_list.append(_item_name)
                 item_list.append(_item)
             return item_name_list, item_list
-            #return [i[0] for i in item_list], [i[1] for i in item_list]
+            # return [i[0] for i in item_list], [i[1] for i in item_list]
         else:
             item_name = item.name
             if item_name is None:  # NoName object. Put a name on it.
-                while 'NoName_'+str(self.noname_index) in self.elements.keys():
+                while "NoName_" + str(self.noname_index) in self.elements.keys():
                     self.noname_index += 1
-                item_name = 'NoName_' + str(self.noname_index)
+                item_name = "NoName_" + str(self.noname_index)
                 self.noname_index += 1
             errstr = item_name + " cannot be added to " + self.name + ", as a child object with the same name exists."
             if item_name in self.elements.keys():
@@ -322,23 +322,23 @@ class BaseDatabase:
         -------
         dict_keyiterator
 
-        
+
 
         Examples
         --------
-        >>> base = laygo2.object.BaseDatabase(name='mycell’) 
-        >>> rect0= laygo2.object.Rect(name='R0’ ……) 
-        >>> rect1= laygo2.object.Rect(xy=……) 
-        >>> pin0 = laygo2.object.Pin(xy=……) 
-        >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……) 
-        >>> base.append(rect0) 
-        >>> base.append(rect1) 
-        >>> base.append(pin0) 
+        >>> base = laygo2.object.BaseDatabase(name='mycell’)
+        >>> rect0= laygo2.object.Rect(name='R0’ ……)
+        >>> rect1= laygo2.object.Rect(xy=……)
+        >>> pin0 = laygo2.object.Pin(xy=……)
+        >>> inst0 = laygo2.object.Instance(name='I0', xy=[100, 100] ……)
+        >>> base.append(rect0)
+        >>> base.append(rect1)
+        >>> base.append(pin0)
         >>> base.append(inst0)
-        >>> for obj in base: print(obj) 
-        R0 
-        NoName_0 
-        NoName_1 
+        >>> for obj in base: print(obj)
+        R0
+        NoName_0
+        NoName_1
         I0
 
         Notes
@@ -359,11 +359,10 @@ class BaseDatabase:
 
     def summarize(self):
         """Return the summary of the object information."""
-        return self.__repr__() + " " + \
-               "name: " + self.name + ", " + \
-               "params: " + str(self.params) + " \n" \
-               "    elements: " + str(self.elements) + \
-               ""
+        return (
+            self.__repr__() + " " + "name: " + self.name + ", " + "params: " + str(self.params) + " \n"
+            "    elements: " + str(self.elements) + ""
+        )
 
     def __init__(self, name, params=None, elements=None):
         """
@@ -382,12 +381,12 @@ class BaseDatabase:
         -------
         laygo2.object.BaseDatabase
 
-        
+
 
         Examples
         --------
-        >>> base = laygo2.object.BaseDatabase(name='mycell’) 
-        >>> print(base) 
+        >>> base = laygo2.object.BaseDatabase(name='mycell’)
+        >>> print(base)
         <laygo2.object.database.BaseDatabase object> name: mycell, params: None elements: {}>
 
         Notes
@@ -445,7 +444,7 @@ class Library(BaseDatabase):
     Reference in Korean:
     str: Library 객체의 이름.
     """
-    
+
     def append(self, item):
         if isinstance(item, list) or isinstance(item, np.ndarray):
             item_name_list = []
@@ -477,12 +476,12 @@ class Library(BaseDatabase):
         -------
         laygo2.object.Library
 
-        
+
 
         Examples
         --------
-        >>> lib = laygo2.object.Library(name='mylib’) 
-        >>> print(lib) 
+        >>> lib = laygo2.object.Library(name='mylib’)
+        >>> print(lib)
         <laygo2.object.database.Library > name: mylib, params: None elements: {} >
 
         Notes
@@ -506,13 +505,15 @@ class Library(BaseDatabase):
 
 
 class TemplateLibrary(Library):
-    """This class implements template libraries that contain templates as their child objects. """
-    #vTODO: implement this.
+    """This class implements template libraries that contain templates as their child objects."""
+
+    # vTODO: implement this.
     pass
 
 
 class GridLibrary(Library):
-    """This class implements layout libraries that contain grid objectss as their child objects. """
+    """This class implements layout libraries that contain grid objectss as their child objects."""
+
     # TODO: implement this.
     pass
 
@@ -529,15 +530,15 @@ class Design(BaseDatabase):
 
     @property
     def bbox(self):
-        """ get design bbox which is union of instances.bbox  """
-        libname  = self.libname
+        """get design bbox which is union of instances.bbox"""
+        libname = self.libname
         cellname = self.cellname
         # Compute boundaries
         xy = [None, None]
         for n, i in self.instances.items():
             if xy[0] is None:
-                xy[0] = i.bbox[0]   # bl
-                xy[1] = i.bbox[1]   # tr
+                xy[0] = i.bbox[0]  # bl
+                xy[1] = i.bbox[1]  # tr
             else:
                 xy[0][0] = min(xy[0][0], i.bbox[0, 0])
                 xy[0][1] = min(xy[0][1], i.bbox[0, 1])
@@ -553,9 +554,8 @@ class Design(BaseDatabase):
                 xy[1][0] = max(xy[1][0], i.bbox[1, 0])
                 xy[1][1] = max(xy[1][1], i.bbox[1, 1])
         xy = np.array(xy)
-        return (xy)
+        return xy
         pass
-
 
     def get_libname(self):
         return self._libname
@@ -784,18 +784,18 @@ class Design(BaseDatabase):
 
         Examples
         --------
-        >>> dsn = laygo2.object.Design(name='dsn', libname="testlib") 
+        >>> dsn = laygo2.object.Design(name='dsn', libname="testlib")
         >>> print(dsn)
         <laygo2.object.database.Design object>  name: dsn, params: None
-            elements: {} 
-            libname:testlib 
-            rects:{} 
-            paths:{} 
-            pins:{} 
-            texts:{} 
-            instances:{} 
+            elements: {}
+            libname:testlib
+            rects:{}
+            paths:{}
+            pins:{}
+            texts:{}
+            instances:{}
             virtual instances:{}
-        
+
         Notes
         -----
         Reference in Korean:
@@ -841,22 +841,37 @@ class Design(BaseDatabase):
 
     def summarize(self):
         """Return the summary of the object information."""
-        return \
-            BaseDatabase.summarize(self) + " \n" + \
-            "    libname:" + str(self.libname) + " \n" + \
-            "    rects:" + str(self.rects) + " \n" + \
-            "    paths:" + str(self.paths) + " \n" + \
-            "    pins:" + str(self.pins) + " \n" + \
-            "    texts:" + str(self.texts) + " \n" + \
-            "    instances:" + str(self.instances) + "\n" + \
-            "    virtual instances:" + str(self.virtual_instances) + \
-            ""
+        return (
+            BaseDatabase.summarize(self)
+            + " \n"
+            + "    libname:"
+            + str(self.libname)
+            + " \n"
+            + "    rects:"
+            + str(self.rects)
+            + " \n"
+            + "    paths:"
+            + str(self.paths)
+            + " \n"
+            + "    pins:"
+            + str(self.pins)
+            + " \n"
+            + "    texts:"
+            + str(self.texts)
+            + " \n"
+            + "    instances:"
+            + str(self.instances)
+            + "\n"
+            + "    virtual instances:"
+            + str(self.virtual_instances)
+            + ""
+        )
 
     # Object creation and manipulation functions.
     def place(self, inst, grid, mn):
         """
         Place the instance on the abstract coordinate mn, on the abstract grid.
-        
+
         Parameters
         ----------
         inst : laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance
@@ -868,20 +883,20 @@ class Design(BaseDatabase):
 
         Returns
         -------
-        laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance : 
+        laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance :
             The placed instance.
 
         Examples
         --------
         >>> dsn = Design(name='mycell', libname="testlib")
-        >>> g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 20], elements=[0]) 
-        >>> g1_y = laygo2.object.grid.OneDimGrid(name='ygrid', scope=[0, 100], elements=[0]) 
-        >>> g2   = laygo2.object.grid.PlacementGrid(name='test', vgrid=g1_x, hgrid=g1_y) 
+        >>> g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 20], elements=[0])
+        >>> g1_y = laygo2.object.grid.OneDimGrid(name='ygrid', scope=[0, 100], elements=[0])
+        >>> g2   = laygo2.object.grid.PlacementGrid(name='test', vgrid=g1_x, hgrid=g1_y)
         >>> inst0= laygo2.object.physical.Instance(name="I0", xy=[100, 100], transform=‘R0’……)
-        >>> print(inst0.xy) 
+        >>> print(inst0.xy)
         [100, 100]
-        >>> dsn.place(inst=inst0, grid=g2, mn=[10,10]) 
-        >>> print(inst0.xy) 
+        >>> dsn.place(inst=inst0, grid=g2, mn=[10,10])
+        >>> print(inst0.xy)
         [200, 1000]
 
         See Also
@@ -900,43 +915,43 @@ class Design(BaseDatabase):
         참조
         없음
         """
-        if isinstance(inst, ( laygo2.object.Instance, laygo2.object.VirtualInstance) ) :
+        if isinstance(inst, (laygo2.object.Instance, laygo2.object.VirtualInstance)):
             inst = grid.place(inst, mn)
             self.append(inst)
             return inst
         else:
-            matrix = np.asarray( inst )
-            size   = matrix.shape
+            matrix = np.asarray(inst)
+            size = matrix.shape
 
             if len(size) == 2:
                 m, n = size
             else:
                 m, n = 1, size[0]
-                matrix = [ matrix ]
+                matrix = [matrix]
             mn_ref = np.array(mn)
 
             for index in range(m):
                 row = matrix[index]
-                if index != 0 :
+                if index != 0:
                     ns = 0
-                    ms = index -1
-                    while row[ns] == None:      # Right search
+                    ms = index - 1
+                    while row[ns] == None:  # Right search
                         ns = ns + 1
-                    while matrix[ms][ns] == None: # Down search
+                    while matrix[ms][ns] == None:  # Down search
                         ms = ms - 1
-                    mn_ref = grid.mn.top_left( matrix[ms][ns] )
+                    mn_ref = grid.mn.top_left(matrix[ms][ns])
                 for element in row:
-                    if isinstance( element, (laygo2.object.Instance, laygo2.object.VirtualInstance) ):
-                        mn_bl    = grid.mn.bottom_left( element )
-                        mn_comp  = mn_ref - mn_bl
-                        inst_sub = grid.place( element, mn_comp)
+                    if isinstance(element, (laygo2.object.Instance, laygo2.object.VirtualInstance)):
+                        mn_bl = grid.mn.bottom_left(element)
+                        mn_comp = mn_ref - mn_bl
+                        inst_sub = grid.place(element, mn_comp)
                         self.append(inst_sub)
-                        mn_ref = grid.mn.bottom_right( element )
+                        mn_ref = grid.mn.bottom_right(element)
                     else:
                         if element == None:
                             pass
-                        elif isinstance( element, int):
-                            mn_ref = mn_ref + [ element,0 ]
+                        elif isinstance(element, int):
+                            mn_ref = mn_ref + [element, 0]
 
     def route(self, grid, mn, direction=None, via_tag=None):
         """
@@ -952,19 +967,19 @@ class Design(BaseDatabase):
             None or “vertical” or "horizontal". The direction of the routing object.
         via_tag : list(Boolean), optional.
             The list containing switches deciding whether to place via at the edges.
-        
+
         Returns
         -------
-        laygo2.object.physical.Rect or list : 
-            The generated routing object(s). 
-            Check the example code in laygo2.object.grid.RoutingGrid.route for details. 
+        laygo2.object.physical.Rect or list :
+            The generated routing object(s).
+            Check the example code in laygo2.object.grid.RoutingGrid.route for details.
 
         Examples
         --------
         >>> dsn = Design(name='mycell', libname="testlib")
         >>> mygrid = grids[“routing_23_cmos”]
-        >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ] 
-        >>> route = dsn.route(grid=mygrid, mn=mn_list, via_tag=[True, None, True, True]) 
+        >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
+        >>> route = dsn.route(grid=mygrid, mn=mn_list, via_tag=[True, None, True, True])
         >>> print(route)
         [<laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>]
 
@@ -1001,7 +1016,7 @@ class Design(BaseDatabase):
 
         Returns
         -------
-        list(physical.PhysicalObject): 
+        list(physical.PhysicalObject):
             The list containing the generated via objects.
 
         Examples
@@ -1015,11 +1030,11 @@ class Design(BaseDatabase):
 
         .. image:: ../assets/img/object_grid_RoutingGrid_via.png
            :height: 250
-           
+
         See Also
         --------
         laygo2.object.grid.RoutingGrid.via
-        
+
         Notes
         -----
         Reference in Korean:
@@ -1048,9 +1063,9 @@ class Design(BaseDatabase):
 
         Returns
         -------
-        list: 
+        list:
             The list containing the generated routing objects;
-            The last object corresponds to the routing object on the track.        
+            The last object corresponds to the routing object on the track.
 
         Examples
         --------
@@ -1062,7 +1077,7 @@ class Design(BaseDatabase):
 
         .. image:: ../assets/img/object_grid_RoutingGrid_route_via_track.png
            :height: 250
-           
+
         See Also
         --------
         laygo2.object.grid.RoutingGrid.route_via_track
@@ -1084,7 +1099,7 @@ class Design(BaseDatabase):
     def pin(self, name, grid, mn, direction=None, netname=None, params=None):
         """
         Create a Pin object over the abstract coordinates specified by mn,
-        on the specified routing grid. 
+        on the specified routing grid.
 
         Parameters
         ----------
@@ -1107,9 +1122,9 @@ class Design(BaseDatabase):
         --------
         >>> dsn = Design(name='mycell', libname="testlib")
         >>> mygrid = grids[“routing_23_cmos”]
-        >>> mn = [[0, 0], [10, 10]] 
+        >>> mn = [[0, 0], [10, 10]]
         >>> pin = dsn.pin(name="pin", grid=mygrid, mn=mn)
-        >>> print("pin") 
+        >>> print("pin")
         <laygo2.object.physical.Pin object> name: pin, class: Pin, xy: [[0, 5], [300, 265]]……
 
         Notes
@@ -1124,7 +1139,7 @@ class Design(BaseDatabase):
         params(dict): Pin 속성 [optional].
         반환값
         laygo2.physical.Pin: Pin object.
-        
+
         """
         p = grid.pin(name=name, mn=mn, direction=direction, netname=netname, params=params)
         self.append(p)
@@ -1148,18 +1163,18 @@ class Design(BaseDatabase):
 
         Examples
         --------
-        >>> dsn    = laygo2.object.Design(name='dsn', libname="testlib") 
-        >>> rect0  = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’]……) 
-        >>> pin0   = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'pin’]……) 
-        >>> inst0  = laygo2.object.Instance(name='I0', xy=[100, 100]……) 
-        >>> vinst0 = laygo2.object.physical.VirtualInstance(name='VI0’, ……) 
-        >>> text0  = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=['text', 'drawing’]……) 
-        >>> dsn.append(rect0) 
+        >>> dsn    = laygo2.object.Design(name='dsn', libname="testlib")
+        >>> rect0  = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’]……)
+        >>> pin0   = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'pin’]……)
+        >>> inst0  = laygo2.object.Instance(name='I0', xy=[100, 100]……)
+        >>> vinst0 = laygo2.object.physical.VirtualInstance(name='VI0’, ……)
+        >>> text0  = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=['text', 'drawing’]……)
+        >>> dsn.append(rect0)
         >>> dsn.append(pin0)
-        >>> dsn.append(inst0) 
-        >>> dsn.append(vinst0) 
-        >>> dsn.append(text0) 
-        >>> print(dsn.export_to_template()) 
+        >>> dsn.append(inst0)
+        >>> dsn.append(vinst0)
+        >>> dsn.append(text0)
+        >>> print(dsn.export_to_template())
         <laygo2.object.template.NativeInstanceTemplate object> name: dsn,
          class: NativeInstanceTemplate,
          bbox: [[100, 100], [800, 700]],
@@ -1179,11 +1194,11 @@ class Design(BaseDatabase):
         if cellname is None:
             cellname = self.cellname
 
-        xy   = self.bbox
+        xy = self.bbox
         pins = self.pins
         return laygo2.object.template.NativeInstanceTemplate(libname=libname, cellname=cellname, bbox=xy, pins=pins)
 
-    def get_matched_rects_by_layer(self, layer ):
+    def get_matched_rects_by_layer(self, layer):
         """
         Return a list containing physical objects matched with the layer input in Design object.
 
@@ -1198,20 +1213,20 @@ class Design(BaseDatabase):
 
         Examples
         --------
-        >>> dsn    = laygo2.object.Design(name='dsn', libname="testlib") 
-        >>> rect0  = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=[‘M1’, ‘drawing’]……) 
-        >>> pin0   = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=[‘M1’, ‘pin’]……) 
-        >>> inst0  = laygo2.object.Instance(name=‘I0’, xy=[100, 100]……) 
-        >>> vinst0_pins[‘in’]  = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]], layer=[‘M1’,’drawing’]……) 
-        >>> vinst0_pins[‘out’] = laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], layer=[‘M1’, drawing’] ……) 
-        >>> vinst0 = laygo2.object.physical.VirtualInstance(name=‘VI0’, ……) 
-        >>> text0  = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=[‘text’, ‘drawing’]……) 
-        >>> dsn.append(rect0) 
+        >>> dsn    = laygo2.object.Design(name='dsn', libname="testlib")
+        >>> rect0  = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=[‘M1’, ‘drawing’]……)
+        >>> pin0   = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=[‘M1’, ‘pin’]……)
+        >>> inst0  = laygo2.object.Instance(name=‘I0’, xy=[100, 100]……)
+        >>> vinst0_pins[‘in’]  = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]], layer=[‘M1’,’drawing’]……)
+        >>> vinst0_pins[‘out’] = laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], layer=[‘M1’, drawing’] ……)
+        >>> vinst0 = laygo2.object.physical.VirtualInstance(name=‘VI0’, ……)
+        >>> text0  = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=[‘text’, ‘drawing’]……)
+        >>> dsn.append(rect0)
         >>> dsn.append(pin0)
-        >>> dsn.append(inst0) 
-        >>> dsn.append(vinst0) 
-        >>> dsn.append(text0) 
-        >>> print( dsn.get_matchedrects_by_layer( [“M1”, “drawing”] ) 
+        >>> dsn.append(inst0)
+        >>> dsn.append(vinst0)
+        >>> dsn.append(text0)
+        >>> print( dsn.get_matchedrects_by_layer( [“M1”, “drawing”] )
         [<laygo2.object.physical.Rect object>,
          <laygo2.object.physical.Pin object>,
          <laygo2.object.physical.Pin object>,
@@ -1228,55 +1243,70 @@ class Design(BaseDatabase):
         참조
         없음
         """
-        rects  = self.rects
-        insts  = self.instances
+        rects = self.rects
+        insts = self.instances
         vinsts = self.virtual_instances
 
         obj_check = []
 
         for rname, rect in rects.items():
-            if np.array_equal( rect.layer, layer):
+            if np.array_equal(rect.layer, layer):
                 obj_check.append(rect)
 
         for iname, inst in insts.items():
-            for pname , pin in inst.pins.items():
-                if np.array_equal( pin.layer, layer ):
+            for pname, pin in inst.pins.items():
+                if np.array_equal(pin.layer, layer):
                     obj_check.append(pin)
 
         for iname, vinst in vinsts.items():
             for name, inst in vinst.native_elements.items():
                 if isinstance(inst, laygo2.object.physical.Rect):
-                    if np.array_equal( inst.layer, layer):
-                        _xy   = vinst.get_element_position(inst)
+                    if np.array_equal(inst.layer, layer):
+                        _xy = vinst.get_element_position(inst)
                         ninst = laygo2.object.physical.Rect(
-                            xy=_xy, layer = layer, hextension = inst.hextension, vextension = inst.vextension
-                            ,color = inst.color )
-                        obj_check.append(ninst)   ## ninst is for sort, inst should be frozen for implement to layout
+                            xy=_xy,
+                            layer=layer,
+                            hextension=inst.hextension,
+                            vextension=inst.vextension,
+                            color=inst.color,
+                        )
+                        obj_check.append(ninst)  ## ninst is for sort, inst should be frozen for implement to layout
         return obj_check
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from laygo2.object.physical import *
+
     # Test
-    lib = Library(name='mylib')
-    dsn = Design(name='mycell')
+    lib = Library(name="mylib")
+    dsn = Design(name="mycell")
     lib.append(dsn)
-    rect0 = Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], name='R0', netname='net0', params={'maxI': 0.005})
+    rect0 = Rect(xy=[[0, 0], [100, 100]], layer=["M1", "drawing"], name="R0", netname="net0", params={"maxI": 0.005})
     dsn.append(rect0)
-    rect1 = Rect(xy=[[200, 0], [300, 100]], layer=['M1', 'drawing'], netname='net0', params={'maxI': 0.005})
+    rect1 = Rect(xy=[[200, 0], [300, 100]], layer=["M1", "drawing"], netname="net0", params={"maxI": 0.005})
     dsn.append(rect1)
-    path0 = Path(xy=[[0, 0], [0, 100]], width=10, extension=5, layer=['M1', 'drawing'], netname='net0',
-                 params={'maxI': 0.005})
+    path0 = Path(
+        xy=[[0, 0], [0, 100]], width=10, extension=5, layer=["M1", "drawing"], netname="net0", params={"maxI": 0.005}
+    )
     dsn.append(path0)
-    pin0 = Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'pin'], netname='n0', master=rect0, params={'direction': 'input'})
+    pin0 = Pin(xy=[[0, 0], [100, 100]], layer=["M1", "pin"], netname="n0", master=rect0, params={"direction": "input"})
     dsn.append(pin0)
-    #text0 = Text(xy=[0, 0], layer=['text', 'drawing'], text='test', params=None)
-    #dsn.append(text0)
+    # text0 = Text(xy=[0, 0], layer=['text', 'drawing'], text='test', params=None)
+    # dsn.append(text0)
     inst0_pins = dict()
-    inst0_pins['in'] = Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], netname='in')
-    inst0_pins['out'] = Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out')
-    inst0 = Instance(name='I0', xy=[100, 100], libname='mylib', cellname='mycell', shape=[3, 2], pitch=[100, 100],
-                     unit_size=[100, 100], pins=inst0_pins, transform='R0')
+    inst0_pins["in"] = Pin(xy=[[0, 0], [10, 10]], layer=["M1", "drawing"], netname="in")
+    inst0_pins["out"] = Pin(xy=[[90, 90], [100, 100]], layer=["M1", "drawing"], netname="out")
+    inst0 = Instance(
+        name="I0",
+        xy=[100, 100],
+        libname="mylib",
+        cellname="mycell",
+        shape=[3, 2],
+        pitch=[100, 100],
+        unit_size=[100, 100],
+        pins=inst0_pins,
+        transform="R0",
+    )
     dsn.append(inst0)
     print(lib)
     print(dsn)

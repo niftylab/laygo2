@@ -51,8 +51,10 @@ __maintainer__ = "Jaeduk Han"
 __status__ = "Prototype"
 
 import numpy as np
+
 # from copy import deepcopy
 import laygo2.util.transform as tf
+
 
 class PhysicalObject:
     """
@@ -60,92 +62,97 @@ class PhysicalObject:
 
     Notes
     -----
-    * **Reference in Korean**: 물리 객체들의 기본 클래스, 물리 좌표 정보를 갖고 있다. 
+    **(Korean)**: 물리 객체들의 기본 클래스, 물리 좌표 정보를 갖고 있다.
 
     """
 
     def _get_xy(self):
-        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of this object."""
+        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of 
+        this object."""
         return self._xy
 
-
     def _set_xy(self, value):
-        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of this object."""
+        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of 
+        this object."""
         self._xy = np.asarray(value, dtype=np.int)
         self._update_pointers()
-
 
     name = None
     """str: The name of the object.
 
     Example
     --------
-    >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params=None) 
-    >>> physical.name 
+    >>> import laygo2
+    >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]], 
+            name="test", params={'maxI': 0.005})
+    >>> obj.name 
     “test”
 
-    
     .. image:: ../assets/img/object_physical_PhysicalObject_name.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체의 이름.
+    **(Korean)**: 객체의 이름.
     """
-
 
     _xy = np.zeros(2, dtype=np.int)
     """numpy.ndarray(dtype=numpy.int): The internal variable of xy."""
 
-
     xy = property(_get_xy, _set_xy)
-    """numpy.ndarray: The physical coordinates [bottom_left, top_right] of the object.
+    """numpy.ndarray: The physical coordinates [bottom_left, top_right] 
+    of the object.
 
     Example
     --------
-    >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params=None) 
-    >>> physical.xy 
-    [ [0,0], [200,200] ]
-
+    >>> import laygo2
+    >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]], 
+            name="test", params={'maxI': 0.005})
+    >>> obj.xy 
+    array([[  0,   0], 
+           [200, 200]])
     
     .. image:: ../assets/img/object_physical_PhysicalObject_xy.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체의 좌표.
+    **(Korean)**: 객체의 좌표.
     """
-
 
     master = None
     """numpy.ndarray: The master of the current object (for array and pin objects).
 
     Example
     --------
-    >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params=None) 
-    >>> physical.master
-    None
+    >>> import laygo2
+    >>> obj1 = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]], 
+            name="test1", params=None) 
+    >>> obj2 = laygo2.object.physical.Pin(xy = [[0, 0], [100, 100]], 
+            layer = ["M1", "drawing"], master=obj1) 
+    >>> obj2.master
+    <laygo2.object.physical.PhysicalObject object at 0x00000204AAF3C7C0>
 
     Notes
     -----
-    **Reference in Korean**: 객체의 master (배열 element 또는 pin 객체들의 master 객체에 연결).
+    **(Korean)**: 객체의 master (배열 element 또는 pin 객체들의 master 객체에 연결).
     """
-
 
     params = None
     """dict: The dictionary that contains the object parameters.
 
     Example
     --------
-    >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params={maxI=0.005}) 
-    >>> physical.params 
+    >>> import laygo2
+    >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]], 
+            name="test", params={'maxI': 0.005})
+    >>> obj.params 
     {‘maxI’: 0.005 }
 
     Notes
     -----
-    **Reference in Korean**: 객체의 속성.
+    **(Korean)**: 객체의 속성.
     """
-
 
     pointers = None
     """dict: The dictionary that contains major physical coordinates of the object. 
@@ -153,8 +160,9 @@ class PhysicalObject:
 
     Example
     --------
-    >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params=None) 
-    >>> physical.pointers 
+    >>> import laygo2
+    >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
+    >>> obj.pointers 
     {'left': array([0, 100]), 'right': array([200, 100]),
      'bottom': array([100, 0]), 'top': array([100, 200]),
      'bottom_left': array([0, 0]), 'bottom_right': array([200, 0]),
@@ -167,9 +175,8 @@ class PhysicalObject:
 
     Notes
     -----
-    **Reference in Korean**: 객체의 주요 좌표들을 담고 있는 dict.
+    **(Korean)**: 객체의 주요 좌표들을 담고 있는 dict.
     """
-
 
     # Frequently used pointers
     left = None
@@ -177,171 +184,162 @@ class PhysicalObject:
 
     Example
     --------
-    >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params=None) 
-    >>> physical.left
-    [ 0, 100 ]
-
+    >>> import laygo2
+    >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
+    >>> obj.left
+    array([  0, 100])
     
     .. image:: ../assets/img/object_physical_PhysicalObject_left.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체의 left-center 좌표.
+    **(Korean)**: 객체의 left-center 좌표.
     """
-
 
     right = None
     """numpy.ndarray: The right-center coordinate of the object.
 
     Example
     --------
-    >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params=None) 
-    >>> physical.right 
-    [ 200, 100 ]
-
+    >>> import laygo2
+    >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
+    >>> obj.right
+    array([200, 100])
     
     .. image:: ../assets/img/object_physical_PhysicalObject_right.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체의 right-center 좌표.
-    """ 
-
+    **(Korean)**: 객체의 right-center 좌표.
+    """
 
     top = None
     """numpy.ndarray: The top-center coordinate of the object.
 
     Example
     --------
-    >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params=None) 
-    >>> physical.top 
-    [ 100, 200 ]
-
+    >>> import laygo2
+    >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
+    >>> obj.top
+    array([100, 200])
     
     .. image:: ../assets/img/object_physical_PhysicalObject_top.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체의 top-center 좌표.
+    **(Korean)**: 객체의 top-center 좌표.
     """
-
 
     bottom = None
     """numpy.ndarray: The bottom-center coordinate of the object.
 
     Example
     --------
-    >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params=None) 
-    >>> physical.bottom 
-    [ 100, 0 ]
-
+    >>> import laygo2
+    >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
+    >>> obj.top
+    array([100,   0])
     
     .. image:: ../assets/img/object_physical_PhysicalObject_bottom.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체의 bottom-center 좌표.
-    """ 
-
+    **(Korean)**: 객체의 bottom-center 좌표.
+    """
 
     center = None
     """numpy.ndarray: The center-center coordinate of the object.
 
     Example
     --------
-    >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params=None) 
-    >>> physical.center 
-    [ 100, 100 ]
-
+    >>> import laygo2
+    >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
+    >>> obj.center
+    array([100, 100])
     
     .. image:: ../assets/img/object_physical_PhysicalObject_center.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체의 center-center 좌표.
-    """ 
+    **(Korean)**: 객체의 center-center 좌표.
+    """
 
-
-    bottom_left = None 
+    bottom_left = None
     """numpy.ndarray: The bottom-left coordinate of the object.
 
     Example
     --------
-    >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params=None) 
-    >>> physical.bottom_left 
-    [ 0,0 ]
-
+    >>> import laygo2
+    >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
+    >>> obj.bottom_left
+    array([  0,   0])
     
     .. image:: ../assets/img/object_physical_PhysicalObject_bottom_left.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체의 bottom-left 좌표.
+    **(Korean)**: 객체의 bottom-left 좌표.
     """
-
 
     bottom_right = None
     """numpy.ndarray: The bottom-right coordinate of the object.
 
     Example
     --------
-    >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params=None) 
-    >>> physical.bottom_right 
-    [200, 0]
-
+    >>> import laygo2
+    >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
+    >>> obj.bottom_right
+    array([200,   0])
     
     .. image:: ../assets/img/object_physical_PhysicalObject_bottom_right.png 
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체의 bottom-right 좌표.
-    """ 
-
+    **(Korean)**: 객체의 bottom-right 좌표.
+    """
 
     top_left = None
     """numpy.ndarray: The top-left coordinate of the object.
 
     Example
     --------
-    >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params=None) 
-    >>> physical.top_left 
-    [ 0, 200 ]
-
+    >>> import laygo2
+    >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
+    >>> obj.top_left
+    array([  0, 200])
     
     .. image:: ../assets/img/object_physical_PhysicalObject_top_left.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체의 top-left 좌표.
+    **(Korean)**: 객체의 top-left 좌표.
     """
-
 
     top_right = None
     """numpy.ndarray: The top-right coordinate of the object.
 
     Example
     --------
-    >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params=None) 
-    >>> physical.top_right 
-    [200, 200]
-
+    >>> import laygo2
+    >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
+    >>> obj.top_right
+    array([200, 200])
     
     .. image:: ../assets/img/object_physical_PhysicalObject_top_right.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체의 top-right 좌표.
+    **(Korean)**: 객체의 top-right 좌표.
     """
-
 
     @property
     def bbox(self):
@@ -349,17 +347,18 @@ class PhysicalObject:
 
         Example
         --------
-        >>> physical = object.physical.PhysicalObject( xy = [[0, 0], [200, 200]], name="test", params=None) 
-        >>> physical.xy 
-        [ [0,0], [200,200] ]
+        >>> import laygo2
+        >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
+        >>> obj.bbox
+        array([[  0,   0],
+               [200, 200]])
 
-        
         .. image:: ../assets/img/object_physical_PhysicalObject_bbox.png
           :height: 250
-        
+
         Notes
         -----
-        **Reference in Korean**: numpy.ndarray: 객체의 bbox (bounding box).
+        **(Korean)**: numpy.ndarray: 객체의 bbox (bounding box).
         """
         return np.sort(np.array([self.xy[0, :], self.xy[1, :]]), axis=0)
 
@@ -370,11 +369,11 @@ class PhysicalObject:
         Parameters
         ----------
         xy : numpy.ndarray
-            physical coordinates of object, bbox.
+            The physical coordinates [bottom_left, top_right] of the object.
         name : str
-            object name.
+            The name of the object.
         params : dict
-            dictionary having attributes.
+            The dictionary that contains the object parameters.
 
         Returns
         -------
@@ -383,48 +382,45 @@ class PhysicalObject:
         Example
         --------
         >>> import laygo2
-        >>> physical = laygo2.object.physical.PhysicalObject( 
-            xy = [[0, 0], [200, 200]], name="test", params={'maxI': 0.005}) 
-        >>> print(physical) 
+        >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]], 
+                name="test", params={'maxI': 0.005})
+        >>> print(obj)
         <laygo2.object.physical.PhysicalObject object at 0x000001ECF0022948>
          name: test,
          class: PhysicalObject,
          xy: [[0, 0], [200, 200]],
          params: {'maxI': 0.005},
-        
+
         Notes
         -----
         **(Korean)** PhysicalObject 클래스의 생성자.
 
         파라미터
-
-        xy(numpy.ndarray): 객체의 물리적 좌표 (bbox).
-
-        name(str): 객체의 이름.
-
-        params(dict): 객체의 주요 속성을 갖고 있는 dict.
+            - xy(numpy.ndarray): 객체의 물리적 좌표 (bbox).
+            - name(str): 객체의 이름.
+            - params(dict): 객체의 주요 속성을 갖고 있는 dict.
 
         """
 
         self.name = name
         # Initialize pointers.
         self.pointers = dict()
-        self.pointers['left'] = np.array([0, 0], dtype=np.int)
-        self.pointers['right'] = np.array([0, 0], dtype=np.int)
-        self.pointers['bottom'] = np.array([0, 0], dtype=np.int)
-        self.pointers['top'] = np.array([0, 0], dtype=np.int)
-        self.pointers['bottom_left'] = np.array([0, 0], dtype=np.int)
-        self.pointers['bottom_right'] = np.array([0, 0], dtype=np.int)
-        self.pointers['top_left'] = np.array([0, 0], dtype=np.int)
-        self.pointers['top_right'] = np.array([0, 0], dtype=np.int)
-        self.left = self.pointers['left']
-        self.right = self.pointers['right']
-        self.bottom = self.pointers['bottom']
-        self.top = self.pointers['top']
-        self.bottom_left = self.pointers['bottom_left']
-        self.bottom_right = self.pointers['bottom_right']
-        self.top_left = self.pointers['top_left']
-        self.top_right = self.pointers['top_right']
+        self.pointers["left"] = np.array([0, 0], dtype=np.int)
+        self.pointers["right"] = np.array([0, 0], dtype=np.int)
+        self.pointers["bottom"] = np.array([0, 0], dtype=np.int)
+        self.pointers["top"] = np.array([0, 0], dtype=np.int)
+        self.pointers["bottom_left"] = np.array([0, 0], dtype=np.int)
+        self.pointers["bottom_right"] = np.array([0, 0], dtype=np.int)
+        self.pointers["top_left"] = np.array([0, 0], dtype=np.int)
+        self.pointers["top_right"] = np.array([0, 0], dtype=np.int)
+        self.left = self.pointers["left"]
+        self.right = self.pointers["right"]
+        self.bottom = self.pointers["bottom"]
+        self.top = self.pointers["top"]
+        self.bottom_left = self.pointers["bottom_left"]
+        self.bottom_right = self.pointers["bottom_right"]
+        self.top_left = self.pointers["top_left"]
+        self.top_right = self.pointers["top_right"]
 
         self.params = params  # deepcopy(params)  # deepcopy increases the memory usage.
         self.xy = xy
@@ -435,82 +431,98 @@ class PhysicalObject:
 
     def summarize(self):
         """Return the summary of this object."""
-        name = 'None' if self.name is None else self.name
-        return \
-            self.__repr__() + " " \
-            "\n    name: "   + name + ", " + \
-            "\n    class: "  + self.__class__.__name__ + ", " + \
-            "\n    xy: "     + str(self.xy.tolist()) + ", " + \
-            "\n    params: " + str(self.params) + ", " 
+        name = "None" if self.name is None else self.name
+        return (
+            self.__repr__() + " "
+            "\n    name: "
+            + name
+            + ", "
+            + "\n    class: "
+            + self.__class__.__name__
+            + ", "
+            + "\n    xy: "
+            + str(self.xy.tolist())
+            + ", "
+            + "\n    params: "
+            + str(self.params)
+            + ", "
+        )
 
     def _update_pointers(self):
-        """Update pointers of this object. Called when the xy-coordinate of this object is updated."""
-        xy_left = np.diag(np.dot(np.array([[1, 0], [0.5, 0.5]]), self.bbox)).astype(np.int)
-        xy_right = np.diag(np.dot(np.array([[0, 1], [0.5, 0.5]]), self.bbox)).astype(np.int)
-        xy_bottom = np.diag(np.dot(np.array([[0.5, 0.5], [1, 0]]), self.bbox)).astype(np.int)
-        xy_top = np.diag(np.dot(np.array([[0.5, 0.5], [0, 1]]), self.bbox)).astype(np.int)
-        xy_bottom_left = np.diag(np.dot(np.array([[1, 0], [1, 0]]), self.bbox)).astype(np.int)
-        xy_bottom_right = np.diag(np.dot(np.array([[0, 1], [1, 0]]), self.bbox)).astype(np.int)
-        xy_top_left = np.diag(np.dot(np.array([[1, 0], [0, 1]]), self.bbox)).astype(np.int)
-        xy_top_right = np.diag(np.dot(np.array([[0, 1], [0, 1]]), self.bbox)).astype(np.int)
-        xy_center    = np.diag(np.dot(np.array([[0.5, 0.5], [0.5, 0.5]]), self.bbox)).astype(np.int)
-        self.pointers['left'] = xy_left
-        self.pointers['right'] = xy_right
-        self.pointers['bottom'] = xy_bottom
-        self.pointers['top'] = xy_top
-        self.pointers['bottom_left'] = xy_bottom_left
-        self.pointers['bottom_right'] = xy_bottom_right
-        self.pointers['top_left'] = xy_top_left
-        self.pointers['top_right'] = xy_top_right
-        self.pointers['center'] = xy_center
-        self.left = self.pointers['left']
-        self.right = self.pointers['right']
-        self.bottom = self.pointers['bottom']
-        self.top = self.pointers['top']
-        self.bottom_left = self.pointers['bottom_left']
-        self.bottom_right = self.pointers['bottom_right']
-        self.top_left = self.pointers['top_left']
-        self.top_right = self.pointers['top_right']
-        self.center = self.pointers['center']
+        """Update pointers of this object. Called when the xy-coordinate of this 
+        object is updated."""
+        xy_left = np.diag(np.dot(np.array([[1, 0], [0.5, 0.5]]), self.bbox))
+        xy_right = np.diag(np.dot(np.array([[0, 1], [0.5, 0.5]]), self.bbox))
+        xy_bottom = np.diag(np.dot(np.array([[0.5, 0.5], [1, 0]]), self.bbox))
+        xy_top = np.diag(np.dot(np.array([[0.5, 0.5], [0, 1]]), self.bbox))
+        xy_bottom_left = np.diag(np.dot(np.array([[1, 0], [1, 0]]), self.bbox))
+        xy_bottom_right = np.diag(np.dot(np.array([[0, 1], [1, 0]]), self.bbox))
+        xy_top_left = np.diag(np.dot(np.array([[1, 0], [0, 1]]), self.bbox))
+        xy_top_right = np.diag(np.dot(np.array([[0, 1], [0, 1]]), self.bbox))
+        xy_center = np.diag(np.dot(np.array([[0.5, 0.5], [0.5, 0.5]]), self.bbox))
+        self.pointers["left"] = xy_left.astype(np.int)
+        self.pointers["right"] = xy_right.astype(np.int)
+        self.pointers["bottom"] = xy_bottom.astype(np.int)
+        self.pointers["top"] = xy_top.astype(np.int)
+        self.pointers["bottom_left"] = xy_bottom_left.astype(np.int)
+        self.pointers["bottom_right"] = xy_bottom_right.astype(np.int)
+        self.pointers["top_left"] = xy_top_left.astype(np.int)
+        self.pointers["top_right"] = xy_top_right.astype(np.int)
+        self.pointers["center"] = xy_center.astype(np.int)
+        self.left = self.pointers["left"]
+        self.right = self.pointers["right"]
+        self.bottom = self.pointers["bottom"]
+        self.top = self.pointers["top"]
+        self.bottom_left = self.pointers["bottom_left"]
+        self.bottom_right = self.pointers["bottom_right"]
+        self.top_left = self.pointers["top_left"]
+        self.top_right = self.pointers["top_right"]
+        self.center = self.pointers["center"]
 
 
 class IterablePhysicalObject(PhysicalObject):
     """
-    Basic class of entities capable of iterable operation among physical entities.
+    The base class of entities capable of iterable operations among elements.
 
     Notes
     -----
-    **Reference in Korean**: 물리 객체들 중 iterable 연산이 가능한 객체들의 기본 클래스.
+    **(Korean)**: 구성 요소의 iterable 연산이 가능한 객체들의 기본 클래스.
 
     """
 
     elements = None
     """
-    numpy.ndarray: The numpy array that contains this object's subelements as its elements.
+    numpy.ndarray: The numpy array that contains this object's subelements as 
+    its elements.
 
     Example
     --------
-    >>> phy0 = physical.IterablePhysicalObject( xy=[[0, 0], [100, 100]], name="test" ) 
-    >>> phy1 = physical.IterablePhysicalObject( xy=[[0, 0], [200, 200]], name="test") 
-    >>> phy2 = physical.IterablePhysicalObject( xy=[[0, 0], [300, 300]], name="test") 
+    >>> import laygo2
+    >>> phy0 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [100, 100]]) 
+    >>> phy1 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [200, 200]]) 
+    >>> phy2 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [300, 300]]) 
     >>> element = [phy0, phy1, phy2] 
-    >>> iphy0 = physical.IterablePhysicalObject( xy=[[0, 0], [300, 300]], name="test", elements = element)
+    >>> iphy0 = laygo2.object.physical.IterablePhysicalObject(
+            xy=[[0, 0], [300, 300]], elements = elements)
     >>> iphy0.elements 
-    [physical.IterablePhysicalObject object,
-     physical.IterablePhysicalObject object,
-     physical.IterablePhysicalObject object ]
+    array([<laygo2.object.physical.PhysicalObject object at 0x000002049A77FDF0>,
+           <laygo2.object.physical.PhysicalObject object at 0x000002049A77F3D0>,
+           <laygo2.object.physical.PhysicalObject object at 0x000002049A77FF40>],
+          dtype=object)
 
     Notes
     -----
-    **Reference in Korean**: 객체의 하위 구성원을 담고 있는 list.
-
+    **(Korean)**: 객체의 하위 구성원을 담고 있는 list.
     """
+
     def _get_xy(self):
-        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of this object."""
+        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of 
+        this object."""
         return self._xy
 
     def _set_xy(self, value):
-        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of this object."""
+        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of 
+        this object."""
         # Update the coordinate value of its elements.
         self._update_elements(xy_ofst=value - self.xy)
         # Update the coordinate value of the object itself.
@@ -524,18 +536,19 @@ class IterablePhysicalObject(PhysicalObject):
 
         Example
         --------
-        >>> phy0 = physical.IterablePhysicalObject( xy=[[0, 0], [100, 100]], name="test" ) 
-        >>> phy1 = physical.IterablePhysicalObject( xy=[[0, 0], [200, 200]], name="test") 
-        >>> phy2 = physical.IterablePhysicalObject( xy=[[0, 0], [300, 300]], name="test") 
+        >>> import laygo2
+        >>> phy0 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [100, 100]]) 
+        >>> phy1 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [200, 200]]) 
+        >>> phy2 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [300, 300]]) 
         >>> element = [phy0, phy1, phy2] 
-        >>> iphy0 = physical.IterablePhysicalObject( xy=[[0, 0], [300, 300]], name="test", elements = element)
-        >>> iphy0.shape 
-        [3]
+        >>> iphy0 = laygo2.object.physical.IterablePhysicalObject(
+            xy=[[0, 0], [300, 300]], elements = elements)
+        >>> iphy0.shape
+        array([3])
 
-        
         Notes
         -----
-        **Reference in Korean**: numpy.ndarray: 객체의 element의 배열 크기.
+        **(Korean)**: numpy.ndarray: 객체의 element의 배열 크기.
         """
         if self.elements is None:
             return None
@@ -556,37 +569,36 @@ class IterablePhysicalObject(PhysicalObject):
             The dictionary containing attributes of the object.
         elements : list
             The dictionary containing element objects that compose the object.
-        
+
         Returns
         -------
         IterablePhysicalObject
 
         Example
         --------
-        >>> phy0 = physical.IterablePhysicalObject( xy=[[0, 0], [100, 100]], name="test" ) 
-        >>> phy1 = physical.IterablePhysicalObject( xy=[[0, 0], [200, 200]], name="test") 
-        >>> phy2 = physical.IterablePhysicalObject( xy=[[0, 0], [300, 300]], name="test") 
+        >>> import laygo2
+        >>> phy0 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [100, 100]]) 
+        >>> phy1 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [200, 200]]) 
+        >>> phy2 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [300, 300]]) 
         >>> element = [phy0, phy1, phy2] 
-        >>> iphy0 = physical.IterablePhysicalObject( xy=[[0, 0], [300, 300]], name="test", elements = element)
-        >>> print(iphy0) 
-        <laygo2.object.physical.IterablePhysicalObject object at 0x0000013219648F08> 
-        name: test, class: IterablePhysicalObject, 
-        xy: [[0, 0], [300, 300]], params: None
+        >>> iphy0 = laygo2.object.physical.IterablePhysicalObject(
+            xy=[[0, 0], [300, 300]], elements = elements)
+        >>> print(iphy0)
+        <laygo2.object.physical.IterablePhysicalObject object at 0x000002049A77E380> 
+        name: None,
+        class: IterablePhysicalObject,
+        xy: [[0, 0], [300, 300]],
+        params: None,
 
-        
         Notes
         -----
-        **Reference in Korean**:  IterablePhysicalObject 클래스의 생성자.
+        **(Korean)**:  IterablePhysicalObject 클래스의 생성자.
 
         파라미터
-
-        xy(numpy.ndarray): 객체의 물리 좌표 (bbox).
-
-        name(str): 객체의 이름.
-
-        params(dict): 객체의 주요 속성이 담긴 dict.
-
-        elements(list): 객체의 구성 요소 객체들(elements)이 담긴 list.
+            - xy(numpy.ndarray): 객체의 물리 좌표 (bbox).
+            - name(str): 객체의 이름.
+            - params(dict): 객체의 주요 속성이 담긴 dict.
+            - elements(list): 객체의 구성 요소 객체들(elements)이 담긴 list.
 
         """
         PhysicalObject.__init__(self, xy=xy, name=name, params=params)
@@ -600,40 +612,52 @@ class IterablePhysicalObject(PhysicalObject):
         return self.elements[pos]
 
     def __setitem__(self, pos, item):
-        """Set the sub-elements of this object, based on the pos and item parameter. """
+        """Set the sub-elements of this object, based on the pos and item 
+        parameter."""
         self.elements[pos] = item
 
     def __iter__(self):
-        """Iterator function. Directly mapped to the iterator of the elements attribute of this object."""
+        """Iterator function. Directly mapped to the iterator of the elements 
+        attribute of this object."""
         return self.elements.__iter__()
 
     def __next__(self):
-        """Iterator function. Directly mapped to the iterator of the elements attribute of this object."""
+        """Iterator function. Directly mapped to the iterator of the elements 
+        attribute of this object."""
         return self.elements.__next__()
 
     def ndenumerate(self):
-        """Enumerate over the element array. Calls np.ndenumerate() of the elements of this object."""
+        """Enumerate over the element array. Calls np.ndenumerate() of the elements 
+        of this object."""
         return np.ndenumerate(self.elements)
 
     def _update_elements(self, xy_ofst):
-        """Update xy-coordinates of this object's elements. An internal function for _set_xy()"""
-        #print("aa?")
+        """Update xy-coordinates of this object's elements. An internal function 
+        for _set_xy()"""
+        # print("aa?")
         if np.all(self.elements is not None):
             # Update the x and y coordinate values of elements.
             for n, e in self.ndenumerate():
                 if e is not None:
                     e.xy = e.xy + xy_ofst
 
+
 class PhysicalObjectGroup(IterablePhysicalObject):
     """
-    A grouped physical object. Intended to be generated as a group in Virtuoso (not implemented yet).
+    A grouped physical object. Intended to be generated as a group in Virtuoso 
+    (not implemented yet).
     """
+
     # TODO: implement this.
 
     def summarize(self):
         """Return the summary of the object information."""
-        return IterablePhysicalObject.summarize(self) + "\n" + \
-               "  elements: " + str(self.elements)
+        return (
+            IterablePhysicalObject.summarize(self)
+            + "\n"
+            + "  elements: "
+            + str(self.elements)
+        )
 
     def __init__(self, xy, name=None, params=None, elements=None):
         """
@@ -646,12 +670,14 @@ class PhysicalObjectGroup(IterablePhysicalObject):
         name : str, optional
             The name of the object.
         params : dict or None
-            The dictionary that contains the parameters of this object, with parameter names as keys.
+            The dictionary that contains the parameters of this object, with 
+            parameter names as keys.
         elements : numpy.ndarray(dtype=LayoutObject) or None
             The iterable elements of the object.
         """
-        IterablePhysicalObject.__init__(self, xy=xy, name=name, params=params, elements=elements)
-
+        IterablePhysicalObject.__init__(
+            self, xy=xy, name=name, params=params, elements=elements
+        )
 
 '''
 # Deprecated as PhysicalObjectGroup can be used instead in most cases.
@@ -738,31 +764,31 @@ class PhysicalObjectArray(np.ndarray):
                "  elements:" + str(np.ndarray.__str__(self)) + "\n"
 '''
 
+
 class Rect(PhysicalObject):
     """
     Rectangle object class.
 
     Notes
     -----
-    **Reference in Korean**: 사각형 객체 클래스.
-
+    **(Korean)**: 사각형 객체 클래스.
     """
 
     layer = None
-    """
-    numpy.ndarray: The layer information [name, purpose] of the object.
+    """numpy.ndarray: The layer information [name, purpose] of the object.
 
     Example
     --------
-    >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’], netname='net0', hextension=20, vextension=20)
+    >>> import laygo2
+    >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+            layer=['M1', 'drawing'], netname='net0', hextension=20, vextension=20)
     >>> rect0.layer 
-    [ ‘M1’, ‘drawing’ ]
+    ['M1', 'drawing']
 
     Notes
     -----
-    **Reference in Korean**: 객체의 layer 정보 [name, purpose].
+    **(Korean)**: 객체의 layer 정보 [name, purpose].
     """
-
 
     netname = None
     """
@@ -770,15 +796,16 @@ class Rect(PhysicalObject):
 
     Example
     --------
-    >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’], netname='net0', hextension=20, vextension=20)
+    >>> import laygo2
+    >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+            layer=['M1', 'drawing'], netname='net0', hextension=20, vextension=20)
     >>> rect0.netname 
     “net0”
     
     Notes
     -----
-    **Reference in Korean**: 객체의 노드 이름.
+    **(Korean)**: 객체의 노드 이름.
     """
-
 
     hextension = 0
     """
@@ -786,7 +813,9 @@ class Rect(PhysicalObject):
 
     Example
     --------
-    >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’], netname='net0', hextension=20, vextension=20)
+    >>> import laygo2
+    >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+            layer=['M1', 'drawing'], netname='net0', hextension=20, vextension=20)
     >>> rect0.hextension 
     20
 
@@ -795,9 +824,8 @@ class Rect(PhysicalObject):
 
     Notes
     -----
-    **Reference in Korean**: 객체의 기존 좌표로부터 수평 방향으로의 확장값.
+    **(Korean)**: 객체의 기존 좌표로부터 수평 방향으로의 확장값.
     """
-
 
     vextension = 0
     """
@@ -805,7 +833,9 @@ class Rect(PhysicalObject):
 
     Example
     --------
-    >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’], netname='net0', hextension=20, vextension=20)
+    >>> import laygo2
+    >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+            layer=['M1', 'drawing'], netname='net0', hextension=20, vextension=20)
     >>> rect0.vextension 
     20
 
@@ -814,23 +844,25 @@ class Rect(PhysicalObject):
 
     Notes
     -----
-    **Reference in Korean**: 객체의 기존 좌표로부터 수직 방향으로의 확장값.
+    **(Korean)**: 객체의 기존 좌표로부터 수직 방향으로의 확장값.
     """
-
 
     color = None
     """
-    int: The color (multi-patterning ID) parameter of the object.
+    int or None or "not_MPT": The color (multi-patterning ID) parameter of 
+    the object.
 
     Example
     --------
-    >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’], netname='net0', hextension=20, vextension=20)
+    >>> import laygo2
+    >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+            layer=['M1', 'drawing'], netname='net0', color=1)
     >>> rect0.color 
-    “notMPT”
+    1
 
     Notes
     -----
-    **Reference in Korean**: 객체의 color (multi-patterning ID).
+    **(Korean)**: 객체의 color (multi-patterning ID).
     """
 
     @property
@@ -840,8 +872,10 @@ class Rect(PhysicalObject):
 
         Example
         --------
-        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’], netname='net0', hextension=20, vextension=20)
-        >>> rect0.height 
+        >>> import laygo2
+        >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+                layer=['M1', 'drawing'])
+        >>> rect0.height
         100
 
         .. image:: ../assets/img/object_physical_rect_height.png
@@ -849,7 +883,7 @@ class Rect(PhysicalObject):
 
         Notes
         -----
-        **Reference in Korean**: int: 객체의 높이.
+        **(Korean)**: int: 객체의 높이.
         """
         return abs(self.xy[0, 1] - self.xy[1, 1])
 
@@ -860,50 +894,64 @@ class Rect(PhysicalObject):
 
         Example
         --------
-        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’], netname='net0', hextension=20, vextension=20)
-        >>> rect0.width 
+        >>> import laygo2
+        >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+                layer=['M1', 'drawing'])
+        >>> rect0.width
         100
-        
+
         .. image:: ../assets/img/object_physical_rect_width.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**: int: 객체의 폭.
+        **(Korean)**: int: 객체의 폭.
         """
         return abs(self.xy[0, 0] - self.xy[1, 0])
 
     @property
     def height_vec(self):
-        """numpy.ndarray(dtype=int): The height vector [0, height]."""
+        """numpy.ndarray(dtype=int): The height vector [0, self.height]."""
         return np.array([0, self.height])
 
     @property
     def width_vec(self):
-        """numpy.ndarray(dtype=int): The width vector [width, 0]."""
+        """numpy.ndarray(dtype=int): The width vector [self.width, 0]."""
         return np.array([self.width, 0])
 
     @property
     def size(self):
         """
-        numpy.ndarray: The size of the object ([width, height]).
+        numpy.ndarray: The size of the object ([self.width, self.height]).
 
         Example
         --------
-        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’], netname='net0', hextension=20, vextension=20)
-        >>> rect0.size 
-        [100, 100]
+        >>> import laygo2
+        >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+                layer=['M1', 'drawing'])
+        >>> rect0.size
+        array([100, 100])
 
         .. image:: ../assets/img/object_physical_rect_size.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**: numpy.ndarray: 객체의 크기 ([폭, 높이]).
+        **(Korean)**: numpy.ndarray: 객체의 크기 ([폭, 높이]).
         """
         return np.array([self.width, self.height])
 
-    def __init__(self, xy, layer, color=None, hextension=0, vextension=0, name=None, netname=None, params=None):
+    def __init__(
+        self,
+        xy,
+        layer,
+        color=None,
+        hextension=0,
+        vextension=0,
+        name=None,
+        netname=None,
+        params=None,
+    ):
         """
         The constructor function.
 
@@ -925,50 +973,43 @@ class Rect(PhysicalObject):
             The dictionary containing attributes of the object.
         color : str, optional.
             The coloring information of the object.
-        
+
         Returns
         -------
         Rect
 
         See Also
         --------
-        Class PhysicalObject
+        PhysicalObject
 
         Example
         --------
-        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing’], netname='net0', hextension=20, vextension=20)
-        >>> print( rect0 ) 
-        <laygo2.object.physical.Rect object at 0x00000283542688C8> name: None, class: Rect, xy: [[0, 0], [100, 100]], params: None, , layer: ['M1', 'drawing'], netname: net0
+        >>> import laygo2
+        >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+                layer=['M1', 'drawing'], netname='net0', color=1)
+        >>> print(rect0)
+        <laygo2.object.physical.Rect object at 0x000002049A77F3A0> 
+        name: None,
+        class: Rect,
+        xy: [[0, 0], [100, 100]],
+        params: None, , layer: ['M1', 'drawing'], netname: net0
 
-        
         .. image:: ../assets/img/object_physical_rect_init.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:     Rect 클래스의 생성자 함수
+        **(Korean)**: Rect 클래스의 생성자 함수.
 
         파라미터
-
-        xy(numpy.ndarray): 객체의 물리 좌표 (bbox).
-
-        layer(list): 객체의 layer 정보.
-
-        hextension(int): 객체의 수평 방향 확장값.
-
-        vextension(int): 객체의 수직 방향 확장값.
-
-        name(str): 객체의 이름.
-
-        netname(str): 객체의 노드 명.
-
-        params(dict): 객체의 주요 속성을 갖는 dict [optional].
-
-        color(str): 객체의 color [optional].
-
-        참조
-
-        Class PhysicalObject
+            - xy(numpy.ndarray): 객체의 물리 좌표 (bbox).
+            - layer(list): 객체의 layer 정보.
+            - hextension(int): 객체의 수평 방향 확장값.
+            - vextension(int): 객체의 수직 방향 확장값.
+            - name(str): 객체의 이름.
+            - netname(str): 객체의 노드 명.
+            - params(dict): 객체의 주요 속성을 갖는 dict [optional].
+            - color(str): 객체의 color [optional].
         """
         self.layer = layer
         if netname is None:
@@ -980,33 +1021,33 @@ class Rect(PhysicalObject):
         self.color = color
         PhysicalObject.__init__(self, xy=xy, name=name, params=params)
 
-
     def align(self, rect2):
         """
-        Match the length of self and rect2 wires, when either width or height of the two objects is zero.
+        Match the length of self and rect2 wires, when either width or height of 
+        the two objects is zero.
 
         Parameters
         ----------
         rect2 : Rect
-            Rect which want to be matched
+            The other Rect object to be matched to this Rect object.
         """
         index = 0
         r0 = self
         r1 = rect2
-        if r0.xy[0][0] == r0.xy[1][0]: # width is zero
-                index = 1
+        if r0.xy[0][0] == r0.xy[1][0]:  # width is zero
+            index = 1
 
         pnt = np.zeros([2, 2], dtype=int)
-        pnt[0][1] = r0.bbox[1][index] # tr
-        pnt[1][1] = r1.bbox[1][index] # tr
-        pnt[0][0] = r0.bbox[0][index] # bl
-        pnt[1][0] = r1.bbox[0][index] # bl
+        pnt[0][1] = r0.bbox[1][index]  # tr
+        pnt[1][1] = r1.bbox[1][index]  # tr
+        pnt[0][0] = r0.bbox[0][index]  # bl
+        pnt[1][0] = r1.bbox[0][index]  # bl
 
         if pnt[1][1] > pnt[0][1]:  # p1-top is upper then p0-top
             _xy = r0.bbox  # r0 correction
             _xy[1][index] = pnt[1][1]
             r0.xy = _xy
-        elif pnt[1][1] < pnt[0][1]: #p1-top is lower then p0-top
+        elif pnt[1][1] < pnt[0][1]:  # p1-top is lower then p0-top
             _xy = r1.bbox  # r1 correction
             _xy[1][index] = pnt[0][1]
             r1.xy = _xy
@@ -1022,9 +1063,15 @@ class Rect(PhysicalObject):
 
     def summarize(self):
         """Return the summary of the object information."""
-        return PhysicalObject.summarize(self) + ", " + \
-                                              "layer: " + str(self.layer) + ", " + \
-                                              "netname: " + str(self.netname)
+        return (
+            PhysicalObject.summarize(self)
+            + ", "
+            + "layer: "
+            + str(self.layer)
+            + ", "
+            + "netname: "
+            + str(self.netname)
+        )
 
 
 class Path(PhysicalObject):
@@ -1033,20 +1080,18 @@ class Path(PhysicalObject):
 
     Notes
     -----
-    **Reference in Korean**: Path 객체 클래스.
+    **(Korean)**: Path 객체 클래스.
     """
+
     # TODO: implement pointers.
 
-
     layer = None
-    """
-    list: The layer information [name, purpose] of object.
+    """numpy.ndarray : The layer information [name, purpose] of object.
     
     Notes
     -----
-    **Reference in Korean**: list: 객체의 레이어 정보 ([name, purpose]).
+    **(Korean)**: 객체의 레이어 정보 [name, purpose].
     """
-
 
     netname = None
     """
@@ -1054,7 +1099,9 @@ class Path(PhysicalObject):
 
     Example
     --------
-    >>> path0 = physical.Path(xy=[[0, 0], [0, 100]], width=10, extension=5, layer=['M1', 'drawing’], netname='net0’)
+    >>> import laygo2
+    >>> path0 = laygo2.object.physical.Path(xy=[[0, 0], [0, 100]], width=10, 
+            extension=5, layer=['M1', 'drawing'], netname='net0’)
     >>> path0.netname 
     “net0”
     
@@ -1063,9 +1110,8 @@ class Path(PhysicalObject):
 
     Notes
     -----
-    **Reference in Korean**: 객체의 노드 명.
+    **(Korean)**: 객체의 노드 명.
     """
-
 
     width = None
     """
@@ -1073,7 +1119,9 @@ class Path(PhysicalObject):
 
     Example
     --------
-    >>> path0 = physical.Path(xy=[[0, 0], [0, 100]], width=10, extension=5, layer=['M1', 'drawing’], netname='net0’)
+    >>> import laygo2
+    >>> path0 = laygo2.object.physical.Path(xy=[[0, 0], [0, 100]], width=10, 
+            extension=5, layer=['M1', 'drawing'], netname='net0’)
     >>> path0.width 
     10
 
@@ -1082,9 +1130,8 @@ class Path(PhysicalObject):
 
     Notes
     -----
-    **Reference in Korean**: 객체의 폭.
+    **(Korean)**: 객체의 폭.
     """
-
 
     extension = 0
     """
@@ -1092,7 +1139,9 @@ class Path(PhysicalObject):
 
     Example
     --------
-    >>> path0 = physical.Path(xy=[[0, 0], [0, 100]], width=10, extension=5, layer=['M1', 'drawing’], netname='net0’)
+    >>> import laygo2
+    >>> path0 = laygo2.object.physical.Path(xy=[[0, 0], [0, 100]], width=10, 
+            extension=5, layer=['M1', 'drawing'], netname='net0’)
     >>> path0.extension 
     5
     
@@ -1101,7 +1150,7 @@ class Path(PhysicalObject):
 
     Notes
     -----
-    **Reference in Korean**: 객체의 양 끝점에서의 확장값.
+    **(Korean)**: 객체의 양 끝점에서의 확장값.
     """
 
     @property
@@ -1110,10 +1159,13 @@ class Path(PhysicalObject):
         return np.sort(np.array([self.xy[0], self.xy[-1]]), axis=0)
 
     def _update_pointers(self):
-        """Update pointers of this object. Called when the value of xy of this object is updated."""
+        """Update pointers of this object. Called when the value of xy of this 
+        object is updated."""
         pass
 
-    def __init__(self, xy, layer, width, extension=0, name=None, netname=None, params=None):
+    def __init__(
+        self, xy, layer, width, extension=0, name=None, netname=None, params=None
+    ):
         """
         The constructor function.
 
@@ -1140,33 +1192,35 @@ class Path(PhysicalObject):
 
         Example
         --------
-        >>> path0 = physical.Path(xy=[[0, 0], [0, 100]], width=10, extension=5, layer=['M1', 'drawing’], netname='net0’)
-        >>> print( path0 ) 
-        <laygo2.object.physical.Path object at 0x00000280D1F3CE88> name: None, class: Path, xy: [[0, 0], [0, 100]], params: None, width: 10, extension: 5, layer: ['M1', 'drawing'], netname: net0
+        >>> import laygo2
+        >>> path0 = laygo2.object.physical.Path(xy=[[0, 0], [0, 100]], width=10, 
+                extension=5, layer=['M1', 'drawing'], netname='net0’)
+        >>> print(path0)
+        <laygo2.object.physical.Path object at 0x00000280D1F3CE88> 
+        name: None, 
+        class: Path, 
+        xy: [[0, 0], [0, 100]], 
+        params: None, 
+        width: 10, 
+        extension: 5, 
+        layer: ['M1', 'drawing'], 
+        netname: net0
 
-        
         .. image:: ../assets/img/object_physical_path_init.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**: Path 객체 생성.
+        **(Korean)**: Path 객체 생성.
 
         파라미터
-
-        xy(numpy.ndarray): 객체의 물리 좌표 (bbox).
-
-        layer(list): 객체의 layer 정보.
-
-        width(int): 객체의 폭.
-
-        extension(int): 객체의 끝점에서의 확장 값.
-
-        name(str): 객체의 이름.
-
-        netname(str): 객체의 노드 명.
-
-        params(dict): 객체의 주요 속성을 갖는 dict.
+            - xy(numpy.ndarray): 객체의 물리 좌표 (bbox).
+            - layer(list): 객체의 layer 정보.
+            - width(int): 객체의 폭.
+            - extension(int): 객체의 끝점에서의 확장 값.
+            - name(str): 객체의 이름.
+            - netname(str): 객체의 노드 명.
+            - params(dict): 객체의 주요 속성을 갖는 dict.
 
         """
         self.layer = layer
@@ -1178,11 +1232,21 @@ class Path(PhysicalObject):
 
     def summarize(self):
         """Return the summary of the object information."""
-        return PhysicalObject.summarize(self) + ", " + \
-               "width: " + str(self.width) + ", " + \
-               "extension: " + str(self.extension) + ", " + \
-               "layer: " + str(self.layer) + ", " + \
-               "netname: " + str(self.netname)
+        return (
+            PhysicalObject.summarize(self)
+            + ", "
+            + "width: "
+            + str(self.width)
+            + ", "
+            + "extension: "
+            + str(self.extension)
+            + ", "
+            + "layer: "
+            + str(self.layer)
+            + ", "
+            + "netname: "
+            + str(self.netname)
+        )
 
 
 class Pin(IterablePhysicalObject):
@@ -1191,7 +1255,7 @@ class Pin(IterablePhysicalObject):
 
     Notes
     -----
-    **Reference in Korean**: Pin 객체 클래스.
+    **(Korean)**: Pin 객체 클래스.
     """
 
     layer = None
@@ -1200,13 +1264,14 @@ class Pin(IterablePhysicalObject):
 
     Example
     --------
-    >>> pin0 = physical.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})path0.width
+    >>> import laygo2
+    >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
+            layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
     >>> pin0.layer 
     ['M1', 'drawing']
     
-    numpy.ndarray: 객체의 layer 정보 ([name, purpose]).
+    numpy.ndarray: 객체의 layer 정보 [name, purpose].
     """
-
 
     netname = None
     """
@@ -1214,13 +1279,14 @@ class Pin(IterablePhysicalObject):
 
     Example
     --------
-    >>> pin0 = physical.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})path0.width
+    >>> import laygo2
+    >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
+            layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
     >>> pin0.netname 
     “net0”
     
     str: 객체의 노드 명.
     """
-
 
     master = None
     """Instance: The master instance of the pin. Used for instance pins only."""
@@ -1232,13 +1298,15 @@ class Pin(IterablePhysicalObject):
 
         Example
         --------
-        >>> pin0 = physical.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})path0.width
-        >>> pin0.height 
+        >>> import laygo2
+        >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
+            layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
+        >>> pin0.height
         100
-        
+
         Notes
         -----
-        **Reference in Korean**:     int: 객체의 높이.
+        **(Korean)**: 객체의 높이.
         """
         return abs(self.xy[0, 1] - self.xy[1, 1])
 
@@ -1249,13 +1317,15 @@ class Pin(IterablePhysicalObject):
 
         Example
         --------
-        >>> pin0 = physical.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})path0.width
-        >>> pin0.width 
+        >>> import laygo2
+        >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
+            layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
+        >>> pin0.width
         100
-        
+
         Notes
         -----
-        **Reference in Korean**:     int: 객체의 폭.
+        **(Korean)**: 객체의 폭.
         """
         return abs(self.xy[0, 0] - self.xy[1, 0])
 
@@ -1266,13 +1336,15 @@ class Pin(IterablePhysicalObject):
 
         Example
         --------
-        >>> pin0 = physical.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})path0.width
-        >>> pin0.size 
+        >>> import laygo2
+        >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
+            layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
+        >>> pin0.size
         [100, 100]
-        
+
         Notes
         -----
-        **Reference in Korean**:     numpy.ndarray: 객체의 크기.
+        **(Korean)**: 객체의 크기.
         """
         return np.array([self.width, self.height])
 
@@ -1286,7 +1358,16 @@ class Pin(IterablePhysicalObject):
         """numpy.ndarray(dtype=int): Return np.array([width, 0])."""
         return np.array([self.width, 0])
 
-    def __init__(self, xy, layer, name=None, netname=None, params=None, master=None, elements=None):
+    def __init__(
+        self,
+        xy,
+        layer,
+        name=None,
+        netname=None,
+        params=None,
+        master=None,
+        elements=None,
+    ):
         """
         The constructor function of Pin class.
 
@@ -1302,34 +1383,34 @@ class Pin(IterablePhysicalObject):
             The net name of the object.
         params : dict
             The dictionary containing attributes of the object.
-        
+
         Returns
         -------
         Pin
 
         Example
         --------
-        >>> pin0 = physical.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})path0.width
-        >>> print( pin0 ) 
-        <laygo2.object.physical.Pin object at 0x0000017DBDA4F508> name: None,
-         class: Pin, xy: [[0, 0], [100, 100]], params: {'direction': 'input’},
-         layer: ['M1', 'drawing'], netname: net0, shape: None, master: None
-       
+        >>> import laygo2
+        >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
+            layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
+        >>> print(pin0)
+        <laygo2.object.physical.Pin object at 0x000002049A77FF70> 
+            name: None,
+            class: Pin,
+            xy: [[0, 0], [100, 100]],
+            params: {'direction': 'input'}, , layer: ['M1' 'drawing'], 
+            netname: net0, shape: None, master: None
+
         Notes
         -----
-        **Reference in Korean**:     Pin 클래스의 생성자 함수
+        **(Korean)**: Pin 클래스의 생성자 함수
 
         파라미터
-
-        xy(numpy.ndarray): 객체의 물리적 좌표 (bbox).
-
-        layer(list): 객체의 layer 정보 ([name, purpose]).
-
-        name(str): 객체의 이름.
-
-        netname(str): 객체의 노드 명.
-
-        params(dict): 객체의 주요 속성을 갖는 dict.
+            - xy(numpy.ndarray): 객체의 물리적 좌표 (bbox).
+            - layer(list): 객체의 layer 정보 ([name, purpose]).
+            - name(str): 객체의 이름.
+            - netname(str): 객체의 노드 명.
+            - params(dict): 객체의 주요 속성을 갖는 dict.
 
         """
         self.layer = np.asarray(layer)
@@ -1337,23 +1418,36 @@ class Pin(IterablePhysicalObject):
             netname = name
         self.netname = netname
         self.master = master
-        IterablePhysicalObject.__init__(self, xy=xy, name=name, params=params, elements=elements)
+        IterablePhysicalObject.__init__(
+            self, xy=xy, name=name, params=params, elements=elements
+        )
 
     def summarize(self):
         """Return the summary of the object information."""
-        return IterablePhysicalObject.summarize(self) + ", " + \
-                                                      "layer: " + str(self.layer) + ", " + \
-                                                      "netname: " + str(self.netname) + ", " + \
-                                                      "shape: " + str(self.shape) + ", " + \
-                                                      "master: " + str(self.master)
+        return (
+            IterablePhysicalObject.summarize(self)
+            + ", "
+            + "layer: "
+            + str(self.layer)
+            + ", "
+            + "netname: "
+            + str(self.netname)
+            + ", "
+            + "shape: "
+            + str(self.shape)
+            + ", "
+            + "master: "
+            + str(self.master)
+        )
 
     def export_to_dict(self):
         db = dict()
-        db['xy'] = self.xy.tolist()
-        db['layer'] = self.layer.tolist()
-        db['name'] = self.name
-        db['netname'] = self.netname
+        db["xy"] = self.xy.tolist()
+        db["layer"] = self.layer.tolist()
+        db["name"] = self.name
+        db["netname"] = self.netname
         return db
+
 
 class Text(PhysicalObject):
     """
@@ -1361,23 +1455,25 @@ class Text(PhysicalObject):
 
     Notes
     -----
-    **Reference in Korean**: Text 객체 클래스.
+    **(Korean)**: Text 객체 클래스.
     """
+
     layer = None
     """
     numpy.ndarray: Layer information of object.
 
     Example
     --------
-    >>> text0 = physical.Text(xy=[[ 0, 0], [100,100 ]], layer=['text', 'drawing'], text='test', params=None)
+    >>> import laygo2
+    >>> text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100, 100]], 
+            layer=['text', 'drawing'], text='test', params=None)
     >>> text0.layer 
     ['text', 'drawing']
 
     Notes
     -----
-    **Reference in Korean**: 객체의 layer 정보 ([name, purpose]).
+    **(Korean)**: 객체의 layer 정보 [name, purpose].
     """
-
 
     text = None
     """
@@ -1385,15 +1481,16 @@ class Text(PhysicalObject):
 
     Example
     --------
-    >>> text0 = physical.Text(xy=[[ 0, 0], [100,100 ]], layer=['text', 'drawing'], text='test', params=None)
+    >>> import laygo2
+    >>> text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100, 100]], 
+            layer=['text', 'drawing'], text='test', params=None)
     >>> text0.text 
-    ”text”
+    'test'
     
     Notes
     -----
-    **Reference in Korean**: 객체의 텍스트 내용.
+    **(Korean)**: 객체의 텍스트 내용.
     """
-
 
     def __init__(self, xy, layer, text, name=None, params=None):
         """
@@ -1411,7 +1508,7 @@ class Text(PhysicalObject):
             The name of the object.
         params : dict
             The dictionary containing attributes of the object.
-        
+
         Returns
         -------
         Text
@@ -1422,26 +1519,28 @@ class Text(PhysicalObject):
 
         Example
         --------
-        >>> pin0 = physical.Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})path0.width
-        >>> pin0.text 
-        [100, 100]
+        >>> import laygo2
+        >>> text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100, 100]], 
+            layer=['text', 'drawing'], text='test', params=None)
+        >>> print(text0)
+        <laygo2.object.physical.Text object at 0x000002049A77FD90> 
+            name: None,
+            class: Text,
+            xy: [[0, 0], [100, 100]],
+            params: None,
+            layer: ['text', 'drawing'],
+            text: test
 
-        
         Notes
         -----
-        **Reference in Korean**: Text 클래스의 생성자 함수.
+        **(Korean)**: Text 클래스의 생성자 함수.
 
         파라미터
-
-        xy(numpy.ndarray): 객체의 물리적 좌표, bbox.
-
-        layer(list): 객체의 layer 정보.
-
-        text(str): 텍스트 내용.
-
-        name(str): 객체의 이름.
-
-        params(dict): 객체의 주요 속성을 갖는 dict.
+            - xy(numpy.ndarray): 객체의 물리적 좌표, bbox.
+            - layer(list): 객체의 layer 정보.
+            - text(str): 텍스트 내용.
+            - name(str): 객체의 이름.
+            - params(dict): 객체의 주요 속성을 갖는 dict.
 
         """
         self.layer = layer
@@ -1451,9 +1550,15 @@ class Text(PhysicalObject):
 
     def summarize(self):
         """Return the summary of the object information."""
-        return PhysicalObject.summarize(self) + \
-                                              "\n    layer: " + str(self.layer) + ", " + \
-                                              "\n    text: " + str(self.text)
+        return (
+            PhysicalObject.summarize(self)
+            + "\n    layer: "
+            + str(self.layer)
+            + ", "
+            + "\n    text: "
+            + str(self.text)
+        )
+
 
 class Instance(IterablePhysicalObject):
     """
@@ -1461,8 +1566,9 @@ class Instance(IterablePhysicalObject):
 
     Notes
     -----
-    **Reference in Korean**: Instance 객체 클래스.
+    **(Korean)**: Instance 객체 클래스.
     """
+
     # TODO: update (maybe) xy and sub-elements after transform property is updated.
 
     libname = None
@@ -1471,21 +1577,25 @@ class Instance(IterablePhysicalObject):
 
     Example
     --------
+    >>> import laygo2
     >>> inst0_pins = dict() 
-    >>> inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = ['M1', 'drawing'], netname = 'in’) 
-    >>> inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out’)
-    >>> inst0 = physical.Instance( name = "I0", xy = [ 100,100], libname="mylib", cellname="mycell", shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform = 'R0’)
+    >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
+            layer = ['M1', 'drawing'], netname = 'in') 
+    >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+            layer=['M1', 'drawing'], netname='out')
+    >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
+            libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+            unit_size=[100, 100], pins=inst0_pins, transform='R0')
     >>> inst0.libname 
-    mylib
+    'mylib'
     
     .. image:: ../assets/img/object_physical_instance_libname.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체의 라이브러리 이름.
+    **(Korean)**: 객체의 라이브러리 이름.
     """
-
 
     cellname = None
     """
@@ -1493,73 +1603,87 @@ class Instance(IterablePhysicalObject):
 
     Example
     --------
+    >>> import laygo2
     >>> inst0_pins = dict() 
-    >>> inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = ['M1', 'drawing'], netname = 'in’) 
-    >>> inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out’)
-    >>> inst0 = physical.Instance( name = "I0", xy = [ 100,100], libname="mylib", cellname="mycell", shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  'R0’)
+    >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
+            layer = ['M1', 'drawing'], netname = 'in') 
+    >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+            layer=['M1', 'drawing'], netname='out')
+    >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
+            libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+            unit_size=[100, 100], pins=inst0_pins, transform='R0')
     >>> inst0.cellname
-    mycell
+    'mycell'
     
     .. image:: ../assets/img/object_physical_instance_cellname.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체가 속한 셀 이름.
+    **(Korean)**: 객체가 속한 셀 이름.
     """
 
     viewname = None
     """str: The view name of the instance."""
 
     shape = None
-    """np.array([int, int]) or None: The shape of the instance mosaic. None if the instance is non-mosaic."""
+    """np.array([int, int]) or None: The shape of the instance mosaic. None if 
+    the instance is non-mosaic."""
 
     _pitch = None
     """np.array([int, int]) or None: The internal variable for pitch."""
 
     unit_size = None
     """
-    numpy.ndarray: Unit size when the object is constructed in array.
+    numpy.ndarray: The unit size when the object is constructed in array.
 
     Example
     --------
+    >>> import laygo2
     >>> inst0_pins = dict() 
-    >>> inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = ['M1', 'drawing'], netname = 'in’) 
-    >>> inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out’)
-    >>> inst0 = physical.Instance( name = "I0", xy = [ 100,100], libname="mylib", cellname="mycell", shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  'R0’)
+    >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
+            layer = ['M1', 'drawing'], netname = 'in') 
+    >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+            layer=['M1', 'drawing'], netname='out')
+    >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
+            libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+            unit_size=[100, 100], pins=inst0_pins, transform='R0')
     >>> inst0.unit_size 
-    [100, 100]
+    array([100, 100])
     
     .. image:: ../assets/img/object_physical_instance_unit_size.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체가 배열로 구성되었을 때 단위 크기.
+    **(Korean)**: 객체가 배열로 구성되었을 때 단위 크기.
     """
 
-
-    transform = 'R0'
+    transform = "R0"
     """
     str: The transformation attribute of the object.
 
     Example
     --------
+    >>> import laygo2
     >>> inst0_pins = dict() 
-    >>> inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = ['M1', 'drawing'], netname = 'in’) 
-    >>> inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out’)
-    >>> inst0 = physical.Instance( name = "I0", xy = [ 100,100], libname="mylib", cellname="mycell", shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  'R0’)
+    >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
+            layer = ['M1', 'drawing'], netname = 'in') 
+    >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+            layer=['M1', 'drawing'], netname='out')
+    >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
+            libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+            unit_size=[100, 100], pins=inst0_pins, transform='R0')
     >>> inst0.transform 
-    “R0”
+    "R0"
     
     .. image:: ../assets/img/object_physical_instance_transform.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체의 변환 속성 (R0, MX, MY 등).
+    **(Korean)**: 객체의 변환 속성 (R0, MX, MY 등).
     """
-
 
     pins = None
     """
@@ -1567,29 +1691,36 @@ class Instance(IterablePhysicalObject):
 
     Example
     --------
+    >>> import laygo2
     >>> inst0_pins = dict() 
-    >>> inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = ['M1', 'drawing'], netname = 'in’) 
-    >>> inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out’)
-    >>> inst0 = physical.Instance( name = "I0", xy = [ 100,100], libname="mylib", cellname="mycell", shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  'R0’)
+    >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
+            layer = ['M1', 'drawing'], netname = 'in') 
+    >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+            layer=['M1', 'drawing'], netname='out')
+    >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
+            libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+            unit_size=[100, 100], pins=inst0_pins, transform='R0')
     >>> inst0.pins 
-    {'in': <laygo2.object.physical.Pin object at 0x000001CA76EE1348>, 'out': <laygo2.object.physical.Pin object at 0x000001CA7709BD48>} 
-    >>> inst0.pins[“in”].shape 
-    [3,2]
-    >>> inst0.pins[“out”].shape 
-    [3,2] 
-    >>> inst0.pins[“in”][1,1].xy 
-    [ [300, 300], [310, 310] ]
+    {'in': <laygo2.object.physical.Pin object at 0x000001CA76EE1348>, 
+    'out': <laygo2.object.physical.Pin object at 0x000001CA7709BD48>} 
+    >>> inst0.pins["in"].shape 
+    array([3, 2])
+    >>> inst0.pins["out"].shape 
+    array([3, 2] )
+    >>> inst0.pins["in"][1, 1].xy 
+    array([[300, 300], [310, 310]])
     
     .. image:: ../assets/img/object_physical_instance_pins.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체에 속한 핀들을 갖는 dict.
+    **(Korean)**: 객체에 속한 핀들을 갖는 dict.
     """
 
     def _update_pins(self, xy_ofst):
-        """Update xy-coordinates of this object's pins. An internal function for _set_xy()"""
+        """Update xy-coordinates of this object's pins. An internal function for 
+        _set_xy()"""
         if self.pins is not None:
             for pn, p in self.pins.items():
                 if np.all(p is not None):
@@ -1599,11 +1730,13 @@ class Instance(IterablePhysicalObject):
                             e.xy = e.xy + xy_ofst
 
     def _get_xy(self):
-        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of this object."""
+        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of 
+        this object."""
         return self._xy
 
     def _set_xy(self, value):
-        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of this object."""
+        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of 
+        this object."""
         # Update the coordinate value of its pins.
         self._update_pins(xy_ofst=value - self.xy)
         IterablePhysicalObject._set_xy(self, value=value)
@@ -1617,19 +1750,24 @@ class Instance(IterablePhysicalObject):
 
         Example
         --------
+        >>> import laygo2
         >>> inst0_pins = dict() 
-        >>> inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = ['M1', 'drawing'], netname = 'in’) 
-        >>> inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out’)
-        >>> inst0 = physical.Instance( name = "I0", xy = [ 100,100], libname="mylib", cellname="mycell", shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  'R0’)
-        >>> inst0.xy0 
-        [100, 100]
+        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
+                layer = ['M1', 'drawing'], netname = 'in') 
+        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+                layer=['M1', 'drawing'], netname='out')
+        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
+                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+                unit_size=[100, 100], pins=inst0_pins, transform='R0')
+        >>> inst0.xy0
+        array([100, 100])
 
         .. image:: ../assets/img/object_physical_instance_xy0.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:     numpy.ndarray: 객체의 주 코너 좌표.
+        **(Korean)**:     numpy.ndarray: 객체의 주 코너 좌표.
         """
         return self.xy
 
@@ -1640,19 +1778,24 @@ class Instance(IterablePhysicalObject):
 
         Example
         --------
+        >>> import laygo2
         >>> inst0_pins = dict() 
-        >>> inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = ['M1', 'drawing'], netname = 'in’) 
-        >>> inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out’)
-        >>> inst0 = physical.Instance( name = "I0", xy = [ 100,100], libname="mylib", cellname="mycell", shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  'R0’)
-        >>> inst0.xy1 
-        [600, 400]
-        
+        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
+                layer = ['M1', 'drawing'], netname = 'in') 
+        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+                layer=['M1', 'drawing'], netname='out')
+        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
+                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+                unit_size=[100, 100], pins=inst0_pins, transform='R0')
+        >>> inst0.xy1
+        array([600, 400])
+
         .. image:: ../assets/img/object_physical_instance_xy1.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:     numpy.ndarray: 객체의 보조 코너 좌표.
+        **(Korean)**:     numpy.ndarray: 객체의 보조 코너 좌표.
         """
         if self.size is None:
             return self.xy
@@ -1666,19 +1809,24 @@ class Instance(IterablePhysicalObject):
 
         Example
         --------
+        >>> import laygo2
         >>> inst0_pins = dict() 
-        >>> inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = ['M1', 'drawing'], netname = 'in’) 
-        >>> inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out’)
-        >>> inst0 = physical.Instance( name = "I0", xy = [ 100,100], libname="mylib", cellname="mycell", shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  'R0’)
-        >>> inst0.size 
-        [500, 300]
-        
+        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
+                layer = ['M1', 'drawing'], netname = 'in') 
+        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+                layer=['M1', 'drawing'], netname='out')
+        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
+                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+                unit_size=[100, 100], pins=inst0_pins, transform='R0')
+        >>> inst0.size
+        array([500, 300])
+
         .. image:: ../assets/img/object_physical_instance_size.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:     numpy.ndarray: 객체의 크기 ([width, height]).
+        **(Korean)**: 객체의 크기 ([width, height]).
         """
         if self.shape is None:
             return self.unit_size
@@ -1702,12 +1850,17 @@ class Instance(IterablePhysicalObject):
 
     Example
     --------
+    >>> import laygo2
     >>> inst0_pins = dict() 
-    >>> inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = ['M1', 'drawing'], netname = 'in’) 
-    >>> inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out’)
-    >>> inst0 = physical.Instance( name = "I0", xy = [ 100,100], libname="mylib", cellname="mycell", shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  'R0’)
+    >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
+            layer = ['M1', 'drawing'], netname = 'in') 
+    >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+            layer=['M1', 'drawing'], netname='out')
+    >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
+            libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+            unit_size=[100, 100], pins=inst0_pins, transform='R0')
     >>> inst0.pitch 
-    [200, 200]
+    array([200, 200])
     
     .. image:: ../assets/img/object_physical_instance_pitch.png
       :height: 250
@@ -1718,7 +1871,7 @@ class Instance(IterablePhysicalObject):
 
     Notes
     -----
-    **Reference in Korean**: 배열로 구성된 객체의 단위 객체(element)간 간격 (pitch).
+    **(Korean)**: 배열로 구성된 객체의 단위 객체(element)간 간격 (pitch).
     """
 
     def get_spacing(self):
@@ -1733,12 +1886,17 @@ class Instance(IterablePhysicalObject):
 
     Example
     --------
+    >>> import laygo2
     >>> inst0_pins = dict() 
-    >>> inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = ['M1', 'drawing'], netname = 'in’) 
-    >>> inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out’)
-    >>> inst0 = physical.Instance( name = "I0", xy = [ 100,100], libname="mylib", cellname="mycell", shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  'R0’)
+    >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
+            layer = ['M1', 'drawing'], netname = 'in') 
+    >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+            layer=['M1', 'drawing'], netname='out')
+    >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
+            libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+            unit_size=[100, 100], pins=inst0_pins, transform='R0')
     >>> inst0.spacing 
-    [200, 200]
+    array([200, 200])
     
     .. image:: ../assets/img/object_physical_instance_spacing.png
       :height: 250
@@ -1749,14 +1907,14 @@ class Instance(IterablePhysicalObject):
 
     Notes
     -----
-    **Reference in Korean**: 배열로 구성된 객체의 단위 객체(element)간 간격 (spacing).
+    **(Korean)**: 배열로 구성된 객체의 단위 객체(element)간 간격 (spacing).
     """
 
     @property
     def bbox(self):
         bbox = np.array([self.xy0, self.xy1])
-        #return bbox
-        #return self.xy + np.dot(self.size, tf.Mt(self.transform).T)
+        # return bbox
+        # return self.xy + np.dot(self.size, tf.Mt(self.transform).T)
         return np.sort(bbox, axis=0)
 
     @property
@@ -1766,19 +1924,24 @@ class Instance(IterablePhysicalObject):
 
         Example
         --------
+        >>> import laygo2
         >>> inst0_pins = dict() 
-        >>> inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = ['M1', 'drawing'], netname = 'in’) 
-        >>> inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out’)
-        >>> inst0 = physical.Instance( name = "I0", xy = [ 100,100], libname="mylib", cellname="mycell", shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  'R0’)
-        >>> inst0.height 
+        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
+                layer = ['M1', 'drawing'], netname = 'in') 
+        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+                layer=['M1', 'drawing'], netname='out')
+        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
+                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+                unit_size=[100, 100], pins=inst0_pins, transform='R0')        
+        >>> inst0.height
         300
-        
+
         .. image:: ../assets/img/object_physical_instance_height.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:     int: 객체의 높이.
+        **(Korean)**: 객체의 높이.
         """
         return abs(self.bbox[1][1] - self.bbox[0][1])
 
@@ -1789,19 +1952,24 @@ class Instance(IterablePhysicalObject):
 
         Example
         --------
+        >>> import laygo2
         >>> inst0_pins = dict() 
-        >>> inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = ['M1', 'drawing'], netname = 'in’) 
-        >>> inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out’)
-        >>> inst0 = physical.Instance( name = "I0", xy = [ 100,100], libname="mylib", cellname="mycell", shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  'R0’)
-        >>> inst0.width 
+        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
+                layer = ['M1', 'drawing'], netname = 'in') 
+        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+                layer=['M1', 'drawing'], netname='out')
+        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
+                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+                unit_size=[100, 100], pins=inst0_pins, transform='R0')   
+        >>> inst0.width
         500
-        
+
         .. image:: ../assets/img/object_physical_instance_width.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:     int: 객체의 폭.
+        **(Korean)**: 객체의 폭.
         """
         return abs(self.bbox[1][0] - self.bbox[0][0])
 
@@ -1815,8 +1983,20 @@ class Instance(IterablePhysicalObject):
         """numpy.ndarray(dtype=int): The width vector [width, 0]."""
         return np.array([self.width, 0])
 
-    def __init__(self, xy, libname, cellname, viewname='layout', shape=None, pitch=None, transform='R0',
-                 unit_size=np.array([0, 0]), pins=None, name=None, params=None):
+    def __init__(
+        self,
+        xy,
+        libname,
+        cellname,
+        viewname="layout",
+        shape=None,
+        pitch=None,
+        transform="R0",
+        unit_size=np.array([0, 0]),
+        pins=None,
+        name=None,
+        params=None,
+    ):
         """
         The constructor function of Instance class.
 
@@ -1842,53 +2022,47 @@ class Instance(IterablePhysicalObject):
             The name of the object.
         params : dict
             The dictionary containing attributes of the object.
-        
+
         Returns
         -------
         Instance
 
         See Also
         --------
-        Class IterablePhysicalObject
+        IterablePhysicalObject
 
         Example
         --------
+        >>> import laygo2
         >>> inst0_pins = dict() 
-        >>> inst0_pins[‘in’] = physical.Pin( xy = [[0, 0], [10,10]], layer = ['M1', 'drawing'], netname = 'in’) 
-        >>> inst0_pins[‘out’]= physical.Pin( xy = [[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out’)
-        >>> inst0 = physical.Instance( name = "I0", xy = [ 100,100], libname="mylib", cellname="mycell", shape = [3,2], pitch = [200,200], unit_size = [100, 100], pins = inst0_pins , transform =  'R0’)
-        >>> print( inst0[1,0].xy0 ) 
-        [ 300, 100 ]
+        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
+                layer = ['M1', 'drawing'], netname = 'in') 
+        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+                layer=['M1', 'drawing'], netname='out')
+        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
+                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+                unit_size=[100, 100], pins=inst0_pins, transform='R0')   
+        >>> print( inst0[1,0].xy0 )
+        array([300, 100])
 
         .. image:: ../assets/img/object_physical_instance_init.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:     Instance 클래스의 생성함수
+        **(Korean)**: Instance 클래스의 생성함수
 
         파라미터
-
-        xy(numpy.ndarray): 객체의 주좌표 [x0, y0].
-
-        libname(str): 객체의 library 이름.
-
-        cellname(str): 객체의 cell 이름.
-
-        shape(numpy.ndarray): elements의 배열 크기 ([column, row]).
-
-        pitch(numpy.ndarray): 배열로 구성된 객체의 구성 요소 (element) 간격 (pitch).
-
-        transform(str): 객체의 변환 속성.
-
-        unit_size(list): 객체의 단위 크기.
-
-        pins(dict): 객체에 속한 핀들을 갖는 dict.
-
-        name(str): 객체의 이름.
-
-        params(dict): 객체의 주요 속성을 갖는 dict.
-
+            - xy(numpy.ndarray): 객체의 주좌표 [x0, y0].
+            - libname(str): 객체의 library 이름.
+            - cellname(str): 객체의 cell 이름.
+            - shape(numpy.ndarray): elements의 배열 크기 ([column, row]).
+            - pitch(numpy.ndarray): 배열로 구성된 객체의 구성 요소 (element) 간격 (pitch).
+            - transform(str): 객체의 변환 속성.
+            - unit_size(list): 객체의 단위 크기.
+            - pins(dict): 객체에 속한 핀들을 갖는 dict.
+            - name(str): 객체의 이름.
+            - params(dict): 객체의 주요 속성을 갖는 dict.
         """
         # Assign parameters.
         xy = np.asarray(xy)
@@ -1897,8 +2071,10 @@ class Instance(IterablePhysicalObject):
         self.viewname = viewname
         if shape is not None:
             _shape = np.asarray(shape)
-            if _shape.shape != (2, ):
-                raise ValueError('Instance shape should be a (2, ) numpy array or None.')
+            if _shape.shape != (2,):
+                raise ValueError(
+                    "Instance shape should be a (2, ) numpy array or None."
+                )
             self.shape = _shape
         if pitch is not None:
             self.pitch = np.asarray(pitch)
@@ -1907,27 +2083,43 @@ class Instance(IterablePhysicalObject):
 
         # Construct an array for elements.
         if shape is None:
-            # elements = self  # self-referencing causes recursion errors. Deprecated.
+            # elements = self  # self-referencing causes recursion errors. 
+            # (Deprecated).
             elements = None
         else:
             _shape = tuple(shape)
             elements = np.zeros(_shape, dtype=np.object)
             # elements = LayoutObjectArray(np.zeros(_shape, dtype=np.object))
-            _it = np.nditer(elements, flags=['multi_index', 'refs_ok'])
+            _it = np.nditer(elements, flags=["multi_index", "refs_ok"])
             while not _it.finished:
                 _idx = _it.multi_index
                 _xy = xy + np.dot(self.pitch * np.array(_idx), tf.Mt(self.transform).T)
-                inst = Instance(xy=_xy, libname=libname, cellname=cellname, shape=None, pitch=pitch,
-                                transform=self.transform, unit_size=self.unit_size, pins=pins, name=name, params=params)
+                inst = Instance(
+                    xy=_xy,
+                    libname=libname,
+                    cellname=cellname,
+                    shape=None,
+                    pitch=pitch,
+                    transform=self.transform,
+                    unit_size=self.unit_size,
+                    pins=pins,
+                    name=name,
+                    params=params,
+                )
                 elements[_idx] = inst
                 _it.iternext()
 
-        IterablePhysicalObject.__init__(self, xy=xy, name=name, params=params, elements=elements)
-        # Create the pin dictionary. Can we do the same thing without generating these many Pin objects?
+        IterablePhysicalObject.__init__(
+            self, xy=xy, name=name, params=params, elements=elements
+        )
+        # Create the pin dictionary. Can we do the same thing without generating 
+        # these many Pin objects?
         self.pins = dict()
         if pins is not None:
             if not isinstance(pins, dict):
-                raise ValueError("The pins parameter for Instance objects should be a dictionary.")
+                raise ValueError(
+                    "The pins parameter for Instance objects should be a dictionary."
+                )
             for pn, p in pins.items():
                 _xy0 = xy + np.dot(p.xy, tf.Mt(transform).T)
                 if shape is not None:
@@ -1935,39 +2127,81 @@ class Instance(IterablePhysicalObject):
                     for i in range(shape[0]):
                         elements.append([])
                         for j in range(shape[1]):
-                            _xy = _xy0 + np.dot(self.pitch * np.array([i, j]), tf.Mt(transform).T)
-                            # If p has elements, they need to be copied and transferred to the new pin.
+                            _xy = _xy0 + np.dot(
+                                self.pitch * np.array([i, j]), tf.Mt(transform).T
+                            )
+                            # If p has elements, they need to be copied and 
+                            # transferred to the new pin.
                             _pelem = None
                             if p.elements is not None:
                                 _pelem = np.empty(p.elements.shape, dtype=object)
                                 for _idx, _pe in np.ndenumerate(p.elements):
-                                    _pexy0 = xy + np.dot(_pe.xy, tf.Mt(transform).T) \
-                                             + np.dot(self.pitch * np.array([i, j]), tf.Mt(transform).T)
-                                    _pelem[_idx] = Pin(xy=_pexy0, netname=_pe.netname, layer=_pe.layer, name=_pe.name, master=self)
-                            pin = Pin(xy=_xy, netname=p.netname, layer=p.layer, name=p.name, master=self,
-                                      elements=_pelem)  # master uses self instead of self.elements[i, j].
+                                    _pexy0 = (
+                                        xy
+                                        + np.dot(_pe.xy, tf.Mt(transform).T)
+                                        + np.dot(
+                                            self.pitch * np.array([i, j]),
+                                            tf.Mt(transform).T,
+                                        )
+                                    )
+                                    _pelem[_idx] = Pin(
+                                        xy=_pexy0,
+                                        netname=_pe.netname,
+                                        layer=_pe.layer,
+                                        name=_pe.name,
+                                        master=self,
+                                    )
+                            pin = Pin(
+                                xy=_xy,
+                                netname=p.netname,
+                                layer=p.layer,
+                                name=p.name,
+                                master=self,
+                                elements=_pelem,
+                            )  # master uses self instead of self.elements[i, j].
                             elements[i].append(pin)
                     elements = np.array(elements)
                 else:
-                    # If p has elements, they need to be copied and transferred to the new pin.
+                    # If p has elements, they need to be copied and transferred 
+                    # to the new pin.
                     _pelem = None
                     if p.elements is not None:
                         _pelem = np.empty(p.elements.shape, dtype=object)
                         for _idx, _pe in np.ndenumerate(p.elements):
                             _pexy0 = xy + np.dot(_pe.xy, tf.Mt(transform).T)
-                            _pelem[_idx] = Pin(xy=_pexy0, netname=_pe.netname, layer=_pe.layer, name=_pe.name, master=self)
+                            _pelem[_idx] = Pin(
+                                xy=_pexy0,
+                                netname=_pe.netname,
+                                layer=_pe.layer,
+                                name=_pe.name,
+                                master=self,
+                            )
                     elements = _pelem
-                self.pins[pn] = Pin(xy=_xy0, netname=p.netname, layer=p.layer, name=p.name, master=self,
-                                    elements=elements)
+                self.pins[pn] = Pin(
+                    xy=_xy0,
+                    netname=p.netname,
+                    layer=p.layer,
+                    name=p.name,
+                    master=self,
+                    elements=elements,
+                )
 
     def summarize(self):
         """Summarize object information."""
-        return PhysicalObject.summarize(self) + \
-               "\n    size: " + str(self.size.tolist()) + \
-               "\n    shape: " + str(None if self.shape is None else self.shape.tolist()) + \
-               "\n    pitch: " + str(self.pitch.tolist()) + \
-               "\n    transform: " + str(self.transform) + \
-               "\n    pins: " + str(self.pins)
+        return (
+            PhysicalObject.summarize(self)
+            + "\n    size: "
+            + str(self.size.tolist())
+            + "\n    shape: "
+            + str(None if self.shape is None else self.shape.tolist())
+            + "\n    pitch: "
+            + str(self.pitch.tolist())
+            + "\n    transform: "
+            + str(self.transform)
+            + "\n    pins: "
+            + str(self.pins)
+        )
+
 
 class VirtualInstance(Instance):  # IterablePhysicalObject):
     """
@@ -1975,7 +2209,7 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
 
     Notes
     -----
-    **Reference in Korean**: VirtualInstance 객체 클래스.
+    **(Korean)**: VirtualInstance 객체 클래스.
     """
 
     native_elements = None
@@ -1984,28 +2218,54 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
 
     Example
     --------
+    >>> import laygo2
     >>> vinst0_pins = dict() 
-    >>> vinst0_pins['in']  = physical.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], netname='in') 
-    >>> vinst0_pins['out'] = physical.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out’)
-    >>> vinst0_native_elements = dict() 
-    >>> vinst0_native_elements['R0'] = physical.Rect(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing']) 
-    >>> vinst0_native_elements['R1'] = physical.Rect(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing']) 
-    >>> vinst0_native_elements['R2'] = physical.Rect(xy=[[0, 0], [100, 100]], layer=['prBoundary', 'drawing’])
-    >>> vinst0 = physical.VirtualInstance(name='I0', libname='mylib', cellname='myvcell', xy=[500, 500], native_elements=vinst0_native_elements, shape=[3, 2], pitch=[100, 100], unit_size=[100, 100], pins=vinst0_pins, transform='R0’)
+    >>> # Pin information
+    >>> vinst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]], 
+            layer=['M1', 'drawing'], netname='in') 
+    >>> vinst0_pins['out'] = laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+            layer=['M1', 'drawing'], netname='out')
+    >>> # Element information
+    >>> native_elements = dict() 
+    >>> native_elements['R0'] = laygo2.object.physical.Rect(xy=[[0, 0], [10, 10]], 
+            layer=['M1', 'drawing']) 
+    >>> native_elements['R1'] = laygo2.object.physical.Rect(xy=[[90, 90], [100, 100]], 
+            layer=['M1', 'drawing']) 
+    >>> native_elements['R2'] = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+            layer=['prBoundary', 'drawing'])
+    >>> vinst0 = laygo2.object.physical.VirtualInstance(name='I0', libname='mylib', 
+            cellname='myvcell', xy=[500, 500], native_elements=native_elements, 
+            shape=[3, 2], pitch=[100, 100], unit_size=[100, 100], pins=vinst0_pins, 
+            transform='R0')
     >>> vinst0.native_elements 
-    { ‘R0’ : physical.Rect, ‘R1’ : physical.Rect, ‘R2’ : physical.Rect }
+    {'R0': <laygo2.object.physical.Rect object at 0x00000204AAFCE170>, 
+     'R1': <laygo2.object.physical.Rect object at 0x00000204AAFCEA40>, 
+     'R2': <laygo2.object.physical.Rect object at 0x00000204AAFCE0B0>}
 
     .. image:: ../assets/img/object_physical_VirtualInstance_native_elements.png
       :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 객체를 구성하는 하위 물리 객체들(Rect, Path, Pin, Text, Instance 등)을 갖고 있는 dict.
+    **(Korean)**: 객체를 구성하는 하위 물리 객체들(Rect, Path, Pin, Text, Instance 등)을 갖고 있는 dict.
     """
     # Dict[PhysicalObject] the elements that compose the virtual instance. Its keys represent the names of the elements.
 
-    def __init__(self, xy, libname, cellname, native_elements, viewname='layout', shape=None, pitch=None,
-                 transform='R0', unit_size=np.array([0, 0]), pins=None, name=None, params=None):
+    def __init__(
+        self,
+        xy,
+        libname,
+        cellname,
+        native_elements,
+        viewname="layout",
+        shape=None,
+        pitch=None,
+        transform="R0",
+        unit_size=np.array([0, 0]),
+        pins=None,
+        name=None,
+        params=None,
+    ):
         """
         The constructor function of VirtualInstance class.
 
@@ -2040,66 +2300,91 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
 
         See Also
         --------
-        Class Instance
+        Instance
 
         Example
         --------
-        >>> vinst0 = physical.VirtualInstance(name='I0', libname='mylib', cellname='myvcell', xy=[500, 500], native_elements=vinst0_native_elements, shape=[3, 2], pitch=[100, 100], unit_size=[100, 100], pins=vinst0_pins, transform='R0’)
+        >>> import laygo2
+        >>> vinst0_pins = dict() 
+        >>> # Pin information
+        >>> vinst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]], 
+                layer=['M1', 'drawing'], netname='in') 
+        >>> vinst0_pins['out'] = laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+                layer=['M1', 'drawing'], netname='out')
+        >>> # Element information
+        >>> native_elements = dict() 
+        >>> native_elements['R0'] = laygo2.object.physical.Rect(xy=[[0, 0], [10, 10]], 
+                layer=['M1', 'drawing']) 
+        >>> native_elements['R1'] = laygo2.object.physical.Rect(xy=[[90, 90], [100, 100]], 
+                layer=['M1', 'drawing']) 
+        >>> native_elements['R2'] = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+                layer=['prBoundary', 'drawing'])
+        >>> vinst0 = laygo2.object.physical.VirtualInstance(name='I0', libname='mylib', 
+                cellname='myvcell', xy=[500, 500], native_elements=native_elements, 
+                shape=[3, 2], pitch=[100, 100], unit_size=[100, 100], pins=vinst0_pins, 
+                transform='R0')
         >>> vinst0.native_elements 
-        { ‘R0’ : physical.Rect, ‘R1’ : physical.Rect, ‘R2’ : physical.Rect }
+        {'R0': <laygo2.object.physical.Rect object at 0x00000204AAFCE170>, 
+         'R1': <laygo2.object.physical.Rect object at 0x00000204AAFCEA40>, 
+         'R2': <laygo2.object.physical.Rect object at 0x00000204AAFCE0B0>}
 
         .. image:: ../assets/img/object_physical_VirtualInstance_init.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**: VirtualInstance 클래스의 생성자.
+        **(Korean)**: VirtualInstance 클래스의 생성자.
 
         파라미터
-
-        xy(numpy.ndarray): 객체의 주좌표 [x0, y0].
-
-        libname(str): 객체의 library 이름.
-
-        cellname(str): 객체의 cell이름.
-
-        native_elements(dict): 객체를 구성하는 물리 객체를 갖는 dict.
-
-        shape(numpy.ndarray): elements의 배열 크기 ([col, row]).
-
-        pitch(numpy.ndarray): 배열로 구성된 객체의 하위 객체 (element)간의 간격.
-
-        transform(str): 객체의 변환 속성 (R0, MX, MY 등).
-
-        unit_size(list): 객체의 단위 크기.
-
-        pins(dict): 객체에 속한 핀들을 갖는 dict.
-
-        name(str): 객체의 이름.
-
-        params(dict): 객체의 주요 속성을 갖는 dict.
+        - xy(numpy.ndarray): 객체의 주좌표 [x0, y0].
+        - libname(str): 객체의 library 이름.
+        - cellname(str): 객체의 cell이름.
+        - native_elements(dict): 객체를 구성하는 물리 객체를 갖는 dict.
+        - shape(numpy.ndarray): elements의 배열 크기 ([col, row]).
+        - pitch(numpy.ndarray): 배열로 구성된 객체의 하위 객체 (element)간의 간격.
+        - transform(str): 객체의 변환 속성 (R0, MX, MY 등).
+        - unit_size(list): 객체의 단위 크기.
+        - pins(dict): 객체에 속한 핀들을 갖는 dict.
+        - name(str): 객체의 이름.
+        - params(dict): 객체의 주요 속성을 갖는 dict.
 
         """
         self.native_elements = native_elements
 
-        Instance.__init__(self, xy=xy, libname=libname, cellname=cellname, viewname=viewname, shape=shape, pitch=pitch,
-                          transform=transform, unit_size=unit_size, pins=pins, name=name, params=params)
+        Instance.__init__(
+            self,
+            xy=xy,
+            libname=libname,
+            cellname=cellname,
+            viewname=viewname,
+            shape=shape,
+            pitch=pitch,
+            transform=transform,
+            unit_size=unit_size,
+            pins=pins,
+            name=name,
+            params=params,
+        )
 
     def summarize(self):
         """Summarize object information."""
-        return Instance.summarize(self) + "\n    native elements: " + str(self.native_elements)
+        return (
+            Instance.summarize(self)
+            + "\n    native elements: "
+            + str(self.native_elements)
+        )
 
-    def get_element_position(self, obj ):
+    def get_element_position(self, obj):
         """
         Get element's xy-position from origin.
-        
+
         Parameters
         ----------
         obj : element
             element belongs to self
         """
         vinst = self
-        tr    = vinst.transform
+        tr = vinst.transform
         coners = np.zeros((4, 2))
         v_r = np.zeros(2)  # for rotation
         bbox_raw = obj.bbox
@@ -2129,14 +2414,8 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
         return coners[0], coners[2]
 
 
-
-
-
-
-
-
 # Test
-if __name__ == '__main__':
+if __name__ == "__main__":
     test_rect = False
     test_path = False
     test_pin = False
@@ -2148,56 +2427,104 @@ if __name__ == '__main__':
     # You can create various objects by running part of the following commands.
     if test_rect:
         print("Rect test")
-        rect0 = Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', params={'maxI': 0.005})
+        rect0 = Rect(
+            xy=[[0, 0], [100, 100]],
+            layer=["M1", "drawing"],
+            netname="net0",
+            params={"maxI": 0.005},
+        )
         print(rect0)
     if test_path:
         print("Path test")
-        path0 = Path(xy=[[0, 0], [0, 100]], width=10, extension=5, layer=['M1', 'drawing'], netname='net0')
+        path0 = Path(
+            xy=[[0, 0], [0, 100]],
+            width=10,
+            extension=5,
+            layer=["M1", "drawing"],
+            netname="net0",
+        )
         print(path0)
     if test_pin:
         print("Pin test")
-        pin0 = Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', master=rect0,
-                   params={'direction': 'input'})
+        pin0 = Pin(
+            xy=[[0, 0], [100, 100]],
+            layer=["M1", "drawing"],
+            netname="net0",
+            master=rect0,
+            params={"direction": "input"},
+        )
         print(pin0)
     if test_text:
         print("Text test")
-        text0 = Text(xy=[0, 0], layer=['text', 'drawing'], text='test', params=None)
+        text0 = Text(xy=[0, 0], layer=["text", "drawing"], text="test", params=None)
         print(text0)
     if test_instance:
         print("Instance test - creating a vanilla instance.")
         inst0_pins = dict()
-        inst0_pins['in'] = Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], netname='in')
-        inst0_pins['out'] = Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out')
-        inst0 = Instance(name='I0', xy=[100, 100], libname='mylib', cellname='mycell', shape=[3, 2], pitch=[100, 100],
-                         unit_size=[100, 100], pins=inst0_pins, transform='R0')
+        inst0_pins["in"] = Pin(
+            xy=[[0, 0], [10, 10]], layer=["M1", "drawing"], netname="in"
+        )
+        inst0_pins["out"] = Pin(
+            xy=[[90, 90], [100, 100]], layer=["M1", "drawing"], netname="out"
+        )
+        inst0 = Instance(
+            name="I0",
+            xy=[100, 100],
+            libname="mylib",
+            cellname="mycell",
+            shape=[3, 2],
+            pitch=[100, 100],
+            unit_size=[100, 100],
+            pins=inst0_pins,
+            transform="R0",
+        )
         print("  ", inst0)
         print("  ", inst0.pointers)
         print(inst0.elements)
         for idx, it in inst0.ndenumerate():
             print("what?")
             print("  ", idx, it)
-            print("  ", idx, it.pins['in'])
+            print("  ", idx, it.pins["in"])
         print("Instance test - updating the instance's coordinate values.")
         inst0.xy = [200, 200]
         print("  ", inst0)
         print("  ", inst0.pointers)
         for idx, it in inst0.ndenumerate():
             print("  ", idx, it)
-            print("  ", idx, it.pins['in'])
+            print("  ", idx, it.pins["in"])
     if test_virtual_instance:
         print("VirtualInstance test - creating a vanilla virtual instance.")
         inst1_pins = dict()
-        inst1_pins['in'] = Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], netname='in')
-        inst1_pins['out'] = Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out')
+        inst1_pins["in"] = Pin(
+            xy=[[0, 0], [10, 10]], layer=["M1", "drawing"], netname="in"
+        )
+        inst1_pins["out"] = Pin(
+            xy=[[90, 90], [100, 100]], layer=["M1", "drawing"], netname="out"
+        )
         inst1_native_elements = dict()
-        inst1_native_elements['R0'] = Rect(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'])
-        inst1_native_elements['R1'] = Rect(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'])
-        inst1_native_elements['R2'] = Rect(xy=[[0, 0], [100, 100]], layer=['prBoundary', 'drawing'])
-        inst1 = VirtualInstance(name='I0', libname='mylib', cellname='myvcell', xy=[500, 500],
-                                native_elements=inst1_native_elements, shape=[3, 2], pitch=[100, 100],
-                                unit_size=[100, 100], pins=inst1_pins, transform='R0')
+        inst1_native_elements["R0"] = Rect(
+            xy=[[0, 0], [10, 10]], layer=["M1", "drawing"]
+        )
+        inst1_native_elements["R1"] = Rect(
+            xy=[[90, 90], [100, 100]], layer=["M1", "drawing"]
+        )
+        inst1_native_elements["R2"] = Rect(
+            xy=[[0, 0], [100, 100]], layer=["prBoundary", "drawing"]
+        )
+        inst1 = VirtualInstance(
+            name="I0",
+            libname="mylib",
+            cellname="myvcell",
+            xy=[500, 500],
+            native_elements=inst1_native_elements,
+            shape=[3, 2],
+            pitch=[100, 100],
+            unit_size=[100, 100],
+            pins=inst1_pins,
+            transform="R0",
+        )
         print("  ", inst1)
         for idx, it in inst1.ndenumerate():
-            print("  ", idx, it.pins['in'])
-        for idx, it in inst1.pins['in'].ndenumerate():
+            print("  ", idx, it.pins["in"])
+        for idx, it in inst1.pins["in"].ndenumerate():
             print("  ", idx, it)
