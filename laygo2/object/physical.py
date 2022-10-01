@@ -2205,11 +2205,15 @@ class Instance(IterablePhysicalObject):
 
 class VirtualInstance(Instance):  # IterablePhysicalObject):
     """
-    VirtualInstance object class.
+    The VirtualInstance class implements functions for a group of objects, 
+    which can be treated as a single instance with dedicated dimensional, 
+    port, and any related parameters.
 
     Notes
     -----
-    **(Korean)**: VirtualInstance 객체 클래스.
+    **(Korean)**: VirtualInstance 객체 클래스. VirtualInstance는 여러 개의
+    레이아웃 오브젝트를 하나의 그룹으로 묶어 크기/포트 등의 관련된 파라미터
+    들을 이용해 추상화 할 수 있는 객체를 구현한다.
     """
 
     native_elements = None

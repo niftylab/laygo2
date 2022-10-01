@@ -2,7 +2,7 @@ numpy
 pyyaml
 nose
 sphinx
-myst-parser
-pydata-sphinx-theme
+myst-parser==4.4.0
+pydata-sphinx-theme==0.8.1
 sphinx-rtd-theme
 autoclasstoc
