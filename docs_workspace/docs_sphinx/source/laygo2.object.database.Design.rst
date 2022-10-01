@@ -4,6 +4,7 @@ Design class
 .. toctree::
    :maxdepth: 4
 
+   laygo2.object.database.Design.append
    laygo2.object.database.Design.place
    laygo2.object.database.Design.route
    laygo2.object.database.Design.route_via_track
