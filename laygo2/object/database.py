@@ -40,7 +40,7 @@ class BaseDatabase:
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**:
     BaseDatabase는 데이터베이스 객체들의 기본 기능을 구현하는 클래스.
     """
 
@@ -58,7 +58,7 @@ class BaseDatabase:
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**:
     str: BaseDatabase 이름.
     """
 
@@ -76,7 +76,7 @@ class BaseDatabase:
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**:
     dict or None: BaseDatabase의 속성.
     """
 
@@ -102,7 +102,7 @@ class BaseDatabase:
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**:
     BaseDatabase 객체의 구성 요소를 담고 있는 Dictionary.
     """
 
@@ -126,7 +126,7 @@ class BaseDatabase:
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**:
     int: BaseDatabase의 소속 객체들 중 이름이 정해지지 않은 객체의 이름을 사용할 때 부여되는 고유 번호.
     """
 
@@ -153,7 +153,7 @@ class BaseDatabase:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**:
         list: BaseDatabase 객체의 구성 요소를 담고 있는 Dictionary.
         """
         return self.elements.keys
@@ -189,7 +189,7 @@ class BaseDatabase:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**:
         elements의 key/object 짝 출력.
         파라미터
         없음
@@ -230,7 +230,7 @@ class BaseDatabase:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**:
         key에 해당하는 object 반환.
         파라미터
         key(str)
@@ -271,7 +271,7 @@ class BaseDatabase:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**:
         요소 추가 함수.
         파라미터
         key(str)
@@ -300,7 +300,12 @@ class BaseDatabase:
                     self.noname_index += 1
                 item_name = "NoName_" + str(self.noname_index)
                 self.noname_index += 1
-            errstr = item_name + " cannot be added to " + self.name + ", as a child object with the same name exists."
+            errstr = (
+                item_name
+                + " cannot be added to "
+                + self.name
+                + ", as a child object with the same name exists."
+            )
             if item_name in self.elements.keys():
                 raise KeyError(errstr)
             else:
@@ -343,7 +348,7 @@ class BaseDatabase:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**:
         BaseDatabase의 Iterable 객체 반환.
         파라미터
         없음
@@ -360,7 +365,14 @@ class BaseDatabase:
     def summarize(self):
         """Return the summary of the object information."""
         return (
-            self.__repr__() + " " + "name: " + self.name + ", " + "params: " + str(self.params) + " \n"
+            self.__repr__()
+            + " "
+            + "name: "
+            + self.name
+            + ", "
+            + "params: "
+            + str(self.params)
+            + " \n"
             "    elements: " + str(self.elements) + ""
         )
 
@@ -391,7 +403,7 @@ class BaseDatabase:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**:
         BaseDatabase 클래스 생성자 함수.
         파라미터
         name(str): BaseDatabase 객체의 이름
@@ -417,7 +429,7 @@ class Library(BaseDatabase):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**:
     Library 클래스는 라이브러리 관리 기능을 구현한다.
     """
 
@@ -441,7 +453,7 @@ class Library(BaseDatabase):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**:
     str: Library 객체의 이름.
     """
 
@@ -486,7 +498,7 @@ class Library(BaseDatabase):
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**:
         Library 클래스의 생성자 함수.
         파라미터
         name(str): Library 객체의 이름
@@ -524,7 +536,7 @@ class Design(BaseDatabase):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**:
     Design 클래스는 디자인 관리 기능을 구현한다.
     """
 
@@ -587,7 +599,7 @@ class Design(BaseDatabase):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**:
     str: Design 객체의 라이브러리 이름.
     """
 
@@ -621,7 +633,7 @@ class Design(BaseDatabase):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**:
     str: Design 객체의 셀 이름.
     """
     rects = None
@@ -648,7 +660,7 @@ class Design(BaseDatabase):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**:
     dict: Design 객체에 소속된 Rect 객체들을 갖고 있는 dictionary.
     """
     paths = None
@@ -676,7 +688,7 @@ class Design(BaseDatabase):
     
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**:
     dict: Design 객체에 소속된 Pin 객체들을 갖고 있는 dictionary.
     """
     texts = None
@@ -703,7 +715,7 @@ class Design(BaseDatabase):
     
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**:
     dict: Design 객체에 소속된 Text 객체들을 갖고 있는 dictionary.
     """
     instances = None
@@ -730,7 +742,7 @@ class Design(BaseDatabase):
     
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**:
     dict: Design 객체에 소속된 Instance 객체들을 갖고 있는 dictionary.
     """
     virtual_instances = None
@@ -757,7 +769,7 @@ class Design(BaseDatabase):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**:
     dict: Design 객체에 소속된 VirtualInstance 객체들을 갖고 있는 dictionary.
     """
 
@@ -798,7 +810,7 @@ class Design(BaseDatabase):
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**:
         Design 클래스의 생성자 함수.
         파라미터
         name(str): Design 객체의 이름
@@ -888,16 +900,31 @@ class Design(BaseDatabase):
 
         Examples
         --------
-        >>> dsn = Design(name='mycell', libname="testlib")
-        >>> g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 20], elements=[0])
-        >>> g1_y = laygo2.object.grid.OneDimGrid(name='ygrid', scope=[0, 100], elements=[0])
-        >>> g2   = laygo2.object.grid.PlacementGrid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> inst0= laygo2.object.physical.Instance(name="I0", xy=[100, 100], transform=‘R0’……)
+        >>> import laygo2
+        >>> dsn = laygo2.object.database.Design(name="mycell", libname="testlib")
+        >>> # Create a grid
+        >>> g1_x  = laygo2.object.grid.OneDimGrid(name="xgrid", scope=[0, 20], elements=[0])
+        >>> g1_y  = laygo2.object.grid.OneDimGrid(name="ygrid", scope=[0, 100], elements=[0])
+        >>> g1    = laygo2.object.grid.PlacementGrid(name="test", vgrid=g1_x, hgrid=g1_y)
+        >>> # Create an instance
+        >>> inst0 = laygo2.object.physical.Instance(libname="templates", 
+                    cellname="template0", name="I0", xy=[100, 100])
         >>> print(inst0.xy)
         [100, 100]
-        >>> dsn.place(inst=inst0, grid=g2, mn=[10,10])
+        >>> # Place the instance
+        >>> dsn.place(inst=inst0, grid=g1, mn=[10,10])
         >>> print(inst0.xy)
         [200, 1000]
+        >>> print(dsn)
+        <laygo2.object.database.Design object at 0x000002803D4C0F40> name: mycell, params: None 
+            elements: {'I0': <laygo2.object.physical.Instance object at 0x000002803D57F010>}
+            libname:testlib
+            rects:{}
+            paths:{}
+            pins:{}
+            texts:{}
+            instances:{'I0': <laygo2.object.physical.Instance object at 0x000002803D57F010>}
+            virtual instances:{}
 
         See Also
         --------
@@ -905,15 +932,14 @@ class Design(BaseDatabase):
 
         Notes
         -----
-        Reference in Korean:
-        인스턴스를 grid위 추상 좌표 mn에 배치함.
+        **(Korean)**: 인스턴스를 grid위 추상 좌표 mn에 배치하는 함수.
+
         파라미터
-        inst(laygo2.physical.instance): 배치할 인스턴스
-        mn(numpy.ndarray or list): 인스턴스를 배치할 추상좌표
+            - inst(laygo2.physical.instance): 배치할 인스턴스
+            - mn(numpy.ndarray or list): 인스턴스를 배치할 추상좌표
+
         반환값
-        laygo2.physical.instance: 좌표가 수정된 인스턴스
-        참조
-        없음
+            - laygo2.physical.instance: 좌표가 수정된 인스턴스
         """
         if isinstance(inst, (laygo2.object.Instance, laygo2.object.VirtualInstance)):
             inst = grid.place(inst, mn)
@@ -941,7 +967,9 @@ class Design(BaseDatabase):
                         ms = ms - 1
                     mn_ref = grid.mn.top_left(matrix[ms][ns])
                 for element in row:
-                    if isinstance(element, (laygo2.object.Instance, laygo2.object.VirtualInstance)):
+                    if isinstance(
+                        element, (laygo2.object.Instance, laygo2.object.VirtualInstance)
+                    ):
                         mn_bl = grid.mn.bottom_left(element)
                         mn_comp = mn_ref - mn_bl
                         inst_sub = grid.place(element, mn_comp)
@@ -992,7 +1020,7 @@ class Design(BaseDatabase):
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**:
         추상 좌표 위에 라우팅을 수행 하는 함수.
         파라미터
         mn(list(numpy.ndarray)): 배선을 수행할 2개 이상의 mn 좌표를 담고 있는 list.
@@ -1037,7 +1065,7 @@ class Design(BaseDatabase):
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**:
         via 생성함수.
         파라미터
         mn(list(numpy.ndarray)): via를 생성할 mn좌표. 복수 개 입력 가능.
@@ -1084,7 +1112,7 @@ class Design(BaseDatabase):
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**:
         wire 라우팅 함수, track을 기준점으로 routing을 진행한다.
         파라미터
         track(numpy.ndarray): track의 좌표값과 방향을 담고 있는 list. 수직 트랙일 경우 [v, None], 수평 트랙일 경우 [None, v]의 형태를 가지고 있다 (v는 track의 좌표값).
@@ -1129,7 +1157,7 @@ class Design(BaseDatabase):
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**:
         pin 생성함수.
         파라미터
         name(str): Pin 이름.
@@ -1141,7 +1169,9 @@ class Design(BaseDatabase):
         laygo2.physical.Pin: Pin object.
 
         """
-        p = grid.pin(name=name, mn=mn, direction=direction, netname=netname, params=params)
+        p = grid.pin(
+            name=name, mn=mn, direction=direction, netname=netname, params=params
+        )
         self.append(p)
         return p
 
@@ -1182,7 +1212,7 @@ class Design(BaseDatabase):
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**:
         Design 객체에 해당하는 NativeInstanceTemplate 객체 생성.
         파라미터
         없음
@@ -1196,7 +1226,9 @@ class Design(BaseDatabase):
 
         xy = self.bbox
         pins = self.pins
-        return laygo2.object.template.NativeInstanceTemplate(libname=libname, cellname=cellname, bbox=xy, pins=pins)
+        return laygo2.object.template.NativeInstanceTemplate(
+            libname=libname, cellname=cellname, bbox=xy, pins=pins
+        )
 
     def get_matched_rects_by_layer(self, layer):
         """
@@ -1234,7 +1266,7 @@ class Design(BaseDatabase):
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**:
         주어진 layer와 일치되는 Physical object 갖는 list 반환.
         파라미터
         layer purpose pair(list): 레이어 정보
@@ -1270,7 +1302,9 @@ class Design(BaseDatabase):
                             vextension=inst.vextension,
                             color=inst.color,
                         )
-                        obj_check.append(ninst)  ## ninst is for sort, inst should be frozen for implement to layout
+                        obj_check.append(
+                            ninst
+                        )  ## ninst is for sort, inst should be frozen for implement to layout
         return obj_check
 
 
@@ -1281,21 +1315,45 @@ if __name__ == "__main__":
     lib = Library(name="mylib")
     dsn = Design(name="mycell")
     lib.append(dsn)
-    rect0 = Rect(xy=[[0, 0], [100, 100]], layer=["M1", "drawing"], name="R0", netname="net0", params={"maxI": 0.005})
+    rect0 = Rect(
+        xy=[[0, 0], [100, 100]],
+        layer=["M1", "drawing"],
+        name="R0",
+        netname="net0",
+        params={"maxI": 0.005},
+    )
     dsn.append(rect0)
-    rect1 = Rect(xy=[[200, 0], [300, 100]], layer=["M1", "drawing"], netname="net0", params={"maxI": 0.005})
+    rect1 = Rect(
+        xy=[[200, 0], [300, 100]],
+        layer=["M1", "drawing"],
+        netname="net0",
+        params={"maxI": 0.005},
+    )
     dsn.append(rect1)
     path0 = Path(
-        xy=[[0, 0], [0, 100]], width=10, extension=5, layer=["M1", "drawing"], netname="net0", params={"maxI": 0.005}
+        xy=[[0, 0], [0, 100]],
+        width=10,
+        extension=5,
+        layer=["M1", "drawing"],
+        netname="net0",
+        params={"maxI": 0.005},
     )
     dsn.append(path0)
-    pin0 = Pin(xy=[[0, 0], [100, 100]], layer=["M1", "pin"], netname="n0", master=rect0, params={"direction": "input"})
+    pin0 = Pin(
+        xy=[[0, 0], [100, 100]],
+        layer=["M1", "pin"],
+        netname="n0",
+        master=rect0,
+        params={"direction": "input"},
+    )
     dsn.append(pin0)
     # text0 = Text(xy=[0, 0], layer=['text', 'drawing'], text='test', params=None)
     # dsn.append(text0)
     inst0_pins = dict()
     inst0_pins["in"] = Pin(xy=[[0, 0], [10, 10]], layer=["M1", "drawing"], netname="in")
-    inst0_pins["out"] = Pin(xy=[[90, 90], [100, 100]], layer=["M1", "drawing"], netname="out")
+    inst0_pins["out"] = Pin(
+        xy=[[90, 90], [100, 100]], layer=["M1", "drawing"], netname="out"
+    )
     inst0 = Instance(
         name="I0",
         xy=[100, 100],
