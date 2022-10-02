@@ -465,7 +465,8 @@ class Library(BaseDatabase):
     >>> lib.append(dsn0)
     >>> lib.append(dsn1)
     >>> print(lib)
-    <laygo2.object.database.Library object at 0x0000025F2D25B8B0> name: mylib, params: None 
+    <laygo2.object.database.Library object at 0x0000025F2D25B8B0> 
+    name: mylib, params: None 
     elements: {
         'mycell0': <laygo2.object.database.Design object at 0x0000025F2D25B010>, 
         'mycell1': <laygo2.object.database.Design object at 0x0000025F2D25BF70>}
