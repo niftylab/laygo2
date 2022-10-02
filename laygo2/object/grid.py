@@ -2838,16 +2838,18 @@ class Grid:
 # Regular classes.
 class PlacementGrid(Grid):
     """
-    PlacementGrid class implements a grid for placement of Instance and VirtualInstance.
+    PlacementGrid class implements a grid for placement of Instance and 
+    VirtualInstance objects.
 
     Notes
     -----
-    **(Korean)**
-    PlacementGrid 클래스는 Instance 및 VirtualInstance 개체들의 배치를 위한 격자 그리드를 구현한다.
+    **(Korean)** PlacementGrid 클래스는 Instance 및 VirtualInstance 개체들의 
+        배치를 위한 격자 그리드를 구현한다.
 
     """
 
     type = "placement"
+    """ Type of grid. Should be 'placement' for placement grids."""
 
     def place(self, inst, mn):
         """
@@ -2862,32 +2864,37 @@ class PlacementGrid(Grid):
 
         Returns
         -------
-        laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance :
+        laygo2.object.physical.Instance or 
+        laygo2.object.physical.VirtualInstance :
             The placed instance.
 
         Examples
         --------
-        >>> g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 20], elements=[0])
-        >>> g1_y = laygo2.object.grid.OneDimGrid(name='ygrid', scope=[0, 100], elements=[0])
-        >>> g2   = laygo2.object.grid.PlacementGrid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> inst0= laygo2.object.physical.Instance(name="I0", xy=[100, 100], transform=‘R0’……)
+        >>> import laygo2
+        >>> from laygo2.object.grid import OneDimGrid, PlacementGrid
+        >>> from laygo2.object.physical import Instance
+        >>> # Create a grid (not needed if laygo2_tech is set up).
+        >>> gx  = OneDimGrid(name="gx", scope=[0, 20], elements=[0])
+        >>> gy  = OneDimGrid(name="gy", scope=[0, 100], elements=[0])
+        >>> g   = PlacementGrid(name="test", vgrid=gx, hgrid=gy)
+        >>> # Create an instance
+        >>> i0 = Instance(libname="tlib", cellname="t0", name="I0", xy=[0, 0])
         >>> print(inst0.xy)
         [100, 100]
-        >>> g2.place(inst=inst0, mn=[10,10])
-        >>> print(inst0.xy)
+        >>> # Place the instance
+        >>> g.place(inst=i0, mn=[10,10])
+        >>> # Print parameters of the placed instance.
+        >>> print(i0.xy)
         [200, 1000]
 
         Notes
         -----
-        **(Korean)**
-        인스턴스 xy속성에 추상좌표를 매핑함.
-        파라미터
-        inst(laygo2.physical.instance): 배치할 인스턴스
-        mn(numpy.ndarray or list): 인스턴스를 배치할 추상좌표
-        반환값
-        laygo2.physical.instance: 좌표가 수정된 인스턴스
-        참조
-        없음
+        **(Korean)** 인스턴스 xy속성에 추상좌표를 매핑함.
+            파라미터
+            - inst(laygo2.physical.instance): 배치할 인스턴스
+            - mn(numpy.ndarray or list): 인스턴스를 배치할 추상좌표
+            반환값
+            - laygo2.physical.instance: 좌표가 수정된 인스턴스
         """
         inst.xy = self[mn]
         return inst
@@ -2899,217 +2906,586 @@ class RoutingGrid(Grid):
 
     Notes
     -----
-    **(Korean)**
-    추상 좌표계 상의 배선 동작을 구현하는 클래스.
-
+    **(Korean)** 추상 좌표계 상의 배선 동작을 구현하는 클래스.
     """
 
     type = "routing"
+    """ Type of grid. Should be 'routing' for routing grids."""
 
     vwidth = None
     """CircularMapping: Width of vertical wires.
 
-    
-
     Examples
     --------
-    >>> templates = tech.load_templates() 
-    >>> grids = tech.load_grids(templates=templates) 
-    >>> r23   = grids['routing_23_cmos’] 
-    >>> print(r23.vwitdh) 
-    <laygo2.object.grid.CircularMapping object > class: CircularMapping, elements: [10]
+    >>> import laygo2
+    >>> from laygo2.object.grid import CircularMapping as CM
+    >>> from laygo2.object.grid import CircularMappingArray as CMA
+    >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+    >>> from laygo2.object.template import NativeInstanceTemplate
+    >>> # Routing grid construction (not needed if laygo2_tech is set up).
+    >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+    >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+    >>> wv = CM([10])           # vertical (xgrid) width
+    >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+    >>> ev = CM([10])           # vertical (xgrid) extension
+    >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+    >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+    >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+    >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+    >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+    >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+    >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> primary_grid = 'horizontal'
+    >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+    >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+    >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                           vwidth=wv, hwidth=wh,
+                                           vextension=ev, hextension=eh,
+                                           vlayer=lv, hlayer=lh,
+                                           pin_vlayer=plv, pin_hlayer=plh,
+                                           viamap=viamap, primary_grid=primary_grid,
+                                           xcolor=xcolor, ycolor=ycolor,
+                                           vextension0=e0v, hextension0=e0h)
+    >>> print(g.vwidth)
+    <laygo2.object.grid.CircularMapping object > 
+        class: CircularMapping, 
+        elements: [10]
 
     .. image:: ../assets/img/object_grid_RoutingGrid_vwidth.png
            :height: 250
 
+    See Also
+    --------
+    vwidth, hwidth, vextension, hextension, vextension0, hextension0
+
     Notes
     -----
-    **(Korean)**
-    수직 wire 들의 폭.
+    **(Korean)** 수직 wire들의 폭.
     """
+
     hwidth = None
     """CircularMapping: Width of horizontal wires.
 
-    
-
     Examples
     --------
-    >>> templates = tech.load_templates() 
-    >>> grids = tech.load_grids(templates=templates) 
-    >>> r23   = grids['routing_23_cmos’]
-    >>> print(r23.hwitdh) 
-    <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [10 10 10 10 10 10 10 10]
+    >>> import laygo2
+    >>> from laygo2.object.grid import CircularMapping as CM
+    >>> from laygo2.object.grid import CircularMappingArray as CMA
+    >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+    >>> from laygo2.object.template import NativeInstanceTemplate
+    >>> # Routing grid construction (not needed if laygo2_tech is set up).
+    >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+    >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+    >>> wv = CM([10])           # vertical (xgrid) width
+    >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+    >>> ev = CM([10])           # vertical (xgrid) extension
+    >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+    >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+    >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+    >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+    >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+    >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+    >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> primary_grid = 'horizontal'
+    >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+    >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+    >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                           vwidth=wv, hwidth=wh,
+                                           vextension=ev, hextension=eh,
+                                           vlayer=lv, hlayer=lh,
+                                           pin_vlayer=plv, pin_hlayer=plh,
+                                           viamap=viamap, primary_grid=primary_grid,
+                                           xcolor=xcolor, ycolor=ycolor,
+                                           vextension0=e0v, hextension0=e0h)
+    >>> print(g.hwidth)
+    <laygo2.object.grid.CircularMapping object > 
+        class: CircularMapping, 
+        elements: [20, 10, 10]
 
     .. image:: ../assets/img/object_grid_RoutingGrid_hwidth.png
            :height: 250 
 
+    See Also
+    --------
+    vwidth, hwidth, vextension, hextension, vextension0, hextension0
+
     Notes
     -----
-    **(Korean)**
-    수평 wire들의 폭.
+    **(Korean)** 수평 wire들의 폭.
     """
+
     vextension = None
     """CircularMapping: Extension of vertical wires.
 
-    
-
     Examples
     --------
-    >>> templates = tech.load_templates() 
-    >>> grids = tech.load_grids(templates=templates) 
-    >>> r23   = grids['routing_23_cmos’] 
-    >>> print(r23.vextension) 
-    <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [15]
+    >>> import laygo2
+    >>> from laygo2.object.grid import CircularMapping as CM
+    >>> from laygo2.object.grid import CircularMappingArray as CMA
+    >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+    >>> from laygo2.object.template import NativeInstanceTemplate
+    >>> # Routing grid construction (not needed if laygo2_tech is set up).
+    >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+    >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+    >>> wv = CM([10])           # vertical (xgrid) width
+    >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+    >>> ev = CM([10])           # vertical (xgrid) extension
+    >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+    >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+    >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+    >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+    >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+    >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+    >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> primary_grid = 'horizontal'
+    >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+    >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+    >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                           vwidth=wv, hwidth=wh,
+                                           vextension=ev, hextension=eh,
+                                           vlayer=lv, hlayer=lh,
+                                           pin_vlayer=plv, pin_hlayer=plh,
+                                           viamap=viamap, primary_grid=primary_grid,
+                                           xcolor=xcolor, ycolor=ycolor,
+                                           vextension0=e0v, hextension0=e0h)
+    >>> print(g.vextension)
+    <laygo2.object.grid.CircularMapping object > 
+        class: CircularMapping, 
+        elements: [10]
 
     .. image:: ../assets/img/object_grid_RoutingGrid_vextension.png
            :height: 250
 
     Notes
     -----
-    **(Korean)**
-    수직 wire들의 extension.
+    **(Korean)** 수직 wire들의 extension.
     """
+
     hextension = None
     """CircularMapping: Extension of horizontal wires.
 
-    
-
     Examples
     --------
-    >>> templates = tech.load_templates() 
-    >>> grids = tech.load_grids(templates=templates) 
-    >>> r23   = grids['routing_23_cmos’] 
-    >>> print(r23.hextension) 
-    <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [15 15 15 15 15 15 15 15]
+    >>> import laygo2
+    >>> from laygo2.object.grid import CircularMapping as CM
+    >>> from laygo2.object.grid import CircularMappingArray as CMA
+    >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+    >>> from laygo2.object.template import NativeInstanceTemplate
+    >>> # Routing grid construction (not needed if laygo2_tech is set up).
+    >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+    >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+    >>> wv = CM([10])           # vertical (xgrid) width
+    >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+    >>> ev = CM([10])           # vertical (xgrid) extension
+    >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+    >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+    >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+    >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+    >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+    >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+    >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> primary_grid = 'horizontal'
+    >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+    >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+    >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                           vwidth=wv, hwidth=wh,
+                                           vextension=ev, hextension=eh,
+                                           vlayer=lv, hlayer=lh,
+                                           pin_vlayer=plv, pin_hlayer=plh,
+                                           viamap=viamap, primary_grid=primary_grid,
+                                           xcolor=xcolor, ycolor=ycolor,
+                                           vextension0=e0v, hextension0=e0h)
+    >>> print(g.hextension)
+    <laygo2.object.grid.CircularMapping object > 
+        class: CircularMapping, 
+        elements: [10, 10, 10]
 
     .. image:: ../assets/img/object_grid_RoutingGrid_hextension.png
            :height: 250 
 
     Notes
     -----
-    **(Korean)**
-    수평 wire들의 extension.
+    **(Korean)** 수평 wire들의 extension.
     """
+
     vextension0 = None
-    """CircularMapping: the array containing the extension of the zero-length wires on the vertical grid."""
+    """CircularMapping: the array containing the extension of the zero-length wires on the vertical grid.
+    
+    Examples
+    --------
+    >>> import laygo2
+    >>> from laygo2.object.grid import CircularMapping as CM
+    >>> from laygo2.object.grid import CircularMappingArray as CMA
+    >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+    >>> from laygo2.object.template import NativeInstanceTemplate
+    >>> # Routing grid construction (not needed if laygo2_tech is set up).
+    >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+    >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+    >>> wv = CM([10])           # vertical (xgrid) width
+    >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+    >>> ev = CM([10])           # vertical (xgrid) extension
+    >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+    >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+    >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+    >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+    >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+    >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+    >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> primary_grid = 'horizontal'
+    >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+    >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+    >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                           vwidth=wv, hwidth=wh,
+                                           vextension=ev, hextension=eh,
+                                           vlayer=lv, hlayer=lh,
+                                           pin_vlayer=plv, pin_hlayer=plh,
+                                           viamap=viamap, primary_grid=primary_grid,
+                                           xcolor=xcolor, ycolor=ycolor,
+                                           vextension0=e0v, hextension0=e0h)
+    >>> print(g.vextension0)
+    <laygo2.object.grid.CircularMapping object > 
+        class: CircularMapping, 
+        elements: [15]
+    """
+    
     hextension0 = None
-    """CircularMapping: the array containing the extension of the zero-length wires on the horizontal grid. """
+    """CircularMapping: the array containing the extension of the zero-length wires on the horizontal grid. 
+    
+    Examples
+    --------
+    >>> import laygo2
+    >>> from laygo2.object.grid import CircularMapping as CM
+    >>> from laygo2.object.grid import CircularMappingArray as CMA
+    >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+    >>> from laygo2.object.template import NativeInstanceTemplate
+    >>> # Routing grid construction (not needed if laygo2_tech is set up).
+    >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+    >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+    >>> wv = CM([10])           # vertical (xgrid) width
+    >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+    >>> ev = CM([10])           # vertical (xgrid) extension
+    >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+    >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+    >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+    >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+    >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+    >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+    >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> primary_grid = 'horizontal'
+    >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+    >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+    >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                           vwidth=wv, hwidth=wh,
+                                           vextension=ev, hextension=eh,
+                                           vlayer=lv, hlayer=lh,
+                                           pin_vlayer=plv, pin_hlayer=plh,
+                                           viamap=viamap, primary_grid=primary_grid,
+                                           xcolor=xcolor, ycolor=ycolor,
+                                           vextension0=e0v, hextension0=e0h)
+    >>> print(g.hextension0)
+    <laygo2.object.grid.CircularMapping object > 
+        class: CircularMapping, 
+        elements: [15, 15, 15]
+    """
+    
     vlayer = None
     """CircularMapping: Layer information of vertical wires.
 
-    
-
     Examples
     --------
-    >>> templates = tech.load_templates() 
-    >>> grids = tech.load_grids(templates=templates) 
-    >>> r23   = grids['routing_23_cmos’] 
-    >>> print(r23.vlayer) 
-    <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [['metal3' 'drawing']]
+    >>> import laygo2
+    >>> from laygo2.object.grid import CircularMapping as CM
+    >>> from laygo2.object.grid import CircularMappingArray as CMA
+    >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+    >>> from laygo2.object.template import NativeInstanceTemplate
+    >>> # Routing grid construction (not needed if laygo2_tech is set up).
+    >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+    >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+    >>> wv = CM([10])           # vertical (xgrid) width
+    >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+    >>> ev = CM([10])           # vertical (xgrid) extension
+    >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+    >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+    >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+    >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+    >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+    >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+    >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> primary_grid = 'horizontal'
+    >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+    >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+    >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                           vwidth=wv, hwidth=wh,
+                                           vextension=ev, hextension=eh,
+                                           vlayer=lv, hlayer=lh,
+                                           pin_vlayer=plv, pin_hlayer=plh,
+                                           viamap=viamap, primary_grid=primary_grid,
+                                           xcolor=xcolor, ycolor=ycolor,
+                                           vextension0=e0v, hextension0=e0h)
+    >>> print(g.vlayer)
+    <laygo2.object.grid.CircularMapping object > 
+        class: CircularMapping, 
+        elements: [['M1', 'drawing']]
 
     .. image:: ../assets/img/object_grid_RoutingGrid_vlayer.png
            :height: 250
 
     Notes
     -----
-    **(Korean)**
-    수직 wire들의 레이어 정보.
+    **(Korean)** 수직 wire들의 레이어 정보.
     """
+
     hlayer = None
     """CircularMapping: Layer information of horizontal wires.
 
-    
-
     Examples
     --------
-    >>> templates = tech.load_templates() 
-    >>> grids = tech.load_grids(templates=templates) 
-    >>> r23   = grids['routing_23_cmos’]
-    >>> print(r23.hlayer) 
-    <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [['metal2' 'drawing'], ['metal2' 'drawing'], ['metal2' 'drawing'], ['metal2' 'drawing'], ['metal2' 'drawing'], ['metal2' 'drawing'], ['metal2' 'drawing'], ['metal2' 'drawing']]
+    >>> import laygo2
+    >>> from laygo2.object.grid import CircularMapping as CM
+    >>> from laygo2.object.grid import CircularMappingArray as CMA
+    >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+    >>> from laygo2.object.template import NativeInstanceTemplate
+    >>> # Routing grid construction (not needed if laygo2_tech is set up).
+    >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+    >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+    >>> wv = CM([10])           # vertical (xgrid) width
+    >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+    >>> ev = CM([10])           # vertical (xgrid) extension
+    >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+    >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+    >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+    >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+    >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+    >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+    >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> primary_grid = 'horizontal'
+    >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+    >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+    >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                           vwidth=wv, hwidth=wh,
+                                           vextension=ev, hextension=eh,
+                                           vlayer=lv, hlayer=lh,
+                                           pin_vlayer=plv, pin_hlayer=plh,
+                                           viamap=viamap, primary_grid=primary_grid,
+                                           xcolor=xcolor, ycolor=ycolor,
+                                           vextension0=e0v, hextension0=e0h)
+    >>> print(g.hlayer)
+    <laygo2.object.grid.CircularMapping object > 
+        class: CircularMapping, 
+        elements: [['M1', 'drawing'], ['M1', 'drawing'], ['M1', 'drawing']]
 
     .. image:: ../assets/img/object_grid_RoutingGrid_hlayer.png
            :height: 250
 
     Notes
     -----
-    **(Korean)**
-    수평 wire들의 레이어정보.
+    **(Korean)** 수평 wire들의 레이어정보.
     """
+
     pin_vlayer = None
     """CircularMapping: Layer information of vertical pin wires.
 
-    
-
     Examples
     --------
-    >>> templates = tech.load_templates() 
-    >>> grids = tech.load_grids(templates=templates) 
-    >>> r23   = grids['routing_23_cmos’]
-    >>> print(r23.pin_vlayer) 
-    <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [['metal3' 'pin']]
+    >>> import laygo2
+    >>> from laygo2.object.grid import CircularMapping as CM
+    >>> from laygo2.object.grid import CircularMappingArray as CMA
+    >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+    >>> from laygo2.object.template import NativeInstanceTemplate
+    >>> # Routing grid construction (not needed if laygo2_tech is set up).
+    >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+    >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+    >>> wv = CM([10])           # vertical (xgrid) width
+    >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+    >>> ev = CM([10])           # vertical (xgrid) extension
+    >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+    >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+    >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+    >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+    >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+    >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+    >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> primary_grid = 'horizontal'
+    >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+    >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+    >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                           vwidth=wv, hwidth=wh,
+                                           vextension=ev, hextension=eh,
+                                           vlayer=lv, hlayer=lh,
+                                           pin_vlayer=plv, pin_hlayer=plh,
+                                           viamap=viamap, primary_grid=primary_grid,
+                                           xcolor=xcolor, ycolor=ycolor,
+                                           vextension0=e0v, hextension0=e0h)
+    >>> print(g.pin_vlayer)
+    <laygo2.object.grid.CircularMapping object > 
+        class: CircularMapping, 
+        elements: [['M1', 'pin']]
 
     .. image:: ../assets/img/object_grid_RoutingGrid_pin_vlayer.png
            :height: 250
 
     Notes
     -----
-    **(Korean)**
-    수직 pin wire들의 레이어 정보.
+    **(Korean)** 수직 pin wire들의 레이어 정보.
     """
+
     pin_hlayer = None
     """CircularMapping: Layer information of horizontal pine wires.
 
-    
-
     Examples
     --------
-    >>> templates = tech.load_templates() 
-    >>> grids = tech.load_grids(templates=templates) 
-    >>> r23   = grids['routing_23_cmos’] 
-    >>> print(r23.pin_hlayer) 
-    <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [['metal2' 'pin'], ['metal2' 'pin'], ['metal2' 'pin'], ['metal2' 'pin'], ['metal2' 'pin'], ['metal2' 'pin'], ['metal2' 'pin'], ['metal2' 'pin']]
+    >>> import laygo2
+    >>> from laygo2.object.grid import CircularMapping as CM
+    >>> from laygo2.object.grid import CircularMappingArray as CMA
+    >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+    >>> from laygo2.object.template import NativeInstanceTemplate
+    >>> # Routing grid construction (not needed if laygo2_tech is set up).
+    >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+    >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+    >>> wv = CM([10])           # vertical (xgrid) width
+    >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+    >>> ev = CM([10])           # vertical (xgrid) extension
+    >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+    >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+    >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+    >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+    >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+    >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+    >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> primary_grid = 'horizontal'
+    >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+    >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+    >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                           vwidth=wv, hwidth=wh,
+                                           vextension=ev, hextension=eh,
+                                           vlayer=lv, hlayer=lh,
+                                           pin_vlayer=plv, pin_hlayer=plh,
+                                           viamap=viamap, primary_grid=primary_grid,
+                                           xcolor=xcolor, ycolor=ycolor,
+                                           vextension0=e0v, hextension0=e0h)
+    >>> print(g.pin_hlayer)
+    <laygo2.object.grid.CircularMapping object > 
+        class: CircularMapping, 
+        elements: [['M1', 'pin'], ['M1', 'pin'], ['M1', 'pin']]
 
     .. image:: ../assets/img/object_grid_RoutingGrid_pin_hlayer.png
            :height: 250
 
     Notes
     -----
-    **(Korean)**
-    수평 pin wire 들의 레이어정보.
+    **(Korean)** 수평 pin wire 들의 레이어정보.
     """
+
     viamap = None
     """CircularMappingArray: Array containing Via objects positioned on grid crossing points.
 
-    
-
     Examples
     --------
-    >>> templates = tech.load_templates() 
-    >>> grids = tech.load_grids(templates=templates) 
-    >>> r23   = grids['routing_23_cmos’]
-    >>> print(r23.viamap) 
-    <laygo2.object.grid.CircularMappingArray object> class: CircularMappingArray, elements: [[<laygo2.object.template.UserDefinedTemplate object>, <laygo2.object.template.UserDefinedTemplate object>, <laygo2.object.template.UserDefinedTemplate object>, <laygo2.object.template.UserDefinedTemplate object>, <laygo2.object.template.UserDefinedTemplate object>, <laygo2.object.template.UserDefinedTemplate object>, <laygo2.object.template.UserDefinedTemplate object>, <laygo2.object.template.UserDefinedTemplate object>]]
+    >>> import laygo2
+    >>> from laygo2.object.grid import CircularMapping as CM
+    >>> from laygo2.object.grid import CircularMappingArray as CMA
+    >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+    >>> from laygo2.object.template import NativeInstanceTemplate
+    >>> # Routing grid construction (not needed if laygo2_tech is set up).
+    >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+    >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+    >>> wv = CM([10])           # vertical (xgrid) width
+    >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+    >>> ev = CM([10])           # vertical (xgrid) extension
+    >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+    >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+    >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+    >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+    >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+    >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+    >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> primary_grid = 'horizontal'
+    >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+    >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+    >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                           vwidth=wv, hwidth=wh,
+                                           vextension=ev, hextension=eh,
+                                           vlayer=lv, hlayer=lh,
+                                           pin_vlayer=plv, pin_hlayer=plh,
+                                           viamap=viamap, primary_grid=primary_grid,
+                                           xcolor=xcolor, ycolor=ycolor,
+                                           vextension0=e0v, hextension0=e0h)
+    >>> print(g.viamap)
+    <laygo2.object.grid.CircularMappingArray object at 0x000002217F15A530> 
+    class: CircularMappingArray, 
+    elements: [
+        [<laygo2.object.template.NativeInstanceTemplate object at 0x000002217F15ADD0>
+         <laygo2.object.template.NativeInstanceTemplate object at 0x000002217F15ADD0>
+         <laygo2.object.template.NativeInstanceTemplate object at 0x000002217F15ADD0>]]
 
     .. image:: ../assets/img/object_grid_RoutingGrid_viamap.png
            :height: 250
 
     Notes
     -----
-    **(Korean)**
-    그리드 교차점에 위치하는 via개채들을 담고있는배열.
+    **(Korean)** 그리드 교차점에 위치하는 via개채들을 담고있는배열.
     """
-    primary_grid = "vertical"
-    """str: Direction of wire having length 0.
 
-    
+    primary_grid = "vertical"
+    """str: The default direction of routing 
+        (Direction of wire having length 0).
 
     Examples
     --------
-    >>> templates = tech.load_templates() 
-    >>> grids = tech.load_grids(templates=templates) 
-    >>> r23   = grids['routing_23_cmos’]
-    >>> print(r23.primary_grid) 
+    >>> import laygo2
+    >>> from laygo2.object.grid import CircularMapping as CM
+    >>> from laygo2.object.grid import CircularMappingArray as CMA
+    >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+    >>> from laygo2.object.template import NativeInstanceTemplate
+    >>> # Routing grid construction (not needed if laygo2_tech is set up).
+    >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+    >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+    >>> wv = CM([10])           # vertical (xgrid) width
+    >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+    >>> ev = CM([10])           # vertical (xgrid) extension
+    >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+    >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+    >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+    >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+    >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+    >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+    >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> primary_grid = 'horizontal'
+    >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+    >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+    >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                           vwidth=wv, hwidth=wh,
+                                           vextension=ev, hextension=eh,
+                                           vlayer=lv, hlayer=lh,
+                                           pin_vlayer=plv, pin_hlayer=plh,
+                                           viamap=viamap, primary_grid=primary_grid,
+                                           xcolor=xcolor, ycolor=ycolor,
+                                           vextension0=e0v, hextension0=e0h)
+    >>> print(g.primary_grid) 
     “horizontal”
 
     .. image:: ../assets/img/object_grid_RoutingGrid_primary_grid.png
@@ -3117,13 +3493,11 @@ class RoutingGrid(Grid):
 
     Notes
     -----
-    **(Korean)**
-    길이가 0인 wire방향.
+    **(Korean)** Routing의 기본 방향 (길이가 0인 wire방향).
     """
+
     xcolor = None
     """CircularMapping: Color of horizontal wires.
-
-    
 
     Examples
     --------
@@ -3131,20 +3505,19 @@ class RoutingGrid(Grid):
     >>> grids = tech.load_grids(templates=templates) 
     >>> r23   = grids['routing_23_cmos’] 
     >>> print(r23.xcolor) 
-    <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [[“colorA”], [“colorB”], [“colorA”], [“colorB”], [“colorA”], [“colorB”], [“colorA”], [“colorB”]]
+    <laygo2.object.grid.CircularMapping object> class: CircularMapping, 
+        elements: [[“colorA”], [“colorB”], [“colorA”], [“colorB”], [“colorA”], [“colorB”], [“colorA”], [“colorB”]]
 
     .. image:: ../assets/img/object_grid_RoutingGrid_xcolor.png
            :height: 250
 
     Notes
     -----
-    **(Korean)**
-    수평 wire 들의 color.
+    **(Korean)** 수평 wire 들의 color.
     """
+
     ycolor = None
     """CircularMapping: Color of vertical wires.
-
-    
 
     Examples
     --------
@@ -3152,15 +3525,15 @@ class RoutingGrid(Grid):
     >>> grids = tech.load_grids(templates=templates) 
     >>> r23   = grids['routing_23_cmos’]
     >>> print(r23.ycolor) 
-    <laygo2.object.grid.CircularMapping object> class: CircularMapping, elements: [[“colorA”]]
+    <laygo2.object.grid.CircularMapping object> class: CircularMapping, 
+        elements: [[“colorA”]]
 
     .. image:: ../assets/img/object_grid_RoutingGrid_ycolor.png
            :height: 250
 
     Notes
     -----
-    **(Korean)**
-    수직 wire들의 color.
+    **(Korean)** 수직 wire들의 color.
     """
 
     def __init__(
@@ -3223,12 +3596,91 @@ class RoutingGrid(Grid):
         -------
         laygo2.RoutingGrid
 
-
-
         Examples
         --------
-        None
-
+        >>> import laygo2
+        >>> from laygo2.object.grid import CircularMapping as CM
+        >>> from laygo2.object.grid import CircularMappingArray as CMA
+        >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+        >>> from laygo2.object.template import NativeInstanceTemplate
+        >>> from laygo2.object.physical import Instance
+        >>> # Routing grid construction (not needed if laygo2_tech is set up).
+        >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+        >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+        >>> wv = CM([10])           # vertical (xgrid) width
+        >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+        >>> ev = CM([10])           # vertical (xgrid) extension
+        >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+        >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+        >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+        >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+        >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+        >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+        >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+        >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+        >>> ycolor = CM(['not MPT']*3, dtype=object) 
+        >>> primary_grid = 'horizontal'
+        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+        >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+        >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                               vwidth=wv, hwidth=wh,
+                                               vextension=ev, hextension=eh,
+                                               vlayer=lv, hlayer=lh,
+                                               pin_vlayer=plv, pin_hlayer=plh,
+                                               viamap=viamap, primary_grid=primary_grid,
+                                               xcolor=xcolor, ycolor=ycolor,
+                                               vextension0=e0v, hextension0=e0h)
+        >>> # Routing on grid 
+        >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
+        >>> route = g.route(mn=mn_list, via_tag=[True, None, True, True])
+        >>> for r in route:
+        >>>     print(r)
+        <laygo2.object.physical.Instance object at 0x0000016939A23A90> 
+            name: None,
+            class: Instance,
+            xy: [0, -60],
+            params: None,
+            size: [0, 0]
+            shape: None
+            pitch: [0, 0]
+            transform: R0
+            pins: {}
+        <laygo2.object.physical.Rect object at 0x0000016939A23880>
+            name: None,
+            class: Rect,
+            xy: [[0, -60], [0, 40]],
+            params: None, , layer: ['M1' 'drawing'], netname: None
+        <laygo2.object.physical.Rect object at 0x0000016939A21BA0>
+            name: None,
+            class: Rect,
+            xy: [[0, 40], [100, 40]],
+            params: None, , layer: ['M2' 'drawing'], netname: None
+        <laygo2.object.physical.Instance object at 0x0000016939A21B70>
+            name: None,
+            class: Instance,
+            xy: [100, 40],
+            params: None,
+            size: [0, 0]
+            shape: None
+            pitch: [0, 0]
+            transform: R0
+            pins: {}
+        <laygo2.object.physical.Rect object at 0x0000016939A21D80>
+            name: None,
+            class: Rect,
+            xy: [[100, 40], [250, 40]],
+            params: None, , layer: ['M2' 'drawing'], netname: None
+        <laygo2.object.physical.Instance object at 0x0000016939A22350>
+            name: None,
+            class: Instance,
+            xy: [250, 40],
+            params: None,
+            size: [0, 0]
+            shape: None
+            pitch: [0, 0]
+            transform: R0
+            pins: {}
+        
         .. image:: ../assets/img/object_grid_RoutingGrid_init.png
            :height: 250
 

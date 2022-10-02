@@ -456,6 +456,20 @@ class Library(BaseDatabase):
     """
     Library class implements the library management function.
 
+    Examples
+    --------
+    >>> import laygo2
+    >>> lib = laygo2.object.database.Library(name="mylib")
+    >>> dsn0 = laygo2.object.database.Design(name="mycell0")
+    >>> dsn1 = laygo2.object.database.Design(name="mycell1")
+    >>> lib.append(dsn0)
+    >>> lib.append(dsn1)
+    >>> print(lib)
+    <laygo2.object.database.Library object at 0x0000025F2D25B8B0> name: mylib, params: None 
+    elements: {
+        'mycell0': <laygo2.object.database.Design object at 0x0000025F2D25B010>, 
+        'mycell1': <laygo2.object.database.Design object at 0x0000025F2D25BF70>}
+
     Notes
     -----
     **(Korean)** Library 클래스는 라이브러리 관리 기능을 구현한다.
@@ -472,9 +486,9 @@ class Library(BaseDatabase):
 
     Examples
     --------
-    >>> lib = laygo2.object.Library(name='mylib’) 
+    >>> lib = laygo2.object.Library(name='mylib') 
     >>> print(lib.name) 
-    “mylib”
+    "mylib"
 
     Notes
     -----
@@ -514,7 +528,7 @@ class Library(BaseDatabase):
         Examples
         --------
         >>> import laygo2
-        >>> lib = laygo2.object.database.Library(name='mylib’)
+        >>> lib = laygo2.object.database.Library(name='mylib')
         >>> print(lib)
         <laygo2.object.database.Library > name: mylib, params: None elements: {} >
 
@@ -552,6 +566,42 @@ class GridLibrary(Library):
 class Design(BaseDatabase):
     """
     Design class implements the design management function.
+
+    Examples
+    --------
+    >>> import laygo2
+    >>> from laygo2.object.database import Design
+    >>> from laygo2.object.physical import Rect, Pin, Instance, Text
+    >>> # Create a design
+    >>> dsn = Design(name="mycell", libname="genlib")
+    >>> # Create layout objects
+    >>> r0 = Rect(xy=[[0, 0], [100, 100]], layer=["M1", "drawing"])
+    >>> p0 = Pin(xy=[[0, 0], [50, 50]], layer=["M1", "pin"], name="P")
+    >>> i0 = Instance(libname="tlib", cellname="t0", name="I0", xy=[0, 0])
+    >>> t0 = Text(xy=[[50, 50], [100, 100]], layer=["text", "drawing"], text="T")
+    >>> dsn.append(r0)
+    >>> dsn.append(p0)
+    >>> dsn.append(i0)
+    >>> dsn.append(t0)
+    >>> print(dsn)
+    <laygo2.object.database.Design object at 0x0000024C6C2EF010> 
+        name: mycell, params: None 
+        elements: {
+            'NoName_0': <laygo2.object.physical.Rect object at 0x0000024C6C230F40>,
+            'P': <laygo2.object.physical.Pin object at 0x0000024C6C2EFF40>, 
+            'I0': <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>, 
+            'NoName_1': <laygo2.object.physical.Text object at 0x0000024C6C2EF8B0>}
+        libname:genlib
+        rects:{
+            'NoName_0': <laygo2.object.physical.Rect object at 0x0000024C6C230F40>}
+        paths:{}
+        pins:{
+            'P': <laygo2.object.physical.Pin object at 0x0000024C6C2EFF40>}
+        texts:{
+            'NoName_1': <laygo2.object.physical.Text object at 0x0000024C6C2EF8B0>}
+        instances:{
+            'I0': <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>}
+        virtual instances:{}
 
     Notes
     -----
