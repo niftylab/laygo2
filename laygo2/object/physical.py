@@ -1515,7 +1515,7 @@ class Text(PhysicalObject):
 
         See Also
         --------
-        PhysicalObject
+        PhysicalObject : base class.
 
         Example
         --------

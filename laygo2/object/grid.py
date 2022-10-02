@@ -32,16 +32,51 @@ __status__ = "Prototype"
 
 import numpy as np
 import laygo2.object
-#import laygo2.util.conversion as cv
+
+# import laygo2.util.conversion as cv
 
 
 # Internal functions.
 def _extend_index_dim(input_index, new_index, new_index_max):
     """
-    A helper function to be used for the multi-dimensional circular array indexing.
-    It extends the dimension of the input array (input_index) that contains indexing information, with the additional
-    indexing variable (new_index) provided. The new_index_max variable is specified in case of the new_index does not
-    contain the maximum index information (perhaps when an open-end slice is given for the new_index).
+    A helper function to be used for the multi-dimensional circular array
+    indexing of CircularMappingArray. It extends the dimension of the input
+    array (input_index) that contains indexing information, with the
+    additional indexing variable (new_index) provided. The new_index_max
+    variable is specified in case of the new_index does not contain the
+    maximum index information (perhaps when an open-end slice is given for
+    the new_index).
+
+    Parameters
+    ----------
+    input_index : iterable
+        The iterable object to be extended.
+    new_index : iterable
+        The iterable object to be added to input_ind to extend its dimension.
+    new_index_max : iterable
+        The maximum index of new_index when its upper boundary is not
+        provided.
+
+    Returns
+    -------
+    Iterable
+        The extended index.
+
+    Examples
+    --------
+    >>> import laygo2
+    >>> # 0-dim to 1-dim
+    >>> laygo2.object.grid._extend_index_dim(None, [3, 4, 6], None)
+    [(3,), (4,), (6,)]
+    >>> # 0-dim to 1-dim (with slicing input)
+    >>> laygo2.object.grid._extend_index_dim(None, slice(3, 8, 2), None)
+    [(3,), (5,), (7,)]
+    >>> # 0-dim to 1-dim, with maximum index given
+    >>> laygo2.object.grid._extend_index_dim(None, slice(3, None, 2), 8)
+    [(3,), (4,), (6,)]
+    >>> # 1-dim to 2-dim
+    >>> laygo2.object.grid._extend_index_dim([(3,), (4,), (6,)], [1, 2], None)
+    [[(3, 1), (3, 2)], [(4, 1), (4, 2)], [(6, 1), (6, 2)]]
     """
     # Construct an iterator from new_index
     if isinstance(new_index, (int, np.integer)):
@@ -69,7 +104,24 @@ def _extend_index_dim(input_index, new_index, new_index_max):
 
 
 def _conv_slice_to_list(slice_obj, start_def=0, stop_def=100, step_def=1):
-    """Convert slice to list"""
+    """Convert slice to a list.
+
+    Parameters
+    ----------
+    slice_obj : slice
+        The slice object to be converted.
+    start_def : int, optional
+        The default starting index if the slice object has no lower boundary.
+    stop_def : int, optional
+        The default stopping index if the slice object has no upper boundary.
+    step_def : int, optional
+        The default stepping index if the slice object has no step specified.
+
+    Examples
+    --------
+    >>> laygo2.object.grid._conv_slice_to_list(slice(0, 10, 2))               
+    [0, 2, 4, 6, 8]
+    """
     if slice_obj.start is None:
         start = start_def
     else:
@@ -88,6 +140,11 @@ def _conv_slice_to_list(slice_obj, start_def=0, stop_def=100, step_def=1):
 def _conv_bbox_to_array(bbox):
     """
     Convert a bbox object to a 2-d array.
+
+    Parameters
+    ----------
+    bbox : numpy.ndarray
+        The bounding box to be converted.
     """
     array = list()
     for r in range(bbox[0, 1], bbox[1, 1] + 1):
@@ -100,7 +157,12 @@ def _conv_bbox_to_array(bbox):
 
 def _conv_bbox_to_list(bbox):
     """
-    Convert a bbox object to a 2-d array.
+    Convert a bbox object to a 1-d list.
+
+    Parameters
+    ----------
+    bbox : numpy.ndarray
+        The bounding box to be converted.
     """
     array = list()
     for r in range(bbox[0, 1], bbox[1, 1] + 1):
@@ -116,8 +178,7 @@ class CircularMapping:
 
     Notes
     -----
-    Reference in Korean:
-    기본적인 순환맵핑(인덱싱 넘버가 무한히 확장) 클래스.
+    **(Korean)** 기본적인 순환맵핑(인덱싱 넘버가 무한히 확장) 클래스.
 
     """
 
@@ -126,17 +187,18 @@ class CircularMapping:
 
     Examples
     --------
-    >>> elements = [ 0, 35, 85, 130, 180 ] 
-    >>> cm = CircularMapping( elements = elements ) 
+    >>> from laygo2.object.grid import CircularMapping
+    >>> elements = [0, 35, 85, 130, 180] 
+    >>> cm = CircularMapping(elements) 
     >>> cm.elements
-    [ 0, 35, 85, 130, 180 ]
+    [0, 35, 85, 130, 180]
 
     .. image:: ../assets/img/object_grid_CircularMapping_elements.png
            :height: 250 
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     순환 맵핑의 구성 요소로 이루어진 배열. 
 
     """
@@ -148,8 +210,9 @@ class CircularMapping:
 
     Examples
     --------
-    >>> elements = [ 0, 35, 85, 130, 180 ] 
-    >>> cm = CircularMapping( elements = elements ) 
+    >>> from laygo2.object.grid import CircularMapping
+    >>> elements = [0, 35, 85, 130, 180] 
+    >>> cm = CircularMapping(elements) 
     >>> cm.dtype
     int
 
@@ -158,7 +221,7 @@ class CircularMapping:
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     순환 맵핑의 데이터 유형.
     """
 
@@ -175,15 +238,14 @@ class CircularMapping:
 
     @property
     def shape(self):
-        """numpy.ndarray: Shape of circular mapping.
-
-        
+        """numpy.ndarray: The shape of circular mapping.
 
         Examples
         --------
-        >>> elements = [ 0, 35, 85, 130, 180 ] 
-        >>> cm = CircularMapping( elements = elements ) 
-        >>> cm.shape 
+        >>> from laygo2.object.grid import CircularMapping
+        >>> elements = [0, 35, 85, 130, 180]
+        >>> cm = CircularMapping(elements)
+        >>> cm.shape
         [4]
 
         .. image:: ../assets/img/object_grid_CircularMapping_shape.png
@@ -191,8 +253,8 @@ class CircularMapping:
 
         Notes
         -----
-        Reference in Korean:
-        순환 맵핑의 shape. 
+        **(Korean)**
+        순환 맵핑의 shape.
         """
         return np.array(self.elements.shape)
 
@@ -206,22 +268,17 @@ class CircularMapping:
             elements.
         dtype : type
             data type of elements.
-        
-        Returns
-        -------
-        laygo2.CicularMapping
-
-        
 
         Examples
         --------
-        >>> elements = [ 0, 35, 85, 130, 180 ] 
-        >>> cm = CircularMapping( elements = elements ) 
-        >>> cm.shape 
+        >>> from laygo2.object.grid import CircularMapping
+        >>> elements = [0, 35, 85, 130, 180]
+        >>> cm = CircularMapping(elements)
+        >>> cm.shape
         [4]
-        >>> cm[5] 
-        35 
-        >>> cm[0:10] 
+        >>> cm[5]
+        35
+        >>> cm[0:10]
         [0, 35, 85, 130, 0, 35, 85, 130, 0, 35]
 
         .. image:: ../assets/img/object_grid_CircularMapping_init.png
@@ -229,15 +286,10 @@ class CircularMapping:
 
         Notes
         -----
-        Reference in Korean:
-        CircularMapping 클래스의 생성자함수
-        파라미터
-        elements(list): 구성 요소
-        dtype(type): 구성 요소의 datatype
-        반환값
-        laygo2.CicularMapping
-        참조
-        없음
+        **(Korean)** CircularMapping 클래스의 생성자함수
+            파라미터
+            - elements(list): 구성 요소
+            - dtype(type): 구성 요소의 datatype
         """
         self.dtype = dtype
         self.elements = np.asarray(elements, dtype=dtype)
@@ -248,7 +300,9 @@ class CircularMapping:
         if isinstance(pos, (int, np.integer)):
             return self.elements[pos % self.shape[0]]
         elif isinstance(pos, slice):
-            return self.__getitem__(pos=_conv_slice_to_list(slice_obj=pos, stop_def=self.shape[0]))
+            return self.__getitem__(
+                pos=_conv_slice_to_list(slice_obj=pos, stop_def=self.shape[0])
+            )
         elif isinstance(pos, np.ndarray):
             return np.array([self.__getitem__(pos=p) for p in pos])
         elif isinstance(pos, list):
@@ -274,9 +328,14 @@ class CircularMapping:
 
     def summarize(self):
         """Return the summary of the object information."""
-        return self.__repr__() + " " \
-               "class: " + self.__class__.__name__ + ", " + \
-               "elements: " + str(self.elements)
+        return (
+            self.__repr__() + " "
+            "class: "
+            + self.__class__.__name__
+            + ", "
+            + "elements: "
+            + str(self.elements)
+        )
 
 
 class CircularMappingArray(CircularMapping):
@@ -285,10 +344,10 @@ class CircularMappingArray(CircularMapping):
 
     Notes
     -----
-    Reference in Korean:
-    다차원 순환맵핑(인덱싱 넘버가 무한히 확장) 클래스.
+    **(Korean)** 다차원 순환맵핑(인덱싱 넘버가 무한히 확장) 클래스.
 
     """
+
     def __getitem__(self, pos):
         """
         Element access function.
@@ -297,28 +356,26 @@ class CircularMappingArray(CircularMapping):
         ----------
         pos : int
             index number being accessed.
-        
+
         Returns
         -------
         element
 
-        
-
         Examples
         --------
-        >>> elements  = [[0,0], [35,0], [85,0], [130,0], 
+        >>> elements  = [[0,0], [35,0], [85,0], [130,0],
         >>> cm = CircularMapping( elements = elements )
-        >>> cm[1] 
-        [ 35, 0 ] 
-        >>> cm[3] 
+        >>> cm[1]
+        [ 35, 0 ]
+        >>> cm[3]
         [ 130, 0 ]
 
         .. image:: ../assets/img/object_grid_CircularMappingArray_getitem.png
-           :height: 250 
+           :height: 250
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         순환 맵핑의 요소 접근함수
         파라미터
         index(int): 접근하려는 index 번호
@@ -345,11 +402,13 @@ class CircularMappingArray(CircularMapping):
             # When the indices don't specify the lower boundary (e.g., [:5]), it iterates from 0.
             # When the indices don't specify the upper boundary (e.g., [3:]), it iterates to the maximum index defined.
             idx = None
-            for i, p in enumerate(pos):
+            for i, p in enumerate(pos):  # iterate over input indices (x and y).
                 idx = _extend_index_dim(idx, p, self.shape[i])
             idx = np.asarray(idx)
             # iterate and generate the list to return
-            item = np.empty(idx.shape[:-1], dtype=self.dtype)  # -1 because the tuples in idx are flatten.
+            item = np.empty(
+                idx.shape[:-1], dtype=self.dtype
+            )  # -1 because the tuples in idx are flatten.
             for i, _null in np.ndenumerate(item):
                 item[i] = self.__getitem__(pos=tuple(idx[i]))
             return np.asarray(item)
@@ -361,7 +420,7 @@ class _AbsToPhyGridConverter:
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     추상 좌표를 물리 좌표로 변환하는 클래스, 조건부연산은 반대로 물리좌표를 추상좌표로 변환한다.
 
     """
@@ -387,7 +446,7 @@ class _AbsToPhyGridConverter:
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     _AbsToPhyGridConverter 객체가 속한 좌표계.
     """
 
@@ -399,7 +458,7 @@ class _AbsToPhyGridConverter:
     # Access functions.
     def __call__(self, pos):
         """
-        Convert abstract coordinates of the master grid into corresponding physical coordinates. 
+        Convert abstract coordinates of the master grid into corresponding physical coordinates.
 
         Parameters
         ----------
@@ -411,24 +470,24 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
+        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0])
         >>> g2   = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> g1_x.abs2phy(0) 
-        0 
-        >>> g2.xy(0,0) 
+        >>> g1_x.abs2phy(0)
+        0
+        >>> g2.xy(0,0)
         [0,0]
 
         .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_call.png
-           :height: 250 
+           :height: 250
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         추상 좌표를 master 좌표계에서 대응되는 물리 좌표로 변환.
         파라미터
         pos(int): 추상 좌표
@@ -441,7 +500,7 @@ class _AbsToPhyGridConverter:
 
     def __getitem__(self, pos):
         """
-        Convert abstract coordinates of the master grid into corresponding physical coordinates. 
+        Convert abstract coordinates of the master grid into corresponding physical coordinates.
 
         Parameters
         ----------
@@ -453,16 +512,16 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
+        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0])
         >>> g2   = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> g1_x.abs2phy(0) 
-        0 
-        >>> g2.xy(0,0) 
+        >>> g1_x.abs2phy(0)
+        0
+        >>> g2.xy(0,0)
         [0,0]
 
         .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_getitem.png
@@ -470,7 +529,7 @@ class _AbsToPhyGridConverter:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         추상 좌표를 master 좌표계에서 대응되는 물리 좌표로 변환.
         파라미터
         pos(int): 추상 좌표
@@ -479,9 +538,13 @@ class _AbsToPhyGridConverter:
         참조
         없음
         """
-        if (self.master.__class__.__name__ == 'OneDimGrid') or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._getitem_1d(pos)
-        if (self.master.__class__.__name__ == 'Grid') or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._getitem_2d(pos)
         else:
             return None
@@ -490,23 +553,27 @@ class _AbsToPhyGridConverter:
         """An internal function of __getitem__() for 1-d grids."""
         # Check if pos has multiple elements.
         if isinstance(pos, slice):
-            return self._getitem_1d(_conv_slice_to_list(slice_obj=pos, stop_def=self.master.shape[0]))
+            return self._getitem_1d(
+                _conv_slice_to_list(slice_obj=pos, stop_def=self.master.shape[0])
+            )
         elif isinstance(pos, np.ndarray):
             return self._getitem_1d(pos.tolist())
         elif isinstance(pos, list):
             return np.array([self._getitem_1d(p) for p in pos])
         elif pos is None:
-            raise TypeError("_AbsToPhyConverter._getitem_1d does not accept None as its input.")
+            raise TypeError(
+                "_AbsToPhyConverter._getitem_1d does not accept None as its input."
+            )
         else:
             # pos is a single element. Compute quotient and modulo for grid extension.
             quo = 0
             mod = int(round(pos))
             if pos >= self.master.shape[0]:
                 mod = int(round(pos % self.master.shape[0]))
-                quo = int(round((pos-mod) / self.master.shape[0]))
+                quo = int(round((pos - mod) / self.master.shape[0]))
             elif pos < 0:
                 mod = int(round(pos % self.master.shape[0]))
-                quo = int(round((pos-mod)) / self.master.shape[0])
+                quo = int(round((pos - mod)) / self.master.shape[0])
             return quo * self.master.range[1] + self.master.elements[mod]
             # the following command cannot handle the size extension of the grid, disabled.
             # return self.master.elements.take(pos, mode='wrap')
@@ -527,7 +594,9 @@ class _AbsToPhyGridConverter:
         x = self.master.x[pos[0]]
         y = self.master.y[pos[1]]
         # TODO: Refactor the following code to avoid the use of double for loops and list comprehensions.
-        if (not isinstance(x, np.ndarray)) and (not isinstance(y, np.ndarray)):  # x and y are scalars.
+        if (not isinstance(x, np.ndarray)) and (
+            not isinstance(y, np.ndarray)
+        ):  # x and y are scalars.
             return np.array([x, y])
         if not isinstance(x, np.ndarray):  # x is a scalar.
             return np.array([np.array([x, _y]) for _y in y])
@@ -557,24 +626,24 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
+        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0])
         >>> g2   = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> g1_x.abs2phy == 35 
-        1 
-        >>> g2.xy == [35,35] 
+        >>> g1_x.abs2phy == 35
+        1
+        >>> g2.xy == [35,35]
         [1,None]
 
         .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_eq.png
-           :height: 250 
+           :height: 250
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         파라미터
         other(int): 물리 좌표
@@ -599,16 +668,16 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
+        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0])
         >>> g2   = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> g1_x.abs2phy < 35 
-        0 
-        >>> g2.xy < [35,35] 
+        >>> g1_x.abs2phy < 35
+        0
+        >>> g2.xy < [35,35]
         [0,1]
 
         .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_lt.png
@@ -616,7 +685,7 @@ class _AbsToPhyGridConverter:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         파라미터
         other(int): 물리 좌표
@@ -625,16 +694,20 @@ class _AbsToPhyGridConverter:
         참조
         없음
         """
-        if (self.master.__class__.__name__ == 'OneDimGrid') or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._lt_1d(other)
-        if (self.master.__class__.__name__ == 'Grid') or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._lt_2d(other)
         else:
             return None
 
     @staticmethod
-    def _phy2abs_operator( other, elements, width, shape, op):
-        def phy2abs( x ):
+    def _phy2abs_operator(other, elements, width, shape, op):
+        def phy2abs(x):
             if x > 0:
                 quo_coarce = 0 + x // width
                 msb_sub = 1
@@ -650,7 +723,7 @@ class _AbsToPhyGridConverter:
 
                 if comp(e, remain) == True:  # find maximum less then remain , e < r
                     pass
-                else:                        # when it is False, latest true index
+                else:  # when it is False, latest true index
                     return msb + i[0] + lsb_offset
 
             return msb + shape + lsb_offset
@@ -672,21 +745,25 @@ class _AbsToPhyGridConverter:
             lsb_offset = 1
 
         if isinstance(other, (int, np.integer)):
-           return phy2abs(other)
+            return phy2abs(other)
         else:
             list_return = []
             for o in other:
-                list_return.append( phy2abs(o) )
-            return np.array( list_return )
+                list_return.append(phy2abs(o))
+            return np.array(list_return)
 
-
-    def _lt_1d(self,other):
-        return self._phy2abs_operator( other, self.master.elements, self.master.width, self.master.elements.shape[0], "<")
+    def _lt_1d(self, other):
+        return self._phy2abs_operator(
+            other,
+            self.master.elements,
+            self.master.width,
+            self.master.elements.shape[0],
+            "<",
+        )
 
     def _lt_2d(self, other):
         if isinstance(other[0], (int, np.integer)):
-            return np.array([self.master.x < other[0],
-                             self.master.y < other[1]])
+            return np.array([self.master.x < other[0], self.master.y < other[1]])
         else:
             return np.array([self._lt_2d(o) for o in other])
 
@@ -704,16 +781,16 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
+        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0])
         >>> g2   = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> g1_x.abs2phy <= 35 
-        1 
-        >>> g2.xy <= [35,35] 
+        >>> g1_x.abs2phy <= 35
+        1
+        >>> g2.xy <= [35,35]
         [1,1]
 
         .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_le.png
@@ -721,7 +798,7 @@ class _AbsToPhyGridConverter:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         파라미터
         other(int): 물리 좌표
@@ -730,18 +807,27 @@ class _AbsToPhyGridConverter:
         참조
         없음
         """
-        if (self.master.__class__.__name__ == 'OneDimGrid') or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._le_1d(other=other)
-        if (self.master.__class__.__name__ == 'Grid') or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._le_2d(other=other)
 
     def _le_1d(self, other):
-        return self._phy2abs_operator(other, self.master.elements, self.master.width, self.master.elements.shape[0], "<=")
+        return self._phy2abs_operator(
+            other,
+            self.master.elements,
+            self.master.width,
+            self.master.elements.shape[0],
+            "<=",
+        )
 
     def _le_2d(self, other):
         if isinstance(other[0], (int, np.integer)):
-            return np.array([self.master.x <= other[0],
-                             self.master.y <= other[1]])
+            return np.array([self.master.x <= other[0], self.master.y <= other[1]])
         else:
             return np.array([self._le_2d(o) for o in other])
 
@@ -759,16 +845,16 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
+        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0])
         >>> g2   = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> g1_x.abs2phy > 35 
-        2 
-        >>> g2.xy > [35,35] 
+        >>> g1_x.abs2phy > 35
+        2
+        >>> g2.xy > [35,35]
         [2,2]
 
         .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_gt.png
@@ -776,7 +862,7 @@ class _AbsToPhyGridConverter:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         파라미터
         other(int): 물리 좌표
@@ -785,18 +871,27 @@ class _AbsToPhyGridConverter:
         참조
         없음
         """
-        if (self.master.__class__.__name__ == 'OneDimGrid') or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._gt_1d(other=other)
-        if (self.master.__class__.__name__ == 'Grid') or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._gt_2d(other=other)
 
     def _gt_1d(self, other):
-        return self._phy2abs_operator(other, self.master.elements, self.master.width, self.master.elements.shape[0], ">")
+        return self._phy2abs_operator(
+            other,
+            self.master.elements,
+            self.master.width,
+            self.master.elements.shape[0],
+            ">",
+        )
 
     def _gt_2d(self, other):
         if isinstance(other[0], (int, np.integer)):
-            return np.array([self.master.x > other[0],
-                             self.master.y > other[1]])
+            return np.array([self.master.x > other[0], self.master.y > other[1]])
         else:
             return np.array([self._gt_2d(o) for o in other])
 
@@ -814,16 +909,16 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
+        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0])
         >>> g2   = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> g1_x.abs2phy >= 35 
-        1 
-        >>> g2.xy >= [35,35] 
+        >>> g1_x.abs2phy >= 35
+        1
+        >>> g2.xy >= [35,35]
         [1,2]
 
         .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_ge.png
@@ -831,7 +926,7 @@ class _AbsToPhyGridConverter:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         파라미터
         other(int): 물리 좌표
@@ -840,31 +935,40 @@ class _AbsToPhyGridConverter:
         참조
         없음
         """
-        if (self.master.__class__.__name__ == 'OneDimGrid') or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._ge_1d(other=other)
-        if (self.master.__class__.__name__ == 'Grid') or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._ge_2d(other=other)
 
     def _ge_1d(self, other):
-        return self._phy2abs_operator(other, self.master.elements, self.master.width, self.master.elements.shape[0], ">=")
+        return self._phy2abs_operator(
+            other,
+            self.master.elements,
+            self.master.width,
+            self.master.elements.shape[0],
+            ">=",
+        )
 
     def _ge_2d(self, other):
         if isinstance(other[0], (int, np.integer)):
-            return np.array([self.master.x >= other[0],
-                             self.master.y >= other[1]])
+            return np.array([self.master.x >= other[0], self.master.y >= other[1]])
         else:
             return np.array([self._ge_2d(o) for o in other])
 
 
 class _PhyToAbsGridConverter:
     """
-    A class that converts physical coordinates into abstract coordinates. 
+    A class that converts physical coordinates into abstract coordinates.
     Conversely, conditional operations convert abstract coordinates into physical coordinates.
     Implements the function of converting abstract coordinates to physical coordinates and supports the inverse conversion function.
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     물리 좌표를 추상 좌표로 변환하는 클래스, 조건부연산은 반대로 추상 좌표를 물리 좌표로 변환한다.
 
     """
@@ -888,7 +992,7 @@ class _PhyToAbsGridConverter:
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     _PhyToAbsGridConverter 객체가 속한 좌표계.
     """
 
@@ -900,11 +1004,11 @@ class _PhyToAbsGridConverter:
     # Access functions.
     def __call__(self, pos):
         """
-        Convert physical coordinates into the corresponding abstract coordinates of the master grid. 
+        Convert physical coordinates into the corresponding abstract coordinates of the master grid.
 
         Parameters
         ----------
-        pos : int 
+        pos : int
             physical coordinates.
 
         Returns
@@ -912,16 +1016,16 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
+        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0])
         >>> g2   = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> g1_x.phy2abs(35) 
-        1 
-        >>> g2.mn( [[35,35]]) 
+        >>> g1_x.phy2abs(35)
+        1
+        >>> g2.mn( [[35,35]])
         [1,None]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_call.png
@@ -929,7 +1033,7 @@ class _PhyToAbsGridConverter:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         물리 좌표를 master 좌표계에서 대응되는 추상 좌표로 변환.
         파라미터
         pos(int): 물리 좌표
@@ -942,11 +1046,11 @@ class _PhyToAbsGridConverter:
 
     def __getitem__(self, pos):
         """
-        Convert physical coordinates into the corresponding abstract coordinates of the master grid. 
+        Convert physical coordinates into the corresponding abstract coordinates of the master grid.
 
         Parameters
         ----------
-        pos : int 
+        pos : int
             physical coordinates.
 
         Returns
@@ -954,16 +1058,16 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
+        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0])
         >>> g2   = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> g1_x.phy2abs(35) 
-        1 
-        >>> g2.mn( [[35,35]]) 
+        >>> g1_x.phy2abs(35)
+        1
+        >>> g2.mn( [[35,35]])
         [1,None]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_getItem.png
@@ -971,7 +1075,7 @@ class _PhyToAbsGridConverter:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         물리 좌표를 master 좌표계에서 대응되는 추상 좌표로 변환.
         파라미터
         pos(int): 물리 좌표
@@ -980,9 +1084,13 @@ class _PhyToAbsGridConverter:
         참조
         없음
         """
-        if (self.master.__class__.__name__ == 'OneDimGrid') or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._getitem_1d(pos)
-        if (self.master.__class__.__name__ == 'Grid') or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._getitem_2d(pos)
         else:
             return None
@@ -993,41 +1101,57 @@ class _PhyToAbsGridConverter:
         if isinstance(pos, OneDimGrid):
             return self._getitem_1d(pos=pos.elements)
         elif isinstance(pos, slice):
-            return self._getitem_1d(_conv_slice_to_list(slice_obj=pos, stop_def=self.master.shape[0]))
+            return self._getitem_1d(
+                _conv_slice_to_list(slice_obj=pos, stop_def=self.master.shape[0])
+            )
         elif isinstance(pos, np.ndarray):
             return self._getitem_1d(pos.tolist())
         elif isinstance(pos, list):
             return np.array([self._getitem_1d(p) for p in pos])
         elif pos is None:
-            raise TypeError("_AbsToPhyConverter._getitem_1d does not accept None as its input.")
+            raise TypeError(
+                "_AbsToPhyConverter._getitem_1d does not accept None as its input."
+            )
         else:
             # pos is a single element.
             for i, e in np.ndenumerate(self.master.elements):
                 if (pos - e) % self.master.width == 0:
-                    return int(round((pos - e) / self.master.width)) * self.master.elements.shape[0] + i[0]
+                    return (
+                        int(round((pos - e) / self.master.width))
+                        * self.master.elements.shape[0]
+                        + i[0]
+                    )
             return None  # no matched coordinate
 
     def _getitem_2d(self, pos):
         """An internal function of __getitem__() for 2-d grid."""
         # If pos contains multiple coordinates (or objects), convert recursively.
         if isinstance(pos, list):
-            if isinstance(pos[0], (int, np.integer)):  # It's actually a single coordinate.
+            if isinstance(
+                pos[0], (int, np.integer)
+            ):  # It's actually a single coordinate.
                 return self[pos[0], pos[1]]
             else:
                 return [self[p] for p in pos]
         elif isinstance(pos, np.ndarray):
-            if isinstance(pos[0], (int, np.integer)):  # It's actually a single coordinate.
+            if isinstance(
+                pos[0], (int, np.integer)
+            ):  # It's actually a single coordinate.
                 return np.array(self[pos[0], pos[1]])
             else:
                 return np.array([self[p] for p in pos])
         # If pos contains only one physical object, convert its bounding box to abstract coordinates
-        if (pos.__class__.__name__ == 'PhysicalObject') or (issubclass(pos.__class__, laygo2.object.PhysicalObject)):
+        if (pos.__class__.__name__ == "PhysicalObject") or (
+            issubclass(pos.__class__, laygo2.object.PhysicalObject)
+        ):
             return self.bbox(pos)
         # If pos contains only one coordinate, convert it to abstract grid.
         m = self.master.x == pos[0]
         n = self.master.y == pos[1]
         # refactor the following code to avoid the use of double for-loops and list comprehensions.
-        if (not isinstance(m, np.ndarray)) and (not isinstance(n, np.ndarray)):  # x and y are scalars.
+        if (not isinstance(m, np.ndarray)) and (
+            not isinstance(n, np.ndarray)
+        ):  # x and y are scalars.
             return np.array([m, n])
         if not isinstance(m, np.ndarray):  # x is a scalar.
             return np.array([np.array([m, _n]) for _n in n])
@@ -1057,25 +1181,25 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
+        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0])
         >>> g2   = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> g1_x.phy2abs == 1 
-        35 
-        >>> g2.mn == [1,1] 
+        >>> g1_x.phy2abs == 1
+        35
+        >>> g2.mn == [1,1]
         [35,30]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_eq.png
-           :height: 250 
+           :height: 250
 
         Notes
         -----
-        Reference in Korean:
-        추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환. 
+        **(Korean)**
+        추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환.
         파라미터
         other(int): 추상 좌표
         반환값
@@ -1084,7 +1208,8 @@ class _PhyToAbsGridConverter:
         없음
         """
         return self.master.abs2phy(pos=other)
-    '''
+
+    """
         if (self.master.__class__.__name__ == 'OneDimGrid') or (issubclass(self.master.__class__, OneDimGrid)):
             return self._eq_1d(other=other)
         if (self.master.__class__.__name__ == 'Grid') or (issubclass(self.master.__class__, Grid)):
@@ -1104,7 +1229,8 @@ class _PhyToAbsGridConverter:
                              self.master.n[other[1]]])
         else:
             return np.array([self._eq_2d(o) for o in other])
-    '''
+    """
+
     def __lt__(self, other):
         """
         Convert abstract coordinates into physical coordinates satisfying conditional operations in the master grid.
@@ -1119,16 +1245,16 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
+        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0])
         >>> g2   = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> g1_x.phy2abs < 1 
-        0 
-        >>> g2.mn < [1,1] 
+        >>> g1_x.phy2abs < 1
+        0
+        >>> g2.mn < [1,1]
         [0,0]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_lt.png
@@ -1136,8 +1262,8 @@ class _PhyToAbsGridConverter:
 
         Notes
         -----
-        Reference in Korean:
-        추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환. 
+        **(Korean)**
+        추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환.
         파라미터
         other(int): 추상 좌표
         반환값
@@ -1145,19 +1271,23 @@ class _PhyToAbsGridConverter:
         참조
         없음
         """
-        if (self.master.__class__.__name__ == 'OneDimGrid') or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._lt_1d(other=other)
-        if (self.master.__class__.__name__ == 'Grid') or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._lt_2d(other=other)
 
     def _lt_1d(self, other):
         if isinstance(other, (int, np.integer)):
-            return self.master.abs2phy.__getitem__(pos=other-1)
+            return self.master.abs2phy.__getitem__(pos=other - 1)
         return np.array([self._lt_1d(o) for o in other])
 
     def _lt_2d(self, other):
         if isinstance(other[0], (int, np.integer)):
-            return self.master.abs2phy.__getitem__(pos=(other[0]-1, other[1]-1))
+            return self.master.abs2phy.__getitem__(pos=(other[0] - 1, other[1] - 1))
         return np.array([self._lt_2d(o) for o in other])
 
     def __le__(self, other):
@@ -1174,16 +1304,16 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
+        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0])
         >>> g2   = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> g1_x.phy2abs <= 1 
-        35 
-        >>> g2.mn <= [1,1] 
+        >>> g1_x.phy2abs <= 1
+        35
+        >>> g2.mn <= [1,1]
         [35,30]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_le.png
@@ -1191,8 +1321,8 @@ class _PhyToAbsGridConverter:
 
         Notes
         -----
-        Reference in Korean:
-        추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환. 
+        **(Korean)**
+        추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환.
         파라미터
         other(int): 추상 좌표
         반환값
@@ -1216,25 +1346,25 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
+        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0])
         >>> g2   = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> g1_x.phy2abs > 1 
-        85 
-        >>> g2.mn > [1,1] 
+        >>> g1_x.phy2abs > 1
+        85
+        >>> g2.mn > [1,1]
         [85,60]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_gt.png
-           :height: 250 
+           :height: 250
 
         Notes
         -----
-        Reference in Korean:
-        추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환. 
+        **(Korean)**
+        추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환.
         파라미터
         other(int): 추상 좌표
         반환값
@@ -1242,21 +1372,25 @@ class _PhyToAbsGridConverter:
         참조
         없음
         """
-        if (self.master.__class__.__name__ == 'OneDimGrid') or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._gt_1d(other)
-        if (self.master.__class__.__name__ == 'Grid') or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._gt_2d(other)
         else:
             return None
 
     def _gt_1d(self, other):
         if isinstance(other, (int, np.integer)):
-            return self.master.abs2phy.__getitem__(pos=other+1)
+            return self.master.abs2phy.__getitem__(pos=other + 1)
         return np.array([self._gt_1d(o) for o in other])
 
     def _gt_2d(self, other):
         if isinstance(other[0], (int, np.integer)):
-            return self.master.abs2phy.__getitem__(pos=(other[0]+1, other[1]+1))
+            return self.master.abs2phy.__getitem__(pos=(other[0] + 1, other[1] + 1))
         return np.array([self._gt_2d(o) for o in other])
 
     def __ge__(self, other):
@@ -1273,16 +1407,16 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
+        >>> g1_y = OneDimGrid(name='ygrid', scope=[0,30], elements=[0])
         >>> g2   = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
-        >>> g1_x.phy2abs >= 1 
-        35 
-        >>> g2.mn >=[1,1] 
+        >>> g1_x.phy2abs >= 1
+        35
+        >>> g2.mn >=[1,1]
         [35,30]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_ge.png
@@ -1290,8 +1424,8 @@ class _PhyToAbsGridConverter:
 
         Notes
         -----
-        Reference in Korean:
-        추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환. 
+        **(Korean)**
+        추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환.
         파라미터
         other(int): 추상 좌표
         반환값
@@ -1315,26 +1449,26 @@ class _PhyToAbsGridConverter:
         numy.ndarray
             abstract coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x    = OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60]) 
-        >>> g1_y    = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60]) 
-        >>> g2      = Grid(name='test', vgrid=g1_x, hgrid=g1_y) 
-        >>> phy2abs = _PhyToAbsGridConverter(master=g2) 
-        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0’) 
-        >>> phy2abs.bbox(rect0) 
+        >>> g1_x    = OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+        >>> g1_y    = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+        >>> g2      = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
+        >>> phy2abs = _PhyToAbsGridConverter(master=g2)
+        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0’)
+        >>> phy2abs.bbox(rect0)
         [[0, 0] , [4, 4]]
-        >>> g2.mn.bbox(rect0) 
+        >>> g2.mn.bbox(rect0)
         [[0, 0] , [4, 4]]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_bbox.png
-           :height: 250 
+           :height: 250
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         객체의 bounding box를 master 좌표계의 추상 좌표로 변환.
         _AbsToPhyGridConverter 객체의 >=, <=를 사용하므로 추상면적이 작아질수있다.
         파라미터
@@ -1344,13 +1478,14 @@ class _PhyToAbsGridConverter:
         참조
         없음
         """
-        if (obj.__class__.__name__ == 'PhysicalObject') or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
+        if (obj.__class__.__name__ == "PhysicalObject") or (
+            issubclass(obj.__class__, laygo2.object.PhysicalObject)
+        ):
             obj = obj.bbox
 
         # phy -> abs
-        mn0 = self.master.xy >= obj[0] ## ge than lower left
-        mn1 = self.master.xy <= obj[1] ## le than upper right\
-
+        mn0 = self.master.xy >= obj[0]  ## ge than lower left
+        mn1 = self.master.xy <= obj[1]  ## le than upper right\
 
         return np.array([mn0, mn1])
 
@@ -1361,33 +1496,33 @@ class _PhyToAbsGridConverter:
         Parameters
         ----------
         obj : laygo2.physical
-            object having physical coordinate. 
-        
+            object having physical coordinate.
+
         Returns
         -------
         numy.ndarray
             abstract coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x    = OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60]) 
-        >>> g1_y    = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60]) 
-        >>> g2      = Grid(name='test', vgrid=g1_x, hgrid=g1_y) 
-        >>> phy2abs = _PhyToAbsGridConverter(master=g2) 
-        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0’) 
-        >>> phy2abs.bottom_left(rect0) 
+        >>> g1_x    = OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+        >>> g1_y    = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+        >>> g2      = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
+        >>> phy2abs = _PhyToAbsGridConverter(master=g2)
+        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0’)
+        >>> phy2abs.bottom_left(rect0)
         [0, 0]
-        >>> g2.mn.bottom_left(rect0) 
+        >>> g2.mn.bottom_left(rect0)
         [0, 0]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_bottom_left.png
-           :height: 250 
+           :height: 250
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         파라미터
         obj(laygo2.physical): 물리좌표정보를 갖고있는 객체
@@ -1396,7 +1531,9 @@ class _PhyToAbsGridConverter:
         참조
         없음
         """
-        if (obj.__class__.__name__ == 'PhysicalObject') or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
+        if (obj.__class__.__name__ == "PhysicalObject") or (
+            issubclass(obj.__class__, laygo2.object.PhysicalObject)
+        ):
             return self.bottom_left(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1409,25 +1546,25 @@ class _PhyToAbsGridConverter:
         Parameters
         ----------
         obj : laygo2.physical
-            object having physical coordinate. 
-        
+            object having physical coordinate.
+
         Returns
         -------
         numy.ndarray
             abstract coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x    = OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60]) 
-        >>> g1_y    = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60]) 
-        >>> g2      = Grid(name='test', vgrid=g1_x, hgrid=g1_y) 
-        >>> phy2abs = _PhyToAbsGridConverter(master=g2) 
-        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0’) 
-        >>> phy2abs.bottom_right(rect0) 
+        >>> g1_x    = OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+        >>> g1_y    = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+        >>> g2      = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
+        >>> phy2abs = _PhyToAbsGridConverter(master=g2)
+        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0’)
+        >>> phy2abs.bottom_right(rect0)
         [4, 0]
-        >>> g2.mn.bottom_right(rect0) 
+        >>> g2.mn.bottom_right(rect0)
         [4, 0]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_bottom_right.png
@@ -1435,7 +1572,7 @@ class _PhyToAbsGridConverter:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         파라미터
         obj(laygo2.physical): 물리좌표정보를 갖고있는 객체
@@ -1444,7 +1581,9 @@ class _PhyToAbsGridConverter:
         참조
         없음
         """
-        if (obj.__class__.__name__ == 'PhysicalObject') or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
+        if (obj.__class__.__name__ == "PhysicalObject") or (
+            issubclass(obj.__class__, laygo2.object.PhysicalObject)
+        ):
             return self.bottom_right(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1457,25 +1596,25 @@ class _PhyToAbsGridConverter:
         Parameters
         ----------
         obj : laygo2.physical
-            object having physical coordinate. 
-        
+            object having physical coordinate.
+
         Returns
         -------
         numy.ndarray
             abstract coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x    = OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60]) 
-        >>> g1_y    = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60]) 
-        >>> g2      = Grid(name='test', vgrid=g1_x, hgrid=g1_y) 
-        >>> phy2abs = _PhyToAbsGridConverter(master=g2) 
-        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0’) 
-        >>> phy2abs.top_left(rect0) 
+        >>> g1_x    = OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+        >>> g1_y    = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+        >>> g2      = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
+        >>> phy2abs = _PhyToAbsGridConverter(master=g2)
+        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0’)
+        >>> phy2abs.top_left(rect0)
         [0, 4]
-        >>> g2.mn.top_left(rect0) 
+        >>> g2.mn.top_left(rect0)
         [0, 4]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_top_left.png
@@ -1483,7 +1622,7 @@ class _PhyToAbsGridConverter:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         파라미터
         obj(laygo2.physical): 물리좌표정보를 갖고있는 객체
@@ -1492,7 +1631,9 @@ class _PhyToAbsGridConverter:
         참조
         없음
         """
-        if (obj.__class__.__name__ == 'PhysicalObject') or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
+        if (obj.__class__.__name__ == "PhysicalObject") or (
+            issubclass(obj.__class__, laygo2.object.PhysicalObject)
+        ):
             return self.top_left(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1505,33 +1646,33 @@ class _PhyToAbsGridConverter:
         Parameters
         ----------
         obj : laygo2.physical
-            object having physical coordinate. 
-        
+            object having physical coordinate.
+
         Returns
         -------
         numy.ndarray
             abstract coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x    = OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60]) 
-        >>> g1_y    = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60]) 
-        >>> g2      = Grid(name='test', vgrid=g1_x, hgrid=g1_y) 
-        >>> phy2abs = _PhyToAbsGridConverter(master=g2) 
-        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0’) 
-        >>> phy2abs.top_right(rect0) 
+        >>> g1_x    = OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+        >>> g1_y    = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+        >>> g2      = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
+        >>> phy2abs = _PhyToAbsGridConverter(master=g2)
+        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0’)
+        >>> phy2abs.top_right(rect0)
         [4, 4]
-        >>> g2.mn.top_right(rect0) 
+        >>> g2.mn.top_right(rect0)
         [4, 4]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_top_right.png
-           :height: 250 
+           :height: 250
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         파라미터
         obj(laygo2.physical): 물리좌표정보를 갖고있는 객체
@@ -1540,7 +1681,9 @@ class _PhyToAbsGridConverter:
         참조
         없음
         """
-        if (obj.__class__.__name__ == 'PhysicalObject') or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
+        if (obj.__class__.__name__ == "PhysicalObject") or (
+            issubclass(obj.__class__, laygo2.object.PhysicalObject)
+        ):
             return self.top_right(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1548,7 +1691,9 @@ class _PhyToAbsGridConverter:
 
     def width(self, obj):
         """Return the width of an object on this grid."""
-        if (obj.__class__.__name__ == 'PhysicalObject') or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
+        if (obj.__class__.__name__ == "PhysicalObject") or (
+            issubclass(obj.__class__, laygo2.object.PhysicalObject)
+        ):
             return self.width(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1556,7 +1701,9 @@ class _PhyToAbsGridConverter:
 
     def height(self, obj):
         """Return the height of an object on this grid."""
-        if (obj.__class__.__name__ == 'PhysicalObject') or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
+        if (obj.__class__.__name__ == "PhysicalObject") or (
+            issubclass(obj.__class__, laygo2.object.PhysicalObject)
+        ):
             return self.height(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1577,25 +1724,25 @@ class _PhyToAbsGridConverter:
         Parameters
         ----------
         obj : laygo2.physical
-            object having physical coordinate. 
-        
+            object having physical coordinate.
+
         Returns
         -------
         numy.ndarray
             abstract coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x    = OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60]) 
-        >>> g1_y    = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60]) 
-        >>> g2      = Grid(name='test', vgrid=g1_x, hgrid=g1_y) 
-        >>> phy2abs = _PhyToAbsGridConverter(master=g2) 
-        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0’) 
-        >>> phy2abs.size(rect0) 
+        >>> g1_x    = OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+        >>> g1_y    = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+        >>> g2      = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
+        >>> phy2abs = _PhyToAbsGridConverter(master=g2)
+        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0’)
+        >>> phy2abs.size(rect0)
         [4, 4]
-        >>> g2.mn.size(rect0) 
+        >>> g2.mn.size(rect0)
         [4, 4]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_size.png
@@ -1603,7 +1750,7 @@ class _PhyToAbsGridConverter:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         객체의 크기([width, height])를 master 좌표계의 추상 좌표로 변환.
         파라미터
         obj(laygo2.physical): 물리좌표정보를 갖고있는 객체
@@ -1630,23 +1777,23 @@ class _PhyToAbsGridConverter:
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 10], elements=[0]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 120], elements=[0, 20, 40, 80, 100, 120]) 
-        >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y ) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 10], elements=[0])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 120], elements=[0, 20, 40, 80, 100, 120])
+        >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
         >>> phy2abs = _PhyToAbsGridConverter(master=g2)
-        >>> rect0= physical.Rect(xy=[[0, 0], [60, 90]]) 
-        >>> rect1= physical.Rect(xy=[[30, 30], [120, 120]]) 
-        >>> phy2abs.crossing(rect0, rect1) 
+        >>> rect0= physical.Rect(xy=[[0, 0], [60, 90]])
+        >>> rect1= physical.Rect(xy=[[30, 30], [120, 120]])
+        >>> phy2abs.crossing(rect0, rect1)
         [3, 2]
-        >>> g2.mn.crossing(rect0, rect1) 
+        >>> g2.mn.crossing(rect0, rect1)
         [3, 2]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_crossing.png
-           :height: 250 
+           :height: 250
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         객체들의 물리적 교차점을 master 좌표계의 추상 좌표로 변환.
         파라미터
         args(laygo2.Physical): bbox를 가지고있는 physical 객체
@@ -1655,36 +1802,36 @@ class _PhyToAbsGridConverter:
         참조
         없음
         """
-        return self.overlap(*args, type='point')
+        return self.overlap(*args, type="point")
 
-    def overlap(self, *args, type='bbox'):
+    def overlap(self, *args, type="bbox"):
         """
-        Convert the overlapping area of objects into abstract coordinates of the master grid and return in a format specified in type. 
-        A bounding box is returned if type='bbox', all coordinates in the overlapped region are returned in a two-dimensional array if type='array', and an one-dimensional list is returned if type='list'. 
+        Convert the overlapping area of objects into abstract coordinates of the master grid and return in a format specified in type.
+        A bounding box is returned if type='bbox', all coordinates in the overlapped region are returned in a two-dimensional array if type='array', and an one-dimensional list is returned if type='list'.
 
         Parameters
         ----------
         args : laygo2.Physical
             physical object having bbox.
-        
+
         Returns
         -------
         numpy.ndarray
             bbox abstract coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 10], elements=[0]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 120], elements=[0, 20, 40, 80, 100, 120]) 
-        >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y ) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 10], elements=[0])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 120], elements=[0, 20, 40, 80, 100, 120])
+        >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
         >>> phy2abs = _PhyToAbsGridConverter(master=g2)
-        >>> rect0= physical.Rect(xy=[[0, 0], [60, 90]]) 
-        >>> rect1= physical.Rect(xy=[[30, 30], [120, 120]]) 
-        >>> phy2abs.overlap(rect0, rect1) 
+        >>> rect0= physical.Rect(xy=[[0, 0], [60, 90]])
+        >>> rect1= physical.Rect(xy=[[30, 30], [120, 120]])
+        >>> phy2abs.overlap(rect0, rect1)
         [[3, 2], [6,4]]
-        >>> g2.mn.overlap(rect0, rect1) 
+        >>> g2.mn.overlap(rect0, rect1)
         [[3, 2], [6,4]]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_overlap.png
@@ -1692,7 +1839,7 @@ class _PhyToAbsGridConverter:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         객체들의 겹치는 면적을 master 좌표계의 추상 좌표로 변환후 type에 따른 형태로 반환, 'bbox'인 경우, bounding box로 반환, 'array' 인경우 모든 교점을 2차원 array로 반환, 'list' 인경우 모든 교점을 1차원 list로 변환.
         파라미터
         args(laygo2.Physical): bbox를 가지고있는 physical 객체
@@ -1704,22 +1851,24 @@ class _PhyToAbsGridConverter:
         _ib = None
         for _obj in args:
             if _ib is None:
-                _ib = self.bbox(_obj) ## shaped
+                _ib = self.bbox(_obj)  ## shaped
             else:
                 _b = self.bbox(_obj)
                 _x = np.sort(np.array([_b[:, 0], _ib[:, 0]]), axis=None)
                 _y = np.sort(np.array([_b[:, 1], _ib[:, 1]]), axis=None)
                 _ib = np.array([[_x[1], _y[1]], [_x[2], _y[2]]])
-        if type == 'bbox':
+        if type == "bbox":
             return _ib
-        elif type == 'point':
+        elif type == "point":
             return _ib[0]
-        elif type == 'list':
+        elif type == "list":
             return _conv_bbox_to_list(_ib)
-        elif type == 'array':
+        elif type == "array":
             return _conv_bbox_to_array(_ib)
         else:
-            raise ValueError('overlap() should receive a valid value for its type (bbox, point, array, ...)')
+            raise ValueError(
+                "overlap() should receive a valid value for its type (bbox, point, array, ...)"
+            )
 
     def union(self, *args):
         """
@@ -1729,7 +1878,7 @@ class _PhyToAbsGridConverter:
         ----------
         args : laygo2.Physical
             physical object having bbox.
-        
+
         Returns
         -------
         numpy.ndarray
@@ -1739,12 +1888,12 @@ class _PhyToAbsGridConverter:
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 10], elements=[0]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 120], elements=[0, 20, 40, 80, 100, 120 ) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 10], elements=[0])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 120], elements=[0, 20, 40, 80, 100, 120 )
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
-        >>> rect0= physical.Rect(xy=[[0, 0], [60, 90]]) 
-        >>> rect1= physical.Rect(xy=[[30, 30], [120, 120]]) 
-        >>> g2.mn.union(rect0, rect1) 
+        >>> rect0= physical.Rect(xy=[[0, 0], [60, 90]])
+        >>> rect1= physical.Rect(xy=[[30, 30], [120, 120]])
+        >>> g2.mn.union(rect0, rect1)
         [[0, 0], [12,7]]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_union.png
@@ -1752,8 +1901,8 @@ class _PhyToAbsGridConverter:
 
         Notes
         -----
-        Reference in Korean:
-        객체들을 모두 포함하는 bounding box를 master 좌표계의 추상 좌표로 변환. 
+        **(Korean)**
+        객체들을 모두 포함하는 bounding box를 master 좌표계의 추상 좌표로 변환.
         파라미터
         args(laygo2.Physical): bbox를 가지고있는 physical 객체
         반환값
@@ -1779,33 +1928,33 @@ class _PhyToAbsGridConverter:
         Parameters
         ----------
         obj : laygo2.physical
-            object having physical coordinate. 
-        
+            object having physical coordinate.
+
         Returns
         -------
         numy.ndarray
             abstract coordinates.
 
-        
+
 
         Examples
         --------
-        >>> g1_x    = OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60]) 
-        >>> g1_y    = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60]) 
-        >>> g2      = Grid(name='test', vgrid=g1_x, hgrid=g1_y) 
-        >>> phy2abs = _PhyToAbsGridConverter(master=g2) 
-        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0’) 
-        >>> phy2abs.center(rect0) 
+        >>> g1_x    = OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+        >>> g1_y    = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
+        >>> g2      = Grid(name='test', vgrid=g1_x, hgrid=g1_y)
+        >>> phy2abs = _PhyToAbsGridConverter(master=g2)
+        >>> rect0 = physical.Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0’)
+        >>> phy2abs.center(rect0)
         [3, 3]
-        >>> g2.mn.center(rect0) 
+        >>> g2.mn.center(rect0)
         [3, 3]
 
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_center.png
-           :height: 250 
+           :height: 250
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         객체의 물리 중앙 좌표를 master 좌표계의 추상 좌표로 변환.
         파라미터
         obj(laygo2.physical): 물리좌표정보를 갖고있는 객체
@@ -1817,14 +1966,26 @@ class _PhyToAbsGridConverter:
         mn0 = self.master.xy >= obj.center
         mn1 = self.master.xy <= obj.center
 
-        point_list = [self.master.xy[mn0], self.master.xy[mn1], self.master.xy[mn0[0], mn1[1]], self.master.xy[mn1[0], mn0[1]]] # 4 physical points near the center coordinate.
+        point_list = [
+            self.master.xy[mn0],
+            self.master.xy[mn1],
+            self.master.xy[mn0[0], mn1[1]],
+            self.master.xy[mn1[0], mn0[1]],
+        ]  # 4 physical points near the center coordinate.
         dist_list = []
         idx = 0
         for point in point_list:
-            dist_list.append([idx, np.linalg.norm(point - obj.center)]) # Calculate Euclidean distances.
+            dist_list.append(
+                [idx, np.linalg.norm(point - obj.center)]
+            )  # Calculate Euclidean distances.
             idx += 1
-        dist_sorted = sorted(dist_list, key=lambda distance : distance[1]) # Sort distances in ascending order.
-        return self.master.mn(point_list[dist_sorted[0][0]]) # Convert the closest point to abstract coordinate and then return.
+        dist_sorted = sorted(
+            dist_list, key=lambda distance: distance[1]
+        )  # Sort distances in ascending order.
+        return self.master.mn(
+            point_list[dist_sorted[0][0]]
+        )  # Convert the closest point to abstract coordinate and then return.
+
 
 class OneDimGrid(CircularMapping):
     """
@@ -1832,7 +1993,7 @@ class OneDimGrid(CircularMapping):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     1차원 추상좌표를 구현하는 클래스.
 
     """
@@ -1854,7 +2015,7 @@ class OneDimGrid(CircularMapping):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     좌표계 이름.
     """
 
@@ -1874,7 +2035,7 @@ class OneDimGrid(CircularMapping):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     좌표계가 정의된 영역. 정의된 영역의 좌표들이 반복되는 형태로 확장된다.
     """
 
@@ -1891,7 +2052,7 @@ class OneDimGrid(CircularMapping):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     물리 좌표에서 추상 좌표로 변환연산을 해주는 객체. 
     """
 
@@ -1908,7 +2069,7 @@ class OneDimGrid(CircularMapping):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     추상 좌표에서 물리 좌표로 변환연산을 해주는 객체. 
     """
 
@@ -1916,11 +2077,11 @@ class OneDimGrid(CircularMapping):
     def width(self):
         """int: The size of the region in which the coordinate system is defined.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50])
         >>> g1_x.width
         180
 
@@ -1929,8 +2090,8 @@ class OneDimGrid(CircularMapping):
 
         Notes
         -----
-        Reference in Korean:
-        좌표계가 정의된 영역의 크기. 
+        **(Korean)**
+        좌표계가 정의된 영역의 크기.
         """
         return abs(self.range[1] - self.range[0])
 
@@ -1943,7 +2104,7 @@ class OneDimGrid(CircularMapping):
         ----------
         name : str
         scope : numpy.ndarray
-            scope of one-dimensional coordinate system 
+            scope of one-dimensional coordinate system
         elements: numpy.ndarray
             members of one-dimensional coordinate system
 
@@ -1951,11 +2112,11 @@ class OneDimGrid(CircularMapping):
         -------
         laygo2.OneDimGrid
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50])
         >>> print(g1_x)
         OneDimGrid object name: xgrid, class: OneDimGrid, scope: [0, 180], elements: [0, 35, 85, 130  50]
 
@@ -1964,7 +2125,7 @@ class OneDimGrid(CircularMapping):
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         OneDimGrid 클래스의 생성자함수.
         파라미터
         name(str): 이름
@@ -1984,7 +2145,7 @@ class OneDimGrid(CircularMapping):
 
     # Indexing and slicing functions
     def __getitem__(self, pos):
-        """Return the physical coordinate corresponding to the abstract coordinate pos. """
+        """Return the physical coordinate corresponding to the abstract coordinate pos."""
         return self.abs2phy([pos])
 
     # Comparison operators
@@ -2015,11 +2176,20 @@ class OneDimGrid(CircularMapping):
 
     def summarize(self):
         """Return the summary of the object information."""
-        return self.__repr__() + " " \
-                                 "name: " + self.name + ", " + \
-                                 "class: " + self.__class__.__name__ + ", " + \
-                                 "scope: " + str(self.range) + ", " + \
-                                 "elements: " + str(self.elements)
+        return (
+            self.__repr__() + " "
+            "name: "
+            + self.name
+            + ", "
+            + "class: "
+            + self.__class__.__name__
+            + ", "
+            + "scope: "
+            + str(self.range)
+            + ", "
+            + "elements: "
+            + str(self.elements)
+        )
 
     # I/O functions
     def export_to_dict(self):
@@ -2034,11 +2204,11 @@ class OneDimGrid(CircularMapping):
         -------
         dict
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50]) 
+        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50])
         >>> g1_x.export_to_dict()
         {'scope': [0, 180], 'elements': [0, 35, 85, 130, 50]}
 
@@ -2047,7 +2217,7 @@ class OneDimGrid(CircularMapping):
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         그리드의 정보를 담은 dict객체 반환.
         파라미터
         없음
@@ -2057,9 +2227,9 @@ class OneDimGrid(CircularMapping):
         없음
         """
         export_dict = {
-                       'scope': self.range.tolist(),
-                       'elements': self.elements.tolist(),
-                       }
+            "scope": self.range.tolist(),
+            "elements": self.elements.tolist(),
+        }
         return export_dict
 
 
@@ -2069,7 +2239,7 @@ class Grid:
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     2차원 물리좌표와 추상좌표간 mapping 정보(element) 를 갖고 있으며 해당 element를 활용하는 좌표 연산자를 가지고 있는 기본 클래스.
 
     """
@@ -2084,14 +2254,14 @@ class Grid:
     def elements(self):
         """numpy.ndarray: Two-dimensional element of a coordinate system.
             x elements, y elements
-    
-        
+
+
 
         Examples
         --------
-        >>> glib      = tech.load_grids(template) 
-        >>> g_cmos_m2 = glib[ “cmos_m2” ] 
-        >>> g_cmos_m2.elements 
+        >>> glib      = tech.load_grids(template)
+        >>> g_cmos_m2 = glib[ “cmos_m2” ]
+        >>> g_cmos_m2.elements
         [ array([0]), array( [0, 35, 85, 130] ) ]
 
         .. image:: ../assets/img/object_grid_Grid_Elements.png
@@ -2099,11 +2269,10 @@ class Grid:
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         좌표계 2차원 element.
         """
         return [self._xy[0].elements, self._xy[1].elements]
-    
 
     phy2abs = None
     """PhyToAbsGridConverter(master=self)"""
@@ -2115,29 +2284,29 @@ class Grid:
     def xy(self):
         """self.abs2phy (laygo2._AbsToPhyGridConverter): Two-dimensional _AbsToPhyConverter of a coordinate system.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ]) 
-        >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y ) 
-        >>> g2.xy[10,10] 
-        [200 210] 
-        >>> g2.xy([10, 10]) 
-        [200 210] 
-        >>> g2.xy < [10,10] 
-        [0,-1] 
-        >>> g2.xy <= [10,10] 
-        [1,0] 
-        >>> g2.xy > [10,10] 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+        >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
+        >>> g2.xy[10,10]
+        [200 210]
+        >>> g2.xy([10, 10])
+        [200 210]
+        >>> g2.xy < [10,10]
+        [0,-1]
+        >>> g2.xy <= [10,10]
+        [1,0]
+        >>> g2.xy > [10,10]
         [2,1]
-        >>> g2.xy >= [10,10] 
+        >>> g2.xy >= [10,10]
         [1,0]
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         좌표계 2차원 _AbsToPhyConverter.
         """
         return self.abs2phy
@@ -2146,27 +2315,27 @@ class Grid:
     def x(self):
         """self._xy[0].abs2phy (laygo2._AbsToPhyGridConverter): One-dimensional _AbsToPhyGridConverter of the x-coordinate system.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ]) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
-        >>> g2.x[10] 
-        200 
-        >>> g2.x <  10 
-        [0] 
-        >>> g2.x <= 10 
-        [1] 
-        >>> g2.x >  10 
-        [2] 
-        >>> g2.x >= 10 
+        >>> g2.x[10]
+        200
+        >>> g2.x <  10
+        [0]
+        >>> g2.x <= 10
+        [1]
+        >>> g2.x >  10
+        [2]
+        >>> g2.x >= 10
         [1]
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         x좌표계 1차원 _AbsToPhyGridConverter.
         """
         return self._xy[0].abs2phy
@@ -2175,49 +2344,48 @@ class Grid:
     def y(self):
         """self._xy[1].abs2phy (laygo2._AbsToPhyGridConverter): One-dimensional _AbsToPhyGridConverter of the y-coordinate system.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ]) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
-        >>> g2.y[10] 
-        210 
-        >>> g2.y <  10 
-        [-1] 
-        >>> g2.y <= 10 
-        [0] 
-        >>> g2.y >  10 
-        [1] 
-        >>> g2.y >= 10 
+        >>> g2.y[10]
+        210
+        >>> g2.y <  10
+        [-1]
+        >>> g2.y <= 10
+        [0]
+        >>> g2.y >  10
+        [1]
+        >>> g2.y >= 10
         [0]
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         y좌표계 1차원 _AbsToPhyGridConverter.
         """
         return self._xy[1].abs2phy
-    
 
     @property
     def v(self):
         """self.x (laygo2.OneDimGrid): OneDimGrid of the x-coordinate system.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ]) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
-        >>> g2.v 
+        >>> g2.v
         g1_x
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         x좌표계 OneDimGrid.
         """
         return self.x
@@ -2226,19 +2394,19 @@ class Grid:
     def h(self):
         """self.y (laygo2.OneDimGrid): OneDimGrid of the y-coordinate system.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ]) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
-        >>> g2.h 
+        >>> g2.h
         g1_y
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         y좌표계 OneDimGrid.
         """
         return self.y
@@ -2247,29 +2415,29 @@ class Grid:
     def mn(self):
         """self._phy2abs (laygo2._PhyToAbsGridConverter): Two-dimensional _PhyToAbsConverter of a coordinate system.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ]) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
-        >>> g2.mn[40,40] 
-        [3, 2] 
-        >>> g2.mn([40, 40]) 
-        [3, 2] 
-        >>> g2.mn <  [40,40] 
-        [750, 760] 
-        >>> g2.mn <= [40,40] 
-        [800, 810] 
-        >>> g2.mn >  [40,40] 
-        [810, 820] 
-        >>> g2.mn >= [40,40] 
+        >>> g2.mn[40,40]
+        [3, 2]
+        >>> g2.mn([40, 40])
+        [3, 2]
+        >>> g2.mn <  [40,40]
+        [750, 760]
+        >>> g2.mn <= [40,40]
+        [800, 810]
+        >>> g2.mn >  [40,40]
+        [810, 820]
+        >>> g2.mn >= [40,40]
         [800, 810]
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         좌표계 2차원 _PhyToAbsConverter.
         """
         return self.phy2abs
@@ -2278,29 +2446,29 @@ class Grid:
     def m(self):
         """self._xy[0].phy2abs (laygo2._PhyToAbsGridConverter ): One-dimensional _PhyToAbsConverter of the x-coordinate system.
 
-        
+
 
         Examples
         --------
         >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ]) 
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
-        >>> g2.n[40] 
-        2 
-        >>> g2.n(40) 
-        2 
-        >>> g2.n <  40 
-        760 
-        >>> g2.n <= 40 
-        810 
-        >>> g2.n >  40 
-        820 
-        >>> g2.n >= 40 
+        >>> g2.n[40]
+        2
+        >>> g2.n(40)
+        2
+        >>> g2.n <  40
+        760
+        >>> g2.n <= 40
+        810
+        >>> g2.n >  40
+        820
+        >>> g2.n >= 40
         810
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         x좌표계 1차원 _PhyToAbsConverter.
         """
         return self._xy[0].phy2abs
@@ -2309,29 +2477,29 @@ class Grid:
     def n(self):
         """self._xy[1].phy2abs (laygo2._PhyToAbsGridConverter ): One-dimensional _PhyToAbsConverter of the y-coordinate system.
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ]) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
-        >>> g2.n[40] 
-        2 
-        >>> g2.n(40) 
-        2 
-        >>> g2.n <  40 
-        760 
-        >>> g2.n <= 40 
-        810 
-        >>> g2.n >  40 
-        820 
-        >>> g2.n >= 40 
+        >>> g2.n[40]
+        2
+        >>> g2.n(40)
+        2
+        >>> g2.n <  40
+        760
+        >>> g2.n <= 40
+        810
+        >>> g2.n >  40
+        820
+        >>> g2.n >= 40
         810
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         y좌표계 1차원 _PhyToAbsConverter.
         """
         return self._xy[1].phy2abs
@@ -2341,19 +2509,19 @@ class Grid:
         """numpy.ndarray: Two-dimensional element length in a coordinate system.
             length of x-axis elements, length of y-axis elements
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ]) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
-        >>> g2.shape 
+        >>> g2.shape
         [5, 5]
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         좌표게 2차원 element의 길이.
         """
         return np.hstack([self._xy[0].shape, self._xy[1].shape])
@@ -2381,7 +2549,7 @@ class Grid:
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     좌표계가 정의된 영역.
     """
 
@@ -2390,20 +2558,20 @@ class Grid:
         """numpy.int32: Width of the region in which the coordinate system is defined.
             x scope
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ]) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
-        >>> g2.width 
+        >>> g2.width
         100
 
         Notes
         -----
-        Reference in Korean:
-        좌표계가 정의된 영역의 폭. 
+        **(Korean)**
+        좌표계가 정의된 영역의 폭.
         """
         return self._xy[0].width
 
@@ -2413,16 +2581,16 @@ class Grid:
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ]) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
-        >>> g2.height 
+        >>> g2.height
         100
 
         Notes
         -----
-        Reference in Korean:
-        좌표계가 정의된 영역의 높이. 
+        **(Korean)**
+        좌표계가 정의된 영역의 높이.
         """
         return self._xy[1].width
 
@@ -2432,15 +2600,15 @@ class Grid:
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ]) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
-        >>> g2.height_vec 
+        >>> g2.height_vec
         [0, 100]
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         height를 list로 반환.
         """
         return np.array([0, self.height])
@@ -2450,19 +2618,19 @@ class Grid:
         """numpy.ndarray: Return width as a list.
             length of the respective axis and zero
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ]) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
-        >>> g2.width_vec 
+        >>> g2.width_vec
         [100, 0]
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         width를 list로 반환.
         """
         return np.array([self.width, 0])
@@ -2483,19 +2651,19 @@ class Grid:
         -------
         laygo2.Grid
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ]) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
-        >>> print(g2) 
+        >>> print(g2)
         <laygo2.object.grid.Grid object> name: test, class: Grid, scope: [[0, 0], [100, 100]], elements: [array([ 0, 10, 20, 40, 50]), array([10, 20, 40, 50, 60])
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         Grid 클래스의 생성자함수.
         파라미터
         name(str): 이름
@@ -2513,7 +2681,7 @@ class Grid:
 
     @property
     def elements(self):
-        """list: return elements of subgrids ([_xy[0].elements, _xy[1].elements]). """
+        """list: return elements of subgrids ([_xy[0].elements, _xy[1].elements])."""
         return [self._xy[0].elements, self._xy[1].elements]
 
     # Indexing and slicing functions
@@ -2583,7 +2751,7 @@ class Grid:
         """
         return self.phy2abs.crossing(*args)
 
-    def overlap(self, *args, type='bbox'):
+    def overlap(self, *args, type="bbox"):
         """
         Return the abstract grid coordinates corresponding to the overlap of args.
         See _PhyToAbsGridConverter.overlap() for details.
@@ -2630,19 +2798,19 @@ class Grid:
         -------
         str
 
-        
+
 
         Examples
         --------
-        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ]) 
-        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ]) 
+        >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+        >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
-        >>> g2.summarize() 
+        >>> g2.summarize()
         <laygo2.object.grid.Grid object> name: test, class: Grid, scope: [[0, 0], [100, 100]], elements: [array([ 0, 10, 20, 40, 50]), array([10, 20, 40, 50, 60])
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         해당 Grid의 정보 출력.
         파라미터
         없음
@@ -2651,11 +2819,20 @@ class Grid:
         참조
         없음
         """
-        return self.__repr__() + " " \
-                                 "name: " + self.name + ", " + \
-               "class: " + self.__class__.__name__ + ", " + \
-               "scope: " + str(self.range.tolist()) + ", " + \
-               "elements: " + str(self.elements)
+        return (
+            self.__repr__() + " "
+            "name: "
+            + self.name
+            + ", "
+            + "class: "
+            + self.__class__.__name__
+            + ", "
+            + "scope: "
+            + str(self.range.tolist())
+            + ", "
+            + "elements: "
+            + str(self.elements)
+        )
 
 
 # Regular classes.
@@ -2665,11 +2842,12 @@ class PlacementGrid(Grid):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     PlacementGrid 클래스는 Instance 및 VirtualInstance 개체들의 배치를 위한 격자 그리드를 구현한다.
 
     """
-    type = 'placement'
+
+    type = "placement"
 
     def place(self, inst, mn):
         """
@@ -2684,24 +2862,24 @@ class PlacementGrid(Grid):
 
         Returns
         -------
-        laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance : 
+        laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance :
             The placed instance.
 
         Examples
         --------
-        >>> g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 20], elements=[0]) 
-        >>> g1_y = laygo2.object.grid.OneDimGrid(name='ygrid', scope=[0, 100], elements=[0]) 
-        >>> g2   = laygo2.object.grid.PlacementGrid(name='test', vgrid=g1_x, hgrid=g1_y) 
+        >>> g1_x = laygo2.object.grid.OneDimGrid(name='xgrid', scope=[0, 20], elements=[0])
+        >>> g1_y = laygo2.object.grid.OneDimGrid(name='ygrid', scope=[0, 100], elements=[0])
+        >>> g2   = laygo2.object.grid.PlacementGrid(name='test', vgrid=g1_x, hgrid=g1_y)
         >>> inst0= laygo2.object.physical.Instance(name="I0", xy=[100, 100], transform=‘R0’……)
-        >>> print(inst0.xy) 
+        >>> print(inst0.xy)
         [100, 100]
-        >>> g2.place(inst=inst0, mn=[10,10]) 
-        >>> print(inst0.xy) 
+        >>> g2.place(inst=inst0, mn=[10,10])
+        >>> print(inst0.xy)
         [200, 1000]
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         인스턴스 xy속성에 추상좌표를 매핑함.
         파라미터
         inst(laygo2.physical.instance): 배치할 인스턴스
@@ -2721,11 +2899,12 @@ class RoutingGrid(Grid):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     추상 좌표계 상의 배선 동작을 구현하는 클래스.
 
     """
-    type = 'routing'
+
+    type = "routing"
 
     vwidth = None
     """CircularMapping: Width of vertical wires.
@@ -2745,7 +2924,7 @@ class RoutingGrid(Grid):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     수직 wire 들의 폭.
     """
     hwidth = None
@@ -2766,7 +2945,7 @@ class RoutingGrid(Grid):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     수평 wire들의 폭.
     """
     vextension = None
@@ -2787,7 +2966,7 @@ class RoutingGrid(Grid):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     수직 wire들의 extension.
     """
     hextension = None
@@ -2808,7 +2987,7 @@ class RoutingGrid(Grid):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     수평 wire들의 extension.
     """
     vextension0 = None
@@ -2833,7 +3012,7 @@ class RoutingGrid(Grid):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     수직 wire들의 레이어 정보.
     """
     hlayer = None
@@ -2854,7 +3033,7 @@ class RoutingGrid(Grid):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     수평 wire들의 레이어정보.
     """
     pin_vlayer = None
@@ -2875,7 +3054,7 @@ class RoutingGrid(Grid):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     수직 pin wire들의 레이어 정보.
     """
     pin_hlayer = None
@@ -2896,7 +3075,7 @@ class RoutingGrid(Grid):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     수평 pin wire 들의 레이어정보.
     """
     viamap = None
@@ -2917,10 +3096,10 @@ class RoutingGrid(Grid):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     그리드 교차점에 위치하는 via개채들을 담고있는배열.
     """
-    primary_grid = 'vertical'
+    primary_grid = "vertical"
     """str: Direction of wire having length 0.
 
     
@@ -2938,7 +3117,7 @@ class RoutingGrid(Grid):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     길이가 0인 wire방향.
     """
     xcolor = None
@@ -2959,7 +3138,7 @@ class RoutingGrid(Grid):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     수평 wire 들의 color.
     """
     ycolor = None
@@ -2980,12 +3159,30 @@ class RoutingGrid(Grid):
 
     Notes
     -----
-    Reference in Korean:
+    **(Korean)**
     수직 wire들의 color.
     """
 
-    def __init__(self, name, vgrid, hgrid, vwidth, hwidth, vextension, hextension, vlayer, hlayer, pin_vlayer,
-                 pin_hlayer, viamap, xcolor=None, ycolor=None, primary_grid='vertical', vextension0=None, hextension0=None):
+    def __init__(
+        self,
+        name,
+        vgrid,
+        hgrid,
+        vwidth,
+        hwidth,
+        vextension,
+        hextension,
+        vlayer,
+        hlayer,
+        pin_vlayer,
+        pin_hlayer,
+        viamap,
+        xcolor=None,
+        ycolor=None,
+        primary_grid="vertical",
+        vextension0=None,
+        hextension0=None,
+    ):
         """
         Constructor function of RoutingGrid class.
 
@@ -2993,7 +3190,7 @@ class RoutingGrid(Grid):
         ----------
         name : str
             Routing object name
-        vgrid : laygo2.OneDimGrid 
+        vgrid : laygo2.OneDimGrid
             OneDimGrid of x-coordinate system
         hgrid : laygo2.OneDimGrid
             OneDimGrid of y-coordinate system
@@ -3026,7 +3223,7 @@ class RoutingGrid(Grid):
         -------
         laygo2.RoutingGrid
 
-        
+
 
         Examples
         --------
@@ -3037,7 +3234,7 @@ class RoutingGrid(Grid):
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         RoutingGrid 클래스의 생성자함수.
         파라미터
         name(str): Routing 객체의 이름
@@ -3094,17 +3291,17 @@ class RoutingGrid(Grid):
             None or “vertical” or "horizontal". The direction of the routing object.
         via_tag : list(Boolean), optional.
             The list containing switches deciding whether to place via at the edges.
-        
+
         Returns
         -------
-        laygo2.object.physical.Rect or list : 
-            The generated routing object(s). Check the example code for details. 
+        laygo2.object.physical.Rect or list :
+            The generated routing object(s). Check the example code for details.
 
         Examples
         --------
         >>> mygrid=grids[“routing_23_cmos”]  # assuming that the routing grid is available.
-        >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ] 
-        >>> route = mygrid.route(mn=mn_list, via_tag=[True, None, True, True]) 
+        >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
+        >>> route = mygrid.route(mn=mn_list, via_tag=[True, None, True, True])
         >>> print(route)
         [<laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>]
 
@@ -3113,7 +3310,7 @@ class RoutingGrid(Grid):
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         추상 좌표 위에 라우팅을 수행 하는 함수.
         파라미터
         mn(list(numpy.ndarray)): 배선을 수행할 2개 이상의 mn 좌표를 담고 있는 list.
@@ -3124,7 +3321,7 @@ class RoutingGrid(Grid):
         """
         mn = np.asarray(mn)
         _mn = list()
-        for i in range(1, mn.shape[0]):  
+        for i in range(1, mn.shape[0]):
             # when more than two points are given,
             # create a multi-point wire compose of sub-routing wires
             # connecting the points given by mn in sequence.
@@ -3139,45 +3336,63 @@ class RoutingGrid(Grid):
             xy0 = self.abs2phy[__mn[0]]
             xy1 = self.abs2phy[__mn[1]]
             _xy = np.array([[xy0[0], xy0[1]], [xy1[0], xy1[1]]])
-            if np.all(xy0 == xy1):  # if two points are identical, generate a metal stub on the bottom layer.
-                if (direction == 'vertical') or ((direction is None) and (self.primary_grid == 'vertical')):
+            if np.all(
+                xy0 == xy1
+            ):  # if two points are identical, generate a metal stub on the bottom layer.
+                if (direction == "vertical") or (
+                    (direction is None) and (self.primary_grid == "vertical")
+                ):
                     width = self.vwidth[__mn[0][0]]
-                    hextension = int(width/2)
+                    hextension = int(width / 2)
                     vextension = self.vextension0[__mn[0][0]]
                     layer = self.vlayer[__mn[0][0]]
                     if self.xcolor is not None:
-                        color = self.xcolor[__mn[0][0]%self.xcolor.shape[0]] # xcolor is determined by its grid layer.
+                        color = self.xcolor[
+                            __mn[0][0] % self.xcolor.shape[0]
+                        ]  # xcolor is determined by its grid layer.
                     else:
-                        color = 'not MPT'
+                        color = "not MPT"
                 else:
                     width = self.hwidth[__mn[0][1]]
                     hextension = self.hextension0[__mn[0][1]]
-                    vextension = int(width/2)
+                    vextension = int(width / 2)
                     layer = self.hlayer[__mn[0][1]]
                     if self.ycolor is not None:
-                        color = self.ycolor[__mn[0][1]%self.ycolor.shape[0]] # ycolor is determined by its grid layer.
+                        color = self.ycolor[
+                            __mn[0][1] % self.ycolor.shape[0]
+                        ]  # ycolor is determined by its grid layer.
                     else:
-                        color = 'not MPT'
+                        color = "not MPT"
             else:
-                if (xy0[0] == xy1[0]) or (direction == 'vertical'):  # vertical routing
+                if (xy0[0] == xy1[0]) or (direction == "vertical"):  # vertical routing
                     width = self.vwidth[__mn[0][0]]
-                    hextension = int(width/2)
+                    hextension = int(width / 2)
                     vextension = self.vextension[__mn[0][0]]
                     layer = self.vlayer[__mn[0][0]]
                     if self.xcolor is not None:
-                        color = self.xcolor[__mn[0][0]%self.xcolor.shape[0]] # xcolor is determined by its grid layer.
+                        color = self.xcolor[
+                            __mn[0][0] % self.xcolor.shape[0]
+                        ]  # xcolor is determined by its grid layer.
                     else:
-                        color = 'not MPT'
+                        color = "not MPT"
                 else:  # horizontal routing
                     width = self.hwidth[__mn[0][1]]
                     hextension = self.hextension[__mn[0][1]]
-                    vextension = int(width/2)
+                    vextension = int(width / 2)
                     layer = self.hlayer[__mn[0][1]]
                     if self.ycolor is not None:
-                        color = self.ycolor[__mn[0][1]%self.ycolor.shape[0]] # ycolor is determined by its grid layer.
+                        color = self.ycolor[
+                            __mn[0][1] % self.ycolor.shape[0]
+                        ]  # ycolor is determined by its grid layer.
                     else:
-                        color = 'not MPT'
-            p = laygo2.object.physical.Rect(xy=_xy, layer=layer, hextension=hextension, vextension=vextension, color=color)
+                        color = "not MPT"
+            p = laygo2.object.physical.Rect(
+                xy=_xy,
+                layer=layer,
+                hextension=hextension,
+                vextension=vextension,
+                color=color,
+            )
             route.append(p)
             # via placement
             if via_tag is None:
@@ -3202,7 +3417,7 @@ class RoutingGrid(Grid):
 
         Returns
         -------
-        list(physical.PhysicalObject): 
+        list(physical.PhysicalObject):
             The list containing the generated via objects.
 
         Examples
@@ -3218,7 +3433,7 @@ class RoutingGrid(Grid):
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         via 생성함수.
         파라미터
         mn(list(numpy.ndarray)): via를 생성할 mn좌표. 복수 개 입력 가능.
@@ -3227,12 +3442,16 @@ class RoutingGrid(Grid):
         """
         # If mn contains multiple coordinates (or objects), place iteratively.
         if isinstance(mn, list):
-            if isinstance(mn[0], (int, np.integer)):  # It's actually a single coordinate.
+            if isinstance(
+                mn[0], (int, np.integer)
+            ):  # It's actually a single coordinate.
                 return self.via(mn=np.asarray(mn), params=params)
             else:
                 return [self.via(mn=_mn, params=params) for _mn in mn]
         elif isinstance(mn, np.ndarray):
-            if isinstance(mn[0], (int, np.integer)):  # It's actually a single coordinate.
+            if isinstance(
+                mn[0], (int, np.integer)
+            ):  # It's actually a single coordinate.
                 pass
             else:
                 return np.array([self.via(mn=_mn, params=params) for _mn in mn])
@@ -3242,8 +3461,8 @@ class RoutingGrid(Grid):
         via = tvia.generate(params=params)
         via.xy = self[mn]
         return via
-    
-    def route_via_track(self, mn, track, via_tag=[None, True] ):
+
+    def route_via_track(self, mn, track, via_tag=[None, True]):
         """
         Perform routing on the specified track with accessing wires to mn.
 
@@ -3258,9 +3477,9 @@ class RoutingGrid(Grid):
 
         Returns
         -------
-        list: 
+        list:
             The list containing the generated routing objects;
-            The last object corresponds to the routing object on the track.        
+            The last object corresponds to the routing object on the track.
 
         Examples
         --------
@@ -3275,7 +3494,7 @@ class RoutingGrid(Grid):
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         wire 라우팅 함수, track을 기준점으로 routing을 진행한다.
         파라미터
         track(numpy.ndarray): track의 좌표값과 방향을 담고 있는 list. 수직 트랙일 경우 [v, None], 수평 트랙일 경우 [None, v]의 형태를 가지고 있다 (v는 track의 좌표값).
@@ -3283,29 +3502,29 @@ class RoutingGrid(Grid):
         반환값
         list: 생성된 routing object들을 담고 있는 list. 마지막 object가 track위의 routing object에 해당.
         """
-        mn = np.array( mn )    
-        route   = list()
-        
-        if track[1] != None:                # x direction
-            t = 0                           # index of track axis
-            p = 1                           # index of perpendicular track
+        mn = np.array(mn)
+        route = list()
+
+        if track[1] != None:  # x direction
+            t = 0  # index of track axis
+            p = 1  # index of perpendicular track
             mn_pivot = track[1]
-        else:                               # y direction
-            t = 1                           
-            p = 0                           
+        else:  # y direction
+            t = 1
+            p = 0
             mn_pivot = track[0]
 
-        mn_b       = np.array([ [0,0], [0,0]] )                    # 1.branch
+        mn_b = np.array([[0, 0], [0, 0]])  # 1.branch
         min_t, max_t = mn[0][t], mn[0][t]
 
-        for i in range( len(mn) ) :
-            mn_b[0]    = mn[i]
+        for i in range(len(mn)):
+            mn_b[0] = mn[i]
             mn_b[1][t] = mn_b[0][t]
             mn_b[1][p] = mn_pivot
-            if np.array_equal( mn_b[0] , mn_b[1] ) :           #### via only
-                route.append(self.via( mn= mn_b[0], params=None))
+            if np.array_equal(mn_b[0], mn_b[1]):  #### via only
+                route.append(self.via(mn=mn_b[0], params=None))
             else:
-                route.append( self.route( mn= [ mn_b[0], mn_b[1] ], via_tag=via_tag ) )
+                route.append(self.route(mn=[mn_b[0], mn_b[1]], via_tag=via_tag))
 
             center_t = mn[i][t]
             if center_t < min_t:
@@ -3313,23 +3532,23 @@ class RoutingGrid(Grid):
             elif max_t < center_t:
                 max_t = center_t
 
-        mn_track = np.array([ [0,0], [0,0]] )                       # 2.track
+        mn_track = np.array([[0, 0], [0, 0]])  # 2.track
         mn_track[0][t], mn_track[0][p] = min_t, mn_pivot  # min
-        mn_track[1][t], mn_track[1][p] = max_t, mn_pivot # max
+        mn_track[1][t], mn_track[1][p] = max_t, mn_pivot  # max
 
-        if np.array_equal( mn_track[0] , mn_track[1] )  :  # Skip
+        if np.array_equal(mn_track[0], mn_track[1]):  # Skip
             route.append(None)
         else:
-            route.append( self.route( mn= mn_track ) )
-        
+            route.append(self.route(mn=mn_track))
+
         return route
- 
+
     def pin(self, name, mn, direction=None, netname=None, params=None):
-        #pin0 = Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', master=rect0,
+        # pin0 = Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', master=rect0,
         #           params={'direction': 'input'})
         """
         Create a Pin object over the abstract coordinates specified by mn,
-        on the specified routing grid. 
+        on the specified routing grid.
 
         Parameters
         ----------
@@ -3350,14 +3569,14 @@ class RoutingGrid(Grid):
 
         Examples
         --------
-        >>> mn = [[0, 0], [10, 10]] 
+        >>> mn = [[0, 0], [10, 10]]
         >>> pin = mygrid.pin(mn=mn, name="pin")
-        >>> print("pin") 
+        >>> print("pin")
         <laygo2.object.physical.Pin object> name: pin, class: Pin, xy: [[0, 5], [300, 265]]……
 
         Notes
         -----
-        Reference in Korean:
+        **(Korean)**
         pin 생성함수.
         파라미터
         name(str): Pin 이름
@@ -3370,9 +3589,13 @@ class RoutingGrid(Grid):
         """
         xy0 = self.abs2phy[mn[0]]
         xy1 = self.abs2phy[mn[1]]
-        #_xy = np.array([[xy0[0], xy0[1]], [xy1[0], xy1[1]]])
-        if np.all(xy0 == xy1):  # if two points are identical, generate a metal stub on the bottom layer.
-            if (direction == 'vertical') or ((direction is None) and (self.primary_grid == 'vertical')):
+        # _xy = np.array([[xy0[0], xy0[1]], [xy1[0], xy1[1]]])
+        if np.all(
+            xy0 == xy1
+        ):  # if two points are identical, generate a metal stub on the bottom layer.
+            if (direction == "vertical") or (
+                (direction is None) and (self.primary_grid == "vertical")
+            ):
                 width = self.vwidth[mn[0][0]]
                 hextension = int(width / 2)
                 vextension = 0
@@ -3383,7 +3606,7 @@ class RoutingGrid(Grid):
                 vextension = int(width / 2)
                 layer = self.pin_hlayer[mn[0][1]]
         else:
-            if (xy0[0] == xy1[0]) or (direction == 'vertical'):  # vertical routing
+            if (xy0[0] == xy1[0]) or (direction == "vertical"):  # vertical routing
                 width = self.vwidth[mn[0][0]]
                 hextension = int(width / 2)
                 vextension = 0
@@ -3394,22 +3617,30 @@ class RoutingGrid(Grid):
                 vextension = int(width / 2)
                 layer = self.pin_hlayer[mn[0][1]]
         # TODO: pin.xy differ from tech.py.
-        _xy = np.array([[xy0[0]-hextension, xy0[1]-vextension], [xy1[0]+hextension, xy1[1]+vextension]]) ## need to check
-        p = laygo2.object.physical.Pin(name=name, xy=_xy, layer=layer, netname=netname, params=params)
+        _xy = np.array(
+            [
+                [xy0[0] - hextension, xy0[1] - vextension],
+                [xy1[0] + hextension, xy1[1] + vextension],
+            ]
+        )  ## need to check
+        p = laygo2.object.physical.Pin(
+            name=name, xy=_xy, layer=layer, netname=netname, params=params
+        )
         return p
 
 
 class ParameterizedGrid(Grid):
     """A parameterized grid to support flexible templates."""
+
     # TODO: implement this.
     pass
+
 
 class ParameterizedPlacementGrid(Grid):
     # TODO: implement this.
     pass
 
+
 class ParameterizedRoutingGrid(Grid):
     # TODO: implement this.
     pass
-
-

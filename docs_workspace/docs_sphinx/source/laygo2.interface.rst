@@ -13,10 +13,10 @@ laygo2.interface.bag module
    :undoc-members:
    :show-inheritance:
 
-laygo2.interface.gds module
+laygo2.interface.gdspy module
 ---------------------------
 
-.. automodule:: laygo2.interface.gds
+.. automodule:: laygo2.interface.gdspy
    :members:
    :undoc-members:
    :show-inheritance:
