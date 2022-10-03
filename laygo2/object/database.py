@@ -477,17 +477,20 @@ class Library(BaseDatabase):
     """
 
     def get_libname(self):
+        """getter function of libname property."""
         return self.name
 
     def set_libname(self, val):
+        """setter function of libname property."""
         self.name = val
 
     libname = property(get_libname, set_libname)
-    """str: Library object name.
+    """str: The name of library.
 
     Examples
     --------
-    >>> lib = laygo2.object.Library(name='mylib') 
+    >>> import laygo2
+    >>> lib = laygo2.object.database.Library(name='mylib') 
     >>> print(lib.name) 
     "mylib"
 

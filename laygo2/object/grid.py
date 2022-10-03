@@ -3751,11 +3751,88 @@ class RoutingGrid(Grid):
 
         Examples
         --------
-        >>> mygrid=grids[“routing_23_cmos”]  # assuming that the routing grid is available.
+        >>> import laygo2
+        >>> from laygo2.object.grid import CircularMapping as CM
+        >>> from laygo2.object.grid import CircularMappingArray as CMA
+        >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+        >>> from laygo2.object.template import NativeInstanceTemplate
+        >>> from laygo2.object.physical import Instance
+        >>> # Routing grid construction (not needed if laygo2_tech is set up).
+        >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+        >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+        >>> wv = CM([10])           # vertical (xgrid) width
+        >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+        >>> ev = CM([10])           # vertical (xgrid) extension
+        >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+        >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+        >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+        >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+        >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+        >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+        >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+        >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+        >>> ycolor = CM(['not MPT']*3, dtype=object) 
+        >>> primary_grid = 'horizontal'
+        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+        >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+        >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                               vwidth=wv, hwidth=wh,
+                                               vextension=ev, hextension=eh,
+                                               vlayer=lv, hlayer=lh,
+                                               pin_vlayer=plv, pin_hlayer=plh,
+                                               viamap=viamap, primary_grid=primary_grid,
+                                               xcolor=xcolor, ycolor=ycolor,
+                                               vextension0=e0v, hextension0=e0h)
+        >>> # Routing on grid 
         >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
-        >>> route = mygrid.route(mn=mn_list, via_tag=[True, None, True, True])
-        >>> print(route)
-        [<laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>]
+        >>> route = g.route(mn=mn_list, via_tag=[True, None, True, True])
+        >>> for r in route:
+        >>>     print(r)
+        <laygo2.object.physical.Instance object at 0x0000016939A23A90> 
+            name: None,
+            class: Instance,
+            xy: [0, -60],
+            params: None,
+            size: [0, 0]
+            shape: None
+            pitch: [0, 0]
+            transform: R0
+            pins: {}
+        <laygo2.object.physical.Rect object at 0x0000016939A23880>
+            name: None,
+            class: Rect,
+            xy: [[0, -60], [0, 40]],
+            params: None, , layer: ['M1' 'drawing'], netname: None
+        <laygo2.object.physical.Rect object at 0x0000016939A21BA0>
+            name: None,
+            class: Rect,
+            xy: [[0, 40], [100, 40]],
+            params: None, , layer: ['M2' 'drawing'], netname: None
+        <laygo2.object.physical.Instance object at 0x0000016939A21B70>
+            name: None,
+            class: Instance,
+            xy: [100, 40],
+            params: None,
+            size: [0, 0]
+            shape: None
+            pitch: [0, 0]
+            transform: R0
+            pins: {}
+        <laygo2.object.physical.Rect object at 0x0000016939A21D80>
+            name: None,
+            class: Rect,
+            xy: [[100, 40], [250, 40]],
+            params: None, , layer: ['M2' 'drawing'], netname: None
+        <laygo2.object.physical.Instance object at 0x0000016939A22350>
+            name: None,
+            class: Instance,
+            xy: [250, 40],
+            params: None,
+            size: [0, 0]
+            shape: None
+            pitch: [0, 0]
+            transform: R0
+            pins: {}
 
         .. image:: ../assets/img/object_grid_RoutingGrid_route.png
            :height: 250
@@ -3874,23 +3951,57 @@ class RoutingGrid(Grid):
 
         Examples
         --------
-        >>> mygrid=grids[“routing_23_cmos”]
+        >>> import laygo2
+        >>> from laygo2.object.grid import CircularMapping as CM
+        >>> from laygo2.object.grid import CircularMappingArray as CMA
+        >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+        >>> from laygo2.object.template import NativeInstanceTemplate
+        >>> from laygo2.object.physical import Instance
+        >>> # Routing grid construction (not needed if laygo2_tech is set up).
+        >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+        >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+        >>> wv = CM([10])           # vertical (xgrid) width
+        >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+        >>> ev = CM([10])           # vertical (xgrid) extension
+        >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+        >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+        >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+        >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+        >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+        >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+        >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+        >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+        >>> ycolor = CM(['not MPT']*3, dtype=object) 
+        >>> primary_grid = 'horizontal'
+        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+        >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+        >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                               vwidth=wv, hwidth=wh,
+                                               vextension=ev, hextension=eh,
+                                               vlayer=lv, hlayer=lh,
+                                               pin_vlayer=plv, pin_hlayer=plh,
+                                               viamap=viamap, primary_grid=primary_grid,
+                                               xcolor=xcolor, ycolor=ycolor,
+                                               vextension0=e0v, hextension0=e0h)
+        >>> # Routing on grid 
         >>> mn_list = [[0, -2], [1, 0], [2, 5]]
         >>> via = mygrid.via(mn=mn_list)
         >>> print(via)
-        [<laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.VirtualInstance object>, <laygo2.object.physical.VirtualInstance object>]
+        [<laygo2.object.physical.VirtualInstance object>, 
+         <laygo2.object.physical.VirtualInstance object>, 
+         <laygo2.object.physical.VirtualInstance object>]
 
         .. image:: ../assets/img/object_grid_RoutingGrid_via.png
            :height: 250
 
         Notes
         -----
-        **(Korean)**
-        via 생성함수.
+        **(Korean)** via 생성함수.
+
         파라미터
-        mn(list(numpy.ndarray)): via를 생성할 mn좌표. 복수 개 입력 가능.
+            - mn(list(numpy.ndarray)): via를 생성할 mn좌표. 복수 개 입력 가능.
         반환값
-        list(physical.PhysicalObject)): 생성된 via object들을 담고 있는 list.
+            - list(physical.PhysicalObject)): 생성된 via들을 담고 있는 list.
         """
         # If mn contains multiple coordinates (or objects), place iteratively.
         if isinstance(mn, list):
@@ -3935,24 +4046,70 @@ class RoutingGrid(Grid):
 
         Examples
         --------
-        >>> r23=grids[“routing_23_cmos”]
+        >>> import laygo2
+        >>> from laygo2.object.grid import CircularMapping as CM
+        >>> from laygo2.object.grid import CircularMappingArray as CMA
+        >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+        >>> from laygo2.object.template import NativeInstanceTemplate
+        >>> from laygo2.object.physical import Instance
+        >>> # Routing grid construction (not needed if laygo2_tech is set up).
+        >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+        >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+        >>> wv = CM([10])           # vertical (xgrid) width
+        >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+        >>> ev = CM([10])           # vertical (xgrid) extension
+        >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+        >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+        >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+        >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+        >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+        >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+        >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+        >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+        >>> ycolor = CM(['not MPT']*3, dtype=object) 
+        >>> primary_grid = 'horizontal'
+        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+        >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+        >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                               vwidth=wv, hwidth=wh,
+                                               vextension=ev, hextension=eh,
+                                               vlayer=lv, hlayer=lh,
+                                               pin_vlayer=plv, pin_hlayer=plh,
+                                               viamap=viamap, primary_grid=primary_grid,
+                                               xcolor=xcolor, ycolor=ycolor,
+                                               vextension0=e0v, hextension0=e0h)
+        >>> # Routing on grid 
         >>> mn_list = [[0, -2], [1, 0], [2, 5], [3, 4], [4, 5], [5, 5]]
-        >>> track = r23.route_via_track(mn=mn_list, track=[None,0])
+        >>> track = g.route_via_track(mn=mn_list, track=[None, 0])
         >>> print(track)
-        [[<laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>], <laygo2.object.physical.VirtualInstance object>, [<laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>], [<laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>], [<laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>], [<laygo2.object.physical.Rect object>, <laygo2.object.physical.VirtualInstance object>], <laygo2.object.physical.Rect object>]
+        [[<laygo2.object.physical.Rect object>, 
+          <laygo2.object.physical.VirtualInstance object>], 
+          <laygo2.object.physical.VirtualInstance object>, 
+         [<laygo2.object.physical.Rect object>, 
+          <laygo2.object.physical.VirtualInstance object>], 
+         [<laygo2.object.physical.Rect object>, 
+          <laygo2.object.physical.VirtualInstance object>], 
+         [<laygo2.object.physical.Rect object>, 
+          <laygo2.object.physical.VirtualInstance object>], 
+         [<laygo2.object.physical.Rect object>, 
+          <laygo2.object.physical.VirtualInstance object>], 
+          <laygo2.object.physical.Rect object>]
 
         .. image:: ../assets/img/object_grid_RoutingGrid_route_via_track.png
            :height: 250
 
         Notes
         -----
-        **(Korean)**
-        wire 라우팅 함수, track을 기준점으로 routing을 진행한다.
+        **(Korean)** wire 라우팅 함수, track을 기준점으로 routing을 진행한다.
+        
         파라미터
-        track(numpy.ndarray): track의 좌표값과 방향을 담고 있는 list. 수직 트랙일 경우 [v, None], 수평 트랙일 경우 [None, v]의 형태를 가지고 있다 (v는 track의 좌표값).
-        mn(list(numpy.ndarray)): track을 통해 연결될 지점들의 좌표를 담고 있는 list.
+            - track(numpy.ndarray): track의 좌표값과 방향을 담고 있는 list. 
+                수직 트랙일 경우 [v, None], 
+                수평 트랙일 경우 [None, v]의 형태를 가지고 있다 (v는 track의 좌표값).
+            - mn(list(numpy.ndarray)): track을 통해 연결될 지점들의 좌표를 담고 있는 list.
         반환값
-        list: 생성된 routing object들을 담고 있는 list. 마지막 object가 track위의 routing object에 해당.
+            - list: 생성된 routing object들을 담고 있는 list. 
+                마지막 object가 track위의 routing object에 해당.
         """
         mn = np.array(mn)
         route = list()
@@ -3996,8 +4153,6 @@ class RoutingGrid(Grid):
         return route
 
     def pin(self, name, mn, direction=None, netname=None, params=None):
-        # pin0 = Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], netname='net0', master=rect0,
-        #           params={'direction': 'input'})
         """
         Create a Pin object over the abstract coordinates specified by mn,
         on the specified routing grid.
@@ -4021,23 +4176,59 @@ class RoutingGrid(Grid):
 
         Examples
         --------
+        >>> import laygo2
+        >>> from laygo2.object.grid import CircularMapping as CM
+        >>> from laygo2.object.grid import CircularMappingArray as CMA
+        >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
+        >>> from laygo2.object.template import NativeInstanceTemplate
+        >>> # Routing grid construction (not needed if laygo2_tech is set up).
+        >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+        >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+        >>> wv = CM([10])           # vertical (xgrid) width
+        >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+        >>> ev = CM([10])           # vertical (xgrid) extension
+        >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+        >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+        >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+        >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+        >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+        >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+        >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+        >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+        >>> ycolor = CM(['not MPT']*3, dtype=object) 
+        >>> primary_grid = 'horizontal'
+        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+        >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+        >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                               vwidth=wv, hwidth=wh,
+                                               vextension=ev, hextension=eh,
+                                               vlayer=lv, hlayer=lh,
+                                               pin_vlayer=plv, pin_hlayer=plh,
+                                               viamap=viamap, primary_grid=primary_grid,
+                                               xcolor=xcolor, ycolor=ycolor,
+                                               vextension0=e0v, hextension0=e0h)
         >>> mn = [[0, 0], [10, 10]]
-        >>> pin = mygrid.pin(mn=mn, name="pin")
-        >>> print("pin")
-        <laygo2.object.physical.Pin object> name: pin, class: Pin, xy: [[0, 5], [300, 265]]……
+        >>> pin = g.pin(name="pin", grid=g, mn=mn)
+        >>> print(pin)
+        <laygo2.object.physical.Pin object at 0x0000028DABE3AB90> 
+            name: pin,
+            class: Pin,
+            xy: [[0, -10], [500, 350]],
+            params: None, , layer: ['M2' 'pin'], netname: pin, shape: None, 
+            master: None
 
         Notes
         -----
-        **(Korean)**
-        pin 생성함수.
+        **(Korean)** pin 생성함수.
+
         파라미터
-        name(str): Pin 이름
-        mn(numpy.ndarray): Pin을 생성할 abstract 좌표
-        direction(str): 방향 [optional]
-        netname(str): Pin의 net이름 [optional]
-        params(dict): Pin 속성 [optional]
+            - name(str): Pin 이름
+            - mn(numpy.ndarray): Pin을 생성할 abstract 좌표
+            - direction(str): 방향 [optional]
+            - netname(str): Pin의 net이름 [optional]
+            - params(dict): Pin 속성 [optional]
         반환값
-        laygo2.physical.Pin: Pin object
+            - laygo2.physical.Pin: Pin object
         """
         xy0 = self.abs2phy[mn[0]]
         xy1 = self.abs2phy[mn[1]]
