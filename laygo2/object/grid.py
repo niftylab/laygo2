@@ -119,6 +119,7 @@ def _conv_slice_to_list(slice_obj, start_def=0, stop_def=100, step_def=1):
 
     Examples
     --------
+    >>> import laygo2
     >>> laygo2.object.grid._conv_slice_to_list(slice(0, 10, 2))               
     [0, 2, 4, 6, 8]
     """
@@ -145,6 +146,15 @@ def _conv_bbox_to_array(bbox):
     ----------
     bbox : numpy.ndarray
         The bounding box to be converted.
+
+    Examples
+    --------
+    >>> import laygo2
+    >>> import numpy as np
+    >>> laygo2.object.grid._conv_bbox_to_array(np.array([[0, 0], [1, 2]])) 
+    array([[[0, 0], [1, 0]],
+           [[0, 1], [1, 1]],
+           [[0, 2], [1, 2]]])
     """
     array = list()
     for r in range(bbox[0, 1], bbox[1, 1] + 1):
@@ -163,6 +173,13 @@ def _conv_bbox_to_list(bbox):
     ----------
     bbox : numpy.ndarray
         The bounding box to be converted.
+
+    Examples
+    --------
+    >>> import laygo2
+    >>> import numpy as np
+    >>> laygo2.object.grid._conv_bbox_to_list(np.array([[0, 0], [1, 2]])) 
+    [[0, 0], [1, 0], [0, 1], [1, 1], [0, 2], [1, 2]]
     """
     array = list()
     for r in range(bbox[0, 1], bbox[1, 1] + 1):
@@ -178,8 +195,7 @@ class CircularMapping:
 
     Notes
     -----
-    **(Korean)** 기본적인 순환맵핑(인덱싱 넘버가 무한히 확장) 클래스.
-
+    **(Korean)** 기본 순환 맵핑 (인덱싱 넘버가 무한히 확장) 클래스.
     """
 
     _elements = None
@@ -200,13 +216,10 @@ class CircularMapping:
     -----
     **(Korean)**
     순환 맵핑의 구성 요소로 이루어진 배열. 
-
     """
 
     dtype = np.int
-    """type: Data type of circular mapping.
-
-    
+    """type: Data type of the circular mapping.
 
     Examples
     --------
@@ -226,11 +239,11 @@ class CircularMapping:
     """
 
     def get_elements(self):
-        """numpy.ndarray: get the elements."""
+        """numpy.ndarray: getter of elements."""
         return self._elements
 
     def set_elements(self, value):
-        """numpy.ndarray: set the elements."""
+        """numpy.ndarray: setter of elements."""
         self._elements = np.asarray(value, dtype=self.dtype)
 
     elements = property(get_elements, set_elements)
@@ -246,7 +259,7 @@ class CircularMapping:
         >>> elements = [0, 35, 85, 130, 180]
         >>> cm = CircularMapping(elements)
         >>> cm.shape
-        [4]
+        array([5])
 
         .. image:: ../assets/img/object_grid_CircularMapping_shape.png
            :height: 250
@@ -275,7 +288,7 @@ class CircularMapping:
         >>> elements = [0, 35, 85, 130, 180]
         >>> cm = CircularMapping(elements)
         >>> cm.shape
-        [4]
+        [5]
         >>> cm[5]
         35
         >>> cm[0:10]
@@ -345,7 +358,6 @@ class CircularMappingArray(CircularMapping):
     Notes
     -----
     **(Korean)** 다차원 순환맵핑(인덱싱 넘버가 무한히 확장) 클래스.
-
     """
 
     def __getitem__(self, pos):
@@ -359,16 +371,17 @@ class CircularMappingArray(CircularMapping):
 
         Returns
         -------
-        element
+        numpy.ndarray 
 
         Examples
         --------
-        >>> elements  = [[0,0], [35,0], [85,0], [130,0],
-        >>> cm = CircularMapping( elements = elements )
-        >>> cm[1]
-        [ 35, 0 ]
-        >>> cm[3]
-        [ 130, 0 ]
+        >>> from laygo2.object.grid import CircularMappingArray
+        >>> elements = [[0, 0], [35, 0], [85, 0], [130, 0]]
+        >>> cm = CircularMappingArray(elements = elements)
+        >>> cm[1, :]
+        array([[35, 0]])
+        >>> cm[3, 0]
+        130
 
         .. image:: ../assets/img/object_grid_CircularMappingArray_getitem.png
            :height: 250
@@ -2651,8 +2664,6 @@ class Grid:
         -------
         laygo2.Grid
 
-
-
         Examples
         --------
         >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
@@ -2663,16 +2674,13 @@ class Grid:
 
         Notes
         -----
-        **(Korean)**
-        Grid 클래스의 생성자함수.
+        **(Korean)** Grid 클래스의 생성자함수.
         파라미터
-        name(str): 이름
-        vgrid(laygo2.OneDimGrid): x좌표계 OneDimGrid 객체
-        hgrid(laygo2.OneDimGrid): y좌표계 OneDimGrid 객체
+            - name(str): 이름
+            - vgrid(laygo2.OneDimGrid): x좌표계 OneDimGrid 객체
+            - hgrid(laygo2.OneDimGrid): y좌표계 OneDimGrid 객체
         반환값
-        laygo2.Grid
-        참조
-        없음
+            - laygo2.Grid
         """
         self.name = name
         self._xy = [vgrid, hgrid]
@@ -2681,7 +2689,10 @@ class Grid:
 
     @property
     def elements(self):
-        """list: return elements of subgrids ([_xy[0].elements, _xy[1].elements])."""
+        """list: return elements of subgrids 
+        ([_xy[0].elements, _xy[1].elements]).
+        
+        """
         return [self._xy[0].elements, self._xy[1].elements]
 
     # Indexing and slicing functions
@@ -2694,81 +2705,129 @@ class Grid:
         return self.abs2phy.__eq__(other)
 
     def __lt__(self, other):
-        """Return the index of the grid coordinate that is the largest but less than other."""
+        """Return the index of the grid coordinate that is the largest 
+        but less than other.
+        """
         return self.abs2phy.__lt__(other)
 
     def __le__(self, other):
-        """Return the index of the grid coordinate that is the largest but less than or equal to other."""
+        """Return the index of the grid coordinate that is the largest 
+        but less than or equal to other.
+        """
         return self.abs2phy.__le__(other)
 
     def __gt__(self, other):
-        """Return the index of the grid coordinate that is the smallest but greater than other."""
+        """Return the index of the grid coordinate that is the smallest 
+        but greater than other.
+        """
         return self.abs2phy.__gt__(other)
 
     def __ge__(self, other):
-        """Return the index of the grid coordinate that is the smallest but greater than or equal to other."""
+        """Return the index of the grid coordinate that is the smallest 
+        but greater than or equal to other.
+        """
         return self.abs2phy.__ge__(other)
 
     def bbox(self, obj):
         """
-        Return the abstract grid coordinates corresponding to the 'internal' bounding box of obj.
-        See _PhyToAbsGridConverter.bbox() for details.
+        Return the abstract grid coordinates corresponding to the 
+        'internal' bounding box of obj.
+        
+        See Also
+        --------
+        _PhyToAbsGridConverter.bbox
         """
         return self.phy2abs.bbox(obj)
 
     def bottom_left(self, obj):
         """
-        Return the abstract grid coordinates corresponding to the bottom-left corner of obj.
-        See _PhyToAbsGridConverter.bottom_left() for details.
+        Return the abstract grid coordinates corresponding to the 
+        bottom-left corner of obj.
+        
+        See Also
+        --------
+        _PhyToAbsGridConverter.bottom_left
         """
         return self.phy2abs.bottom_left(obj)
 
     def bottom_right(self, obj):
         """
-        Return the abstract grid coordinates corresponding to the bottom-right corner of obj.
-        See _PhyToAbsGridConverter.bottom_right() for details.
+        Return the abstract grid coordinates corresponding to the 
+        bottom-right corner of obj.
+        
+        See Also
+        --------
+        _PhyToAbsGridConverter.bottom_right
         """
         return self.phy2abs.bottom_right(obj)
 
     def top_left(self, obj):
         """
-        Return the abstract grid coordinates corresponding to the top-left corner of obj.
-        See _PhyToAbsGridConverter.top_left() for details.
+        Return the abstract grid coordinates corresponding to the top-left 
+        corner of obj.
+
+        See Also
+        --------
+        _PhyToAbsGridConverter.top_left
         """
         return self.phy2abs.top_left(obj)
 
     def top_right(self, obj):
         """
-        Return the abstract grid coordinates corresponding to the top-right corner of obj.
-        See _PhyToAbsGridConverter.top_right() for details.
+        Return the abstract grid coordinates corresponding to the top-right 
+        corner of obj.
+        
+        See Also
+        --------
+        _PhyToAbsGridConverter.top_right
         """
         return self.phy2abs.top_right(obj)
 
     def crossing(self, *args):
         """
-        Return the abstract grid coordinates corresponding to the crossing point of args.
-        See _PhyToAbsGridConverter.crossing() for details.
+        Return the abstract grid coordinates corresponding to the crossing 
+        point of args.
+        
+        See Also
+        --------
+        laygo2.object.grid._PhyToAbsGridConverter.crossing
         """
         return self.phy2abs.crossing(*args)
 
     def overlap(self, *args, type="bbox"):
         """
-        Return the abstract grid coordinates corresponding to the overlap of args.
-        See _PhyToAbsGridConverter.overlap() for details.
+        Return the abstract grid coordinates corresponding to the overlap 
+        of args.
+
+        See Also
+        --------
+        laygo2.object.grid._PhyToAbsGridConverter.overlap
         """
         return self.phy2abs.overlap(*args, type=type)
 
     def union(self, *args):
         """
         Return the abstract grid coordinates corresponding to union of args.
-        See _PhyToAbsGridConverter.union() for details.
+
+        See Also
+        --------
+        laygo2.object.grid._PhyToAbsGridConverter.union
         """
         return self.phy2abs.union(*args)
 
     def center(self, obj):
         """
-        Return the abstrack grid coordinates corresponding to the center point of obj.
-        See _PhyToAbsGridConverter.center for details.
+        Return the abstract grid coordinates corresponding to the center 
+        point of obj.
+
+        Parameters
+        ----------
+        obj : laygo2.object.physical.PhysicalObject
+            The object of which center coordinate is computed.
+
+        See Also
+        --------
+        laygo2.object.grid._PhyToAbsGridConverter.center
         """
         return self.phy2abs.center(obj)
 
@@ -2798,10 +2857,9 @@ class Grid:
         -------
         str
 
-
-
         Examples
         --------
+        >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name=‘xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
         >>> g1_y = OneDimGrid(name=‘ygrid’, scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
         >>> g2   = Grid(name=“test”, vgrid = g1_x, hgrid = g1_y )
@@ -2810,14 +2868,7 @@ class Grid:
 
         Notes
         -----
-        **(Korean)**
-        해당 Grid의 정보 출력.
-        파라미터
-        없음
-        반환값
-        str
-        참조
-        없음
+        **(Korean)** 해당 Grid의 정보 출력.
         """
         return (
             self.__repr__() + " "
