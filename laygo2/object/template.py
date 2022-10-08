@@ -41,9 +41,7 @@ class Template(metaclass=ABCMeta):
 
     Notes
     -----
-    **Reference in Korean**: Template의 기본동작과 속성을 정의한 기본 클래스.
-
-
+    **(Korean)** Template의 기본동작과 속성을 정의한 기본 클래스.
     """
 
     name = None
@@ -66,10 +64,16 @@ class Template(metaclass=ABCMeta):
 
     def summarize(self):
         """Return the summary of the template information."""
-        return self.__repr__() + " " \
-                                 "name: " + self.name + ", " + \
-                                 "class: " + self.__class__.__name__ + ", " + \
-                                 ""
+        return (
+            self.__repr__() + " "
+            "name: "
+            + self.name
+            + ", "
+            + "class: "
+            + self.__class__.__name__
+            + ", "
+            + ""
+        )
 
     def height(self, params=None):
         """int: Return the height of a template."""
@@ -94,7 +98,7 @@ class Template(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None):
+    def generate(self, name=None, shape=None, pitch=None, transform="R0", params=None):
         """instance: (Abstract method) Return the instance generated from a template."""
         pass
 
@@ -105,61 +109,61 @@ class NativeInstanceTemplate(Template):
 
     Notes
     -----
-    **Reference in Korean**: NativeInstanceTemplate 클래스는 기본 Instance를 반환하는 템플릿을 구현한다.
-
+    **(Korean)** NativeInstanceTemplate 클래스는 기본 Instance를 반환하는 템플릿을 구현한다.
     """
-    libname = None
-    """attribute
-    str: Library name of NativeInstanceTemplate object.
 
-    
+    libname = None
+    """str: Library name of NativeInstanceTemplate object.
 
     Examples
     --------
-    >>> nat_temp_pins = dict() >>> nat_temp_pins['in'] = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing’], netname='in’)
-    >>> nat_temp_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing’], netname='out’)
-    >>> nat_temp = laygo2.object.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
-    >>> nat_temp.libname 
-    “mylib”
-
+    >>> from laygo2.object.physical import Pin
+    >>> from laygo2.object.template import NativeInstanceTemplate
+    >>> p = dict() 
+    >>> p['i'] = Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], 
+                     netname='i')
+    >>> p['o'] = Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], 
+                     netname='o')
+    >>> nt = NativeInstanceTemplate(libname='mylib', cellname='mytemp', 
+                                    bbox=[[0, 0], [100, 100]], pins=p)
+    >>> nt.libname 
+    'mylib'
     
     .. image:: ../assets/img/object_template_NativeInstanceTemplate_libname.png
           :height: 250
 
     Notes
     -----
-    **Reference in Korean**: 
-    str: NativeInstanceTemplate 객체의 library 이름.
-
+    **(Korean)** NativeInstanceTemplate 객체의 library 이름.
     """
 
     cellname = None
-    """attribute
-    str: Cellname of NativeInstanceTemplate object.
-
-    
+    """str: Cellname of NativeInstanceTemplate object.
 
     Examples
     --------
-    >>> nat_temp_pins = dict() >>> nat_temp_pins['in']  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing’], netname='in’)
-    >>> nat_temp_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing’], netname='out’)
-    >>> nat_temp = laygo2.object.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
-    >>> nat_temp.cellname 
-    “mynattemplate”
-
+    >>> from laygo2.object.physical import Pin
+    >>> from laygo2.object.template import NativeInstanceTemplate
+    >>> p = dict() 
+    >>> p['i'] = Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], 
+                     netname='i')
+    >>> p['o'] = Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], 
+                     netname='o')
+    >>> nt = NativeInstanceTemplate(libname='mylib', cellname='mytemp', 
+                                    bbox=[[0, 0], [100, 100]], pins=p)
+    >>> nt.cellname 
+    'mytemp'
     
     .. image:: ../assets/img/object_template_NativeInstanceTemplate_cellname.png
           :height: 250
 
     Notes
     -----
-    **Reference in Korean**:
-    str: NativeInstanceTemplate 객체의 cellname.
-
+    **(Korean)** NativeInstanceTemplate 객체의 cellname.
     """
 
     _bbox = np.array([[0, 0], [0, 0]])
-    
+
     _pins = None
 
     def __init__(self, libname, cellname, bbox=np.array([[0, 0], [0, 0]]), pins=None):
@@ -183,28 +187,28 @@ class NativeInstanceTemplate(Template):
 
         Examples
         --------
-        >>> nat_temp_pins = dict() 
-        >>> nat_temp_pins['in']  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing’], netname='in’)
-        >>> nat_temp_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing’], netname='out’)
-        >>> nat_temp = laygo2.object.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
+        >>> from laygo2.object.physical import Pin
+        >>> from laygo2.object.template import NativeInstanceTemplate
+        >>> p = dict() 
+        >>> p['i'] = Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], 
+                         netname='i')
+        >>> p['o'] = Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], 
+                         netname='o')
+        >>> nt = NativeInstanceTemplate(libname='mylib', cellname='mytemp', 
+                                        bbox=[[0, 0], [100, 100]], pins=p)
         <laygo2.object.template.NativeInstanceTemplate object>
+        >>> print(nt)
+        <laygo2.object.template.NativeInstanceTemplate object at 0x0000013C01..> 
+         name: mytemp, class: NativeInstanceTemplate, bbox: [[0, 0], [100, 100]], 
+         pins: {'i': <laygo2.object.physical.Pin object at 0x0000013C01CEFDC0>, 
+                'o': <laygo2.object.physical.Pin object at 0x0000013C01C30BE0>},
 
-        
         .. image:: ../assets/img/object_template_NativeInstanceTemplate_init.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:
-        NativeInstanceTemplate 클래스의 생성자함수.
-        파라미터
-        libname(str): library 이름
-        cellname(str): cell 이름
-        bbox(numpy.ndarray): bbox
-        pins(dict): pin 객체를 갖고있는 dictionary
-        반환값
-        laygo2.NativeInstanceTemplate
-
+        **(Korean)** NativeInstanceTemplate 클래스의 생성자함수.
         """
         self.libname = libname
         self.cellname = cellname
@@ -214,12 +218,22 @@ class NativeInstanceTemplate(Template):
 
     def summarize(self):
         """Return the summary of the template information."""
-        return self.__repr__() + " " \
-                                 "name: " + self.name + ", " + \
-               "class: " + self.__class__.__name__ + ", " + \
-               "bbox: " + str(self.bbox().tolist()) + ", " + \
-               "pins: " + str(self.pins()) + ", " + \
-               ""
+        return (
+            self.__repr__() + " "
+            "name: "
+            + self.name
+            + ", "
+            + "class: "
+            + self.__class__.__name__
+            + ", "
+            + "bbox: "
+            + str(self.bbox().tolist())
+            + ", "
+            + "pins: "
+            + str(self.pins())
+            + ", "
+            + ""
+        )
 
     # Core template functions
     def bbox(self, params=None):
@@ -234,30 +248,27 @@ class NativeInstanceTemplate(Template):
         -------
         numpy.ndarray
 
-        
-
         Examples
         --------
-        >>> nat_temp_pins = dict() 
-        >>> nat_temp_pins['in']  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing’], netname='in’)
-        >>> nat_temp_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing’], netname='out’)
-        >>> nat_temp = laygo2.object.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
-        >>> nat_temp.bbox() 
-        [[0,0], [100, 100]]
+        >>> from laygo2.object.physical import Pin
+        >>> from laygo2.object.template import NativeInstanceTemplate
+        >>> p = dict() 
+        >>> p['i'] = Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], 
+                         netname='i')
+        >>> p['o'] = Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], 
+                         netname='o')
+        >>> nt = NativeInstanceTemplate(libname='mylib', cellname='mytemp', 
+                                        bbox=[[0, 0], [100, 100]], pins=p)
+        >>> nt.bbox()
+        array([[  0,   0],
+               [100, 100]])
 
-        
         .. image:: ../assets/img/object_template_NativeInstanceTemplate_bbox.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:
-        NativeInstanceTemplate 객체의 bbox.
-        파라미터
-        없음
-        반환값
-        numpy.ndarray
-
+        **(Korean)** NativeInstanceTemplate 객체의 bbox.
         """
         return self._bbox
 
@@ -273,24 +284,24 @@ class NativeInstanceTemplate(Template):
         -------
         dict
 
-        
+
 
         Examples
         --------
-        >>> nat_temp_pins = dict() 
+        >>> nat_temp_pins = dict()
         >>> nat_temp_pins['in']  = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing’], netname='in’)
         >>> nat_temp_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing’], netname='out’)
         >>> nat_temp = laygo2.object.NativeInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox=[[0, 0], [100, 100]], pins=nat_temp_pins)
-        >>> nat_temp.pins() 
+        >>> nat_temp.pins()
         {'in': <laygo2.object.physical.Pin object>, 'out': <laygo2.object.physical.Pin object>}
 
-        
+
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_pins.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:
+        **(Korean)**
         NativeInstanceTemplate 객체의 pin dictionary 반환.
         파라미터
         없음
@@ -300,13 +311,13 @@ class NativeInstanceTemplate(Template):
         """
         return self._pins
 
-    def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None):
+    def generate(self, name=None, shape=None, pitch=None, transform="R0", params=None):
         """
         Generate Instance object.
 
         Parameters
         ----------
-        name : str 
+        name : str
             name of the instance to be generated.
         shape : numpy.ndarray, optional.
             shape of the object to be generated.
@@ -316,7 +327,7 @@ class NativeInstanceTemplate(Template):
             dictionary having the object attributes.
         transform : str
             transformation attribute of the object to be generated.
-        
+
         Returns
         -------
         (laygo2.object.physical.Instance) generated Instance object
@@ -336,13 +347,13 @@ class NativeInstanceTemplate(Template):
         >>> nat_temp.generate(name="I2")
         <laygo2.object.physical.Instance object>
 
-        
+
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_generate.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:
+        **(Korean)**
         Instance 객체 생성.
         파라미터
         name(str): 생성할 인스턴스의 이름
@@ -356,9 +367,18 @@ class NativeInstanceTemplate(Template):
         Class Instance
 
         """
-        return laygo2.object.physical.Instance(libname=self.libname, cellname=self.cellname, xy=np.array([0, 0]),
-                                               shape=shape, pitch=pitch, unit_size=self.size(params), pins=self.pins(params),
-                                               transform=transform, name=name, params=params)
+        return laygo2.object.physical.Instance(
+            libname=self.libname,
+            cellname=self.cellname,
+            xy=np.array([0, 0]),
+            shape=shape,
+            pitch=pitch,
+            unit_size=self.size(params),
+            pins=self.pins(params),
+            transform=transform,
+            name=name,
+            params=params,
+        )
 
     # I/O functions
     def export_to_dict(self):
@@ -386,13 +406,13 @@ class NativeInstanceTemplate(Template):
         >>> nat_temp.export_to_dict()
         {'libname': 'mylib', 'cellname': 'mynattemplate', 'bbox': [[0, 0], [100, 100]], 'pins': {'in': {'xy': [[0, 0], [10, 10]], 'layer': ['M1', 'drawing'], 'name': None, 'netname': 'in'}, 'out': {'xy': [[90, 9 0], [100, 100]], 'layer': ['M1', 'drawing'], 'name': None, 'netname': 'out'}}}
 
-        
+
         .. image:: ../assets/img/object_template_NativeInstanceTemplate_export_to_dict.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:
+        **(Korean)**
         NativeInstanceTemplate 의 정보가 담긴 Dictonary 반환.
         파라미터
         없음
@@ -403,12 +423,12 @@ class NativeInstanceTemplate(Template):
 
         """
         db = dict()
-        db['libname'] = self.libname
-        db['cellname'] = self.cellname
-        db['bbox'] = self.bbox().tolist()
-        db['pins'] = dict()
+        db["libname"] = self.libname
+        db["cellname"] = self.cellname
+        db["bbox"] = self.bbox().tolist()
+        db["pins"] = dict()
         for pn, p in self.pins().items():
-            db['pins'][pn] = p.export_to_dict()
+            db["pins"][pn] = p.export_to_dict()
         return db
 
 
@@ -418,7 +438,7 @@ class ParameterizedInstanceTemplate(Template):
 
     Notes
     -----
-    **Reference in Korean**: ParameterizedInstanceTemplate 클래스는 Parameterized Instance를 반환하는 템플릿을 구현한다.
+    **(Korean)** ParameterizedInstanceTemplate 클래스는 Parameterized Instance를 반환하는 템플릿을 구현한다.
 
     """
 
@@ -440,40 +460,40 @@ class ParameterizedInstanceTemplate(Template):
         ----------
         libname : str
             library name.
-        cellname : str 
-            The cell name of the template. 
+        cellname : str
+            The cell name of the template.
         bbox_func : callable
             bbox.
         pins_func : callable
             dictionary having the pin object.
-        
+
         Returns
         -------
         laygo2.NativeInstanceTemplate
 
-        
+
 
         Examples
         --------
-        >>> def pcell_bbox_func(params): 
-            …… 
-        >>> def pcell_pins_func(params): 
+        >>> def pcell_bbox_func(params):
+            ……
+        >>> def pcell_pins_func(params):
             ……
         >>> pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox_func= pcell_bbox_func, pins_func= pcell_pins_func)
         <laygo2.object.template.ParameterizedInstanceTemplate object>
-        
-        
+
+
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_init.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:
+        **(Korean)**
         ParameterizedInstanceTemplate 클래스의 생성자함수.
         파라미터
-        libname(str): library 이름 
-        cellname(str): cell 이름 
-        bbox_func(callable): bbox 
+        libname(str): library 이름
+        cellname(str): cell 이름
+        bbox_func(callable): bbox
         pins_func(callable): pin 객체를 갖고있는 dictionary
         반환값
         laygo2.NativeInstanceTemplate
@@ -500,27 +520,27 @@ class ParameterizedInstanceTemplate(Template):
         -------
         numpy.ndarray
 
-        
+
 
         Examples
         --------
         >>> def pcell_bbox_func(params):
-                if params==None: 
+                if params==None:
                     params={“W”:1}
                 return np.array([[0, 0], [100 , 100* params['W']]])
-        >>> def pcell_pins_func(params): 
+        >>> def pcell_pins_func(params):
             ……
         >>> pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox_func= pcell_bbox_func, pins_func= pcell_pins_func)
-        >>> pcell_temp.bbox 
+        >>> pcell_temp.bbox
         [[0,0], [100,100]]
 
-        
+
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_bbox.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:
+        **(Korean)**
         ParameterizedInstanceTemplate 객체의 bbox.
         파라미터
         없음
@@ -544,15 +564,15 @@ class ParameterizedInstanceTemplate(Template):
         -------
         dict
 
-        
+
 
         Examples
         --------
-        >>> def pcell_bbox_func(params): 
+        >>> def pcell_bbox_func(params):
             ……
         >>> def pcell_pins_func(params):
                 if params==None:
-                    params={"W":1} 
+                    params={"W":1}
                     i = params['W']
                 template_pins = dict()
                 pin_in  = laygo2.object.Pin(xy =[ [ 0, 0], [100 , 0 ] ],      layer=['M1', 'pin'], netname='in')
@@ -561,16 +581,16 @@ class ParameterizedInstanceTemplate(Template):
                 template_pins['out'] = pin_out
                 return template_pins
         >>> pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox_func= pcell_bbox_func, pins_func= pcell_pins_func)
-        >>> pcell_temp.pins 
+        >>> pcell_temp.pins
         {'in': <laygo2.object.physical.Pin object>, 'out': <laygo2.object.physical.Pin object>}
 
-        
+
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_pins.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:
+        **(Korean)**
         ParameterizedInstanceTemplate 객체의 pin dictionary 반환.
         파라미터
         없음
@@ -582,7 +602,7 @@ class ParameterizedInstanceTemplate(Template):
         """
         return self._pins(params=params)
 
-    def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None):
+    def generate(self, name=None, shape=None, pitch=None, transform="R0", params=None):
         """
         Generate ParameterizedInstance object.
 
@@ -598,7 +618,7 @@ class ParameterizedInstanceTemplate(Template):
             dictionary having the entity attributes.
         transform : str, optional.
             transformation attribute of the entity to be generated.
-        
+
         Returns
         -------
         (laygo2.object.physical.Instance) generated Instance object
@@ -611,21 +631,21 @@ class ParameterizedInstanceTemplate(Template):
         --------
         >>> def pcell_bbox_func(params):
             ……
-        >>> def pins_bbox_func(params): 
+        >>> def pins_bbox_func(params):
             ……
         >>> pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox_func=pcell_bbox_func, pins_func=pcell_pins_func)
-        >>> pcell_temp.generate(name=“I1”, params={“W”=2, “L”=1}) 
+        >>> pcell_temp.generate(name=“I1”, params={“W”=2, “L”=1})
         <laygo2.object.physical.Instance object>
-        >>> pcell_temp.generate(name=“I2”, params={“W”=2, “L”=1}) 
+        >>> pcell_temp.generate(name=“I2”, params={“W”=2, “L”=1})
         <laygo2.object.physical.Instance object>
 
-        
+
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_generate.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:
+        **(Korean)**
         ParameterizedInstance 객체 생성.
         파라미터
         name(str): 생성할 인스턴스의 이름
@@ -639,10 +659,19 @@ class ParameterizedInstanceTemplate(Template):
         Class Instance
 
         """
-        #xy = xy + np.dot(self.xy(params)[0], tf.Mt(transform).T)
-        return laygo2.object.physical.Instance(libname=self.libname, cellname=self.cellname, xy=np.array([0, 0]),
-                                               shape=shape, pitch=pitch, unit_size=self.size(params),
-                                               pins=self.pins(params), transform=transform, name=name, params=params)
+        # xy = xy + np.dot(self.xy(params)[0], tf.Mt(transform).T)
+        return laygo2.object.physical.Instance(
+            libname=self.libname,
+            cellname=self.cellname,
+            xy=np.array([0, 0]),
+            shape=shape,
+            pitch=pitch,
+            unit_size=self.size(params),
+            pins=self.pins(params),
+            transform=transform,
+            name=name,
+            params=params,
+        )
 
 
 class UserDefinedTemplate(Template):
@@ -651,7 +680,7 @@ class UserDefinedTemplate(Template):
 
     Notes
     -----
-    **Reference in Korean**: UserDefinedTemplate 클래스는 VirtualInstance를 반환하는 템플릿을 구현한다.
+    **(Korean)** UserDefinedTemplate 클래스는 VirtualInstance를 반환하는 템플릿을 구현한다.
 
     """
 
@@ -680,26 +709,26 @@ class UserDefinedTemplate(Template):
         -------
         laygo2.UserDefinedTemplate
 
-        
+
 
         Examples
         --------
-        >>> def user_bbox_func(params):-> numpy.ndarray …  ## return bbox0 * multi 
-            …… 
-        >>> def user_pins_func(params):-> dict          …  ## pin0.bbox = pins0.bbox * multi 
-            …… 
-        >>> def user_generate_func(params): 
-            …… 
+        >>> def user_bbox_func(params):-> numpy.ndarray …  ## return bbox0 * multi
+            ……
+        >>> def user_pins_func(params):-> dict          …  ## pin0.bbox = pins0.bbox * multi
+            ……
+        >>> def user_generate_func(params):
+            ……
         >>> user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
         <laygo2.object.template.UserDefinedTemplate object>
 
-        
+
         .. image:: ../assets/img/object_template_UserDefinedTemplate_init.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:
+        **(Korean)**
         UserDefinedTemplate 클래스의 생성자함수.
         파라미터
         bbox_func(callable ): bbox를 연산해주는 메소드
@@ -730,31 +759,31 @@ class UserDefinedTemplate(Template):
         -------
         numpy.ndarray
 
-        
+
 
         Examples
         --------
-        >>> params={}; params[“multi”] = 10; bbox0 = [ [0,0],[100,100]]; pin0 = [ in, out ] 
+        >>> params={}; params[“multi”] = 10; bbox0 = [ [0,0],[100,100]]; pin0 = [ in, out ]
         >>> def user_bbox_func(params):-> numpy.ndarray …  ## return bbox0 * multi
-                if params==None: 
+                if params==None:
                     params={}
                     params['multi'] = 1
                 return np.array([[0, 0], [100 * params['multi'], 100]])
-        >>> def user_pins_func(params):-> dict          …  ## pin0.bbox = pins0.bbox * multi 
-            …… 
-        >>> def user_generate_func(params): 
-            …… 
+        >>> def user_pins_func(params):-> dict          …  ## pin0.bbox = pins0.bbox * multi
+            ……
+        >>> def user_generate_func(params):
+            ……
         >>> user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
-        >>> user_temp.bbox() 
+        >>> user_temp.bbox()
         [[0, 0], [100, 100]]
 
-        
+
         .. image:: ../assets/img/object_template_UserDefinedTemplate_bbox.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:
+        **(Korean)**
         UserDefinedTemplate 객체의 bbox 반환.
         파라미터
         없음
@@ -778,35 +807,35 @@ class UserDefinedTemplate(Template):
         -------
         dict
 
-        
+
 
         Examples
         --------
-        >>> params={}; params[“multi”] = 10; bbox0 = [ [0,0],[100,100]]; pin0 = [ in, out ] 
-        >>> def user_bbox_func(params):-> numpy.ndarray …  ## return bbox0 * multi 
+        >>> params={}; params[“multi”] = 10; bbox0 = [ [0,0],[100,100]]; pin0 = [ in, out ]
+        >>> def user_bbox_func(params):-> numpy.ndarray …  ## return bbox0 * multi
         >>> def user_pins_func(params):-> dict
                 if params==None:
                     params={"multi":1}
                 i = params['multi']
                 template_pins = dict()
-                pin_in = laygo2.object.Pin(xy =[ [ 0, 0], [100 * i, 0 ] ],   layer=['M1', 'pin'], netname='in') 
-                pin_out = laygo2.object.Pin(xy=[ [ 0, 100], [100 * i, 100]], layer=['M1', 'pin'], netname='out') 
-                template_pins['in' ] = pin_in 
-                template_pins['out'] = pin_out 
+                pin_in = laygo2.object.Pin(xy =[ [ 0, 0], [100 * i, 0 ] ],   layer=['M1', 'pin'], netname='in')
+                pin_out = laygo2.object.Pin(xy=[ [ 0, 100], [100 * i, 100]], layer=['M1', 'pin'], netname='out')
+                template_pins['in' ] = pin_in
+                template_pins['out'] = pin_out
                 return template_pins
         >>> def user_generate_func(params):
-            …… 
+            ……
         >>> user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
         >>> user_temp.pins()
         {'in': <laygo2.object.physical.Pin>, 'out': <laygo2.object.physical.Pin object>}
 
-        
+
         .. image:: ../assets/img/object_template_UserDefinedTemplate_pins.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:
+        **(Korean)**
         UserDefinedTemplate 객체의 pins.
         파라미터
         없음
@@ -818,7 +847,7 @@ class UserDefinedTemplate(Template):
         """
         return self._pins(params=params)
 
-    def generate(self, name=None, shape=None, pitch=None, transform='R0', params=None):
+    def generate(self, name=None, shape=None, pitch=None, transform="R0", params=None):
         """
         Generate a VirtualInstance object by calling generate_func() bound to the template.
 
@@ -841,32 +870,32 @@ class UserDefinedTemplate(Template):
 
         Examples
         --------
-        >>> def user_bbox_func(params):-> numpy.ndarray …  ## return bbox0 * multi 
-        >>> def user_pins_func(params):-> dict 
+        >>> def user_bbox_func(params):-> numpy.ndarray …  ## return bbox0 * multi
+        >>> def user_pins_func(params):-> dict
         >>> def user_generate_func(params={“multi”:1}):
-                m = params['multi'] 
-                shape = np.array([1, 1]); inst_pins = user_pins_func(params) ; inst_native_elements = dict() 
-                inst_native_elements['left'] = laygo2.object.Rect(xy=[ [0, 0], [0,100]], layer=['M1’, 'drawing']) 
+                m = params['multi']
+                shape = np.array([1, 1]); inst_pins = user_pins_func(params) ; inst_native_elements = dict()
+                inst_native_elements['left'] = laygo2.object.Rect(xy=[ [0, 0], [0,100]], layer=['M1’, 'drawing'])
                 ofst = np.array([100, 0])
                 for i in range(m):
-                    bl  = np.array([0,0]) 
-                    tr  = np.array([100,100]) 
+                    bl  = np.array([0,0])
+                    tr  = np.array([100,100])
                     inst_native_elements['center'+str(i)] = laygo2.object.Rect(xy=[ i*ofst + bl , i*ofst + tr ]…
-                inst_native_elements['right'] = laygo2.object.Rect(xy=[ m*ofst + [0, 0], m*ofst + [ 0 , 100]], …) 
+                inst_native_elements['right'] = laygo2.object.Rect(xy=[ m*ofst + [0, 0], m*ofst + [ 0 , 100]], …)
                 inst = VirtualInstance(name=name,xy=np.array([0, 0]),native_elements=inst_native_elements,……)
-        >>> user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func) 
-        >>> nat_temp.generate(name=“I1”, {“multi”=1}) 
+        >>> user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
+        >>> nat_temp.generate(name=“I1”, {“multi”=1})
         <laygo2.object.physical.VirtualInstance >
-        >>> nat_temp.generate(name=“I2”, {“multi”=2}) 
+        >>> nat_temp.generate(name=“I2”, {“multi”=2})
         <laygo2.object.physical.VirtualInstance >
 
-        
+
         .. image:: ../assets/img/object_template_UserDefinedTemplate_generate.png
           :height: 250
 
         Notes
         -----
-        **Reference in Korean**:
+        **(Korean)**
         VirtualInstance 객체 생성.
         파라미터
         없음
@@ -876,11 +905,13 @@ class UserDefinedTemplate(Template):
         없음
 
         """
-        return self._generate(name=name, shape=shape, pitch=pitch, transform=transform, params=params)
+        return self._generate(
+            name=name, shape=shape, pitch=pitch, transform=transform, params=params
+        )
 
 
 # Test
-if __name__ == '__main__':
+if __name__ == "__main__":
     test_native_template = True
     test_pcell_template = True
     test_user_template = True
@@ -891,13 +922,23 @@ if __name__ == '__main__':
         print("NativeInstanceTemplate test")
         # define pins
         nat_temp_pins = dict()
-        nat_temp_pins['in'] = laygo2.object.Pin(xy=[[0, 0], [10, 10]], layer=['M1', 'drawing'], netname='in')
-        nat_temp_pins['out'] = laygo2.object.Pin(xy=[[90, 90], [100, 100]], layer=['M1', 'drawing'], netname='out')
+        nat_temp_pins["in"] = laygo2.object.Pin(
+            xy=[[0, 0], [10, 10]], layer=["M1", "drawing"], netname="in"
+        )
+        nat_temp_pins["out"] = laygo2.object.Pin(
+            xy=[[90, 90], [100, 100]], layer=["M1", "drawing"], netname="out"
+        )
         # create a template
-        nat_temp = NativeInstanceTemplate(libname='mylib', cellname='mynattemplate', bbox=[[0, 0], [100, 100]],
-                                          pins=nat_temp_pins)
+        nat_temp = NativeInstanceTemplate(
+            libname="mylib",
+            cellname="mynattemplate",
+            bbox=[[0, 0], [100, 100]],
+            pins=nat_temp_pins,
+        )
         # generate
-        nat_inst = nat_temp.generate(name='mynatinst', shape=[2, 2], pitch=[100, 100], transform='R0')
+        nat_inst = nat_temp.generate(
+            name="mynatinst", shape=[2, 2], pitch=[100, 100], transform="R0"
+        )
         # display
         print(nat_temp)
         print(nat_inst)
@@ -907,26 +948,41 @@ if __name__ == '__main__':
 
         # define the bbox computation function.
         def pcell_bbox_func(params):
-            return np.array([[0, 0], [100 * params['mult'], 100]])
+            return np.array([[0, 0], [100 * params["mult"], 100]])
 
         # define the pin generation function.
         def pcell_pins_func(params):
             template_pins = dict()
-            for i in range(params['mult']):
-                template_pins['in' + str(i)] = laygo2.object.Pin(xy=[[i * 100 + 0, 0], [i * 100 + 10, 10]],
-                                                                 layer=['M1', 'drawing'], netname='in' + str(i))
-                template_pins['out' + str(i)] = laygo2.object.Pin(xy=[[i * 100 + 90, 90], [i * 100 + 90, 100]],
-                                                                  layer=['M1', 'drawing'], netname='out' + str(i))
+            for i in range(params["mult"]):
+                template_pins["in" + str(i)] = laygo2.object.Pin(
+                    xy=[[i * 100 + 0, 0], [i * 100 + 10, 10]],
+                    layer=["M1", "drawing"],
+                    netname="in" + str(i),
+                )
+                template_pins["out" + str(i)] = laygo2.object.Pin(
+                    xy=[[i * 100 + 90, 90], [i * 100 + 90, 100]],
+                    layer=["M1", "drawing"],
+                    netname="out" + str(i),
+                )
             return template_pins
 
         # create a template.
-        pcell_temp = ParameterizedInstanceTemplate(libname='mylib', cellname='mypcelltemplate',
-                                                   bbox_func=pcell_bbox_func, pins_func=pcell_pins_func)
+        pcell_temp = ParameterizedInstanceTemplate(
+            libname="mylib",
+            cellname="mypcelltemplate",
+            bbox_func=pcell_bbox_func,
+            pins_func=pcell_pins_func,
+        )
         # generate based on the parameter assigned.
-        pcell_inst_params = {'mult': 4}
+        pcell_inst_params = {"mult": 4}
         pcell_inst_size = pcell_temp.size(params=pcell_inst_params)
-        pcell_inst = pcell_temp.generate(name='mypcellinst', shape=[2, 2], pitch=pcell_inst_size, transform='R0',
-                                         params=pcell_inst_params)
+        pcell_inst = pcell_temp.generate(
+            name="mypcellinst",
+            shape=[2, 2],
+            pitch=pcell_inst_size,
+            transform="R0",
+            params=pcell_inst_params,
+        )
         # display
         print(pcell_temp)
         print(pcell_inst)
@@ -936,42 +992,68 @@ if __name__ == '__main__':
 
         # define the bbox computation function.
         def user_bbox_func(params):
-            return np.array([[0, 0], [100 * params['mult'], 100]])
+            return np.array([[0, 0], [100 * params["mult"], 100]])
 
         # define the pin generation function.
         def user_pins_func(params):
             template_pins = dict()
-            for i in range(params['mult']):
-                template_pins['in' + str(i)] = laygo2.object.Pin(xy=[[i * 100 + 0, 0], [i * 100 + 10, 10]],
-                                                                 layer=['M1', 'drawing'], netname='in' + str(i))
-                template_pins['out' + str(i)] = laygo2.object.Pin(xy=[[i * 100 + 90, 90], [i * 100 + 90, 100]],
-                                                                  layer=['M1', 'drawing'], netname='out' + str(i))
+            for i in range(params["mult"]):
+                template_pins["in" + str(i)] = laygo2.object.Pin(
+                    xy=[[i * 100 + 0, 0], [i * 100 + 10, 10]],
+                    layer=["M1", "drawing"],
+                    netname="in" + str(i),
+                )
+                template_pins["out" + str(i)] = laygo2.object.Pin(
+                    xy=[[i * 100 + 90, 90], [i * 100 + 90, 100]],
+                    layer=["M1", "drawing"],
+                    netname="out" + str(i),
+                )
             return template_pins
 
         # define the instance generation function.
-        def user_generate_func(name=None, shape=None, pitch=np.array([0, 0]), transform='R0', params=None):
-            m = params['mult']
+        def user_generate_func(
+            name=None, shape=None, pitch=np.array([0, 0]), transform="R0", params=None
+        ):
+            m = params["mult"]
             shape = np.array([1, 1]) if shape is None else np.asarray(shape)
 
             inst_pins = user_pins_func(params)
             inst_native_elements = dict()
             for i in range(m):
                 ofst = i * 100
-                inst_native_elements['R0_' + str(i)] = laygo2.object.Rect(xy=[[ofst, 0], [ofst + 10, 10]],
-                                                                          layer=['M1', 'drawing'])
-                inst_native_elements['R1_' + str(i)] = laygo2.object.Rect(xy=[[ofst + 90, 90], [ofst + 100, 100]],
-                                                                          layer=['M1', 'drawing'])
-            inst_native_elements['R2'] = laygo2.object.Rect(xy=[[0, 0], [m * 100, 100]],
-                                                            layer=['prBoundary', 'drawing'])
-            inst = laygo2.object.VirtualInstance(name=name, libname='mylib', cellname='myvinst', xy=np.array([0, 0]),
-                                                 native_elements=inst_native_elements, shape=shape,
-                                                 pitch=pitch, unit_size=[m * 100, 100], pins=inst_pins,
-                                                 transform=transform, params=params)
+                inst_native_elements["R0_" + str(i)] = laygo2.object.Rect(
+                    xy=[[ofst, 0], [ofst + 10, 10]], layer=["M1", "drawing"]
+                )
+                inst_native_elements["R1_" + str(i)] = laygo2.object.Rect(
+                    xy=[[ofst + 90, 90], [ofst + 100, 100]], layer=["M1", "drawing"]
+                )
+            inst_native_elements["R2"] = laygo2.object.Rect(
+                xy=[[0, 0], [m * 100, 100]], layer=["prBoundary", "drawing"]
+            )
+            inst = laygo2.object.VirtualInstance(
+                name=name,
+                libname="mylib",
+                cellname="myvinst",
+                xy=np.array([0, 0]),
+                native_elements=inst_native_elements,
+                shape=shape,
+                pitch=pitch,
+                unit_size=[m * 100, 100],
+                pins=inst_pins,
+                transform=transform,
+                params=params,
+            )
             return inst
 
-        user_temp = UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func,
-                                        generate_func=user_generate_func)
-        user_inst = user_temp.generate(name='myuserinst', shape=[2, 1], params={'mult': 5})
+        user_temp = UserDefinedTemplate(
+            name="myusertemplate",
+            bbox_func=user_bbox_func,
+            pins_func=user_pins_func,
+            generate_func=user_generate_func,
+        )
+        user_inst = user_temp.generate(
+            name="myuserinst", shape=[2, 1], params={"mult": 5}
+        )
         print(user_temp)
         print(user_inst)
         print(user_inst.bbox)
