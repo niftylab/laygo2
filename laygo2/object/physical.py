@@ -433,19 +433,11 @@ class PhysicalObject:
         """Return the summary of this object."""
         name = "None" if self.name is None else self.name
         return (
-            self.__repr__() + " "
-            "\n    name: "
-            + name
-            + ", "
-            + "\n    class: "
-            + self.__class__.__name__
-            + ", "
-            + "\n    xy: "
-            + str(self.xy.tolist())
-            + ", "
-            + "\n    params: "
-            + str(self.params)
-            + ", "
+            self.__repr__() + " \n"
+            "    name: " + name + ", \n"
+            + "    class: " + self.__class__.__name__ + ", \n"
+            + "    xy: " + str(self.xy.tolist()) + ", \n"
+            + "    params: " + str(self.params) + ", \n"
         )
 
     def _update_pointers(self):
@@ -654,9 +646,7 @@ class PhysicalObjectGroup(IterablePhysicalObject):
         """Return the summary of the object information."""
         return (
             IterablePhysicalObject.summarize(self)
-            + "\n"
-            + "  elements: "
-            + str(self.elements)
+            + "    elements: " + str(self.elements) + ", \n"
         )
 
     def __init__(self, xy, name=None, params=None, elements=None):
@@ -1064,13 +1054,9 @@ class Rect(PhysicalObject):
     def summarize(self):
         """Return the summary of the object information."""
         return (
-            PhysicalObject.summarize(self)
-            + ", "
-            + "layer: "
-            + str(self.layer)
-            + ", "
-            + "netname: "
-            + str(self.netname)
+            PhysicalObject.summarize(self) 
+            + "    layer: " + str(self.layer) + ", \n"
+            + "    netname: " + str(self.netname) + ", \n"
         )
 
 
@@ -1233,19 +1219,11 @@ class Path(PhysicalObject):
     def summarize(self):
         """Return the summary of the object information."""
         return (
-            PhysicalObject.summarize(self)
-            + ", "
-            + "width: "
-            + str(self.width)
-            + ", "
-            + "extension: "
-            + str(self.extension)
-            + ", "
-            + "layer: "
-            + str(self.layer)
-            + ", "
-            + "netname: "
-            + str(self.netname)
+            PhysicalObject.summarize(self) 
+            + "    width: " + str(self.width) + ", \n"
+            + "    extension: " + str(self.extension) + ", \n"
+            + "    layer: " + str(self.layer) + ", \n"
+            + "    netname: " + str(self.netname) + ", \n"
         )
 
 
@@ -1426,18 +1404,10 @@ class Pin(IterablePhysicalObject):
         """Return the summary of the object information."""
         return (
             IterablePhysicalObject.summarize(self)
-            + ", "
-            + "layer: "
-            + str(self.layer)
-            + ", "
-            + "netname: "
-            + str(self.netname)
-            + ", "
-            + "shape: "
-            + str(self.shape)
-            + ", "
-            + "master: "
-            + str(self.master)
+            + "    layer: " + str(self.layer) + ", \n"
+            + "    netname: " + str(self.netname) + ", \n"
+            + "    shape: " + str(self.shape) + ", \n"
+            + "    master: " + str(self.master) + ", \n"
         )
 
     def export_to_dict(self):
@@ -1552,11 +1522,8 @@ class Text(PhysicalObject):
         """Return the summary of the object information."""
         return (
             PhysicalObject.summarize(self)
-            + "\n    layer: "
-            + str(self.layer)
-            + ", "
-            + "\n    text: "
-            + str(self.text)
+            + "    layer: " + str(self.layer) + ", \n"
+            + "    text: " + str(self.text) + ", \n"
         )
 
 
@@ -2188,18 +2155,14 @@ class Instance(IterablePhysicalObject):
 
     def summarize(self):
         """Summarize object information."""
+        _shape = str(None if self.shape is None else self.shape.tolist())
         return (
             PhysicalObject.summarize(self)
-            + "\n    size: "
-            + str(self.size.tolist())
-            + "\n    shape: "
-            + str(None if self.shape is None else self.shape.tolist())
-            + "\n    pitch: "
-            + str(self.pitch.tolist())
-            + "\n    transform: "
-            + str(self.transform)
-            + "\n    pins: "
-            + str(self.pins)
+            + "    size: " + str(self.size.tolist()) + ", \n"
+            + "    shape: " + _shape + ", \n"
+            + "    pitch: " + str(self.pitch.tolist()) + ", \n"
+            + "    transform: " + str(self.transform) + ", \n"
+            + "    pins: " + str(self.pins) + ", \n"
         )
 
 
@@ -2374,8 +2337,7 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
         """Summarize object information."""
         return (
             Instance.summarize(self)
-            + "\n    native elements: "
-            + str(self.native_elements)
+            + "    native elements: " + str(self.native_elements) + "\n"
         )
 
     def get_element_position(self, obj):
