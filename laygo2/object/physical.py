@@ -1583,6 +1583,32 @@ class Instance(IterablePhysicalObject):
     """
     Instance object class.
 
+    Example
+    -------
+    >>> import laygo2
+    >>> inst0_pins = dict() 
+    >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
+            layer = ['M1', 'drawing'], netname = 'in') 
+    >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+            layer=['M1', 'drawing'], netname='out')
+    >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
+            libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+            unit_size=[100, 100], pins=inst0_pins, transform='R0')  
+    >>> print(inst0)
+    <laygo2.object.physical.Instance object at 0x000001AF458AF8E0> 
+        name: I0,
+        class: Instance,
+        xy: [100, 100],
+        params: None,
+        size: [500, 300],
+        shape: [3, 2],
+        pitch: [200, 200],
+        transform: R0,
+        pins: {'in': <laygo2.object.physical.Pin object at 0x000001AF560D6170>, 
+               'out': <laygo2.object.physical.Pin object at 0x000001AF560D5F30>}, 
+    >>> print( inst0[1,0].xy0 )
+    array([300, 100])
+
     Notes
     -----
     **(Korean)**: Instance 객체 클래스.
@@ -2061,6 +2087,18 @@ class Instance(IterablePhysicalObject):
         >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
                 libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
                 unit_size=[100, 100], pins=inst0_pins, transform='R0')   
+        >>> print(inst0)
+        <laygo2.object.physical.Instance object at 0x000001AF458AF8E0> 
+            name: I0,
+            class: Instance,
+            xy: [100, 100],
+            params: None,
+            size: [500, 300],
+            shape: [3, 2],
+            pitch: [200, 200],
+            transform: R0,
+            pins: {'in': <laygo2.object.physical.Pin object at 0x000001AF560D6170>, 
+                   'out': <laygo2.object.physical.Pin object at 0x000001AF560D5F30>}, 
         >>> print( inst0[1,0].xy0 )
         array([300, 100])
 
