@@ -463,19 +463,22 @@ class NativeInstanceTemplate(Template):
 
 class ParameterizedInstanceTemplate(Template):
     """
-    ParameterizedInstanceTemplate class implements the template that generate ParameterizedInstnace.
+    ParameterizedInstanceTemplate class implements the template that generates 
+    an instance with variable size (bbox) and pin parameters, based on its 
+    input parameters (such as instances mapped to Cadence Virtuoso's pcells 
+    or Pycells). 
 
     Notes
     -----
-    **(Korean)** ParameterizedInstanceTemplate 클래스는 Parameterized Instance를 반환하는 템플릿을 구현한다.
-
+    **(Korean)** ParameterizedInstanceTemplate 클래스는 입력 파라미터에 따라 
+    크기와 pin 정보가 가변하는 인스턴스를 생성하는 템플릿을 구현한다. 
     """
 
     libname = None
-    """str: Libname of the instance being generated."""
+    """str: The libname of the instance being generated."""
 
     cellname = None
-    """str: Cellname of the instance being generated."""
+    """str: The cellname of the instance being generated."""
 
     _bbox = None
 
@@ -483,32 +486,82 @@ class ParameterizedInstanceTemplate(Template):
 
     def __init__(self, libname, cellname, bbox_func=None, pins_func=None):
         """
-        Generate ParameterizedInstanceTemplate object.
+        Constructor of ParameterizedInstanceTemplate class.
 
         Parameters
         ----------
         libname : str
-            library name.
+            The library name.
         cellname : str
             The cell name of the template.
         bbox_func : callable
-            bbox.
+            The function that computes the bounding box of the template from 
+            its input parameters.
         pins_func : callable
-            dictionary having the pin object.
+            The function that returns a dictionary that contains its pin 
+            objects for its input parameters.
 
         Returns
         -------
-        laygo2.NativeInstanceTemplate
+        laygo2.object.template.ParameterizedInstanceTemplate
 
         Examples
         --------
+        >>> import numpy as np
+        >>> from laygo2.object.template import ParameterizedInstanceTemplate
+        >>> from laygo2.object.physical import Pin
+        >>> # bbox computation function.
         >>> def pcell_bbox_func(params):
-            ……
+                return np.array([[0, 0], [100 * params["mult"], 100]])
+        >>> # pin generation function.
         >>> def pcell_pins_func(params):
-            ……
-        >>> pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox_func= pcell_bbox_func, pins_func= pcell_pins_func)
-        <laygo2.object.template.ParameterizedInstanceTemplate object>
-
+        >>>     template_pins = dict()
+        >>>     for i in range(params["mult"]):
+        >>>         template_pins["in" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 0, 0], [i * 100 + 10, 10]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="in" + str(i),
+        >>>         )
+        >>>         template_pins["out" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 90, 90], [i * 100 + 90, 100]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="out" + str(i),
+        >>>         )
+        >>>     return template_pins
+        >>> # Create a template
+        >>> pcell_temp = ParameterizedInstanceTemplate(
+        >>>     libname="mylib",
+        >>>     cellname="mypcelltemplate",
+        >>>     bbox_func=pcell_bbox_func,
+        >>>     pins_func=pcell_pins_func,
+        >>> )
+        >>> # Generate an instance for input parameters.
+        >>> pcell_inst_params = {"mult": 4}
+        >>> pcell_inst = pcell_temp.generate(
+        >>>    name="mypcellinst",
+        >>>    transform="R0",
+        >>>    params=pcell_inst_params,
+        >>> )
+        >>> # display
+        >>> print(pcell_temp)
+            <laygo2.object.template.ParameterizedInstanceTemplate object at 0x000001B1BA91D9C0>
+            name: mypcelltemplate, 
+            class: ParameterizedInstanceTemplate,
+        >>> print(pcell_inst)
+            xy: [0, 0],
+            params: {'mult': 4},
+            size: [400, 100],
+            shape: None,
+            pitch: [400, 100],
+            transform: R0,
+            pins: {'in0': <laygo2.object.physical.Pin object at 0x000001B1BA91FCA0>, 
+                   'out0': <laygo2.object.physical.Pin object at 0x000001B1BA91FC70>, 
+                   'in1': <laygo2.object.physical.Pin object at 0x000001B1BA91FC10>, 
+                   'out1': <laygo2.object.physical.Pin object at 0x000001B1BA91E8C0>, 
+                   'in2': <laygo2.object.physical.Pin object at 0x000001B1BA91E890>, 
+                   'out2': <laygo2.object.physical.Pin object at 0x000001B1BA91FBE0>, 
+                   'in3': <laygo2.object.physical.Pin object at 0x000001B1BA91E7D0>, 
+                   'out3': <laygo2.object.physical.Pin object at 0x000001B1BA91E710>},
 
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_init.png
           :height: 250
@@ -530,24 +583,50 @@ class ParameterizedInstanceTemplate(Template):
 
         Parameters
         ----------
-        None
+        params: dict
+            A dictionary that contains input parameters corresponding to the 
+            bounding box to be computed.
 
         Returns
         -------
-        numpy.ndarray
+        numpy.ndarray: A 2x2 numpy array that contains the bounding box 
+            coordinates corresponding to the input parameters.
 
         Examples
         --------
+        >>> import numpy as np
+        >>> from laygo2.object.template import ParameterizedInstanceTemplate
+        >>> from laygo2.object.physical import Pin
+        >>> # bbox computation function.
         >>> def pcell_bbox_func(params):
-                if params==None:
-                    params={“W”:1}
-                return np.array([[0, 0], [100 , 100* params['W']]])
+                return np.array([[0, 0], [100 * params["mult"], 100]])
+        >>> # pin generation function.
         >>> def pcell_pins_func(params):
-            ……
-        >>> pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox_func= pcell_bbox_func, pins_func= pcell_pins_func)
-        >>> pcell_temp.bbox
-        [[0,0], [100,100]]
-
+        >>>     template_pins = dict()
+        >>>     for i in range(params["mult"]):
+        >>>         template_pins["in" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 0, 0], [i * 100 + 10, 10]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="in" + str(i),
+        >>>         )
+        >>>         template_pins["out" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 90, 90], [i * 100 + 90, 100]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="out" + str(i),
+        >>>         )
+        >>>     return template_pins
+        >>> # Create a template
+        >>> pcell_temp = ParameterizedInstanceTemplate(
+        >>>     libname="mylib",
+        >>>     cellname="mypcelltemplate",
+        >>>     bbox_func=pcell_bbox_func,
+        >>>     pins_func=pcell_pins_func,
+        >>> )
+        >>> # Compute bbox for input parameters
+        >>> pcell_inst_params = {"mult": 4}
+        >>> pcell_temp.bbox(params=pcell_inst_params)
+        array([[  0,   0],
+               [400, 100]])
 
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_bbox.png
           :height: 250
@@ -564,53 +643,70 @@ class ParameterizedInstanceTemplate(Template):
 
         Parameters
         ----------
-        None
+        params: dict
+            A dictionary that contains input parameters corresponding to the 
+            pin objects to be produced.
 
         Returns
         -------
-        dict
-
-
+        dict: A dictionary that contains pin object corresponding to the 
+            input parameters.
 
         Examples
         --------
+        >>> import numpy as np
+        >>> from laygo2.object.template import ParameterizedInstanceTemplate
+        >>> from laygo2.object.physical import Pin
+        >>> # bbox computation function.
         >>> def pcell_bbox_func(params):
-            ……
+                return np.array([[0, 0], [100 * params["mult"], 100]])
+        >>> # pin generation function.
         >>> def pcell_pins_func(params):
-                if params==None:
-                    params={"W":1}
-                    i = params['W']
-                template_pins = dict()
-                pin_in  = laygo2.object.Pin(xy =[ [ 0, 0], [100 , 0 ] ],      layer=['M1', 'pin'], netname='in')
-                pin_out = laygo2.object.Pin(xy =[ [ 0, 100], [100 , 100* i]], layer=['M1', 'pin’], netname='out')
-                template_pins['in' ] = pin_in
-                template_pins['out'] = pin_out
-                return template_pins
-        >>> pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox_func= pcell_bbox_func, pins_func= pcell_pins_func)
-        >>> pcell_temp.pins
-        {'in': <laygo2.object.physical.Pin object>, 'out': <laygo2.object.physical.Pin object>}
-
+        >>>     template_pins = dict()
+        >>>     for i in range(params["mult"]):
+        >>>         template_pins["in" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 0, 0], [i * 100 + 10, 10]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="in" + str(i),
+        >>>         )
+        >>>         template_pins["out" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 90, 90], [i * 100 + 90, 100]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="out" + str(i),
+        >>>         )
+        >>>     return template_pins
+        >>> # Create a template
+        >>> pcell_temp = ParameterizedInstanceTemplate(
+        >>>     libname="mylib",
+        >>>     cellname="mypcelltemplate",
+        >>>     bbox_func=pcell_bbox_func,
+        >>>     pins_func=pcell_pins_func,
+        >>> )
+        >>> # Compute bbox for input parameters
+        >>> pcell_inst_params = {"mult": 4}
+        >>> pcell_temp.pins(params=pcell_inst_params)
+            {'in0': <laygo2.object.physical.Pin object at 0x000001B1BA91F7C0>, 
+             'out0': <laygo2.object.physical.Pin object at 0x000001B1BA91E830>,
+             'in1': <laygo2.object.physical.Pin object at 0x000001B1BA91DAB0>, 
+             'out1': <laygo2.object.physical.Pin object at 0x000001B1BA91E860>, 
+             'in2': <laygo2.object.physical.Pin object at 0x000001B1BA91E560>, 
+             'out2': <laygo2.object.physical.Pin object at 0x000001B1BA91E800>, 
+             'in3': <laygo2.object.physical.Pin object at 0x000001B1BA91E770>, 
+             'out3': <laygo2.object.physical.Pin object at 0x000001B1BA91EA40>}
 
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_pins.png
           :height: 250
 
         Notes
         -----
-        **(Korean)**
-        ParameterizedInstanceTemplate 객체의 pin dictionary 반환.
-        파라미터
-        없음
-        반환값
-        dict
-        참조
-        없음
-
+        **(Korean)** ParameterizedInstanceTemplate 객체의 pin dictionary 반환.
         """
         return self._pins(params=params)
 
     def generate(self, name=None, shape=None, pitch=None, transform="R0", params=None):
         """
-        Generate ParameterizedInstance object.
+        Generate an Instance object corresponding to the template and its 
+        input parameters.
 
         Parameters
         ----------
@@ -627,43 +723,81 @@ class ParameterizedInstanceTemplate(Template):
 
         Returns
         -------
-        (laygo2.object.physical.Instance) generated Instance object
-
-        See Also
-        --------
-        Class Instance
+        laygo2.object.physical.Instance: The generated Instance object
 
         Examples
         --------
+        >>> import numpy as np
+        >>> from laygo2.object.template import ParameterizedInstanceTemplate
+        >>> from laygo2.object.physical import Pin
+        >>> # bbox computation function.
         >>> def pcell_bbox_func(params):
-            ……
-        >>> def pins_bbox_func(params):
-            ……
-        >>> pcell_temp = laygo2.object.ParameterizedInstanceTemplate(libname='mylib', cellname='mynattemplate’, bbox_func=pcell_bbox_func, pins_func=pcell_pins_func)
-        >>> pcell_temp.generate(name=“I1”, params={“W”=2, “L”=1})
-        <laygo2.object.physical.Instance object>
-        >>> pcell_temp.generate(name=“I2”, params={“W”=2, “L”=1})
-        <laygo2.object.physical.Instance object>
-
+                return np.array([[0, 0], [100 * params["mult"], 100]])
+        >>> # pin generation function.
+        >>> def pcell_pins_func(params):
+        >>>     template_pins = dict()
+        >>>     for i in range(params["mult"]):
+        >>>         template_pins["in" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 0, 0], [i * 100 + 10, 10]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="in" + str(i),
+        >>>         )
+        >>>         template_pins["out" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 90, 90], [i * 100 + 90, 100]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="out" + str(i),
+        >>>         )
+        >>>     return template_pins
+        >>> # Create a template
+        >>> pcell_temp = ParameterizedInstanceTemplate(
+        >>>     libname="mylib",
+        >>>     cellname="mypcelltemplate",
+        >>>     bbox_func=pcell_bbox_func,
+        >>>     pins_func=pcell_pins_func,
+        >>> )
+        >>> # Generate an instance for input parameters.
+        >>> pcell_inst_params = {"mult": 4}
+        >>> pcell_inst = pcell_temp.generate(
+        >>>    name="mypcellinst",
+        >>>    transform="R0",
+        >>>    params=pcell_inst_params,
+        >>> )
+        >>> # display
+        >>> print(pcell_temp)
+            <laygo2.object.template.ParameterizedInstanceTemplate object at 0x000001B1BA91D9C0>
+            name: mypcelltemplate, 
+            class: ParameterizedInstanceTemplate,
+        >>> print(pcell_inst)
+            xy: [0, 0],
+            params: {'mult': 4},
+            size: [400, 100],
+            shape: None,
+            pitch: [400, 100],
+            transform: R0,
+            pins: {'in0': <laygo2.object.physical.Pin object at 0x000001B1BA91FCA0>, 
+                   'out0': <laygo2.object.physical.Pin object at 0x000001B1BA91FC70>, 
+                   'in1': <laygo2.object.physical.Pin object at 0x000001B1BA91FC10>, 
+                   'out1': <laygo2.object.physical.Pin object at 0x000001B1BA91E8C0>, 
+                   'in2': <laygo2.object.physical.Pin object at 0x000001B1BA91E890>, 
+                   'out2': <laygo2.object.physical.Pin object at 0x000001B1BA91FBE0>, 
+                   'in3': <laygo2.object.physical.Pin object at 0x000001B1BA91E7D0>, 
+                   'out3': <laygo2.object.physical.Pin object at 0x000001B1BA91E710>},
 
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_generate.png
           :height: 250
 
         Notes
         -----
-        **(Korean)**
-        ParameterizedInstance 객체 생성.
-        파라미터
-        name(str): 생성할 인스턴스의 이름
-        shape(numpy.ndarray): 생성할 객체의 shape [ optional ]
-        pitch(numpy.ndarray): 생성할 객체간의 간격 [ optional ]
-        params(dict) : 개체의 속성을 갖는 Dictionary [ optional ]
-        transform(str):  생성할 개체의 변환 속성 [ optional ]
-        반환값
-        laygo2.Instance: 생성된 객체
-        참조
-        Class Instance
+        **(Korean)** ParameterizedInstance 객체 생성.
 
+        파라미터
+            - name(str): 생성할 인스턴스의 이름.
+            - shape(numpy.ndarray): (optional) 생성할 객체의 배열 shape.
+            - pitch(numpy.ndarray): (optional) 생성할 객체 간의 간격.
+            - params(dict) : 개체의 속성이 담긴 dictionary.
+            - transform(str): 생성할 개체의 변환 속성.
+        반환값
+            - laygo2.Instance: 생성된 객체
         """
         # xy = xy + np.dot(self.xy(params)[0], tf.Mt(transform).T)
         return laygo2.object.physical.Instance(
@@ -682,19 +816,25 @@ class ParameterizedInstanceTemplate(Template):
 
 class UserDefinedTemplate(Template):
     """
-    UserDefinedTemplate class implements the template that generate VirtualInstance.
+    UserDefinedTemplate class implements the template that generates 
+    a VirtualInstance object corresponding to the template and input 
+    parameters.
 
     Notes
     -----
-    **(Korean)** UserDefinedTemplate 클래스는 VirtualInstance를 반환하는 템플릿을 구현한다.
+    **(Korean)** UserDefinedTemplate 클래스는 VirtualInstance를 반환하는 
+    템플릿을 구현한다.
 
     """
 
     _bbox = None
+    """The internal pointer to the bbox computing function."""
 
     _pins = None
+    """The internal pointer to the pin creation function."""
 
     _generate = None
+    """The internal pointer to the instance generation function."""
 
     def __init__(self, bbox_func, pins_func, generate_func, name=None):
         """
@@ -703,19 +843,20 @@ class UserDefinedTemplate(Template):
         Parameters
         ----------
         bbox_func: callable
-            method computing bbox.
+            The function that computes the bounding box of the template from 
+            its input parameters.
         pins_func: callable
-            method computing pins.
+            The function that returns a dictionary that contains its pin 
+            objects for its input parameters.
         generate_func: callable
-            method generating VirtualInstance.
+            The function that returns a generated VirtualInstance object 
+            for its input parameters.
         name : str
-            template name.
+            The name of the template.
 
         Returns
         -------
-        laygo2.UserDefinedTemplate
-
-
+        laygo2.object.template.UserDefinedTemplate
 
         Examples
         --------
@@ -727,7 +868,6 @@ class UserDefinedTemplate(Template):
             ……
         >>> user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
         <laygo2.object.template.UserDefinedTemplate object>
-
 
         .. image:: ../assets/img/object_template_UserDefinedTemplate_init.png
           :height: 250
