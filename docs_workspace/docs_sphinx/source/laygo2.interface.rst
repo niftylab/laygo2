@@ -5,51 +5,12 @@ laygo2.interface package
    :undoc-members:
    :show-inheritance:
 
-laygo2.interface.bag module
----------------------------
+.. toctree::
+   :maxdepth: 6
 
-.. automodule:: laygo2.interface.bag
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-laygo2.interface.gdspy module
----------------------------
-
-.. automodule:: laygo2.interface.gdspy
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-laygo2.interface.skill module
------------------------------
-
-.. automodule:: laygo2.interface.skill
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-laygo2.interface.skillbridge module
------------------------------------
-
-.. automodule:: laygo2.interface.skillbridge
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-laygo2.interface.magic module
------------------------------------
-
-.. automodule:: laygo2.interface.magic
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-laygo2.interface.yaml module
-----------------------------
-
-.. automodule:: laygo2.interface.yaml
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
+   laygo2.interface.bag
+   laygo2.interface.skill
+   laygo2.interface.skillbridge
+   laygo2.interface.gdspy
+   laygo2.interface.magic
+   laygo2.interface.yaml

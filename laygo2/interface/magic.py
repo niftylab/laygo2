@@ -153,7 +153,7 @@ def _translate_obj(libpath, objname, obj, scale=1, master=None, offset=np.array(
 
     return ""
 
-def export(db, filename=None, cellname=None, libpath=None, scale=1, 
+def export(db, filename=None, cellname=None, libpath='./magic_layout', scale=1, 
            reset_library=False, tech_library=None, gds_filename=None):
     """
     Export a laygo2.object.database.Library object to magic's tcl code.
@@ -166,6 +166,8 @@ def export(db, filename=None, cellname=None, libpath=None, scale=1,
         If specified, the generated magic(tcl) script is stored in filename.
     cellname: str or List[str]
         The name(s) of cell(s) to be exported.
+    libpath: str
+        The path where the generated magic layout is stored.
     scale: float
         The scaling factor between laygo2's integer coordinats actual physical coordinates.
     reset_library: bool, optional
@@ -198,6 +200,13 @@ def export(db, filename=None, cellname=None, libpath=None, scale=1,
     >>> lib.append(dsn)
     >>> scr = laygo2.interface.magic.export(lib, filename="myscript.tcl")
     >>> print(scr)
+    (definitions of laygo2 tcl functions)
+    # exporting mylib__mycell
+    _laygo2_create_layout ./magic_layout/mylib mylib_mycell None
+    _laygo2_generate_rect M1 { { 0.0  0.0  } { 100.0  100.0  } } ; # for the Rect object NoName_0
+    _laygo2_generate_pin P M1 { { 0.0  0.0  } { 50.0  50.0  } }  ; # for the Pin object P
+    _laygo2_generate_instance I0 ./magic_layout/tlib tlib_t0 { 0.0  0.0  } R0 1 1 0 0 ; # for the Instance object I0
+    save
 
     Returns
     -------
@@ -224,11 +233,12 @@ def export(db, filename=None, cellname=None, libpath=None, scale=1,
             cmd += _translate_obj(libpath, objname, obj, scale=scale)
         cmd += "save\n"
     
-    # gds export
+    # optional gds export
     if gds_filename is not None:
         cmd += "gds write "+gds_filename+"\n"
 
     if filename is not None:  # export to a file.
         with open(filename, "w") as f:
             f.write(cmd)
+
     return cmd

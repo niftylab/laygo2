@@ -36,9 +36,6 @@ def export(
     tech_library=None,
     pyserver_id=None,
 ):
-    skill_str = laygo2.interface.skill.export(
-        db, filename, cellname, scale, reset_library, tech_library
-    )
     """
     Export a laygo2.object.database.Library object to Cadence Virtuoso via 
     skillbridge.
@@ -93,6 +90,9 @@ def export(
     _laygo2_generate_instance(cv, "I0", "tlib", "t0", "layout", list( 0.0000  0.0000  ), "R0", 1, 1, 0, 0, nil, nil)
     _laygo2_save_and_close_layout(cv)
     """
+    skill_str = laygo2.interface.skill.export(
+        db, filename, cellname, scale, reset_library, tech_library
+    )
 
     # Export skill script to skillbridge
     import os
