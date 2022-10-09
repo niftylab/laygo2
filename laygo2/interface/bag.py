@@ -53,7 +53,7 @@ def export(
     str: The generated skill script.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> from laygo2.object.database import Design
     >>> from laygo2.object.physical import Rect, Pin, Instance, Text

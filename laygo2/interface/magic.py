@@ -178,7 +178,7 @@ def export(db, filename=None, cellname=None, libpath='./magic_layout', scale=1,
         If specified, export a gds file with the filename provided.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> from laygo2.object.database import Design
     >>> from laygo2.object.physical import Rect, Pin, Instance, Text

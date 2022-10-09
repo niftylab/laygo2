@@ -1,4 +1,4 @@
 append() method
 =============================
 
-.. automethod:: laygo2.object.database.Library.append
+.. automethod:: laygo2.interface.database.Library.append

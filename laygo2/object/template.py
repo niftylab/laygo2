@@ -116,7 +116,7 @@ class NativeInstanceTemplate(Template):
     """str: Library name of NativeInstanceTemplate object.
 
     Example
-    --------
+    -------
     >>> from laygo2.object.physical import Pin
     >>> from laygo2.object.template import NativeInstanceTemplate
     >>> p = dict() 
@@ -141,7 +141,7 @@ class NativeInstanceTemplate(Template):
     """str: Cellname of NativeInstanceTemplate object.
 
     Example
-    --------
+    -------
     >>> from laygo2.object.physical import Pin
     >>> from laygo2.object.template import NativeInstanceTemplate
     >>> p = dict() 
@@ -186,7 +186,7 @@ class NativeInstanceTemplate(Template):
         NativeInstanceTemplate
 
         Example
-        --------
+        -------
         >>> from laygo2.object.physical import Pin
         >>> from laygo2.object.template import NativeInstanceTemplate
         >>> p = dict() 
@@ -249,7 +249,7 @@ class NativeInstanceTemplate(Template):
         numpy.ndarray
 
         Example
-        --------
+        -------
         >>> from laygo2.object.physical import Pin
         >>> from laygo2.object.template import NativeInstanceTemplate
         >>> p = dict() 
@@ -285,7 +285,7 @@ class NativeInstanceTemplate(Template):
         dict : A dictionary that contains pin information.
 
         Example
-        --------
+        -------
         >>> from laygo2.object.physical import Pin
         >>> from laygo2.object.template import NativeInstanceTemplate
         >>> p = dict() 
@@ -344,7 +344,7 @@ class NativeInstanceTemplate(Template):
         Class Instance
 
         Example
-        --------
+        -------
         >>> from laygo2.object.physical import Pin
         >>> from laygo2.object.template import NativeInstanceTemplate
         >>> p = dict() 
@@ -419,7 +419,7 @@ class NativeInstanceTemplate(Template):
         Class Instance
 
         Example
-        --------
+        -------
         >>> from laygo2.object.physical import Pin
         >>> from laygo2.object.template import NativeInstanceTemplate
         >>> p = dict() 
@@ -506,7 +506,7 @@ class ParameterizedInstanceTemplate(Template):
         laygo2.object.template.ParameterizedInstanceTemplate
 
         Example
-        --------
+        -------
         >>> import numpy as np
         >>> from laygo2.object.template import ParameterizedInstanceTemplate
         >>> from laygo2.object.physical import Pin
@@ -593,7 +593,7 @@ class ParameterizedInstanceTemplate(Template):
             coordinates corresponding to the input parameters.
 
         Example
-        --------
+        -------
         >>> import numpy as np
         >>> from laygo2.object.template import ParameterizedInstanceTemplate
         >>> from laygo2.object.physical import Pin
@@ -653,7 +653,7 @@ class ParameterizedInstanceTemplate(Template):
             input parameters.
 
         Example
-        --------
+        -------
         >>> import numpy as np
         >>> from laygo2.object.template import ParameterizedInstanceTemplate
         >>> from laygo2.object.physical import Pin
@@ -726,7 +726,7 @@ class ParameterizedInstanceTemplate(Template):
         laygo2.object.physical.Instance: The generated Instance object
 
         Example
-        --------
+        -------
         >>> import numpy as np
         >>> from laygo2.object.template import ParameterizedInstanceTemplate
         >>> from laygo2.object.physical import Pin
@@ -859,7 +859,7 @@ class UserDefinedTemplate(Template):
         laygo2.object.template.UserDefinedTemplate
 
         Example
-        --------
+        -------
         >>> import numpy as np
         >>> from laygo2.object.template import UserDefinedTemplate
         >>> from laygo2.object.physical import Pin, Rect, VirtualInstance
@@ -999,7 +999,7 @@ class UserDefinedTemplate(Template):
             coordinates corresponding to the input parameters.
 
         Example
-        --------
+        -------
         >>> import numpy as np
         >>> from laygo2.object.template import UserDefinedTemplate
         >>> from laygo2.object.physical import Pin, Rect, VirtualInstance
@@ -1090,7 +1090,7 @@ class UserDefinedTemplate(Template):
             input parameters.
 
         Example
-        --------
+        -------
         >>> import numpy as np
         >>> from laygo2.object.template import UserDefinedTemplate
         >>> from laygo2.object.physical import Pin, Rect, VirtualInstance
@@ -1195,7 +1195,7 @@ class UserDefinedTemplate(Template):
         laygo2.object.physical.VirtualInstance: The generated VirtualInstance object.
 
         Example
-        --------
+        -------
         >>> import numpy as np
         >>> from laygo2.object.template import UserDefinedTemplate
         >>> from laygo2.object.physical import Pin, Rect, VirtualInstance

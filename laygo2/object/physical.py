@@ -81,7 +81,7 @@ class PhysicalObject:
     """str: The name of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]], 
             name="test", params={'maxI': 0.005})
@@ -104,7 +104,7 @@ class PhysicalObject:
     of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]], 
             name="test", params={'maxI': 0.005})
@@ -124,7 +124,7 @@ class PhysicalObject:
     """numpy.ndarray: The master of the current object (for array and pin objects).
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> obj1 = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]], 
             name="test1", params=None) 
@@ -142,7 +142,7 @@ class PhysicalObject:
     """dict: The dictionary that contains the object parameters.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]], 
             name="test", params={'maxI': 0.005})
@@ -159,7 +159,7 @@ class PhysicalObject:
     Possible keys include left, right, top, bottom, bottom_left, center, etc.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
     >>> obj.pointers 
@@ -183,7 +183,7 @@ class PhysicalObject:
     """numpy.ndarray: The left-center coordinate of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
     >>> obj.left
@@ -201,7 +201,7 @@ class PhysicalObject:
     """numpy.ndarray: The right-center coordinate of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
     >>> obj.right
@@ -219,7 +219,7 @@ class PhysicalObject:
     """numpy.ndarray: The top-center coordinate of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
     >>> obj.top
@@ -237,7 +237,7 @@ class PhysicalObject:
     """numpy.ndarray: The bottom-center coordinate of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
     >>> obj.top
@@ -255,7 +255,7 @@ class PhysicalObject:
     """numpy.ndarray: The center-center coordinate of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
     >>> obj.center
@@ -273,7 +273,7 @@ class PhysicalObject:
     """numpy.ndarray: The bottom-left coordinate of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
     >>> obj.bottom_left
@@ -291,7 +291,7 @@ class PhysicalObject:
     """numpy.ndarray: The bottom-right coordinate of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
     >>> obj.bottom_right
@@ -309,7 +309,7 @@ class PhysicalObject:
     """numpy.ndarray: The top-left coordinate of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
     >>> obj.top_left
@@ -327,7 +327,7 @@ class PhysicalObject:
     """numpy.ndarray: The top-right coordinate of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
     >>> obj.top_right
@@ -346,7 +346,7 @@ class PhysicalObject:
         """numpy.ndarray: The physical bounding box of the object.
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]])
         >>> obj.bbox
@@ -380,7 +380,7 @@ class PhysicalObject:
         PhysicalObject
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]], 
                 name="test", params={'maxI': 0.005})
@@ -488,7 +488,7 @@ class IterablePhysicalObject(PhysicalObject):
     its elements.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> phy0 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [100, 100]]) 
     >>> phy1 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [200, 200]]) 
@@ -527,7 +527,7 @@ class IterablePhysicalObject(PhysicalObject):
         """The array dimension of this object.
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> phy0 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [100, 100]]) 
         >>> phy1 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [200, 200]]) 
@@ -567,7 +567,7 @@ class IterablePhysicalObject(PhysicalObject):
         IterablePhysicalObject
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> phy0 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [100, 100]]) 
         >>> phy1 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [200, 200]]) 
@@ -759,6 +759,17 @@ class Rect(PhysicalObject):
     """
     Rectangle object class.
 
+    Example
+    -------
+    >>> from laygo2.object.physical import Rect
+    >>> rect0 = Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'])
+    >>> print(rect0)
+    <laygo2.object.physical.Rect object at 0x000002049A77F3A0> 
+    name: None,
+    class: Rect,
+    xy: [[0, 0], [100, 100]],
+    params: None, , layer: ['M1', 'drawing']
+
     Notes
     -----
     **(Korean)**: 사각형 객체 클래스.
@@ -768,7 +779,7 @@ class Rect(PhysicalObject):
     """numpy.ndarray: The layer information [name, purpose] of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
             layer=['M1', 'drawing'], netname='net0', hextension=20, vextension=20)
@@ -785,7 +796,7 @@ class Rect(PhysicalObject):
     str: The net name of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
             layer=['M1', 'drawing'], netname='net0', hextension=20, vextension=20)
@@ -802,7 +813,7 @@ class Rect(PhysicalObject):
     int: The extension of the rect object in horizontal direction.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
             layer=['M1', 'drawing'], netname='net0', hextension=20, vextension=20)
@@ -822,7 +833,7 @@ class Rect(PhysicalObject):
     int: The extension of the rect object in vertical direction.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
             layer=['M1', 'drawing'], netname='net0', hextension=20, vextension=20)
@@ -843,7 +854,7 @@ class Rect(PhysicalObject):
     the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
             layer=['M1', 'drawing'], netname='net0', color=1)
@@ -861,7 +872,7 @@ class Rect(PhysicalObject):
         int: The height of the object.
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
                 layer=['M1', 'drawing'])
@@ -883,7 +894,7 @@ class Rect(PhysicalObject):
         int: The width of the object.
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
                 layer=['M1', 'drawing'])
@@ -915,7 +926,7 @@ class Rect(PhysicalObject):
         numpy.ndarray: The size of the object ([self.width, self.height]).
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
                 layer=['M1', 'drawing'])
@@ -973,7 +984,7 @@ class Rect(PhysicalObject):
         PhysicalObject
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
                 layer=['M1', 'drawing'], netname='net0', color=1)
@@ -1064,11 +1075,25 @@ class Path(PhysicalObject):
     """
     Path object class.
 
+    Example
+    -------
+    >>> from laygo2.object.physical.Path import Path
+    >>> path0 = Path(xy=[[0, 0], [0, 100]], width=10, 
+                     extension=5, layer=['M1', 'drawing'])
+    >>> print(path0)
+    <laygo2.object.physical.Path object at 0x00000280D1F3CE88> 
+    name: None, 
+    class: Path, 
+    xy: [[0, 0], [0, 100]], 
+    params: None, 
+    width: 10, 
+    extension: 5, 
+    layer: ['M1', 'drawing'], 
+
     Notes
     -----
     **(Korean)**: Path 객체 클래스.
     """
-
     # TODO: implement pointers.
 
     layer = None
@@ -1084,7 +1109,7 @@ class Path(PhysicalObject):
     str: The net name of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> path0 = laygo2.object.physical.Path(xy=[[0, 0], [0, 100]], width=10, 
             extension=5, layer=['M1', 'drawing'], netname='net0’)
@@ -1104,7 +1129,7 @@ class Path(PhysicalObject):
     int: the width of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> path0 = laygo2.object.physical.Path(xy=[[0, 0], [0, 100]], width=10, 
             extension=5, layer=['M1', 'drawing'], netname='net0’)
@@ -1124,7 +1149,7 @@ class Path(PhysicalObject):
     int: The extension of the path object from its endpoints.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> path0 = laygo2.object.physical.Path(xy=[[0, 0], [0, 100]], width=10, 
             extension=5, layer=['M1', 'drawing'], netname='net0’)
@@ -1177,7 +1202,7 @@ class Path(PhysicalObject):
         Path
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> path0 = laygo2.object.physical.Path(xy=[[0, 0], [0, 100]], width=10, 
                 extension=5, layer=['M1', 'drawing'], netname='net0’)
@@ -1231,6 +1256,19 @@ class Pin(IterablePhysicalObject):
     """
     Pin object class.
 
+    Example
+    -------
+    >>> from laygo2.object.physical import Pin
+    >>> pin0 = Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], 
+                   netname='net0', params={'direction': 'input'})
+    >>> print(pin0)
+    <laygo2.object.physical.Pin object at 0x000002049A77FF70> 
+        name: None,
+        class: Pin,
+        xy: [[0, 0], [100, 100]],
+        params: {'direction': 'input'}, , layer: ['M1' 'drawing'], 
+        netname: net0, shape: None, master: None
+
     Notes
     -----
     **(Korean)**: Pin 객체 클래스.
@@ -1241,7 +1279,7 @@ class Pin(IterablePhysicalObject):
     numpy.ndarray: The layer information of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
             layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
@@ -1256,7 +1294,7 @@ class Pin(IterablePhysicalObject):
     str: The net name of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
             layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
@@ -1275,7 +1313,7 @@ class Pin(IterablePhysicalObject):
         int: The height of the object.
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
             layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
@@ -1294,7 +1332,7 @@ class Pin(IterablePhysicalObject):
         int: The width of the object.
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
             layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
@@ -1313,7 +1351,7 @@ class Pin(IterablePhysicalObject):
         numpy.ndarray: The size of the object.
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
             layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
@@ -1367,7 +1405,7 @@ class Pin(IterablePhysicalObject):
         Pin
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
             layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
@@ -1423,6 +1461,20 @@ class Text(PhysicalObject):
     """
     Text object class.
 
+    Example
+    -------
+    >>> import laygo2
+    >>> text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100, 100]], 
+        layer=['text', 'drawing'], text='test', params=None)
+    >>> print(text0)
+    <laygo2.object.physical.Text object at 0x000002049A77FD90> 
+        name: None,
+        class: Text,
+        xy: [[0, 0], [100, 100]],
+        params: None,
+        layer: ['text', 'drawing'],
+        text: test
+
     Notes
     -----
     **(Korean)**: Text 객체 클래스.
@@ -1433,7 +1485,7 @@ class Text(PhysicalObject):
     numpy.ndarray: Layer information of object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100, 100]], 
             layer=['text', 'drawing'], text='test', params=None)
@@ -1450,7 +1502,7 @@ class Text(PhysicalObject):
     str: Text content of object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100, 100]], 
             layer=['text', 'drawing'], text='test', params=None)
@@ -1488,7 +1540,7 @@ class Text(PhysicalObject):
         PhysicalObject : base class.
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100, 100]], 
             layer=['text', 'drawing'], text='test', params=None)
@@ -1543,7 +1595,7 @@ class Instance(IterablePhysicalObject):
     str: The library name of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> inst0_pins = dict() 
     >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
@@ -1569,7 +1621,7 @@ class Instance(IterablePhysicalObject):
     str: The cellname of the instance object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> inst0_pins = dict() 
     >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
@@ -1605,7 +1657,7 @@ class Instance(IterablePhysicalObject):
     numpy.ndarray: The unit size when the object is constructed in array.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> inst0_pins = dict() 
     >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
@@ -1631,7 +1683,7 @@ class Instance(IterablePhysicalObject):
     str: The transformation attribute of the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> inst0_pins = dict() 
     >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
@@ -1657,7 +1709,7 @@ class Instance(IterablePhysicalObject):
     dict: The dictionary having the pins belonging to the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> inst0_pins = dict() 
     >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
@@ -1716,7 +1768,7 @@ class Instance(IterablePhysicalObject):
         numpy.ndarray: The coordinates of the primary corner of the object.
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> inst0_pins = dict() 
         >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
@@ -1744,7 +1796,7 @@ class Instance(IterablePhysicalObject):
         numpy.ndarray: The coordinates of the secondary corner of the object.
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> inst0_pins = dict() 
         >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
@@ -1775,7 +1827,7 @@ class Instance(IterablePhysicalObject):
         numpy.ndarray: The size of the object ([width, height]).
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> inst0_pins = dict() 
         >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
@@ -1816,7 +1868,7 @@ class Instance(IterablePhysicalObject):
     numpy.ndarray: Pitch between unit object of the object in array.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> inst0_pins = dict() 
     >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
@@ -1852,7 +1904,7 @@ class Instance(IterablePhysicalObject):
     numpy.ndarray: Spacing between unit object of the object in array.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> inst0_pins = dict() 
     >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
@@ -1890,7 +1942,7 @@ class Instance(IterablePhysicalObject):
         int: The height of the object.
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> inst0_pins = dict() 
         >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
@@ -1918,7 +1970,7 @@ class Instance(IterablePhysicalObject):
         int: The width of the object.
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> inst0_pins = dict() 
         >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
@@ -1999,7 +2051,7 @@ class Instance(IterablePhysicalObject):
         IterablePhysicalObject
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> inst0_pins = dict() 
         >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
@@ -2172,6 +2224,32 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
     which can be treated as a single instance with dedicated dimensional, 
     port, and any related parameters.
 
+    Example
+    -------
+    >>> import laygo2
+    >>> vinst0_pins = dict() 
+    >>> # Pin information
+    >>> vinst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]], 
+            layer=['M1', 'drawing'], netname='in') 
+    >>> vinst0_pins['out'] = laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+            layer=['M1', 'drawing'], netname='out')
+    >>> # Element information
+    >>> native_elements = dict() 
+    >>> native_elements['R0'] = laygo2.object.physical.Rect(xy=[[0, 0], [10, 10]], 
+            layer=['M1', 'drawing']) 
+    >>> native_elements['R1'] = laygo2.object.physical.Rect(xy=[[90, 90], [100, 100]], 
+            layer=['M1', 'drawing']) 
+    >>> native_elements['R2'] = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+            layer=['prBoundary', 'drawing'])
+    >>> vinst0 = laygo2.object.physical.VirtualInstance(name='I0', libname='mylib', 
+            cellname='myvcell', xy=[500, 500], native_elements=native_elements, 
+            shape=[3, 2], pitch=[100, 100], unit_size=[100, 100], pins=vinst0_pins, 
+            transform='R0')
+    >>> vinst0.native_elements 
+    {'R0': <laygo2.object.physical.Rect object at 0x00000204AAFCE170>, 
+     'R1': <laygo2.object.physical.Rect object at 0x00000204AAFCEA40>, 
+     'R2': <laygo2.object.physical.Rect object at 0x00000204AAFCE0B0>}
+
     Notes
     -----
     **(Korean)**: VirtualInstance 객체 클래스. VirtualInstance는 여러 개의
@@ -2184,7 +2262,7 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
     dict: The dictionary containing physical entities constituting the object.
 
     Example
-    --------
+    -------
     >>> import laygo2
     >>> vinst0_pins = dict() 
     >>> # Pin information
@@ -2270,7 +2348,7 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
         Instance
 
         Example
-        --------
+        -------
         >>> import laygo2
         >>> vinst0_pins = dict() 
         >>> # Pin information
