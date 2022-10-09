@@ -156,7 +156,7 @@ def _translate_obj(libpath, objname, obj, scale=1, master=None, offset=np.array(
 def export(db, filename=None, cellname=None, libpath=None, scale=1, 
            reset_library=False, tech_library=None, gds_filename=None):
     """
-    Export design(s) to magic's tcl code.
+    Export a laygo2.object.database.Library object to magic's tcl code.
 
     Parameters
     ----------
@@ -174,6 +174,30 @@ def export(db, filename=None, cellname=None, libpath=None, scale=1,
         The name of technology library to be attached to the resetted library.
     gds_filename: str, optional
         If specified, export a gds file with the filename provided.
+
+    Example
+    --------
+    >>> import laygo2
+    >>> from laygo2.object.database import Design
+    >>> from laygo2.object.physical import Rect, Pin, Instance, Text
+    >>> # Create a design.
+    >>> dsn = Design(name="mycell", libname="genlib")
+    >>> # Create layout objects.
+    >>> r0 = Rect(xy=[[0, 0], [100, 100]], layer=["M1", "drawing"])
+    >>> p0 = Pin(xy=[[0, 0], [50, 50]], layer=["M1", "pin"], name="P")
+    >>> i0 = Instance(libname="tlib", cellname="t0", name="I0", xy=[0, 0])
+    >>> t0 = Text(xy=[[50, 50], [100, 100]], layer=["text", "drawing"], text="T")
+    >>> # Add the layout objects to the design object.
+    >>> dsn.append(r0)
+    >>> dsn.append(p0)
+    >>> dsn.append(i0)
+    >>> dsn.append(t0)
+    >>> #
+    >>> # Export to magic tcl.
+    >>> lib = laygo2.object.database.Library(name="mylib")
+    >>> lib.append(dsn)
+    >>> scr = laygo2.interface.magic.export(lib, filename="myscript.tcl")
+    >>> print(scr)
 
     Returns
     -------

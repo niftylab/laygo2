@@ -62,7 +62,7 @@ def _extend_index_dim(input_index, new_index, new_index_max):
     Iterable
         The extended index.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> # 0-dim to 1-dim
@@ -117,7 +117,7 @@ def _conv_slice_to_list(slice_obj, start_def=0, stop_def=100, step_def=1):
     step_def : int, optional
         The default stepping index if the slice object has no step specified.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> laygo2.object.grid._conv_slice_to_list(slice(0, 10, 2))               
@@ -147,7 +147,7 @@ def _conv_bbox_to_array(bbox):
     bbox : numpy.ndarray
         The bounding box to be converted.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> import numpy as np
@@ -174,7 +174,7 @@ def _conv_bbox_to_list(bbox):
     bbox : numpy.ndarray
         The bounding box to be converted.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> import numpy as np
@@ -201,7 +201,7 @@ class CircularMapping:
     _elements = None
     """list: Array consisting of the elements of circular mapping.
 
-    Examples
+    Example
     --------
     >>> from laygo2.object.grid import CircularMapping
     >>> elements = [0, 35, 85, 130, 180] 
@@ -221,7 +221,7 @@ class CircularMapping:
     dtype = np.int
     """type: Data type of the circular mapping.
 
-    Examples
+    Example
     --------
     >>> from laygo2.object.grid import CircularMapping
     >>> elements = [0, 35, 85, 130, 180] 
@@ -253,7 +253,7 @@ class CircularMapping:
     def shape(self):
         """numpy.ndarray: The shape of circular mapping.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import CircularMapping
         >>> elements = [0, 35, 85, 130, 180]
@@ -282,7 +282,7 @@ class CircularMapping:
         dtype : type
             data type of elements.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import CircularMapping
         >>> elements = [0, 35, 85, 130, 180]
@@ -373,7 +373,7 @@ class CircularMappingArray(CircularMapping):
         -------
         numpy.ndarray 
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import CircularMappingArray
         >>> elements = [[0, 0], [35, 0], [85, 0], [130, 0]]
@@ -402,7 +402,7 @@ class CircularMappingArray(CircularMapping):
                 idx.append(p % s)
             return self.elements[tuple(idx)]
         else:
-            # pos is mapped to multiple indices. (possible examples include ([0:5, 3], [[1,2,3], 3], ...).
+            # pos is mapped to multiple indices. (possible Example include ([0:5, 3], [[1,2,3], 3], ...).
             # Create a list containing the indices to iterate over, and return a numpy.ndarray containing items
             # corresponding to the indices in the list.
             # When the indices don't specify the lower boundary (e.g., [:5]), it iterates from 0.
@@ -436,7 +436,7 @@ class _AbsToPhyGridConverter:
     """laygo2.Grid or laygo2.OneDimGrid: Coordinate system to which 
     _AbsToPhyGridConverter object belongs.
 
-    Examples
+    Example
     --------
     >>> from laygo2.object.grid import OneDimGrid, Grid
     >>> g1_x = OneDimGrid(name='xg', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
@@ -477,7 +477,7 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xg', scope=[0, 180], elements=[0, 35, 85, 130, 180])
@@ -512,7 +512,7 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xg', scope=[0, 180], elements=[0, 35, 85, 130, 180])
@@ -619,7 +619,7 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xg', scope=[0, 180], elements=[0, 35, 85, 130, 180])
@@ -654,7 +654,7 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xg', scope=[0, 180], elements=[0, 35, 85, 130, 180])
@@ -760,7 +760,7 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
@@ -817,7 +817,7 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
@@ -874,7 +874,7 @@ class _AbsToPhyGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
@@ -935,7 +935,7 @@ class _PhyToAbsGridConverter:
     """laygo2.Grid or laygo2.OneDimGrid: Coordinate system to which 
     _PhyToAbsGridConverter object belongs.
 
-    Examples
+    Example
     --------
     >>> from laygo2.object.grid import OneDimGrid, Grid
     >>> g1_x = OneDimGrid(name='xg', scope=[0, 180], elements=[0, 35, 85, 130, 180]) 
@@ -976,7 +976,7 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
@@ -1010,7 +1010,7 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xg', scope=[0, 180], elements=[0, 35, 85, 130, 180])
@@ -1126,7 +1126,7 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xg', scope=[0, 180], elements=[0, 35, 85, 130, 180])
@@ -1183,7 +1183,7 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
@@ -1235,7 +1235,7 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xg', scope=[0, 180], elements=[0, 35, 85, 130, 180])
@@ -1270,7 +1270,7 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
@@ -1324,7 +1324,7 @@ class _PhyToAbsGridConverter:
         int or numpy.ndarray
             physical coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 180])
@@ -1359,7 +1359,7 @@ class _PhyToAbsGridConverter:
         numy.ndarray
             abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x    = OneDimGrid(name='xg', scope=[0, 100], elements=[10, 20, 40, 50, 60])
@@ -1406,7 +1406,7 @@ class _PhyToAbsGridConverter:
         numy.ndarray
             abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x    = OneDimGrid(name='xgrid', scope=[0, 100], elements=[10, 20, 40, 50, 60])
@@ -1449,7 +1449,7 @@ class _PhyToAbsGridConverter:
         numy.ndarray
             abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x    = OneDimGrid(name='xg', scope=[0, 100], elements=[10, 20, 40, 50, 60])
@@ -1492,7 +1492,7 @@ class _PhyToAbsGridConverter:
         numy.ndarray
             abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x    = OneDimGrid(name='xg', scope=[0, 100], elements=[10, 20, 40, 50, 60])
@@ -1535,7 +1535,7 @@ class _PhyToAbsGridConverter:
         numy.ndarray
             abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x    = OneDimGrid(name='xg', scope=[0, 100], elements=[10, 20, 40, 50, 60])
@@ -1606,7 +1606,7 @@ class _PhyToAbsGridConverter:
         numpy.ndarray
             abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x    = OneDimGrid(name='xg', scope=[0, 100], elements=[10, 20, 40, 50, 60])
@@ -1643,7 +1643,7 @@ class _PhyToAbsGridConverter:
         numpy.ndarray(int, int)
             abstract points.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xg', scope=[0, 10], elements=[0])
@@ -1688,7 +1688,7 @@ class _PhyToAbsGridConverter:
         numpy.ndarray
             bbox abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xg', scope=[0, 10], elements=[0])
@@ -1753,7 +1753,7 @@ class _PhyToAbsGridConverter:
         numpy.ndarray
             bbox abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 10], elements=[0])
@@ -1798,7 +1798,7 @@ class _PhyToAbsGridConverter:
         numy.ndarray
             abstract coordinates.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x    = OneDimGrid(name='xg', scope=[0, 100], elements=[10, 20, 40, 50, 60])
@@ -1857,7 +1857,7 @@ class OneDimGrid(CircularMapping):
     name = None
     """str: Coordinate system name.
 
-    Examples
+    Example
     --------
     >>> from laygo2.object.grid import OneDimGrid
     >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50]) 
@@ -1876,7 +1876,7 @@ class OneDimGrid(CircularMapping):
     """str: Region in which the coordinate system is defined Coordinates in 
     the defined region are repeatedly expanded.
 
-    Examples
+    Example
     --------
     >>> from laygo2.object.grid import OneDimGrid
     >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50]) 
@@ -1895,7 +1895,7 @@ class OneDimGrid(CircularMapping):
     """self.phy2abs (laygo2._PhyToAbsGridConverter): Object that converts physical 
     coordinates into abstract coordinates.
 
-    Examples
+    Example
     --------
     >>> from laygo2.object.grid import OneDimGrid
     >>> g1_x  = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50]) 
@@ -1911,7 +1911,7 @@ class OneDimGrid(CircularMapping):
     """self.abs2phy (laygo2._AbsToPhyGridConverter): Object that converts abstract 
     coordinates into physical coordinates.
 
-    Examples
+    Example
     --------
     >>> from laygo2.object.grid import OneDimGrid
     >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50]) 
@@ -1927,7 +1927,7 @@ class OneDimGrid(CircularMapping):
     def width(self):
         """int: The size of the region in which the coordinate system is defined.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50])
@@ -1962,7 +1962,7 @@ class OneDimGrid(CircularMapping):
 
 
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50])
@@ -2044,7 +2044,7 @@ class OneDimGrid(CircularMapping):
         -------
         dict
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 180], elements=[0, 35, 85, 130, 50])
@@ -2087,7 +2087,7 @@ class Grid:
         """numpy.ndarray: Two-dimensional element of a coordinate system.
             x elements, y elements
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50])
@@ -2116,7 +2116,7 @@ class Grid:
         """_AbsToPhyGridConverter: Two-dimensional 
         _AbsToPhyConverter of a coordinate system.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50])
@@ -2146,7 +2146,7 @@ class Grid:
         """_AbsToPhyGridConverter: One-dimensional _AbsToPhyGridConverter 
             of the x-coordinate system.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
@@ -2175,7 +2175,7 @@ class Grid:
         """_AbsToPhyGridConverter: One-dimensional _AbsToPhyGridConverter 
         of the y-coordinate system.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
@@ -2202,7 +2202,7 @@ class Grid:
     def v(self):
         """OneDimGrid: OneDimGrid of the x-coordinate system (=self.x).
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
@@ -2221,7 +2221,7 @@ class Grid:
     def h(self):
         """OneDimGrid: OneDimGrid of the y-coordinate system (=self.y).
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
@@ -2241,7 +2241,7 @@ class Grid:
         """laygo2._PhyToAbsGridConverter: Two-dimensional _PhyToAbsConverter of 
         a coordinate system.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
@@ -2272,7 +2272,7 @@ class Grid:
         """_PhyToAbsGridConverter: One-dimensional _PhyToAbsConverter of 
         the x-coordinate system.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
@@ -2302,7 +2302,7 @@ class Grid:
         """_PhyToAbsGridConverter: One-dimensional _PhyToAbsConverter of
          the y-coordinate system.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
@@ -2332,7 +2332,7 @@ class Grid:
         """numpy.ndarray: Two-dimensional element length in a coordinate system.
             length of x-axis elements, length of y-axis elements
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
@@ -2358,7 +2358,7 @@ class Grid:
     """numpy.ndarray: Region in which the coordinate system is defined.
         bbox of the respective Grid
 
-    Examples
+    Example
     --------
     >>> from laygo2.object.grid import OneDimGrid, Grid
     >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ]) 
@@ -2377,7 +2377,7 @@ class Grid:
         """numpy.int32: Width of the region in which the coordinate system is defined.
             x scope
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
@@ -2396,7 +2396,7 @@ class Grid:
     def height(self):
         """numpy.int32: Height of the region in which the coordinate system is defined.
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
@@ -2415,7 +2415,7 @@ class Grid:
     def height_vec(self):
         """numpy.ndarray: Return the height vector [0, h].
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
@@ -2435,7 +2435,7 @@ class Grid:
         """numpy.ndarray: Return width as a list.
             length of the respective axis and zero
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
@@ -2466,7 +2466,7 @@ class Grid:
         -------
         laygo2.object.grid.Grid
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
@@ -2660,7 +2660,7 @@ class Grid:
         -------
         str
 
-        Examples
+        Example
         --------
         >>> from laygo2.object.grid import OneDimGrid, Grid
         >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
@@ -2722,7 +2722,7 @@ class PlacementGrid(Grid):
         laygo2.object.physical.VirtualInstance :
             The placed instance.
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.grid import OneDimGrid, PlacementGrid
@@ -2769,7 +2769,7 @@ class RoutingGrid(Grid):
     vwidth = None
     """CircularMapping: Width of vertical wires.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.grid import CircularMapping as CM
@@ -2822,7 +2822,7 @@ class RoutingGrid(Grid):
     hwidth = None
     """CircularMapping: Width of horizontal wires.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.grid import CircularMapping as CM
@@ -2875,7 +2875,7 @@ class RoutingGrid(Grid):
     vextension = None
     """CircularMapping: Extension of vertical wires.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.grid import CircularMapping as CM
@@ -2924,7 +2924,7 @@ class RoutingGrid(Grid):
     hextension = None
     """CircularMapping: Extension of horizontal wires.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.grid import CircularMapping as CM
@@ -2973,7 +2973,7 @@ class RoutingGrid(Grid):
     vextension0 = None
     """CircularMapping: the array containing the extension of the zero-length wires on the vertical grid.
     
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.grid import CircularMapping as CM
@@ -3015,7 +3015,7 @@ class RoutingGrid(Grid):
     hextension0 = None
     """CircularMapping: the array containing the extension of the zero-length wires on the horizontal grid. 
     
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.grid import CircularMapping as CM
@@ -3057,7 +3057,7 @@ class RoutingGrid(Grid):
     vlayer = None
     """CircularMapping: Layer information of vertical wires.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.grid import CircularMapping as CM
@@ -3106,7 +3106,7 @@ class RoutingGrid(Grid):
     hlayer = None
     """CircularMapping: Layer information of horizontal wires.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.grid import CircularMapping as CM
@@ -3155,7 +3155,7 @@ class RoutingGrid(Grid):
     pin_vlayer = None
     """CircularMapping: Layer information of vertical pin wires.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.grid import CircularMapping as CM
@@ -3204,7 +3204,7 @@ class RoutingGrid(Grid):
     pin_hlayer = None
     """CircularMapping: Layer information of horizontal pine wires.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.grid import CircularMapping as CM
@@ -3253,7 +3253,7 @@ class RoutingGrid(Grid):
     viamap = None
     """CircularMappingArray: Array containing Via objects positioned on grid crossing points.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.grid import CircularMapping as CM
@@ -3306,7 +3306,7 @@ class RoutingGrid(Grid):
     """str: The default direction of routing 
         (Direction of wire having length 0).
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.grid import CircularMapping as CM
@@ -3353,7 +3353,7 @@ class RoutingGrid(Grid):
     xcolor = None
     """CircularMapping: Color of horizontal wires.
 
-    Examples
+    Example
     --------
     >>> templates = tech.load_templates() 
     >>> grids = tech.load_grids(templates=templates) 
@@ -3373,7 +3373,7 @@ class RoutingGrid(Grid):
     ycolor = None
     """CircularMapping: Color of vertical wires.
 
-    Examples
+    Example
     --------
     >>> templates = tech.load_templates() 
     >>> grids = tech.load_grids(templates=templates) 
@@ -3450,7 +3450,7 @@ class RoutingGrid(Grid):
         -------
         laygo2.RoutingGrid
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.grid import CircularMapping as CM
@@ -3603,7 +3603,7 @@ class RoutingGrid(Grid):
         laygo2.object.physical.Rect or list :
             The generated routing object(s). Check the example code for details.
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.grid import CircularMapping as CM
@@ -3803,7 +3803,7 @@ class RoutingGrid(Grid):
         list(physical.PhysicalObject):
             The list containing the generated via objects.
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.grid import CircularMapping as CM
@@ -3898,7 +3898,7 @@ class RoutingGrid(Grid):
             The list containing the generated routing objects;
             The last object corresponds to the routing object on the track.
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.grid import CircularMapping as CM
@@ -4028,7 +4028,7 @@ class RoutingGrid(Grid):
         -------
         laygo2.physical.Pin: The generated pin object.
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.grid import CircularMapping as CM

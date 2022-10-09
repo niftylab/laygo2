@@ -46,7 +46,7 @@ class BaseDatabase:
     name = None
     """str: BaseDatabase object name.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> base = laygo2.object.database.BaseDatabase(name="mycell") 
@@ -61,7 +61,7 @@ class BaseDatabase:
     params = None
     """dict or None: Dictionary containing parameters of BaseDatabase object.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> base = laygo2.object.database.BaseDatabase(name="mycell",
@@ -77,7 +77,7 @@ class BaseDatabase:
     elements = None
     """dict: Dictionary containing its element objects.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.database import BaseDatabase
@@ -112,7 +112,7 @@ class BaseDatabase:
     int: A unique number used as the name of an unnamed object belonging to 
     the database.    
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.database import BaseDatabase
@@ -139,7 +139,7 @@ class BaseDatabase:
     def keys(self):
         """ Keys of elements.
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.database import BaseDatabase
@@ -176,7 +176,7 @@ class BaseDatabase:
         -------
         dict_items
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.database import BaseDatabase
@@ -216,7 +216,7 @@ class BaseDatabase:
         -------
         laygo2.object.physical : corresponding object.
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.database import BaseDatabase
@@ -262,7 +262,7 @@ class BaseDatabase:
         -------
         list
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.database import BaseDatabase
@@ -301,7 +301,7 @@ class BaseDatabase:
         list : 
             A list containing the name of item and the item itself ([item.name, item]).
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.database import BaseDatabase
@@ -365,7 +365,7 @@ class BaseDatabase:
     def __iter__(self):
         """Iterator function. Directly mapped to its elements.
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.database import BaseDatabase
@@ -427,7 +427,7 @@ class BaseDatabase:
         -------
         laygo2.object.BaseDatabase
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> base = laygo2.object.database.BaseDatabase(name='mycell')
@@ -459,7 +459,7 @@ class Library(BaseDatabase):
     """
     Library class implements the library management function.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> lib = laygo2.object.database.Library(name="mylib")
@@ -476,7 +476,7 @@ class Library(BaseDatabase):
 
     See Also
     --------
-    laygo2.object.databse.Design: Check for more comprehensive examples.
+    laygo2.object.databse.Design: Check for more comprehensive Example.
 
     Notes
     -----
@@ -495,7 +495,7 @@ class Library(BaseDatabase):
     libname = property(get_libname, set_libname)
     """str: The name of library.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> lib = laygo2.object.database.Library(name='mylib') 
@@ -537,7 +537,7 @@ class Library(BaseDatabase):
         -------
         laygo2.object.Library
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> lib = laygo2.object.database.Library(name='mylib')
@@ -579,7 +579,7 @@ class Design(BaseDatabase):
     """
     Design class implements the design management function.
 
-    Examples
+    Example
     --------
 
     A physical (non-abstract) grid example:
@@ -796,7 +796,7 @@ class Design(BaseDatabase):
     libname = property(get_libname, set_libname)
     """str: Library name of Design object.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> dsn = laygo2.object.database.Design(name="dsn", libname="testlib") 
@@ -817,7 +817,7 @@ class Design(BaseDatabase):
     cellname = property(get_cellname, set_cellname)
     """str: Cell name of Design object.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> dsn = laygo2.object.database.Design(name="dsn", libname="testlib") 
@@ -833,7 +833,7 @@ class Design(BaseDatabase):
     """dict: Dictionary containing Rectangle object affiliated with the 
     Design object.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.database import Design
@@ -855,7 +855,7 @@ class Design(BaseDatabase):
     """dict: Dictionary having the collection of Pin objects affiliated 
     with the Design object.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.database import Design
@@ -874,7 +874,7 @@ class Design(BaseDatabase):
     texts = None
     """dict: Dictionary containing Text objects affiliated with Design object.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.database import Design
@@ -893,7 +893,7 @@ class Design(BaseDatabase):
     instances = None
     """dict: Dictionary containing Instance objects affiliated with Design object.
 
-    Examples
+    Example
     --------
     >>> import laygo2
     >>> from laygo2.object.database import Design
@@ -925,7 +925,7 @@ class Design(BaseDatabase):
     def __iter__(self):
         """Iterator function. Directly mapped to its elements.
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.database import Design
@@ -966,7 +966,7 @@ class Design(BaseDatabase):
         -------
         laygo2.object.BaseDatabase
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> dsn = laygo2.object.database.Design(name='dsn', libname="testlib")
@@ -1014,7 +1014,7 @@ class Design(BaseDatabase):
         list : 
             A list containing the name of item and the item itself ([item.name, item]).
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.database import Design
@@ -1128,7 +1128,7 @@ class Design(BaseDatabase):
         laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance :
             The placed instance.
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.grid import OneDimGrid, PlacementGrid
@@ -1245,7 +1245,7 @@ class Design(BaseDatabase):
             Check the example code in laygo2.object.grid.RoutingGrid.route 
             for details.
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.grid import CircularMapping as CM
@@ -1348,7 +1348,7 @@ class Design(BaseDatabase):
         list(physical.PhysicalObject):
             The list containing the generated via objects.
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.grid import CircularMapping as CM
@@ -1450,7 +1450,7 @@ class Design(BaseDatabase):
             The list containing the generated routing objects;
             The last object corresponds to the routing object on the track.
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.grid import CircularMapping as CM
@@ -1568,7 +1568,7 @@ class Design(BaseDatabase):
         -------
         laygo2.physical.Pin: The generated pin object.
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.grid import CircularMapping as CM
@@ -1663,7 +1663,7 @@ class Design(BaseDatabase):
         -------
         laygo2.NativeInstanceTemplate: The generated template object.
 
-        Examples
+        Example
         --------
         >>> import laygo2
         >>> from laygo2.object.database import Design
@@ -1725,7 +1725,7 @@ class Design(BaseDatabase):
         -------
         list: The list containing the matched Physical objects.
 
-        Examples
+        Example
         --------
         >>> dsn    = laygo2.object.Design(name='dsn', libname="testlib")
         >>> rect0  = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=[‘M1’, ‘drawing’]……)

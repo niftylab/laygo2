@@ -49,7 +49,7 @@ def _py2skill_float(value, scale=0.001):
     fmt_str = "%." + "%d" % (-1 * log10(scale) + 1) + "f"  # for truncations
     # convert to exponentail expression
     print(value, exp, str(value))
-    return fmt_str % (value * (10**exp) * scale) + 'e' + str(int(-1*exp)) 
+    return fmt_str % (value * (10**exp) * scale) + "e" + str(int(-1 * exp))
 
 
 def _py2skill_list(pylist, scale=0.001):
@@ -61,7 +61,7 @@ def _py2skill_list(pylist, scale=0.001):
         elif isinstance(item, np.ndarray):  # nested list
             list_str += _py2skill_list(item, scale=scale) + " "
         elif isinstance(item, str):
-            list_str += "\"" + str(item) + "\" "
+            list_str += '"' + str(item) + '" '
         elif isinstance(item, bool):
             if item:
                 list_str += "t "
@@ -84,10 +84,10 @@ def _py2skill_inst_params_list(pylist):
         elif isinstance(item, np.ndarray):  # nested list
             list_str += _py2skill_inst_params_list(item) + " "
         elif isinstance(item, str):
-            list_str += "\"" + str(item) + "\" "
+            list_str += '"' + str(item) + '" '
         elif isinstance(item, float):
             list_str += str(item)
-            #list_str += _py2skill_float(item, scale) + " "  
+            # list_str += _py2skill_float(item, scale) + " "
         elif isinstance(item, bool):
             if item:
                 list_str += "t "
@@ -96,7 +96,7 @@ def _py2skill_inst_params_list(pylist):
         elif isinstance(item, int) or isinstance(item, np.integer):
             # fmt_str = "%."+"%d" % (-1*log10(scale)+1)+"f "  # for truncations
             # list_str += fmt_str%(item*scale) + " "
-            #list_str += _py2skill_number(item, 1) + " "  # do not scale integers
+            # list_str += _py2skill_number(item, 1) + " "  # do not scale integers
             list_str += str(item) + " "  # do not scale integers
     list_str += ")"
     return list_str
@@ -124,22 +124,31 @@ def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0
     offset : np.array([int, int])
         Offsets to obj.xy
     """
-    if master is None:  
+    if master is None:
         mxy = np.array([0, 0])
-        mtf = 'R0'
-    else: # if the translated object has a master (e.g. VirtualInstance)
+        mtf = "R0"
+    else:  # if the translated object has a master (e.g. VirtualInstance)
         mxy = master.xy
         mtf = master.transform
     if obj.__class__ == laygo2.object.Rect:
-        color = obj.color # coloring func. added
+        color = obj.color  # coloring func. added
         # Invoke _laygo2_generate_rect( cv layer bbox ) in {header_filename}
         _xy = np.sort(obj.xy, axis=0)  # make sure obj.xy is sorted
-        _xy = mxy + np.dot(_xy + np.array([[-obj.hextension, -obj.vextension], [obj.hextension, obj.vextension]]),
-                           tf.Mt(mtf).T)
-        #_xy = mxy + np.dot(obj.xy + np.array([[-obj.hextension, -obj.vextension], [obj.hextension, obj.vextension]]),
+        _xy = mxy + np.dot(
+            _xy
+            + np.array(
+                [[-obj.hextension, -obj.vextension], [obj.hextension, obj.vextension]]
+            ),
+            tf.Mt(mtf).T,
+        )
+        # _xy = mxy + np.dot(obj.xy + np.array([[-obj.hextension, -obj.vextension], [obj.hextension, obj.vextension]]),
         #                   tf.Mt(mtf).T)
-        return "_laygo2_generate_rect(cv, %s, %s, \"%s\") ; for the Rect object %s \n" \
-               % (_py2skill_list(obj.layer), _py2skill_list(_xy, scale=scale), color, objname) # coloring func. added
+        return '_laygo2_generate_rect(cv, %s, %s, "%s") ; for the Rect object %s \n' % (
+            _py2skill_list(obj.layer),
+            _py2skill_list(_xy, scale=scale),
+            color,
+            objname,
+        )  # coloring func. added
     elif obj.__class__ == laygo2.object.Path:
         # TODO: implement path export function.
         pass
@@ -151,9 +160,15 @@ def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0
         for idx, _obj in np.ndenumerate(_objelem):
             # Invoke _laygo2_generate_pin(cv, name, layer, bbox) in {header_filename}
             _xy = mxy + np.dot(_obj.xy, tf.Mt(mtf).T)
-            return "_laygo2_generate_pin(cv, \"%s\", %s, %s ) ; for the Pin object %s \n" \
-                   % (_obj.netname, _py2skill_list(_obj.layer), _py2skill_list(_xy, scale=scale),
-                      objname)
+            return (
+                '_laygo2_generate_pin(cv, "%s", %s, %s ) ; for the Pin object %s \n'
+                % (
+                    _obj.netname,
+                    _py2skill_list(_obj.layer),
+                    _py2skill_list(_xy, scale=scale),
+                    objname,
+                )
+            )
     elif obj.__class__ == laygo2.object.Text:
         # TODO: implement text export function.
         pass
@@ -161,9 +176,9 @@ def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0
         # Invoke _laygo2_generate_instance( cv name libname cellname viewname loc orient num_rows num_cols
         # sp_rows sp_cols params params_order )
         _xy = mxy + np.dot(obj.xy, tf.Mt(mtf).T)
-        if master is None:  
+        if master is None:
             transform = obj.transform
-        else: # if the translated object has a master (e.g. VirtualInstance)
+        else:  # if the translated object has a master (e.g. VirtualInstance)
             transform = tf.combine(obj.transform, master.transform)
         if obj.shape is None:
             num_rows = 1
@@ -178,37 +193,61 @@ def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0
         if obj.params is None:
             inst_params = "nil"
         else:
-            inst_params = _py2skill_inst_params(obj.params['pcell_params'])
-            #inst_params = _py2skill_list([["Wfg", "string", "500n"], ["fingers", "string", "4"], ["l", "string", "500n"]])
-        return "_laygo2_generate_instance(cv, \"%s\", \"%s\", \"%s\", \"%s\", %s, \"%s\", %d, %d, %s, %s, %s, %s) " \
-               "; for the Instance object %s \n" \
-               % (objname, obj.libname, obj.cellname, obj.viewname, _py2skill_list(_xy), transform,
-                  num_rows, num_cols, sp_rows, sp_cols, inst_params, "nil", objname)
+            inst_params = _py2skill_inst_params(obj.params["pcell_params"])
+            # inst_params = _py2skill_list([["Wfg", "string", "500n"], ["fingers", "string", "4"], ["l", "string", "500n"]])
+        return (
+            '_laygo2_generate_instance(cv, "%s", "%s", "%s", "%s", %s, "%s", %d, %d, %s, %s, %s, %s) '
+            "; for the Instance object %s \n"
+            % (
+                objname,
+                obj.libname,
+                obj.cellname,
+                obj.viewname,
+                _py2skill_list(_xy),
+                transform,
+                num_rows,
+                num_cols,
+                sp_rows,
+                sp_cols,
+                inst_params,
+                "nil",
+                objname,
+            )
+        )
     elif obj.__class__ == laygo2.object.VirtualInstance:
         cmd = ""
         if obj.shape is None:
             for elem_name, elem in obj.native_elements.items():
                 if not elem.__class__ == laygo2.object.Pin:
                     if obj.name == None:
-                        obj.name='NoName'
+                        obj.name = "NoName"
                     else:
                         pass
-                    cmd += _translate_obj(obj.name + '_' + elem_name, elem, scale=scale, master=obj)
+                    cmd += _translate_obj(
+                        obj.name + "_" + elem_name, elem, scale=scale, master=obj
+                    )
         else:  # arrayed VirtualInstance
             for i, j in np.ndindex(tuple(obj.shape.tolist())):  # iterate over obj.shape
                 for elem_name, elem in obj.native_elements.items():
                     if not elem.__class__ == laygo2.object.Pin:
-                        cmd += _translate_obj(obj.name + '_' + elem_name + str(i) + '_' + str(j), 
-                                              elem, scale=scale, master=obj[i, j])            
+                        cmd += _translate_obj(
+                            obj.name + "_" + elem_name + str(i) + "_" + str(j),
+                            elem,
+                            scale=scale,
+                            master=obj[i, j],
+                        )
         return cmd
     else:
         return obj.translate_to_skill()  #
 
     return ""
 
-def export(db, filename=None, cellname=None, scale=1e-3, reset_library=False, tech_library=None):
+
+def export(
+    db, filename=None, cellname=None, scale=1e-3, reset_library=False, tech_library=None
+):
     """
-    Export design(s) to skill code.
+    Export a laygo2.object.database.Library object to skill code.
 
     Parameters
     ----------
@@ -227,30 +266,72 @@ def export(db, filename=None, cellname=None, scale=1e-3, reset_library=False, te
 
     Returns
     -------
-    str: the string object contains corresponding skill scripts.
+    str: The generated skill script.
+
+    Example
+    --------
+    >>> import laygo2
+    >>> from laygo2.object.database import Design
+    >>> from laygo2.object.physical import Rect, Pin, Instance, Text
+    >>> # Create a design.
+    >>> dsn = Design(name="mycell", libname="genlib")
+    >>> # Create layout objects.
+    >>> r0 = Rect(xy=[[0, 0], [100, 100]], layer=["M1", "drawing"])
+    >>> p0 = Pin(xy=[[0, 0], [50, 50]], layer=["M1", "pin"], name="P")
+    >>> i0 = Instance(libname="tlib", cellname="t0", name="I0", xy=[0, 0])
+    >>> t0 = Text(xy=[[50, 50], [100, 100]], layer=["text", "drawing"], text="T")
+    >>> # Add the layout objects to the design object.
+    >>> dsn.append(r0)
+    >>> dsn.append(p0)
+    >>> dsn.append(i0)
+    >>> dsn.append(t0)
+    >>> #
+    >>> # Export to skill.
+    >>> lib = laygo2.object.database.Library(name="mylib")
+    >>> lib.append(dsn)
+    >>> scr = laygo2.interface.skill.export(lib, filename="myscript.il")
+    >>> print(scr)
+    ; (definitions of laygo2 skill functions)
+    ; exporting mylib__mycell
+    cv = _laygo2_open_layout("mylib" "mycell" "layout")
+    _laygo2_generate_rect(cv, list( "M1" "drawing" ), list( list( 0.0000  0.0000  ) list( 0.1000  0.1000  ) ), "None")
+    _laygo2_generate_pin(cv, "P", list( "M1" "pin" ), list( list( 0.0000  0.0000  ) list( 0.0500  0.0500  ) ) )
+    _laygo2_generate_instance(cv, "I0", "tlib", "t0", "layout", list( 0.0000  0.0000  ), "R0", 1, 1, 0, 0, nil, nil)
+    _laygo2_save_and_close_layout(cv)
+
     """
     # parse header functions.
     cmd = "; laygo2 layout export skill script.\n\n"
     import os
-    header_filename = os.path.abspath(laygo2.interface.__file__)[:-11] + 'skill_export.il'
-    with open(header_filename, 'r') as f:
-        cmd += f.read()
-        cmd += '\n'
 
-    cellname = db.keys() if cellname is None else cellname  # export all cells if cellname is not given.
-    cellname = [cellname] if isinstance(cellname, str) else cellname  # convert to a list for iteration.
+    header_filename = (
+        os.path.abspath(laygo2.interface.__file__)[:-11] + "skill_export.il"
+    )
+    with open(header_filename, "r") as f:
+        cmd += f.read()
+        cmd += "\n"
+
+    cellname = (
+        db.keys() if cellname is None else cellname
+    )  # export all cells if cellname is not given.
+    cellname = (
+        [cellname] if isinstance(cellname, str) else cellname
+    )  # convert to a list for iteration.
     if reset_library:
-        cmd += "_laygo2_reset_library(\"%s\" \"%s\")\n" % (db.name, tech_library)
+        cmd += '_laygo2_reset_library("%s" "%s")\n' % (db.name, tech_library)
     for cn in cellname:
         cmd += "\n; exporting %s__%s\n" % (db.name, cn)  # open the design.
-        logging.debug('Export_to_SKILL: Cellname:' + cn)
-        #cmd += "let( (cv) \n"  # limit the scope of cv. Disabled to prevent overflow.
-        cmd += "cv = _laygo2_open_layout(\"%s\" \"%s\" \"layout\")\n" % (db.name, cn)  # open the design.
+        logging.debug("Export_to_SKILL: Cellname:" + cn)
+        # cmd += "let( (cv) \n"  # limit the scope of cv. Disabled to prevent overflow.
+        cmd += 'cv = _laygo2_open_layout("%s" "%s" "layout")\n' % (
+            db.name,
+            cn,
+        )  # open the design.
         # export objects
         for objname, obj in db[cn].items():
             cmd += _translate_obj(objname, obj, scale=scale)
         cmd += "_laygo2_save_and_close_layout(cv)\n"  # close the layout
-        #cmd += ");let\n" Disabled to prevent overflow.
+        # cmd += ");let\n" Disabled to prevent overflow.
     if filename is not None:  # export to a file.
         with open(filename, "w") as f:
             f.write(cmd)

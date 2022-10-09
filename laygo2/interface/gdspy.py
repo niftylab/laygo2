@@ -36,6 +36,7 @@ import numpy as np
 
 import laygo2.object
 
+
 def _load_layermap(layermapfile):
     """
     Load layermap information from layermapfile (Foundry techfile can be used)
@@ -62,21 +63,31 @@ def _load_layermap(layermapfile):
 
     """
     layermap = dict()
-    f = open(layermapfile, 'r')
+    f = open(layermapfile, "r")
     for line in f:
         tokens = line.split()
         if not len(tokens) == 0:
-            if not tokens[0].startswith('#'):
+            if not tokens[0].startswith("#"):
                 name = tokens[0]
-                #if not layermap.has_key(name):
+                # if not layermap.has_key(name):
                 if name not in layermap:
                     layermap[name] = dict()
-                layermap[name][tokens[1]] = {"layer":int(tokens[2]), "datatype":int(tokens[3])}
+                layermap[name][tokens[1]] = {
+                    "layer": int(tokens[2]),
+                    "datatype": int(tokens[3]),
+                }
     return layermap
 
 
-def _translate_obj(objname, obj, layermap, scale=0.001, master=None, offset=np.array([0, 0]), 
-                   pin_label_height=0.1):
+def _translate_obj(
+    objname,
+    obj,
+    layermap,
+    scale=0.001,
+    master=None,
+    offset=np.array([0, 0]),
+    pin_label_height=0.1,
+):
     """
     Convert an object to corresponding skill commands.
     offset : np.array([int, int])
@@ -85,21 +96,26 @@ def _translate_obj(objname, obj, layermap, scale=0.001, master=None, offset=np.a
     # import gdspy here to avoid unnecessary C++ compliations for non-gds options.
     import gdspy
 
-    if master is None:  
+    if master is None:
         mxy = np.array([0, 0])
-        mtf = 'R0'
-    else: # if the translated object has a master (e.g. VirtualInstance)
+        mtf = "R0"
+    else:  # if the translated object has a master (e.g. VirtualInstance)
         mxy = master.xy
         mtf = master.transform
 
     if obj.__class__ == laygo2.object.Rect:
         ## TODO: add color handling.
-        #color = obj.color # coloring function example for skill.
-        
+        # color = obj.color # coloring function example for skill.
+
         _xy = np.sort(obj.xy, axis=0)  # make sure obj.xy is sorted
-        _xy = mxy + np.dot(_xy + np.array([[-obj.hextension, -obj.vextension], 
-                           [obj.hextension, obj.vextension]]), tf.Mt(mtf).T)
-         
+        _xy = mxy + np.dot(
+            _xy
+            + np.array(
+                [[-obj.hextension, -obj.vextension], [obj.hextension, obj.vextension]]
+            ),
+            tf.Mt(mtf).T,
+        )
+
         l = layermap[obj.layer[0]][obj.layer[1]]
         rect = gdspy.Rectangle((_xy[0, 0], _xy[0, 1]), (_xy[1, 0], _xy[1, 1]), **l)
         return rect
@@ -116,19 +132,23 @@ def _translate_obj(objname, obj, layermap, scale=0.001, master=None, offset=np.a
             _xy = mxy + np.dot(_obj.xy, tf.Mt(mtf).T)
             l = layermap[_obj.layer[0]][_obj.layer[1]]
             rect = gdspy.Rectangle((_xy[0, 0], _xy[0, 1]), (_xy[1, 0], _xy[1, 1]), **l)
-            _xy_c = 0.5*(_xy[0, :] + _xy[1, :])
-            text = gdspy.Label(_obj.netname, _xy_c, "nw", magnification=pin_label_height*100) 
+            _xy_c = 0.5 * (_xy[0, :] + _xy[1, :])
+            text = gdspy.Label(
+                _obj.netname, _xy_c, "nw", magnification=pin_label_height * 100
+            )
             item += [rect, text]
         return item
     elif obj.__class__ == laygo2.object.Text:
         # TODO: implement text export function.
         pass
     elif obj.__class__ == laygo2.object.Instance:
-        print("[Warning] laygo2.interface.gdspy: Instance transform is not implemented yet.")
+        print(
+            "[Warning] laygo2.interface.gdspy: Instance transform is not implemented yet."
+        )
         _xy = mxy + np.dot(obj.xy, tf.Mt(mtf).T)
-        if master is None:  
+        if master is None:
             transform = obj.transform
-        else: # if the translated object has a master (e.g. VirtualInstance)
+        else:  # if the translated object has a master (e.g. VirtualInstance)
             transform = tf.combine(obj.transform, master.transform)
         if obj.shape is None:
             num_rows = 1
@@ -140,11 +160,11 @@ def _translate_obj(objname, obj, layermap, scale=0.001, master=None, offset=np.a
             num_cols = obj.shape[0]
             sp_rows = obj.pitch[1]
             sp_cols = obj.pitch[0]
-        #if obj.params is None:  # gds cannot handle pcell parameters.
+        # if obj.params is None:  # gds cannot handle pcell parameters.
         #    inst_params = "nil"
-        #else:
+        # else:
         #    inst_params = _py2skill_inst_params(obj.params['pcell_params'])
-        inst = gdspy.CellReference(obj.cellname, _xy) #, transform)
+        inst = gdspy.CellReference(obj.cellname, _xy)  # , transform)
         return inst
     elif obj.__class__ == laygo2.object.VirtualInstance:
         item = []
@@ -152,35 +172,59 @@ def _translate_obj(objname, obj, layermap, scale=0.001, master=None, offset=np.a
             for elem_name, elem in obj.native_elements.items():
                 if not elem.__class__ == laygo2.object.Pin:
                     if obj.name == None:
-                        obj.name='NoName'
+                        obj.name = "NoName"
                     else:
                         pass
-                    item += [_translate_obj(obj.name + '_' + elem_name, elem, layermap=layermap, 
-                                           master=obj, scale=scale, pin_label_height=pin_label_height)]
+                    item += [
+                        _translate_obj(
+                            obj.name + "_" + elem_name,
+                            elem,
+                            layermap=layermap,
+                            master=obj,
+                            scale=scale,
+                            pin_label_height=pin_label_height,
+                        )
+                    ]
         else:  # arrayed VirtualInstance
             for i, j in np.ndindex(tuple(obj.shape.tolist())):  # iterate over obj.shape
                 for elem_name, elem in obj.native_elements.items():
                     if not elem.__class__ == laygo2.object.Pin:
-                        item += [_translate_obj(obj.name + '_' + elem_name + str(i) + '_' + str(j), 
-                                               elem, layermap=layermap, master=obj[i, j],
-                                               scale=scale, pin_label_height=pin_label_height)]
+                        item += [
+                            _translate_obj(
+                                obj.name + "_" + elem_name + str(i) + "_" + str(j),
+                                elem,
+                                layermap=layermap,
+                                master=obj[i, j],
+                                scale=scale,
+                                pin_label_height=pin_label_height,
+                            )
+                        ]
         return item
     return None
-    #raise Exception("No corresponding GDS structure for:"+obj.summarize())
+    # raise Exception("No corresponding GDS structure for:"+obj.summarize())
 
 
-def export(db, filename, cellname=None, scale = 1e-9, layermapfile="default.layermap",
-           physical_unit=1e-9, logical_unit=0.001, pin_label_height=0.1,
-           svg_filename=None,png_filename=None):
+def export(
+    db,
+    filename,
+    cellname=None,
+    scale=1e-9,
+    layermapfile="default.layermap",
+    physical_unit=1e-9,
+    logical_unit=0.001,
+    pin_label_height=0.1,
+    svg_filename=None,
+    png_filename=None,
+):
     """
-    Export design(s) to skill code.
+    Export a laygo2.object.database.Library object to a gds file via gdspy.
 
     Parameters
     ----------
     db: laygo2.database.Library
         The library database to exported.
     filename: str, optional
-        If specified, the generated skill script is stored in filename.
+        The name of output gds file.
     cellname: str or List[str]
         The name(s) of cell(s) to be exported.
     scale: float
@@ -194,15 +238,36 @@ def export(db, filename, cellname=None, scale = 1e-9, layermapfile="default.laye
     pin_label_height : float, optional
         the height of pin label.
     svg_filename: str, optional
-        If specified, it exports a svg file with the specified filename. 
+        If specified, it exports a svg file with the specified filename.
     svg_filename: str, optional
-        If specified, it exports a png file with the specified filename 
-        (svg_filename needs to be specified as well). 
+        If specified, it exports a png file with the specified filename
+        (svg_filename needs to be specified as well).
+
+    Example
+    --------
+    >>> import laygo2
+    >>> from laygo2.object.database import Design
+    >>> from laygo2.object.physical import Rect, Pin, Instance, Text
+    >>> # Create a design.
+    >>> dsn = Design(name="mycell", libname="genlib")
+    >>> # Create layout objects.
+    >>> r0 = Rect(xy=[[0, 0], [100, 100]], layer=["M1", "drawing"])
+    >>> p0 = Pin(xy=[[0, 0], [50, 50]], layer=["M1", "pin"], name="P")
+    >>> i0 = Instance(libname="tlib", cellname="t0", name="I0", xy=[0, 0])
+    >>> t0 = Text(xy=[[50, 50], [100, 100]], layer=["text", "drawing"], text="T")
+    >>> # Add the layout objects to the design object.
+    >>> dsn.append(r0)
+    >>> dsn.append(p0)
+    >>> dsn.append(i0)
+    >>> dsn.append(t0)
+    >>> #
+    >>> # Export to a gds file.
+    >>> lib = laygo2.object.database.Library(name="mylib")
+    >>> lib.append(dsn)
+    >>> laygo2.interface.gds.export(lib, filename="mylayout.gds")
     """
-    #raise Exception("GDS support is currently disabled. Will be reinvented by using gds-tk.")
-    
     # Compute scale parameter.
-    _scale = round(1/scale*physical_unit/logical_unit)
+    _scale = round(1 / scale * physical_unit / logical_unit)
     # 1um in phy
     # 1um/1nm = 1000 in laygo2 if scale = 1e-9 (1nm)
     # 1000/1nm*1nm/0.001 = 1000000 in gds if physical_unit = 1e-9 (1nm) and logical_unit = 0.001
@@ -210,9 +275,13 @@ def export(db, filename, cellname=None, scale = 1e-9, layermapfile="default.laye
     # Load layermap file.
     layermap = _load_layermap(layermapfile)  # load layermap information
 
-    # Construct cellname.    
-    cellname = db.keys() if cellname is None else cellname  # export all cells if cellname is not given.
-    cellname = [cellname] if isinstance(cellname, str) else cellname  # convert to a list for iteration.
+    # Construct cellname.
+    cellname = (
+        db.keys() if cellname is None else cellname
+    )  # export all cells if cellname is not given.
+    cellname = (
+        [cellname] if isinstance(cellname, str) else cellname
+    )  # convert to a list for iteration.
 
     # import gdspy here to avoid unnecessary C++ compliations for non-gds options.
     import gdspy
@@ -224,63 +293,21 @@ def export(db, filename, cellname=None, scale = 1e-9, layermapfile="default.laye
         cell = lib.new_cell(cn)
         # Translate objects.
         for objname, obj in db[cn].items():
-            tobj = _translate_obj(objname, obj, layermap=layermap, scale=_scale,
-                                  pin_label_height=pin_label_height,
-                                 )
+            tobj = _translate_obj(
+                objname,
+                obj,
+                layermap=layermap,
+                scale=_scale,
+                pin_label_height=pin_label_height,
+            )
             if tobj is not None:
                 cell.add(tobj)
     lib.write_gds(filename)
-    if svg_filename is not None: 
+    if svg_filename is not None:
         cell.write_svg(svg_filename)
-        if svg_filename is not None: 
+        if svg_filename is not None:
             # import cairosvg here to avoid unnecessary lib installation for non-gds options.
             import cairosvg
+
             cairosvg.svg2png(url=svg_filename, write_to=png_filename, scale=1.0)
-    #gdspy.LayoutViewer()
-
-'''
-#export functions
-def export_from_laygo(db, filename, cellname=None, scale = 1e-9, layermapfile="default.layermap",
-                      physical_unit=1e-9, logical_unit=0.001, pin_label_height=0.1,
-                      pin_annotate_layer=['text', 'drawing'], text_height=0.1,
-                      abstract_instances = False, abstract_instances_layer = ['prBoundary', 'drawing']):
-    """
-    Export specified laygo2 object(s) to a GDS file
-
-    Parameters
-    ----------
-    db : laygo.object.database.Library
-        a library object that designs to be exported.
-    filename : str
-        the name of the output file.
-    cellname : list or str or None.
-        the name of cells to be exported. If None, all cells in the libname are exported.
-    scale : float
-        the scaling factor that converts integer coordinates to actual ones (mostly 1e-6, to convert 1 to 1um).
-    layermapfile : str
-        the name of layermap file.
-    physical_unit : float, optional
-        GDS physical unit.
-    logical_unit : float, optional
-        GDS logical unit.
-    pin_label_height : float, optional
-        the height of pin label.
-    pin_annotate_layer : [str, str], optional
-        pin annotate layer name (used when pinname is different from netname).
-    text_height : float, optional
-        the height of text
-    """
-    raise Exception("GDS support is currently disabled. Will be reinvented by using gds-tk.")
-
-
-def export(db, filename, cellname=None, scale = 1e-9, layermapfile="default.layermap",
-           physical_unit=1e-9, logical_unit=0.001, pin_label_height=0.1,
-           pin_annotate_layer=['text', 'drawing'], text_height=0.1,
-           abstract_instances=False, abstract_instances_layer=['prBoundary', 'drawing']):
-    """See laygo2.interface.gds.export_from_laygo for details."""
-    export_from_laygo(db, filename, cellname, scale, layermapfile,
-                      physical_unit, logical_unit, pin_label_height,
-                      pin_annotate_layer, text_height,
-                      abstract_instances, abstract_instances_layer)
-'''
-
+    # gdspy.LayoutViewer()
