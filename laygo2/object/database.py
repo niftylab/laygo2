@@ -82,17 +82,20 @@ class BaseDatabase:
     >>> import laygo2
     >>> from laygo2.object.database import BaseDatabase
     >>> from laygo2.object.physical import Rect, Pin, Instance, Text
-    >>> # Create a design
+    >>> # Create a design.
     >>> dsn = BaseDatabase(name="mycell")
-    >>> # Create layout objects
+    >>> # Create layout objects.
     >>> r0 = Rect(xy=[[0, 0], [100, 100]], layer=["M1", "drawing"])
     >>> p0 = Pin(xy=[[0, 0], [50, 50]], layer=["M1", "pin"], name="P")
     >>> i0 = Instance(libname="tlib", cellname="t0", name="I0", xy=[0, 0])
     >>> t0 = Text(xy=[[50, 50], [100, 100]], layer=["text", "drawing"], text="T")
+    >>> # Add layout objects to the design.
     >>> dsn.append(r0)
     >>> dsn.append(p0)
     >>> dsn.append(i0)
     >>> dsn.append(t0)
+    >>> # 
+    >>> # Display elements of the design.
     >>> print(dsn.elements) 
     {'NoName_0': <laygo2.object.physical.Rect object at 0x0000024C6C230F40>, 
     'P': <laygo2.object.physical.Pin object at 0x0000024C6C2EFF40>, 
@@ -471,9 +474,14 @@ class Library(BaseDatabase):
         'mycell0': <laygo2.object.database.Design object at 0x0000025F2D25B010>, 
         'mycell1': <laygo2.object.database.Design object at 0x0000025F2D25BF70>}
 
+    See Also
+    --------
+    laygo2.object.databse.Design: Check for more comprehensive examples.
+
     Notes
     -----
     **(Korean)** Library 클래스는 라이브러리 관리 기능을 구현한다.
+
     """
 
     def get_libname(self):
@@ -573,16 +581,20 @@ class Design(BaseDatabase):
 
     Examples
     --------
+
+    A physical (non-abstract) grid example:
+
     >>> import laygo2
     >>> from laygo2.object.database import Design
     >>> from laygo2.object.physical import Rect, Pin, Instance, Text
-    >>> # Create a design
+    >>> # Create a design.
     >>> dsn = Design(name="mycell", libname="genlib")
-    >>> # Create layout objects
+    >>> # Create layout objects.
     >>> r0 = Rect(xy=[[0, 0], [100, 100]], layer=["M1", "drawing"])
     >>> p0 = Pin(xy=[[0, 0], [50, 50]], layer=["M1", "pin"], name="P")
     >>> i0 = Instance(libname="tlib", cellname="t0", name="I0", xy=[0, 0])
     >>> t0 = Text(xy=[[50, 50], [100, 100]], layer=["text", "drawing"], text="T")
+    >>> # Add the layout objects to the design object.
     >>> dsn.append(r0)
     >>> dsn.append(p0)
     >>> dsn.append(i0)
@@ -606,6 +618,140 @@ class Design(BaseDatabase):
         instances:{
             'I0': <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>}
         virtual instances:{}
+    >>> # 
+    >>> # Export to a NativeInstanceTemplate for reuse in higher levels.
+    >>> nt0 = dsn.export_to_template()
+    >>> nt0.dsn.export_to_template()
+    >>> print(nt0)
+        <laygo2.object.template.NativeInstanceTemplate object at 0x000001CB5A9CE380> 
+        name: mycell, 
+        class: NativeInstanceTemplate,
+         bbox: [[0, 0], [0, 0]], 
+         pins: {'P': <laygo2.object.physical.Pin object at 0x000001CB5A9CFF40>},
+    >>> # 
+    >>> # Export to a skill script.
+    >>> lib = laygo2.object.database.Library(name="mylib")
+    >>> lib.append(dsn)
+    >>> scr = laygo2.interface.skill.export(lib, filename="myscript.il")
+    >>> print(scr)
+    ; (definitions of laygo2 skill functions)
+    ; exporting mylib__mycell
+    cv = _laygo2_open_layout("mylib" "mycell" "layout")
+    _laygo2_generate_rect(cv, list( "M1" "drawing" ), list( list( 0.0000  0.0000  ) list( 0.1000  0.1000  ) ), "None")
+    _laygo2_generate_pin(cv, "P", list( "M1" "pin" ), list( list( 0.0000  0.0000  ) list( 0.0500  0.0500  ) ) )
+    _laygo2_generate_instance(cv, "I0", "tlib", "t0", "layout", list( 0.0000  0.0000  ), "R0", 1, 1, 0, 0, nil, nil)
+    _laygo2_save_and_close_layout(cv)
+    
+    An abstract grid example:
+
+    >>> import laygo2
+    >>> from laygo2.object.grid import CircularMapping as CM
+    >>> from laygo2.object.grid import CircularMappingArray as CMA
+    >>> from laygo2.object.grid import OneDimGrid, PlacementGrid, RoutingGrid
+    >>> from laygo2.object.template import NativeInstanceTemplate
+    >>> from laygo2.object.database import Design
+    >>> from laygo2.object.physical import Instance
+    >>> # Placement grid construction (not needed if laygo2_tech is set up).
+    >>> gx  = OneDimGrid(name="gx", scope=[0, 20], elements=[0])
+    >>> gy  = OneDimGrid(name="gy", scope=[0, 100], elements=[0])
+    >>> gp  = PlacementGrid(name="test", vgrid=gx, hgrid=gy)
+    >>> # Routing grid construction (not needed if laygo2_tech is set up).
+    >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
+    >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+    >>> wv = CM([10])           # vertical (xgrid) width
+    >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
+    >>> ev = CM([10])           # vertical (xgrid) extension
+    >>> eh = CM([10, 10, 10])   # horizontal (ygrid) extension
+    >>> e0v = CM([15])          # vert. extension (for zero-length wires)
+    >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
+    >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
+    >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+    >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
+    >>> plh = CM([['M2', 'pin']]*3, dtype=object)
+    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
+    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> primary_grid = 'horizontal'
+    >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+    >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
+    >>> gr = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                                            vwidth=wv, hwidth=wh,
+                                            vextension=ev, hextension=eh,
+                                            vlayer=lv, hlayer=lh,
+                                            pin_vlayer=plv, pin_hlayer=plh,
+                                            viamap=viamap, primary_grid=primary_grid,
+                                            xcolor=xcolor, ycolor=ycolor,
+                                            vextension0=e0v, hextension0=e0h)
+    >>> # Create a design
+    >>> dsn = Design(name="mycell", libname="genlib")
+    >>> # Create an instance
+    >>> i0 = Instance(libname="tlib", cellname="t0", name="I0", xy=[0, 0])
+    >>> print(inst0.xy)
+    [100, 100]
+    >>> # Place the instance
+    >>> dsn.place(inst=i0, grid=gp, mn=[10,10])
+    >>> # Routing on grid 
+    >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
+    >>> route = dsn.route(grid=gr, mn=mn_list, 
+                          via_tag=[True, None, True, True])
+    >>> #
+    >>> # Display generated design.
+    >>> print(dsn)
+    <laygo2.object.database.Design object at 0x000001C71AE3A110>
+        ...
+    >>> # 
+    >>> # Export to a NativeInstanceTemplate for reuse in higher levels.
+    >>> nt0 = dsn.export_to_template()
+    >>> nt0.dsn.export_to_template()
+    >>> print(nt0)
+        ...
+    >>> # 
+    >>> # Export to a skill script.
+    >>> lib = laygo2.object.database.Library(name="mylib")
+    >>> lib.append(dsn)
+    >>> scr = laygo2.interface.skill.export(lib, filename="myscript.il")
+    >>> print(scr)
+        ...
+    
+    An abstract template/grid example with technology setup (laygo2_tech):
+
+    >>> import laygo2
+    >>> import laygo2.interface
+    >>> import laygo2_tech_quick_start as tech  # target tech's laygo2_tech
+    >>> from laygo2.object.database import Design
+    >>> templates = tech.load_templates()
+    >>> mytemplate = templates['nmos']
+    >>> grids = tech.load_grids(templates=templates)
+    >>> gp = grids['placement_basic']
+    >>> gr = grids['routing_23_cmos']
+    >>> # Create a design
+    >>> dsn = Design(name="mycell", libname="genlib")
+    >>> # Create an instance
+    >>> i0 = tnmos.generate(name='MN0', params={'nf': 4})
+    >>> # Place the instance
+    >>> dsn.place(inst=i0, grid=gp, mn=[10,10])
+    >>> # Routing on grid 
+    >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
+    >>> route = dsn.route(grid=gr, mn=mn_list, 
+                          via_tag=[True, None, True, True])
+    >>> #
+    >>> # Display generated design.
+    >>> print(dsn)
+    <laygo2.object.database.Design object at 0x000001C71AE3A110>
+        ...
+    >>> # 
+    >>> # Export to a NativeInstanceTemplate for reuse in higher levels.
+    >>> nt0 = dsn.export_to_template()
+    >>> nt0.dsn.export_to_template()
+    >>> print(nt0)
+        ...
+    >>> # 
+    >>> # Export to a skill script.
+    >>> lib = laygo2.object.database.Library(name="mylib")
+    >>> lib.append(dsn)
+    >>> scr = laygo2.interface.skill.export(lib, filename="myscript.il")
+    >>> print(scr)
+        ...
+    
 
     Notes
     -----
