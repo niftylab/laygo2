@@ -788,7 +788,7 @@ class ParameterizedInstanceTemplate(Template):
 
         Notes
         -----
-        **(Korean)** ParameterizedInstance 객체 생성.
+        **(Korean)** 템플릿으로부터 입력 파라미터에 따른 Instance 객체 생성.
 
         파라미터
             - name(str): 생성할 인스턴스의 이름.
@@ -860,32 +860,122 @@ class UserDefinedTemplate(Template):
 
         Examples
         --------
-        >>> def user_bbox_func(params):-> numpy.ndarray …  ## return bbox0 * multi
-            ……
-        >>> def user_pins_func(params):-> dict          …  ## pin0.bbox = pins0.bbox * multi
-            ……
-        >>> def user_generate_func(params):
-            ……
-        >>> user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
-        <laygo2.object.template.UserDefinedTemplate object>
+        >>> import numpy as np
+        >>> from laygo2.object.template import UserDefinedTemplate
+        >>> from laygo2.object.physical import Pin, Rect, VirtualInstance
+        >>> # bbox computation function.
+        >>> def user_bbox_func(params):
+        >>>     return np.array([[0, 0], [100 * params["mult"], 100]])
+        >>> # pin generation function.
+        >>> def user_pins_func(params):
+        >>>     template_pins = dict()
+        >>>     for i in range(params["mult"]):
+        >>>         template_pins["in" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 0, 0], [i * 100 + 10, 10]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="in" + str(i),
+        >>>         )
+        >>>         template_pins["out" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 90, 90], [i * 100 + 90, 100]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="out" + str(i),
+        >>>         )
+        >>>     return template_pins
+        >>> # instance generation function.
+        >>> def user_generate_func(
+        >>>     name=None, shape=None, pitch=np.array([0, 0]), transform="R0", 
+        >>>     params=None):
+        >>>     m = params["mult"]
+        >>>     shape = np.array([1, 1]) if shape is None else np.asarray(shape)
+        >>>     inst_pins = user_pins_func(params)
+        >>>     inst_native_elements = dict()
+        >>>     for i in range(m):
+        >>>         ofst = i * 100
+        >>>         inst_native_elements["R0_" + str(i)] = Rect(
+        >>>             xy=[[ofst, 0], [ofst + 10, 10]], layer=["M1", "drawing"]
+        >>>         )
+        >>>         inst_native_elements["R1_" + str(i)] = Rect(
+        >>>             xy=[[ofst + 90, 90], [ofst + 100, 100]], layer=["M1", "drawing"]
+        >>>         )
+        >>>     inst_native_elements["R2"] = Rect(
+        >>>         xy=[[0, 0], [m * 100, 100]], layer=["prBoundary", "drawing"]
+        >>>     )
+        >>>     inst = VirtualInstance(
+        >>>         name=name,
+        >>>         libname="mylib",
+        >>>         cellname="myvinst",
+        >>>         xy=np.array([0, 0]),
+        >>>         native_elements=inst_native_elements,
+        >>>         shape=shape,
+        >>>         pitch=pitch,
+        >>>         unit_size=[m * 100, 100],
+        >>>         pins=inst_pins,
+        >>>         transform=transform,
+        >>>         params=params,
+        >>>     )
+        >>>     return inst
+        >>> # UserDefinedTemplate construction.
+        >>> user_temp = UserDefinedTemplate(
+        >>>     name="myusertemplate",
+        >>>     bbox_func=user_bbox_func,
+        >>>     pins_func=user_pins_func,
+        >>>     generate_func=user_generate_func,
+        >>> )
+        >>> # VirtualInstance generation.
+        >>> user_inst = user_temp.generate(name="myinst", params={"mult": 5})
+        >>> # Display
+        >>> print(user_temp)
+            <laygo2.object.template.UserDefinedTemplate object at 0x00000192BF990130> 
+            name: myusertemplate, class: UserDefinedTemplate,
+        >>> print(user_inst)
+            <laygo2.object.physical.VirtualInstance object at 0x00000192BF990280>
+                name: myinst,
+                class: VirtualInstance,
+                xy: [0, 0],
+                params: {'mult': 5},
+                size: [500, 100],
+                shape: [1, 1],
+                pitch: [500, 100],
+                transform: R0,
+                pins: {'in0': <laygo2.object.physical.Pin object at 0x00000192BF9930D0>, 
+                       'out0': <laygo2.object.physical.Pin object at 0x00000192BF9931C0>, 
+                       'in1': <laygo2.object.physical.Pin object at 0x00000192BF993760>, 
+                       'out1': <laygo2.object.physical.Pin object at 0x00000192BF9936A0>, 
+                       'in2': <laygo2.object.physical.Pin object at 0x00000192BF993610>, 
+                       'out2': <laygo2.object.physical.Pin object at 0x00000192BF9935B0>, 
+                       'in3': <laygo2.object.physical.Pin object at 0x00000192BF9932E0>, 
+                       'out3': <laygo2.object.physical.Pin object at 0x00000192BF9931F0>, 
+                       'in4': <laygo2.object.physical.Pin object at 0x00000192BF993130>, 
+                       'out4': <laygo2.object.physical.Pin object at 0x00000192BF9930A0>},
+                native elements: {'R0_0': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R1_0': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R0_1': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R1_1': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R0_2': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R1_2': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R0_3': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R1_3': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R0_4': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R1_4': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R2': <laygo2.object.physical.Rect object at 0x000...>}
+        >>> print(user_inst.bbox)
+            [[  0   0]
+             [500 100]]
 
         .. image:: ../assets/img/object_template_UserDefinedTemplate_init.png
           :height: 250
 
         Notes
         -----
-        **(Korean)**
-        UserDefinedTemplate 클래스의 생성자함수.
+        **(Korean)** UserDefinedTemplate 클래스의 생성자 함수.
+        
         파라미터
-        bbox_func(callable ): bbox를 연산해주는 메소드
-        pins_func(callable ): pins를 연산해주는 메소드
-        generate_func(callable ): VirtualInstance를 생성하는 메소드
-        name(str): 템플릿 이름
+            - bbox_func(callable): bbox를 연산하는 함수.
+            - pins_func(callable): pins를 생성하는 함수.
+            - generate_func(callable): VirtualInstance를 생성하는 함수.
+            - name(str): 템플릿 이름
         반환값
-        laygo2.UserDefinedTemplate
-        참조
-        없음
-
+            - laygo2.object.template.UserDefinedTemplate
         """
         self._bbox = bbox_func
         self._pins = pins_func
@@ -899,45 +989,88 @@ class UserDefinedTemplate(Template):
 
         Parameters
         ----------
-        None
+        params: dict
+            A dictionary that contains input parameters corresponding to the 
+            bounding box to be computed.
 
         Returns
         -------
-        numpy.ndarray
-
-
+        numpy.ndarray: A 2x2 numpy array that contains the bounding box 
+            coordinates corresponding to the input parameters.
 
         Examples
         --------
-        >>> params={}; params[“multi”] = 10; bbox0 = [ [0,0],[100,100]]; pin0 = [ in, out ]
-        >>> def user_bbox_func(params):-> numpy.ndarray …  ## return bbox0 * multi
-                if params==None:
-                    params={}
-                    params['multi'] = 1
-                return np.array([[0, 0], [100 * params['multi'], 100]])
-        >>> def user_pins_func(params):-> dict          …  ## pin0.bbox = pins0.bbox * multi
-            ……
-        >>> def user_generate_func(params):
-            ……
-        >>> user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
-        >>> user_temp.bbox()
-        [[0, 0], [100, 100]]
-
+        >>> import numpy as np
+        >>> from laygo2.object.template import UserDefinedTemplate
+        >>> from laygo2.object.physical import Pin, Rect, VirtualInstance
+        >>> # bbox computation function.
+        >>> def user_bbox_func(params):
+        >>>     return np.array([[0, 0], [100 * params["mult"], 100]])
+        >>> # pin generation function.
+        >>> def user_pins_func(params):
+        >>>     template_pins = dict()
+        >>>     for i in range(params["mult"]):
+        >>>         template_pins["in" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 0, 0], [i * 100 + 10, 10]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="in" + str(i),
+        >>>         )
+        >>>         template_pins["out" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 90, 90], [i * 100 + 90, 100]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="out" + str(i),
+        >>>         )
+        >>>     return template_pins
+        >>> # instance generation function.
+        >>> def user_generate_func(
+        >>>     name=None, shape=None, pitch=np.array([0, 0]), transform="R0", 
+        >>>     params=None):
+        >>>     m = params["mult"]
+        >>>     shape = np.array([1, 1]) if shape is None else np.asarray(shape)
+        >>>     inst_pins = user_pins_func(params)
+        >>>     inst_native_elements = dict()
+        >>>     for i in range(m):
+        >>>         ofst = i * 100
+        >>>         inst_native_elements["R0_" + str(i)] = Rect(
+        >>>             xy=[[ofst, 0], [ofst + 10, 10]], layer=["M1", "drawing"]
+        >>>         )
+        >>>         inst_native_elements["R1_" + str(i)] = Rect(
+        >>>             xy=[[ofst + 90, 90], [ofst + 100, 100]], layer=["M1", "drawing"]
+        >>>         )
+        >>>     inst_native_elements["R2"] = Rect(
+        >>>         xy=[[0, 0], [m * 100, 100]], layer=["prBoundary", "drawing"]
+        >>>     )
+        >>>     inst = VirtualInstance(
+        >>>         name=name,
+        >>>         libname="mylib",
+        >>>         cellname="myvinst",
+        >>>         xy=np.array([0, 0]),
+        >>>         native_elements=inst_native_elements,
+        >>>         shape=shape,
+        >>>         pitch=pitch,
+        >>>         unit_size=[m * 100, 100],
+        >>>         pins=inst_pins,
+        >>>         transform=transform,
+        >>>         params=params,
+        >>>     )
+        >>>     return inst
+        >>> # UserDefinedTemplate construction.
+        >>> user_temp = UserDefinedTemplate(
+        >>>     name="myusertemplate",
+        >>>     bbox_func=user_bbox_func,
+        >>>     pins_func=user_pins_func,
+        >>>     generate_func=user_generate_func,
+        >>> )
+        >>> user_temp.bbox(params={"mult": 5})
+        array([[  0,   0],
+               [500, 100]])
 
         .. image:: ../assets/img/object_template_UserDefinedTemplate_bbox.png
           :height: 250
 
         Notes
         -----
-        **(Korean)**
-        UserDefinedTemplate 객체의 bbox 반환.
-        파라미터
-        없음
-        반환값
-        numpy.ndarray
-        참조
-        없음
-
+        **(Korean)** UserDefinedTemplate 객체의 bbox 반환.
         """
         return self._bbox(params=params)
 
@@ -947,49 +1080,96 @@ class UserDefinedTemplate(Template):
 
         Parameters
         ----------
-        None
+        params: dict
+            A dictionary that contains input parameters corresponding to the 
+            pin objects to be produced.
 
         Returns
         -------
-        dict
-
-
+        dict: A dictionary that contains pin object corresponding to the 
+            input parameters.
 
         Examples
         --------
-        >>> params={}; params[“multi”] = 10; bbox0 = [ [0,0],[100,100]]; pin0 = [ in, out ]
-        >>> def user_bbox_func(params):-> numpy.ndarray …  ## return bbox0 * multi
-        >>> def user_pins_func(params):-> dict
-                if params==None:
-                    params={"multi":1}
-                i = params['multi']
-                template_pins = dict()
-                pin_in = laygo2.object.Pin(xy =[ [ 0, 0], [100 * i, 0 ] ],   layer=['M1', 'pin'], netname='in')
-                pin_out = laygo2.object.Pin(xy=[ [ 0, 100], [100 * i, 100]], layer=['M1', 'pin'], netname='out')
-                template_pins['in' ] = pin_in
-                template_pins['out'] = pin_out
-                return template_pins
-        >>> def user_generate_func(params):
-            ……
-        >>> user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
-        >>> user_temp.pins()
-        {'in': <laygo2.object.physical.Pin>, 'out': <laygo2.object.physical.Pin object>}
-
+        >>> import numpy as np
+        >>> from laygo2.object.template import UserDefinedTemplate
+        >>> from laygo2.object.physical import Pin, Rect, VirtualInstance
+        >>> # bbox computation function.
+        >>> def user_bbox_func(params):
+        >>>     return np.array([[0, 0], [100 * params["mult"], 100]])
+        >>> # pin generation function.
+        >>> def user_pins_func(params):
+        >>>     template_pins = dict()
+        >>>     for i in range(params["mult"]):
+        >>>         template_pins["in" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 0, 0], [i * 100 + 10, 10]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="in" + str(i),
+        >>>         )
+        >>>         template_pins["out" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 90, 90], [i * 100 + 90, 100]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="out" + str(i),
+        >>>         )
+        >>>     return template_pins
+        >>> # instance generation function.
+        >>> def user_generate_func(
+        >>>     name=None, shape=None, pitch=np.array([0, 0]), transform="R0", 
+        >>>     params=None):
+        >>>     m = params["mult"]
+        >>>     shape = np.array([1, 1]) if shape is None else np.asarray(shape)
+        >>>     inst_pins = user_pins_func(params)
+        >>>     inst_native_elements = dict()
+        >>>     for i in range(m):
+        >>>         ofst = i * 100
+        >>>         inst_native_elements["R0_" + str(i)] = Rect(
+        >>>             xy=[[ofst, 0], [ofst + 10, 10]], layer=["M1", "drawing"]
+        >>>         )
+        >>>         inst_native_elements["R1_" + str(i)] = Rect(
+        >>>             xy=[[ofst + 90, 90], [ofst + 100, 100]], layer=["M1", "drawing"]
+        >>>         )
+        >>>     inst_native_elements["R2"] = Rect(
+        >>>         xy=[[0, 0], [m * 100, 100]], layer=["prBoundary", "drawing"]
+        >>>     )
+        >>>     inst = VirtualInstance(
+        >>>         name=name,
+        >>>         libname="mylib",
+        >>>         cellname="myvinst",
+        >>>         xy=np.array([0, 0]),
+        >>>         native_elements=inst_native_elements,
+        >>>         shape=shape,
+        >>>         pitch=pitch,
+        >>>         unit_size=[m * 100, 100],
+        >>>         pins=inst_pins,
+        >>>         transform=transform,
+        >>>         params=params,
+        >>>     )
+        >>>     return inst
+        >>> # UserDefinedTemplate construction.
+        >>> user_temp = UserDefinedTemplate(
+        >>>     name="myusertemplate",
+        >>>     bbox_func=user_bbox_func,
+        >>>     pins_func=user_pins_func,
+        >>>     generate_func=user_generate_func,
+        >>> )
+        >>> user_temp.pins(params={"mult": 5})
+        {'in0': <laygo2.object.physical.Pin object at 0x00000192BF990670>, 
+        'out0': <laygo2.object.physical.Pin object at 0x00000192BF990400>, 
+        'in1': <laygo2.object.physical.Pin object at 0x00000192BF993250>, 
+        'out1': <laygo2.object.physical.Pin object at 0x00000192BF9903D0>, 
+        'in2': <laygo2.object.physical.Pin object at 0x00000192BF9901F0>, 
+        'out2': <laygo2.object.physical.Pin object at 0x00000192BF9904F0>, 
+        'in3': <laygo2.object.physical.Pin object at 0x00000192BF993640>, 
+        'out3': <laygo2.object.physical.Pin object at 0x00000192BF990520>, 
+        'in4': <laygo2.object.physical.Pin object at 0x00000192BF9936D0>, 
+        'out4': <laygo2.object.physical.Pin object at 0x00000192BF993790>}
 
         .. image:: ../assets/img/object_template_UserDefinedTemplate_pins.png
           :height: 250
 
         Notes
         -----
-        **(Korean)**
-        UserDefinedTemplate 객체의 pins.
-        파라미터
-        없음
-        반환값
-        dict
-        참조
-        없음
-
+        **(Korean)** UserDefinedTemplate 객체의 pin dictionary를 생성 및 반환하는 함수.
         """
         return self._pins(params=params)
 
@@ -1012,44 +1192,126 @@ class UserDefinedTemplate(Template):
 
         Returns
         -------
-        (laygo2.object.physical.VirtualInstance) generated VirtualInstance object.
+        laygo2.object.physical.VirtualInstance: The generated VirtualInstance object.
 
         Examples
         --------
-        >>> def user_bbox_func(params):-> numpy.ndarray …  ## return bbox0 * multi
-        >>> def user_pins_func(params):-> dict
-        >>> def user_generate_func(params={“multi”:1}):
-                m = params['multi']
-                shape = np.array([1, 1]); inst_pins = user_pins_func(params) ; inst_native_elements = dict()
-                inst_native_elements['left'] = laygo2.object.Rect(xy=[ [0, 0], [0,100]], layer=['M1’, 'drawing'])
-                ofst = np.array([100, 0])
-                for i in range(m):
-                    bl  = np.array([0,0])
-                    tr  = np.array([100,100])
-                    inst_native_elements['center'+str(i)] = laygo2.object.Rect(xy=[ i*ofst + bl , i*ofst + tr ]…
-                inst_native_elements['right'] = laygo2.object.Rect(xy=[ m*ofst + [0, 0], m*ofst + [ 0 , 100]], …)
-                inst = VirtualInstance(name=name,xy=np.array([0, 0]),native_elements=inst_native_elements,……)
-        >>> user_temp = laygo2.object.UserDefinedTemplate(name='myusertemplate', bbox_func=user_bbox_func, pins_func=user_pins_func, generate_func=user_generate_func)
-        >>> nat_temp.generate(name=“I1”, {“multi”=1})
-        <laygo2.object.physical.VirtualInstance >
-        >>> nat_temp.generate(name=“I2”, {“multi”=2})
-        <laygo2.object.physical.VirtualInstance >
-
+        >>> import numpy as np
+        >>> from laygo2.object.template import UserDefinedTemplate
+        >>> from laygo2.object.physical import Pin, Rect, VirtualInstance
+        >>> # bbox computation function.
+        >>> def user_bbox_func(params):
+        >>>     return np.array([[0, 0], [100 * params["mult"], 100]])
+        >>> # pin generation function.
+        >>> def user_pins_func(params):
+        >>>     template_pins = dict()
+        >>>     for i in range(params["mult"]):
+        >>>         template_pins["in" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 0, 0], [i * 100 + 10, 10]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="in" + str(i),
+        >>>         )
+        >>>         template_pins["out" + str(i)] = Pin(
+        >>>             xy=[[i * 100 + 90, 90], [i * 100 + 90, 100]],
+        >>>             layer=["M1", "drawing"],
+        >>>             netname="out" + str(i),
+        >>>         )
+        >>>     return template_pins
+        >>> # instance generation function.
+        >>> def user_generate_func(
+        >>>     name=None, shape=None, pitch=np.array([0, 0]), transform="R0", 
+        >>>     params=None):
+        >>>     m = params["mult"]
+        >>>     shape = np.array([1, 1]) if shape is None else np.asarray(shape)
+        >>>     inst_pins = user_pins_func(params)
+        >>>     inst_native_elements = dict()
+        >>>     for i in range(m):
+        >>>         ofst = i * 100
+        >>>         inst_native_elements["R0_" + str(i)] = Rect(
+        >>>             xy=[[ofst, 0], [ofst + 10, 10]], layer=["M1", "drawing"]
+        >>>         )
+        >>>         inst_native_elements["R1_" + str(i)] = Rect(
+        >>>             xy=[[ofst + 90, 90], [ofst + 100, 100]], layer=["M1", "drawing"]
+        >>>         )
+        >>>     inst_native_elements["R2"] = Rect(
+        >>>         xy=[[0, 0], [m * 100, 100]], layer=["prBoundary", "drawing"]
+        >>>     )
+        >>>     inst = VirtualInstance(
+        >>>         name=name,
+        >>>         libname="mylib",
+        >>>         cellname="myvinst",
+        >>>         xy=np.array([0, 0]),
+        >>>         native_elements=inst_native_elements,
+        >>>         shape=shape,
+        >>>         pitch=pitch,
+        >>>         unit_size=[m * 100, 100],
+        >>>         pins=inst_pins,
+        >>>         transform=transform,
+        >>>         params=params,
+        >>>     )
+        >>>     return inst
+        >>> # UserDefinedTemplate construction.
+        >>> user_temp = UserDefinedTemplate(
+        >>>     name="myusertemplate",
+        >>>     bbox_func=user_bbox_func,
+        >>>     pins_func=user_pins_func,
+        >>>     generate_func=user_generate_func,
+        >>> )
+        >>> # VirtualInstance generation.
+        >>> user_inst = user_temp.generate(name="myinst", params={"mult": 5})
+        >>> # Display
+        >>> print(user_temp)
+            <laygo2.object.template.UserDefinedTemplate object at 0x00000192BF990130> 
+            name: myusertemplate, class: UserDefinedTemplate,
+        >>> print(user_inst)
+            <laygo2.object.physical.VirtualInstance object at 0x00000192BF990280>
+                name: myinst,
+                class: VirtualInstance,
+                xy: [0, 0],
+                params: {'mult': 5},
+                size: [500, 100],
+                shape: [1, 1],
+                pitch: [500, 100],
+                transform: R0,
+                pins: {'in0': <laygo2.object.physical.Pin object at 0x00000192BF9930D0>, 
+                       'out0': <laygo2.object.physical.Pin object at 0x00000192BF9931C0>, 
+                       'in1': <laygo2.object.physical.Pin object at 0x00000192BF993760>, 
+                       'out1': <laygo2.object.physical.Pin object at 0x00000192BF9936A0>, 
+                       'in2': <laygo2.object.physical.Pin object at 0x00000192BF993610>, 
+                       'out2': <laygo2.object.physical.Pin object at 0x00000192BF9935B0>, 
+                       'in3': <laygo2.object.physical.Pin object at 0x00000192BF9932E0>, 
+                       'out3': <laygo2.object.physical.Pin object at 0x00000192BF9931F0>, 
+                       'in4': <laygo2.object.physical.Pin object at 0x00000192BF993130>, 
+                       'out4': <laygo2.object.physical.Pin object at 0x00000192BF9930A0>},
+                native elements: {'R0_0': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R1_0': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R0_1': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R1_1': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R0_2': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R1_2': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R0_3': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R1_3': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R0_4': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R1_4': <laygo2.object.physical.Rect object at 0x0...>, 
+                                  'R2': <laygo2.object.physical.Rect object at 0x000...>}
+        >>> print(user_inst.bbox)
+            [[  0   0]
+             [500 100]]
 
         .. image:: ../assets/img/object_template_UserDefinedTemplate_generate.png
           :height: 250
 
         Notes
         -----
-        **(Korean)**
-        VirtualInstance 객체 생성.
+        **(Korean)** 템플릿으로부터 입력 파라미터에 따른 VirtualInstance 객체 생성.
         파라미터
-        없음
+            - name(str): 생성할 인스턴스의 이름.
+            - shape(numpy.ndarray): (optional) 생성할 객체의 배열 shape.
+            - pitch(numpy.ndarray): (optional) 생성할 객체 간의 간격.
+            - params(dict) : 개체의 속성이 담긴 dictionary.
+            - transform(str): 생성할 개체의 변환 속성.
         반환값
-        laygo2.VirtualInstance
-        참조
-        없음
-
+            - laygo2.VirtualInstance: 생성된 객체
         """
         return self._generate(
             name=name, shape=shape, pitch=pitch, transform=transform, params=params
