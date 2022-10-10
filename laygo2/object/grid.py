@@ -23,8 +23,7 @@
 ########################################################################################################################
 
 """
-laygo2.object.grid module contains classes that implement abstract coordinate
- systems that are interacting with technology-specific physical coordinate systems.
+laygo2.object.grid module contains classes that implement abstract coordinate systems that are interacting with technology-specific physical coordinate systems.
 
 laygo2 implements the layout designs based on the abstract coordinate system.
 
