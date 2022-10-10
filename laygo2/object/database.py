@@ -23,7 +23,7 @@
 ########################################################################################################################
 
 """
-laygo2.object.database module consisting of the classes implementing a hierarchical structure database that manages design and library.
+**laygo2.object.database** module consists of the classes implementing a hierarchical structure database that manages design and library.
 """
 
 __author__ = "Jaeduk Han"

@@ -23,7 +23,7 @@
 ########################################################################################################################
 
 """
-laygo2.object.physical module is defining classes for physical objects that 
+**laygo2.object.physical** module is defining classes for physical objects that 
 compose actual IC layout.
 
 The types of objects supported by the physical module are summarized below:

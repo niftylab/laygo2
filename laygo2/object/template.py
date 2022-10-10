@@ -23,7 +23,7 @@
 ########################################################################################################################
 
 """
-This module implements classes for various layout template objects.
+**laygo2.object.template** module implements classes for various layout template objects.
 """
 
 __author__ = "Jaeduk Han"
