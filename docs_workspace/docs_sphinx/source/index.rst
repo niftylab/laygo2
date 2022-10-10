@@ -21,9 +21,8 @@ laygo2 is currently being maintained by the
 
    Overview<overview>
    Trial<trial>
-   Structure<structure>
-   Tech Setup<technology>
    API Reference<laygo2>
+   Tech Setup<technology>
    Korean<kor>
 
 

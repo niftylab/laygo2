@@ -23,7 +23,16 @@
 ########################################################################################################################
 
 """
-Module containing functions and objects related to abstract coordinate system and coordinate conversion.
+laygo2.object.grid module contains classes that implement abstract coordinate
+ systems that are interacting with technology-specific physical coordinate systems.
+
+laygo2 implements the layout designs based on the abstract coordinate system.
+
+.. image:: ../assets/img/user_guide_grid.png
+
+
+
+Check the following links for the details of component classes.
 """
 
 __author__ = "Jaeduk Han"
@@ -192,6 +201,23 @@ def _conv_bbox_to_list(bbox):
 class CircularMapping:
     """
     Basic circular mapping class (index number expands infinitely).
+
+    Example
+    -------
+    >>> from laygo2.object.grid import Circularmapping
+    >>> map = CircularMapping(elements=[100, 200, 300])
+    >>> print(map[0])
+    100
+    >>> print(map[2])
+    300
+    >>> print(map[4])
+    200
+    >>> print(map[-3])
+    100
+    >>> print(map[[2, 3, -2])
+    [300, 100, 200]
+    >>> print(map[2:7])
+    [300, 100, 200, 300, 100]
 
     Notes
     -----
@@ -422,9 +448,11 @@ class CircularMappingArray(CircularMapping):
 
 class _AbsToPhyGridConverter:
     """
-    A class that converts abstract coordinates into physical coordinates. 
-    Conversely, conditional operation converts physical coordinates into 
-    abstract coordinates.
+    An internal class that converts abstract coordinates into physical 
+    coordinates. Conversely, conditional operators convert physical 
+    coordinates into abstract coordinates.
+
+    .. image:: ../assets/img/user_guide_abs2phy.png
 
     Notes
     -----
@@ -920,8 +948,10 @@ class _AbsToPhyGridConverter:
 class _PhyToAbsGridConverter:
     """
     A class that converts physical coordinates into abstract coordinates.
-    Conversely, conditional operations convert abstract coordinates into 
-    physical coordinates. 
+    Conversely, conditional operators convert abstract coordinates into 
+    physical coordinates.
+
+    .. image:: ../assets/img/user_guide_phy2abs.png
 
     Notes
     -----
@@ -2069,6 +2099,12 @@ class Grid:
     """
     A base class having conversion operators and the mapping information (element) 
     between two-dimensional physical coordinates and abstract coordinates.
+
+    Examplar grid conversions between abstract and physical coordinates are 
+    summarized in the following figure.
+
+    .. image:: ../assets/img/user_guide_grid_conversion.png
+
 
     Notes
     -----

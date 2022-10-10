@@ -23,14 +23,16 @@
 ########################################################################################################################
 
 """
-The physical module implements classes for various physical layout objects.
-The types of objects supported are summarized below:
+laygo2.object.physical module is defining classes for physical objects that 
+compose actual IC layout.
 
-:obj:`PhysicalObject` - a base class for physical layout objects.
+The types of objects supported by the physical module are summarized below:
 
-:obj:`IterablePhysicalObject` - a base class for iterable physical objects (eg. arrayed instances).
+:obj:`PhysicalObject` - base class for physical layout objects.
 
-:obj:`PhysicalObjectGroup` - defines a group of physical objects.
+:obj:`IterablePhysicalObject` - base class for iterable physical objects (eg. arrayed instances).
+
+:obj:`PhysicalObjectGroup` - defines a group of physical objects (not implemented yet).
 
 :obj:`Rect` - defines a rect.
 
@@ -42,8 +44,16 @@ The types of objects supported are summarized below:
 
 :obj:`Instance` - defines an instance.
 
-:obj:`VirtualInstance` - defines a virtual instance composed of multiple physical objects.
+:obj:`VirtualInstance` - defines a virtual instance composed of multiple physical objects
+(a group of objects that acts as a single instance).
 
+The following figure illustrates examples of the physical objects supported by this module.
+
+.. image:: ../assets/img/user_guide_physical.png
+
+
+
+Check the following links for the details of component classes.
 """
 
 __author__ = "Jaeduk Han"
@@ -51,7 +61,6 @@ __maintainer__ = "Jaeduk Han"
 __status__ = "Prototype"
 
 import numpy as np
-
 # from copy import deepcopy
 import laygo2.util.transform as tf
 
