@@ -42,7 +42,7 @@ Instead of cloning github repository, laygo2 package can be installed by running
 
 ## Technology setup
 
-Users need to set up the following files in the **laygo_tech** directory to enable laygo2 for a new technology:
+Users need to set up the following files in the **laygo2_tech** directory to enable laygo2 for a new technology:
 
     laygo2_tech_templayes.py  # for templates
     laygo2_tech_grids.py      # for grids

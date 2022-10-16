@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ########################################################################################################################
 #
-# Copyright (c) 2014, Regents of the University of California
+# Copyright (c) 2020, Nifty Chips Laboratory, Hanyang University
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
