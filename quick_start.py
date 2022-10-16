@@ -27,8 +27,8 @@ import pprint
 import laygo2
 import laygo2.interface
 # should be 'import laygo2_tech as tech' for actual use.
-#import laygo2_tech_quick_start as tech  
-import laygo2.examples.laygo2_tech as tech  
+import laygo2_tech_quick_start as tech  
+#import laygo2.examples.laygo2_tech as tech  
 
 # Parameter definitions ##############
 # Templates
@@ -132,7 +132,7 @@ print("Export design")
 filename = libname + '_' + cellname
 # gds export
 laygo2.interface.gdspy.export(lib, filename=filename+'.gds', cellname=None, scale=1e-9,
-                            layermapfile="./laygo2/examples/laygo2_tech/laygo2_tech.layermap", physical_unit=1e-9, logical_unit=0.001,
+                            layermapfile="./laygo2_tech_quick_start/laygo2_tech.layermap", physical_unit=1e-9, logical_unit=0.001,
                             pin_label_height=0.1, svg_filename=filename+'.svg', png_filename=filename+'.png')
                             # pin_annotation_layer=['text', 'drawing'], text_height=0.1,abstract_instances=abstract)
 # skill export

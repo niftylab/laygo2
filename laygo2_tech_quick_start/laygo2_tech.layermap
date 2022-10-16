@@ -1,0 +1,28 @@
+# Layer information of the advanced example technology (advtech)
+# Used to generate gds files. This file does not represent layer information of
+# any specific technologies in real world.
+# The layermap file of a technology can be usually found in the technology
+# library directory of its PDK.
+
+#layername  layerpurpose    stream# datatype
+text        drawing         100     0
+prBoundary  drawing         101     0
+diffusion   drawing         10      0
+diffusion   pin             10      1
+nwell       drawing         11      0
+poly        drawing         12      0
+poly        pin             12      1
+pimplant    drawing         13      0
+nimplant    drawing         14      0
+metal0      drawing         49      0
+metal1      drawing         50      0
+metal1      pin             50      10
+metal2      drawing         51      0
+metal2      pin             51      10
+metal3      drawing         52      0
+metal3      pin             52      10
+contact     drawing         60      0
+via1        drawing         61      0
+via2        drawing         62      0
+via3        drawing         63      0
+via4        drawing         64      0
