@@ -29,6 +29,7 @@ setup(
     package_data={'': ['interface/skill_export.il', 
                        'interface/magic_export.tcl', 
                        'interface/gds_default.layermap', 
+                       'examples/laygo2_tech/laygo2_tech.yaml', 
                       ]},
     include_package_data=True,
     python_requires='>=3.0',

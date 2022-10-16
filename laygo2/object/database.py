@@ -1144,7 +1144,9 @@ class Design(BaseDatabase):
         >>> i0 = Instance(libname="tlib", cellname="t0", name="I0", xy=[0, 0])
         >>> print(inst0.xy)
         [100, 100]
-        >>> # Place the instance
+        >>> ######################
+        >>> # Place the instance #
+        >>> ######################
         >>> dsn.place(inst=i0, grid=g, mn=[10,10])
         >>> # Print parameters of the placed instance.
         >>> print(i0.xy)
@@ -1282,7 +1284,9 @@ class Design(BaseDatabase):
                                                vextension0=e0v, hextension0=e0h)
         >>> # Create a design
         >>> dsn = Design(name="mycell", libname="genlib")
-        >>> # Routing on grid 
+        >>> #################
+        >>> # Route on grid #
+        >>> #################
         >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
         >>> route = dsn.route(grid=g, mn=mn_list, 
                               via_tag=[True, None, True, True])
@@ -1385,7 +1389,9 @@ class Design(BaseDatabase):
                                                vextension0=e0v, hextension0=e0h)
         >>> # Create a design
         >>> dsn = Design(name="mycell", libname="genlib")
-        >>> # Via on grid 
+        >>> ##############
+        >>> # Place vias #
+        >>> ##############
         >>> mn_list = [[0, -2], [1, 0], [2, 5]]
         >>> via = dsn.via(grid=g, mn=mn_list)
         >>> # Display generated design.
@@ -1605,6 +1611,9 @@ class Design(BaseDatabase):
                                                vextension0=e0v, hextension0=e0h)
         >>> # Create a design
         >>> dsn = Design(name="mycell", libname="genlib")
+        >>> ###############
+        >>> # Place a pin #
+        >>> ###############
         >>> mn = [[0, 0], [10, 10]]
         >>> pin = dsn.pin(name="pin", grid=g, mn=mn)
         >>> print(pin)

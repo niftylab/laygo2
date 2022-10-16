@@ -25,9 +25,15 @@
 """Advanced example technology module"""
 
 import yaml
+import os
 
 # Technology parameters
-tech_param_path = "laygo2_tech/laygo2_tech.yaml"
+path = os.path.abspath(__file__)
+dir_path = os.path.dirname(path)
+# should be tech_param_path = "laygo2_tech/laygo2_tech.yaml" for actual use
+tech_param_path = dir_path+"/laygo2_tech.yaml"
+print(tech_param_path)
+#tech_param_path = "laygo2_tech/laygo2_tech.yaml"
 
 with open(tech_param_path, 'r') as stream:
     try:

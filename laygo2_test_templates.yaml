@@ -1,0 +1,65 @@
+laygo2_test:
+  nand2:
+    bbox:
+    - - 0
+      - 0
+    - - 210
+      - 200
+    cellname: nand2
+    libname: laygo2_test
+    pins:
+      A:
+        layer:
+        - metal3
+        - pin
+        name: A
+        netname: A
+        xy:
+        - - 145
+          - 90
+        - - 155
+          - 110
+      B:
+        layer:
+        - metal3
+        - pin
+        name: B
+        netname: B
+        xy:
+        - - 25
+          - 90
+        - - 35
+          - 110
+      O:
+        layer:
+        - metal3
+        - pin
+        name: O
+        netname: O
+        xy:
+        - - 175
+          - 60
+        - - 185
+          - 140
+      VDD:
+        layer:
+        - metal2
+        - pin
+        name: VDD
+        netname: VDD
+        xy:
+        - - 0
+          - 185
+        - - 180
+          - 195
+      VSS:
+        layer:
+        - metal2
+        - pin
+        name: VSS
+        netname: VSS
+        xy:
+        - - 0
+          - 5
+        - - 150
+          - 15
