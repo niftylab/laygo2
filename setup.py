@@ -30,6 +30,7 @@ setup(
                        'interface/magic_export.tcl', 
                        'interface/gds_default.layermap', 
                        'examples/laygo2_tech/laygo2_tech.yaml', 
+                       'examples/laygo2_tech/laygo2_tech.layermap', 
                       ]},
     include_package_data=True,
     python_requires='>=3.0',
