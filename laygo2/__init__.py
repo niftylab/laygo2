@@ -42,8 +42,5 @@ from laygo2 import interface
 # Util
 from laygo2 import util
 
-# Examples
-from laygo2.examples import laygo2_tech
-
 #__all__ = ['object', 'util']
 #__all__ = ['object', 'PrimitiveUtil']
