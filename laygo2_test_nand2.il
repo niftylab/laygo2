@@ -228,10 +228,10 @@ _laygo2_generate_rect(cv, list( "poly" "drawing" ), list( list( 0.0120  0.1950  
 _laygo2_generate_rect(cv, list( "poly" "drawing" ), list( list( 0.0420  0.1950  ) list( 0.0480  0.1050  ) ), "None") ; for the Rect object MP0_poly1 
 _laygo2_generate_rect(cv, list( "poly" "drawing" ), list( list( 0.0720  0.1950  ) list( 0.0780  0.1050  ) ), "None") ; for the Rect object MP0_poly2 
 _laygo2_generate_rect(cv, list( "poly" "drawing" ), list( list( 0.1020  0.1950  ) list( 0.1080  0.1050  ) ), "None") ; for the Rect object MP0_poly3 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( -0.0070  0.1770  ) list( 0.0070  0.1230  ) ), "None") ; for the Rect object MP0_metal1_s0 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( 0.0230  0.1770  ) list( 0.0370  0.1230  ) ), "None") ; for the Rect object MP0_metal1_s1 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( 0.0530  0.1770  ) list( 0.0670  0.1230  ) ), "None") ; for the Rect object MP0_metal1_s2 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( 0.0830  0.1770  ) list( 0.0970  0.1230  ) ), "None") ; for the Rect object MP0_metal1_s3 
+_laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( -0.0070  0.1770  ) list( 0.0070  0.1230  ) ), "None") ; for the Rect object MP0_metal1_s0 
+_laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.0230  0.1770  ) list( 0.0370  0.1230  ) ), "None") ; for the Rect object MP0_metal1_s1 
+_laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.0530  0.1770  ) list( 0.0670  0.1230  ) ), "None") ; for the Rect object MP0_metal1_s2 
+_laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.0830  0.1770  ) list( 0.0970  0.1230  ) ), "None") ; for the Rect object MP0_metal1_s3 
 _laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.0230  0.1770  ) list( 0.0370  0.1230  ) ), "None") ; for the Rect object MP0_metal1_d0 
 _laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.0530  0.1770  ) list( 0.0670  0.1230  ) ), "None") ; for the Rect object MP0_metal1_d1 
 _laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.0830  0.1770  ) list( 0.0970  0.1230  ) ), "None") ; for the Rect object MP0_metal1_d2 
@@ -254,71 +254,12 @@ _laygo2_generate_rect(cv, list( "diffusion" "drawing" ), list( list( 0.1700  0.1
 _laygo2_generate_rect(cv, list( "poly" "drawing" ), list( list( 0.1320  0.1950  ) list( 0.1380  0.1050  ) ), "None") ; for the Rect object MP1_poly0 
 _laygo2_generate_rect(cv, list( "poly" "drawing" ), list( list( 0.1620  0.1950  ) list( 0.1680  0.1050  ) ), "None") ; for the Rect object MP1_poly1 
 _laygo2_generate_rect(cv, list( "poly" "drawing" ), list( list( 0.1920  0.1950  ) list( 0.1980  0.1050  ) ), "None") ; for the Rect object MP1_poly2 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( 0.1130  0.1770  ) list( 0.1270  0.1230  ) ), "None") ; for the Rect object MP1_metal1_s0 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( 0.1430  0.1770  ) list( 0.1570  0.1230  ) ), "None") ; for the Rect object MP1_metal1_s1 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( 0.1730  0.1770  ) list( 0.1870  0.1230  ) ), "None") ; for the Rect object MP1_metal1_s2 
+_laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.1130  0.1770  ) list( 0.1270  0.1230  ) ), "None") ; for the Rect object MP1_metal1_s0 
+_laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.1430  0.1770  ) list( 0.1570  0.1230  ) ), "None") ; for the Rect object MP1_metal1_s1 
+_laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.1730  0.1770  ) list( 0.1870  0.1230  ) ), "None") ; for the Rect object MP1_metal1_s2 
 _laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.1430  0.1770  ) list( 0.1570  0.1230  ) ), "None") ; for the Rect object MP1_metal1_d0 
 _laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.1730  0.1770  ) list( 0.1870  0.1230  ) ), "None") ; for the Rect object MP1_metal1_d1 
 _laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.2030  0.1770  ) list( 0.2170  0.1230  ) ), "None") ; for the Rect object MP1_metal1_d2 
 _laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.1320  0.1150  ) list( 0.1680  0.1050  ) ), "None") ; for the Rect object MP1_metal1_g0 
 _laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.1620  0.1150  ) list( 0.1980  0.1050  ) ), "None") ; for the Rect object MP1_metal1_g1 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( 0.1350  0.0850  ) list( 0.1950  0.0950  ) ), "not MPT") ; for the Rect object NoName_0 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.1450  0.0850  ) list( 0.1550  0.0950  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.1750  0.0850  ) list( 0.1850  0.0950  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( 0.1350  0.1050  ) list( 0.1950  0.1150  ) ), "not MPT") ; for the Rect object NoName_3 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.1450  0.1050  ) list( 0.1550  0.1150  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.1750  0.1050  ) list( 0.1850  0.1150  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via2" "drawing" ), list( list( 0.1450  0.0850  ) list( 0.1550  0.0950  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal3" "drawing" ), list( list( 0.1450  0.0750  ) list( 0.1550  0.1250  ) ), "not MPT") ; for the Rect object NoName_7 
-_laygo2_generate_rect(cv, list( "via2" "drawing" ), list( list( 0.1450  0.1050  ) list( 0.1550  0.1150  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( 0.0150  0.0850  ) list( 0.1050  0.0950  ) ), "not MPT") ; for the Rect object NoName_9 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.0250  0.0850  ) list( 0.0350  0.0950  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.0550  0.0850  ) list( 0.0650  0.0950  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.0850  0.0850  ) list( 0.0950  0.0950  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( 0.0150  0.1050  ) list( 0.1050  0.1150  ) ), "not MPT") ; for the Rect object NoName_13 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.0250  0.1050  ) list( 0.0350  0.1150  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.0550  0.1050  ) list( 0.0650  0.1150  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.0850  0.1050  ) list( 0.0950  0.1150  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via2" "drawing" ), list( list( 0.0250  0.0850  ) list( 0.0350  0.0950  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal3" "drawing" ), list( list( 0.0250  0.0750  ) list( 0.0350  0.1250  ) ), "not MPT") ; for the Rect object NoName_18 
-_laygo2_generate_rect(cv, list( "via2" "drawing" ), list( list( 0.0250  0.1050  ) list( 0.0350  0.1150  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( 0.0150  0.0350  ) list( 0.2250  0.0450  ) ), "not MPT") ; for the Rect object NoName_20 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.0250  0.0350  ) list( 0.0350  0.0450  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.0850  0.0350  ) list( 0.0950  0.0450  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.1450  0.0350  ) list( 0.1550  0.0450  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.2050  0.0350  ) list( 0.2150  0.0450  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( 0.1050  0.0550  ) list( 0.1950  0.0650  ) ), "not MPT") ; for the Rect object NoName_25 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.1150  0.0550  ) list( 0.1250  0.0650  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.1750  0.0550  ) list( 0.1850  0.0650  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( 0.0150  0.1350  ) list( 0.2250  0.1450  ) ), "not MPT") ; for the Rect object NoName_28 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.0250  0.1350  ) list( 0.0350  0.1450  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.0850  0.1350  ) list( 0.0950  0.1450  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.1450  0.1350  ) list( 0.1550  0.1450  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.2050  0.1350  ) list( 0.2150  0.1450  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "via2" "drawing" ), list( list( 0.1750  0.0550  ) list( 0.1850  0.0650  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal3" "drawing" ), list( list( 0.1750  0.0450  ) list( 0.1850  0.1550  ) ), "not MPT") ; for the Rect object NoName_34 
-_laygo2_generate_rect(cv, list( "via2" "drawing" ), list( list( 0.1750  0.1350  ) list( 0.1850  0.1450  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( -0.0150  0.0050  ) list( 0.1650  0.0150  ) ), "not MPT") ; for the Rect object NoName_36 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( -0.0050  0.0050  ) list( 0.0050  0.0150  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( -0.0070  0.0030  ) list( 0.0070  0.0230  ) ), "None") ; for the Rect object NoName_metal1 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.0550  0.0050  ) list( 0.0650  0.0150  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.0530  0.0030  ) list( 0.0670  0.0230  ) ), "None") ; for the Rect object NoName_metal1 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.1150  0.0050  ) list( 0.1250  0.0150  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.1130  0.0030  ) list( 0.1270  0.0230  ) ), "None") ; for the Rect object NoName_metal1 
-_laygo2_generate_rect(cv, list( "metal2" "drawing" ), list( list( -0.0150  0.1850  ) list( 0.1950  0.1950  ) ), "not MPT") ; for the Rect object NoName_40 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( -0.0050  0.1850  ) list( 0.0050  0.1950  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( -0.0070  0.1770  ) list( 0.0070  0.1970  ) ), "None") ; for the Rect object NoName_metal1 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.0550  0.1850  ) list( 0.0650  0.1950  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.0530  0.1770  ) list( 0.0670  0.1970  ) ), "None") ; for the Rect object NoName_metal1 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.1150  0.1850  ) list( 0.1250  0.1950  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.1130  0.1770  ) list( 0.1270  0.1970  ) ), "None") ; for the Rect object NoName_metal1 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.1150  0.1850  ) list( 0.1250  0.1950  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.1130  0.1770  ) list( 0.1270  0.1970  ) ), "None") ; for the Rect object NoName_metal1 
-_laygo2_generate_rect(cv, list( "via1" "drawing" ), list( list( 0.1750  0.1850  ) list( 0.1850  0.1950  ) ), "None") ; for the Rect object NoName_contact 
-_laygo2_generate_rect(cv, list( "metal1" "drawing" ), list( list( 0.1730  0.1770  ) list( 0.1870  0.1970  ) ), "None") ; for the Rect object NoName_metal1 
-_laygo2_generate_pin(cv, "A", list( "metal3" "pin" ), list( list( 0.1450  0.0900  ) list( 0.1550  0.1100  ) ) ) ; for the Pin object A 
-_laygo2_generate_pin(cv, "B", list( "metal3" "pin" ), list( list( 0.0250  0.0900  ) list( 0.0350  0.1100  ) ) ) ; for the Pin object B 
-_laygo2_generate_pin(cv, "O", list( "metal3" "pin" ), list( list( 0.1750  0.0600  ) list( 0.1850  0.1400  ) ) ) ; for the Pin object O 
-_laygo2_generate_pin(cv, "VSS", list( "metal2" "pin" ), list( list( 0.0000  0.0050  ) list( 0.1500  0.0150  ) ) ) ; for the Pin object VSS 
-_laygo2_generate_pin(cv, "VDD", list( "metal2" "pin" ), list( list( 0.0000  0.1850  ) list( 0.1800  0.1950  ) ) ) ; for the Pin object VDD 
 _laygo2_save_and_close_layout(cv)
