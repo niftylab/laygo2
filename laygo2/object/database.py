@@ -1116,8 +1116,8 @@ class Design(BaseDatabase):
 
         Parameters
         ----------
-        inst : laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance
-            The instance to be placed.
+        inst : laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance or list
+            The instance to be placed. When inst is a list, the elements in the list are placed in order. 
         grid : laygo2.object.grid.PlacementGrid
             The placement grid where the instance is placed on.
         mn : numpy.ndarray or list
@@ -1125,8 +1125,8 @@ class Design(BaseDatabase):
 
         Returns
         -------
-        laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance :
-            The placed instance.
+        laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance or list(laygo2.object.physical.Instance):
+            The placed instance or a list containing the placed instances.
 
         Example
         -------
@@ -1166,6 +1166,37 @@ class Design(BaseDatabase):
             instances:
                 {'I0': <laygo2.object.physical.Instance object at 0x000002803D57F010>}
             virtual instances:{}
+        >>> # When placing multiple instances by wrapping them with a list.
+        >>> i1 = Instance(libname="tlib", cellname="t1", name="I1", xy=[0, 0])
+        >>> i2 = Instance(libname="tlib", cellname="t2", name="I2", xy=[0, 0])
+        >>> i3 = Instance(libname="tlib", cellname="t3", name="I3", xy=[0, 0])
+        >>> dsn.place(inst= [i1, i2, i3], grid=g, mn=[10,10])
+        >>> print(dsn)
+        <laygo2.object.database.Design object at 0x000002803D4C0F40> 
+            name: mycell 
+            params: None
+            elements: 
+                {'I0': <laygo2.object.physical.Instance object at 
+                        0x000002803D57F010>,
+                 'I1': <laygo2.object.physical.Instance object at 
+                        0x000002803D57F011>,
+                 'I2': <laygo2.object.physical.Instance object at 
+                        0x000002803D57F012>,
+                 'I3': <laygo2.object.physical.Instance object at 
+                        0x000002803D57F013>
+                        }
+            libname:genlib
+            rects:{}
+            paths:{}
+            pins:{}
+            texts:{}
+            instances:
+                {'I0': <laygo2.object.physical.Instance object at 0x000002803D57F010>,
+                 'I1': <laygo2.object.physical.Instance object at 0x000002803D57F011>,
+                 'I2': <laygo2.object.physical.Instance object at 0x000002803D57F012>,
+                 'I3': <laygo2.object.physical.Instance object at 0x000002803D57F013>
+                }
+            virtual instances:{}
 
         See Also
         --------
@@ -1177,11 +1208,11 @@ class Design(BaseDatabase):
         **(Korean)** 인스턴스를 grid위 추상 좌표 mn에 배치하는 함수.
 
         파라미터
-            - inst(laygo2.physical.instance): 배치할 인스턴스.
+            - inst(laygo2.physical.instance or list(laygo2.object.physical.Instance)): 배치할 인스턴스 또는 배치할 인스턴스 들을 갖는 리스트.
             - mn(numpy.ndarray or list): 인스턴스를 배치할 추상좌표.
 
         반환값
-            - laygo2.physical.instance: 좌표가 수정된 인스턴스.
+            - laygo2.physical.instance or list(laygo2.object.physical.Instance) : 좌표가 수정된 인스턴스 또는 좌표가 수정된 인스턴스 들을 갖는 리스트.
         """
         if isinstance(inst, (laygo2.object.Instance, laygo2.object.VirtualInstance)):
             inst = grid.place(inst, mn)
@@ -1189,15 +1220,15 @@ class Design(BaseDatabase):
             return inst
         else:
             matrix = np.asarray(inst)
-            size = matrix.shape
+            size   = matrix.shape
 
             if len(size) == 2:
                 m, n = size
-            else:
+            else: # when 1-dimentional array
                 m, n = 1, size[0]
                 matrix = [matrix]
-            mn_ref = np.array(mn)
 
+            mn_ref = np.array(mn)
             for index in range(m):
                 row = matrix[index]
                 if index != 0:
@@ -1208,20 +1239,20 @@ class Design(BaseDatabase):
                     while matrix[ms][ns] == None:  # Down search
                         ms = ms - 1
                     mn_ref = grid.mn.top_left(matrix[ms][ns])
+
                 for element in row:
-                    if isinstance(
-                        element, (laygo2.object.Instance, laygo2.object.VirtualInstance)
-                    ):
-                        mn_bl = grid.mn.bottom_left(element)
-                        mn_comp = mn_ref - mn_bl
+                    if isinstance( element, (laygo2.object.Instance, laygo2.object.VirtualInstance)):
+                        mn_bl    = grid.mn.bottom_left(element)
+                        mn_comp  = mn_ref - mn_bl
                         inst_sub = grid.place(element, mn_comp)
                         self.append(inst_sub)
-                        mn_ref = grid.mn.bottom_right(element)
+                        mn_ref   = grid.mn.bottom_right(element)
                     else:
                         if element == None:
                             pass
                         elif isinstance(element, int):
-                            mn_ref = mn_ref + [element, 0]
+                            mn_ref = mn_ref + [element, 0] # offset
+            return inst                
 
     def route(self, grid, mn, direction=None, via_tag=None):
         """
