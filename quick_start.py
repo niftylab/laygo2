@@ -82,7 +82,6 @@ dsn.place(grid=pg, inst=ip1, mn=pg.mn.top_right(ip0))
 
 # 5. Create and place wires.
 print("Create wires")
-"""
 # A
 ra0 = dsn.route(grid=r12, mn=r12.mn.bbox(in1.pins["G"]))
 va0 = dsn.via(grid=r12, mn=r12.mn.overlap(ra0, in1.pins["G"], type="array"))
@@ -138,7 +137,7 @@ pvss0 = dsn.pin(name="VSS", grid=r12, mn=r12.mn.bbox(rvss0))
 pvdd0 = dsn.pin(name="VDD", grid=r12, mn=r12.mn.bbox(rvdd0))
 
 print(dsn)
-"""
+
 # 7. Export to physical database.
 print("Export design")
 # abstract = False  # export abstract
@@ -153,7 +152,7 @@ laygo2.interface.gdspy.export(
     physical_unit=1e-9,
     logical_unit=0.001,
     pin_label_height=0.1,
-    # svg_filename=filename+'.svg', png_filename=filename+'.png',
+     svg_filename=filename+'.svg', png_filename=filename+'.png',
     # pin_annotation_layer=['text', 'drawing'], text_height=0.1,abstract_instances=abstract,
 )
 # skill export
