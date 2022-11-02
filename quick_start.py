@@ -22,15 +22,11 @@
 #
 ########################################################################################################################
 
-import numpy as np
-import pprint
 import laygo2
 import laygo2.interface
 
 # should be 'import laygo2_tech as tech' for actual use.
 import laygo2_tech_quick_start as tech
-
-# import laygo2.examples.laygo2_tech as tech
 
 # Parameter definitions ##############
 # Templates
@@ -67,80 +63,55 @@ lib.append(dsn)
 
 # 3. Create instances.
 print("Create instances")
-in0 = tnmos.generate(name="MN0", params={"nf": nf_b})
-sd_swap = False if nf_b % 2 == 1 else True
-in1 = tnmos.generate(name="MN1", params={"nf": nf_a, "sd_swap": sd_swap})
-ip0 = tpmos.generate(name="MP0", transform="MX", params={"nf": nf_b})
-sd_swap = True if nf_b % 2 == 1 else False
-ip1 = tpmos.generate(name="MP1", transform="MX", params={"nf": nf_a, "sd_swap": sd_swap})
+in0 = tnmos.generate(name="MN0", params={"nf": nf_b, "tie": "S"})
+ip0 = tpmos.generate(name="MP0", transform="MX", params={"nf": nf_b, "tie": "S"})
+in1 = tnmos.generate(name="MN1", params={"nf": nf_a, "trackswap": True})
+ip1 = tpmos.generate(name="MP1", transform="MX", params={"nf": nf_a, "tie": "S"})
 
 # 4. Place instances.
-dsn.place(grid=pg, inst=in0, mn=pg.mn[0, 0])
-dsn.place(grid=pg, inst=in1, mn=pg.mn.bottom_right(in0))  # same with pg == in0.bottom_right
-dsn.place(grid=pg, inst=ip0, mn=pg.mn.top_left(in0) + np.array([0, pg.mn.height(ip0)]))  # +height due to MX transform
+dsn.place(grid=pg, inst=in0, mn=[0, 0])
+dsn.place(grid=pg, inst=ip0, mn=pg.mn.top_left(in0) + pg.mn.height_vec(ip0))
+dsn.place(grid=pg, inst=in1, mn=pg.mn.bottom_right(in0))
 dsn.place(grid=pg, inst=ip1, mn=pg.mn.top_right(ip0))
 
 # 5. Create and place wires.
 print("Create wires")
 # A
-ra0 = dsn.route(grid=r12, mn=r12.mn.bbox(in1.pins["G"]))
-va0 = dsn.via(grid=r12, mn=r12.mn.overlap(ra0, in1.pins["G"], type="array"))
-ra1 = dsn.route(grid=r12, mn=r12.mn.bbox(ip1.pins["G"]))
-va1 = dsn.via(grid=r12, mn=r12.mn.overlap(ra1, ip1.pins["G"], type="array"))
-va3, ra2, va4 = dsn.route(grid=r23, mn=[r23.mn.bottom_left(ra0), r23.mn.top_left(ra1)], via_tag=[True, True])
+_mn = [r23.mn(in1.pins["G"])[0], r23.mn(ip1.pins["G"])[0]]
+va0, ra0, va1 = dsn.route(grid=r23, mn=_mn, via_tag=[True, True])
 # B
-rb0 = dsn.route(grid=r12, mn=r12.mn.bbox(in0.pins["G"]))
-vb0 = dsn.via(grid=r12, mn=r12.mn.overlap(rb0, in0.pins["G"], type="array"))
-rb1 = dsn.route(grid=r12, mn=r12.mn.bbox(ip0.pins["G"]))
-vb1 = dsn.via(grid=r12, mn=r12.mn.overlap(rb1, ip0.pins["G"], type="array"))
-vb3, rb2, vb4 = dsn.route(grid=r23, mn=[r23.mn.bottom_left(rb0), r23.mn.top_left(rb1)], via_tag=[True, True])
-# Internal
-if not (nf_a == 1 and nf_b == 1):
-    ri0 = dsn.route(
-        grid=r12,
-        mn=[
-            r12.mn.bottom_left(in0.pins["D"][0]) + np.array([0, 1]),
-            r12.mn.bottom_right(in1.pins["S"][-1]) + np.array([0, 1]),
-        ],
-    )
-    vi0 = [dsn.via(grid=r12, mn=r12.mn.overlap(ri0, i, type="point")) for i in in0.pins["D"]]
-    vi1 = [dsn.via(grid=r12, mn=r12.mn.overlap(ri0, i, type="point")) for i in in1.pins["S"]]
-# Output
-ron0 = dsn.route(
-    grid=r12,
-    mn=[
-        r12.mn.bottom_left(in1.pins["D"][0]) + np.array([0, 2]),
-        r12.mn.bottom_right(in1.pins["D"][-1]) + np.array([0, 2]),
-    ],
-)
-von0 = [dsn.via(grid=r12, mn=r12.mn.overlap(ron0, i, type="point")) for i in in1.pins["D"]]
-rop0 = dsn.route(grid=r12, mn=[r12.mn.bottom_left(ip0.pins["D"][0]), r12.mn.bottom_right(ip1.pins["D"][-1])])
-vop0 = [dsn.via(grid=r12, mn=r12.mn.overlap(rop0, i, type="point")) for i in ip0.pins["D"]]
-vop1 = [dsn.via(grid=r12, mn=r12.mn.overlap(rop0, i, type="point")) for i in ip1.pins["D"]]
-m = r23.mn.bottom_right(ra2)[0] + 1
-vo0, ro0, vo1 = dsn.route(
-    grid=r23, mn=np.array([[m, r23.mn.bottom_right(ron0)[1]], [m, r23.mn.bottom_right(rop0)[1]]]), via_tag=[True, True]
-)
-# VSS
-rvss0 = dsn.route(grid=r12, mn=[r12.mn.bottom_left(in0.pins["S"][0]), r12.mn.bottom_left(in1.pins["S"][0])])
-vvss = [dsn.via(grid=r12, mn=r12.mn.overlap(rvss0, s, type="point")) for s in in0.pins["S"]]
-# VDD
-rvdd0 = dsn.route(grid=r12, mn=[r12.mn.top_left(ip0.pins["S"][0]), r12.mn.top_right(ip1.pins["S"][-1])])
-vvdd = [dsn.via(grid=r12, mn=r12.mn.overlap(rvdd0, s, type="point")) for s in ip0.pins["S"]]
-vvdd += [dsn.via(grid=r12, mn=r12.mn.overlap(rvdd0, s, type="point")) for s in ip1.pins["S"]]
+_mn = [r23.mn(in0.pins["G"])[0], r23.mn(ip0.pins["G"])[0]]
+vb0, rb0, vb1 = dsn.route(grid=r23, mn=_mn, via_tag=[True, True])
+# internal
+_mn = [r12.mn(in0.pins["D"])[1], r12.mn(in1.pins["S"])[0]]
+dsn.route(grid=r23, mn=_mn)
+# output
+_mn = [r12.mn(ip0.pins["D"])[1], r12.mn(ip1.pins["D"])[0]]
+dsn.route(grid=r23, mn=_mn)
+_mn = [r23.mn(in1.pins["D"])[1], r23.mn(ip1.pins["D"])[1]]
+_, rout0, _ = dsn.route(grid=r23, mn=_mn, via_tag=[True, True])
 
 # 6. Create pins.
-pa0 = dsn.pin(name="A", grid=r23, mn=r23.mn.bbox(ra2))
-# pb0 = dsn.pin(name="B", grid=r23, mn=r23.mn.bbox(rb2))
-po0 = dsn.pin(name="O", grid=r23, mn=r23.mn.bbox(ro0))
-pvss0 = dsn.pin(name="VSS", grid=r12, mn=r12.mn.bbox(rvss0))
-pvdd0 = dsn.pin(name="VDD", grid=r12, mn=r12.mn.bbox(rvdd0))
-
-print(dsn)
+pB = dsn.pin(name="B", grid=r23, mn=r23.mn(rb0))
+pA = dsn.pin(name="A", grid=r23, mn=r23.mn(ra0))
+pout0 = dsn.pin(name="O", grid=r23, mn=r23.mn(rout0))
+_mn = [r12.mn(in0.pins["RAIL"])[0], r12.mn(in1.pins["RAIL"])[1]]
+pvss0 = dsn.pin(name="VSS", grid=r12, mn=_mn)
+_mn = [r12.mn(ip0.pins["RAIL"])[0], r12.mn(ip1.pins["RAIL"])[1]]
+pvdd0 = dsn.pin(name="VDD", grid=r12, mn=_mn)
 
 # 7. Export to physical database.
 print("Export design")
-# abstract = False  # export abstract
+# matplotlib export
+mpl_params = tech.tech_params["mpl"]
+fig = laygo2.interface.mpl.export(
+    lib,
+    cellname=None,
+    colormap=mpl_params["colormap"],
+    order=mpl_params["order"],
+    xlim=[-100, 400],
+    ylim=[-100, 300],
+)
 filename = libname + "_" + cellname
 # gds export
 laygo2.interface.gdspy.export(
@@ -152,17 +123,14 @@ laygo2.interface.gdspy.export(
     physical_unit=1e-9,
     logical_unit=0.001,
     pin_label_height=0.1,
-     svg_filename=filename+'.svg', png_filename=filename+'.png',
+    svg_filename=filename + ".svg",
+    png_filename=filename + ".png",
     # pin_annotation_layer=['text', 'drawing'], text_height=0.1,abstract_instances=abstract,
 )
 # skill export
 skill_str = laygo2.interface.skill.export(lib, filename=libname + "_" + cellname + ".il", cellname=None, scale=1e-3)
 # print(skill_str)
 
-# 7-a. Import the GDS file back and display
-# with open(libname+'_'+cellname+'.gds', 'rb') as stream:
-#    pprint.pprint(laygo2.interface.gds.readout(stream, scale=1e-9))
-
-# 8. Export to a template database file.#nat_temp = dsn.export_to_template()
+# 8. Export to a template database file.
 nat_temp = dsn.export_to_template()
 laygo2.interface.yaml.export_template(nat_temp, filename=libname + "_templates.yaml", mode="append")

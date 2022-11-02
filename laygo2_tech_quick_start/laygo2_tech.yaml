@@ -1,98 +1,29 @@
 # Technology parameters for the advanced example technology.
-templates: # Primitive template parameters
-  mos:
-    common: &mos_common # mosfet template common parameters
-      unit_size: [30, 100]
-      pins:
-        S:
-          layer: ['text', 'drawing']
-          xy: [[-10, 0], [10, 80]]
-        D:
-          layer: ['text', 'drawing']
-          xy: [[20, 0], [40, 80]]
-        G:
-          layer: ['text', 'drawing']
-          xy: [[12, 85], [18, 95]]
-    pmos:
-      <<: *mos_common
-      rects:
-        prBoundary:
-          layer: ['prBoundary', 'drawing']
-          xy: [[0, 0], [30, 100]]
-        well:
-          layer: ['nwell', 'drawing']
-          xy: [[-20, 0], [50, 100]]
-        impl:
-          layer: ['pimplant', 'drawing']
-          xy: [[-15, 20], [45, 80]]
-        diff:
-          layer: ['diffusion', 'drawing']
-          xy: [[-10, 25], [40, 75]]
-        poly:
-          layer: ['poly', 'drawing']
-          xy: [[12, 5], [18, 95]]
-        metal1_s:
-          layer: ['metal1', 'drawing']
-          xy: [[-7, 23], [7, 77]]
-        metal1_d:
-          layer: ['metal1', 'drawing']
-          xy: [[23, 23], [37, 77]]
-        metal1_g:
-          layer: ['metal1', 'drawing']
-          xy: [[12, 85], [48, 95]]
-          idx_end: -1
-    nmos:
-      <<: *mos_common
-      rects:
-        prBoundary:
-          layer: ['prBoundary', 'drawing']
-          xy: [[0, 0], [30, 100]]
-        impl:
-          layer: ['nimplant', 'drawing']
-          xy: [[-15, 20], [45, 80]]
-        diff:
-          layer: ['diffusion', 'drawing']
-          xy: [[-10, 25], [40, 75]]
-        poly:
-          layer: ['poly', 'drawing']
-          xy: [[12, 5], [18, 95]]
-        metal1_s:
-          layer: ['metal1', 'drawing']
-          xy: [[-7, 23], [7, 77]]
-        metal1_d:
-          layer: ['metal1', 'drawing']
-          xy: [[23, 23], [37, 77]]
-        metal1_g:
-          layer: ['metal1', 'drawing']
-          xy: [[12, 85], [48, 95]]
-          idx_end: -1
-  via:
-    via_r12_default:
-      rects:
-        contact:
-          layer: ['via1', 'drawing']
-          xy: [[-5, -5], [5, 5]]
-    via_r12_bottomplug:
-      rects:
-        contact:
-          layer: ['via1', 'drawing']
-          xy: [[-5, -5], [5, 5]]
-        metal1:
-          layer: ['metal1', 'drawing']
-          xy: [[-7, -7], [7, 13]]
-    via_r12_topplug:
-      rects:
-        contact:
-          layer: ['via1', 'drawing']
-          xy: [[-5, -5], [5, 5]]
-        metal1:
-          layer: ['metal1', 'drawing']
-          xy: [[-7, -13], [7, 7]]
-    via_r23_default:
-      rects:
-        contact:
-          layer: ['via2', 'drawing']
-          xy: [[-5, -5], [5, 5]]
+mpl: # for matplotlib
+  colormap:
+    prBoundary: ["grey", "none", 0.3]
+    nwell: ["yellowgreen", "none", 0.3]
+    pimplant: ["tomato", "none", 0.3]
+    nimplant: ["olive", "none", 0.3]
+    diffusion: ["r", "r", 0.5]
+    poly: ["b", "b", 0.3]
+    metal1: ["c", "c", 0.5]
+    metal2: ["y", "y", 0.5]
+    metal3: ["g", "g", 0.5]
+    via1: ["indigo", "indigo", 1]
+    via2: ["navy", "navy", 1]
+  order:
+    - prBoundary
+    - nwell
+    - pimplant
+    - nimplant
+    - diffusion
+    - poly
+    - metal1
+    - via1
+    - metal2
+    - via2
+    - metal3
 grids:
   placement_basic:
     type: placement
@@ -123,7 +54,7 @@ grids:
       extension: [15]
     horizontal:
       scope: [0, 200]
-      elements: [10, 40, 60, 90, 110, 140, 160, 190]
+      elements: [0, 40, 60, 90, 110, 140, 160]
       layer:
         - [metal2, drawing]
         - [metal2, drawing]
@@ -162,7 +93,7 @@ grids:
       extension: [15]
     horizontal:
       scope: [0, 200]
-      elements: [10, 40, 60, 90, 110, 140, 160, 190]
+      elements: [0, 40, 60, 90, 110, 140, 160]
       layer:
         - [metal2, drawing]
         - [metal2, drawing]

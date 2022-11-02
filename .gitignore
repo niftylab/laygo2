@@ -104,3 +104,8 @@ venv.bak/
 .mypy_cache/
 
 .idea/
+
+# laygo files
+laygo2_test_nand2.gds
+laygo2_test_nand2.il
+laygo2_test_nand2.svg

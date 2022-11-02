@@ -29,15 +29,15 @@ import os
 
 # Technology parameters
 # should be tech_param_path = "laygo2_tech/laygo2_tech.yaml" for actual use
-#tech_param_path = "laygo2/examples/laygo2_tech/laygo2_tech.yaml"
+# tech_param_path = "laygo2/examples/laygo2_tech/laygo2_tech.yaml"
 tech_param_path = "laygo2_tech_quick_start/laygo2_tech.yaml"
-'''
+"""
 path = os.path.abspath(__file__)
 dir_path = os.path.dirname(path)
 tech_param_path = dir_path+"/laygo2_tech.yaml"
-'''
+"""
 
-with open(tech_param_path, 'r') as stream:
+with open(tech_param_path, "r") as stream:
     try:
         tech_params = yaml.safe_load(stream)
     except yaml.YAMLError as exc:

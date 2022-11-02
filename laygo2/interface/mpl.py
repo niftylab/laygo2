@@ -58,22 +58,21 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
         # Draw a rectangle
         _xy = np.sort(obj.xy, axis=0)  # make sure obj.xy is sorted
         _xy = mxy + np.dot(
-            _xy
-            + np.array(
-                [[-obj.hextension, -obj.vextension], [obj.hextension, obj.vextension]]
-            ),
+            _xy + np.array([[-obj.hextension, -obj.vextension], [obj.hextension, obj.vextension]]),
             tf.Mt(mtf).T,
         )
         size = [_xy[1, 0] - _xy[0, 0], _xy[1, 1] - _xy[0, 1]]
         if obj.layer[0] in colormap:
-            rect = matplotlib.patches.Rectangle((_xy[0, 0], _xy[0, 1]),
-                                                size[0], size[1],
-                                                facecolor = colormap[obj.layer[0]][1],
-                                                edgecolor = colormap[obj.layer[0]][0],
-                                                alpha = colormap[obj.layer[0]][2],
-                                                lw = 2,
-                                                )
-            #ax.add_patch(rect)
+            rect = matplotlib.patches.Rectangle(
+                (_xy[0, 0], _xy[0, 1]),
+                size[0],
+                size[1],
+                facecolor=colormap[obj.layer[0]][1],
+                edgecolor=colormap[obj.layer[0]][0],
+                alpha=colormap[obj.layer[0]][2],
+                lw=2,
+            )
+            # ax.add_patch(rect)
             return [[rect, obj.layer[0]]]
         return []
     elif obj.__class__ == laygo2.object.Path:
@@ -89,15 +88,17 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
             _xy = mxy + np.dot(_obj.xy, tf.Mt(mtf).T)
             size = [_xy[1, 0] - _xy[0, 0], _xy[1, 1] - _xy[0, 1]]
             if obj.layer[0] in colormap:
-                rect = matplotlib.patches.Rectangle((_xy[0, 0], _xy[0, 1]),
-                                                    size[0], size[1],
-                                                    facecolor = colormap[obj.layer[0]][1],
-                                                    edgecolor = colormap[obj.layer[0]][0],
-                                                    alpha = colormap[obj.layer[0]][2],
-                                                    lw = 2,
-                                                    )
+                rect = matplotlib.patches.Rectangle(
+                    (_xy[0, 0], _xy[0, 1]),
+                    size[0],
+                    size[1],
+                    facecolor=colormap[obj.layer[0]][1],
+                    edgecolor=colormap[obj.layer[0]][0],
+                    alpha=colormap[obj.layer[0]][2],
+                    lw=2,
+                )
                 return [[rect, obj.layer[0]]]
-                #ax.add_patch(rect)
+                # ax.add_patch(rect)
             return []
     elif obj.__class__ == laygo2.object.Text:
         # TODO: implement text export function.
@@ -123,12 +124,12 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
 
         _xy0 = obj.xy0
         _xy1 = np.dot(_obj.size, tf.Mt(mtf).T) * np.array([num_rows, num_cols])
-        rect = matplotlib.patches.Rectangle((_xy0[0], _xy0[1]),
-                                            _xy1[0], _xy1[1],
-                                            color ='yellow', edgecolor='black', lw=2)
+        rect = matplotlib.patches.Rectangle(
+            (_xy0[0], _xy0[1]), _xy1[0], _xy1[1], color="yellow", edgecolor="black", lw=2
+        )
         return [[rect, None]]
-        #ax.add_patch(rect)
-        #return True
+        # ax.add_patch(rect)
+        # return True
     elif obj.__class__ == laygo2.object.VirtualInstance:
         pypobjs = []
         if obj.shape is None:
@@ -138,9 +139,7 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
                         obj.name = "NoName"
                     else:
                         pass
-                    _pypobj = _translate_obj(
-                        obj.name + "_" + elem_name, elem, colormap, scale=scale, master=obj
-                    )
+                    _pypobj = _translate_obj(obj.name + "_" + elem_name, elem, colormap, scale=scale, master=obj)
                     pypobjs += _pypobj
         else:  # arrayed VirtualInstance
             for i, j in np.ndindex(tuple(obj.shape.tolist())):  # iterate over obj.shape
@@ -162,7 +161,13 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
 
 
 def export(
-    db, cellname=None, scale=1, colormap=None, alignmap=None, xlim=[-100, 300], ylim=[-100, 300],
+    db,
+    cellname=None,
+    scale=1,
+    colormap=None,
+    order=None,
+    xlim=[-100, 400],
+    ylim=[-100, 300],
 ):
     """
     Export a laygo2.object.database.Library object to a matplotlib plot.
@@ -186,16 +191,12 @@ def export(
         colormap = dict()
 
     # a list to align layered objects in order
-    if alignmap is None:
-        alignmap = []
+    if order is None:
+        order = []
 
     # cell name handling.
-    cellname = (
-        db.keys() if cellname is None else cellname
-    )  # export all cells if cellname is not given.
-    cellname = (
-        [cellname] if isinstance(cellname, str) else cellname
-    )  # convert to a list for iteration.
+    cellname = db.keys() if cellname is None else cellname  # export all cells if cellname is not given.
+    cellname = [cellname] if isinstance(cellname, str) else cellname  # convert to a list for iteration.
 
     fig = []
     for cn in cellname:
@@ -204,10 +205,10 @@ def export(
         ax = _fig.add_subplot(111)
         for objname, obj in db[cn].items():
             pypobjs += _translate_obj(objname, obj, colormap, scale=scale)
-        for _alignobj in alignmap:
+        for _alignobj in order:
             for _pypobj in pypobjs:
                 if _pypobj[1] == _alignobj:  # layer is matched.
-                    if _pypobj[0].__class__ == matplotlib.patches.Rectangle: # Rect
+                    if _pypobj[0].__class__ == matplotlib.patches.Rectangle:  # Rect
                         ax.add_patch(_pypobj[0])
         fig.append(_fig)
     if len(fig) == 1:
