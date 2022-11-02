@@ -33,9 +33,7 @@ import laygo2.object.database
 # Should be `import laygo2_tech as tech` for actual use.
 # import laygo2.examples.laygo2_tech as tech
 import laygo2_tech_quick_start as tech
-
 # import laygo2_tech as tech
-
 
 tech_params = tech.tech_params
 

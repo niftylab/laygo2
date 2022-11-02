@@ -1166,7 +1166,7 @@ class Design(BaseDatabase):
             instances:
                 {'I0': <laygo2.object.physical.Instance object at 0x000002803D57F010>}
             virtual instances:{}
-        >>> # When placing multiple instances by wrapping them with a list.
+        >>> # When placing multiple instances by wrapping them with a list:
         >>> i1 = Instance(libname="tlib", cellname="t1", name="I1", xy=[0, 0])
         >>> i2 = Instance(libname="tlib", cellname="t2", name="I2", xy=[0, 0])
         >>> i3 = Instance(libname="tlib", cellname="t3", name="I3", xy=[0, 0])

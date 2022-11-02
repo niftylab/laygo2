@@ -3,7 +3,7 @@ laygo2_test:
     bbox:
     - - 0
       - 0
-    - - 210
+    - - 270
       - 200
     cellname: nand2
     libname: laygo2_test

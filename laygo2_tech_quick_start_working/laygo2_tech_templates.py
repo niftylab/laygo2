@@ -31,10 +31,9 @@ import laygo2.object.physical
 import laygo2.object.database
 
 # Should be `import laygo2_tech as tech` for actual use.
-# import laygo2.examples.laygo2_tech as tech
+# import laygo2_tech as tech
 import laygo2_tech_quick_start as tech
 
-# import laygo2_tech as tech
 tech_params = tech.tech_params
 templates = tech_params["templates"]
 grids = tech_params["grids"]
@@ -43,7 +42,7 @@ grids = tech_params["grids"]
 def _mos_update_params(params):
     """Make a complete parameter table for mos"""
     unit_size = tech_params["templates"]["mos"]["common"]["unit_size"]
-    unit_size[0, 0] = 2 * unit_size[0, 0]
+    unit_size_half = np.array([unit_size[0]/2, unit_size[1]])
     if "nf" not in params:  # number of fingers
         params["nf"] = 1
     if "nfdmyl" not in params:  # number of left-dummy fingers
@@ -67,13 +66,13 @@ def _mos_update_params(params):
     if "unit_size_dmy" not in params:  # dummy size
         params["unit_size_dmy"] = unit_size
     if "unit_size_bndl" not in params:  # left boundary unit size
-        params["unit_size_bndl"] = unit_size
+        params["unit_size_bndl"] = unit_size_half
     if "unit_size_bndr" not in params:  # right boundary unit size
-        params["unit_size_bndr"] = unit_size
+        params["unit_size_bndr"] = unit_size_half
     if "unit_size_gbndl" not in params:  # left boundary unit size
-        params["unit_size_gbndl"] = unit_size
+        params["unit_size_gbndl"] = unit_size_half
     if "unit_size_gbndr" not in params:  # right boundary unit size
-        params["unit_size_gbndr"] = unit_size
+        params["unit_size_gbndr"] = unit_size_half
     return params
 
 
@@ -82,16 +81,17 @@ def mos_bbox_func(params):
     params = _mos_update_params(params)
     unit_size = params["unit_size_core"]
     xy0 = [0, 0]
-    xy1 = [unit_size[0] * params["nf"] / 2, unit_size[1]]
+    xy1 = [unit_size[0] * params["nf"], unit_size[1]]
     xy = np.array([xy0, xy1])
+    # Increment bbox based on boundary / dummy parameters.
     if params["gbndl"]:
         xy[1, 0] += params["unit_size_gbndl"][0]
     if params["bndl"]:
         xy[1, 0] += params["unit_size_bndl"][0]
     if params["nfdmyl"] > 0:
-        xy[1, 0] += params["unit_size_dmy"][0] * round(params["nfdmyl"] / 2)
+        xy[1, 0] += params["unit_size_dmy"][0] * round(params["nfdmyl"])
     if params["nfdmyr"] > 0:
-        xy[1, 0] += params["unit_size_dmy"][0] * round(params["nfdmyr"] / 2)
+        xy[1, 0] += params["unit_size_dmy"][0] * round(params["nfdmyr"])
     if params["bndr"]:
         xy[1, 0] += params["unit_size_bndr"][0]
     if params["gbndr"]:
@@ -114,87 +114,83 @@ def _mos_route(devtype, params, offset=[0, 0]):
     offset_rail[0] = offset[0]
     if params["bndl"]:
         offset[0] += params["unit_size_bndl"][0]
+        offset_rail[0] -= params["unit_size_bndl"][0]
     offset_dmyl[0] = offset[0]
-    offset[0] += params["unit_size_dmy"][0] * round(params["nfdmyl"] / 2)
-    offset_dmyr[0] = offset[0] + params["unit_size_core"][0] * round(params["nf"] / 2)
+    offset[0] += params["unit_size_dmy"][0] * round(params["nfdmyl"])
+    offset_dmyr[0] = offset[0] + params["unit_size_core"][0] * round(params["nf"])
     nelements = dict()
-    # Basic terminals
-    if devtype == "nmos" or devtype == "pmos":
-        ref_temp_name = "nmos"  # template for param calculations
-        ref_dmy_temp_name = "nmos"  # dummy template for param calculations
-        ref_pin_name = "S"  # left-most pin for parameter calculations
-        name_list = ["G", "S", "D"]
-        if params["trackswap"]:  # source-drain track swap
-            yidx_list = [3, 2, 1]  # y-track list
-        else:
-            yidx_list = [3, 1, 2]
-        pin_name_list = ["G", "S", "D"]  # pin nam list to connect
-    for _name, _yidx, _pin_name in zip(name_list, yidx_list, pin_name_list):
+    # Base parameters
+    ref_temp_name = "nmos"  # template for param calculations
+    name_list = ["G", "S", "D"]
+    if params["trackswap"]:  # source-drain track swap
+        yidx_list = [3, 2, 1]  # y-track list
+    else:
+        yidx_list = [3, 1, 2]
+        #pin_name_list = ["G", "S", "D"]  # pin name list to connect
+    for _name, _yidx in zip(name_list, yidx_list):
         if params["tie"] == _name:
             continue  # do not generate routing elements
         # compute routing cooridnates
-        x0 = templates[ref_temp_name]["pins"][_pin_name]["xy"][0][0]
-        x1 = templates[ref_temp_name]["pins"][_pin_name]["xy"][1][0]
-        x = round((x0 + x1) / 2) + offset[0]  # center coordinate
-        x0 = x
-        x1 = x + params["unit_size_core"][0] * round(params["nf"] / 2 - 1)
-        if _pin_name == ref_pin_name:  # extend route to S1
-            x1 += params["unit_size_core"][0]
+        x0 = templates['mos'][ref_temp_name]["pins"][_name]["xy"][0][0]
+        x1 = templates['mos'][ref_temp_name]["pins"][_name]["xy"][1][0]
+        if _name == "G":
+            x1 += params["unit_size_core"][0] * (params["nf"] - 1)
+        if _name == "S":
+            x1 += params["unit_size_core"][0] * (2 * round((params["nf"]-1)/2))
+        if _name == "D":
+            x1 += params["unit_size_core"][0] * (2 * (round(params["nf"]/2)-1))
         y = grids["routing_12_cmos"]["horizontal"]["elements"][_yidx] + offset[1]
-        vextension = round(grids["routing_12_cmos"]["horizontal"]["width"][_yidx] / 2)
+        vextension = round(grids["routing_12_cmos"]["horizontal"]["width"][_yidx]/2)
+        hextension = 0
         if x0 == x1:  # zero-size wire
             hextension = grids["routing_12_cmos"]["vertical"]["extension0"][0]
-            if _pin_name == "G0" and params["nf"] == 2:  # extend G route when nf is 2 to avoid DRC errror
+            if _name == "G" and params["nf"] == 2:  # extend G route when nf is 2 to avoid DRC errror
                 hextension = hextension + 55
             elif (
-                _pin_name == "D0" and params["nf"] == 2 and params["tie"] != "D"
+                _name == "D" and params["nf"] == 2 and params["tie"] != "D"
             ):  # extend D route when nf is 2 and not tied with D
                 hextension = hextension + 55
             elif (
-                _pin_name == "S0" and params["nf"] == 2 and params["tie"] != "S"
+                _name == "S" and params["nf"] == 2 and params["tie"] != "S"
             ):  # extend S route when nf is 2 and not tied with S
                 hextension = hextension + 55
-        else:
-            hextension = grids["routing_12_cmos"]["vertical"]["extension"][0] + 25
+            else:
+                hextension = grids["routing_12_cmos"]["vertical"]["extension"][0] + 25
         rxy = [[x0, y], [x1, y]]
         rlayer = grids["routing_12_cmos"]["horizontal"]["layer"][_yidx]
-        # metal routing
-        color = grids["routing_12_cmos"]["horizontal"]["ycolor"][_yidx]
+        # horizontal metal routing
+        color = "not MPT"
         rg = laygo2.object.Rect(
             xy=rxy, layer=rlayer, name="R" + _name + "0", hextension=hextension, vextension=vextension, color=color
         )
         nelements["R" + _name + "0"] = rg
         # via
-        vname = grids["routing_12_cmos"]["via"]["map"][0][_yidx]
-        idx = round(params["nf"] / 2)
-        if _pin_name == ref_pin_name:  # extend route to S1
-            idx += 1
-        # Create the via structure.
-        ivia_nelements = dict()
-        for rn, rpar in tech_params["templates"]["via_r12_default"]["rects"].items():
-            ivia_nelements[rn] = laygo2.object.Rect(xy=rpar["xy"], layer=rpar["layer"], name=rn)
-        ivia = laygo2.object.VirtualInstance(
-            name="IV" + _name + "0",
-            xy=[x, y],
-            libname="mylib",
-            cellname="myvcell_devtype",
-            native_elements=ivia_nelements,
-            shape=[idx, 1],
-            pitch=params["unit_size_core"],
-            unit_size=params["unit_size_core"],
-            transform="R0",
-            pins=None,
-        )
-        nelements["IV" + _name + "0"] = ivia
-    '''
+        x0 = templates['mos'][ref_temp_name]["pins"][_name]["xy"][0][0]
+        x1 = templates['mos'][ref_temp_name]["pins"][_name]["xy"][1][0]
+        x = (x0+x1)/2
+        if _name == "G":
+            idx = params["nf"]
+        if _name == "S":
+            idx = int(params["nf"]/2) + 1
+        if _name == "D":
+            idx = int((params["nf"]-1)/2) + 1
+        if _name == "G":
+            ivia_pitch=params["unit_size_core"]
+        else:
+            ivia_pitch=np.array([params["unit_size_core"][0]*2, params["unit_size_core"][1]])
+        for ivia_idx in range(0, idx):
+            for rn, rpar in tech_params["templates"]["via"]["via_r12_default"]["rects"].items():
+                #ivia_nelements[rn] = laygo2.object.Rect(xy=rpar["xy"], layer=rpar["layer"], name=rn)
+                _xy = np.array([x + ivia_pitch[0]*ivia_idx, y]) + rpar["xy"]
+                nelements["IV" + _name + rn + str(ivia_idx)] = laygo2.object.Rect(xy=_xy, layer=rpar["layer"], name=rn)
     # Horizontal rail
-    x0 = templates[ref_temp_name]["pins"][ref_pin_name]["xy"][0][0]
-    x1 = templates[ref_temp_name]["pins"][ref_pin_name]["xy"][1][0]
+    x0 = templates['mos'][ref_temp_name]["pins"]["S"]["xy"][0][0]
+    x1 = templates['mos'][ref_temp_name]["pins"]["S"]["xy"][1][0]
     x = round((x0 + x1) / 2) + offset_rail[0]  # center coordinate
     x0 = x
-    x1 = x + params["unit_size_core"][0] * round(params["nf"] / 2)
-    x1 += params["unit_size_dmy"][0] * round(params["nfdmyl"] / 2)
-    x1 += params["unit_size_dmy"][0] * round(params["nfdmyr"] / 2)
+    x1 = x + params["unit_size_core"][0] * round(params["nf"])
+    x1 += params["unit_size_dmy"][0] * round(params["nfdmyl"])
+    x1 += params["unit_size_dmy"][0] * round(params["nfdmyr"])
     if params["bndl"]:
         x1 += params["unit_size_bndl"][0]
     if params["bndr"]:
@@ -204,12 +200,13 @@ def _mos_route(devtype, params, offset=[0, 0]):
     hextension = grids["routing_12_cmos"]["vertical"]["extension"][0]
     rxy = [[x0, y], [x1, y]]
     rlayer = grids["routing_12_cmos"]["horizontal"]["layer"][0]
-    color = grids["routing_12_cmos"]["horizontal"]["ycolor"][0]
+    color = "not MPT"
     # metal routing
     rg = laygo2.object.Rect(
         xy=rxy, layer=rlayer, name="RRAIL0", hextension=hextension, vextension=vextension, color=color
     )
     nelements["RRAIL0"] = rg
+    '''
     # Tie to rail
     if params["tie"] is not None:
         # routing
@@ -347,6 +344,7 @@ def _mos_route(devtype, params, offset=[0, 0]):
                 color=color,
             )
         '''
+    return nelements
 
 
 def mos_pins_func(devtype, params):
@@ -412,16 +410,19 @@ def mos_generate_func(devtype, name=None, shape=None, pitch=np.array([0, 0]), tr
         for i in range(idx_start, nf + idx_end, idx_step):
             rxy = rpar["xy"] + np.array([i, 0]) * unit_size
             nelements[rn + str(i)] = laygo2.object.Rect(xy=rxy, layer=rpar["layer"], name=rn + str(i))
-    # if 'rects_merged' in tech_params['templates']['mos'][devtype]:
-    #    for rn, rpar in tech_params['templates']['mos'][devtype]['rects_merged'].items():
-    #        rxy = np.array([[rpar['xy'][0][0], rpar['xy'][0][1]], [rpar['xy'][1][0] + unit_size[0] * (nf - 1), rpar['xy'][1][1]]])
-    #        nelements[rn] = laygo2.object.Rect(xy=rxy, layer=rpar['layer'], name=rn)
+    
+    # Create routing structures 
+    nelements.update(_mos_route(devtype=devtype, params=params))
 
     # Create pins
-    pins = mos_pins_func(devtype=devtype, params=params)
-    nelements.update(pins)  # Add physical pin structures to the virtual object.
+    # pins = mos_pins_func(devtype=devtype, params=params)
+    # nelements.update(pins)  # Add physical pin structures to the virtual object.
 
-    inst_unit_size = unit_size * np.array([nf, 1])
+    #inst_unit_size = unit_size * np.array([nf, 1])
+    # Unit size
+    inst_xy = mos_bbox_func(params=params)
+    inst_unit_size = [inst_xy[1, 0] - inst_xy[0, 0], inst_xy[1, 1] - inst_xy[0, 1]]
+    
     # Generate and return the final instance
     inst = laygo2.object.VirtualInstance(
         name=name,
@@ -433,7 +434,7 @@ def mos_generate_func(devtype, name=None, shape=None, pitch=np.array([0, 0]), tr
         pitch=pitch,
         transform=transform,
         unit_size=inst_unit_size,
-        pins=pins,
+        #pins=pins,
     )
     return inst
 

@@ -32,3 +32,4 @@ import laygo2.interface.bag         # Berkeley Analog Generator
 import laygo2.interface.skillbridge # Uni. Heidelberg's skillbridge
 import laygo2.interface.yaml        # Pyyaml
 import laygo2.interface.magic       # Magic's tcl
+import laygo2.interface.mpl         # matplotlib
