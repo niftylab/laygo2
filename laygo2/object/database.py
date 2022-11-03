@@ -668,8 +668,8 @@ class Design(BaseDatabase):
     >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
     >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
     >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> xcolor = CM([None], dtype=object)  # not multipatterned
+    >>> ycolor = CM([None]*3, dtype=object) 
     >>> primary_grid = 'horizontal'
     >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
     >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -1300,8 +1300,8 @@ class Design(BaseDatabase):
         >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-        >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-        >>> ycolor = CM(['not MPT']*3, dtype=object) 
+        >>> xcolor = CM([None], dtype=object)  # not multipatterned
+        >>> ycolor = CM([None]*3, dtype=object) 
         >>> primary_grid = 'horizontal'
         >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -1405,8 +1405,8 @@ class Design(BaseDatabase):
         >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-        >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-        >>> ycolor = CM(['not MPT']*3, dtype=object) 
+        >>> xcolor = CM([None], dtype=object)  # Not multipatterned
+        >>> ycolor = CM([None]*3, dtype=object) 
         >>> primary_grid = 'horizontal'
         >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0') 
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -1509,8 +1509,8 @@ class Design(BaseDatabase):
         >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-        >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-        >>> ycolor = CM(['not MPT']*3, dtype=object) 
+        >>> xcolor = CM([None], dtype=object)  # not multipatterned
+        >>> ycolor = CM([None]*3, dtype=object) 
         >>> primary_grid = 'horizontal'
         >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -1627,8 +1627,8 @@ class Design(BaseDatabase):
         >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-        >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-        >>> ycolor = CM(['not MPT']*3, dtype=object) 
+        >>> xcolor = CM([None], dtype=object)  # Not multipatterned
+        >>> ycolor = CM([None]*3, dtype=object) 
         >>> primary_grid = 'horizontal'
         >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)

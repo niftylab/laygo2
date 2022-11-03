@@ -131,7 +131,11 @@ def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0
         mxy = master.xy
         mtf = master.transform
     if obj.__class__ == laygo2.object.Rect:
-        color = obj.color  # coloring func. added
+        # coloring
+        if obj.color == None:
+            color = "not MPT"
+        else:
+            color = obj.color
         # Invoke _laygo2_generate_rect( cv layer bbox ) in {header_filename}
         _xy = np.sort(obj.xy, axis=0)  # make sure obj.xy is sorted
         _xy = mxy + np.dot(

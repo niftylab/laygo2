@@ -16,7 +16,7 @@ Laygo2 contains the following subpackages:
 
 * **laygo2.object**: implements core object classes for physical layout structures and design hierarchies.
 
-* **laygo2.interface**: implements interfaces to external data structures and EDA tools (yaml, skill, BAG, GDS, and so on).
+* **laygo2.interface**: implements interfaces to external data structures and EDA tools (**yaml**, **skill**, **BAG**, **GDS**, **matplotlib** and so on).
 
 * **laygo2.util**: implements utility functions for internal use.
 

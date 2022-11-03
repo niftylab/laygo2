@@ -334,7 +334,7 @@ def test_grid_RoutingGrid():
                                         vextension=vextension,
                                         hextension=hextension, vlayer=vlayer, hlayer=hlayer, viamap=viamap,
                                         pin_vlayer=vlayer, pin_hlayer=hlayer,
-                                        xcolor=["Not MPT"], ycolor=["Not MPT"]
+                                        xcolor=[None], ycolor=[None]
                                         )
     test_pair = [
         [g3[2, 5], np.array([20, 225])],

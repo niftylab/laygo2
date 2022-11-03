@@ -3,7 +3,7 @@
 
 ## Introduction
 
-**The LAYout with Gridded Object 2 (laygo2)** package is a Python-based layout generation framework with the following goals:
+**The LAYout with Gridded Object 2 (laygo2)** package is a Python-based layout generation framework to achieve the following goals:
 
 * **Automation** and reuse of layout generation process.
 
@@ -17,10 +17,10 @@ laygo2 extends the capability of its previous version (**[laygo](https://ieeexpl
 **Berkeley Analog Generator2 (BAG2)**.
 
 ## Quick trial
-Example procedures to install and generate simple structures are introduced in the **[Trial](trial.md)** page to help users to understand the basic dynamics of laygo2.
+For example procedures to install and generate simple structures, see the **[Trial](trial.md)** page.
 
 ## API docmentation
-The anotomy of laygo2 is described in the **[API reference](laygo2.rst)** page.
+Please see the latest **[API reference](laygo2.rst)** for the anatomy of laygo2.
 
 ## Typical design flow
 1. **Load technology** parameters, primitive templates, and grids from _laygo2_tech_.

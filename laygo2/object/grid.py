@@ -2824,8 +2824,8 @@ class RoutingGrid(Grid):
     >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
     >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
     >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+    >>> ycolor = CM([None]*3, dtype=object) 
     >>> primary_grid = 'horizontal'
     >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
     >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -2877,8 +2877,8 @@ class RoutingGrid(Grid):
     >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
     >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
     >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+    >>> ycolor = CM([None]*3, dtype=object) 
     >>> primary_grid = 'horizontal'
     >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
     >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -2930,8 +2930,8 @@ class RoutingGrid(Grid):
     >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
     >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
     >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+    >>> ycolor = CM([None]*3, dtype=object) 
     >>> primary_grid = 'horizontal'
     >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
     >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -2979,8 +2979,8 @@ class RoutingGrid(Grid):
     >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
     >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
     >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+    >>> ycolor = CM([None]*3, dtype=object) 
     >>> primary_grid = 'horizontal'
     >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
     >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -3028,8 +3028,8 @@ class RoutingGrid(Grid):
     >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
     >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
     >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+    >>> ycolor = CM([None]*3, dtype=object) 
     >>> primary_grid = 'horizontal'
     >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
     >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -3070,8 +3070,8 @@ class RoutingGrid(Grid):
     >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
     >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
     >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+    >>> ycolor = CM([None]*3, dtype=object) 
     >>> primary_grid = 'horizontal'
     >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
     >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -3112,8 +3112,8 @@ class RoutingGrid(Grid):
     >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
     >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
     >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+    >>> ycolor = CM([None]*3, dtype=object) 
     >>> primary_grid = 'horizontal'
     >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
     >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -3161,8 +3161,8 @@ class RoutingGrid(Grid):
     >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
     >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
     >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+    >>> ycolor = CM([None]*3, dtype=object) 
     >>> primary_grid = 'horizontal'
     >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
     >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -3210,8 +3210,8 @@ class RoutingGrid(Grid):
     >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
     >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
     >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+    >>> ycolor = CM([None]*3, dtype=object) 
     >>> primary_grid = 'horizontal'
     >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
     >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -3259,8 +3259,8 @@ class RoutingGrid(Grid):
     >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
     >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
     >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+    >>> ycolor = CM([None]*3, dtype=object) 
     >>> primary_grid = 'horizontal'
     >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
     >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -3308,8 +3308,8 @@ class RoutingGrid(Grid):
     >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
     >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
     >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+    >>> ycolor = CM([None]*3, dtype=object) 
     >>> primary_grid = 'horizontal'
     >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
     >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -3361,8 +3361,8 @@ class RoutingGrid(Grid):
     >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
     >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
     >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-    >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-    >>> ycolor = CM(['not MPT']*3, dtype=object) 
+    >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+    >>> ycolor = CM([None]*3, dtype=object) 
     >>> primary_grid = 'horizontal'
     >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
     >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -3506,8 +3506,8 @@ class RoutingGrid(Grid):
         >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-        >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-        >>> ycolor = CM(['not MPT']*3, dtype=object) 
+        >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+        >>> ycolor = CM([None]*3, dtype=object) 
         >>> primary_grid = 'horizontal'
         >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -3659,8 +3659,8 @@ class RoutingGrid(Grid):
         >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-        >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-        >>> ycolor = CM(['not MPT']*3, dtype=object) 
+        >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+        >>> ycolor = CM([None]*3, dtype=object) 
         >>> primary_grid = 'horizontal'
         >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -3768,8 +3768,6 @@ class RoutingGrid(Grid):
                         color = self.xcolor[
                             __mn[0][0] % self.xcolor.shape[0]
                         ]  # xcolor is determined by its grid layer.
-                    else:
-                        color = "not MPT"
                 else:
                     width = self.hwidth[__mn[0][1]]
                     hextension = self.hextension0[__mn[0][1]]
@@ -3779,8 +3777,6 @@ class RoutingGrid(Grid):
                         color = self.ycolor[
                             __mn[0][1] % self.ycolor.shape[0]
                         ]  # ycolor is determined by its grid layer.
-                    else:
-                        color = "not MPT"
             else:
                 if (xy0[0] == xy1[0]) or (direction == "vertical"):  # vertical routing
                     width = self.vwidth[__mn[0][0]]
@@ -3791,8 +3787,6 @@ class RoutingGrid(Grid):
                         color = self.xcolor[
                             __mn[0][0] % self.xcolor.shape[0]
                         ]  # xcolor is determined by its grid layer.
-                    else:
-                        color = "not MPT"
                 else:  # horizontal routing
                     width = self.hwidth[__mn[0][1]]
                     hextension = self.hextension[__mn[0][1]]
@@ -3802,8 +3796,6 @@ class RoutingGrid(Grid):
                         color = self.ycolor[
                             __mn[0][1] % self.ycolor.shape[0]
                         ]  # ycolor is determined by its grid layer.
-                    else:
-                        color = "not MPT"
             p = laygo2.object.physical.Rect(
                 xy=_xy,
                 layer=layer,
@@ -3859,8 +3851,8 @@ class RoutingGrid(Grid):
         >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-        >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-        >>> ycolor = CM(['not MPT']*3, dtype=object) 
+        >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+        >>> ycolor = CM([None]*3, dtype=object) 
         >>> primary_grid = 'horizontal'
         >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -3954,8 +3946,8 @@ class RoutingGrid(Grid):
         >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-        >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-        >>> ycolor = CM(['not MPT']*3, dtype=object) 
+        >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+        >>> ycolor = CM([None]*3, dtype=object) 
         >>> primary_grid = 'horizontal'
         >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
@@ -4083,8 +4075,8 @@ class RoutingGrid(Grid):
         >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-        >>> xcolor = CM(['not MPT'], dtype=object)  # 'not MPT' for non-multipatterning 
-        >>> ycolor = CM(['not MPT']*3, dtype=object) 
+        >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
+        >>> ycolor = CM([None]*3, dtype=object) 
         >>> primary_grid = 'horizontal'
         >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)

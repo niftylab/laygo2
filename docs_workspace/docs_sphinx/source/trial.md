@@ -48,8 +48,8 @@ Users need to set up the following files in the **laygo2_tech** directory to ena
     laygo2_tech_grids.py      # for grids
     laygo2_tech.yaml          # for technology parameters
 
-A bare-minimum tech setup for quick_start.py can be found [here](https://github.com/niftylab/laygo2/tree/master/laygo2/examples/laygo2_tech).
-A more complete tech setup example for **gpdk045** can be found [here](https://github.com/niftylab/laygo2_workspace_gpdk045/tree/master/laygo2_tech_example).
+A bare-minimum tech setup for quick_start.py can be found **[here](https://github.com/niftylab/laygo2/tree/master/laygo2/examples/laygo2_tech)**.
+A more complete tech setup example for **gpdk045** can be found **[here](https://github.com/niftylab/laygo2_workspace_gpdk045/tree/master/laygo2_tech_example)**.
 
 ## Simple gate generation
 
@@ -66,13 +66,12 @@ The resulting layout of the NAND gate is shown in the figure below:
 
 ## Trial in SKY130 technology
 
-An example tutorial of laygo2 in SkyWater [SKY130](https://skywater-pdk.readthedocs.io/en/main/)
- technology can be found [here](https://laygo2-sky130-docs.readthedocs.io/en/latest/).
+An example tutorial of laygo2 in SkyWater **[SKY130](https://skywater-pdk.readthedocs.io/en/main/)**
+ technology can be found **[here](https://laygo2-sky130-docs.readthedocs.io/en/latest/)**.
 
 The generated layout of a D-flip-flop is shown in the figure below:
 
 ![sky130 dff2x](../assets/img/trial_sky130_dff.png "sky130 dff2x")
 
-A colab version of the tutorial is provided as well. Check [this link](https://colab.research.google.com/drive/1dToEQe7500TUNOPN2aPTJGRgcbbNsqhj#scrollTo=qHTHuUmTACM_).
-
+A colab version of the tutorial is provided as well. Check **[this link](https://colab.research.google.com/drive/1dToEQe7500TUNOPN2aPTJGRgcbbNsqhj?usp=sharing)**.
 ![sky130 dff2x colab](../assets/img/trial_sky130_dff_colab.png "sky130 dff2x colab")
