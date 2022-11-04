@@ -128,7 +128,7 @@ def _conv_slice_to_list(slice_obj, start_def=0, stop_def=100, step_def=1):
     Example
     -------
     >>> import laygo2
-    >>> laygo2.object.grid._conv_slice_to_list(slice(0, 10, 2))               
+    >>> laygo2.object.grid._conv_slice_to_list(slice(0, 10, 2))
     [0, 2, 4, 6, 8]
     """
     if slice_obj.start is None:
@@ -159,7 +159,7 @@ def _conv_bbox_to_array(bbox):
     -------
     >>> import laygo2
     >>> import numpy as np
-    >>> laygo2.object.grid._conv_bbox_to_array(np.array([[0, 0], [1, 2]])) 
+    >>> laygo2.object.grid._conv_bbox_to_array(np.array([[0, 0], [1, 2]]))
     array([[[0, 0], [1, 0]],
            [[0, 1], [1, 1]],
            [[0, 2], [1, 2]]])
@@ -186,7 +186,7 @@ def _conv_bbox_to_list(bbox):
     -------
     >>> import laygo2
     >>> import numpy as np
-    >>> laygo2.object.grid._conv_bbox_to_list(np.array([[0, 0], [1, 2]])) 
+    >>> laygo2.object.grid._conv_bbox_to_list(np.array([[0, 0], [1, 2]]))
     [[0, 0], [1, 0], [0, 1], [1, 1], [0, 2], [1, 2]]
     """
     array = list()
@@ -338,9 +338,7 @@ class CircularMapping:
         if isinstance(pos, (int, np.integer)):
             return self.elements[pos % self.shape[0]]
         elif isinstance(pos, slice):
-            return self.__getitem__(
-                pos=_conv_slice_to_list(slice_obj=pos, stop_def=self.shape[0])
-            )
+            return self.__getitem__(pos=_conv_slice_to_list(slice_obj=pos, stop_def=self.shape[0]))
         elif isinstance(pos, np.ndarray):
             return np.array([self.__getitem__(pos=p) for p in pos])
         elif isinstance(pos, list):
@@ -366,14 +364,7 @@ class CircularMapping:
 
     def summarize(self):
         """Return the summary of the object information."""
-        return (
-            self.__repr__() + " "
-            "class: "
-            + self.__class__.__name__
-            + ", "
-            + "elements: "
-            + str(self.elements)
-        )
+        return self.__repr__() + " " "class: " + self.__class__.__name__ + ", " + "elements: " + str(self.elements)
 
 
 class CircularMappingArray(CircularMapping):
@@ -396,7 +387,7 @@ class CircularMappingArray(CircularMapping):
 
         Returns
         -------
-        numpy.ndarray 
+        numpy.ndarray
 
         Example
         -------
@@ -437,9 +428,7 @@ class CircularMappingArray(CircularMapping):
                 idx = _extend_index_dim(idx, p, self.shape[i])
             idx = np.asarray(idx)
             # iterate and generate the list to return
-            item = np.empty(
-                idx.shape[:-1], dtype=self.dtype
-            )  # -1 because the tuples in idx are flatten.
+            item = np.empty(idx.shape[:-1], dtype=self.dtype)  # -1 because the tuples in idx are flatten.
             for i, _null in np.ndenumerate(item):
                 item[i] = self.__getitem__(pos=tuple(idx[i]))
             return np.asarray(item)
@@ -447,15 +436,15 @@ class CircularMappingArray(CircularMapping):
 
 class _AbsToPhyGridConverter:
     """
-    An internal class that converts abstract coordinates into physical 
-    coordinates. Conversely, conditional operators convert physical 
+    An internal class that converts abstract coordinates into physical
+    coordinates. Conversely, conditional operators convert physical
     coordinates into abstract coordinates.
 
     .. image:: ../assets/img/user_guide_abs2phy.png
 
     Notes
     -----
-    **(Korean)** 추상 좌표를 물리 좌표로 변환하는 클래스, 조건부연산은 역변환을 
+    **(Korean)** 추상 좌표를 물리 좌표로 변환하는 클래스, 조건부연산은 역변환을
     수행한다.
     """
 
@@ -491,7 +480,7 @@ class _AbsToPhyGridConverter:
     # Access functions.
     def __call__(self, pos):
         """
-        Convert abstract coordinates of the master grid into corresponding 
+        Convert abstract coordinates of the master grid into corresponding
         physical coordinates.
 
         Parameters
@@ -526,7 +515,7 @@ class _AbsToPhyGridConverter:
 
     def __getitem__(self, pos):
         """
-        Convert abstract coordinates of the master grid into corresponding 
+        Convert abstract coordinates of the master grid into corresponding
         physical coordinates.
 
         Parameters
@@ -557,13 +546,9 @@ class _AbsToPhyGridConverter:
         -----
         **(Korean)** 추상 좌표를 master 좌표계에서 대응되는 물리 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (
-            issubclass(self.master.__class__, OneDimGrid)
-        ):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
             return self._getitem_1d(pos)
-        if (self.master.__class__.__name__ == "Grid") or (
-            issubclass(self.master.__class__, Grid)
-        ):
+        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
             return self._getitem_2d(pos)
         else:
             return None
@@ -572,17 +557,13 @@ class _AbsToPhyGridConverter:
         """An internal function of __getitem__() for 1-d grids."""
         # Check if pos has multiple elements.
         if isinstance(pos, slice):
-            return self._getitem_1d(
-                _conv_slice_to_list(slice_obj=pos, stop_def=self.master.shape[0])
-            )
+            return self._getitem_1d(_conv_slice_to_list(slice_obj=pos, stop_def=self.master.shape[0]))
         elif isinstance(pos, np.ndarray):
             return self._getitem_1d(pos.tolist())
         elif isinstance(pos, list):
             return np.array([self._getitem_1d(p) for p in pos])
         elif pos is None:
-            raise TypeError(
-                "_AbsToPhyConverter._getitem_1d does not accept None as its input."
-            )
+            raise TypeError("_AbsToPhyConverter._getitem_1d does not accept None as its input.")
         else:
             # pos is a single element. Compute quotient and modulo for grid extension.
             quo = 0
@@ -613,9 +594,7 @@ class _AbsToPhyGridConverter:
         x = self.master.x[pos[0]]
         y = self.master.y[pos[1]]
         # TODO: Refactor the following code to avoid the use of double for loops and list comprehensions.
-        if (not isinstance(x, np.ndarray)) and (
-            not isinstance(y, np.ndarray)
-        ):  # x and y are scalars.
+        if (not isinstance(x, np.ndarray)) and (not isinstance(y, np.ndarray)):  # x and y are scalars.
             return np.array([x, y])
         if not isinstance(x, np.ndarray):  # x is a scalar.
             return np.array([np.array([x, _y]) for _y in y])
@@ -633,7 +612,7 @@ class _AbsToPhyGridConverter:
     # Reverse-access operators (comparison operators are used for reverse-access).
     def __eq__(self, other):
         """
-        Convert physical coordinates into abstract coordinates of the master grid 
+        Convert physical coordinates into abstract coordinates of the master grid
         satisfying conditional operations.
 
         Parameters
@@ -668,7 +647,7 @@ class _AbsToPhyGridConverter:
 
     def __lt__(self, other):
         """
-        Convert physical coordinates into abstract coordinates of the master grid 
+        Convert physical coordinates into abstract coordinates of the master grid
         satisfying conditional operations.
 
         Parameters
@@ -699,13 +678,9 @@ class _AbsToPhyGridConverter:
         -----
         **(Korean)** 물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (
-            issubclass(self.master.__class__, OneDimGrid)
-        ):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
             return self._lt_1d(other)
-        if (self.master.__class__.__name__ == "Grid") or (
-            issubclass(self.master.__class__, Grid)
-        ):
+        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
             return self._lt_2d(other)
         else:
             return None
@@ -774,7 +749,7 @@ class _AbsToPhyGridConverter:
 
     def __le__(self, other):
         """
-        Convert physical coordinates into abstract coordinates of the master grid 
+        Convert physical coordinates into abstract coordinates of the master grid
         satisfying conditional operations.
 
         Parameters
@@ -805,13 +780,9 @@ class _AbsToPhyGridConverter:
         -----
         **(Korean)** 물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (
-            issubclass(self.master.__class__, OneDimGrid)
-        ):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
             return self._le_1d(other=other)
-        if (self.master.__class__.__name__ == "Grid") or (
-            issubclass(self.master.__class__, Grid)
-        ):
+        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
             return self._le_2d(other=other)
 
     def _le_1d(self, other):
@@ -831,7 +802,7 @@ class _AbsToPhyGridConverter:
 
     def __gt__(self, other):
         """
-        Convert physical coordinates into abstract coordinates of the master grid 
+        Convert physical coordinates into abstract coordinates of the master grid
         satisfying conditional operations.
 
         Parameters
@@ -862,13 +833,9 @@ class _AbsToPhyGridConverter:
         -----
         **(Korean)** 물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (
-            issubclass(self.master.__class__, OneDimGrid)
-        ):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
             return self._gt_1d(other=other)
-        if (self.master.__class__.__name__ == "Grid") or (
-            issubclass(self.master.__class__, Grid)
-        ):
+        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
             return self._gt_2d(other=other)
 
     def _gt_1d(self, other):
@@ -888,7 +855,7 @@ class _AbsToPhyGridConverter:
 
     def __ge__(self, other):
         """
-        Convert physical coordinates into abstract coordinates of the master grid 
+        Convert physical coordinates into abstract coordinates of the master grid
         satisfying conditional operations.
 
         Parameters
@@ -919,13 +886,9 @@ class _AbsToPhyGridConverter:
         -----
         **(Korean)** 물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (
-            issubclass(self.master.__class__, OneDimGrid)
-        ):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
             return self._ge_1d(other=other)
-        if (self.master.__class__.__name__ == "Grid") or (
-            issubclass(self.master.__class__, Grid)
-        ):
+        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
             return self._ge_2d(other=other)
 
     def _ge_1d(self, other):
@@ -947,7 +910,7 @@ class _AbsToPhyGridConverter:
 class _PhyToAbsGridConverter:
     """
     A class that converts physical coordinates into abstract coordinates.
-    Conversely, conditional operators convert abstract coordinates into 
+    Conversely, conditional operators convert abstract coordinates into
     physical coordinates.
 
     .. image:: ../assets/img/user_guide_phy2abs.png
@@ -955,7 +918,7 @@ class _PhyToAbsGridConverter:
     Notes
     -----
     **(Korean)**
-    물리 좌표를 추상 좌표로 변환하는 클래스, 조건부연산은 반대로 추상 좌표를 
+    물리 좌표를 추상 좌표로 변환하는 클래스, 조건부연산은 반대로 추상 좌표를
     물리 좌표로 변환한다.
 
     """
@@ -992,7 +955,7 @@ class _PhyToAbsGridConverter:
     # Access functions.
     def __call__(self, pos):
         """
-        Convert physical coordinates into the corresponding abstract coordinates of 
+        Convert physical coordinates into the corresponding abstract coordinates of
         the master grid.
 
         Parameters
@@ -1057,13 +1020,9 @@ class _PhyToAbsGridConverter:
         -----
         **(Korean)** 물리 좌표를 master 좌표계에서 대응되는 추상 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (
-            issubclass(self.master.__class__, OneDimGrid)
-        ):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
             return self._getitem_1d(pos)
-        if (self.master.__class__.__name__ == "Grid") or (
-            issubclass(self.master.__class__, Grid)
-        ):
+        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
             return self._getitem_2d(pos)
         else:
             return None
@@ -1074,57 +1033,41 @@ class _PhyToAbsGridConverter:
         if isinstance(pos, OneDimGrid):
             return self._getitem_1d(pos=pos.elements)
         elif isinstance(pos, slice):
-            return self._getitem_1d(
-                _conv_slice_to_list(slice_obj=pos, stop_def=self.master.shape[0])
-            )
+            return self._getitem_1d(_conv_slice_to_list(slice_obj=pos, stop_def=self.master.shape[0]))
         elif isinstance(pos, np.ndarray):
             return self._getitem_1d(pos.tolist())
         elif isinstance(pos, list):
             return np.array([self._getitem_1d(p) for p in pos])
         elif pos is None:
-            raise TypeError(
-                "_AbsToPhyConverter._getitem_1d does not accept None as its input."
-            )
+            raise TypeError("_AbsToPhyConverter._getitem_1d does not accept None as its input.")
         else:
             # pos is a single element.
             for i, e in np.ndenumerate(self.master.elements):
                 if (pos - e) % self.master.width == 0:
-                    return (
-                        int(round((pos - e) / self.master.width))
-                        * self.master.elements.shape[0]
-                        + i[0]
-                    )
+                    return int(round((pos - e) / self.master.width)) * self.master.elements.shape[0] + i[0]
             return None  # no matched coordinate
 
     def _getitem_2d(self, pos):
         """An internal function of __getitem__() for 2-d grid."""
         # If pos contains multiple coordinates (or objects), convert recursively.
         if isinstance(pos, list):
-            if isinstance(
-                pos[0], (int, np.integer)
-            ):  # It's actually a single coordinate.
+            if isinstance(pos[0], (int, np.integer)):  # It's actually a single coordinate.
                 return self[pos[0], pos[1]]
             else:
                 return [self[p] for p in pos]
         elif isinstance(pos, np.ndarray):
-            if isinstance(
-                pos[0], (int, np.integer)
-            ):  # It's actually a single coordinate.
+            if isinstance(pos[0], (int, np.integer)):  # It's actually a single coordinate.
                 return np.array(self[pos[0], pos[1]])
             else:
                 return np.array([self[p] for p in pos])
         # If pos contains only one physical object, convert its bounding box to abstract coordinates
-        if (pos.__class__.__name__ == "PhysicalObject") or (
-            issubclass(pos.__class__, laygo2.object.PhysicalObject)
-        ):
+        if (pos.__class__.__name__ == "PhysicalObject") or (issubclass(pos.__class__, laygo2.object.PhysicalObject)):
             return self.bbox(pos)
         # If pos contains only one coordinate, convert it to abstract grid.
         m = self.master.x == pos[0]
         n = self.master.y == pos[1]
         # refactor the following code to avoid the use of double for-loops and list comprehensions.
-        if (not isinstance(m, np.ndarray)) and (
-            not isinstance(n, np.ndarray)
-        ):  # x and y are scalars.
+        if (not isinstance(m, np.ndarray)) and (not isinstance(n, np.ndarray)):  # x and y are scalars.
             return np.array([m, n])
         if not isinstance(m, np.ndarray):  # x is a scalar.
             return np.array([np.array([m, _n]) for _n in n])
@@ -1142,7 +1085,7 @@ class _PhyToAbsGridConverter:
     # Reverse-access operators (comparison operators are used for reverse-access).
     def __eq__(self, other):
         """
-        Convert abstract coordinates into physical coordinates satisfying 
+        Convert abstract coordinates into physical coordinates satisfying
         conditional operations in the master grid.
 
         Parameters
@@ -1199,7 +1142,7 @@ class _PhyToAbsGridConverter:
 
     def __lt__(self, other):
         """
-        Convert abstract coordinates into physical coordinates satisfying 
+        Convert abstract coordinates into physical coordinates satisfying
         conditional operations in the master grid.
 
         Parameters
@@ -1230,13 +1173,9 @@ class _PhyToAbsGridConverter:
         -----
         **(Korean)** 추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (
-            issubclass(self.master.__class__, OneDimGrid)
-        ):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
             return self._lt_1d(other=other)
-        if (self.master.__class__.__name__ == "Grid") or (
-            issubclass(self.master.__class__, Grid)
-        ):
+        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
             return self._lt_2d(other=other)
 
     def _lt_1d(self, other):
@@ -1251,7 +1190,7 @@ class _PhyToAbsGridConverter:
 
     def __le__(self, other):
         """
-        Convert abstract coordinates into physical coordinates satisfying 
+        Convert abstract coordinates into physical coordinates satisfying
         conditional operations in the master grid.
 
         Parameters
@@ -1286,7 +1225,7 @@ class _PhyToAbsGridConverter:
 
     def __gt__(self, other):
         """
-        Convert abstract coordinates into physical coordinates satisfying 
+        Convert abstract coordinates into physical coordinates satisfying
         conditional operations in the master grid.
 
         Parameters
@@ -1317,13 +1256,9 @@ class _PhyToAbsGridConverter:
         -----
         **(Korean)** 추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (
-            issubclass(self.master.__class__, OneDimGrid)
-        ):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
             return self._gt_1d(other)
-        if (self.master.__class__.__name__ == "Grid") or (
-            issubclass(self.master.__class__, Grid)
-        ):
+        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
             return self._gt_2d(other)
         else:
             return None
@@ -1340,7 +1275,7 @@ class _PhyToAbsGridConverter:
 
     def __ge__(self, other):
         """
-        Convert abstract coordinates into physical coordinates satisfying 
+        Convert abstract coordinates into physical coordinates satisfying
         conditional operations in the master grid.
 
         Parameters
@@ -1375,7 +1310,7 @@ class _PhyToAbsGridConverter:
 
     def bbox(self, obj):
         """
-        Convert the bounding box of the object into the abstract coordinates 
+        Convert the bounding box of the object into the abstract coordinates
         of the master grid.
 
         Parameters
@@ -1409,9 +1344,7 @@ class _PhyToAbsGridConverter:
         **(Korean)** 객체의 bounding box를 master 좌표계의 추상 좌표로 변환.
         _AbsToPhyGridConverter 객체의 >=, <=를 사용하므로 추상면적이 작아질수있다.
         """
-        if (obj.__class__.__name__ == "PhysicalObject") or (
-            issubclass(obj.__class__, laygo2.object.PhysicalObject)
-        ):
+        if (obj.__class__.__name__ == "PhysicalObject") or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
             obj = obj.bbox
 
         # phy -> abs
@@ -1422,7 +1355,7 @@ class _PhyToAbsGridConverter:
 
     def bottom_left(self, obj):
         """
-        Convert an object's physical corner coordinates into abstract coordinates 
+        Convert an object's physical corner coordinates into abstract coordinates
         of the master grid.
 
         Parameters
@@ -1455,9 +1388,7 @@ class _PhyToAbsGridConverter:
         -----
         **(Korean)** 객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         """
-        if (obj.__class__.__name__ == "PhysicalObject") or (
-            issubclass(obj.__class__, laygo2.object.PhysicalObject)
-        ):
+        if (obj.__class__.__name__ == "PhysicalObject") or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
             return self.bottom_left(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1465,7 +1396,7 @@ class _PhyToAbsGridConverter:
 
     def bottom_right(self, obj):
         """
-        Convert an object's physical corner coordinates into abstract coordinates 
+        Convert an object's physical corner coordinates into abstract coordinates
         of the master grid.
 
         Parameters
@@ -1498,9 +1429,7 @@ class _PhyToAbsGridConverter:
         -----
         **(Korean)** 객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         """
-        if (obj.__class__.__name__ == "PhysicalObject") or (
-            issubclass(obj.__class__, laygo2.object.PhysicalObject)
-        ):
+        if (obj.__class__.__name__ == "PhysicalObject") or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
             return self.bottom_right(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1508,7 +1437,7 @@ class _PhyToAbsGridConverter:
 
     def top_left(self, obj):
         """
-        Convert an object's physical corner coordinates into abstract coordinates 
+        Convert an object's physical corner coordinates into abstract coordinates
         of the master grid.
 
         Parameters
@@ -1541,9 +1470,7 @@ class _PhyToAbsGridConverter:
         -----
         **(Korean)** 객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         """
-        if (obj.__class__.__name__ == "PhysicalObject") or (
-            issubclass(obj.__class__, laygo2.object.PhysicalObject)
-        ):
+        if (obj.__class__.__name__ == "PhysicalObject") or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
             return self.top_left(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1551,7 +1478,7 @@ class _PhyToAbsGridConverter:
 
     def top_right(self, obj):
         """
-        Convert an object's physical corner coordinates into abstract 
+        Convert an object's physical corner coordinates into abstract
         coordinates of the master grid.
 
         Parameters
@@ -1584,9 +1511,7 @@ class _PhyToAbsGridConverter:
         -----
         **(Korean)** 객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         """
-        if (obj.__class__.__name__ == "PhysicalObject") or (
-            issubclass(obj.__class__, laygo2.object.PhysicalObject)
-        ):
+        if (obj.__class__.__name__ == "PhysicalObject") or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
             return self.top_right(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1594,9 +1519,7 @@ class _PhyToAbsGridConverter:
 
     def width(self, obj):
         """Return the width of an object on this grid."""
-        if (obj.__class__.__name__ == "PhysicalObject") or (
-            issubclass(obj.__class__, laygo2.object.PhysicalObject)
-        ):
+        if (obj.__class__.__name__ == "PhysicalObject") or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
             return self.width(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1604,9 +1527,7 @@ class _PhyToAbsGridConverter:
 
     def height(self, obj):
         """Return the height of an object on this grid."""
-        if (obj.__class__.__name__ == "PhysicalObject") or (
-            issubclass(obj.__class__, laygo2.object.PhysicalObject)
-        ):
+        if (obj.__class__.__name__ == "PhysicalObject") or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
             return self.height(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1622,7 +1543,7 @@ class _PhyToAbsGridConverter:
 
     def size(self, obj):
         """
-        Convert an object's size ([width, height]) into abstract coordinates 
+        Convert an object's size ([width, height]) into abstract coordinates
         of the master grid.
 
         Parameters
@@ -1659,7 +1580,7 @@ class _PhyToAbsGridConverter:
 
     def crossing(self, *args):
         """
-        Convert the physical intersections of objects into abstract coordinates 
+        Convert the physical intersections of objects into abstract coordinates
         of the master grid.
 
         Parameters
@@ -1697,14 +1618,14 @@ class _PhyToAbsGridConverter:
 
     def overlap(self, *args, type="bbox"):
         """
-        Convert the overlapping area of objects into abstract coordinates of 
+        Convert the overlapping area of objects into abstract coordinates of
         the master grid and return in a format specified in type.
 
         A bounding box is returned if type='bbox'
-        
-        All coordinates in the overlapped region are returned in a 
+
+        All coordinates in the overlapped region are returned in a
         two-dimensional array if type='array'
-        
+
         An one-dimensional list is returned if type='list'.
 
         Parameters
@@ -1736,13 +1657,13 @@ class _PhyToAbsGridConverter:
 
         Notes
         -----
-        **(Korean)** 객체들의 겹치는 면적을 master 좌표계의 추상 좌표로 변환 후 
+        **(Korean)** 객체들의 겹치는 면적을 master 좌표계의 추상 좌표로 변환 후
         type에 따른 형태로 반환.
-        
+
         'bbox'인 경우, bounding box로 반환.
-        
-        'array' 인 경우 모든 교점을 2차원 array로 반환. 
-        
+
+        'array' 인 경우 모든 교점을 2차원 array로 반환.
+
         'list' 인경우 모든 교점을 1차원 list로 변환.
         """
         _ib = None
@@ -1763,13 +1684,11 @@ class _PhyToAbsGridConverter:
         elif type == "array":
             return _conv_bbox_to_array(_ib)
         else:
-            raise ValueError(
-                "overlap() should receive a valid value for its type (bbox, point, array, ...)"
-            )
+            raise ValueError("overlap() should receive a valid value for its type (bbox, point, array, ...)")
 
     def union(self, *args):
         """
-        Convert the bounding box containing all objects into abstract coordinates 
+        Convert the bounding box containing all objects into abstract coordinates
         of the master grid.
 
         Parameters
@@ -1798,7 +1717,7 @@ class _PhyToAbsGridConverter:
 
         Notes
         -----
-        **(Korean)** 객체들을 모두 포함하는 bounding box를 master 좌표계의 
+        **(Korean)** 객체들을 모두 포함하는 bounding box를 master 좌표계의
         추상 좌표로 변환.
         """
         _ub = None
@@ -1814,7 +1733,7 @@ class _PhyToAbsGridConverter:
 
     def center(self, obj):
         """
-        Convert an object's physical center coordinates into abstract coordinates 
+        Convert an object's physical center coordinates into abstract coordinates
         of the master grid.
 
         Parameters
@@ -1859,13 +1778,9 @@ class _PhyToAbsGridConverter:
         dist_list = []
         idx = 0
         for point in point_list:
-            dist_list.append(
-                [idx, np.linalg.norm(point - obj.center)]
-            )  # Calculate Euclidean distances.
+            dist_list.append([idx, np.linalg.norm(point - obj.center)])  # Calculate Euclidean distances.
             idx += 1
-        dist_sorted = sorted(
-            dist_list, key=lambda distance: distance[1]
-        )  # Sort distances in ascending order.
+        dist_sorted = sorted(dist_list, key=lambda distance: distance[1])  # Sort distances in ascending order.
         return self.master.mn(
             point_list[dist_sorted[0][0]]
         )  # Convert the closest point to abstract coordinate and then return.
@@ -2096,10 +2011,10 @@ class OneDimGrid(CircularMapping):
 
 class Grid:
     """
-    A base class having conversion operators and the mapping information (element) 
+    A base class having conversion operators and the mapping information (element)
     between two-dimensional physical coordinates and abstract coordinates.
 
-    Examplar grid conversions between abstract and physical coordinates are 
+    Examplar grid conversions between abstract and physical coordinates are
     summarized in the following figure.
 
     .. image:: ../assets/img/user_guide_grid_conversion.png
@@ -2107,7 +2022,7 @@ class Grid:
 
     Notes
     -----
-    **(Korean)** 2차원 물리좌표와 추상좌표간 mapping 정보(element) 를 갖고 있으며 
+    **(Korean)** 2차원 물리좌표와 추상좌표간 mapping 정보(element) 를 갖고 있으며
     해당 element를 활용하는 좌표 연산자를 가지고 있는 기본 클래스.
     """
 
@@ -2148,7 +2063,7 @@ class Grid:
 
     @property
     def xy(self):
-        """_AbsToPhyGridConverter: Two-dimensional 
+        """_AbsToPhyGridConverter: Two-dimensional
         _AbsToPhyConverter of a coordinate system.
 
         Example
@@ -2178,7 +2093,7 @@ class Grid:
 
     @property
     def x(self):
-        """_AbsToPhyGridConverter: One-dimensional _AbsToPhyGridConverter 
+        """_AbsToPhyGridConverter: One-dimensional _AbsToPhyGridConverter
             of the x-coordinate system.
 
         Example
@@ -2207,7 +2122,7 @@ class Grid:
 
     @property
     def y(self):
-        """_AbsToPhyGridConverter: One-dimensional _AbsToPhyGridConverter 
+        """_AbsToPhyGridConverter: One-dimensional _AbsToPhyGridConverter
         of the y-coordinate system.
 
         Example
@@ -2273,7 +2188,7 @@ class Grid:
 
     @property
     def mn(self):
-        """laygo2._PhyToAbsGridConverter: Two-dimensional _PhyToAbsConverter of 
+        """laygo2._PhyToAbsGridConverter: Two-dimensional _PhyToAbsConverter of
         a coordinate system.
 
         Example
@@ -2304,7 +2219,7 @@ class Grid:
 
     @property
     def m(self):
-        """_PhyToAbsGridConverter: One-dimensional _PhyToAbsConverter of 
+        """_PhyToAbsGridConverter: One-dimensional _PhyToAbsConverter of
         the x-coordinate system.
 
         Example
@@ -2527,9 +2442,9 @@ class Grid:
 
     @property
     def elements(self):
-        """list: return elements of subgrids 
+        """list: return elements of subgrids
         ([_xy[0].elements, _xy[1].elements]).
-        
+
         """
         return [self._xy[0].elements, self._xy[1].elements]
 
@@ -2543,34 +2458,34 @@ class Grid:
         return self.abs2phy.__eq__(other)
 
     def __lt__(self, other):
-        """Return the index of the grid coordinate that is the largest 
+        """Return the index of the grid coordinate that is the largest
         but less than other.
         """
         return self.abs2phy.__lt__(other)
 
     def __le__(self, other):
-        """Return the index of the grid coordinate that is the largest 
+        """Return the index of the grid coordinate that is the largest
         but less than or equal to other.
         """
         return self.abs2phy.__le__(other)
 
     def __gt__(self, other):
-        """Return the index of the grid coordinate that is the smallest 
+        """Return the index of the grid coordinate that is the smallest
         but greater than other.
         """
         return self.abs2phy.__gt__(other)
 
     def __ge__(self, other):
-        """Return the index of the grid coordinate that is the smallest 
+        """Return the index of the grid coordinate that is the smallest
         but greater than or equal to other.
         """
         return self.abs2phy.__ge__(other)
 
     def bbox(self, obj):
         """
-        Return the abstract grid coordinates corresponding to the 
+        Return the abstract grid coordinates corresponding to the
         'internal' bounding box of obj.
-        
+
         See Also
         --------
         _PhyToAbsGridConverter.bbox
@@ -2579,9 +2494,9 @@ class Grid:
 
     def bottom_left(self, obj):
         """
-        Return the abstract grid coordinates corresponding to the 
+        Return the abstract grid coordinates corresponding to the
         bottom-left corner of obj.
-        
+
         See Also
         --------
         _PhyToAbsGridConverter.bottom_left
@@ -2590,9 +2505,9 @@ class Grid:
 
     def bottom_right(self, obj):
         """
-        Return the abstract grid coordinates corresponding to the 
+        Return the abstract grid coordinates corresponding to the
         bottom-right corner of obj.
-        
+
         See Also
         --------
         _PhyToAbsGridConverter.bottom_right
@@ -2601,7 +2516,7 @@ class Grid:
 
     def top_left(self, obj):
         """
-        Return the abstract grid coordinates corresponding to the top-left 
+        Return the abstract grid coordinates corresponding to the top-left
         corner of obj.
 
         See Also
@@ -2612,9 +2527,9 @@ class Grid:
 
     def top_right(self, obj):
         """
-        Return the abstract grid coordinates corresponding to the top-right 
+        Return the abstract grid coordinates corresponding to the top-right
         corner of obj.
-        
+
         See Also
         --------
         _PhyToAbsGridConverter.top_right
@@ -2623,9 +2538,9 @@ class Grid:
 
     def crossing(self, *args):
         """
-        Return the abstract grid coordinates corresponding to the crossing 
+        Return the abstract grid coordinates corresponding to the crossing
         point of args.
-        
+
         See Also
         --------
         laygo2.object.grid._PhyToAbsGridConverter.crossing
@@ -2634,7 +2549,7 @@ class Grid:
 
     def overlap(self, *args, type="bbox"):
         """
-        Return the abstract grid coordinates corresponding to the overlap 
+        Return the abstract grid coordinates corresponding to the overlap
         of args.
 
         See Also
@@ -2655,7 +2570,7 @@ class Grid:
 
     def center(self, obj):
         """
-        Return the abstract grid coordinates corresponding to the center 
+        Return the abstract grid coordinates corresponding to the center
         point of obj.
 
         Parameters
@@ -2727,12 +2642,12 @@ class Grid:
 # Regular classes.
 class PlacementGrid(Grid):
     """
-    PlacementGrid class implements a grid for placement of Instance and 
+    PlacementGrid class implements a grid for placement of Instance and
     VirtualInstance objects.
 
     Notes
     -----
-    **(Korean)** PlacementGrid 클래스는 Instance 및 VirtualInstance 개체들의 
+    **(Korean)** PlacementGrid 클래스는 Instance 및 VirtualInstance 개체들의
         배치를 위한 격자 그리드를 구현한다.
 
     """
@@ -2753,7 +2668,7 @@ class PlacementGrid(Grid):
 
         Returns
         -------
-        laygo2.object.physical.Instance or 
+        laygo2.object.physical.Instance or
         laygo2.object.physical.VirtualInstance :
             The placed instance.
 
@@ -2813,7 +2728,7 @@ class RoutingGrid(Grid):
     >>> from laygo2.object.template import NativeInstanceTemplate
     >>> # Routing grid construction (not needed if laygo2_tech is set up).
     >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
-    >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
+    >>> gh = OneDimGrid(name="gh", scope=[0, 100], elements=[0, 40, 60])
     >>> wv = CM([10])           # vertical (xgrid) width
     >>> wh = CM([20, 10, 10])   # horizontal (ygrid) width
     >>> ev = CM([10])           # vertical (xgrid) extension
@@ -3046,7 +2961,7 @@ class RoutingGrid(Grid):
         class: CircularMapping, 
         elements: [15]
     """
-    
+
     hextension0 = None
     """CircularMapping: the array containing the extension of the zero-length wires on the horizontal grid. 
     
@@ -3088,7 +3003,7 @@ class RoutingGrid(Grid):
         class: CircularMapping, 
         elements: [15, 15, 15]
     """
-    
+
     vlayer = None
     """CircularMapping: Layer information of vertical wires.
 
@@ -3503,13 +3418,13 @@ class RoutingGrid(Grid):
         >>> e0v = CM([15])          # vert. extension (for zero-length wires)
         >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
         >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
-        >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+        >>> lh = CM([['M2', 'drawing']]*3, dtype=object)
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-        >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
-        >>> ycolor = CM([None]*3, dtype=object) 
+        >>> xcolor = CM([None], dtype=object)  # not multi-patterned
+        >>> ycolor = CM([None]*3, dtype=object)
         >>> primary_grid = 'horizontal'
-        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
         >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
                                                vwidth=wv, hwidth=wh,
@@ -3519,12 +3434,12 @@ class RoutingGrid(Grid):
                                                viamap=viamap, primary_grid=primary_grid,
                                                xcolor=xcolor, ycolor=ycolor,
                                                vextension0=e0v, hextension0=e0h)
-        >>> # Routing on grid 
+        >>> # Routing on grid
         >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
         >>> route = g.route(mn=mn_list, via_tag=[True, None, True, True])
         >>> for r in route:
         >>>     print(r)
-        <laygo2.object.physical.Instance object at 0x0000016939A23A90> 
+        <laygo2.object.physical.Instance object at 0x0000016939A23A90>
             name: None,
             class: Instance,
             xy: [0, -60],
@@ -3569,7 +3484,7 @@ class RoutingGrid(Grid):
             pitch: [0, 0]
             transform: R0
             pins: {}
-        
+
         .. image:: ../assets/img/object_grid_RoutingGrid_init.png
            :height: 250
 
@@ -3656,13 +3571,13 @@ class RoutingGrid(Grid):
         >>> e0v = CM([15])          # vert. extension (for zero-length wires)
         >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
         >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
-        >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+        >>> lh = CM([['M2', 'drawing']]*3, dtype=object)
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-        >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
-        >>> ycolor = CM([None]*3, dtype=object) 
+        >>> xcolor = CM([None], dtype=object)  # not multi-patterned
+        >>> ycolor = CM([None]*3, dtype=object)
         >>> primary_grid = 'horizontal'
-        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
         >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
                                                vwidth=wv, hwidth=wh,
@@ -3672,12 +3587,12 @@ class RoutingGrid(Grid):
                                                viamap=viamap, primary_grid=primary_grid,
                                                xcolor=xcolor, ycolor=ycolor,
                                                vextension0=e0v, hextension0=e0h)
-        >>> # Routing on grid 
+        >>> # Routing on grid
         >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
         >>> route = g.route(mn=mn_list, via_tag=[True, None, True, True])
         >>> for r in route:
         >>>     print(r)
-        <laygo2.object.physical.Instance object at 0x0000016939A23A90> 
+        <laygo2.object.physical.Instance object at 0x0000016939A23A90>
             name: None,
             class: Instance,
             xy: [0, -60],
@@ -3754,12 +3669,8 @@ class RoutingGrid(Grid):
             xy0 = self.abs2phy[__mn[0]]
             xy1 = self.abs2phy[__mn[1]]
             _xy = np.array([[xy0[0], xy0[1]], [xy1[0], xy1[1]]])
-            if np.all(
-                xy0 == xy1
-            ):  # if two points are identical, generate a metal stub on the bottom layer.
-                if (direction == "vertical") or (
-                    (direction is None) and (self.primary_grid == "vertical")
-                ):
+            if np.all(xy0 == xy1):  # if two points are identical, generate a metal stub on the bottom layer.
+                if (direction == "vertical") or ((direction is None) and (self.primary_grid == "vertical")):
                     width = self.vwidth[__mn[0][0]]
                     hextension = int(width / 2)
                     vextension = self.vextension0[__mn[0][0]]
@@ -3768,6 +3679,8 @@ class RoutingGrid(Grid):
                         color = self.xcolor[
                             __mn[0][0] % self.xcolor.shape[0]
                         ]  # xcolor is determined by its grid layer.
+                    else:
+                        color = None
                 else:
                     width = self.hwidth[__mn[0][1]]
                     hextension = self.hextension0[__mn[0][1]]
@@ -3777,6 +3690,8 @@ class RoutingGrid(Grid):
                         color = self.ycolor[
                             __mn[0][1] % self.ycolor.shape[0]
                         ]  # ycolor is determined by its grid layer.
+                    else:
+                        color = None
             else:
                 if (xy0[0] == xy1[0]) or (direction == "vertical"):  # vertical routing
                     width = self.vwidth[__mn[0][0]]
@@ -3787,6 +3702,8 @@ class RoutingGrid(Grid):
                         color = self.xcolor[
                             __mn[0][0] % self.xcolor.shape[0]
                         ]  # xcolor is determined by its grid layer.
+                    else:
+                        color = None
                 else:  # horizontal routing
                     width = self.hwidth[__mn[0][1]]
                     hextension = self.hextension[__mn[0][1]]
@@ -3796,6 +3713,8 @@ class RoutingGrid(Grid):
                         color = self.ycolor[
                             __mn[0][1] % self.ycolor.shape[0]
                         ]  # ycolor is determined by its grid layer.
+                    else:
+                        color = None
             p = laygo2.object.physical.Rect(
                 xy=_xy,
                 layer=layer,
@@ -3848,13 +3767,13 @@ class RoutingGrid(Grid):
         >>> e0v = CM([15])          # vert. extension (for zero-length wires)
         >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
         >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
-        >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+        >>> lh = CM([['M2', 'drawing']]*3, dtype=object)
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-        >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
-        >>> ycolor = CM([None]*3, dtype=object) 
+        >>> xcolor = CM([None], dtype=object)  # not multi-patterned
+        >>> ycolor = CM([None]*3, dtype=object)
         >>> primary_grid = 'horizontal'
-        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
         >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
                                                vwidth=wv, hwidth=wh,
@@ -3864,12 +3783,12 @@ class RoutingGrid(Grid):
                                                viamap=viamap, primary_grid=primary_grid,
                                                xcolor=xcolor, ycolor=ycolor,
                                                vextension0=e0v, hextension0=e0h)
-        >>> # Routing on grid 
+        >>> # Routing on grid
         >>> mn_list = [[0, -2], [1, 0], [2, 5]]
         >>> via = mygrid.via(mn=mn_list)
         >>> print(via)
-        [<laygo2.object.physical.VirtualInstance object>, 
-         <laygo2.object.physical.VirtualInstance object>, 
+        [<laygo2.object.physical.VirtualInstance object>,
+         <laygo2.object.physical.VirtualInstance object>,
          <laygo2.object.physical.VirtualInstance object>]
 
         .. image:: ../assets/img/object_grid_RoutingGrid_via.png
@@ -3886,16 +3805,12 @@ class RoutingGrid(Grid):
         """
         # If mn contains multiple coordinates (or objects), place iteratively.
         if isinstance(mn, list):
-            if isinstance(
-                mn[0], (int, np.integer)
-            ):  # It's actually a single coordinate.
+            if isinstance(mn[0], (int, np.integer)):  # It's actually a single coordinate.
                 return self.via(mn=np.asarray(mn), params=params)
             else:
                 return [self.via(mn=_mn, params=params) for _mn in mn]
         elif isinstance(mn, np.ndarray):
-            if isinstance(
-                mn[0], (int, np.integer)
-            ):  # It's actually a single coordinate.
+            if isinstance(mn[0], (int, np.integer)):  # It's actually a single coordinate.
                 pass
             else:
                 return np.array([self.via(mn=_mn, params=params) for _mn in mn])
@@ -3943,13 +3858,13 @@ class RoutingGrid(Grid):
         >>> e0v = CM([15])          # vert. extension (for zero-length wires)
         >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
         >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
-        >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+        >>> lh = CM([['M2', 'drawing']]*3, dtype=object)
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-        >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
-        >>> ycolor = CM([None]*3, dtype=object) 
+        >>> xcolor = CM([None], dtype=object)  # not multi-patterned
+        >>> ycolor = CM([None]*3, dtype=object)
         >>> primary_grid = 'horizontal'
-        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
         >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
                                                vwidth=wv, hwidth=wh,
@@ -3959,21 +3874,21 @@ class RoutingGrid(Grid):
                                                viamap=viamap, primary_grid=primary_grid,
                                                xcolor=xcolor, ycolor=ycolor,
                                                vextension0=e0v, hextension0=e0h)
-        >>> # Routing on grid 
+        >>> # Routing on grid
         >>> mn_list = [[0, -2], [1, 0], [2, 5], [3, 4], [4, 5], [5, 5]]
         >>> track = g.route_via_track(mn=mn_list, track=[None, 0])
         >>> print(track)
-        [[<laygo2.object.physical.Rect object>, 
-          <laygo2.object.physical.VirtualInstance object>], 
-          <laygo2.object.physical.VirtualInstance object>, 
-         [<laygo2.object.physical.Rect object>, 
-          <laygo2.object.physical.VirtualInstance object>], 
-         [<laygo2.object.physical.Rect object>, 
-          <laygo2.object.physical.VirtualInstance object>], 
-         [<laygo2.object.physical.Rect object>, 
-          <laygo2.object.physical.VirtualInstance object>], 
-         [<laygo2.object.physical.Rect object>, 
-          <laygo2.object.physical.VirtualInstance object>], 
+        [[<laygo2.object.physical.Rect object>,
+          <laygo2.object.physical.VirtualInstance object>],
+          <laygo2.object.physical.VirtualInstance object>,
+         [<laygo2.object.physical.Rect object>,
+          <laygo2.object.physical.VirtualInstance object>],
+         [<laygo2.object.physical.Rect object>,
+          <laygo2.object.physical.VirtualInstance object>],
+         [<laygo2.object.physical.Rect object>,
+          <laygo2.object.physical.VirtualInstance object>],
+         [<laygo2.object.physical.Rect object>,
+          <laygo2.object.physical.VirtualInstance object>],
           <laygo2.object.physical.Rect object>]
 
         .. image:: ../assets/img/object_grid_RoutingGrid_route_via_track.png
@@ -3982,14 +3897,14 @@ class RoutingGrid(Grid):
         Notes
         -----
         **(Korean)** wire 라우팅 함수, track을 기준점으로 routing을 진행한다.
-        
+
         파라미터
-            - track(numpy.ndarray): track의 좌표값과 방향을 담고 있는 list. 
-                수직 트랙일 경우 [v, None], 
+            - track(numpy.ndarray): track의 좌표값과 방향을 담고 있는 list.
+                수직 트랙일 경우 [v, None],
                 수평 트랙일 경우 [None, v]의 형태를 가지고 있다 (v는 track의 좌표값).
             - mn(list(numpy.ndarray)): track을 통해 연결될 지점들의 좌표를 담고 있는 list.
         반환값
-            - list: 생성된 routing object들을 담고 있는 list. 
+            - list: 생성된 routing object들을 담고 있는 list.
                 마지막 object가 track위의 routing object에 해당.
         """
         mn = np.array(mn)
@@ -4072,13 +3987,13 @@ class RoutingGrid(Grid):
         >>> e0v = CM([15])          # vert. extension (for zero-length wires)
         >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
         >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
-        >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+        >>> lh = CM([['M2', 'drawing']]*3, dtype=object)
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
-        >>> xcolor = CM([None], dtype=object)  # not multi-patterned 
-        >>> ycolor = CM([None]*3, dtype=object) 
+        >>> xcolor = CM([None], dtype=object)  # not multi-patterned
+        >>> ycolor = CM([None]*3, dtype=object)
         >>> primary_grid = 'horizontal'
-        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
         >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
                                                vwidth=wv, hwidth=wh,
@@ -4091,11 +4006,11 @@ class RoutingGrid(Grid):
         >>> mn = [[0, 0], [10, 10]]
         >>> pin = g.pin(name="pin", grid=g, mn=mn)
         >>> print(pin)
-        <laygo2.object.physical.Pin object at 0x0000028DABE3AB90> 
+        <laygo2.object.physical.Pin object at 0x0000028DABE3AB90>
             name: pin,
             class: Pin,
             xy: [[0, -10], [500, 350]],
-            params: None, , layer: ['M2' 'pin'], netname: pin, shape: None, 
+            params: None, , layer: ['M2' 'pin'], netname: pin, shape: None,
             master: None
 
         Notes
@@ -4114,12 +4029,8 @@ class RoutingGrid(Grid):
         xy0 = self.abs2phy[mn[0]]
         xy1 = self.abs2phy[mn[1]]
         # _xy = np.array([[xy0[0], xy0[1]], [xy1[0], xy1[1]]])
-        if np.all(
-            xy0 == xy1
-        ):  # if two points are identical, generate a metal stub on the bottom layer.
-            if (direction == "vertical") or (
-                (direction is None) and (self.primary_grid == "vertical")
-            ):
+        if np.all(xy0 == xy1):  # if two points are identical, generate a metal stub on the bottom layer.
+            if (direction == "vertical") or ((direction is None) and (self.primary_grid == "vertical")):
                 width = self.vwidth[mn[0][0]]
                 hextension = int(width / 2)
                 vextension = 0
@@ -4147,9 +4058,7 @@ class RoutingGrid(Grid):
                 [xy1[0] + hextension, xy1[1] + vextension],
             ]
         )  ## need to check
-        p = laygo2.object.physical.Pin(
-            name=name, xy=_xy, layer=layer, netname=netname, params=params
-        )
+        p = laygo2.object.physical.Pin(name=name, xy=_xy, layer=layer, netname=netname, params=params)
         return p
 
 
