@@ -137,7 +137,7 @@ class BaseDatabase:
 
     @property
     def keys(self):
-        """ Keys of elements.
+        """Keys of elements.
 
         Example
         -------
@@ -193,9 +193,9 @@ class BaseDatabase:
         >>> dsn.append(i0)
         >>> dsn.append(t0)
         >>> print(dsn.items())
-        dict_items([('NoName_0', <laygo2.object.physical.Rect object at 0x0000024C6C230F40>), 
-                    ('P', <laygo2.object.physical.Pin object at 0x0000024C6C2EFF40>), 
-                    ('I0', <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>), 
+        dict_items([('NoName_0', <laygo2.object.physical.Rect object at 0x0000024C6C230F40>),
+                    ('P', <laygo2.object.physical.Pin object at 0x0000024C6C2EFF40>),
+                    ('I0', <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>),
                     ('NoName_1', <laygo2.object.physical.Text object at 0x0000024C6C2EF8B0>)])
 
         Notes
@@ -233,14 +233,14 @@ class BaseDatabase:
         >>> dsn.append(i0)
         >>> dsn.append(t0)
         >>> print(dsn["I0"])
-        <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0> 
+        <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>
         name: I0,
         class: Instance,
         xy: [0, 0],
         params: None,
         size: [0, 0]
         shape: None
-        pitch: [0, 0]   
+        pitch: [0, 0]
         transform: R0
         pins: {}
 
@@ -275,7 +275,7 @@ class BaseDatabase:
         >>> r2 = Rect(xy=[[0, 0], [100, 100]], layer=["M1", "drawing"])
         >>> dsn["R2"] = r2
         >>> print(dsn["R2"])
-        <laygo2.object.physical.Rect object at 0x0000024C6C107C40> 
+        <laygo2.object.physical.Rect object at 0x0000024C6C107C40>
         name: R2,
         class: Rect,
         xy: [[0, 0], [100, 100]],
@@ -294,11 +294,11 @@ class BaseDatabase:
         Parameters
         ----------
         item : laygo2.object.physical.PhysicalObject
-            The physical object to be added. 
+            The physical object to be added.
 
         Returns
         -------
-        list : 
+        list :
             A list containing the name of item and the item itself ([item.name, item]).
 
         Example
@@ -318,12 +318,12 @@ class BaseDatabase:
         >>> dsn.append(i0)
         >>> dsn.append(t0)
         >>> print(dsn)
-        <laygo2.object.database.BaseDatabase object at 0x0000024C6C2EF010> 
-            name: mycell, params: None 
+        <laygo2.object.database.BaseDatabase object at 0x0000024C6C2EF010>
+            name: mycell, params: None
             elements: {
                 'NoName_0': <laygo2.object.physical.Rect object at 0x0000024C6C230F40>,
-                'P': <laygo2.object.physical.Pin object at 0x0000024C6C2EFF40>, 
-                'I0': <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>, 
+                'P': <laygo2.object.physical.Pin object at 0x0000024C6C2EFF40>,
+                'I0': <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>,
                 'NoName_1': <laygo2.object.physical.Text object at 0x0000024C6C2EF8B0>}
 
         See Also
@@ -347,12 +347,7 @@ class BaseDatabase:
                     self.noname_index += 1
                 item_name = "NoName_" + str(self.noname_index)
                 self.noname_index += 1
-            errstr = (
-                item_name
-                + " cannot be added to "
-                + self.name
-                + ", as a child object with the same name exists."
-            )
+            errstr = item_name + " cannot be added to " + self.name + ", as a child object with the same name exists."
             if item_name in self.elements.keys():
                 raise KeyError(errstr)
             else:
@@ -399,14 +394,7 @@ class BaseDatabase:
     def summarize(self):
         """Return the summary of the object information."""
         return (
-            self.__repr__()
-            + " "
-            + "name: "
-            + self.name
-            + ", "
-            + "params: "
-            + str(self.params)
-            + " \n"
+            self.__repr__() + " " + "name: " + self.name + ", " + "params: " + str(self.params) + " \n"
             "    elements: " + str(self.elements) + ""
         )
 
@@ -432,7 +420,7 @@ class BaseDatabase:
         >>> import laygo2
         >>> base = laygo2.object.database.BaseDatabase(name='mycell')
         >>> print(base)
-        <laygo2.object.database.BaseDatabase object> 
+        <laygo2.object.database.BaseDatabase object>
         name: mycell, params: None elements: {}>
 
         Notes
@@ -468,10 +456,10 @@ class Library(BaseDatabase):
     >>> lib.append(dsn0)
     >>> lib.append(dsn1)
     >>> print(lib)
-    <laygo2.object.database.Library object at 0x0000025F2D25B8B0> 
-    name: mylib, params: None 
+    <laygo2.object.database.Library object at 0x0000025F2D25B8B0>
+    name: mylib, params: None
     elements: {
-        'mycell0': <laygo2.object.database.Design object at 0x0000025F2D25B010>, 
+        'mycell0': <laygo2.object.database.Design object at 0x0000025F2D25B010>,
         'mycell1': <laygo2.object.database.Design object at 0x0000025F2D25BF70>}
 
     See Also
@@ -600,12 +588,12 @@ class Design(BaseDatabase):
     >>> dsn.append(i0)
     >>> dsn.append(t0)
     >>> print(dsn)
-    <laygo2.object.database.Design object at 0x0000024C6C2EF010> 
-        name: mycell, params: None 
+    <laygo2.object.database.Design object at 0x0000024C6C2EF010>
+        name: mycell, params: None
         elements: {
             'NoName_0': <laygo2.object.physical.Rect object at 0x0000024C6C230F40>,
-            'P': <laygo2.object.physical.Pin object at 0x0000024C6C2EFF40>, 
-            'I0': <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>, 
+            'P': <laygo2.object.physical.Pin object at 0x0000024C6C2EFF40>,
+            'I0': <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>,
             'NoName_1': <laygo2.object.physical.Text object at 0x0000024C6C2EF8B0>}
         libname:genlib
         rects:{
@@ -618,17 +606,17 @@ class Design(BaseDatabase):
         instances:{
             'I0': <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>}
         virtual instances:{}
-    >>> # 
+    >>> #
     >>> # Export to a NativeInstanceTemplate for reuse in higher levels.
     >>> nt0 = dsn.export_to_template()
     >>> nt0.dsn.export_to_template()
     >>> print(nt0)
-        <laygo2.object.template.NativeInstanceTemplate object at 0x000001CB5A9CE380> 
-        name: mycell, 
+        <laygo2.object.template.NativeInstanceTemplate object at 0x000001CB5A9CE380>
+        name: mycell,
         class: NativeInstanceTemplate,
-         bbox: [[0, 0], [0, 0]], 
+         bbox: [[0, 0], [0, 0]],
          pins: {'P': <laygo2.object.physical.Pin object at 0x000001CB5A9CFF40>},
-    >>> # 
+    >>> #
     >>> # Export to a skill script.
     >>> lib = laygo2.object.database.Library(name="mylib")
     >>> lib.append(dsn)
@@ -641,7 +629,7 @@ class Design(BaseDatabase):
     _laygo2_generate_pin(cv, "P", list( "M1" "pin" ), list( list( 0.0000  0.0000  ) list( 0.0500  0.0500  ) ) )
     _laygo2_generate_instance(cv, "I0", "tlib", "t0", "layout", list( 0.0000  0.0000  ), "R0", 1, 1, 0, 0, nil, nil)
     _laygo2_save_and_close_layout(cv)
-    
+
     An abstract grid example:
 
     >>> import laygo2
@@ -665,13 +653,13 @@ class Design(BaseDatabase):
     >>> e0v = CM([15])          # vert. extension (for zero-length wires)
     >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
     >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
-    >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+    >>> lh = CM([['M2', 'drawing']]*3, dtype=object)
     >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
     >>> plh = CM([['M2', 'pin']]*3, dtype=object)
     >>> xcolor = CM([None], dtype=object)  # not multipatterned
-    >>> ycolor = CM([None]*3, dtype=object) 
+    >>> ycolor = CM([None]*3, dtype=object)
     >>> primary_grid = 'horizontal'
-    >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+    >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via
     >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
     >>> gr = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
                                             vwidth=wv, hwidth=wh,
@@ -689,29 +677,29 @@ class Design(BaseDatabase):
     [100, 100]
     >>> # Place the instance
     >>> dsn.place(inst=i0, grid=gp, mn=[10,10])
-    >>> # Routing on grid 
+    >>> # Routing on grid
     >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
-    >>> route = dsn.route(grid=gr, mn=mn_list, 
+    >>> route = dsn.route(grid=gr, mn=mn_list,
                           via_tag=[True, None, True, True])
     >>> #
     >>> # Display generated design.
     >>> print(dsn)
     <laygo2.object.database.Design object at 0x000001C71AE3A110>
         ...
-    >>> # 
+    >>> #
     >>> # Export to a NativeInstanceTemplate for reuse in higher levels.
     >>> nt0 = dsn.export_to_template()
     >>> nt0.dsn.export_to_template()
     >>> print(nt0)
         ...
-    >>> # 
+    >>> #
     >>> # Export to a skill script.
     >>> lib = laygo2.object.database.Library(name="mylib")
     >>> lib.append(dsn)
     >>> scr = laygo2.interface.skill.export(lib, filename="myscript.il")
     >>> print(scr)
         ...
-    
+
     An abstract template/grid example with technology setup (laygo2_tech):
 
     >>> import laygo2
@@ -729,29 +717,29 @@ class Design(BaseDatabase):
     >>> i0 = tnmos.generate(name='MN0', params={'nf': 4})
     >>> # Place the instance
     >>> dsn.place(inst=i0, grid=gp, mn=[10,10])
-    >>> # Routing on grid 
+    >>> # Routing on grid
     >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
-    >>> route = dsn.route(grid=gr, mn=mn_list, 
+    >>> route = dsn.route(grid=gr, mn=mn_list,
                           via_tag=[True, None, True, True])
     >>> #
     >>> # Display generated design.
     >>> print(dsn)
     <laygo2.object.database.Design object at 0x000001C71AE3A110>
         ...
-    >>> # 
+    >>> #
     >>> # Export to a NativeInstanceTemplate for reuse in higher levels.
     >>> nt0 = dsn.export_to_template()
     >>> nt0.dsn.export_to_template()
     >>> print(nt0)
         ...
-    >>> # 
+    >>> #
     >>> # Export to a skill script.
     >>> lib = laygo2.object.database.Library(name="mylib")
     >>> lib.append(dsn)
     >>> scr = laygo2.interface.skill.export(lib, filename="myscript.il")
     >>> print(scr)
         ...
-    
+
 
     Notes
     -----
@@ -848,7 +836,7 @@ class Design(BaseDatabase):
     -----
     **(Korean)** Design 객체에 소속된 Rect 객체들을 갖고 있는 dictionary.
     """
-    
+
     paths = None
 
     pins = None
@@ -1007,11 +995,11 @@ class Design(BaseDatabase):
         Parameters
         ----------
         item : laygo2.object.physical.PhysicalObject
-            The physical object to be added. 
+            The physical object to be added.
 
         Returns
         -------
-        list : 
+        list :
             A list containing the name of item and the item itself ([item.name, item]).
 
         Example
@@ -1031,12 +1019,12 @@ class Design(BaseDatabase):
         >>> dsn.append(i0)
         >>> dsn.append(t0)
         >>> print(dsn)
-        <laygo2.object.database.Design object at 0x0000024C6C2EF010> 
-            name: mycell, params: None 
+        <laygo2.object.database.Design object at 0x0000024C6C2EF010>
+            name: mycell, params: None
             elements: {
                 'NoName_0': <laygo2.object.physical.Rect object at 0x0000024C6C230F40>,
-                'P': <laygo2.object.physical.Pin object at 0x0000024C6C2EFF40>, 
-                'I0': <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>, 
+                'P': <laygo2.object.physical.Pin object at 0x0000024C6C2EFF40>,
+                'I0': <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>,
                 'NoName_1': <laygo2.object.physical.Text object at 0x0000024C6C2EF8B0>}
             libname:genlib
             rects:{
@@ -1052,13 +1040,13 @@ class Design(BaseDatabase):
 
         See Also
         --------
-            laygo2.object.database.Design.place : Place a (virtual) instance 
+            laygo2.object.database.Design.place : Place a (virtual) instance
             on a grid and append to the design.
-            laygo2.object.database.Design.route : Route on a grid and append 
+            laygo2.object.database.Design.route : Route on a grid and append
             to the design.
-            laygo2.object.database.Design.route_via_track : Route on a track 
+            laygo2.object.database.Design.route_via_track : Route on a track
             on a grid and append.
-            laygo2.object.database.Design.pin : Place a pin on a grid and 
+            laygo2.object.database.Design.pin : Place a pin on a grid and
             append to the design.
         """
         if isinstance(item, list) or isinstance(item, np.ndarray):
@@ -1110,18 +1098,24 @@ class Design(BaseDatabase):
         )
 
     # Object creation and manipulation functions.
-    def place(self, inst, grid, mn):
+    def place(self, inst, grid, mn=[0, 0], anchor_xy=None):
         """
         Place the instance on the abstract coordinate **mn**, on the abstract grid.
 
         Parameters
         ----------
         inst : laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance or list
-            The instance to be placed. When inst is a list, the elements in the list are placed in order. 
+            The instance to be placed. When inst is a list, the elements
+            in the list are placed in order.
         grid : laygo2.object.grid.PlacementGrid
             The placement grid where the instance is placed on.
         mn : numpy.ndarray or list
             The abstract coordinate value [m, n] to place the instance.
+        anchor_xy : list
+            Two physical coordinates to be overlapped by the placement.
+            The first coordinate is for the absolute physical grid, and the
+            second coordinate is for the relative position of the instance
+            to be placed.
 
         Returns
         -------
@@ -1152,11 +1146,11 @@ class Design(BaseDatabase):
         >>> print(i0.xy)
         [200, 1000]
         >>> print(dsn)
-        <laygo2.object.database.Design object at 0x000002803D4C0F40> 
-            name: mycell 
+        <laygo2.object.database.Design object at 0x000002803D4C0F40>
+            name: mycell
             params: None
-            elements: 
-                {'I0': <laygo2.object.physical.Instance object at 
+            elements:
+                {'I0': <laygo2.object.physical.Instance object at
                         0x000002803D57F010>}
             libname:genlib
             rects:{}
@@ -1172,17 +1166,17 @@ class Design(BaseDatabase):
         >>> i3 = Instance(libname="tlib", cellname="t3", name="I3", xy=[0, 0])
         >>> dsn.place(inst= [i1, i2, i3], grid=g, mn=[10,10])
         >>> print(dsn)
-        <laygo2.object.database.Design object at 0x000002803D4C0F40> 
-            name: mycell 
+        <laygo2.object.database.Design object at 0x000002803D4C0F40>
+            name: mycell
             params: None
-            elements: 
-                {'I0': <laygo2.object.physical.Instance object at 
+            elements:
+                {'I0': <laygo2.object.physical.Instance object at
                         0x000002803D57F010>,
-                 'I1': <laygo2.object.physical.Instance object at 
+                 'I1': <laygo2.object.physical.Instance object at
                         0x000002803D57F011>,
-                 'I2': <laygo2.object.physical.Instance object at 
+                 'I2': <laygo2.object.physical.Instance object at
                         0x000002803D57F012>,
-                 'I3': <laygo2.object.physical.Instance object at 
+                 'I3': <laygo2.object.physical.Instance object at
                         0x000002803D57F013>
                         }
             libname:genlib
@@ -1200,7 +1194,7 @@ class Design(BaseDatabase):
 
         See Also
         --------
-        laygo2.object.grid.PlacementGrid.place : place a (virtual) instance 
+        laygo2.object.grid.PlacementGrid.place : place a (virtual) instance
             on the grid.
 
         Notes
@@ -1215,16 +1209,23 @@ class Design(BaseDatabase):
             - laygo2.physical.instance or list(laygo2.object.physical.Instance) : 좌표가 수정된 인스턴스 또는 좌표가 수정된 인스턴스 들을 갖는 리스트.
         """
         if isinstance(inst, (laygo2.object.Instance, laygo2.object.VirtualInstance)):
-            inst = grid.place(inst, mn)
+            # single instance
+            if anchor_xy is None:
+                _mn = mn
+            else:
+                _xy = anchor_xy[0] - anchor_xy[1]
+                _mn = mn + grid.mn(_xy)
+            inst = grid.place(inst, _mn)
             self.append(inst)
             return inst
         else:
+            # multiple instances (anchor_xy is not supported yet)
             matrix = np.asarray(inst)
-            size   = matrix.shape
+            size = matrix.shape
 
             if len(size) == 2:
                 m, n = size
-            else: # when 1-dimentional array
+            else:  # when 1-dimentional array
                 m, n = 1, size[0]
                 matrix = [matrix]
 
@@ -1241,18 +1242,18 @@ class Design(BaseDatabase):
                     mn_ref = grid.mn.top_left(matrix[ms][ns])
 
                 for element in row:
-                    if isinstance( element, (laygo2.object.Instance, laygo2.object.VirtualInstance)):
-                        mn_bl    = grid.mn.bottom_left(element)
-                        mn_comp  = mn_ref - mn_bl
+                    if isinstance(element, (laygo2.object.Instance, laygo2.object.VirtualInstance)):
+                        mn_bl = grid.mn.bottom_left(element)
+                        mn_comp = mn_ref - mn_bl
                         inst_sub = grid.place(element, mn_comp)
                         self.append(inst_sub)
-                        mn_ref   = grid.mn.bottom_right(element)
+                        mn_ref = grid.mn.bottom_right(element)
                     else:
                         if element == None:
                             pass
                         elif isinstance(element, int):
-                            mn_ref = mn_ref + [element, 0] # offset
-            return inst                
+                            mn_ref = mn_ref + [element, 0]  # offset
+            return inst
 
     def route(self, grid, mn, direction=None, via_tag=None):
         """
@@ -1265,17 +1266,17 @@ class Design(BaseDatabase):
         mn : list(numpy.ndarray)
             The list containing two or more mn coordinates to be connected.
         direction : str, optional.
-            None or “vertical” or "horizontal". The direction of the routing 
+            None or “vertical” or "horizontal". The direction of the routing
             object.
         via_tag : list(Boolean), optional.
-            The list containing switches deciding whether to place via at 
+            The list containing switches deciding whether to place via at
             the edges.
 
         Returns
         -------
         laygo2.object.physical.Rect or list :
             The generated routing object(s).
-            Check the example code in laygo2.object.grid.RoutingGrid.route 
+            Check the example code in laygo2.object.grid.RoutingGrid.route
             for details.
 
         Example
@@ -1297,13 +1298,13 @@ class Design(BaseDatabase):
         >>> e0v = CM([15])          # vert. extension (for zero-length wires)
         >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
         >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
-        >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+        >>> lh = CM([['M2', 'drawing']]*3, dtype=object)
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
         >>> xcolor = CM([None], dtype=object)  # not multipatterned
-        >>> ycolor = CM([None]*3, dtype=object) 
+        >>> ycolor = CM([None]*3, dtype=object)
         >>> primary_grid = 'horizontal'
-        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
         >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
                                                vwidth=wv, hwidth=wh,
@@ -1319,30 +1320,30 @@ class Design(BaseDatabase):
         >>> # Route on grid #
         >>> #################
         >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
-        >>> route = dsn.route(grid=g, mn=mn_list, 
+        >>> route = dsn.route(grid=g, mn=mn_list,
                               via_tag=[True, None, True, True])
         >>> # Display generated design.
         >>> print(dsn)
-        <laygo2.object.database.Design object at 0x000001C71AE3A110> 
+        <laygo2.object.database.Design object at 0x000001C71AE3A110>
             name: mycell, params: None
             elements: {
-            'NoName_0': <laygo2.object.physical.Instance object at 0x000001C71AE3BA90>, 
-            'NoName_1': <laygo2.object.physical.Rect object at 0x000001C71AE3B820>, 
-            'NoName_2': <laygo2.object.physical.Rect object at 0x000001C71AE3ABF0>, 
-            'NoName_3': <laygo2.object.physical.Instance object at 0x000001C71AE3A140>, 
-            'NoName_4': <laygo2.object.physical.Rect object at 0x000001C71AE39DB0>, 
-            'NoName_5': <laygo2.object.physical.Instance object at 0x000001C71AE3AB60>}      
+            'NoName_0': <laygo2.object.physical.Instance object at 0x000001C71AE3BA90>,
+            'NoName_1': <laygo2.object.physical.Rect object at 0x000001C71AE3B820>,
+            'NoName_2': <laygo2.object.physical.Rect object at 0x000001C71AE3ABF0>,
+            'NoName_3': <laygo2.object.physical.Instance object at 0x000001C71AE3A140>,
+            'NoName_4': <laygo2.object.physical.Rect object at 0x000001C71AE39DB0>,
+            'NoName_5': <laygo2.object.physical.Instance object at 0x000001C71AE3AB60>}
             libname:genlib
             rects: {  # wires
-            'NoName_1': <laygo2.object.physical.Rect object at 0x000001C71AE3B820>, 
-            'NoName_2': <laygo2.object.physical.Rect object at 0x000001C71AE3ABF0>, 
-            'NoName_4': <laygo2.object.physical.Rect object at 0x000001C71AE39DB0>}      
+            'NoName_1': <laygo2.object.physical.Rect object at 0x000001C71AE3B820>,
+            'NoName_2': <laygo2.object.physical.Rect object at 0x000001C71AE3ABF0>,
+            'NoName_4': <laygo2.object.physical.Rect object at 0x000001C71AE39DB0>}
             paths:{}
             pins:{}
             texts:{}
             instances:{  # vias
-            'NoName_0': <laygo2.object.physical.Instance object at 0x000001C71AE3BA90>, 
-            'NoName_3': <laygo2.object.physical.Instance object at 0x000001C71AE3A140>, 
+            'NoName_0': <laygo2.object.physical.Instance object at 0x000001C71AE3BA90>,
+            'NoName_3': <laygo2.object.physical.Instance object at 0x000001C71AE3A140>,
             'NoName_5': <laygo2.object.physical.Instance object at 0x000001C71AE3AB60>}
             virtual instances:{}
 
@@ -1361,7 +1362,7 @@ class Design(BaseDatabase):
             - mn(list(numpy.ndarray)): 배선을 수행할 2개 이상의 mn 좌표를 담고 있는 list.
             - direction(str): None or “vertical”; path의 방향을 결정 (수평 or 수직) [optional].
             - via_tag(list(Boolean)): Path에 via를 형성 할지를 결정하는 switch들을 담고 있는 list [optional].
-        
+
         반환값
             - list: 생성된 routing object들을 담고 있는 list.
         """
@@ -1402,13 +1403,13 @@ class Design(BaseDatabase):
         >>> e0v = CM([15])          # vert. extension (for zero-length wires)
         >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
         >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
-        >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+        >>> lh = CM([['M2', 'drawing']]*3, dtype=object)
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
         >>> xcolor = CM([None], dtype=object)  # Not multipatterned
-        >>> ycolor = CM([None]*3, dtype=object) 
+        >>> ycolor = CM([None]*3, dtype=object)
         >>> primary_grid = 'horizontal'
-        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0') 
+        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
         >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
                                                vwidth=wv, hwidth=wh,
@@ -1427,11 +1428,11 @@ class Design(BaseDatabase):
         >>> via = dsn.via(grid=g, mn=mn_list)
         >>> # Display generated design.
         >>> print(dsn)
-        <laygo2.object.database.Design object at 0x0000015A77C6A110> 
+        <laygo2.object.database.Design object at 0x0000015A77C6A110>
         name: mycell, params: None,
         elements: {
-        'NoName_0': <laygo2.object.physical.Instance object at 0x0000015A77C6AC20>, 
-        'NoName_1': <laygo2.object.physical.Instance object at 0x0000015A77C6AD10>, 
+        'NoName_0': <laygo2.object.physical.Instance object at 0x0000015A77C6AC20>,
+        'NoName_1': <laygo2.object.physical.Instance object at 0x0000015A77C6AD10>,
         'NoName_2': <laygo2.object.physical.Instance object at 0x0000015A77C6AD40>}
         libname:genlib
         rects:{}
@@ -1439,8 +1440,8 @@ class Design(BaseDatabase):
         pins:{}
         texts:{}
         instances:{
-        'NoName_0': <laygo2.object.physical.Instance object at 0x0000015A77C6AC20>, 
-        'NoName_1': <laygo2.object.physical.Instance object at 0x0000015A77C6AD10>, 
+        'NoName_0': <laygo2.object.physical.Instance object at 0x0000015A77C6AC20>,
+        'NoName_1': <laygo2.object.physical.Instance object at 0x0000015A77C6AD10>,
         'NoName_2': <laygo2.object.physical.Instance object at 0x0000015A77C6AD40>}
         virtual instances:{}
 
@@ -1478,7 +1479,7 @@ class Design(BaseDatabase):
             Vertical tracks have [v, None] format, while horizontal tracks have [None, v] format
             (v is the coordinates of the track).
         via_tag : list(Boolean), optional.
-            The list containing switches deciding whether to place via at 
+            The list containing switches deciding whether to place via at
             the edges of individual stubs.
 
         Returns
@@ -1506,13 +1507,13 @@ class Design(BaseDatabase):
         >>> e0v = CM([15])          # vert. extension (for zero-length wires)
         >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
         >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
-        >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+        >>> lh = CM([['M2', 'drawing']]*3, dtype=object)
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
         >>> xcolor = CM([None], dtype=object)  # not multipatterned
-        >>> ycolor = CM([None]*3, dtype=object) 
+        >>> ycolor = CM([None]*3, dtype=object)
         >>> primary_grid = 'horizontal'
-        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
         >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
                                                vwidth=wv, hwidth=wh,
@@ -1529,34 +1530,34 @@ class Design(BaseDatabase):
         >>> track = dsn.route_via_track(grid=g, mn=mn_list, track=[None,0])
         >>> # Display design
         >>> print(dsn)
-            <laygo2.object.database.Design object at 0x0000015A77C6BA60> 
+            <laygo2.object.database.Design object at 0x0000015A77C6BA60>
             name: mycell, params: None
             elements: {
-            'NoName_0': <laygo2.object.physical.Rect object at 0x0000015A77C6B790>, 
-            'NoName_1': <laygo2.object.physical.Instance object at 0x0000015A77C6B820>, 
-            'NoName_2': <laygo2.object.physical.Instance object at 0x0000015A77C6B7C0>, 
-            'NoName_3': <laygo2.object.physical.Rect object at 0x0000015A77C6B760>, 
-            'NoName_4': <laygo2.object.physical.Instance object at 0x0000015A77C6A2F0>, 
+            'NoName_0': <laygo2.object.physical.Rect object at 0x0000015A77C6B790>,
+            'NoName_1': <laygo2.object.physical.Instance object at 0x0000015A77C6B820>,
+            'NoName_2': <laygo2.object.physical.Instance object at 0x0000015A77C6B7C0>,
+            'NoName_3': <laygo2.object.physical.Rect object at 0x0000015A77C6B760>,
+            'NoName_4': <laygo2.object.physical.Instance object at 0x0000015A77C6A2F0>,
             'NoName_5': <laygo2.object.physical.Rect object at 0x0000015A77C6BA90>}
             libname:genlib
             rects:{
-            'NoName_0': <laygo2.object.physical.Rect object at 0x0000015A77C6B790>, 
-            'NoName_3': <laygo2.object.physical.Rect object at 0x0000015A77C6B760>, 
+            'NoName_0': <laygo2.object.physical.Rect object at 0x0000015A77C6B790>,
+            'NoName_3': <laygo2.object.physical.Rect object at 0x0000015A77C6B760>,
             'NoName_5': <laygo2.object.physical.Rect object at 0x0000015A77C6BA90>}
             paths:{}
             pins:{}
             texts:{}
             instances:{
-            'NoName_1': <laygo2.object.physical.Instance object at 0x0000015A77C6B820>, 
-            'NoName_2': <laygo2.object.physical.Instance object at 0x0000015A77C6B7C0>, 
+            'NoName_1': <laygo2.object.physical.Instance object at 0x0000015A77C6B820>,
+            'NoName_2': <laygo2.object.physical.Instance object at 0x0000015A77C6B7C0>,
             'NoName_4': <laygo2.object.physical.Instance object at 0x0000015A77C6A2F0>}
             virtual instances:{}
-        >>> print(track[-1]) 
-            <laygo2.object.physical.Rect object at 0x0000015A77C6BA90> 
+        >>> print(track[-1])
+            <laygo2.object.physical.Rect object at 0x0000015A77C6BA90>
             name: None,
             class: Rect,
             xy: [[0, 0], [100, 0]],
-            params: None, , layer: ['M2' 'drawing'], netname: None 
+            params: None, , layer: ['M2' 'drawing'], netname: None
 
         .. image:: ../assets/img/object_grid_RoutingGrid_route_via_track.png
            :height: 250
@@ -1570,13 +1571,13 @@ class Design(BaseDatabase):
         **(Korean)** wire 라우팅 함수, track을 기준점으로 routing을 진행한다.
 
         파라미터
-            - track(numpy.ndarray): track의 좌표값과 방향을 담고 있는 list. 
-            수직 트랙일 경우 [v, None], 수평 트랙일 경우 [None, v]의 형태를 
+            - track(numpy.ndarray): track의 좌표값과 방향을 담고 있는 list.
+            수직 트랙일 경우 [v, None], 수평 트랙일 경우 [None, v]의 형태를
             가지고 있다 (v는 track의 좌표값).
-            - mn(list(numpy.ndarray)): track을 통해 연결될 지점들의 좌표를 
+            - mn(list(numpy.ndarray)): track을 통해 연결될 지점들의 좌표를
             담고 있는 list.
         반환값
-            - list: 생성된 routing object들을 담고 있는 list. 
+            - list: 생성된 routing object들을 담고 있는 list.
             마지막 object가 track위의 routing object에 해당.
         """
         r = grid.route_via_track(mn=mn, track=track, via_tag=via_tag)
@@ -1624,13 +1625,13 @@ class Design(BaseDatabase):
         >>> e0v = CM([15])          # vert. extension (for zero-length wires)
         >>> e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)
         >>> lv = CM([['M1', 'drawing']], dtype=object)  # layer information
-        >>> lh = CM([['M2', 'drawing']]*3, dtype=object) 
+        >>> lh = CM([['M2', 'drawing']]*3, dtype=object)
         >>> plv = CM([['M1', 'pin']], dtype=object) # pin layers
         >>> plh = CM([['M2', 'pin']]*3, dtype=object)
         >>> xcolor = CM([None], dtype=object)  # Not multipatterned
-        >>> ycolor = CM([None]*3, dtype=object) 
+        >>> ycolor = CM([None]*3, dtype=object)
         >>> primary_grid = 'horizontal'
-        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via 
+        >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
         >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
                                                vwidth=wv, hwidth=wh,
@@ -1648,15 +1649,15 @@ class Design(BaseDatabase):
         >>> mn = [[0, 0], [10, 10]]
         >>> pin = dsn.pin(name="pin", grid=g, mn=mn)
         >>> print(pin)
-        <laygo2.object.physical.Pin object at 0x0000028DABE3AB90> 
+        <laygo2.object.physical.Pin object at 0x0000028DABE3AB90>
             name: pin,
             class: Pin,
             xy: [[0, -10], [500, 350]],
-            params: None, , layer: ['M2' 'pin'], netname: pin, shape: None, 
+            params: None, , layer: ['M2' 'pin'], netname: pin, shape: None,
             master: None
         >>> print(dsn)
         <laygo2.object.database.Design object at 0x0000028DABE3A110> name: mycell, params: None
-            elements: {'pin': <laygo2.object.physical.Pin object at 
+            elements: {'pin': <laygo2.object.physical.Pin object at
             0x0000028DABE3AB90>}
             libname:genlib
             rects:{}
@@ -1670,7 +1671,7 @@ class Design(BaseDatabase):
         -----
         **(Korean)**
         pin 생성함수.
-        
+
         파라미터
             - name(str): Pin 이름.
             - mn(numpy.ndarray): Pin을 생성할 abstract 좌표.
@@ -1681,9 +1682,7 @@ class Design(BaseDatabase):
             - laygo2.physical.Pin: Pin object.
 
         """
-        p = grid.pin(
-            name=name, mn=mn, direction=direction, netname=netname, params=params
-        )
+        p = grid.pin(name=name, mn=mn, direction=direction, netname=netname, params=params)
         self.append(p)
         return p
 
@@ -1722,16 +1721,16 @@ class Design(BaseDatabase):
         >>> # Export the design to a template.
         >>> nt0 = dsn.export_to_template()
         >>> print(nt0)
-        <laygo2.object.template.NativeInstanceTemplate object at XXXX> 
-            name: mycell, class: NativeInstanceTemplate, 
-            bbox: [[0, 0], [0, 0]], 
+        <laygo2.object.template.NativeInstanceTemplate object at XXXX>
+            name: mycell, class: NativeInstanceTemplate,
+            bbox: [[0, 0], [0, 0]],
             pins: {'P': <laygo2.object.physical.Pin object at YYYY>},
         >>> # Save the template into a yaml file.
         >>> laygo2.interface.yaml.export_template(nt0, filename='mytemp.yaml')
 
         See Also
         --------
-            laygo2.interface.yaml.export_template : Export a template to 
+            laygo2.interface.yaml.export_template : Export a template to
             a yaml file.
 
         Notes
@@ -1748,9 +1747,7 @@ class Design(BaseDatabase):
 
         xy = self.bbox
         pins = self.pins
-        return laygo2.object.template.NativeInstanceTemplate(
-            libname=libname, cellname=cellname, bbox=xy, pins=pins
-        )
+        return laygo2.object.template.NativeInstanceTemplate(libname=libname, cellname=cellname, bbox=xy, pins=pins)
 
     def get_matched_rects_by_layer(self, layer):
         """
@@ -1824,9 +1821,7 @@ class Design(BaseDatabase):
                             vextension=inst.vextension,
                             color=inst.color,
                         )
-                        obj_check.append(
-                            ninst
-                        )  ## ninst is for sort, inst should be frozen for implement to layout
+                        obj_check.append(ninst)  ## ninst is for sort, inst should be frozen for implement to layout
         return obj_check
 
 
@@ -1873,9 +1868,7 @@ if __name__ == "__main__":
     # dsn.append(text0)
     inst0_pins = dict()
     inst0_pins["in"] = Pin(xy=[[0, 0], [10, 10]], layer=["M1", "drawing"], netname="in")
-    inst0_pins["out"] = Pin(
-        xy=[[90, 90], [100, 100]], layer=["M1", "drawing"], netname="out"
-    )
+    inst0_pins["out"] = Pin(xy=[[90, 90], [100, 100]], layer=["M1", "drawing"], netname="out")
     inst0 = Instance(
         name="I0",
         xy=[100, 100],

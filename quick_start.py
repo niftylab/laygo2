@@ -69,10 +69,18 @@ in1 = tnmos.generate(name="MN1", params={"nf": nf_a, "trackswap": True})
 ip1 = tpmos.generate(name="MP1", transform="MX", params={"nf": nf_a, "tie": "S"})
 
 # 4. Place instances.
-dsn.place(grid=pg, inst=in0, mn=[0, 0])
-dsn.place(grid=pg, inst=ip0, mn=pg.mn.top_left(in0) + pg.mn.height_vec(ip0))
-dsn.place(grid=pg, inst=in1, mn=pg.mn.bottom_right(in0))
-dsn.place(grid=pg, inst=ip1, mn=pg.mn.top_right(ip0))
+# grid placement
+# dsn.place(grid=pg, inst=in0, mn=[0, 0])
+# dsn.place(grid=pg, inst=ip0, mn=pg.mn.top_left(in0) + pg.mn.height_vec(ip0))
+# dsn.place(grid=pg, inst=in1, mn=pg.mn.bottom_right(in0))
+# dsn.place(grid=pg, inst=ip1, mn=pg.mn.top_right(ip0))
+# anchor placement
+# dsn.place(grid=pg, inst=in0, mn=[0, 0])
+# dsn.place(grid=pg, inst=ip0, anchor_xy=[in0.top_left, ip0.bottom_left])
+# dsn.place(grid=pg, inst=in1, anchor_xy=[in0.bottom_right, in1.bottom_left])
+# dsn.place(grid=pg, inst=ip1, anchor_xy=[in1.top_left, ip1.bottom_left])
+# array placement
+dsn.place(grid=pg, inst=[[in0, in1], [ip0, ip1]], mn=[0, 0])
 
 # 5. Create and place wires.
 print("Create wires")
