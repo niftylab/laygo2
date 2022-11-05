@@ -97,7 +97,7 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
                     alpha=colormap[obj.layer[0]][2],
                     lw=2,
                 )
-                return [[rect, obj.layer[0], obj.name, obj.netname]]
+                return [[rect, obj.layer[0], objname, obj.netname]]
                 # ax.add_patch(rect)
             return []
     elif obj.__class__ == laygo2.object.Text:
@@ -128,7 +128,16 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
             (_xy0[0], _xy0[1]), _xy1[0], _xy1[1], facecolor=colormap["__instance__"][1],
             edgecolor=colormap["__instance__"][0], alpha=colormap["__instance__"][2], lw=2
         )
-        return [[rect, "__instance__", obj.cellname, obj.name]]
+        pypobjs = [[rect, "__instance__", obj.cellname, obj.name]]
+
+        # Instance pins
+        for pn, p in obj.pins.items():
+            _pypobj = _translate_obj(pn, p, colormap, scale=scale, master=master, offset=offset)
+            _pypobj[0][1] = "__instance_pin__"
+            _pypobj[0][0].set(edgecolor=colormap["__instance_pin__"][0])
+            _pypobj[0][0].set(facecolor=colormap["__instance_pin__"][1])
+            pypobjs += _pypobj
+        return pypobjs
         # ax.add_patch(rect)
         # return True
     elif obj.__class__ == laygo2.object.VirtualInstance:
@@ -137,10 +146,10 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
             for elem_name, elem in obj.native_elements.items():
                 if not elem.__class__ == laygo2.object.Pin:
                     if obj.name == None:
-                        obj.name = "NoName"
+                        objname = "NoName"
                     else:
-                        pass
-                    _pypobj = _translate_obj(obj.name + "_" + elem_name, elem, colormap, scale=scale, master=obj)
+                        objname = obj.name
+                    _pypobj = _translate_obj(objname + "_" + elem_name, elem, colormap, scale=scale, master=obj)
                     pypobjs += _pypobj
         else:  # arrayed VirtualInstance
             for i, j in np.ndindex(tuple(obj.shape.tolist())):  # iterate over obj.shape
@@ -216,7 +225,8 @@ def export(
                             rx, ry = _pypobj[0].get_xy()
                             cx = rx + _pypobj[0].get_width()/2.0
                             cy = ry + _pypobj[0].get_height()/2.0
-                            ax.annotate(_pypobj[2]+"/"+_pypobj[3], (cx, cy), color='black', weight='bold', fontsize=6, ha='center', va='center')
+                            ax.annotate(_pypobj[2]+"/"+_pypobj[3], (cx, cy), color=_pypobj[0].get_edgecolor(), weight='bold', fontsize=6, ha='center', va='center')
+                            #ax.annotate(_pypobj[2]+"/"+_pypobj[3], (cx, cy), color='black', weight='bold', fontsize=6, ha='center', va='center')
         fig.append(_fig)
     if len(fig) == 1:
         fig = fig[0]

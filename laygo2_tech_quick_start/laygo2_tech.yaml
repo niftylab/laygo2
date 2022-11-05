@@ -1,7 +1,7 @@
 # Technology parameters for the advanced example technology.
 mpl: # for matplotlib
   colormap:
-    prBoundary: ["grey", "none", 0.3]
+    prBoundary: ["darkgray", "none", 0.3]
     nwell: ["yellowgreen", "none", 0.3]
     pimplant: ["tomato", "none", 0.3]
     nimplant: ["olive", "none", 0.3]
@@ -15,6 +15,7 @@ mpl: # for matplotlib
     via2: ["navy", "navy", 1]
     via3: ["olive", "olive", 1]
     __instance__: ["black", "none", 1]
+    __instance_pin__: ["gray", "none", 1]
   order:
     - __instance__
     - prBoundary
@@ -30,6 +31,7 @@ mpl: # for matplotlib
     - metal3
     - via3
     - metal4
+    - __instance_pin__
 grids:
   placement_basic:
     type: placement

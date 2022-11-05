@@ -11,14 +11,14 @@ laygo in linux environments.
 
 ## Colab tutorial
 
-The easiest way of exercising laygo2 without installing it locally is using **[Colab](https://colab.research.google.com/)**; 
+The easiest way of exercising laygo2 without installing it locally is using [Colab](https://colab.research.google.com/); 
 the example tutorial can be found **[here](https://colab.research.google.com/drive/1tpuUvqb6BujzZI6RBf2cFdAfMqBsxpep?usp=sharing)**.
 
 ## Installation 
 
-There are two ways of installing laygo2 in your environment; 1) cloning from **[github](https://www.github.com)** and 2) using **[pip](https://pypi.org)**.
+There are two ways of installing laygo2 in your environment; 1) cloning from [github](https://www.github.com) and 2) using [pip](https://pypi.org).
 
-### Installing laygo2 from **[Github](https://github.com/niftylab/laygo2.git)**
+### Installing laygo2 from **[Github repository](https://github.com/niftylab/laygo2.git)**
 
 Users can download and install the laygo2 package by cloning its github 
 repository by typing the following command:
