@@ -48,4 +48,4 @@ from laygo2.object.database import *
 from laygo2.object.grid import *
 from laygo2.object.physical import *
 from laygo2.object.template import *
-
+from laygo2.object.routing import *

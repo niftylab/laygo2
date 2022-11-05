@@ -27,6 +27,7 @@
 """
 
 import numpy as np
+from laygo2.object.physical import *
 
 
 class RoutingChannel:
@@ -73,13 +74,11 @@ class RoutingChannel:
             # Find out routing points.
             mn = []
             for n in nodes:
-                if isinstance(n, laygo2.object.physical.Instance) or isinstance(
-                    n, laygo2.object.physical.VirtualInstance
-                ):
+                if isinstance(n, Instance) or isinstance(n, VirtualInstance):
                     for pn, p in n.pins.items():
                         if p.netname == tn:
                             mn.append(g.mn(p.xy)[0])
-                elif isinstance(n, laygo2.object.physical.Rect):
+                elif isinstance(n, Rect):
                     if n.netname == tn:
                         mn.append(g.mn(n.xy)[0])
             # Do routing

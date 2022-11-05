@@ -61,6 +61,7 @@ __maintainer__ = "Jaeduk Han"
 __status__ = "Prototype"
 
 import numpy as np
+
 # from copy import deepcopy
 import laygo2.util.transform as tf
 
@@ -76,12 +77,12 @@ class PhysicalObject:
     """
 
     def _get_xy(self):
-        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of 
+        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of
         this object."""
         return self._xy
 
     def _set_xy(self, value):
-        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of 
+        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of
         this object."""
         self._xy = np.asarray(value, dtype=np.int)
         self._update_pointers()
@@ -391,7 +392,7 @@ class PhysicalObject:
         Example
         -------
         >>> import laygo2
-        >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]], 
+        >>> obj = laygo2.object.physical.PhysicalObject(xy = [[0, 0], [200, 200]],
                 name="test", params={'maxI': 0.005})
         >>> print(obj)
         <laygo2.object.physical.PhysicalObject object at 0x000001ECF0022948>
@@ -443,14 +444,22 @@ class PhysicalObject:
         name = "None" if self.name is None else self.name
         return (
             self.__repr__() + " \n"
-            "    name: " + name + ", \n"
-            + "    class: " + self.__class__.__name__ + ", \n"
-            + "    xy: " + str(self.xy.tolist()) + ", \n"
-            + "    params: " + str(self.params) + ", \n"
+            "    name: "
+            + name
+            + ", \n"
+            + "    class: "
+            + self.__class__.__name__
+            + ", \n"
+            + "    xy: "
+            + str(self.xy.tolist())
+            + ", \n"
+            + "    params: "
+            + str(self.params)
+            + ", \n"
         )
 
     def _update_pointers(self):
-        """Update pointers of this object. Called when the xy-coordinate of this 
+        """Update pointers of this object. Called when the xy-coordinate of this
         object is updated."""
         xy_left = np.diag(np.dot(np.array([[1, 0], [0.5, 0.5]]), self.bbox))
         xy_right = np.diag(np.dot(np.array([[0, 1], [0.5, 0.5]]), self.bbox))
@@ -517,12 +526,12 @@ class IterablePhysicalObject(PhysicalObject):
     """
 
     def _get_xy(self):
-        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of 
+        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of
         this object."""
         return self._xy
 
     def _set_xy(self, value):
-        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of 
+        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of
         this object."""
         # Update the coordinate value of its elements.
         self._update_elements(xy_ofst=value - self.xy)
@@ -538,10 +547,10 @@ class IterablePhysicalObject(PhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> phy0 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [100, 100]]) 
-        >>> phy1 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [200, 200]]) 
-        >>> phy2 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [300, 300]]) 
-        >>> element = [phy0, phy1, phy2] 
+        >>> phy0 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [100, 100]])
+        >>> phy1 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [200, 200]])
+        >>> phy2 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [300, 300]])
+        >>> element = [phy0, phy1, phy2]
         >>> iphy0 = laygo2.object.physical.IterablePhysicalObject(
             xy=[[0, 0], [300, 300]], elements = elements)
         >>> iphy0.shape
@@ -578,14 +587,14 @@ class IterablePhysicalObject(PhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> phy0 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [100, 100]]) 
-        >>> phy1 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [200, 200]]) 
-        >>> phy2 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [300, 300]]) 
-        >>> element = [phy0, phy1, phy2] 
+        >>> phy0 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [100, 100]])
+        >>> phy1 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [200, 200]])
+        >>> phy2 = laygo2.object.physical.PhysicalObject(xy=[[0, 0], [300, 300]])
+        >>> element = [phy0, phy1, phy2]
         >>> iphy0 = laygo2.object.physical.IterablePhysicalObject(
             xy=[[0, 0], [300, 300]], elements = elements)
         >>> print(iphy0)
-        <laygo2.object.physical.IterablePhysicalObject object at 0x000002049A77E380> 
+        <laygo2.object.physical.IterablePhysicalObject object at 0x000002049A77E380>
         name: None,
         class: IterablePhysicalObject,
         xy: [[0, 0], [300, 300]],
@@ -613,27 +622,27 @@ class IterablePhysicalObject(PhysicalObject):
         return self.elements[pos]
 
     def __setitem__(self, pos, item):
-        """Set the sub-elements of this object, based on the pos and item 
+        """Set the sub-elements of this object, based on the pos and item
         parameter."""
         self.elements[pos] = item
 
     def __iter__(self):
-        """Iterator function. Directly mapped to the iterator of the elements 
+        """Iterator function. Directly mapped to the iterator of the elements
         attribute of this object."""
         return self.elements.__iter__()
 
     def __next__(self):
-        """Iterator function. Directly mapped to the iterator of the elements 
+        """Iterator function. Directly mapped to the iterator of the elements
         attribute of this object."""
         return self.elements.__next__()
 
     def ndenumerate(self):
-        """Enumerate over the element array. Calls np.ndenumerate() of the elements 
+        """Enumerate over the element array. Calls np.ndenumerate() of the elements
         of this object."""
         return np.ndenumerate(self.elements)
 
     def _update_elements(self, xy_ofst):
-        """Update xy-coordinates of this object's elements. An internal function 
+        """Update xy-coordinates of this object's elements. An internal function
         for _set_xy()"""
         # print("aa?")
         if np.all(self.elements is not None):
@@ -645,7 +654,7 @@ class IterablePhysicalObject(PhysicalObject):
 
 class PhysicalObjectGroup(IterablePhysicalObject):
     """
-    A grouped physical object. Intended to be generated as a group in Virtuoso 
+    A grouped physical object. Intended to be generated as a group in Virtuoso
     (not implemented yet).
     """
 
@@ -653,10 +662,7 @@ class PhysicalObjectGroup(IterablePhysicalObject):
 
     def summarize(self):
         """Return the summary of the object information."""
-        return (
-            IterablePhysicalObject.summarize(self)
-            + "    elements: " + str(self.elements) + ", \n"
-        )
+        return IterablePhysicalObject.summarize(self) + "    elements: " + str(self.elements) + ", \n"
 
     def __init__(self, xy, name=None, params=None, elements=None):
         """
@@ -669,14 +675,13 @@ class PhysicalObjectGroup(IterablePhysicalObject):
         name : str, optional
             The name of the object.
         params : dict or None
-            The dictionary that contains the parameters of this object, with 
+            The dictionary that contains the parameters of this object, with
             parameter names as keys.
         elements : numpy.ndarray(dtype=LayoutObject) or None
             The iterable elements of the object.
         """
-        IterablePhysicalObject.__init__(
-            self, xy=xy, name=name, params=params, elements=elements
-        )
+        IterablePhysicalObject.__init__(self, xy=xy, name=name, params=params, elements=elements)
+
 
 '''
 # Deprecated as PhysicalObjectGroup can be used instead in most cases.
@@ -773,7 +778,7 @@ class Rect(PhysicalObject):
     >>> from laygo2.object.physical import Rect
     >>> rect0 = Rect(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'])
     >>> print(rect0)
-    <laygo2.object.physical.Rect object at 0x000002049A77F3A0> 
+    <laygo2.object.physical.Rect object at 0x000002049A77F3A0>
     name: None,
     class: Rect,
     xy: [[0, 0], [100, 100]],
@@ -883,7 +888,7 @@ class Rect(PhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+        >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]],
                 layer=['M1', 'drawing'])
         >>> rect0.height
         100
@@ -905,7 +910,7 @@ class Rect(PhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+        >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]],
                 layer=['M1', 'drawing'])
         >>> rect0.width
         100
@@ -937,7 +942,7 @@ class Rect(PhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+        >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]],
                 layer=['M1', 'drawing'])
         >>> rect0.size
         array([100, 100])
@@ -995,10 +1000,10 @@ class Rect(PhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+        >>> rect0 = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]],
                 layer=['M1', 'drawing'], netname='net0', color=1)
         >>> print(rect0)
-        <laygo2.object.physical.Rect object at 0x000002049A77F3A0> 
+        <laygo2.object.physical.Rect object at 0x000002049A77F3A0>
         name: None,
         class: Rect,
         xy: [[0, 0], [100, 100]],
@@ -1033,7 +1038,7 @@ class Rect(PhysicalObject):
 
     def align(self, rect2):
         """
-        Match the length of self and rect2 wires, when either width or height of 
+        Match the length of self and rect2 wires, when either width or height of
         the two objects is zero.
 
         Parameters
@@ -1074,9 +1079,13 @@ class Rect(PhysicalObject):
     def summarize(self):
         """Return the summary of the object information."""
         return (
-            PhysicalObject.summarize(self) 
-            + "    layer: " + str(self.layer) + ", \n"
-            + "    netname: " + str(self.netname) + ", \n"
+            PhysicalObject.summarize(self)
+            + "    layer: "
+            + str(self.layer)
+            + ", \n"
+            + "    netname: "
+            + str(self.netname)
+            + ", \n"
         )
 
 
@@ -1087,22 +1096,23 @@ class Path(PhysicalObject):
     Example
     -------
     >>> from laygo2.object.physical.Path import Path
-    >>> path0 = Path(xy=[[0, 0], [0, 100]], width=10, 
+    >>> path0 = Path(xy=[[0, 0], [0, 100]], width=10,
                      extension=5, layer=['M1', 'drawing'])
     >>> print(path0)
-    <laygo2.object.physical.Path object at 0x00000280D1F3CE88> 
-    name: None, 
-    class: Path, 
-    xy: [[0, 0], [0, 100]], 
-    params: None, 
-    width: 10, 
-    extension: 5, 
-    layer: ['M1', 'drawing'], 
+    <laygo2.object.physical.Path object at 0x00000280D1F3CE88>
+    name: None,
+    class: Path,
+    xy: [[0, 0], [0, 100]],
+    params: None,
+    width: 10,
+    extension: 5,
+    layer: ['M1', 'drawing'],
 
     Notes
     -----
     **(Korean)**: Path 객체 클래스.
     """
+
     # TODO: implement pointers.
 
     layer = None
@@ -1179,13 +1189,11 @@ class Path(PhysicalObject):
         return np.sort(np.array([self.xy[0], self.xy[-1]]), axis=0)
 
     def _update_pointers(self):
-        """Update pointers of this object. Called when the value of xy of this 
+        """Update pointers of this object. Called when the value of xy of this
         object is updated."""
         pass
 
-    def __init__(
-        self, xy, layer, width, extension=0, name=None, netname=None, params=None
-    ):
+    def __init__(self, xy, layer, width, extension=0, name=None, netname=None, params=None):
         """
         The constructor function.
 
@@ -1213,17 +1221,17 @@ class Path(PhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> path0 = laygo2.object.physical.Path(xy=[[0, 0], [0, 100]], width=10, 
+        >>> path0 = laygo2.object.physical.Path(xy=[[0, 0], [0, 100]], width=10,
                 extension=5, layer=['M1', 'drawing'], netname='net0’)
         >>> print(path0)
-        <laygo2.object.physical.Path object at 0x00000280D1F3CE88> 
-        name: None, 
-        class: Path, 
-        xy: [[0, 0], [0, 100]], 
-        params: None, 
-        width: 10, 
-        extension: 5, 
-        layer: ['M1', 'drawing'], 
+        <laygo2.object.physical.Path object at 0x00000280D1F3CE88>
+        name: None,
+        class: Path,
+        xy: [[0, 0], [0, 100]],
+        params: None,
+        width: 10,
+        extension: 5,
+        layer: ['M1', 'drawing'],
         netname: net0
 
         .. image:: ../assets/img/object_physical_path_init.png
@@ -1253,11 +1261,19 @@ class Path(PhysicalObject):
     def summarize(self):
         """Return the summary of the object information."""
         return (
-            PhysicalObject.summarize(self) 
-            + "    width: " + str(self.width) + ", \n"
-            + "    extension: " + str(self.extension) + ", \n"
-            + "    layer: " + str(self.layer) + ", \n"
-            + "    netname: " + str(self.netname) + ", \n"
+            PhysicalObject.summarize(self)
+            + "    width: "
+            + str(self.width)
+            + ", \n"
+            + "    extension: "
+            + str(self.extension)
+            + ", \n"
+            + "    layer: "
+            + str(self.layer)
+            + ", \n"
+            + "    netname: "
+            + str(self.netname)
+            + ", \n"
         )
 
 
@@ -1268,14 +1284,14 @@ class Pin(IterablePhysicalObject):
     Example
     -------
     >>> from laygo2.object.physical import Pin
-    >>> pin0 = Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'], 
+    >>> pin0 = Pin(xy=[[0, 0], [100, 100]], layer=['M1', 'drawing'],
                    netname='net0', params={'direction': 'input'})
     >>> print(pin0)
-    <laygo2.object.physical.Pin object at 0x000002049A77FF70> 
+    <laygo2.object.physical.Pin object at 0x000002049A77FF70>
         name: None,
         class: Pin,
         xy: [[0, 0], [100, 100]],
-        params: {'direction': 'input'}, , layer: ['M1' 'drawing'], 
+        params: {'direction': 'input'}, , layer: ['M1' 'drawing'],
         netname: net0, shape: None, master: None
 
     Notes
@@ -1324,7 +1340,7 @@ class Pin(IterablePhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
+        >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]],
             layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
         >>> pin0.height
         100
@@ -1343,7 +1359,7 @@ class Pin(IterablePhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
+        >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]],
             layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
         >>> pin0.width
         100
@@ -1362,7 +1378,7 @@ class Pin(IterablePhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
+        >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]],
             layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
         >>> pin0.size
         [100, 100]
@@ -1416,14 +1432,14 @@ class Pin(IterablePhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]], 
+        >>> pin0 = laygo2.object.physical.Pin(xy=[[0, 0], [100, 100]],
             layer=['M1', 'drawing'], netname='net0', params={'direction': 'input'})
         >>> print(pin0)
-        <laygo2.object.physical.Pin object at 0x000002049A77FF70> 
+        <laygo2.object.physical.Pin object at 0x000002049A77FF70>
             name: None,
             class: Pin,
             xy: [[0, 0], [100, 100]],
-            params: {'direction': 'input'}, , layer: ['M1' 'drawing'], 
+            params: {'direction': 'input'}, , layer: ['M1' 'drawing'],
             netname: net0, shape: None, master: None
 
         Notes
@@ -1443,18 +1459,24 @@ class Pin(IterablePhysicalObject):
             netname = name
         self.netname = netname
         self.master = master
-        IterablePhysicalObject.__init__(
-            self, xy=xy, name=name, params=params, elements=elements
-        )
+        IterablePhysicalObject.__init__(self, xy=xy, name=name, params=params, elements=elements)
 
     def summarize(self):
         """Return the summary of the object information."""
         return (
             IterablePhysicalObject.summarize(self)
-            + "    layer: " + str(self.layer) + ", \n"
-            + "    netname: " + str(self.netname) + ", \n"
-            + "    shape: " + str(self.shape) + ", \n"
-            + "    master: " + str(self.master) + ", \n"
+            + "    layer: "
+            + str(self.layer)
+            + ", \n"
+            + "    netname: "
+            + str(self.netname)
+            + ", \n"
+            + "    shape: "
+            + str(self.shape)
+            + ", \n"
+            + "    master: "
+            + str(self.master)
+            + ", \n"
         )
 
     def export_to_dict(self):
@@ -1473,10 +1495,10 @@ class Text(PhysicalObject):
     Example
     -------
     >>> import laygo2
-    >>> text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100, 100]], 
+    >>> text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100, 100]],
         layer=['text', 'drawing'], text='test', params=None)
     >>> print(text0)
-    <laygo2.object.physical.Text object at 0x000002049A77FD90> 
+    <laygo2.object.physical.Text object at 0x000002049A77FD90>
         name: None,
         class: Text,
         xy: [[0, 0], [100, 100]],
@@ -1551,10 +1573,10 @@ class Text(PhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100, 100]], 
+        >>> text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100, 100]],
             layer=['text', 'drawing'], text='test', params=None)
         >>> print(text0)
-        <laygo2.object.physical.Text object at 0x000002049A77FD90> 
+        <laygo2.object.physical.Text object at 0x000002049A77FD90>
             name: None,
             class: Text,
             xy: [[0, 0], [100, 100]],
@@ -1583,8 +1605,12 @@ class Text(PhysicalObject):
         """Return the summary of the object information."""
         return (
             PhysicalObject.summarize(self)
-            + "    layer: " + str(self.layer) + ", \n"
-            + "    text: " + str(self.text) + ", \n"
+            + "    layer: "
+            + str(self.layer)
+            + ", \n"
+            + "    text: "
+            + str(self.text)
+            + ", \n"
         )
 
 
@@ -1595,16 +1621,16 @@ class Instance(IterablePhysicalObject):
     Example
     -------
     >>> import laygo2
-    >>> inst0_pins = dict() 
-    >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
-            layer = ['M1', 'drawing'], netname = 'in') 
-    >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+    >>> inst0_pins = dict()
+    >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]],
+            layer = ['M1', 'drawing'], netname = 'in')
+    >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]],
             layer=['M1', 'drawing'], netname='out')
-    >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
-            libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
-            unit_size=[100, 100], pins=inst0_pins, transform='R0')  
+    >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100],
+            libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200],
+            unit_size=[100, 100], pins=inst0_pins, transform='R0')
     >>> print(inst0)
-    <laygo2.object.physical.Instance object at 0x000001AF458AF8E0> 
+    <laygo2.object.physical.Instance object at 0x000001AF458AF8E0>
         name: I0,
         class: Instance,
         xy: [100, 100],
@@ -1613,8 +1639,8 @@ class Instance(IterablePhysicalObject):
         shape: [3, 2],
         pitch: [200, 200],
         transform: R0,
-        pins: {'in': <laygo2.object.physical.Pin object at 0x000001AF560D6170>, 
-               'out': <laygo2.object.physical.Pin object at 0x000001AF560D5F30>}, 
+        pins: {'in': <laygo2.object.physical.Pin object at 0x000001AF560D6170>,
+               'out': <laygo2.object.physical.Pin object at 0x000001AF560D5F30>},
     >>> print( inst0[1,0].xy0 )
     array([300, 100])
 
@@ -1773,7 +1799,7 @@ class Instance(IterablePhysicalObject):
     """
 
     def _update_pins(self, xy_ofst):
-        """Update xy-coordinates of this object's pins. An internal function for 
+        """Update xy-coordinates of this object's pins. An internal function for
         _set_xy()"""
         if self.pins is not None:
             for pn, p in self.pins.items():
@@ -1784,12 +1810,12 @@ class Instance(IterablePhysicalObject):
                             e.xy = e.xy + xy_ofst
 
     def _get_xy(self):
-        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of 
+        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of
         this object."""
         return self._xy
 
     def _set_xy(self, value):
-        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of 
+        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of
         this object."""
         # Update the coordinate value of its pins.
         self._update_pins(xy_ofst=value - self.xy)
@@ -1805,13 +1831,13 @@ class Instance(IterablePhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> inst0_pins = dict() 
-        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
-                layer = ['M1', 'drawing'], netname = 'in') 
-        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+        >>> inst0_pins = dict()
+        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]],
+                layer = ['M1', 'drawing'], netname = 'in')
+        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]],
                 layer=['M1', 'drawing'], netname='out')
-        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
-                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100],
+                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200],
                 unit_size=[100, 100], pins=inst0_pins, transform='R0')
         >>> inst0.xy0
         array([100, 100])
@@ -1833,13 +1859,13 @@ class Instance(IterablePhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> inst0_pins = dict() 
-        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
-                layer = ['M1', 'drawing'], netname = 'in') 
-        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+        >>> inst0_pins = dict()
+        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]],
+                layer = ['M1', 'drawing'], netname = 'in')
+        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]],
                 layer=['M1', 'drawing'], netname='out')
-        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
-                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100],
+                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200],
                 unit_size=[100, 100], pins=inst0_pins, transform='R0')
         >>> inst0.xy1
         array([600, 400])
@@ -1864,13 +1890,13 @@ class Instance(IterablePhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> inst0_pins = dict() 
-        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
-                layer = ['M1', 'drawing'], netname = 'in') 
-        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+        >>> inst0_pins = dict()
+        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]],
+                layer = ['M1', 'drawing'], netname = 'in')
+        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]],
                 layer=['M1', 'drawing'], netname='out')
-        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
-                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
+        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100],
+                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200],
                 unit_size=[100, 100], pins=inst0_pins, transform='R0')
         >>> inst0.size
         array([500, 300])
@@ -1979,14 +2005,14 @@ class Instance(IterablePhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> inst0_pins = dict() 
-        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
-                layer = ['M1', 'drawing'], netname = 'in') 
-        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+        >>> inst0_pins = dict()
+        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]],
+                layer = ['M1', 'drawing'], netname = 'in')
+        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]],
                 layer=['M1', 'drawing'], netname='out')
-        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
-                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
-                unit_size=[100, 100], pins=inst0_pins, transform='R0')        
+        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100],
+                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200],
+                unit_size=[100, 100], pins=inst0_pins, transform='R0')
         >>> inst0.height
         300
 
@@ -2007,14 +2033,14 @@ class Instance(IterablePhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> inst0_pins = dict() 
-        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
-                layer = ['M1', 'drawing'], netname = 'in') 
-        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+        >>> inst0_pins = dict()
+        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]],
+                layer = ['M1', 'drawing'], netname = 'in')
+        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]],
                 layer=['M1', 'drawing'], netname='out')
-        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
-                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
-                unit_size=[100, 100], pins=inst0_pins, transform='R0')   
+        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100],
+                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200],
+                unit_size=[100, 100], pins=inst0_pins, transform='R0')
         >>> inst0.width
         500
 
@@ -2075,7 +2101,7 @@ class Instance(IterablePhysicalObject):
         name : str
             The name of the object.
         params : dict
-            The dictionary containing attributes of the object.
+            (optional) The dictionary containing attributes of the object.
 
         Returns
         -------
@@ -2088,16 +2114,16 @@ class Instance(IterablePhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> inst0_pins = dict() 
-        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]], 
-                layer = ['M1', 'drawing'], netname = 'in') 
-        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+        >>> inst0_pins = dict()
+        >>> inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]],
+                layer = ['M1', 'drawing'], netname = 'in')
+        >>> inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]],
                 layer=['M1', 'drawing'], netname='out')
-        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100], 
-                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200], 
-                unit_size=[100, 100], pins=inst0_pins, transform='R0')   
+        >>> inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100],
+                libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200],
+                unit_size=[100, 100], pins=inst0_pins, transform='R0')
         >>> print(inst0)
-        <laygo2.object.physical.Instance object at 0x000001AF458AF8E0> 
+        <laygo2.object.physical.Instance object at 0x000001AF458AF8E0>
             name: I0,
             class: Instance,
             xy: [100, 100],
@@ -2106,8 +2132,8 @@ class Instance(IterablePhysicalObject):
             shape: [3, 2],
             pitch: [200, 200],
             transform: R0,
-            pins: {'in': <laygo2.object.physical.Pin object at 0x000001AF560D6170>, 
-                   'out': <laygo2.object.physical.Pin object at 0x000001AF560D5F30>}, 
+            pins: {'in': <laygo2.object.physical.Pin object at 0x000001AF560D6170>,
+                   'out': <laygo2.object.physical.Pin object at 0x000001AF560D5F30>},
         >>> print( inst0[1,0].xy0 )
         array([300, 100])
 
@@ -2138,9 +2164,7 @@ class Instance(IterablePhysicalObject):
         if shape is not None:
             _shape = np.asarray(shape)
             if _shape.shape != (2,):
-                raise ValueError(
-                    "Instance shape should be a (2, ) numpy array or None."
-                )
+                raise ValueError("Instance shape should be a (2, ) numpy array or None.")
             self.shape = _shape
         if pitch is not None:
             self.pitch = np.asarray(pitch)
@@ -2149,7 +2173,7 @@ class Instance(IterablePhysicalObject):
 
         # Construct an array for elements.
         if shape is None:
-            # elements = self  # self-referencing causes recursion errors. 
+            # elements = self  # self-referencing causes recursion errors.
             # (Deprecated).
             elements = None
         else:
@@ -2175,17 +2199,13 @@ class Instance(IterablePhysicalObject):
                 elements[_idx] = inst
                 _it.iternext()
 
-        IterablePhysicalObject.__init__(
-            self, xy=xy, name=name, params=params, elements=elements
-        )
-        # Create the pin dictionary. Can we do the same thing without generating 
+        IterablePhysicalObject.__init__(self, xy=xy, name=name, params=params, elements=elements)
+        # Create the pin dictionary. Can we do the same thing without generating
         # these many Pin objects?
         self.pins = dict()
         if pins is not None:
             if not isinstance(pins, dict):
-                raise ValueError(
-                    "The pins parameter for Instance objects should be a dictionary."
-                )
+                raise ValueError("The pins parameter for Instance objects should be a dictionary.")
             for pn, p in pins.items():
                 _xy0 = xy + np.dot(p.xy, tf.Mt(transform).T)
                 if shape is not None:
@@ -2193,10 +2213,8 @@ class Instance(IterablePhysicalObject):
                     for i in range(shape[0]):
                         elements.append([])
                         for j in range(shape[1]):
-                            _xy = _xy0 + np.dot(
-                                self.pitch * np.array([i, j]), tf.Mt(transform).T
-                            )
-                            # If p has elements, they need to be copied and 
+                            _xy = _xy0 + np.dot(self.pitch * np.array([i, j]), tf.Mt(transform).T)
+                            # If p has elements, they need to be copied and
                             # transferred to the new pin.
                             _pelem = None
                             if p.elements is not None:
@@ -2228,7 +2246,7 @@ class Instance(IterablePhysicalObject):
                             elements[i].append(pin)
                     elements = np.array(elements)
                 else:
-                    # If p has elements, they need to be copied and transferred 
+                    # If p has elements, they need to be copied and transferred
                     # to the new pin.
                     _pelem = None
                     if p.elements is not None:
@@ -2257,44 +2275,54 @@ class Instance(IterablePhysicalObject):
         _shape = str(None if self.shape is None else self.shape.tolist())
         return (
             PhysicalObject.summarize(self)
-            + "    size: " + str(self.size.tolist()) + ", \n"
-            + "    shape: " + _shape + ", \n"
-            + "    pitch: " + str(self.pitch.tolist()) + ", \n"
-            + "    transform: " + str(self.transform) + ", \n"
-            + "    pins: " + str(self.pins) + ", \n"
+            + "    size: "
+            + str(self.size.tolist())
+            + ", \n"
+            + "    shape: "
+            + _shape
+            + ", \n"
+            + "    pitch: "
+            + str(self.pitch.tolist())
+            + ", \n"
+            + "    transform: "
+            + str(self.transform)
+            + ", \n"
+            + "    pins: "
+            + str(self.pins)
+            + ", \n"
         )
 
 
 class VirtualInstance(Instance):  # IterablePhysicalObject):
     """
-    The VirtualInstance class implements functions for a group of objects, 
-    which can be treated as a single instance with dedicated dimensional, 
+    The VirtualInstance class implements functions for a group of objects,
+    which can be treated as a single instance with dedicated dimensional,
     port, and any related parameters.
 
     Example
     -------
     >>> import laygo2
-    >>> vinst0_pins = dict() 
+    >>> vinst0_pins = dict()
     >>> # Pin information
-    >>> vinst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]], 
-            layer=['M1', 'drawing'], netname='in') 
-    >>> vinst0_pins['out'] = laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+    >>> vinst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]],
+            layer=['M1', 'drawing'], netname='in')
+    >>> vinst0_pins['out'] = laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]],
             layer=['M1', 'drawing'], netname='out')
     >>> # Element information
-    >>> native_elements = dict() 
-    >>> native_elements['R0'] = laygo2.object.physical.Rect(xy=[[0, 0], [10, 10]], 
-            layer=['M1', 'drawing']) 
-    >>> native_elements['R1'] = laygo2.object.physical.Rect(xy=[[90, 90], [100, 100]], 
-            layer=['M1', 'drawing']) 
-    >>> native_elements['R2'] = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+    >>> native_elements = dict()
+    >>> native_elements['R0'] = laygo2.object.physical.Rect(xy=[[0, 0], [10, 10]],
+            layer=['M1', 'drawing'])
+    >>> native_elements['R1'] = laygo2.object.physical.Rect(xy=[[90, 90], [100, 100]],
+            layer=['M1', 'drawing'])
+    >>> native_elements['R2'] = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]],
             layer=['prBoundary', 'drawing'])
-    >>> vinst0 = laygo2.object.physical.VirtualInstance(name='I0', libname='mylib', 
-            cellname='myvcell', xy=[500, 500], native_elements=native_elements, 
-            shape=[3, 2], pitch=[100, 100], unit_size=[100, 100], pins=vinst0_pins, 
+    >>> vinst0 = laygo2.object.physical.VirtualInstance(name='I0', libname='mylib',
+            cellname='myvcell', xy=[500, 500], native_elements=native_elements,
+            shape=[3, 2], pitch=[100, 100], unit_size=[100, 100], pins=vinst0_pins,
             transform='R0')
-    >>> vinst0.native_elements 
-    {'R0': <laygo2.object.physical.Rect object at 0x00000204AAFCE170>, 
-     'R1': <laygo2.object.physical.Rect object at 0x00000204AAFCEA40>, 
+    >>> vinst0.native_elements
+    {'R0': <laygo2.object.physical.Rect object at 0x00000204AAFCE170>,
+     'R1': <laygo2.object.physical.Rect object at 0x00000204AAFCEA40>,
      'R2': <laygo2.object.physical.Rect object at 0x00000204AAFCE0B0>}
 
     Notes
@@ -2397,27 +2425,27 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> vinst0_pins = dict() 
+        >>> vinst0_pins = dict()
         >>> # Pin information
-        >>> vinst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]], 
-                layer=['M1', 'drawing'], netname='in') 
-        >>> vinst0_pins['out'] = laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], 
+        >>> vinst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]],
+                layer=['M1', 'drawing'], netname='in')
+        >>> vinst0_pins['out'] = laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]],
                 layer=['M1', 'drawing'], netname='out')
         >>> # Element information
-        >>> native_elements = dict() 
-        >>> native_elements['R0'] = laygo2.object.physical.Rect(xy=[[0, 0], [10, 10]], 
-                layer=['M1', 'drawing']) 
-        >>> native_elements['R1'] = laygo2.object.physical.Rect(xy=[[90, 90], [100, 100]], 
-                layer=['M1', 'drawing']) 
-        >>> native_elements['R2'] = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]], 
+        >>> native_elements = dict()
+        >>> native_elements['R0'] = laygo2.object.physical.Rect(xy=[[0, 0], [10, 10]],
+                layer=['M1', 'drawing'])
+        >>> native_elements['R1'] = laygo2.object.physical.Rect(xy=[[90, 90], [100, 100]],
+                layer=['M1', 'drawing'])
+        >>> native_elements['R2'] = laygo2.object.physical.Rect(xy=[[0, 0], [100, 100]],
                 layer=['prBoundary', 'drawing'])
-        >>> vinst0 = laygo2.object.physical.VirtualInstance(name='I0', libname='mylib', 
-                cellname='myvcell', xy=[500, 500], native_elements=native_elements, 
-                shape=[3, 2], pitch=[100, 100], unit_size=[100, 100], pins=vinst0_pins, 
+        >>> vinst0 = laygo2.object.physical.VirtualInstance(name='I0', libname='mylib',
+                cellname='myvcell', xy=[500, 500], native_elements=native_elements,
+                shape=[3, 2], pitch=[100, 100], unit_size=[100, 100], pins=vinst0_pins,
                 transform='R0')
-        >>> vinst0.native_elements 
-        {'R0': <laygo2.object.physical.Rect object at 0x00000204AAFCE170>, 
-         'R1': <laygo2.object.physical.Rect object at 0x00000204AAFCEA40>, 
+        >>> vinst0.native_elements
+        {'R0': <laygo2.object.physical.Rect object at 0x00000204AAFCE170>,
+         'R1': <laygo2.object.physical.Rect object at 0x00000204AAFCEA40>,
          'R2': <laygo2.object.physical.Rect object at 0x00000204AAFCE0B0>}
 
         .. image:: ../assets/img/object_physical_VirtualInstance_init.png
@@ -2460,10 +2488,7 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
 
     def summarize(self):
         """Summarize object information."""
-        return (
-            Instance.summarize(self)
-            + "    native elements: " + str(self.native_elements) + "\n"
-        )
+        return Instance.summarize(self) + "    native elements: " + str(self.native_elements) + "\n"
 
     def get_element_position(self, obj):
         """
@@ -2552,12 +2577,8 @@ if __name__ == "__main__":
     if test_instance:
         print("Instance test - creating a vanilla instance.")
         inst0_pins = dict()
-        inst0_pins["in"] = Pin(
-            xy=[[0, 0], [10, 10]], layer=["M1", "drawing"], netname="in"
-        )
-        inst0_pins["out"] = Pin(
-            xy=[[90, 90], [100, 100]], layer=["M1", "drawing"], netname="out"
-        )
+        inst0_pins["in"] = Pin(xy=[[0, 0], [10, 10]], layer=["M1", "drawing"], netname="in")
+        inst0_pins["out"] = Pin(xy=[[90, 90], [100, 100]], layer=["M1", "drawing"], netname="out")
         inst0 = Instance(
             name="I0",
             xy=[100, 100],
@@ -2586,22 +2607,12 @@ if __name__ == "__main__":
     if test_virtual_instance:
         print("VirtualInstance test - creating a vanilla virtual instance.")
         inst1_pins = dict()
-        inst1_pins["in"] = Pin(
-            xy=[[0, 0], [10, 10]], layer=["M1", "drawing"], netname="in"
-        )
-        inst1_pins["out"] = Pin(
-            xy=[[90, 90], [100, 100]], layer=["M1", "drawing"], netname="out"
-        )
+        inst1_pins["in"] = Pin(xy=[[0, 0], [10, 10]], layer=["M1", "drawing"], netname="in")
+        inst1_pins["out"] = Pin(xy=[[90, 90], [100, 100]], layer=["M1", "drawing"], netname="out")
         inst1_native_elements = dict()
-        inst1_native_elements["R0"] = Rect(
-            xy=[[0, 0], [10, 10]], layer=["M1", "drawing"]
-        )
-        inst1_native_elements["R1"] = Rect(
-            xy=[[90, 90], [100, 100]], layer=["M1", "drawing"]
-        )
-        inst1_native_elements["R2"] = Rect(
-            xy=[[0, 0], [100, 100]], layer=["prBoundary", "drawing"]
-        )
+        inst1_native_elements["R0"] = Rect(xy=[[0, 0], [10, 10]], layer=["M1", "drawing"])
+        inst1_native_elements["R1"] = Rect(xy=[[90, 90], [100, 100]], layer=["M1", "drawing"])
+        inst1_native_elements["R2"] = Rect(xy=[[0, 0], [100, 100]], layer=["prBoundary", "drawing"])
         inst1 = VirtualInstance(
             name="I0",
             libname="mylib",
