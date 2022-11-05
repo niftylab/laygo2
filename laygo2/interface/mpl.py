@@ -44,9 +44,7 @@ __status__ = "Prototype"
 
 def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array([0, 0])):
     """
-    Convert an object to corresponding matplotlib object.
-    offset : np.array([int, int])
-        Offsets to obj.xy
+    Convert a layout object to corresponding matplotlib patch object.
     """
     if master is None:
         mxy = np.array([0, 0])
@@ -97,7 +95,7 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
                     alpha=colormap[obj.layer[0]][2],
                     lw=2,
                 )
-                return [[rect, obj.layer[0], objname, obj.netname]]
+                return [[rect, obj.layer[0], objname+"/"+obj.netname]]
                 # ax.add_patch(rect)
             return []
     elif obj.__class__ == laygo2.object.Text:
@@ -128,7 +126,7 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
             (_xy0[0], _xy0[1]), _xy1[0], _xy1[1], facecolor=colormap["__instance__"][1],
             edgecolor=colormap["__instance__"][0], alpha=colormap["__instance__"][2], lw=2
         )
-        pypobjs = [[rect, "__instance__", obj.cellname, obj.name]]
+        pypobjs = [[rect, "__instance__", obj.cellname+"/"+obj.name]]
 
         # Instance pins
         for pn, p in obj.pins.items():
@@ -138,8 +136,6 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
             _pypobj[0][0].set(facecolor=colormap["__instance_pin__"][1])
             pypobjs += _pypobj
         return pypobjs
-        # ax.add_patch(rect)
-        # return True
     elif obj.__class__ == laygo2.object.VirtualInstance:
         pypobjs = []
         if obj.shape is None:
@@ -163,10 +159,19 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
                             master=obj[i, j],
                         )
                         pypobjs += _pypobj
+        
+        # Instance pins
+        for pn, p in obj.pins.items():
+            _pypobj = _translate_obj(pn, p, colormap, scale=scale, master=master, offset=offset)
+            _pypobj[0][1] = "__instance_pin__"
+            _pypobj[0][0].set(edgecolor=colormap["__instance_pin__"][0])
+            _pypobj[0][0].set(facecolor=colormap["__instance_pin__"][1])
+            pypobjs += _pypobj
         return pypobjs
-    else:
-        return [obj.translate_to_matplotlib()]  #
 
+    else:
+        return []
+        #return [obj.translate_to_matplotlib()]
     return []
 
 
@@ -220,13 +225,16 @@ def export(
                 if _pypobj[1] == _alignobj:  # layer is matched.
                     if _pypobj[0].__class__ == matplotlib.patches.Rectangle:  # Rect
                         ax.add_patch(_pypobj[0])
-                        if len(_pypobj) == 4:  # annotation.
+                        if len(_pypobj) == 3:  # annotation.
                             ax.add_artist(_pypobj[0])
                             rx, ry = _pypobj[0].get_xy()
                             cx = rx + _pypobj[0].get_width()/2.0
                             cy = ry + _pypobj[0].get_height()/2.0
-                            ax.annotate(_pypobj[2]+"/"+_pypobj[3], (cx, cy), color=_pypobj[0].get_edgecolor(), weight='bold', fontsize=6, ha='center', va='center')
-                            #ax.annotate(_pypobj[2]+"/"+_pypobj[3], (cx, cy), color='black', weight='bold', fontsize=6, ha='center', va='center')
+                            if _pypobj[1] == "__instance_pin__":
+                                color = _pypobj[0].get_edgecolor()
+                            else:
+                                color = "black"
+                            ax.annotate(_pypobj[2], (cx, cy), color=color, weight='bold', fontsize=6, ha='center', va='center')
         fig.append(_fig)
     if len(fig) == 1:
         fig = fig[0]

@@ -18,6 +18,7 @@ mpl: # for matplotlib
     __instance_pin__: ["gray", "none", 1]
   order:
     - __instance__
+    - __instance_pin__
     - prBoundary
     - nwell
     - pimplant
@@ -31,7 +32,6 @@ mpl: # for matplotlib
     - metal3
     - via3
     - metal4
-    - __instance_pin__
 grids:
   placement_basic:
     type: placement
