@@ -93,13 +93,6 @@ mn_list.append(r34.mn(tinv_small0.pins["ENB"])[0])
 mn_list.append(r34.mn(tinv_small1.pins["EN"])[0])
 dsn.route_via_track(grid=r34, mn=mn_list, track=_track)
 
-#from laygo2.object.routing import RoutingChannel
-rc = laygo2.object.routing.RoutingChannel(grid = r34)
-rc.add_track(netname="ICLKB", index=_track[1])
-rc.add_node([inv0, inv1])
-rc.generate()
-
-
 # Front LATCH
 _track[1] += 1
 mn_list = []

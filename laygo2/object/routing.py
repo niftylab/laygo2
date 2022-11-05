@@ -61,7 +61,16 @@ class RoutingChannel:
         if nodes is not None:
             self.nodes = nodes
 
-    def generate(self, tracks=None, nodes=None):
+    def add_track(self, netname:str, index:int):
+        self.tracks[netname] = index
+    
+    def add_node(self, obj):
+        if isinstance(obj, list):
+            self.nodes += obj
+        else:
+            self.nodes.append(obj)
+
+    def generate(self, tracks:dict = None, nodes:list = None):
         if tracks is None:
             tracks = self.tracks
         if nodes is None:
@@ -70,7 +79,7 @@ class RoutingChannel:
         g = self.grid
         r_list = []
 
-        for tn, ti in tracks.items():
+        for tn, ti in tracks.items():  # for each track
             # Find out routing points.
             mn = []
             for n in nodes:
@@ -82,12 +91,13 @@ class RoutingChannel:
                     if n.netname == tn:
                         mn.append(g.mn(n.xy)[0])
             # Do routing
-            if direction == "horizontal":
+            if self.direction == "horizontal":
                 t = [None, ti]
             else:
                 t = [ti, None]
-            r = rg.route_via_track(mn=mn, track=t)
+            r = g.route_via_track(mn=mn, track=t)
             r_list.append(r[-1])
+        return r_list
 
 
 # class RoutingMesh:
