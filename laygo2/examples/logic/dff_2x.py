@@ -58,6 +58,7 @@ tinv1 = tlib["tinv_2x"].generate(name="tinv1", netmap={"I":"LCH", "O":"BLCH", "E
 tinv_small0 = tlib["tinv_1x"].generate(name="tinv_small0", netmap={"I":"LCH", "O":"FLCH", "EN":"ICLK", "ENB":"ICLKB"})
 tinv_small1 = tlib["tinv_1x"].generate(name="tinv_small1", netmap={"I":"OUT", "O":"BLCH", "EN":"ICLKB", "ENB":"ICLK"})
 
+dsn.place(grid=pg, inst=inv0, mn=[0, 0])
 dsn.place(grid=pg, inst=inv1, mn=pg.mn.bottom_right(inv0))
 dsn.place(grid=pg, inst=tinv0, mn=pg.mn.bottom_right(inv1))
 dsn.place(grid=pg, inst=tinv_small0, mn=pg.mn.bottom_right(tinv0))
