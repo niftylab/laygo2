@@ -109,3 +109,4 @@ venv.bak/
 laygo2_test_nand2.gds
 laygo2_test_nand2.il
 laygo2_test_nand2.svg
+logic_generated*

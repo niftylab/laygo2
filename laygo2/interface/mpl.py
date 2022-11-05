@@ -97,7 +97,7 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
                     alpha=colormap[obj.layer[0]][2],
                     lw=2,
                 )
-                return [[rect, obj.layer[0]]]
+                return [[rect, obj.layer[0], obj.name, obj.netname]]
                 # ax.add_patch(rect)
             return []
     elif obj.__class__ == laygo2.object.Text:
@@ -123,11 +123,12 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
             sp_cols = obj.pitch[0]
 
         _xy0 = obj.xy0
-        _xy1 = np.dot(_obj.size, tf.Mt(mtf).T) * np.array([num_rows, num_cols])
+        _xy1 = np.dot(obj.size, tf.Mt(mtf).T) * np.array([num_rows, num_cols])
         rect = matplotlib.patches.Rectangle(
-            (_xy0[0], _xy0[1]), _xy1[0], _xy1[1], color="yellow", edgecolor="black", lw=2
+            (_xy0[0], _xy0[1]), _xy1[0], _xy1[1], facecolor=colormap["__instance__"][1],
+            edgecolor=colormap["__instance__"][0], alpha=colormap["__instance__"][2], lw=2
         )
-        return [[rect, None]]
+        return [[rect, "__instance__", obj.cellname, obj.name]]
         # ax.add_patch(rect)
         # return True
     elif obj.__class__ == laygo2.object.VirtualInstance:
@@ -210,6 +211,12 @@ def export(
                 if _pypobj[1] == _alignobj:  # layer is matched.
                     if _pypobj[0].__class__ == matplotlib.patches.Rectangle:  # Rect
                         ax.add_patch(_pypobj[0])
+                        if len(_pypobj) == 4:  # annotation.
+                            ax.add_artist(_pypobj[0])
+                            rx, ry = _pypobj[0].get_xy()
+                            cx = rx + _pypobj[0].get_width()/2.0
+                            cy = ry + _pypobj[0].get_height()/2.0
+                            ax.annotate(_pypobj[2]+"/"+_pypobj[3], (cx, cy), color='black', weight='bold', fontsize=6, ha='center', va='center')
         fig.append(_fig)
     if len(fig) == 1:
         fig = fig[0]

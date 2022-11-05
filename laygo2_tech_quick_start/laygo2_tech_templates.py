@@ -270,7 +270,72 @@ def nmos_generate_func(name=None, shape=None, pitch=np.array([0, 0]), transform=
     return mos_generate_func(devtype="nmos", name=name, shape=shape, pitch=pitch, transform=transform, params=params)
 
 
-# Routing vias
+# Spacers
+def space_bbox_func(params):
+    """Computes x and y coordinate values from params."""
+    us = np.array([30, 100])  # unit space
+    xy0 = [0, 0]
+    xy1 = [us[0] * params["nf"], us[1]]
+    xy = np.array([xy0, xy1])
+    return xy
+
+
+def space_pins_func(params):
+    return None
+
+
+def space_generate_func(devtype="pmos", name=None, shape=None, pitch=np.array([0, 0]), transform="R0", params=None):
+    # Compute parameters
+    nf = params["nf"] if "nf" in params.keys() else 1
+    us = np.array([30, 100])  # unit space
+    
+    # Create the base mosfet structure.
+    nelements = dict()
+    # prboundary
+    rxy = np.array([[0, 0], [us[0] * nf, us[1]]])
+    nelements["PRBND0"] = laygo2.object.Rect(xy=rxy, layer=["prBoundary", "drawing"], name="PRBND0")
+    # well
+    rxy = np.array([[-20, 0], [us[0] * nf + 20, us[1]]])
+    nelements["NW0"] = laygo2.object.Rect(xy=rxy, layer=["nwell", "drawing"], name="NW0")
+    # implant
+    rxy = np.array([[0, 5], [us[0] * nf, us[1] - 5]])
+    if devtype == "nmos":
+        nelements["NIMPL0"] = laygo2.object.Rect(xy=rxy, layer=["nimplant", "drawing"], name="NIMPL0")
+    else:
+        nelements["PIMPL0"] = laygo2.object.Rect(xy=rxy, layer=["pimplant", "drawing"], name="PIMPL0")
+    # metal2 - rail
+    rxy = np.array([[0, -5], [us[0] * nf, 5]])
+    nelements["M2RAIL0"] = laygo2.object.Rect(xy=rxy, layer=["metal2", "drawing"], name="M2RAIL0")
+    
+    # Unit size
+    inst_xy = space_bbox_func(params=params)
+    inst_unit_size = [inst_xy[1, 0] - inst_xy[0, 0], inst_xy[1, 1] - inst_xy[0, 1]]
+    
+    # Generate and return the final instance
+    inst = laygo2.object.VirtualInstance(
+        name=name,
+        xy=np.array([0, 0]),
+        libname="mylib",
+        cellname="myvcell_space_" + devtype,
+        native_elements=nelements,
+        shape=shape,
+        pitch=pitch,
+        transform=transform,
+        unit_size=inst_unit_size,
+        pins=None,
+    )
+    return inst
+
+
+def pspace_generate_func(name=None, shape=None, pitch=np.array([0, 0]), transform="R0", params=None):
+    return space_generate_func(devtype="pmos", name=name, shape=shape, pitch=pitch, transform=transform, params=params)
+
+
+def nspace_generate_func(name=None, shape=None, pitch=np.array([0, 0]), transform="R0", params=None):
+    return space_generate_func(devtype="nmos", name=name, shape=shape, pitch=pitch, transform=transform, params=params)
+
+
+# Vias
 def via_generate_func(devtype, name=None, shape=None, pitch=np.array([0, 0]), transform="R0", params=None):
     """Generates an instance from the input parameters."""
     # Create the via structure.
@@ -280,6 +345,9 @@ def via_generate_func(devtype, name=None, shape=None, pitch=np.array([0, 0]), tr
         xy = [[-5, -5], [5, 5]]
     if devtype.startswith("via_r23"):
         layer = ["via2", "drawing"]
+        xy = [[-5, -5], [5, 5]]
+    if devtype.startswith("via_r34"):
+        layer = ["via3", "drawing"]
         xy = [[-5, -5], [5, 5]]
     nelements["VIA0"] = laygo2.object.Rect(xy=xy, layer=layer, name="VIA0")
 
@@ -305,21 +373,14 @@ def via_r12_default_generate_func(name=None, shape=None, pitch=np.array([0, 0]),
     )
 
 
-def via_r12_bottomplug_generate_func(name=None, shape=None, pitch=np.array([0, 0]), transform="R0", params=None):
-    return via_generate_func(
-        devtype="via_r12_bottomplug", name=name, shape=shape, pitch=pitch, transform=transform, params=params
-    )
-
-
-def via_r12_topplug_generate_func(name=None, shape=None, pitch=np.array([0, 0]), transform="R0", params=None):
-    return via_generate_func(
-        devtype="via_r12_topplug", name=name, shape=shape, pitch=pitch, transform=transform, params=params
-    )
-
-
 def via_r23_default_generate_func(name=None, shape=None, pitch=np.array([0, 0]), transform="R0", params=None):
     return via_generate_func(
         devtype="via_r23_default", name=name, shape=shape, pitch=pitch, transform=transform, params=params
+    )
+
+def via_r34_default_generate_func(name=None, shape=None, pitch=np.array([0, 0]), transform="R0", params=None):
+    return via_generate_func(
+        devtype="via_r34_default", name=name, shape=shape, pitch=pitch, transform=transform, params=params
     )
 
 
@@ -336,6 +397,14 @@ def load_templates():
         name="pmos", bbox_func=mos_bbox_func, pins_func=pmos_pins_func, generate_func=pmos_generate_func
     )
     tlib.append([tpmos, tnmos])
+    # Spacers
+    tnspace = laygo2.object.template.UserDefinedTemplate(
+        name="nspace", bbox_func=space_bbox_func, pins_func=space_pins_func, generate_func=nspace_generate_func
+    )
+    tpspace = laygo2.object.template.UserDefinedTemplate(
+        name="pspace", bbox_func=space_bbox_func, pins_func=space_pins_func, generate_func=pspace_generate_func
+    )
+    tlib.append([tpspace, tnspace])
     # Vias
     # Via layouts are created in laygo and stored as a virtual instance.
     tvia_r12_default = laygo2.object.template.UserDefinedTemplate(
@@ -345,20 +414,6 @@ def load_templates():
         generate_func=via_r12_default_generate_func,
     )
     tlib.append([tvia_r12_default])
-    tvia_r12_topplug = laygo2.object.template.UserDefinedTemplate(
-        name="via_r12_topplug",
-        bbox_func=lambda params: np.array([0, 0]),
-        pins_func=lambda params: None,
-        generate_func=via_r12_topplug_generate_func,
-    )
-    tlib.append([tvia_r12_topplug])
-    tvia_r12_bottomplug = laygo2.object.template.UserDefinedTemplate(
-        name="via_r12_bottomplug",
-        bbox_func=lambda params: np.array([0, 0]),
-        pins_func=lambda params: None,
-        generate_func=via_r12_bottomplug_generate_func,
-    )
-    tlib.append([tvia_r12_bottomplug])
     tvia_r23_default = laygo2.object.template.UserDefinedTemplate(
         name="via_r23_default",
         bbox_func=lambda params: np.array([0, 0]),
@@ -366,6 +421,13 @@ def load_templates():
         generate_func=via_r23_default_generate_func,
     )
     tlib.append([tvia_r23_default])
+    tvia_r34_default = laygo2.object.template.UserDefinedTemplate(
+        name="via_r34_default",
+        bbox_func=lambda params: np.array([0, 0]),
+        pins_func=lambda params: None,
+        generate_func=via_r34_default_generate_func,
+    )
+    tlib.append([tvia_r34_default])
     return tlib
 
 

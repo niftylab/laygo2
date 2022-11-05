@@ -10,9 +10,13 @@ mpl: # for matplotlib
     metal1: ["c", "c", 0.5]
     metal2: ["y", "y", 0.5]
     metal3: ["g", "g", 0.5]
+    metal4: ["m", "m", 0.5]
     via1: ["indigo", "indigo", 1]
     via2: ["navy", "navy", 1]
+    via3: ["olive", "olive", 1]
+    __instance__: ["black", "none", 1]
   order:
+    - __instance__
     - prBoundary
     - nwell
     - pimplant
@@ -24,6 +28,8 @@ mpl: # for matplotlib
     - metal2
     - via2
     - metal3
+    - via3
+    - metal4
 grids:
   placement_basic:
     type: placement
@@ -78,8 +84,8 @@ grids:
     primary_grid: horizontal  # the primary routing direction
     via:
       map:
-        - [via_r12_bottomplug, via_r12_default, via_r12_default, via_r12_default,
-           via_r12_default, via_r12_default, via_r12_default, via_r12_topplug]
+        - [via_r12_default, via_r12_default, via_r12_default, via_r12_default,
+           via_r12_default, via_r12_default, via_r12_default, via_r12_default]
   routing_23_cmos:
     type: routing
     vertical:
@@ -119,3 +125,28 @@ grids:
       map:
         - [via_r23_default, via_r23_default, via_r23_default, via_r23_default,
            via_r23_default, via_r23_default, via_r23_default, via_r23_default]
+  routing_34_basic:
+    type: routing
+    vertical:
+      scope: [0, 30]
+      elements: [0]
+      layer:
+        - [metal3, drawing]
+      pin_layer:
+        - [metal3, pin]
+      width: [10]
+      extension: [15]
+    horizontal:
+      scope: [0, 20]
+      elements: [0]
+      layer:
+        - [metal4, drawing]
+      pin_layer:
+        - [metal4, pin]
+      width: [10]
+      extension: [15]
+    primary_grid: horizontal  # the primary routing direction
+    via:
+      map:
+        - [via_r34_default]
+

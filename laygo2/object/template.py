@@ -98,9 +98,10 @@ class Template(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def generate(self, name=None, shape=None, pitch=None, transform="R0", params=None):
+    def generate(self, name=None, shape=None, pitch=None, transform="R0", netmap=None, params=None):
         """instance: (Abstract method) Return the instance generated from a template."""
         pass
+        
 
 
 class NativeInstanceTemplate(Template):
@@ -318,7 +319,7 @@ class NativeInstanceTemplate(Template):
         """
         return self._pins
 
-    def generate(self, name=None, shape=None, pitch=None, transform="R0", params=None):
+    def generate(self, name=None, shape=None, pitch=None, transform="R0", netmap=None, params=None):
         """
         Generate Instance object.
 
@@ -330,10 +331,12 @@ class NativeInstanceTemplate(Template):
             shape of the object to be generated.
         pitch : numpy.ndarray, optional.
             pitch of the object to be generated.
-        params : dict, optional.
-            dictionary having the object attributes.
         transform : str
             transformation attribute of the object to be generated.
+        netmap : dict, optional.
+            dictionary containing netmap conversion information of pins.
+        params : dict, optional.
+            dictionary having the object attributes.
 
         Returns
         -------
@@ -388,7 +391,7 @@ class NativeInstanceTemplate(Template):
         -----
         **(Korean)** 템플릿으로부터 Instance 객체 생성.
         """
-        return laygo2.object.physical.Instance(
+        inst = laygo2.object.physical.Instance(
             libname=self.libname,
             cellname=self.cellname,
             xy=np.array([0, 0]),
@@ -400,6 +403,10 @@ class NativeInstanceTemplate(Template):
             name=name,
             params=params,
         )
+        # update netnames if netmap is provided.
+        if netmap is not None:
+            inst.update_netname(netmap=netmap)  
+        return inst 
 
     # I/O functions
     def export_to_dict(self):
@@ -703,7 +710,7 @@ class ParameterizedInstanceTemplate(Template):
         """
         return self._pins(params=params)
 
-    def generate(self, name=None, shape=None, pitch=None, transform="R0", params=None):
+    def generate(self, name=None, shape=None, pitch=None, transform="R0", netmap=None, params=None):
         """
         Generate an Instance object corresponding to the template and its 
         input parameters.
@@ -716,10 +723,12 @@ class ParameterizedInstanceTemplate(Template):
             shape of the object to be generated.
         pitch : numpy.ndarray, optional.
             pitch of the object to be generated.
-        params : dict, optional.
-            dictionary having the entity attributes.
         transform : str, optional.
             transformation attribute of the entity to be generated.
+        netmap : dict, optional.
+            dictionary containing netmap conversion information of pins.
+        params : dict, optional.
+            dictionary having the entity attributes.
 
         Returns
         -------
@@ -800,7 +809,7 @@ class ParameterizedInstanceTemplate(Template):
             - laygo2.Instance: 생성된 객체
         """
         # xy = xy + np.dot(self.xy(params)[0], tf.Mt(transform).T)
-        return laygo2.object.physical.Instance(
+        inst = laygo2.object.physical.Instance(
             libname=self.libname,
             cellname=self.cellname,
             xy=np.array([0, 0]),
@@ -812,6 +821,10 @@ class ParameterizedInstanceTemplate(Template):
             name=name,
             params=params,
         )
+        # update netnames if netmap is provided.
+        if netmap is not None:
+            inst.update_netname(netmap=netmap)  
+        return inst
 
 
 class UserDefinedTemplate(Template):
@@ -1173,7 +1186,7 @@ class UserDefinedTemplate(Template):
         """
         return self._pins(params=params)
 
-    def generate(self, name=None, shape=None, pitch=None, transform="R0", params=None):
+    def generate(self, name=None, shape=None, pitch=None, transform="R0", netmap=None, params=None):
         """
         Generate a VirtualInstance object by calling generate_func() bound to the template.
 
@@ -1185,10 +1198,12 @@ class UserDefinedTemplate(Template):
             shape of the object to be generated.
         pitch : numpy.ndarray, optional.
             pitch of the object to be generated.
-        params : dict, optional.
-            dictionary having the entity attributes.
         transform : str, optional.
             transformation attribute of the entity to be generated.
+        netmap : dict, optional.
+            dictionary containing netmap conversion information of pins.
+        params : dict, optional.
+            dictionary having the entity attributes.
 
         Returns
         -------
@@ -1313,9 +1328,13 @@ class UserDefinedTemplate(Template):
         반환값
             - laygo2.VirtualInstance: 생성된 객체
         """
-        return self._generate(
+        inst = self._generate(
             name=name, shape=shape, pitch=pitch, transform=transform, params=params
         )
+        # update netnames if netmap is provided.
+        if netmap is not None:
+            inst.update_netname(netmap=netmap)  
+        return inst
 
 
 # Test

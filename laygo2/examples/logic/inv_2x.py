@@ -23,7 +23,6 @@ tnmos_name = "nmos"
 pg_name = "placement_basic"
 r12_name = "routing_12_cmos"
 r23_name = "routing_23_cmos"
-# r34_name = "routing_34_basic"
 
 # Design hierarchy
 libname = "logic_generated"
@@ -67,11 +66,11 @@ _mn = [r23.mn(in0.pins["D"])[1], r23.mn(ip0.pins["D"])[1]]
 vout0, rout0, vout1 = dsn.route(grid=r23, mn=_mn, via_tag=[True, True])
 
 # VSS
-rvss0 = dsn.route(grid=r12, mn=[r12.mn(in0.pins["RAIL"])[0], r12.mn(in0.pins["RAIL"])[1]])
+rvss0 = dsn.route(grid=r12, mn=[r12.mn(in0.pins['RAIL'])[0], r12.mn(in0.pins['RAIL'])[1]])
 
 # VDD
-rvdd0 = dsn.route(grid=r12, mn=[r12.mn(ip0.pins["RAIL"])[0], r12.mn(ip0.pins["RAIL"])[1]])
-
+rvdd0 = dsn.route(grid=r12, mn=[r12.mn(ip0.pins['RAIL'])[0], r12.mn(ip0.pins['RAIL'])[1]])
+      
 # 6. Create pins.
 pin0 = dsn.pin(name="I", grid=r23, mn=r23.mn.bbox(rin0[2]))
 pout0 = dsn.pin(name="O", grid=r23, mn=r23.mn.bbox(rout0))
@@ -84,7 +83,7 @@ print("Export design")
 mpl_params = tech.tech_params["mpl"]
 fig = laygo2.interface.mpl.export(
     lib,
-    cellname=None,
+    cellname=cellname,
     colormap=mpl_params["colormap"],
     order=mpl_params["order"],
     xlim=[-100, 400],
@@ -92,7 +91,7 @@ fig = laygo2.interface.mpl.export(
 )
 # skill export
 skill_str = laygo2.interface.skill.export(lib, filename=libname + "_" + cellname + ".il", cellname=None, scale=1e-3)
-# Filename example: logic_generated_inv_hs_2x.il
+# Filename example: logic_generated_inv_2x.il
 
 # 8. Export to a template database file.
 nat_temp = dsn.export_to_template()

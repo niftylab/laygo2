@@ -2291,6 +2291,12 @@ class Instance(IterablePhysicalObject):
             + str(self.pins)
             + ", \n"
         )
+    
+    def update_netname(self, netmap:dict):
+        """update netname information of pins"""
+        for pn, p in self.pins.items():
+            if p.netname in netmap:
+                p.netname = netmap[p.netname]  # update netname information
 
 
 class VirtualInstance(Instance):  # IterablePhysicalObject):

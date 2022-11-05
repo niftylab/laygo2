@@ -47,12 +47,12 @@ class RoutingChannel:
     """list: A list that contains coordinates and layout object to connected through the routing channel.
     """
 
-    # range = [None, None]
-    # """[int or None, int or None]: The minimum and maximum values of track covered by the
-    # routing channel. If None, there is no lower(upper) limit on the track number.
-    # """
+    range = [None, None]
+    """[int or None, int or None]: The minimum and maximum track indices covered by the 
+    routing channel, for automatic routing.
+    """
 
-    def __init__(self, grid, tracks=None, nodes=None):
+    def __init__(self, grid, tracks:dict = None, nodes:list = None):
         """Constructor"""
         # Assign parameters.
         self.grid = grid
