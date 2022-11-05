@@ -49,17 +49,15 @@ lib.append(dsn)
 print("Create instances")
 inv0 = tlib["inv_2x"].generate(name="inv0", netmap={"I":"CLK", "O":"ICLKB"})
 inv1 = tlib["inv_2x"].generate(name="inv1", netmap={"I":"ICLKB", "O":"ICLK"})
-inv2 = tlib["inv_2x"].generate(name="inv2")
-inv3 = tlib["inv_2x"].generate(name="inv3")
+inv2 = tlib["inv_2x"].generate(name="inv2", netmap={"I":"FLCH", "O":"LCH"})
+inv3 = tlib["inv_2x"].generate(name="inv3", netmap={"I":"BLCH", "O":"OUT"})
 
-tinv0 = tlib["tinv_2x"].generate(name="tinv0")
-tinv1 = tlib["tinv_2x"].generate(name="tinv1")
+tinv0 = tlib["tinv_2x"].generate(name="tinv0", netmap={"O":"FLCH", "EN":"ICLKB", "ENB":"ICLK"})
+tinv1 = tlib["tinv_2x"].generate(name="tinv1", netmap={"I":"LCH", "O":"BLCH", "EN":"ICLK", "ENB":"ICLKB"})
 
-tinv_small0 = tlib["tinv_1x"].generate(name="tinv_small0")
-tinv_small1 = tlib["tinv_1x"].generate(name="tinv_small1")
+tinv_small0 = tlib["tinv_1x"].generate(name="tinv_small0", netmap={"I":"LCH", "O":"FLCH", "EN":"ICLK", "ENB":"ICLKB"})
+tinv_small1 = tlib["tinv_1x"].generate(name="tinv_small1", netmap={"I":"OUT", "O":"BLCH", "EN":"ICLKB", "ENB":"ICLK"})
 
-# 4. Place instances.
-dsn.place(grid=pg, inst=inv0, mn=[0, 0])
 dsn.place(grid=pg, inst=inv1, mn=pg.mn.bottom_right(inv0))
 dsn.place(grid=pg, inst=tinv0, mn=pg.mn.bottom_right(inv1))
 dsn.place(grid=pg, inst=tinv_small0, mn=pg.mn.bottom_right(tinv0))
@@ -70,68 +68,20 @@ dsn.place(grid=pg, inst=inv3, mn=pg.mn.bottom_right(tinv_small1))
 
 # 5. Create and place wires.
 print("Create wires")
-
-# ICLK
-_mn = [r34.mn(inv1.pins["O"])[0], r34.mn(tinv_small1.pins["ENB"])[0]]
-_track = [None, r34.mn(inv1.pins["O"])[0, 1] - 2]
-mn_list = []
-mn_list.append(r34.mn(inv1.pins["O"])[0])
-mn_list.append(r34.mn(tinv0.pins["ENB"])[0])
-mn_list.append(r34.mn(tinv1.pins["EN"])[0])
-mn_list.append(r34.mn(tinv_small0.pins["EN"])[0])
-mn_list.append(r34.mn(tinv_small1.pins["ENB"])[0])
-dsn.route_via_track(grid=r34, mn=mn_list, track=_track)
-
-# ICLKB
-_track[1] += 1
-mn_list = []
-mn_list.append(r34.mn(inv0.pins["O"])[0])
-mn_list.append(r34.mn(inv1.pins["I"])[0])
-mn_list.append(r34.mn(tinv0.pins["EN"])[0])
-mn_list.append(r34.mn(tinv1.pins["ENB"])[0])
-mn_list.append(r34.mn(tinv_small0.pins["ENB"])[0])
-mn_list.append(r34.mn(tinv_small1.pins["EN"])[0])
-dsn.route_via_track(grid=r34, mn=mn_list, track=_track)
-
-#from laygo2.object.routing import RoutingChannel
-rc = laygo2.object.routing.RoutingChannel(grid = r34)
-rc.add_track(netname="ICLKB", index=_track[1])
-rc.add_node([inv0, inv1])
-rc.generate()
-
-
-# Front LATCH
-_track[1] += 1
-mn_list = []
-mn_list.append(r34.mn(inv2.pins["I"])[0])
-mn_list.append(r34.mn(tinv0.pins["O"])[0])
-mn_list.append(r34.mn(tinv_small0.pins["O"])[0])
-dsn.route_via_track(grid=r34, mn=mn_list, track=_track)
-
-# Back LATCH
-mn_list = []
-mn_list.append(r34.mn(inv3.pins["I"])[0])
-mn_list.append(r34.mn(tinv1.pins["O"])[0])
-mn_list.append(r34.mn(tinv_small1.pins["O"])[0])
-dsn.route_via_track(grid=r34, mn=mn_list, track=_track)
-
-# LATCH
-_track[1] += 1
-mn_list = []
-mn_list.append(r34.mn(inv2.pins["O"])[0])
-mn_list.append(r34.mn(tinv1.pins["I"])[0])
-mn_list.append(r34.mn(tinv_small0.pins["I"])[0])
-dsn.route_via_track(grid=r34, mn=mn_list, track=_track)
-
-# OUT
-mn_list = []
-mn_list.append(r34.mn(inv3.pins["O"])[0])
-mn_list.append(r34.mn(tinv_small1.pins["I"])[0])
-dsn.route_via_track(grid=r34, mn=mn_list, track=_track)
+_trk = r34.mn(inv1.pins["O"])[0, 1] - 2
+rc = laygo2.object.routing.RoutingMesh(grid = r34)
+rc.add_track(name="ICLK",  index=[None, _trk    ], netname="ICLK")
+rc.add_track(name="ICLKB", index=[None, _trk + 1], netname="ICLKB")
+rc.add_track(name="FLCH",  index=[None, _trk + 2], netname="FLCH")
+rc.add_track(name="BLCH",  index=[None, _trk + 2], netname="BLCH")
+rc.add_track(name="LCH",   index=[None, _trk + 3], netname="LCH")
+rc.add_track(name="OUT",   index=[None, _trk + 3], netname="OUT")
+rc.add_node(list(dsn.instances.values())) # Add all instances to the routing mesh as nodes
+rinst = rc.generate()
+dsn.place(grid=pg, inst=rinst)
 
 # VSS
 rvss0 = dsn.route(grid=r12, mn=[r12.mn.bottom_left(inv0), r12.mn.bottom_right(inv3)])
-
 # VDD
 rvdd0 = dsn.route(grid=r12, mn=[r12.mn.top_left(inv0), r12.mn.top_right(inv3)])
 
