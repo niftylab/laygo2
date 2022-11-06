@@ -69,7 +69,7 @@ The resulting layout of the NAND gate is shown in the figure below:
 An example tutorial of laygo2 in SkyWater **[SKY130](https://skywater-pdk.readthedocs.io/en/main/)**
  technology can be found **[here](https://laygo2-sky130-docs.readthedocs.io/en/latest/)**.
 
-The generated layout of a D-flip-flop is shown in the figure below:
+The generated layout of a D flip-flop is shown in the figure below:
 
 ![sky130 dff2x](../assets/img/trial_sky130_dff.png "sky130 dff2x")
 

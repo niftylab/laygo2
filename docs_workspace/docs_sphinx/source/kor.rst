@@ -15,5 +15,4 @@ laygo2는 현재
 
    overview_kor
    trial_kor
-   structure_kor
    technology_kor 

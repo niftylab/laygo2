@@ -4,8 +4,8 @@
 
 ## Colab tutorial
 
-The easiest way of exercising laygo2 without installing it locally is using Colab; 
-the example tutorial can be found [here](https://colab.research.google.com/drive/1tpuUvqb6BujzZI6RBf2cFdAfMqBsxpep?usp=sharing).
+laygo2를 설치 없이 시도해보는 가장 쉬운 방법은 [Colab](https://colab.research.google.com/)을 사용하는 것이다; 
+Colab 예제 튜토리얼을 이 [링크](https://colab.research.google.com/drive/1tpuUvqb6BujzZI6RBf2cFdAfMqBsxpep?usp=sharing)에서 찾을 수 있다.
 
 
 ## 설치 및 환경 설정
@@ -47,14 +47,14 @@ laygo2를 설치하는 방법은 크게 1) github repository에서 clone하는 �
 아래 quick_start.py 예제를 위한 가장 기초적인 공정 셋업은 [여기](https://github.com/niftylab/laygo2/tree/master/laygo2/examples/laygo2_tech)에서 찾을 수 있다.
 좀 더 완성된 형태의 셋업이 **gpdk045** 공정을 위해 준비되어 있으며 [여기](https://github.com/niftylab/laygo2_workspace_gpdk045/tree/master/laygo2_tech_example)에서 찾을 수 있다.
 
-## simple_gates
+## 간단한 게이트 생성 예제
 
 다음 커맨드를 실행함으로서 간단한 NAND gate의 레이아웃을 생성할 수 있다.
 
-    (after git clone)
+    # after git clone
     >>>> cd laygo2 
     >>>> python -m quick_start.py
-    (or you can run ipython and type run 'quick_start.py' instead)
+    # or you can run ipython and type run 'quick_start.py' instead.
     
 위 스크립트를 실행하여 생성된 NAND gate의 레이아웃은 다음과 같다.
 
@@ -62,8 +62,16 @@ laygo2를 설치하는 방법은 크게 1) github repository에서 clone하는 �
 
 ## Trial in SKY130 technology
 
-An example tutorial of laygo2 in SkyWater [SKY130](https://skywater-pdk.readthedocs.io/en/main/)
- technology can be found in this [link](https://laygo2-sky130-docs.readthedocs.io/en/latest/).
+[SKY130](https://skywater-pdk.readthedocs.io/en/main/) 공정에서 laygo2를 셋업하는 
+기본 예제를 이 [링크](https://laygo2-sky130-docs.readthedocs.io/en/latest/)에서 찾을 수 있다.
+
+생성된 D flip-flop의 레이아웃이 아래 나타나 있다:
+
+![sky130 dff2x](../assets/img/trial_sky130_dff.png "sky130 dff2x")
+
+SKY130 공정에서의 Colab 예제는 이 [링크](https://colab.research.google.com/drive/1dToEQe7500TUNOPN2aPTJGRgcbbNsqhj?usp=sharing)에서 찾을 수 있다.
+![sky130 dff2x colab](../assets/img/trial_sky130_dff_colab.png "sky130 dff2x colab")
+
 
 
 

@@ -31,13 +31,16 @@ Please see the latest **[API reference](laygo2.rst)** for the anatomy of laygo2.
 1. **Place** the generated instances.
     - Check [object.database.Design.place()](https://laygo2.github.io/laygo2.object.database.Design.html#laygo2.object.database.Design.place).
 1. **Route** wires and vias between the instances' terminals.
-    - Check [object.database.Design.route()](https://laygo2.github.io/laygo2.object.database.Design.html#laygo2.object.database.Design.route).
-1. Create **Pins**. 
+    - Check [object.database.Design.route()](https://laygo2.github.io/laygo2.object.database.Design.html#laygo2.object.database.Design.route), [object.database.Design.route_via_track()](https://laygo2.github.io/laygo2.object.database.Design.html#laygo2.object.database.Design.route_via_track), and [object.routing.RoutingMesh](https://laygo2.github.io/laygo2.object.routing.RoutingMesh.html).
+2. Create **Pins**. 
     - Check [object.database.Design.pin()](https://laygo2.github.io/laygo2.object.database.Design.html#laygo2.object.database.Design.pin).
-1. **Export** the generated design in proper format.
+3. **Export** the generated design in proper format.
     - Check [interface.skill.export()](https://laygo2.github.io/laygo2.interface.skill.html#laygo2.interface.skill.export).
-1.  _(Optional)_ export the design as a new template. 
+4.  _(Optional)_ export the design as a new template. 
     - Check [interface.yaml.export_template()](https://laygo2.github.io/laygo2.interface.html#laygo2.interface.yaml.export_template).
+
+## Technology setup
+See **[Tech Setup](technology.md)** for technology setup instructions.
 
 ## List of developers
 See the **[github repository README](https://github.com/niftylab/laygo2)** for the full list of developers and contributors.
