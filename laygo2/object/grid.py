@@ -3426,14 +3426,14 @@ class RoutingGrid(Grid):
         >>> primary_grid = 'horizontal'
         >>> tvia = NativeInstanceTemplate(libname='tlib', cellname='via0')  # via
         >>> viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)
-        >>> g = laygo2.object.grid.RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
-                                               vwidth=wv, hwidth=wh,
-                                               vextension=ev, hextension=eh,
-                                               vlayer=lv, hlayer=lh,
-                                               pin_vlayer=plv, pin_hlayer=plh,
-                                               viamap=viamap, primary_grid=primary_grid,
-                                               xcolor=xcolor, ycolor=ycolor,
-                                               vextension0=e0v, hextension0=e0h)
+        >>> g = RoutingGrid(name='mygrid', vgrid=gv, hgrid=gh,
+                            vwidth=wv, hwidth=wh,
+                            vextension=ev, hextension=eh,
+                            vlayer=lv, hlayer=lh,
+                            pin_vlayer=plv, pin_hlayer=plh,
+                            viamap=viamap, primary_grid=primary_grid,
+                            xcolor=xcolor, ycolor=ycolor,
+                            vextension0=e0v, hextension0=e0h)
         >>> # Routing on grid
         >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
         >>> route = g.route(mn=mn_list, via_tag=[True, None, True, True])
