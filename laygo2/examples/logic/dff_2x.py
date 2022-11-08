@@ -47,16 +47,20 @@ lib.append(dsn)
 
 # 3. Create istances.
 print("Create instances")
-inv0 = tlib["inv_2x"].generate(name="inv0", netmap={"I":"CLK", "O":"ICLKB"})
-inv1 = tlib["inv_2x"].generate(name="inv1", netmap={"I":"ICLKB", "O":"ICLK"})
-inv2 = tlib["inv_2x"].generate(name="inv2", netmap={"I":"FLCH", "O":"LCH"})
-inv3 = tlib["inv_2x"].generate(name="inv3", netmap={"I":"BLCH", "O":"OUT"})
+inv0 = tlib["inv_2x"].generate(name="inv0", netmap={"I": "CLK", "O": "ICLKB"})
+inv1 = tlib["inv_2x"].generate(name="inv1", netmap={"I": "ICLKB", "O": "ICLK"})
+inv2 = tlib["inv_2x"].generate(name="inv2", netmap={"I": "FLCH", "O": "LCH"})
+inv3 = tlib["inv_2x"].generate(name="inv3", netmap={"I": "BLCH", "O": "OUT"})
 
-tinv0 = tlib["tinv_2x"].generate(name="tinv0", netmap={"O":"FLCH", "EN":"ICLKB", "ENB":"ICLK"})
-tinv1 = tlib["tinv_2x"].generate(name="tinv1", netmap={"I":"LCH", "O":"BLCH", "EN":"ICLK", "ENB":"ICLKB"})
+tinv0 = tlib["tinv_2x"].generate(name="tinv0", netmap={"O": "FLCH", "EN": "ICLKB", "ENB": "ICLK"})
+tinv1 = tlib["tinv_2x"].generate(name="tinv1", netmap={"I": "LCH", "O": "BLCH", "EN": "ICLK", "ENB": "ICLKB"})
 
-tinv_small0 = tlib["tinv_1x"].generate(name="tinv_small0", netmap={"I":"LCH", "O":"FLCH", "EN":"ICLK", "ENB":"ICLKB"})
-tinv_small1 = tlib["tinv_1x"].generate(name="tinv_small1", netmap={"I":"OUT", "O":"BLCH", "EN":"ICLKB", "ENB":"ICLK"})
+tinv_small0 = tlib["tinv_1x"].generate(
+    name="tinv_small0", netmap={"I": "LCH", "O": "FLCH", "EN": "ICLK", "ENB": "ICLKB"}
+)
+tinv_small1 = tlib["tinv_1x"].generate(
+    name="tinv_small1", netmap={"I": "OUT", "O": "BLCH", "EN": "ICLKB", "ENB": "ICLK"}
+)
 
 dsn.place(grid=pg, inst=inv0, mn=[0, 0])
 dsn.place(grid=pg, inst=inv1, mn=pg.mn.bottom_right(inv0))
@@ -70,14 +74,14 @@ dsn.place(grid=pg, inst=inv3, mn=pg.mn.bottom_right(tinv_small1))
 # 5. Create and place wires.
 print("Create wires")
 _trk = r34.mn(inv1.pins["O"])[0, 1] - 2
-rc = laygo2.object.routing.RoutingMesh(grid = r34)
-rc.add_track(name="ICLK",  index=[None, _trk    ], netname="ICLK")
+rc = laygo2.object.routing.RoutingMesh(grid=r34)
+rc.add_track(name="ICLK", index=[None, _trk], netname="ICLK")
 rc.add_track(name="ICLKB", index=[None, _trk + 1], netname="ICLKB")
-rc.add_track(name="FLCH",  index=[None, _trk + 2], netname="FLCH")
-rc.add_track(name="BLCH",  index=[None, _trk + 2], netname="BLCH")
-rc.add_track(name="LCH",   index=[None, _trk + 3], netname="LCH")
-rc.add_track(name="OUT",   index=[None, _trk + 3], netname="OUT")
-rc.add_node(list(dsn.instances.values())) # Add all instances to the routing mesh as nodes
+rc.add_track(name="FLCH", index=[None, _trk + 2], netname="FLCH")
+rc.add_track(name="BLCH", index=[None, _trk + 2], netname="BLCH")
+rc.add_track(name="LCH", index=[None, _trk + 3], netname="LCH")
+rc.add_track(name="OUT", index=[None, _trk + 3], netname="OUT")
+rc.add_node(list(dsn.instances.values()))  # Add all instances to the routing mesh as nodes
 rinst = rc.generate()
 dsn.place(grid=pg, inst=rinst)
 
@@ -105,6 +109,7 @@ fig = laygo2.interface.mpl.export(
     order=mpl_params["order"],
     xlim=[-100, 1100],
     ylim=[-300, 400],
+    filename="dff_2x.png",
 )
 # skill export
 skill_str = laygo2.interface.skill.export(lib, filename=libname + "_" + cellname + ".il", cellname=None, scale=1e-3)
