@@ -95,7 +95,7 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
                     alpha=colormap[obj.layer[0]][2],
                     lw=2,
                 )
-                return [[rect, obj.layer[0], objname+"/"+obj.netname]]
+                return [[rect, obj.layer[0], objname + "/" + obj.netname]]
                 # ax.add_patch(rect)
             return []
     elif obj.__class__ == laygo2.object.Text:
@@ -123,10 +123,15 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
         _xy0 = obj.xy0
         _xy1 = np.dot(obj.size, tf.Mt(mtf).T) * np.array([num_rows, num_cols])
         rect = matplotlib.patches.Rectangle(
-            (_xy0[0], _xy0[1]), _xy1[0], _xy1[1], facecolor=colormap["__instance__"][1],
-            edgecolor=colormap["__instance__"][0], alpha=colormap["__instance__"][2], lw=2
+            (_xy0[0], _xy0[1]),
+            _xy1[0],
+            _xy1[1],
+            facecolor=colormap["__instance__"][1],
+            edgecolor=colormap["__instance__"][0],
+            alpha=colormap["__instance__"][2],
+            lw=2,
         )
-        pypobjs = [[rect, "__instance__", obj.cellname+"/"+obj.name]]
+        pypobjs = [[rect, "__instance__", obj.cellname + "/" + obj.name]]
 
         # Instance pins
         for pn, p in obj.pins.items():
@@ -159,7 +164,7 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
                             master=obj[i, j],
                         )
                         pypobjs += _pypobj
-        
+
         # Instance pins
         for pn, p in obj.pins.items():
             _pypobj = _translate_obj(pn, p, colormap, scale=scale, master=master, offset=offset)
@@ -171,7 +176,7 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
 
     else:
         return []
-        #return [obj.translate_to_matplotlib()]
+        # return [obj.translate_to_matplotlib()]
     return []
 
 
@@ -183,6 +188,7 @@ def export(
     order=None,
     xlim=[-100, 400],
     ylim=[-100, 300],
+    filename=None,
 ):
     """
     Export a laygo2.object.database.Library object to a matplotlib plot.
@@ -192,9 +198,19 @@ def export(
     db: laygo2.database.Library
         The library database to exported.
     cellname: str or List[str]
-        The name(s) of cell(s) to be exported.
+        (optional) The name(s) of cell(s) to be exported.
     scale: float
-        The scaling factor between laygo2's integer coordinates and plot coordinates.
+        (optional) The scaling factor between laygo2's integer coordinates and plot coordinates.
+    colormap: dict
+        A dictionary that contains layer-color mapping information.
+    order: list
+        A list that contains the order of layers to be displayed (former is plotter first).
+    xlim: list
+        (optional) A list that specifies the range of plot in x-axis.
+    ylim: list
+        (optional) A list that specifies the range of plot in y-axis.
+    filename: str
+        (optional) If specified, export a output file for the plot.
 
     Returns
     -------
@@ -228,19 +244,25 @@ def export(
                         if len(_pypobj) == 3:  # annotation.
                             ax.add_artist(_pypobj[0])
                             rx, ry = _pypobj[0].get_xy()
-                            cx = rx + _pypobj[0].get_width()/2.0
-                            cy = ry + _pypobj[0].get_height()/2.0
+                            cx = rx + _pypobj[0].get_width() / 2.0
+                            cy = ry + _pypobj[0].get_height() / 2.0
                             if _pypobj[1] == "__instance_pin__":
                                 color = _pypobj[0].get_edgecolor()
                             else:
                                 color = "black"
-                            ax.annotate(_pypobj[2], (cx, cy), color=color, weight='bold', fontsize=6, ha='center', va='center')
+                            ax.annotate(
+                                _pypobj[2], (cx, cy), color=color, weight="bold", fontsize=6, ha="center", va="center"
+                            )
         fig.append(_fig)
     if len(fig) == 1:
         fig = fig[0]
 
     plt.xlim(xlim)
     plt.ylim(ylim)
+
+    if filename is not None:
+        plt.savefig(filename)
+
     plt.show()
 
     return fig

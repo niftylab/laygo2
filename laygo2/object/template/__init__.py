@@ -22,30 +22,5 @@
 #
 ########################################################################################################################
 
-"""**laygo2.object** package implements core object classes for physical 
-layout structures and design hierarchies.
-
-The folowing modules compose the object package:
-
-- **laygo2.object.physical** module is defining classes for physical objects that compose actual IC layout.
-
-- **laygo2.object.template** module describes classes for templates that generate various instance objects for target technology and design parameters.
-
-- **laygo2.object.grid** module describes grid classes to abstract placement and routing coordinates. parameterizations.
-
-- **laygo2.object.database** module implements classes for design hierarchy management.
-
-The following figure illustrates a UML diagram of the object package.
-
-.. image:: ../assets/img/user_guide_uml.png
-
-Check the following links for the details of submodules and classes.
-
-"""
-
-from laygo2.object import *
-from laygo2.object.database import *
-from laygo2.object.grid import *
-from laygo2.object.physical import *
 from laygo2.object.template.core import *
 from laygo2.object.template.routing import *
