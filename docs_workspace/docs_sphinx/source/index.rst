@@ -23,6 +23,7 @@ laygo2 is currently being maintained by the
    Trial<trial>
    API Reference<laygo2>
    Tech Setup<technology>
+   Resources<resources>
    Korean<kor>
 
 
