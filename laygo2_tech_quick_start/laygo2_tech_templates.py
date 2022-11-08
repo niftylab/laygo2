@@ -288,7 +288,7 @@ def space_generate_func(devtype="pmos", name=None, shape=None, pitch=np.array([0
     # Compute parameters
     nf = params["nf"] if "nf" in params.keys() else 1
     us = np.array([30, 100])  # unit space
-    
+
     # Create the base mosfet structure.
     nelements = dict()
     # prboundary
@@ -306,11 +306,11 @@ def space_generate_func(devtype="pmos", name=None, shape=None, pitch=np.array([0
     # metal2 - rail
     rxy = np.array([[0, -5], [us[0] * nf, 5]])
     nelements["M2RAIL0"] = laygo2.object.Rect(xy=rxy, layer=["metal2", "drawing"], name="M2RAIL0")
-    
+
     # Unit size
     inst_xy = space_bbox_func(params=params)
     inst_unit_size = [inst_xy[1, 0] - inst_xy[0, 0], inst_xy[1, 1] - inst_xy[0, 1]]
-    
+
     # Generate and return the final instance
     inst = laygo2.object.VirtualInstance(
         name=name,
@@ -377,6 +377,7 @@ def via_r23_default_generate_func(name=None, shape=None, pitch=np.array([0, 0]),
     return via_generate_func(
         devtype="via_r23_default", name=name, shape=shape, pitch=pitch, transform=transform, params=params
     )
+
 
 def via_r34_default_generate_func(name=None, shape=None, pitch=np.array([0, 0]), transform="R0", params=None):
     return via_generate_func(

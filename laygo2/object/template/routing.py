@@ -27,12 +27,12 @@
 """
 
 import numpy as np
+from laygo2.object.template import *
 from laygo2.object.physical import *
 
 
-class RoutingMesh:
-    """RoutingMesh describes a two dimensional routing structure over a routing grid.
-    """
+class RoutingMeshTemplate(Template):
+    """RoutingMesh describes a two dimensional routing structure over a routing grid."""
 
     grid = None
     """laygo2.object.grid.RoutingGrid: A routing grid object that the RoutingMesh object refers to.
@@ -55,18 +55,17 @@ class RoutingMesh:
     For Rect elements, their netname parameters should be set.       
     """
 
-    #hrange = [None, None]
-    #"""[int or None, int or None]: The minimum and maximum track indices covered by the 
-    #horizontal routing channel, for automatic routing.
-    #"""
-    # 
+    # hrange = [None, None]
+    # """[int or None, int or None]: The minimum and maximum track indices covered by the
+    # horizontal routing channel, for automatic routing.
+    # """
+    #
     # vrange = [None, None]
-    # """[int or None, int or None]: The minimum and maximum track indices covered by the 
+    # """[int or None, int or None]: The minimum and maximum track indices covered by the
     # vertical routing channel, for automatic routing.
     # """
 
-
-    def __init__(self, grid, tracks:dict = None, nodes:list = None):
+    def __init__(self, grid, tracks: dict = None, nodes: list = None):
         """The constructor function.
 
         Parameters
@@ -79,12 +78,12 @@ class RoutingMesh:
         nodes: list
             The list that contains layout objects to be connected through the routing channel.
             The element could be either one of the following:
-                laygo2.object.physical.Instance, 
-                laygo2.object.physical.VirtualInstance, 
+                laygo2.object.physical.Instance,
+                laygo2.object.physical.VirtualInstance,
                 laygo2.object.physical.Rect.
-            For Instance or VirtualInstance elements, the netname parameters of their pins need to be set to the 
+            For Instance or VirtualInstance elements, the netname parameters of their pins need to be set to the
             name of net (netname) which the pins are connected to.
-            For Rect elements, their netname parameters should be set.       
+            For Rect elements, their netname parameters should be set.
         """
         # Assign parameters.
         self.grid = grid
@@ -93,8 +92,7 @@ class RoutingMesh:
         if nodes is not None:
             self.nodes = nodes
 
-
-    def add_track(self, name:str, index:int, netname:str = None):
+    def add_track(self, name: str, index: int, netname: str = None):
         """Add a track to the mesh.
 
         Parameters
@@ -102,8 +100,8 @@ class RoutingMesh:
         name: str
             The name of the track to be added.
         index: int
-            The index of the track. 
-            For a horizontal track, it should be [None, i] where i is the 
+            The index of the track.
+            For a horizontal track, it should be [None, i] where i is the
             value of abstract coordinate to place the routing track.
             For a vertical track, it should be [i, None].
         netname: str
@@ -112,7 +110,6 @@ class RoutingMesh:
         if netname is None:
             netname = name
         self.tracks[name] = [index, netname]
-
 
     def add_node(self, obj):
         """Add a node object to the mesh.
@@ -127,7 +124,6 @@ class RoutingMesh:
             self.nodes += obj
         else:
             self.nodes.append(obj)
-
 
     def generate(self):
         """Generate a routing mesh.
@@ -179,7 +175,7 @@ class RoutingMesh:
         >>> i0 = laygo2.object.physical.Instance(name="I0", xy=[150,0],
         >>>     libname="mylib", cellname="mycell", shape=[3, 2], pitch=[200,200],
         >>>     unit_size=[100, 100], pins=i0_pins, transform='R0')
-        >>> 
+        >>>
         >>> # Create a routing mesh.
         >>> rm = laygo2.object.routing.RoutingMesh(grid = g)
         >>> rm.add_track(name = "A", index = [None, 5], netname = "A")
@@ -225,20 +221,20 @@ class RoutingMesh:
                     if n.netname == tnn:
                         mn.append(g.mn(n)[0])
             # Do routing
-            #if ti[0] is None:  # horizontal track
+            # if ti[0] is None:  # horizontal track
             #    _t = [None, ti[1]]
-            #else:
+            # else:
             #    _t = [ti[0], None]
-            #r = g.route_via_track(mn=mn, track=_t)
+            # r = g.route_via_track(mn=mn, track=_t)
             r = g.route_via_track(mn=mn, track=ti)
 
             # Wrap the generated routing structure into a VirtualInstance
             for i, _r in enumerate(r):
                 if isinstance(_r, list):
                     for j, __r in enumerate(_r):
-                        nelements[tn+"_"+str(i)+"_"+str(j)]=__r
+                        nelements[tn + "_" + str(i) + "_" + str(j)] = __r
                 else:
-                    nelements[tn+"_"+str(i)]=_r
+                    nelements[tn + "_" + str(i)] = _r
             pins[tn] = Pin(xy=r[-1].xy, layer=r[-1].layer, netname=tnn)
 
         # Instantiate a VirtualInstance.
