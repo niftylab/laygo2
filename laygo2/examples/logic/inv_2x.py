@@ -66,11 +66,11 @@ _mn = [r23.mn(in0.pins["D"])[1], r23.mn(ip0.pins["D"])[1]]
 vout0, rout0, vout1 = dsn.route(grid=r23, mn=_mn, via_tag=[True, True])
 
 # VSS
-rvss0 = dsn.route(grid=r12, mn=[r12.mn(in0.pins['RAIL'])[0], r12.mn(in0.pins['RAIL'])[1]])
+rvss0 = dsn.route(grid=r12, mn=[r12.mn(in0.pins["RAIL"])[0], r12.mn(in0.pins["RAIL"])[1]])
 
 # VDD
-rvdd0 = dsn.route(grid=r12, mn=[r12.mn(ip0.pins['RAIL'])[0], r12.mn(ip0.pins['RAIL'])[1]])
-      
+rvdd0 = dsn.route(grid=r12, mn=[r12.mn(ip0.pins["RAIL"])[0], r12.mn(ip0.pins["RAIL"])[1]])
+
 # 6. Create pins.
 pin0 = dsn.pin(name="I", grid=r23, mn=r23.mn.bbox(rin0[2]))
 pout0 = dsn.pin(name="O", grid=r23, mn=r23.mn.bbox(rout0))
@@ -88,6 +88,7 @@ fig = laygo2.interface.mpl.export(
     order=mpl_params["order"],
     xlim=[-100, 400],
     ylim=[-100, 300],
+    filename="inv_2x.png",
 )
 # skill export
 skill_str = laygo2.interface.skill.export(lib, filename=libname + "_" + cellname + ".il", cellname=None, scale=1e-3)
