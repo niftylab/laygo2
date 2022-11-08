@@ -65,6 +65,16 @@ class RoutingMeshTemplate(Template):
     # vertical routing channel, for automatic routing.
     # """
 
+    def bbox(self, params=None):
+        """numpy.ndarray: (Abstract method) Return the bounding box of a template."""
+        # TODO: implement this
+        pass
+
+    def pins(self, params=None):
+        """dict: (Abstract method) Return dict having the collection of pins of a template."""
+        # TODO: implement this
+        pass
+
     def __init__(self, grid, tracks: dict = None, nodes: list = None):
         """The constructor function.
 
