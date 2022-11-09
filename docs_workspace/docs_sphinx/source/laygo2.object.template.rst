@@ -10,3 +10,4 @@ laygo2.object.template module
    laygo2.object.template.NativeInstanceTemplate
    laygo2.object.template.ParameterizedInstanceTemplate
    laygo2.object.template.UserDefinedTemplate
+   laygo2.object.template.routing

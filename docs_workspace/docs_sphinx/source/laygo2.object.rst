@@ -12,5 +12,4 @@ laygo2.object package
    laygo2.object.template
    laygo2.object.grid
    laygo2.object.database
-   laygo2.object.routing
 
