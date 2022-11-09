@@ -62,14 +62,8 @@ tinv_small1 = tlib["tinv_1x"].generate(
     name="tinv_small1", netmap={"I": "OUT", "O": "BLCH", "EN": "ICLKB", "ENB": "ICLK"}
 )
 
-dsn.place(grid=pg, inst=inv0, mn=[0, 0])
-dsn.place(grid=pg, inst=inv1, mn=pg.mn.bottom_right(inv0))
-dsn.place(grid=pg, inst=tinv0, mn=pg.mn.bottom_right(inv1))
-dsn.place(grid=pg, inst=tinv_small0, mn=pg.mn.bottom_right(tinv0))
-dsn.place(grid=pg, inst=inv2, mn=pg.mn.bottom_right(tinv_small0))
-dsn.place(grid=pg, inst=tinv1, mn=pg.mn.bottom_right(inv2))
-dsn.place(grid=pg, inst=tinv_small1, mn=pg.mn.bottom_right(tinv1))
-dsn.place(grid=pg, inst=inv3, mn=pg.mn.bottom_right(tinv_small1))
+dsn.place(grid=pg, inst=[inv0, inv1, tinv0, tinv_small0, inv2, tinv1, 
+                         tinv_small1, inv3], mn=[0, 0])
 
 # 5. Create and place wires.
 print("Create wires")
