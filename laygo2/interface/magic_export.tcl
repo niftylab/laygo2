@@ -78,7 +78,7 @@ proc _laygo2_generate_rect {layer bbox} {
     }
 }; #create a rectangle
 
-proc _laygo2_generate_pin {name layer bbox} {
+proc _laygo2_generate_pin {name layer bbox port_num} {
     set pin_w [ expr [lindex [lindex $bbox 1] 0] - [lindex [lindex $bbox 0] 0] ]
     set pin_cx [expr [expr [lindex [lindex $bbox 1] 0] + [lindex [lindex $bbox 0] 0]] / 2]
     set pin_cy [expr [expr [lindex [lindex $bbox 1] 1] + [lindex [lindex $bbox 0] 1]] / 2]
@@ -91,6 +91,8 @@ proc _laygo2_generate_pin {name layer bbox} {
         M5 { set layer_real metal5 }
         default { set layer_real $layer }
     }
+    box values $pin_cx $pin_cy $pin_cx $pin_cy
+    paint $layer_real
     if {$pin_w >= $pin_h} {
         box values $pin_cx $pin_cy $pin_cx $pin_cy
         label $name FreeSans $pin_h 0 0 0 center $layer_real
@@ -101,6 +103,7 @@ proc _laygo2_generate_pin {name layer bbox} {
     box values $pin_cx $pin_cy $pin_cx $pin_cy
     select area label
     setlabel layer $layer_real
+    port make $port_num
 }; #print label on layer bbox
 
 # notice: filename must have form of path/cellname.mag otherwise, segmentation fault occur when import one cellfile twice

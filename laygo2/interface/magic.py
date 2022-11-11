@@ -95,8 +95,9 @@ def _translate_obj(libpath, objname, obj, scale=1, master=None, offset=np.array(
             # return "_laygo2_generate_pin(cv, \"%s\", %s, %s ) ; # for the Pin object %s \n" \
             #        % (_obj.netname, _py2magic_list(_obj.layer), _py2magic_list(_xy, scale=scale),
             #           objname)
-            return "_laygo2_generate_pin %s %s %s  ; # for the Pin object %s \n" \
-                   % (_obj.netname, obj.layer[0], _py2magic_list(_xy, scale=scale), objname)
+            port_num +=1
+            return "_laygo2_generate_pin %s %s %s %d ; # for the Pin object %s \n" \
+                   % (_obj.netname, obj.layer[0], _py2magic_list(_xy, scale=scale), objname, port_num)
     elif obj.__class__ == laygo2.object.Text:
         # TODO: implement text export function.
         pass
@@ -184,6 +185,8 @@ def export(db, filename=None, cellname=None, libpath=None, scale=1, reset_librar
     cellname = [cellname] if isinstance(cellname, str) else cellname  # convert to a list for iteration.
     # if reset_library:
     #     cmd += "_laygo2_reset_library(\"%s\" \"%s\")\n" % (db.name, tech_library)
+    global port_num
+    port_num = 0
     for cn in cellname:
         cmd += "\n# exporting %s__%s\n" % (db.name, cn)  # open the design.
         logging.debug('Export_to_MAGIC: Cellname:' + cn)
