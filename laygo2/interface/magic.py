@@ -97,7 +97,7 @@ def _translate_obj(libpath, objname, obj, scale=1, master=None, offset=np.array(
             #           objname)
             port_num +=1
             return "_laygo2_generate_pin %s %s %s %d ; # for the Pin object %s \n" \
-                   % (_obj.netname, obj.layer[0], _py2magic_list(_xy, scale=scale), objname, port_num)
+                   % (_obj.netname, obj.layer[0], _py2magic_list(_xy, scale=scale), port_num, objname)
     elif obj.__class__ == laygo2.object.Text:
         # TODO: implement text export function.
         pass
