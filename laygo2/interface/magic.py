@@ -63,6 +63,7 @@ def _translate_obj(libpath, objname, obj, scale=1, master=None, offset=np.array(
     offset : np.array([int, int])
         Offsets to obj.xy
     """
+    global port_num
     if master is None:  
         mxy = np.array([0, 0])
         mtf = 'R0'
