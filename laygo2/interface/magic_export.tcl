@@ -25,6 +25,20 @@ proc _laygo2_create_layout {libpath _cellname techname} {
     load $_cellname
     select top cell
     edit
+# if same named cell already exist, erase it.
+    set ilist [cellname list childinst]
+    set len [llength $ilist]
+    for { set idx 0 } { $idx < $len } { incr idx 1 } {
+        set bracket [string first \\ [lindex $ilist $idx]]
+        if { $bracket != -1 } {
+            set instname [string range [lindex $ilist $idx] 0 [expr $bracket - 1] ]
+        } else {
+            set instname [lindex $ilist $idx]
+        }
+        select cell $instname
+        delete
+    }
+    select top cell    
     select area
     delete
 }; # create new edit cell
@@ -59,11 +73,12 @@ proc _laygo2_generate_rect {layer bbox} {
         M2 { paint metal2 }
         M3 { paint metal3 }
         M4 { paint metal4 }
+        M5 { paint metal5 }
         default { paint $layer }
     }
 }; #create a rectangle
 
-proc _laygo2_generate_pin {name layer bbox} {
+proc _laygo2_generate_pin {name layer bbox port_num} {
     set pin_w [ expr [lindex [lindex $bbox 1] 0] - [lindex [lindex $bbox 0] 0] ]
     set pin_cx [expr [expr [lindex [lindex $bbox 1] 0] + [lindex [lindex $bbox 0] 0]] / 2]
     set pin_cy [expr [expr [lindex [lindex $bbox 1] 1] + [lindex [lindex $bbox 0] 1]] / 2]
@@ -73,8 +88,11 @@ proc _laygo2_generate_pin {name layer bbox} {
         M2 { set layer_real metal2 }
         M3 { set layer_real metal3 }
         M4 { set layer_real metal4 }
+        M5 { set layer_real metal5 }
         default { set layer_real $layer }
     }
+    box values $pin_cx $pin_cy $pin_cx $pin_cy
+    paint $layer_real
     if {$pin_w >= $pin_h} {
         box values $pin_cx $pin_cy $pin_cx $pin_cy
         label $name FreeSans $pin_h 0 0 0 center $layer_real
@@ -85,6 +103,7 @@ proc _laygo2_generate_pin {name layer bbox} {
     box values $pin_cx $pin_cy $pin_cx $pin_cy
     select area label
     setlabel layer $layer_real
+    port make $port_num
 }; #print label on layer bbox
 
 # notice: filename must have form of path/cellname.mag otherwise, segmentation fault occur when import one cellfile twice
@@ -130,24 +149,45 @@ proc _laygo2_generate_instance { name libpath _cellname loc orient num_rows num_
 };
 
 proc _laygo2_test {libpath _cellname techname} {
-# load layout file and clear layout
-    _laygo2_open_layout $libpath $_cellname $techname
-#generate rects. param: {cv layer bbox}
-    _laygo2_generate_rect nwell {{0 98} {126 231}}
-    _laygo2_generate_rect pwell {{0 -28} {126 98}}
-    _laygo2_generate_rect ntransistor {{56 28} {77 42}}
-    _laygo2_generate_rect ptransistor {{56 161} {98 175}}
-    _laygo2_generate_rect ndiffusion {{56 42} {77 49}}
-    _laygo2_generate_rect ndiffusion {{56 21} {77 28}}
-    _laygo2_generate_rect pdiffusion {{56 175} {98 182}}
-    _laygo2_generate_rect pdiffusion {{56 154} {98 161}}
-    _laygo2_generate_rect ndcontact {{56 49} {77 70}}
-    _laygo2_generate_rect ndcontact {{56 0} {77 21}}
-    _laygo2_generate_rect pdcontact {{56 182} {98 203}}
-    _laygo2_generate_rect pdcontact {{56 133} {98 154}}
-    _laygo2_generate_rect polycontact {{14 91} {42 119}}
-#generate pin. param: {cv name layer bbox}
-    _laygo2_generate_pin IN polycontact {{12 102} {30 108}}
+# create layout file
+_laygo2_create_layout ./magic_layout laygo2_test_inv_2x sky130A
+#generate rects&instance.
+_laygo2_generate_instance MN0_IBNDL0 ./magic_layout/skywater130_microtemplates_dense nmos13_fast_boundary { 0.0  0.0  } R0 1 1 0 0 ; # for the Instance object MN0_IBNDL0 
+_laygo2_generate_instance MN0_IM0 ./magic_layout/skywater130_microtemplates_dense nmos13_fast_center_nf2 { 72.0  0.0  } R0 1 1 504.0  144.0  ; # for the Instance object MN0_IM0 
+_laygo2_generate_instance MN0_IBNDR0 ./magic_layout/skywater130_microtemplates_dense nmos13_fast_boundary { 216.0  0.0  } R0 1 1 0 0 ; # for the Instance object MN0_IBNDR0 
+_laygo2_generate_rect M2 { { 54.0  345.0  } { 234.0  375.0  } } ; # for the Rect object MN0_RG0 
+_laygo2_generate_instance MN0_IVG0 ./magic_layout/skywater130_microtemplates_dense via_M1_M2_0 { 144.0  360.0  } R0 1 1 504.0  144.0  ; # for the Instance object MN0_IVG0 
+_laygo2_generate_rect M2 { { 54.0  201.0  } { 234.0  231.0  } } ; # for the Rect object MN0_RD0 
+_laygo2_generate_instance MN0_IVD0 ./magic_layout/skywater130_microtemplates_dense via_M1_M2_0 { 144.0  216.0  } R0 1 1 504.0  144.0  ; # for the Instance object MN0_IVD0 
+_laygo2_generate_rect M2 { { -10.0  -30.0  } { 298.0  30.0  } } ; # for the Rect object MN0_RRAIL0 
+_laygo2_generate_rect M1 { { 57.0  -20.0  } { 87.0  164.0  } } ; # for the Rect object MN0_RTIE0 
+_laygo2_generate_rect M1 { { 201.0  -20.0  } { 231.0  164.0  } } ; # for the Rect object MN0_RTIE1 
+_laygo2_generate_instance MN0_IVTIED0 ./magic_layout/skywater130_microtemplates_dense via_M1_M2_1 { 72.0  0.0  } R0 1 2 504.0  144.0  ; # for the Instance object MN0_IVTIED0 
+_laygo2_generate_instance MP0_IBNDL0 ./magic_layout/skywater130_microtemplates_dense pmos13_fast_boundary { 0.0  1008.0  } MX 1 1 0 0 ; # for the Instance object MP0_IBNDL0 
+_laygo2_generate_instance MP0_IM0 ./magic_layout/skywater130_microtemplates_dense pmos13_fast_center_nf2 { 72.0  1008.0  } MX 1 1 504.0  144.0  ; # for the Instance object MP0_IM0 
+_laygo2_generate_instance MP0_IBNDR0 ./magic_layout/skywater130_microtemplates_dense pmos13_fast_boundary { 216.0  1008.0  } MX 1 1 0 0 ; # for the Instance object MP0_IBNDR0 
+_laygo2_generate_rect M2 { { 54.0  663.0  } { 234.0  633.0  } } ; # for the Rect object MP0_RG0 
+_laygo2_generate_instance MP0_IVG0 ./magic_layout/skywater130_microtemplates_dense via_M1_M2_0 { 144.0  648.0  } MX 1 1 504.0  144.0  ; # for the Instance object MP0_IVG0 
+_laygo2_generate_rect M2 { { 54.0  807.0  } { 234.0  777.0  } } ; # for the Rect object MP0_RD0 
+_laygo2_generate_instance MP0_IVD0 ./magic_layout/skywater130_microtemplates_dense via_M1_M2_0 { 144.0  792.0  } MX 1 1 504.0  144.0  ; # for the Instance object MP0_IVD0 
+_laygo2_generate_rect M2 { { -10.0  1038.0  } { 298.0  978.0  } } ; # for the Rect object MP0_RRAIL0 
+_laygo2_generate_rect M1 { { 57.0  1028.0  } { 87.0  844.0  } } ; # for the Rect object MP0_RTIE0 
+_laygo2_generate_rect M1 { { 201.0  1028.0  } { 231.0  844.0  } } ; # for the Rect object MP0_RTIE1 
+_laygo2_generate_instance MP0_IVTIED0 ./magic_layout/skywater130_microtemplates_dense via_M1_M2_1 { 72.0  1008.0  } MX 1 2 504.0  144.0  ; # for the Instance object MP0_IVTIED0 
+_laygo2_generate_rect M2 { { 62.0  345.0  } { 154.0  375.0  } } ; # for the Rect object NoName_0 
+_laygo2_generate_instance NoName_1 ./magic_layout/skywater130_microtemplates_dense via_M2_M3_0 { 72.0  360.0  } R0 1 1 0 0 ; # for the Instance object NoName_1 
+_laygo2_generate_rect M2 { { 62.0  633.0  } { 154.0  663.0  } } ; # for the Rect object NoName_2 
+_laygo2_generate_instance NoName_3 ./magic_layout/skywater130_microtemplates_dense via_M2_M3_0 { 72.0  648.0  } R0 1 1 0 0 ; # for the Instance object NoName_3 
+_laygo2_generate_rect M3 { { 57.0  345.0  } { 87.0  663.0  } } ; # for the Rect object NoName_4 
+_laygo2_generate_instance NoName_5 ./magic_layout/skywater130_microtemplates_dense via_M2_M3_0 { 144.0  216.0  } R0 1 1 0 0 ; # for the Instance object NoName_5 
+_laygo2_generate_rect M3 { { 129.0  201.0  } { 159.0  807.0  } } ; # for the Rect object NoName_6 
+_laygo2_generate_instance NoName_7 ./magic_layout/skywater130_microtemplates_dense via_M2_M3_0 { 144.0  792.0  } R0 1 1 0 0 ; # for the Instance object NoName_7 
+_laygo2_generate_rect M2 { { -20.0  -30.0  } { 308.0  30.0  } } ; # for the Rect object NoName_8 
+_laygo2_generate_rect M2 { { -20.0  978.0  } { 308.0  1038.0  } } ; # for the Rect object NoName_9 
+_laygo2_generate_pin I M3 { { 57.0  360.0  } { 87.0  648.0  } }  ; # for the Pin object I 
+_laygo2_generate_pin O M3 { { 129.0  216.0  } { 159.0  792.0  } }  ; # for the Pin object O 
+_laygo2_generate_pin VSS M2 { { 0.0  -30.0  } { 288.0  30.0  } }  ; # for the Pin object VSS 
+_laygo2_generate_pin VDD M2 { { 0.0  978.0  } { 288.0  1038.0  } }  ; # for the Pin object VDD 
 #save and close
-    save
+save
 }

@@ -63,6 +63,7 @@ def _translate_obj(libpath, objname, obj, scale=1, master=None, offset=np.array(
     offset : np.array([int, int])
         Offsets to obj.xy
     """
+    global port_num
     if master is None:  
         mxy = np.array([0, 0])
         mtf = 'R0'
@@ -95,8 +96,9 @@ def _translate_obj(libpath, objname, obj, scale=1, master=None, offset=np.array(
             # return "_laygo2_generate_pin(cv, \"%s\", %s, %s ) ; # for the Pin object %s \n" \
             #        % (_obj.netname, _py2magic_list(_obj.layer), _py2magic_list(_xy, scale=scale),
             #           objname)
-            return "_laygo2_generate_pin %s %s %s  ; # for the Pin object %s \n" \
-                   % (_obj.netname, obj.layer[0], _py2magic_list(_xy, scale=scale), objname)
+            port_num +=1
+            return "_laygo2_generate_pin %s %s %s %d ; # for the Pin object %s \n" \
+                   % (_obj.netname, obj.layer[0], _py2magic_list(_xy, scale=scale), port_num, objname)
     elif obj.__class__ == laygo2.object.Text:
         # TODO: implement text export function.
         pass
@@ -224,6 +226,8 @@ def export(db, filename=None, cellname=None, libpath='./magic_layout', scale=1,
     cellname = db.keys() if cellname is None else cellname  # export all cells if cellname is not given.
     cellname = [cellname] if isinstance(cellname, str) else cellname  # convert to a list for iteration.
     # if reset_library: (not implemented)
+    global port_num
+    port_num = 0
     for cn in cellname:
         cmd += "\n# exporting %s__%s\n" % (db.name, cn)  # open the design.
         logging.debug('Export_to_MAGIC: Cellname:' + cn)
