@@ -1383,6 +1383,49 @@ class RoutingGrid(Grid):
         p = laygo2.object.physical.Pin(name=name, xy=_xy, layer=layer, netname=netname, params=params)
         return p
 
+
+    def copy(self):
+        name = self.name
+        vgrid = self.vgrid.copy()
+        hgrid = self.hgrid.copy()
+        vwidth = self.vwidth.copy()
+        hwidth = self.hwidth.copy()
+        vextension = self.vextension.copy()
+        hextension = self.hextension.copy()
+        vlayer = self.vlayer.copy()
+        hlayer = self.hlayer.copy()
+        pin_vlayer = self.pin_vlayer.copy()
+        pin_hlayer = self.pin_hlayer.copy()
+        viamap = self.viamap.copy()
+        xcolor = self.xcolor.copy()
+        ycolor = self.ycolor.copy()
+        primary_grid = self.primary_grid.copy()
+        vextension0 = self.vextension0.copy()
+        hextension0 = self.hextension0.copy()
+
+        return RoutingGrid(
+            name = name,
+            vgrid = vgrid,
+            hgrid = hgrid,
+            vwidth = vwidth,
+            hwidth = hwidth,
+            vextension = vextension,
+            hextension = hextension,
+            vlayer = vlayer,
+            hlayer = hlayer,
+            pin_vlayer = pin_vlayer,
+            pin_hlayer = pin_hlayer,
+            viamap = viamap,
+            xcolor = xcolor,
+            ycolor = ycolor,
+            primary_grid = primary_grid,
+            vextension0 = vextension0,
+            hextension0 = hextension0,
+        )
+
+
+
+
     def summarize(self):
         """Summarize object information."""
         return (
@@ -1400,3 +1443,4 @@ class RoutingGrid(Grid):
             + " ycolor: " + str(self.ycolor) + "\n"
             + " viamap: " + str(self.viamap) + "\n"
         )
+    

@@ -54,4 +54,3 @@ from .template.routing import *
 from .grid.core import *
 from .grid.placement import *
 from .grid.routing import *
-from .grid.util import *

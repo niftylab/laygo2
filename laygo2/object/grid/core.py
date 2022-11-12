@@ -365,6 +365,17 @@ class CircularMapping:
         """Return the summary of the object information."""
         return self.__repr__() + " " "class: " + self.__class__.__name__ + ", " + "elements: " + str(self.elements)
 
+    # Regular member functions
+    def flip(self):
+        """Flip the elements of the object.
+        """
+        self.elements = np.flip(self.elements)
+
+    def copy(self):
+        """Copy the object.
+        """
+        return CircularMapping(self.elements.copy(), dtype=self.dtype)
+
 
 class CircularMappingArray(CircularMapping):
     """
@@ -431,6 +442,17 @@ class CircularMappingArray(CircularMapping):
             for i, _null in np.ndenumerate(item):
                 item[i] = self.__getitem__(pos=tuple(idx[i]))
             return np.asarray(item)
+    
+    # Regular member functions
+    def flip(self, axis):
+        """Flip the elements of the object.
+        """
+        self.elements = np.flip(self.elements, axis=axis)
+
+    def copy(self):
+        """Copy the object.
+        """
+        return CircularMappingArray(self.elements.copy(), dtype=self.dtype)
 
 
 class _AbsToPhyGridConverter:
@@ -2006,6 +2028,17 @@ class OneDimGrid(CircularMapping):
             "elements": self.elements.tolist(),
         }
         return export_dict
+    
+    def flip(self, axis):
+        """Flip the elements of the object.
+        """
+        self.elements = np.flip(self.elements, axis=axis)
+
+    def copy(self):
+        """Copy the object.
+        """
+        return OneDimGrid(self.name, self.range.copy(), elements=self.elements.copy())
+
 
 
 class Grid:
@@ -2030,6 +2063,14 @@ class Grid:
 
     _xy = None
     """List[OneDimGrid]: the list contains the 1d-grid objects for x and y axes."""
+
+    @property
+    def vgrid(self):
+        return self._xy[0]
+
+    @property
+    def hgrid(self):
+        return self._xy[1]
 
     @property
     def elements(self):
