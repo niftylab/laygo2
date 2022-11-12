@@ -28,7 +28,7 @@
 #from .util import *
 
 # Objects
-from laygo2 import object
+from . import object
 #from laygo2.object import *
 #from laygo2.object.database import *
 #from laygo2.object.grid import *
@@ -36,11 +36,11 @@ from laygo2 import object
 #from laygo2.object.template import *
 
 # Interface
-from laygo2 import interface
+from . import interface
 #from . import util
 
 # Util
-from laygo2 import util
+from . import util
 
 #__all__ = ['object', 'util']
 #__all__ = ['object', 'PrimitiveUtil']

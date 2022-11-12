@@ -43,9 +43,15 @@ Check the following links for the details of submodules and classes.
 
 """
 
-from laygo2.object import *
-from laygo2.object.database import *
-from laygo2.object.grid import *
-from laygo2.object.physical import *
-from laygo2.object.template.core import *
-from laygo2.object.template.routing import *
+#from laygo2.object import *
+from . import *
+from .database import *
+from .physical import *
+# template packages
+from .template.core import *
+from .template.routing import *
+# grid packages
+from .grid.core import *
+from .grid.placement import *
+from .grid.routing import *
+from .grid.util import *

@@ -115,25 +115,25 @@ def mos_pins_func(devtype, params):
     # Create a pin dictionary
     pins = dict()
     # metal2 - gate
-    pxy = np.array([[gblx + blx + 12, 85], [gblx + blx + us[0] * nf - 12, us[1] - 5]])
-    pins["G"] = laygo2.object.Pin(xy=pxy, layer=["metal2", "drawing"], netname="G")
+    pxy = np.array([[gblx + blx + us[0] * nfdl + 12, 75], [gblx + blx + us[0] * (nfdl + nf) - 12, us[1] - 15]])
+    pins["G"] = laygo2.object.Pin(name="G", xy=pxy, layer=["metal2", "drawing"], netname="G")
     # metal2 - sourcedrain
     srx = -1 * (nf % 2) * us[0]
     if params["trackswap"] == False:
-        sy = 35
-        dy = 55
+        sy = 25
+        dy = 45
     else:
-        sy = 55
-        dy = 35
+        sy = 45
+        dy = 25
     sdx = gblx + blx + nfdl * us[0]
     pxy = np.array([[sdx - 7, sy], [sdx + us[0] * nf + srx + 7, sy + 10]])
-    pins["S"] = laygo2.object.Pin(xy=pxy, layer=["metal2", "drawing"], netname="S")
+    pins["S"] = laygo2.object.Pin(name="S", xy=pxy, layer=["metal2", "drawing"], netname="S")
     drx = -1 * ((nf + 1) % 2) * us[0]
     pxy = np.array([[sdx + us[0] - 7, dy], [sdx + us[0] * nf + drx + 7, dy + 10]])
-    pins["D"] = laygo2.object.Pin(xy=pxy, layer=["metal2", "drawing"], netname="D")
+    pins["D"] = laygo2.object.Pin(name="D", xy=pxy, layer=["metal2", "drawing"], netname="D")
     # metal2 - rail
     pxy = np.array([[0, -5], [gblx + blx + us[0] * (nfdl + nf + nfdr) + brx + gbrx, 5]])
-    pins["RAIL"] = laygo2.object.Pin(xy=pxy, layer=["metal2", "drawing"], netname="RAIL")
+    pins["RAIL"] = laygo2.object.Pin(name="RAIL", xy=pxy, layer=["metal2", "drawing"], netname="RAIL")
     return pins
 
 
@@ -173,31 +173,31 @@ def mos_generate_func(devtype, name=None, shape=None, pitch=np.array([0, 0]), tr
     else:
         nelements["PIMPL0"] = laygo2.object.Rect(xy=rxy, layer=["pimplant", "drawing"], name="PIMPL0")
     # diffusion
-    rxy = np.array([[gblx + blx - 5, 25], [gblx + blx + us[0] * (nfdl + nf + nfdr) + 5, us[1] - 25]])
+    rxy = np.array([[gblx + blx - 5, 15], [gblx + blx + us[0] * (nfdl + nf + nfdr) + 5, us[1] - 35]])
     nelements["DIFF0"] = laygo2.object.Rect(xy=rxy, layer=["diffusion", "drawing"], name="DIFF0")
     # poly
     for i in range(nf + nfdl + nfdr):
         rxy = np.array([[gblx + blx + us[0] * i + 12, 10], [gblx + blx + us[0] * (i + 1) - 12, us[1] - 10]])
         nelements["POLY" + str(i)] = laygo2.object.Rect(xy=rxy, layer=["poly", "drawing"], name="POLY" + str(i))
     # metal1 - gate
-    rxy = np.array([[gblx + blx + 12, 85], [gblx + blx + us[0] * (nfdl + nf + nfdr) - 12, us[1] - 5]])
+    rxy = np.array([[gblx + blx + us[0] * nfdl + 12, 75], [gblx + blx + us[0] * (nfdl + nf) - 12, us[1] - 15]])
     nelements["M1G0"] = laygo2.object.Rect(xy=rxy, layer=["metal1", "drawing"], name="M1G0")
     # metal1 - sourcedrain
     for i in range(nf + nfdl + nfdr + 1):
-        rxy = np.array([[gblx + blx + us[0] * i - 7, 23], [gblx + blx + us[0] * i + 7, us[1] - 23]])
+        rxy = np.array([[gblx + blx + us[0] * i - 7, 13], [gblx + blx + us[0] * i + 7, us[1] - 33]])
         nelements["M1SD" + str(i)] = laygo2.object.Rect(xy=rxy, layer=["metal1", "drawing"], name="M1SD" + str(i))
     # via1 - gate
     gx = gblx + blx + nfdl * us[0]
     for i in range(nf):
-        rxy = np.array([[gx + us[0] * i - 5 + 15, 85], [gx + us[0] * i + 5 + 15, us[1] - 5]])
+        rxy = np.array([[gx + us[0] * i - 5 + 15, 75], [gx + us[0] * i + 5 + 15, us[1] - 15]])
         nelements["VG0" + str(i)] = laygo2.object.Rect(xy=rxy, layer=["via1", "drawing"], name="VG0" + str(i))
     # via1 - sourcedrain
     if params["trackswap"] == False:
-        sy = 35
-        dy = 55
+        sy = 25
+        dy = 45
     else:
-        sy = 55
-        dy = 35
+        sy = 45
+        dy = 25
     sdx = gblx + blx + nfdl * us[0]
     for i in range(nf + 1):
         if i % 2 == 0:
@@ -223,8 +223,27 @@ def mos_generate_func(devtype, name=None, shape=None, pitch=np.array([0, 0]), tr
             )
             rxy = np.array([[sdx + us[0] * i - 5, -5], [sdx + us[0] * i + 5, 5]])
             nelements["V1TIE" + str(i)] = laygo2.object.Rect(xy=rxy, layer=["via1", "drawing"], name="V1TIE" + str(i))
+    # metal1/via1 - dummy
+    sdx = gblx + blx
+    for i in range(nfdl + 1 - 1):
+        rxy = np.array([[sdx + us[0] * i - 7, -5], [sdx + us[0] * i + 7, 23]])
+        nelements["M1DML" + str(i)] = laygo2.object.Rect(
+            xy=rxy, layer=["metal1", "drawing"], name="M1DML" + str(i)
+        )
+        rxy = np.array([[sdx + us[0] * i - 5, -5], [sdx + us[0] * i + 5, 5]])
+        nelements["V1DML" + str(i)] = laygo2.object.Rect(xy=rxy, layer=["via1", "drawing"], name="V1DML" + str(i))
+    sdx = gblx + blx + (nfdl + nf) * us[0]
+    for i in range(1, nfdr + 1):
+        rxy = np.array([[sdx + us[0] * i - 7, -5], [sdx + us[0] * i + 7, 23]])
+        nelements["M1DMR" + str(i)] = laygo2.object.Rect(
+            xy=rxy, layer=["metal1", "drawing"], name="M1DMR" + str(i)
+        )
+        rxy = np.array([[sdx + us[0] * i - 5, -5], [sdx + us[0] * i + 5, 5]])
+        nelements["V1DMR" + str(i)] = laygo2.object.Rect(xy=rxy, layer=["via1", "drawing"], name="V1DMR" + str(i))
+    
     # metal2 - gate
-    rxy = np.array([[gblx + blx + 12, 85], [gblx + blx + us[0] * nf - 12, us[1] - 5]])
+    sdx = gblx + blx + nfdl * us[0]
+    rxy = np.array([[gblx + blx + us[0] * nfdl + 12, 75], [gblx + blx + us[0] * (nfdl + nf) - 12, us[1] - 15]])
     nelements["M2G0"] = laygo2.object.Rect(xy=rxy, layer=["metal2", "drawing"], name="M2G0")
     # metal2 - sourcedrain
     srx = -1 * (nf % 2) * us[0]
