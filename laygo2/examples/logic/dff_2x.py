@@ -51,19 +51,12 @@ inv0 = tlib["inv_2x"].generate(name="inv0", netmap={"I": "CLK", "O": "ICLKB"})
 inv1 = tlib["inv_2x"].generate(name="inv1", netmap={"I": "ICLKB", "O": "ICLK"})
 inv2 = tlib["inv_2x"].generate(name="inv2", netmap={"I": "FLCH", "O": "LCH"})
 inv3 = tlib["inv_2x"].generate(name="inv3", netmap={"I": "BLCH", "O": "OUT"})
-
 tinv0 = tlib["tinv_2x"].generate(name="tinv0", netmap={"O": "FLCH", "EN": "ICLKB", "ENB": "ICLK"})
 tinv1 = tlib["tinv_2x"].generate(name="tinv1", netmap={"I": "LCH", "O": "BLCH", "EN": "ICLK", "ENB": "ICLKB"})
+tinv_small0 = tlib["tinv_1x"].generate(name="tinv_small0", netmap={"I": "LCH", "O": "FLCH", "EN": "ICLK", "ENB": "ICLKB"})
+tinv_small1 = tlib["tinv_1x"].generate(name="tinv_small1", netmap={"I": "OUT", "O": "BLCH", "EN": "ICLKB", "ENB": "ICLK"})
 
-tinv_small0 = tlib["tinv_1x"].generate(
-    name="tinv_small0", netmap={"I": "LCH", "O": "FLCH", "EN": "ICLK", "ENB": "ICLKB"}
-)
-tinv_small1 = tlib["tinv_1x"].generate(
-    name="tinv_small1", netmap={"I": "OUT", "O": "BLCH", "EN": "ICLKB", "ENB": "ICLK"}
-)
-
-dsn.place(grid=pg, inst=[inv0, inv1, tinv0, tinv_small0, inv2, tinv1, 
-                         tinv_small1, inv3], mn=[0, 0])
+dsn.place(grid=pg, inst=[inv0, inv1, tinv0, tinv_small0, inv2, tinv1, tinv_small1, inv3], mn=[0, 0])
 
 # 5. Create and place wires.
 print("Create wires")

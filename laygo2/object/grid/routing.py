@@ -23,7 +23,7 @@
 ########################################################################################################################
 
 import numpy as np
-from .core import Grid
+from .grid import CircularMapping, Grid
 import laygo2.object
 
 class RoutingGrid(Grid):
@@ -853,8 +853,14 @@ class RoutingGrid(Grid):
         self.pin_hlayer = pin_hlayer
         self.viamap = viamap
         self.primary_grid = primary_grid
-        self.xcolor = xcolor
-        self.ycolor = ycolor
+        if xcolor is None:
+            self.xcolor = CircularMapping([None]*self.vwidth.shape[0], dtype=object)
+        else:
+            self.xcolor = xcolor
+        if ycolor is None:
+            self.ycolor = CircularMapping([None]*self.hwidth.shape[0], dtype=object)
+        else:
+            self.ycolor = ycolor
         Grid.__init__(self, name=name, vgrid=vgrid, hgrid=hgrid)
 
     def route(self, mn, direction=None, via_tag=None):
@@ -883,7 +889,9 @@ class RoutingGrid(Grid):
         >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
         >>> from laygo2.object.template import NativeInstanceTemplate
         >>> from laygo2.object.physical import Instance
+        >>> #
         >>> # Routing grid construction (not needed if laygo2_tech is set up).
+        >>> #
         >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
         >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
         >>> wv = CM([10])           # vertical (xgrid) width
@@ -909,7 +917,9 @@ class RoutingGrid(Grid):
                                                viamap=viamap, primary_grid=primary_grid,
                                                xcolor=xcolor, ycolor=ycolor,
                                                vextension0=e0v, hextension0=e0h)
+        >>> #
         >>> # Routing on grid
+        >>> #
         >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
         >>> route = g.route(mn=mn_list, via_tag=[True, None, True, True])
         >>> for r in route:
@@ -1384,7 +1394,8 @@ class RoutingGrid(Grid):
         return p
 
 
-    def copy(self):
+    def copy(self, flip_vgrid=False, flip_hgrid=False):
+        """Copy the current RoutingGrid object, with optional flip operations."""
         name = self.name
         vgrid = self.vgrid.copy()
         hgrid = self.hgrid.copy()
@@ -1399,11 +1410,11 @@ class RoutingGrid(Grid):
         viamap = self.viamap.copy()
         xcolor = self.xcolor.copy()
         ycolor = self.ycolor.copy()
-        primary_grid = self.primary_grid.copy()
+        primary_grid = self.primary_grid
         vextension0 = self.vextension0.copy()
         hextension0 = self.hextension0.copy()
 
-        return RoutingGrid(
+        rg = RoutingGrid(
             name = name,
             vgrid = vgrid,
             hgrid = hgrid,
@@ -1422,8 +1433,32 @@ class RoutingGrid(Grid):
             vextension0 = vextension0,
             hextension0 = hextension0,
         )
+        if flip_vgrid:
+            rg.flip(vgrid = True)
+        if flip_hgrid:
+            rg.flip(hgrid = True)
+        return rg
 
 
+    def flip(self, vgrid=False, hgrid=False):
+        if vgrid: 
+            self.vgrid.flip()
+            self.vwidth.flip()
+            self.vextension.flip()
+            self.vlayer.flip()
+            self.pin_vlayer.flip()
+            self.xcolor.flip()
+            self.viamap.flip(axis=1)
+            self.vextension0.flip()
+        if hgrid:
+            self.hgrid.flip()
+            self.hwidth.flip()
+            self.hextension.flip()
+            self.hlayer.flip()
+            self.pin_hlayer.flip()
+            self.ycolor.flip()
+            self.viamap.flip(axis=0)
+            self.hextension0.flip()
 
 
     def summarize(self):

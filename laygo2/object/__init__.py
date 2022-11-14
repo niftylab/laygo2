@@ -48,9 +48,9 @@ from . import *
 from .database import *
 from .physical import *
 # template packages
-from .template.core import *
+from .template.template import *
 from .template.routing import *
 # grid packages
-from .grid.core import *
+from .grid.grid import *
 from .grid.placement import *
 from .grid.routing import *

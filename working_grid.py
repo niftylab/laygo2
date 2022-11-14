@@ -42,5 +42,9 @@ grids = tech.load_grids(templates=templates)
 pg, r12, r23, r23c, r34 = grids[pg_name], grids[r12_name], grids[r23_name], grids[r23_cmos_name], grids[r34_name]
 # print(grids[pg_name], grids[r12_name], grids[r23_name], grids[r34_name], sep="\n") # Uncomment if you want to print grids.
 print(r12)
-print("\n\n")
-print(r12.copy())
+#print("\n\n")
+r23=r12.copy(flip_hgrid=True)
+#r23=r12.copy(flip_vgrid=True)
+#r23.flip(vertical=True)
+print(r23)
+a = np.array([1, 2, 3])
