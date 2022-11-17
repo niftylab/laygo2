@@ -63,7 +63,7 @@ def _translate_obj(libpath, objname, obj, scale=1, master=None, offset=np.array(
     offset : np.array([int, int])
         Offsets to obj.xy
     """
-    global port_num
+    global pin_info
     if master is None:  
         mxy = np.array([0, 0])
         mtf = 'R0'
@@ -96,9 +96,8 @@ def _translate_obj(libpath, objname, obj, scale=1, master=None, offset=np.array(
             # return "_laygo2_generate_pin(cv, \"%s\", %s, %s ) ; # for the Pin object %s \n" \
             #        % (_obj.netname, _py2magic_list(_obj.layer), _py2magic_list(_xy, scale=scale),
             #           objname)
-            port_num +=1
-            return "_laygo2_generate_pin %s %s %s %d ; # for the Pin object %s \n" \
-                   % (_obj.netname, obj.layer[0], _py2magic_list(_xy, scale=scale), port_num, objname)
+            pin_info.append([_obj.netname, obj.layer[0], _py2magic_list(_xy, scale=scale), objname])
+            return ''
     elif obj.__class__ == laygo2.object.Text:
         # TODO: implement text export function.
         pass
@@ -226,8 +225,8 @@ def export(db, filename=None, cellname=None, libpath='./magic_layout', scale=1,
     cellname = db.keys() if cellname is None else cellname  # export all cells if cellname is not given.
     cellname = [cellname] if isinstance(cellname, str) else cellname  # convert to a list for iteration.
     # if reset_library: (not implemented)
-    global port_num
-    port_num = 0
+    global pin_info
+    pin_info = list()
     for cn in cellname:
         cmd += "\n# exporting %s__%s\n" % (db.name, cn)  # open the design.
         logging.debug('Export_to_MAGIC: Cellname:' + cn)
@@ -235,6 +234,29 @@ def export(db, filename=None, cellname=None, libpath='./magic_layout', scale=1,
         # export objects
         for objname, obj in db[cn].items():
             cmd += _translate_obj(libpath, objname, obj, scale=scale)
+        # attach zeros to pin index for sorting by alphabet (ex: pin<1> -> pin<000000001>)
+        # set length of every pin index to 10
+        for info in pin_info:
+            if '<' in info[0] and '>' in info[0]:
+                _idx = info[0].find('<')
+                _len = info[0].find('>') - (_idx + 1)
+                if _len <= 0:
+                    print("wrong pin format: "+info[0])
+                    exit(-1)
+                _prefix = '0'*(10-_len)
+                info[0] = info[0][:_idx+1] +_prefix + info[0][_idx+1:]
+                info.append(10-_len)
+        
+        pin_info.sort(key=lambda info: info[0])
+        # detach zeros from pin index
+        for info in pin_info:
+            if len(info) == 5:
+                _idx = info[0].find('<')
+                info[0] = info[0][:_idx+1] + info[0][_idx+1+info[4]:]
+        # translate pin info to magic functon
+        for port_num, info in enumerate(pin_info):
+            cmd += "_laygo2_generate_pin %s %s %s %d ; # for the Pin object %s \n" \
+                    % (info[0], info[1], info[2], port_num+1, info[3])
         cmd += "save\n"
     
     # optional gds export
