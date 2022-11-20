@@ -366,15 +366,28 @@ class CircularMapping:
         return self.__repr__() + " " "class: " + self.__class__.__name__ + ", " + "elements: " + str(self.elements)
 
     # Regular member functions
+    def append(self, elem):
+        """Append elements to the mapping."""
+        if not isinstance(elem, list):
+            elem = [elem]
+        self.elements = np.array(self.elements.tolist() + elem)
+
     def flip(self):
         """Flip the elements of the object.
         """
-        self.elements = np.flip(self.elements)
+        self.elements = np.flip(self.elements, axis=0)
 
     def copy(self):
         """Copy the object.
         """
         return CircularMapping(self.elements.copy(), dtype=self.dtype)
+    
+    def concatenate(self, obj):
+        self.elements = np.concatenate((self.elements, obj.elements))
+        #for e in elements:
+        #    self.elements = np.concatenate((self.elements, obj.elements))
+        #self.range[1] += obj.range[1] - obj.range[0]
+
 
 
 class CircularMappingArray(CircularMapping):
@@ -2041,8 +2054,9 @@ class OneDimGrid(CircularMapping):
         return OneDimGrid(self.name, self.range.copy(), elements=self.elements.copy())
 
     def concatenate(self, obj):
-        objelem = obj.elements + obj.range[0]
-        elements = np.concatenate((self.elements, objelem))
+        objelem = obj.elements - obj.range[0] + self.range[1]
+        self.elements = np.concatenate((self.elements, objelem))
+        self.range[1] += obj.range[1] - obj.range[0]
         #for e in elements:
         #    self.elements = np.concatenate((self.elements, obj.elements))
         #self.range[1] += obj.range[1] - obj.range[0]

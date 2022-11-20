@@ -43,8 +43,12 @@ pg, r12, r23, r23c, r34 = grids[pg_name], grids[r12_name], grids[r23_name], grid
 # print(grids[pg_name], grids[r12_name], grids[r23_name], grids[r34_name], sep="\n") # Uncomment if you want to print grids.
 print(r12)
 #print("\n\n")
-r23=r12.copy(flip_hgrid=True)
+r12b=r12.vflip()
 #r23=r12.copy(flip_vgrid=True)
 #r23.flip(vertical=True)
-print(r23)
+print(r12b)
+#r12c=r12.vstack(obj=r12b)
+r12c=r12.hstack(obj=r12b)
+print(r12c)
 a = np.array([1, 2, 3])
+

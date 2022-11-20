@@ -1393,9 +1393,8 @@ class RoutingGrid(Grid):
         p = laygo2.object.physical.Pin(name=name, xy=_xy, layer=layer, netname=netname, params=params)
         return p
 
-
-    def copy(self, flip_vgrid=False, flip_hgrid=False):
-        """Copy the current RoutingGrid object, with optional flip operations."""
+    def copy(self): 
+        """Copy the current RoutingGrid object."""
         name = self.name
         vgrid = self.vgrid.copy()
         hgrid = self.hgrid.copy()
@@ -1433,32 +1432,89 @@ class RoutingGrid(Grid):
             vextension0 = vextension0,
             hextension0 = hextension0,
         )
-        if flip_vgrid:
-            rg.flip(vgrid = True)
-        if flip_hgrid:
-            rg.flip(hgrid = True)
         return rg
 
+    def vflip(self, copy=True):
+        """Flip the routing grid in vertical direction."""
+        if copy:
+            g = self.copy()
+        else:
+            g = self
+        g.hgrid.flip()
+        g.hwidth.flip()
+        g.hextension.flip()
+        g.hlayer.flip()
+        g.pin_hlayer.flip()
+        g.ycolor.flip()
+        g.viamap.flip(axis=0)
+        g.hextension0.flip()
+        return g
 
-    def flip(self, vgrid=False, hgrid=False):
-        if vgrid: 
-            self.vgrid.flip()
-            self.vwidth.flip()
-            self.vextension.flip()
-            self.vlayer.flip()
-            self.pin_vlayer.flip()
-            self.xcolor.flip()
-            self.viamap.flip(axis=1)
-            self.vextension0.flip()
-        if hgrid:
-            self.hgrid.flip()
-            self.hwidth.flip()
-            self.hextension.flip()
-            self.hlayer.flip()
-            self.pin_hlayer.flip()
-            self.ycolor.flip()
-            self.viamap.flip(axis=0)
-            self.hextension0.flip()
+    def hflip(self, copy=True):
+        """Flip the routing grid in horizontal direction."""
+        if copy:
+            g = self.copy()
+        else:
+            g = self
+        g.vgrid.flip()
+        g.vwidth.flip()
+        g.vextension.flip()
+        g.vlayer.flip()
+        g.pin_vlayer.flip()
+        g.xcolor.flip()
+        g.viamap.flip(axis=1)
+        g.vextension0.flip()
+        return g
+
+    def vstack(self, obj, copy=True):
+        """Stack another routing grid to the routing grid in vertical direction."""
+        if copy:
+            g = self.copy()
+        else:
+            g = self
+        for i, h in enumerate(obj.hgrid):
+            # Check if the new grid element exist in the current grid already.
+            val = (h - obj.hgrid.range[0]) + g.hgrid.width  
+            val = val % (g.hgrid.width + obj.hgrid.width)  # modulo
+            if not (val in g.hgrid):
+                # Unique element
+                g.hgrid.append(h + g.hgrid.range[1])
+                g.hwidth.append(obj.hwidth[i])
+                g.hextension.append(obj.hextension[i])
+                g.hlayer.append(obj.hlayer[i])
+                g.pin_hlayer.append(obj.pin_hlayer[i])
+                g.ycolor.append(obj.ycolor[i])
+                g.hextension0.append(obj.hextension0[i])
+                elem = np.expand_dims(obj.viamap.elements[:, i], axis=0)
+                # hstack due to the transposition of numpy array and cartesian system.
+                g.viamap.elements = np.hstack((g.viamap.elements, elem)) 
+        g.hgrid.range[1] += obj.hgrid.width
+        return g
+
+    def hstack(self, obj, copy=True):
+        """Stack another routing grid to the routing grid in horizontal direction."""
+        if copy:
+            g = self.copy()
+        else:
+            g = self
+        for i, v in enumerate(obj.vgrid):
+            # Check if the new grid element exist in the current grid already.
+            val = (v - obj.vgrid.range[0]) + g.vgrid.width  
+            val = val % (g.vgrid.width + obj.vgrid.width)  # modulo
+            if not (val in g.vgrid):
+                # Unique element
+                g.vgrid.append(v + g.vgrid.range[1])
+                g.vwidth.append(obj.vwidth[i])
+                g.vextension.append(obj.vextension[i])
+                g.vlayer.append(obj.vlayer[i])
+                g.pin_vlayer.append(obj.pin_vlayer[i])
+                g.xcolor.append(obj.xcolor[i])
+                g.vextension0.append(obj.vextension0[i])
+                elem = np.expand_dims(obj.viamap.elements[i, :], axis=0)
+                # vstack due to the transposition of numpy array and cartesian system.
+                g.viamap.elements = np.vstack((g.viamap.elements, elem)) 
+        g.vgrid.range[1] += obj.vgrid.width
+        return g
 
 
     def summarize(self):
