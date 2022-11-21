@@ -1472,6 +1472,10 @@ class RoutingGrid(Grid):
             g = self.copy()
         else:
             g = self
+        if isinstance(obj, list):  # Multiple stack.
+            for o in obj:
+                g = g.vstack(o, copy=copy)
+            return g
         for i, h in enumerate(obj.hgrid):
             # Check if the new grid element exist in the current grid already.
             val = (h - obj.hgrid.range[0]) + g.hgrid.width  
@@ -1497,6 +1501,10 @@ class RoutingGrid(Grid):
             g = self.copy()
         else:
             g = self
+        if isinstance(obj, list):  # Multiple stack.
+            for o in obj:
+                g = g.hstack(o, copy=copy)
+            return g
         for i, v in enumerate(obj.vgrid):
             # Check if the new grid element exist in the current grid already.
             val = (v - obj.vgrid.range[0]) + g.vgrid.width  

@@ -23,7 +23,6 @@ tnmos_name = "nmos"
 pg_name = "placement_basic"
 r12_name = "routing_12_mos"
 r23_name = "routing_23_mos"
-r23_cmos_name = "routing_23_cmos"
 r34_name = "routing_34_basic"
 
 # Design hierarchy
@@ -39,8 +38,9 @@ tpmos, tnmos = templates[tpmos_name], templates[tnmos_name]
 
 print("Load grids")
 grids = tech.load_grids(templates=templates)
-pg, r12, r23, r23c, r34 = grids[pg_name], grids[r12_name], grids[r23_name], grids[r23_cmos_name], grids[r34_name]
+pg, r12, r23, r34 = grids[pg_name], grids[r12_name], grids[r23_name], grids[r34_name]
 # print(grids[pg_name], grids[r12_name], grids[r23_name], grids[r34_name], sep="\n") # Uncomment if you want to print grids.
+r23v=r23.vstack([r23, r23, r23.vflip()])
 
 # 2. Create a design hierarchy
 lib = laygo2.object.database.Library(name=libname)
@@ -69,41 +69,41 @@ dsn.place(grid=pg, inst=[[inckhl0, inckhr0], [ininl0, ininr0], [inrgl0, inrgr0],
 print("Create wires")
 # first row
 # vss
-_mn = [r23.mn(inckhl0.pins["S"])[0], r23.mn(inckhr0.pins["S"])[1]]
-rvss0 = dsn.route(grid=r23, mn=_mn, via_tag=[False, False])
+_mn = [r23v.mn(inckhl0.pins["S"])[0], r23v.mn(inckhr0.pins["S"])[1]]
+rvss0 = dsn.route(grid=r23v, mn=_mn, via_tag=[False, False])
 # tail
-_mn = [r23.mn(inckhl0.pins["D"])[0], r23.mn(inckhr0.pins["D"])[1]]
-rtail0 = dsn.route(grid=r23, mn=_mn, via_tag=[False, False])
+_mn = [r23v.mn(inckhl0.pins["D"])[0], r23v.mn(inckhr0.pins["D"])[1]]
+rtail0 = dsn.route(grid=r23v, mn=_mn, via_tag=[False, False])
 # clk
-_mn = [r23.mn(inckhl0.pins["G"])[0], r23.mn(inckhr0.pins["G"])[1]]
-rck0 = dsn.route(grid=r23, mn=_mn, via_tag=[False, False])
+_mn = [r23v.mn(inckhl0.pins["G"])[0], r23v.mn(inckhr0.pins["G"])[1]]
+rck0 = dsn.route(grid=r23v, mn=_mn, via_tag=[False, False])
 # second row
 # tail
-_mn = [r23.mn(ininl0.pins["S"])[0], r23.mn(ininr0.pins["S"])[1]]
-rtail1 = dsn.route(grid=r23, mn=_mn, via_tag=[False, False])
+_mn = [r23v.mn(ininl0.pins["S"])[0], r23v.mn(ininr0.pins["S"])[1]]
+rtail1 = dsn.route(grid=r23v, mn=_mn, via_tag=[False, False])
 
 # vertical connections
 # tail
-_mn = [r23.mn(inckhl0.pins["D"]), r23.mn(ininl0.pins["S"])]
+_mn = [r23v.mn(inckhl0.pins["D"]), r23v.mn(ininl0.pins["S"])]
 _mn_min = min(_mn[0][0, 0], _mn[1][0, 0])
 _mn_max = _mn[1][1, 0]
 for t in range(_mn_max, _mn_min - 1, -2):
     _track = [t, None]
-    rv = dsn.route_via_track(grid=r23, mn=[_mn[0][1], _mn[1][1]], track=_track)
+    rv = dsn.route_via_track(grid=r23v, mn=[_mn[0][1], _mn[1][1]], track=_track)
 # int
-_mn = [r23.mn(ininl0.pins["D"]), r23.mn(inrgl0.pins["S"])]
+_mn = [r23v.mn(ininl0.pins["D"]), r23v.mn(inrgl0.pins["S"])]
 _mn_min = min(_mn[0][0, 0], _mn[1][0, 0])
 _mn_max = _mn[0][1, 0]
 for t in range(_mn_max, _mn_min - 1, -2):
     _track = [t, None]
-    rv = dsn.route_via_track(grid=r23, mn=[_mn[0][1], _mn[1][1]], track=_track)
+    rv = dsn.route_via_track(grid=r23v, mn=[_mn[0][1], _mn[1][1]], track=_track)
 # out
-_mn = [r23c.mn(inrgl0.pins["D"]), r23c.mn(iprgl0.pins["D"])]
+_mn = [r23v.mn(inrgl0.pins["D"]), r23v.mn(iprgl0.pins["D"])]
 _mn_min = min(_mn[0][0, 0], _mn[1][0, 0])
 _mn_max = _mn[0][1, 0]
 for t in range(_mn_max, _mn_min - 1, -2):
     _track = [t, None]
-    rv = dsn.route_via_track(grid=r23, mn=[_mn[0][1], _mn[1][1]], track=_track)
+    rv = dsn.route_via_track(grid=r23v, mn=[_mn[0][1], _mn[1][1]], track=_track)
 
 ## IN
 #_mn = [r23.mn(in0.pins["G"])[0], r23.mn(ip0.pins["G"])[0]]
