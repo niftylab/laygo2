@@ -223,10 +223,28 @@ def mos_generate_func(devtype, name=None, shape=None, pitch=np.array([0, 0]), tr
             )
             rxy = np.array([[sdx + us[0] * i - 5, -5], [sdx + us[0] * i + 5, 5]])
             nelements["V1TIE" + str(i)] = laygo2.object.Rect(xy=rxy, layer=["via1", "drawing"], name="V1TIE" + str(i))
-    # metal1/via1 - dummy
+    # metal1/via1 - dummy (gate)
+    if nfdl > 0:
+        rxy = np.array([[gblx + blx + 12, 75], [gblx + blx + us[0] * nfdl - 12, us[1] - 15]])
+        nelements["M1DMYGL"] = laygo2.object.Rect(xy=rxy, layer=["metal1", "drawing"], name="M1DMYGL")
+        gx = gblx + blx
+        for i in range(nfdl):
+            rxy = np.array([[gx + us[0] * i - 5 + 15, 75], [gx + us[0] * i + 5 + 15, us[1] - 15]])
+            nelements["VDMYGL" + str(i)] = laygo2.object.Rect(xy=rxy, layer=["via1", "drawing"], name="VDMYGL" + str(i))
+    if nfdr > 0:
+        rxy = np.array([[gblx + blx + us[0] * (nfdl + nf) + 12, 75], [gblx + blx + us[0] * (nfdl + nf + nfdr) - 12, us[1] - 15]])
+        nelements["M1DMYGR"] = laygo2.object.Rect(xy=rxy, layer=["metal1", "drawing"], name="M1DMYGR")
+        gx = gblx + blx + (nfdl + nf) * us[0]
+        for i in range(nfdr):
+            rxy = np.array([[gx + us[0] * i - 5 + 15, 75], [gx + us[0] * i + 5 + 15, us[1] - 15]])
+            nelements["VDMYGR" + str(i)] = laygo2.object.Rect(xy=rxy, layer=["via1", "drawing"], name="VDMYGR" + str(i))
+    # metal1/via1 - dummy (source/drain)
     sdx = gblx + blx
     for i in range(nfdl + 1 - 1):
-        rxy = np.array([[sdx + us[0] * i - 7, -5], [sdx + us[0] * i + 7, 23]])
+        if i == 0:
+            rxy = np.array([[sdx + us[0] * i - 7, -5], [sdx + us[0] * i + 7, 23]])
+        else:
+            rxy = np.array([[sdx + us[0] * i - 7, -5], [sdx + us[0] * i + 7, us[1] - 15]])
         nelements["M1DML" + str(i)] = laygo2.object.Rect(
             xy=rxy, layer=["metal1", "drawing"], name="M1DML" + str(i)
         )
@@ -234,7 +252,10 @@ def mos_generate_func(devtype, name=None, shape=None, pitch=np.array([0, 0]), tr
         nelements["V1DML" + str(i)] = laygo2.object.Rect(xy=rxy, layer=["via1", "drawing"], name="V1DML" + str(i))
     sdx = gblx + blx + (nfdl + nf) * us[0]
     for i in range(1, nfdr + 1):
-        rxy = np.array([[sdx + us[0] * i - 7, -5], [sdx + us[0] * i + 7, 23]])
+        if i == nfdr:
+            rxy = np.array([[sdx + us[0] * i - 7, -5], [sdx + us[0] * i + 7, 23]])
+        else:
+            rxy = np.array([[sdx + us[0] * i - 7, -5], [sdx + us[0] * i + 7, us[1] - 15]])
         nelements["M1DMR" + str(i)] = laygo2.object.Rect(
             xy=rxy, layer=["metal1", "drawing"], name="M1DMR" + str(i)
         )
