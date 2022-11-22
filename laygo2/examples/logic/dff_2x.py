@@ -61,7 +61,7 @@ dsn.place(grid=pg, inst=[inv0, inv1, tinv0, tinv_small0, inv2, tinv1, tinv_small
 # 5. Create and place wires.
 print("Create wires")
 _trk = r34.mn(inv1.pins["O"])[0, 1] - 2
-rc = laygo2.object.template.RoutingMeshTemplate(grid=r34)
+rc = laygo2.object.core.RoutingMeshTemplate(grid=r34)
 rc.add_track(name="ICLK", index=[None, _trk], netname="ICLK")
 rc.add_track(name="ICLKB", index=[None, _trk + 1], netname="ICLKB")
 rc.add_track(name="FLCH", index=[None, _trk + 2], netname="FLCH")

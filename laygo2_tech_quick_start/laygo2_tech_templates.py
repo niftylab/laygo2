@@ -42,7 +42,7 @@ grids = tech_params["grids"]
 def _mos_update_params(params):
     """Make a complete parameter table for mos"""
     us = np.array([30, 100])  # unit transistor size
-    ush = np.array([15, 100])  # half-unit transistor size
+    #ush = np.array([15, 100])  # half-unit transistor size
     if "nf" not in params:  # number of fingers
         params["nf"] = 1
     if "nfdmyl" not in params:  # number of left-dummy fingers
@@ -66,13 +66,13 @@ def _mos_update_params(params):
     if "unit_size_dmy" not in params:  # dummy size
         params["unit_size_dmy"] = us
     if "unit_size_bndl" not in params:  # left boundary unit size
-        params["unit_size_bndl"] = ush
+        params["unit_size_bndl"] = us
     if "unit_size_bndr" not in params:  # right boundary unit size
-        params["unit_size_bndr"] = ush
+        params["unit_size_bndr"] = us
     if "unit_size_gbndl" not in params:  # left boundary unit size
-        params["unit_size_gbndl"] = ush
+        params["unit_size_gbndl"] = us
     if "unit_size_gbndr" not in params:  # right boundary unit size
-        params["unit_size_gbndr"] = ush
+        params["unit_size_gbndr"] = us
     return params
 
 
@@ -106,10 +106,10 @@ def mos_pins_func(devtype, params):
     nf = params["nf"] if "nf" in params.keys() else 1
     nfdl = params["nfdmyl"]
     nfdr = params["nfdmyr"]
-    blx = 15 if params["bndl"] == True else 0
-    brx = 15 if params["bndr"] == True else 0
-    gblx = 15 if params["gbndl"] == True else 0
-    gbrx = 15 if params["gbndr"] == True else 0
+    blx = 30 if params["bndl"] == True else 0
+    brx = 30 if params["bndr"] == True else 0
+    gblx = 30 if params["gbndl"] == True else 0
+    gbrx = 30 if params["gbndr"] == True else 0
     us = np.array([30, 100])  # unit transistor size
 
     # Create a pin dictionary
@@ -152,10 +152,10 @@ def mos_generate_func(devtype, name=None, shape=None, pitch=np.array([0, 0]), tr
     nf = params["nf"] if "nf" in params.keys() else 1
     nfdl = params["nfdmyl"]
     nfdr = params["nfdmyr"]
-    blx = 15 if params["bndl"] == True else 0
-    brx = 15 if params["bndr"] == True else 0
-    gblx = 15 if params["gbndl"] == True else 0
-    gbrx = 15 if params["gbndr"] == True else 0
+    blx = 30 if params["bndl"] == True else 0
+    brx = 30 if params["bndr"] == True else 0
+    gblx = 30 if params["gbndl"] == True else 0
+    gbrx = 30 if params["gbndr"] == True else 0
     us = np.array([30, 100])  # unit transistor size
 
     # Create the base mosfet structure.
@@ -223,21 +223,21 @@ def mos_generate_func(devtype, name=None, shape=None, pitch=np.array([0, 0]), tr
             )
             rxy = np.array([[sdx + us[0] * i - 5, -5], [sdx + us[0] * i + 5, 5]])
             nelements["V1TIE" + str(i)] = laygo2.object.Rect(xy=rxy, layer=["via1", "drawing"], name="V1TIE" + str(i))
-    # metal1/via1 - dummy (gate)
+    # metal1 - dummy (gate)
     if nfdl > 0:
         rxy = np.array([[gblx + blx + 12, 75], [gblx + blx + us[0] * nfdl - 12, us[1] - 15]])
         nelements["M1DMYGL"] = laygo2.object.Rect(xy=rxy, layer=["metal1", "drawing"], name="M1DMYGL")
-        gx = gblx + blx
-        for i in range(nfdl):
-            rxy = np.array([[gx + us[0] * i - 5 + 15, 75], [gx + us[0] * i + 5 + 15, us[1] - 15]])
-            nelements["VDMYGL" + str(i)] = laygo2.object.Rect(xy=rxy, layer=["via1", "drawing"], name="VDMYGL" + str(i))
+        #gx = gblx + blx
+        #for i in range(nfdl):
+        #    rxy = np.array([[gx + us[0] * i - 5 + 15, 75], [gx + us[0] * i + 5 + 15, us[1] - 15]])
+        #    nelements["VDMYGL" + str(i)] = laygo2.object.Rect(xy=rxy, layer=["via1", "drawing"], name="VDMYGL" + str(i))
     if nfdr > 0:
         rxy = np.array([[gblx + blx + us[0] * (nfdl + nf) + 12, 75], [gblx + blx + us[0] * (nfdl + nf + nfdr) - 12, us[1] - 15]])
         nelements["M1DMYGR"] = laygo2.object.Rect(xy=rxy, layer=["metal1", "drawing"], name="M1DMYGR")
-        gx = gblx + blx + (nfdl + nf) * us[0]
-        for i in range(nfdr):
-            rxy = np.array([[gx + us[0] * i - 5 + 15, 75], [gx + us[0] * i + 5 + 15, us[1] - 15]])
-            nelements["VDMYGR" + str(i)] = laygo2.object.Rect(xy=rxy, layer=["via1", "drawing"], name="VDMYGR" + str(i))
+        #gx = gblx + blx + (nfdl + nf) * us[0]
+        #for i in range(nfdr):
+        #    rxy = np.array([[gx + us[0] * i - 5 + 15, 75], [gx + us[0] * i + 5 + 15, us[1] - 15]])
+        #    nelements["VDMYGR" + str(i)] = laygo2.object.Rect(xy=rxy, layer=["via1", "drawing"], name="VDMYGR" + str(i))
     # metal1/via1 - dummy (source/drain)
     sdx = gblx + blx
     for i in range(nfdl + 1 - 1):

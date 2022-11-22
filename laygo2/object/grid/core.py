@@ -195,6 +195,29 @@ def _conv_bbox_to_list(bbox):
             array.append([c, r])
     return array
 
+
+# External functions
+def copy(obj):
+    """Copy a grid object."""
+    return obj.copy()
+
+def vflip(obj):
+    """Flip a grid object in vertical direction."""
+    return obj.flip(copy=True)
+
+def hflip(obj):
+    """Flip a grid object in horizontal direction."""
+    return obj.flip(copy=True)
+
+def vstack(obj):
+    """Stack routing grid(s) on top of the routing grid in vertical direction."""
+    return obj[0].vstack(obj[1:], copy=True)
+
+def hstack(obj):
+    """Stack routing grid(s) on top of the routing grid in horizontal direction."""
+    return obj[0].hstack(obj[1:], copy=True)
+
+
 # Internal classes
 class CircularMapping:
     """

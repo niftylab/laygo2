@@ -23,7 +23,7 @@
 ########################################################################################################################
 
 import numpy as np
-from .grid import CircularMapping, Grid
+from .core import CircularMapping, Grid
 import laygo2.object
 
 class RoutingGrid(Grid):
@@ -1467,7 +1467,7 @@ class RoutingGrid(Grid):
         return g
 
     def vstack(self, obj, copy=True):
-        """Stack another routing grid to the routing grid in vertical direction."""
+        """Stack routing grid(s) on top of the routing grid in vertical direction."""
         if copy:
             g = self.copy()
         else:

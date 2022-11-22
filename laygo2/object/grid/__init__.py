@@ -22,7 +22,7 @@
 #
 ########################################################################################################################
 
-from .grid import *
+from .core import *
 from .routing import *
 from .placement import *
 #from laygo2.object.grid.routing import *
