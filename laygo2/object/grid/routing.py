@@ -1446,7 +1446,7 @@ class RoutingGrid(Grid):
         g.hlayer.flip()
         g.pin_hlayer.flip()
         g.ycolor.flip()
-        g.viamap.flip(axis=0)
+        g.viamap.flip(axis=1)
         g.hextension0.flip()
         return g
 
@@ -1462,7 +1462,7 @@ class RoutingGrid(Grid):
         g.vlayer.flip()
         g.pin_vlayer.flip()
         g.xcolor.flip()
-        g.viamap.flip(axis=1)
+        g.viamap.flip(axis=0)
         g.vextension0.flip()
         return g
 
@@ -1472,6 +1472,37 @@ class RoutingGrid(Grid):
             g = self.copy()
         else:
             g = self
+        if isinstance(obj, list):  # multiple stack
+            obj_list = obj
+        else:  # single stack
+            obj_list = [obj]
+        # compute the grid range first
+        grid_ofst = g.hgrid.width
+        for _obj in obj_list:
+            g.hgrid.range[1] += _obj.hgrid.width
+        # stack
+        for _obj in obj_list:
+            for i, h in enumerate(_obj.hgrid):
+                # Check if the new grid element exist in the current grid already.
+                val = (h - _obj.hgrid.range[0]) + grid_ofst
+                val = val % (g.hgrid.width)  # modulo
+                if not (val in g.hgrid):
+                    # Unique element
+                    g.hgrid.append(val + g.hgrid.range[0])
+                    #g.hgrid.append(h - _obj.hgrid.range[0] + g.hgrid.range[0] + grid_ofst)
+                    g.hwidth.append(_obj.hwidth[i])
+                    g.hextension.append(_obj.hextension[i])
+                    g.hlayer.append(_obj.hlayer[i])
+                    g.pin_hlayer.append(_obj.pin_hlayer[i])
+                    g.ycolor.append(_obj.ycolor[i])
+                    g.hextension0.append(_obj.hextension0[i])
+                    elem = np.expand_dims(_obj.viamap.elements[:, i], axis=0)
+                    # hstack due to the transposition of numpy array and cartesian system.
+                    g.viamap.elements = np.hstack((g.viamap.elements, elem)) 
+            grid_ofst += _obj.hgrid.width  # increse offset
+        # Do not use the following code, 
+        # as it does not work when stacking multiple grids with elements at boundaries. 
+        '''
         if isinstance(obj, list):  # Multiple stack.
             for o in obj:
                 g = g.vstack(o, copy=copy)
@@ -1493,6 +1524,7 @@ class RoutingGrid(Grid):
                 # hstack due to the transposition of numpy array and cartesian system.
                 g.viamap.elements = np.hstack((g.viamap.elements, elem)) 
         g.hgrid.range[1] += obj.hgrid.width
+        '''
         return g
 
     def hstack(self, obj, copy=True):
