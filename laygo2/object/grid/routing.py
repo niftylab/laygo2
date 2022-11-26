@@ -23,7 +23,7 @@
 ########################################################################################################################
 
 import numpy as np
-from .core import Grid
+from .core import CircularMapping, Grid
 import laygo2.object
 
 class RoutingGrid(Grid):
@@ -853,8 +853,14 @@ class RoutingGrid(Grid):
         self.pin_hlayer = pin_hlayer
         self.viamap = viamap
         self.primary_grid = primary_grid
-        self.xcolor = xcolor
-        self.ycolor = ycolor
+        if xcolor is None:
+            self.xcolor = CircularMapping([None]*self.vwidth.shape[0], dtype=object)
+        else:
+            self.xcolor = xcolor
+        if ycolor is None:
+            self.ycolor = CircularMapping([None]*self.hwidth.shape[0], dtype=object)
+        else:
+            self.ycolor = ycolor
         Grid.__init__(self, name=name, vgrid=vgrid, hgrid=hgrid)
 
     def route(self, mn, direction=None, via_tag=None):
@@ -883,7 +889,9 @@ class RoutingGrid(Grid):
         >>> from laygo2.object.grid import OneDimGrid, RoutingGrid
         >>> from laygo2.object.template import NativeInstanceTemplate
         >>> from laygo2.object.physical import Instance
+        >>> #
         >>> # Routing grid construction (not needed if laygo2_tech is set up).
+        >>> #
         >>> gv = OneDimGrid(name="gv", scope=[0, 50], elements=[0])
         >>> gh = OneDimGrid(name="gv", scope=[0, 100], elements=[0, 40, 60])
         >>> wv = CM([10])           # vertical (xgrid) width
@@ -909,7 +917,9 @@ class RoutingGrid(Grid):
                                                viamap=viamap, primary_grid=primary_grid,
                                                xcolor=xcolor, ycolor=ycolor,
                                                vextension0=e0v, hextension0=e0h)
+        >>> #
         >>> # Routing on grid
+        >>> #
         >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
         >>> route = g.route(mn=mn_list, via_tag=[True, None, True, True])
         >>> for r in route:
@@ -1383,8 +1393,8 @@ class RoutingGrid(Grid):
         p = laygo2.object.physical.Pin(name=name, xy=_xy, layer=layer, netname=netname, params=params)
         return p
 
-
-    def copy(self):
+    def copy(self): 
+        """Copy the current RoutingGrid object."""
         name = self.name
         vgrid = self.vgrid.copy()
         hgrid = self.hgrid.copy()
@@ -1399,11 +1409,11 @@ class RoutingGrid(Grid):
         viamap = self.viamap.copy()
         xcolor = self.xcolor.copy()
         ycolor = self.ycolor.copy()
-        primary_grid = self.primary_grid.copy()
+        primary_grid = self.primary_grid
         vextension0 = self.vextension0.copy()
         hextension0 = self.hextension0.copy()
 
-        return RoutingGrid(
+        rg = RoutingGrid(
             name = name,
             vgrid = vgrid,
             hgrid = hgrid,
@@ -1422,8 +1432,129 @@ class RoutingGrid(Grid):
             vextension0 = vextension0,
             hextension0 = hextension0,
         )
+        return rg
 
+    def vflip(self, copy=True):
+        """Flip the routing grid in vertical direction."""
+        if copy:
+            g = self.copy()
+        else:
+            g = self
+        g.hgrid.flip()
+        g.hwidth.flip()
+        g.hextension.flip()
+        g.hlayer.flip()
+        g.pin_hlayer.flip()
+        g.ycolor.flip()
+        g.viamap.flip(axis=1)
+        g.hextension0.flip()
+        return g
 
+    def hflip(self, copy=True):
+        """Flip the routing grid in horizontal direction."""
+        if copy:
+            g = self.copy()
+        else:
+            g = self
+        g.vgrid.flip()
+        g.vwidth.flip()
+        g.vextension.flip()
+        g.vlayer.flip()
+        g.pin_vlayer.flip()
+        g.xcolor.flip()
+        g.viamap.flip(axis=0)
+        g.vextension0.flip()
+        return g
+
+    def vstack(self, obj, copy=True):
+        """Stack routing grid(s) on top of the routing grid in vertical direction."""
+        if copy:
+            g = self.copy()
+        else:
+            g = self
+        if isinstance(obj, list):  # multiple stack
+            obj_list = obj
+        else:  # single stack
+            obj_list = [obj]
+        # compute the grid range first
+        grid_ofst = g.hgrid.width
+        for _obj in obj_list:
+            g.hgrid.range[1] += _obj.hgrid.width
+        # stack
+        for _obj in obj_list:
+            for i, h in enumerate(_obj.hgrid):
+                # Check if the new grid element exist in the current grid already.
+                val = (h - _obj.hgrid.range[0]) + grid_ofst
+                val = val % (g.hgrid.width)  # modulo
+                if not (val in g.hgrid):
+                    # Unique element
+                    g.hgrid.append(val + g.hgrid.range[0])
+                    #g.hgrid.append(h - _obj.hgrid.range[0] + g.hgrid.range[0] + grid_ofst)
+                    g.hwidth.append(_obj.hwidth[i])
+                    g.hextension.append(_obj.hextension[i])
+                    g.hlayer.append(_obj.hlayer[i])
+                    g.pin_hlayer.append(_obj.pin_hlayer[i])
+                    g.ycolor.append(_obj.ycolor[i])
+                    g.hextension0.append(_obj.hextension0[i])
+                    elem = np.expand_dims(_obj.viamap.elements[:, i], axis=0)
+                    # hstack due to the transposition of numpy array and cartesian system.
+                    g.viamap.elements = np.hstack((g.viamap.elements, elem)) 
+            grid_ofst += _obj.hgrid.width  # increse offset
+        # Do not use the following code, 
+        # as it does not work when stacking multiple grids with elements at boundaries. 
+        '''
+        if isinstance(obj, list):  # Multiple stack.
+            for o in obj:
+                g = g.vstack(o, copy=copy)
+            return g
+        for i, h in enumerate(obj.hgrid):
+            # Check if the new grid element exist in the current grid already.
+            val = (h - obj.hgrid.range[0]) + g.hgrid.width  
+            val = val % (g.hgrid.width + obj.hgrid.width)  # modulo
+            if not (val in g.hgrid):
+                # Unique element
+                g.hgrid.append(h + g.hgrid.range[1])
+                g.hwidth.append(obj.hwidth[i])
+                g.hextension.append(obj.hextension[i])
+                g.hlayer.append(obj.hlayer[i])
+                g.pin_hlayer.append(obj.pin_hlayer[i])
+                g.ycolor.append(obj.ycolor[i])
+                g.hextension0.append(obj.hextension0[i])
+                elem = np.expand_dims(obj.viamap.elements[:, i], axis=0)
+                # hstack due to the transposition of numpy array and cartesian system.
+                g.viamap.elements = np.hstack((g.viamap.elements, elem)) 
+        g.hgrid.range[1] += obj.hgrid.width
+        '''
+        return g
+
+    def hstack(self, obj, copy=True):
+        """Stack another routing grid to the routing grid in horizontal direction."""
+        if copy:
+            g = self.copy()
+        else:
+            g = self
+        if isinstance(obj, list):  # Multiple stack.
+            for o in obj:
+                g = g.hstack(o, copy=copy)
+            return g
+        for i, v in enumerate(obj.vgrid):
+            # Check if the new grid element exist in the current grid already.
+            val = (v - obj.vgrid.range[0]) + g.vgrid.width  
+            val = val % (g.vgrid.width + obj.vgrid.width)  # modulo
+            if not (val in g.vgrid):
+                # Unique element
+                g.vgrid.append(v + g.vgrid.range[1])
+                g.vwidth.append(obj.vwidth[i])
+                g.vextension.append(obj.vextension[i])
+                g.vlayer.append(obj.vlayer[i])
+                g.pin_vlayer.append(obj.pin_vlayer[i])
+                g.xcolor.append(obj.xcolor[i])
+                g.vextension0.append(obj.vextension0[i])
+                elem = np.expand_dims(obj.viamap.elements[i, :], axis=0)
+                # vstack due to the transposition of numpy array and cartesian system.
+                g.viamap.elements = np.vstack((g.viamap.elements, elem)) 
+        g.vgrid.range[1] += obj.vgrid.width
+        return g
 
 
     def summarize(self):

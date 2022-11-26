@@ -49,6 +49,7 @@ from .database import *
 from .physical import *
 # template packages
 from .template.core import *
+from .template.core import *
 from .template.routing import *
 # grid packages
 from .grid.core import *

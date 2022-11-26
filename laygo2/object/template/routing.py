@@ -226,7 +226,8 @@ class RoutingMeshTemplate(Template):
                 if isinstance(n, Instance) or isinstance(n, VirtualInstance):
                     for pn, p in n.pins.items():
                         if p.netname == tnn:
-                            mn.append(g.mn(p)[0])
+                            _mn = (g.mn(p)[0] + g.mn(p)[1])/2
+                            mn.append(_mn)
                 elif isinstance(n, Rect):
                     if n.netname == tnn:
                         mn.append(g.mn(n)[0])

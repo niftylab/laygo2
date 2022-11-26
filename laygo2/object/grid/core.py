@@ -195,6 +195,29 @@ def _conv_bbox_to_list(bbox):
             array.append([c, r])
     return array
 
+
+# External functions
+def copy(obj):
+    """Copy a grid object."""
+    return obj.copy()
+
+def vflip(obj):
+    """Flip a grid object in vertical direction."""
+    return obj.flip(copy=True)
+
+def hflip(obj):
+    """Flip a grid object in horizontal direction."""
+    return obj.flip(copy=True)
+
+def vstack(obj):
+    """Stack routing grid(s) on top of the routing grid in vertical direction."""
+    return obj[0].vstack(obj[1:], copy=True)
+
+def hstack(obj):
+    """Stack routing grid(s) on top of the routing grid in horizontal direction."""
+    return obj[0].hstack(obj[1:], copy=True)
+
+
 # Internal classes
 class CircularMapping:
     """
@@ -366,15 +389,28 @@ class CircularMapping:
         return self.__repr__() + " " "class: " + self.__class__.__name__ + ", " + "elements: " + str(self.elements)
 
     # Regular member functions
+    def append(self, elem):
+        """Append elements to the mapping."""
+        if not isinstance(elem, list):
+            elem = [elem]
+        self.elements = np.array(self.elements.tolist() + elem)
+
     def flip(self):
         """Flip the elements of the object.
         """
-        self.elements = np.flip(self.elements)
+        self.elements = np.flip(self.elements, axis=0)
 
     def copy(self):
         """Copy the object.
         """
         return CircularMapping(self.elements.copy(), dtype=self.dtype)
+    
+    def concatenate(self, obj):
+        self.elements = np.concatenate((self.elements, obj.elements))
+        #for e in elements:
+        #    self.elements = np.concatenate((self.elements, obj.elements))
+        #self.range[1] += obj.range[1] - obj.range[0]
+
 
 
 class CircularMappingArray(CircularMapping):
@@ -2029,16 +2065,24 @@ class OneDimGrid(CircularMapping):
         }
         return export_dict
     
-    def flip(self, axis):
+    def flip(self):
         """Flip the elements of the object.
         """
-        self.elements = np.flip(self.elements, axis=axis)
+        # self.elements = self.range[1]*np.ones(self.elements.shape) - np.flip(self.elements) + self.range[0]*np.ones(self.elements.shape) 
+        self.elements = np.flip(self.elements) * (-1) + self.range[1] + self.range[0]
 
     def copy(self):
         """Copy the object.
         """
         return OneDimGrid(self.name, self.range.copy(), elements=self.elements.copy())
 
+    def concatenate(self, obj):
+        objelem = obj.elements - obj.range[0] + self.range[1]
+        self.elements = np.concatenate((self.elements, objelem))
+        self.range[1] += obj.range[1] - obj.range[0]
+        #for e in elements:
+        #    self.elements = np.concatenate((self.elements, obj.elements))
+        #self.range[1] += obj.range[1] - obj.range[0]
 
 
 class Grid:
@@ -2064,13 +2108,21 @@ class Grid:
     _xy = None
     """List[OneDimGrid]: the list contains the 1d-grid objects for x and y axes."""
 
-    @property
-    def vgrid(self):
+    def _get_vgrid(self):
         return self._xy[0]
 
-    @property
-    def hgrid(self):
+    def _set_vgrid(self, value):
+        self._xy[0] = value
+
+    vgrid = property(_get_vgrid, _set_vgrid)
+
+    def _get_hgrid(self):
         return self._xy[1]
+    
+    def _set_hgrid(self, value):
+        self._xy[1] = value
+
+    hgrid = property(_get_hgrid, _set_hgrid)
 
     @property
     def elements(self):

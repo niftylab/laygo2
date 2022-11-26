@@ -61,15 +61,21 @@ class PlacementGrid(Grid):
         >>> import laygo2
         >>> from laygo2.object.grid import OneDimGrid, PlacementGrid
         >>> from laygo2.object.physical import Instance
+        >>> #
         >>> # Create a grid (not needed if laygo2_tech is set up).
+        >>> #
         >>> gx  = OneDimGrid(name="gx", scope=[0, 20], elements=[0])
         >>> gy  = OneDimGrid(name="gy", scope=[0, 100], elements=[0])
         >>> g   = PlacementGrid(name="test", vgrid=gx, hgrid=gy)
+        >>> #
         >>> # Create an instance
+        >>> #
         >>> i0 = Instance(libname="tlib", cellname="t0", name="I0", xy=[0, 0])
         >>> print(inst0.xy)
         [100, 100]
-        >>> # Place the instance
+        >>> #
+        >>> # Place the created instance
+        >>> #
         >>> g.place(inst=i0, mn=[10,10])
         >>> # Print parameters of the placed instance.
         >>> print(i0.xy)
