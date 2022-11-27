@@ -1394,7 +1394,8 @@ class RoutingGrid(Grid):
         return p
 
     def copy(self): 
-        """Copy the current RoutingGrid object."""
+        """Copy the current RoutingGrid object.
+        """
         name = self.name
         vgrid = self.vgrid.copy()
         hgrid = self.hgrid.copy()
@@ -1528,7 +1529,7 @@ class RoutingGrid(Grid):
         return g
 
     def hstack(self, obj, copy=True):
-        """Stack another routing grid to the routing grid in horizontal direction."""
+        """Stack routing grid(s) on top of the routing grid in horizontal direction."""
         if copy:
             g = self.copy()
         else:
