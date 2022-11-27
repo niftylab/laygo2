@@ -22,18 +22,6 @@
 #
 ########################################################################################################################
 
-"""
-**laygo2.object.grid** module contains classes that implement abstract coordinate systems that are interacting with technology-specific physical coordinate systems.
-
-laygo2 implements the layout designs based on the abstract coordinate system.
-
-.. image:: ../assets/img/user_guide_grid.png
-
-
-
-Check the following links for the details of component classes.
-"""
-
 __author__ = "Jaeduk Han"
 __maintainer__ = "Jaeduk Han"
 __status__ = "Prototype"
@@ -67,8 +55,7 @@ def _extend_index_dim(input_index, new_index, new_index_max):
 
     Returns
     -------
-    Iterable
-        The extended index.
+    Iterable: The extended index.
 
     Example
     -------
@@ -198,23 +185,185 @@ def _conv_bbox_to_list(bbox):
 
 # External functions
 def copy(obj):
-    """Copy a grid object."""
+    """Make a copy of the input grid object.
+
+    Parameters
+    ----------
+    obj : laygo2.object.grid.Grid
+        The input grid object to be copied.
+
+    Returns
+    -------
+    laygo2.object.grid.Grid or derived: the copied grid object.
+
+    Example
+    -------
+    >>> import laygo2
+    >>> from laygo2.object.grid import OneDimGrid, Grid
+    >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+    >>> g1_y = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+    >>> g2   = Grid(name="test", vgrid = g1_x, hgrid = g1_y )
+    >>> g2_copy = laygo2.object.grid.copy(g2)
+    >>> print(g2)
+    <laygo2.object.grid.core.Grid object at 0x000002002EBA67A0>
+     name: test,
+    class: Grid,
+    scope: [[0, 0], [100, 100]],
+    elements: [array([ 0, 10, 20, 40, 50]), array([10, 20, 40, 50, 60])],
+    >>> print(g2_copy)
+    <laygo2.object.grid.core.Grid object at 0x0000020040C35240>
+     name: test,
+     class: Grid,
+     scope: [[0, 0], [100, 100]],
+     elements: [array([ 0, 10, 20, 40, 50]), array([10, 20, 40, 50, 60])],
+    """
     return obj.copy()
 
+
 def vflip(obj):
-    """Flip a grid object in vertical direction."""
-    return obj.flip(copy=True)
+    """Make a vertically-flipped copy of the input grid object.
+    
+    Parameters
+    ----------
+    obj : laygo2.object.grid.Grid
+        The input grid object to be copied and flipped.
+
+    Returns
+    -------
+    laygo2.object.grid.Grid or derived: the generated grid object.
+
+    Example
+    -------
+    >>> import laygo2
+    >>> from laygo2.object.grid import OneDimGrid, Grid
+    >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+    >>> g1_y = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+    >>> g2   = Grid(name="test", vgrid = g1_x, hgrid = g1_y )
+    >>> g2_copy = laygo2.object.grid.vflip(g2)
+    >>> print(g2)
+    <laygo2.object.grid.core.Grid object at 0x000001EE82660BE0>
+     name: test,
+     class: Grid,
+     scope: [[0, 0], [100, 100]],
+     elements: [array([ 0, 10, 20, 40, 50]), array([10, 20, 40, 50, 60])],
+    >>> print(g2_copy)
+    <laygo2.object.grid.core.Grid object at 0x000001EE947152D0>
+     name: test,
+     class: Grid,
+     scope: [[0, 0], [100, 100]],
+     elements: [array([ 0, 10, 20, 40, 50]), array([40, 50, 60, 80, 90])],
+    """
+    return obj.vflip(copy=True)
+
 
 def hflip(obj):
-    """Flip a grid object in horizontal direction."""
-    return obj.flip(copy=True)
+    """Make a horizontally-flipped copy of the input grid object.
+    
+    Parameters
+    ----------
+    obj : laygo2.object.grid.Grid
+        The input grid object to be copied and flipped.
+
+    Returns
+    -------
+    laygo2.object.grid.Grid: the generated grid object.
+
+    Example
+    -------
+    >>> import laygo2
+    >>> from laygo2.object.grid import OneDimGrid, Grid
+    >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+    >>> g1_y = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+    >>> g2   = Grid(name="test", vgrid = g1_x, hgrid = g1_y )
+    >>> g2_copy = laygo2.object.grid.hflip(g2)
+    >>> print(g2)
+    <laygo2.object.grid.core.Grid object at 0x000001ACECC30BE0>
+     name: test,
+     class: Grid,
+     scope: [[0, 0], [100, 100]],
+     elements: [array([ 0, 10, 20, 40, 50]), array([10, 20, 40, 50, 60])],
+    >>> print(g2_copy)
+    <laygo2.object.grid.core.Grid object at 0x000001ACFED15300>
+     name: test,
+     class: Grid,
+     scope: [[0, 0], [100, 100]],
+     elements: [array([ 50,  60,  80,  90, 100]), array([10, 20, 40, 50, 60])],
+    """
+    return obj.hflip(copy=True)
+
 
 def vstack(obj):
-    """Stack routing grid(s) on top of the routing grid in vertical direction."""
+    """Stack grid(s) in vertical direction.
+    
+    Parameters
+    ----------
+    obj : list of laygo2.object.grid.Grid
+        The list containing grid objects to be stacked.
+    
+    Returns
+    -------
+    laygo2.object.grid.Grid: the generated grid object.
+    
+    Example
+    -------
+    >>> import laygo2
+    >>> from laygo2.object.grid import OneDimGrid, Grid
+    >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+    >>> g1_y = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+    >>> g2   = Grid(name="test", vgrid = g1_x, hgrid = g1_y )
+    >>> g2_copy = laygo2.object.grid.copy(g2)
+    >>> g2_stack = laygo2.object.grid.vstack([g2, g2_copy])
+    >>> print(g2)
+    <laygo2.object.grid.core.Grid object at 0x000001799FAA0BE0>
+     name: test,
+     class: Grid,
+     scope: [[0, 0], [100, 100]],
+     elements: [array([ 0, 10, 20, 40, 50]), array([10, 20, 40, 50, 60])],
+    >>> print(g2_stack)
+    <laygo2.object.grid.core.Grid object at 0x00000179B1B05870>
+     name: test,
+     class: Grid,
+     scope: [[0, 0], [100, 200]],
+     elements: [array([ 0, 10, 20, 40, 50]), array([ 10,  20,  40,  50,  60, 110, 120, 140, 150, 160])],
+    """
     return obj[0].vstack(obj[1:], copy=True)
 
+
 def hstack(obj):
-    """Stack routing grid(s) on top of the routing grid in horizontal direction."""
+    """Stack grid(s) in horizontal direction.
+
+    Parameters
+    ----------
+    obj : list of laygo2.object.grid.Grid
+        The list containing grid objects to be stacked.
+    
+    Returns
+    -------
+    laygo2.object.grid.Grid: the generated grid object.
+    
+    Example
+    -------
+    >>> import laygo2
+    >>> from laygo2.object.grid import OneDimGrid, Grid
+    >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
+    >>> g1_y = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
+    >>> g2   = Grid(name="test", vgrid = g1_x, hgrid = g1_y )
+    >>> g2_copy = laygo2.object.grid.copy(g2)
+    >>> g2_stack = laygo2.object.grid.hstack([g2, g2_copy])
+    >>> print(g2)
+    <laygo2.object.grid.core.Grid object at 0x000001799FAA0BE0>
+     name: test,
+     class: Grid,
+     scope: [[0, 0], [100, 100]],
+     elements: [array([ 0, 10, 20, 40, 50]), array([10, 20, 40, 50, 60])],
+    >>> print(g2_stack)
+    <laygo2.object.grid.core.Grid object at 0x0000015BD8C85570>
+     name: test,
+     class: Grid,
+     scope: [[0, 0], [200, 100]],
+     elements: [array([  0,  10,  20,  40,  50, 100, 110, 120, 140, 150]), array([10, 20, 40, 50, 60])],
+    """
+
     return obj[0].hstack(obj[1:], copy=True)
 
 
@@ -360,7 +509,9 @@ class CircularMapping:
         if isinstance(pos, (int, np.integer)):
             return self.elements[pos % self.shape[0]]
         elif isinstance(pos, slice):
-            return self.__getitem__(pos=_conv_slice_to_list(slice_obj=pos, stop_def=self.shape[0]))
+            return self.__getitem__(
+                pos=_conv_slice_to_list(slice_obj=pos, stop_def=self.shape[0])
+            )
         elif isinstance(pos, np.ndarray):
             return np.array([self.__getitem__(pos=p) for p in pos])
         elif isinstance(pos, list):
@@ -386,7 +537,14 @@ class CircularMapping:
 
     def summarize(self):
         """Return the summary of the object information."""
-        return self.__repr__() + " " "class: " + self.__class__.__name__ + ", " + "elements: " + str(self.elements)
+        return (
+            self.__repr__() + " "
+            "class: "
+            + self.__class__.__name__
+            + ", "
+            + "elements: "
+            + str(self.elements)
+        )
 
     # Regular member functions
     def append(self, elem):
@@ -396,21 +554,18 @@ class CircularMapping:
         self.elements = np.array(self.elements.tolist() + elem)
 
     def flip(self):
-        """Flip the elements of the object.
-        """
+        """Flip the elements of the object."""
         self.elements = np.flip(self.elements, axis=0)
 
     def copy(self):
-        """Copy the object.
-        """
+        """Copy the object."""
         return CircularMapping(self.elements.copy(), dtype=self.dtype)
-    
+
     def concatenate(self, obj):
         self.elements = np.concatenate((self.elements, obj.elements))
-        #for e in elements:
+        # for e in elements:
         #    self.elements = np.concatenate((self.elements, obj.elements))
-        #self.range[1] += obj.range[1] - obj.range[0]
-
+        # self.range[1] += obj.range[1] - obj.range[0]
 
 
 class CircularMappingArray(CircularMapping):
@@ -474,20 +629,20 @@ class CircularMappingArray(CircularMapping):
                 idx = _extend_index_dim(idx, p, self.shape[i])
             idx = np.asarray(idx)
             # iterate and generate the list to return
-            item = np.empty(idx.shape[:-1], dtype=self.dtype)  # -1 because the tuples in idx are flatten.
+            item = np.empty(
+                idx.shape[:-1], dtype=self.dtype
+            )  # -1 because the tuples in idx are flatten.
             for i, _null in np.ndenumerate(item):
                 item[i] = self.__getitem__(pos=tuple(idx[i]))
             return np.asarray(item)
-    
+
     # Regular member functions
     def flip(self, axis):
-        """Flip the elements of the object.
-        """
+        """Flip the elements of the object."""
         self.elements = np.flip(self.elements, axis=axis)
 
     def copy(self):
-        """Copy the object.
-        """
+        """Copy the object."""
         return CircularMappingArray(self.elements.copy(), dtype=self.dtype)
 
 
@@ -603,9 +758,13 @@ class _AbsToPhyGridConverter:
         -----
         **(Korean)** 추상 좌표를 master 좌표계에서 대응되는 물리 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._getitem_1d(pos)
-        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._getitem_2d(pos)
         else:
             return None
@@ -614,13 +773,17 @@ class _AbsToPhyGridConverter:
         """An internal function of __getitem__() for 1-d grids."""
         # Check if pos has multiple elements.
         if isinstance(pos, slice):
-            return self._getitem_1d(_conv_slice_to_list(slice_obj=pos, stop_def=self.master.shape[0]))
+            return self._getitem_1d(
+                _conv_slice_to_list(slice_obj=pos, stop_def=self.master.shape[0])
+            )
         elif isinstance(pos, np.ndarray):
             return self._getitem_1d(pos.tolist())
         elif isinstance(pos, list):
             return np.array([self._getitem_1d(p) for p in pos])
         elif pos is None:
-            raise TypeError("_AbsToPhyConverter._getitem_1d does not accept None as its input.")
+            raise TypeError(
+                "_AbsToPhyConverter._getitem_1d does not accept None as its input."
+            )
         else:
             # pos is a single element. Compute quotient and modulo for grid extension.
             quo = 0
@@ -651,7 +814,9 @@ class _AbsToPhyGridConverter:
         x = self.master.x[pos[0]]
         y = self.master.y[pos[1]]
         # TODO: Refactor the following code to avoid the use of double for loops and list comprehensions.
-        if (not isinstance(x, np.ndarray)) and (not isinstance(y, np.ndarray)):  # x and y are scalars.
+        if (not isinstance(x, np.ndarray)) and (
+            not isinstance(y, np.ndarray)
+        ):  # x and y are scalars.
             return np.array([x, y])
         if not isinstance(x, np.ndarray):  # x is a scalar.
             return np.array([np.array([x, _y]) for _y in y])
@@ -735,9 +900,13 @@ class _AbsToPhyGridConverter:
         -----
         **(Korean)** 물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._lt_1d(other)
-        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._lt_2d(other)
         else:
             return None
@@ -837,9 +1006,13 @@ class _AbsToPhyGridConverter:
         -----
         **(Korean)** 물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._le_1d(other=other)
-        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._le_2d(other=other)
 
     def _le_1d(self, other):
@@ -890,9 +1063,13 @@ class _AbsToPhyGridConverter:
         -----
         **(Korean)** 물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._gt_1d(other=other)
-        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._gt_2d(other=other)
 
     def _gt_1d(self, other):
@@ -943,9 +1120,13 @@ class _AbsToPhyGridConverter:
         -----
         **(Korean)** 물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._ge_1d(other=other)
-        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._ge_2d(other=other)
 
     def _ge_1d(self, other):
@@ -1077,9 +1258,13 @@ class _PhyToAbsGridConverter:
         -----
         **(Korean)** 물리 좌표를 master 좌표계에서 대응되는 추상 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._getitem_1d(pos)
-        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._getitem_2d(pos)
         else:
             return None
@@ -1090,41 +1275,57 @@ class _PhyToAbsGridConverter:
         if isinstance(pos, OneDimGrid):
             return self._getitem_1d(pos=pos.elements)
         elif isinstance(pos, slice):
-            return self._getitem_1d(_conv_slice_to_list(slice_obj=pos, stop_def=self.master.shape[0]))
+            return self._getitem_1d(
+                _conv_slice_to_list(slice_obj=pos, stop_def=self.master.shape[0])
+            )
         elif isinstance(pos, np.ndarray):
             return self._getitem_1d(pos.tolist())
         elif isinstance(pos, list):
             return np.array([self._getitem_1d(p) for p in pos])
         elif pos is None:
-            raise TypeError("_AbsToPhyConverter._getitem_1d does not accept None as its input.")
+            raise TypeError(
+                "_AbsToPhyConverter._getitem_1d does not accept None as its input."
+            )
         else:
             # pos is a single element.
             for i, e in np.ndenumerate(self.master.elements):
                 if (pos - e) % self.master.width == 0:
-                    return int(round((pos - e) / self.master.width)) * self.master.elements.shape[0] + i[0]
+                    return (
+                        int(round((pos - e) / self.master.width))
+                        * self.master.elements.shape[0]
+                        + i[0]
+                    )
             return None  # no matched coordinate
 
     def _getitem_2d(self, pos):
         """An internal function of __getitem__() for 2-d grid."""
         # If pos contains multiple coordinates (or objects), convert recursively.
         if isinstance(pos, list):
-            if isinstance(pos[0], (int, np.integer)):  # It's actually a single coordinate.
+            if isinstance(
+                pos[0], (int, np.integer)
+            ):  # It's actually a single coordinate.
                 return self[pos[0], pos[1]]
             else:
                 return [self[p] for p in pos]
         elif isinstance(pos, np.ndarray):
-            if isinstance(pos[0], (int, np.integer)):  # It's actually a single coordinate.
+            if isinstance(
+                pos[0], (int, np.integer)
+            ):  # It's actually a single coordinate.
                 return np.array(self[pos[0], pos[1]])
             else:
                 return np.array([self[p] for p in pos])
         # If pos contains only one physical object, convert its bounding box to abstract coordinates
-        if (pos.__class__.__name__ == "PhysicalObject") or (issubclass(pos.__class__, laygo2.object.PhysicalObject)):
+        if (pos.__class__.__name__ == "PhysicalObject") or (
+            issubclass(pos.__class__, laygo2.object.PhysicalObject)
+        ):
             return self.bbox(pos)
         # If pos contains only one coordinate, convert it to abstract grid.
         m = self.master.x == pos[0]
         n = self.master.y == pos[1]
         # refactor the following code to avoid the use of double for-loops and list comprehensions.
-        if (not isinstance(m, np.ndarray)) and (not isinstance(n, np.ndarray)):  # x and y are scalars.
+        if (not isinstance(m, np.ndarray)) and (
+            not isinstance(n, np.ndarray)
+        ):  # x and y are scalars.
             return np.array([m, n])
         if not isinstance(m, np.ndarray):  # x is a scalar.
             return np.array([np.array([m, _n]) for _n in n])
@@ -1230,9 +1431,13 @@ class _PhyToAbsGridConverter:
         -----
         **(Korean)** 추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._lt_1d(other=other)
-        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._lt_2d(other=other)
 
     def _lt_1d(self, other):
@@ -1313,9 +1518,13 @@ class _PhyToAbsGridConverter:
         -----
         **(Korean)** 추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환.
         """
-        if (self.master.__class__.__name__ == "OneDimGrid") or (issubclass(self.master.__class__, OneDimGrid)):
+        if (self.master.__class__.__name__ == "OneDimGrid") or (
+            issubclass(self.master.__class__, OneDimGrid)
+        ):
             return self._gt_1d(other)
-        if (self.master.__class__.__name__ == "Grid") or (issubclass(self.master.__class__, Grid)):
+        if (self.master.__class__.__name__ == "Grid") or (
+            issubclass(self.master.__class__, Grid)
+        ):
             return self._gt_2d(other)
         else:
             return None
@@ -1401,7 +1610,9 @@ class _PhyToAbsGridConverter:
         **(Korean)** 객체의 bounding box를 master 좌표계의 추상 좌표로 변환.
         _AbsToPhyGridConverter 객체의 >=, <=를 사용하므로 추상면적이 작아질수있다.
         """
-        if (obj.__class__.__name__ == "PhysicalObject") or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
+        if (obj.__class__.__name__ == "PhysicalObject") or (
+            issubclass(obj.__class__, laygo2.object.PhysicalObject)
+        ):
             obj = obj.bbox
 
         # phy -> abs
@@ -1445,7 +1656,9 @@ class _PhyToAbsGridConverter:
         -----
         **(Korean)** 객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         """
-        if (obj.__class__.__name__ == "PhysicalObject") or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
+        if (obj.__class__.__name__ == "PhysicalObject") or (
+            issubclass(obj.__class__, laygo2.object.PhysicalObject)
+        ):
             return self.bottom_left(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1486,7 +1699,9 @@ class _PhyToAbsGridConverter:
         -----
         **(Korean)** 객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         """
-        if (obj.__class__.__name__ == "PhysicalObject") or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
+        if (obj.__class__.__name__ == "PhysicalObject") or (
+            issubclass(obj.__class__, laygo2.object.PhysicalObject)
+        ):
             return self.bottom_right(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1527,7 +1742,9 @@ class _PhyToAbsGridConverter:
         -----
         **(Korean)** 객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         """
-        if (obj.__class__.__name__ == "PhysicalObject") or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
+        if (obj.__class__.__name__ == "PhysicalObject") or (
+            issubclass(obj.__class__, laygo2.object.PhysicalObject)
+        ):
             return self.top_left(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1568,7 +1785,9 @@ class _PhyToAbsGridConverter:
         -----
         **(Korean)** 객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         """
-        if (obj.__class__.__name__ == "PhysicalObject") or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
+        if (obj.__class__.__name__ == "PhysicalObject") or (
+            issubclass(obj.__class__, laygo2.object.PhysicalObject)
+        ):
             return self.top_right(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1576,7 +1795,9 @@ class _PhyToAbsGridConverter:
 
     def width(self, obj):
         """Return the width of an object on this grid."""
-        if (obj.__class__.__name__ == "PhysicalObject") or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
+        if (obj.__class__.__name__ == "PhysicalObject") or (
+            issubclass(obj.__class__, laygo2.object.PhysicalObject)
+        ):
             return self.width(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1584,7 +1805,9 @@ class _PhyToAbsGridConverter:
 
     def height(self, obj):
         """Return the height of an object on this grid."""
-        if (obj.__class__.__name__ == "PhysicalObject") or (issubclass(obj.__class__, laygo2.object.PhysicalObject)):
+        if (obj.__class__.__name__ == "PhysicalObject") or (
+            issubclass(obj.__class__, laygo2.object.PhysicalObject)
+        ):
             return self.height(obj.bbox)
         else:
             _i = self.bbox(obj)
@@ -1741,7 +1964,9 @@ class _PhyToAbsGridConverter:
         elif type == "array":
             return _conv_bbox_to_array(_ib)
         else:
-            raise ValueError("overlap() should receive a valid value for its type (bbox, point, array, ...)")
+            raise ValueError(
+                "overlap() should receive a valid value for its type (bbox, point, array, ...)"
+            )
 
     def union(self, *args):
         """
@@ -1835,9 +2060,13 @@ class _PhyToAbsGridConverter:
         dist_list = []
         idx = 0
         for point in point_list:
-            dist_list.append([idx, np.linalg.norm(point - obj.center)])  # Calculate Euclidean distances.
+            dist_list.append(
+                [idx, np.linalg.norm(point - obj.center)]
+            )  # Calculate Euclidean distances.
             idx += 1
-        dist_sorted = sorted(dist_list, key=lambda distance: distance[1])  # Sort distances in ascending order.
+        dist_sorted = sorted(
+            dist_list, key=lambda distance: distance[1]
+        )  # Sort distances in ascending order.
         return self.master.mn(
             point_list[dist_sorted[0][0]]
         )  # Convert the closest point to abstract coordinate and then return.
@@ -2064,25 +2293,23 @@ class OneDimGrid(CircularMapping):
             "elements": self.elements.tolist(),
         }
         return export_dict
-    
+
     def flip(self):
-        """Flip the elements of the object.
-        """
-        # self.elements = self.range[1]*np.ones(self.elements.shape) - np.flip(self.elements) + self.range[0]*np.ones(self.elements.shape) 
+        """Flip the elements of the object."""
+        # self.elements = self.range[1]*np.ones(self.elements.shape) - np.flip(self.elements) + self.range[0]*np.ones(self.elements.shape)
         self.elements = np.flip(self.elements) * (-1) + self.range[1] + self.range[0]
 
     def copy(self):
-        """Copy the object.
-        """
+        """Copy the object."""
         return OneDimGrid(self.name, self.range.copy(), elements=self.elements.copy())
 
     def concatenate(self, obj):
         objelem = obj.elements - obj.range[0] + self.range[1]
         self.elements = np.concatenate((self.elements, objelem))
         self.range[1] += obj.range[1] - obj.range[0]
-        #for e in elements:
+        # for e in elements:
         #    self.elements = np.concatenate((self.elements, obj.elements))
-        #self.range[1] += obj.range[1] - obj.range[0]
+        # self.range[1] += obj.range[1] - obj.range[0]
 
 
 class Grid:
@@ -2118,7 +2345,7 @@ class Grid:
 
     def _get_hgrid(self):
         return self._xy[1]
-    
+
     def _set_hgrid(self, value):
         self._xy[1] = value
 
@@ -2676,6 +2903,124 @@ class Grid:
         """
         return self.phy2abs.center(obj)
 
+    def copy(self):
+        """
+        Make a copy of the current Grid object
+
+        Returns
+        -------
+        laygo2.object.grid.Grid : the copied Grid object.
+        
+        See Also
+        --------
+        laygo2.object.grid.copy
+        """
+        name = self.name
+        vgrid = self.vgrid.copy()
+        hgrid = self.hgrid.copy()
+
+        g = Grid(
+            name=name,
+            vgrid=vgrid,
+            hgrid=hgrid,
+        )
+        return g
+
+    def vflip(self, copy=True):
+        """Flip the grid in vertical direction.
+
+        Parameters
+        ----------
+        copy: optional, boolean
+            If True, make a copy and flip the copied grid (default).
+            If False, flip the current grid object.
+
+        Returns
+        --------
+        laygo2.object.grid.Grid : the flipped Grid object.
+
+        See Also
+        --------
+        laygo2.object.grid.vflip
+        """
+        if copy:
+            g = self.copy()
+        else:
+            g = self
+        g.hgrid.flip()  # Flip vertically means filpping the horizontal grid.
+        return g
+
+    def hflip(self, copy=True):
+        """Flip the grid in horizontal direction.
+
+        Parameters
+        ----------
+        copy: optional, boolean
+            If True, make a copy and flip the copied grid (default).
+            If False, flip the current grid object.
+
+        Returns
+        --------
+        laygo2.object.grid.Grid : the flipped Grid object.
+
+        See Also
+        --------
+        laygo2.object.grid.hflip
+        """
+        if copy:
+            g = self.copy()
+        else:
+            g = self
+        g.vgrid.flip()
+        return g
+
+    def vstack(self, obj, copy=True):
+        """Stack grid(s) on top of the current grid in vertical direction.
+        """
+        if copy:
+            g = self.copy()
+        else:
+            g = self
+        if isinstance(obj, list):  # multiple stack
+            obj_list = obj
+        else:  # single stack
+            obj_list = [obj]
+        # compute the grid range first
+        grid_ofst = g.hgrid.width
+        for _obj in obj_list:
+            g.hgrid.range[1] += _obj.hgrid.width
+        # stack
+        for _obj in obj_list:
+            for i, h in enumerate(_obj.hgrid):
+                # Check if the new grid element exist in the current grid already.
+                val = (h - _obj.hgrid.range[0]) + grid_ofst
+                val = val % (g.hgrid.width)  # modulo
+                if not (val in g.hgrid):
+                    # Unique element
+                    g.hgrid.append(val + g.hgrid.range[0])
+            grid_ofst += _obj.hgrid.width  # increse offset
+        return g
+
+    def hstack(self, obj, copy=True):
+        """Stack grid(s) on top of the current grid in horizontal direction."""
+        if copy:
+            g = self.copy()
+        else:
+            g = self
+        if isinstance(obj, list):  # Multiple stack.
+            for o in obj:
+                g = g.hstack(o, copy=copy)
+            return g
+        for i, v in enumerate(obj.vgrid):
+            # Check if the new grid element exist in the current grid already.
+            val = (v - obj.vgrid.range[0]) + g.vgrid.width  
+            val = val % (g.vgrid.width + obj.vgrid.width)  # modulo
+            if not (val in g.vgrid):
+                # Unique element
+                g.vgrid.append(v + g.vgrid.range[1])
+        g.vgrid.range[1] += obj.vgrid.width
+        return g
+
     # Iterators
     def __iter__(self):
         # TODO: fix this to iterate over the full coordinates
@@ -2716,13 +3061,21 @@ class Grid:
         **(Korean)** 해당 Grid의 정보 출력.
         """
         return (
-            self.__repr__() + " \n"
-            + " name: " + self.name + ", \n"
-            + " class: " + self.__class__.__name__ + ", \n"
-            + " scope: " + str(self.range.tolist()) + ", \n"
-            + " elements: " + str(self.elements) + ", \n"
+            self.__repr__()
+            + " \n"
+            + " name: "
+            + self.name
+            + ", \n"
+            + " class: "
+            + self.__class__.__name__
+            + ", \n"
+            + " scope: "
+            + str(self.range.tolist())
+            + ", \n"
+            + " elements: "
+            + str(self.elements)
+            + ", \n"
         )
-
 
 
 '''
