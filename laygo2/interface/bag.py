@@ -25,7 +25,8 @@
 This module implements interface with BAG in skill language
 """
 import laygo2.interface
-
+import yaml
+import numpy as np
 
 def export(
     db, filename, cellname=None, scale=1e-3, reset_library=False, tech_library=None
@@ -94,3 +95,53 @@ def export(
     print("Your design was generated in Virtuoso.")
 
     return skill_str
+
+def load(libname, cellname=None, filename=None, yaml_filename="import_skill_scratch.yaml", scale=1e-3, mpt=False):
+    """
+    Import virtuoso layout to a laygo2.object.database.Library object via BAG2 interface.
+    """
+    import bag
+    prj = bag.BagProject()
+
+    if cellname==None: #import all cells
+        skill_str = laygo2.interface.skill.load_cell_list(libname, filename, yaml_filename)
+        with open(yamlfile, 'r') as stream:
+            ydict = yaml.load(stream)
+            celllist=ydict[libname]
+        prj.impl_db._eval_skill('load("' + filename + '");1\n')
+    else:
+        if isinstance(cellname, list): celllist=cellname
+        else: celllist=[cellname]
+    
+    db = laygo2.object.database.Library(name=libname)
+    for cn in celllist:
+        skill_str = laygo2.interface.skill.load(libname, cellname=cellname, filename=filename, 
+                                                  yaml_filename=yaml_filename, mpt=mpt)
+        prj.impl_db._eval_skill('load("' + filename + '");1\n')
+        with open(yaml_filename, 'r') as stream:
+            ydict = yaml.load(stream)
+        dsn = laygo2.object.database.Design(name=cn)
+        db.append(dsn)
+        for _r_key, _r in ydict['rects'].items():
+            if 'color' in _r:  # to support MPT
+                _color = _r['color']
+            else:
+                _color = None
+            r = laygo2.object.Rect(xy=np.array(_r['bBox'])/scale, layer=_r['layer'].split(), color = _color)
+            dsn.append(r)
+        for _t_key, _t in ydict['labels'].items():
+            t = laygo2.object.Text(text=_t['label'], xy=np.array(_t['xy'])/scale, layer=_t['layer'].split())
+            dsn.append(t)
+        for _i_key, _i in ydict['instances'].items():
+            if not 'rows' in _i: _i['rows']=1
+            if not 'cols' in _i: _i['cols']=1
+            if not 'sp_rows' in _i: _i['sp_rows']=0
+            if not 'sp_cols' in _i: _i['sp_cols']=0
+            if not 'transform' in _i: _i['transform']='R0'
+            inst = laygo2.object.Instance(xy = np.array(_i['xy'])/scale, libname = _i['lib_name'], cellname = _i['cell_name'],
+                                          shape = np.array([_i['cols'], _i['rows']]), pitch = np.array([_i['sp_cols'], _i['sp_rows']]),
+                                          transform = _i['transform']) 
+            dsn.append(inst)
+    return db
+
+

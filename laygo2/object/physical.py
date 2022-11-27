@@ -370,7 +370,11 @@ class PhysicalObject:
         -----
         **(Korean)**: numpy.ndarray: 객체의 bbox (bounding box).
         """
-        return np.sort(np.array([self.xy[0, :], self.xy[1, :]]), axis=0)
+        #if self.xy.ndim == 2:
+        if isinstance(self.xy[0], np.ndarray):  
+            return np.sort(np.array([self.xy[0, :], self.xy[1, :]]), axis=0)
+        else: # single-point object.
+            return np.array([self.xy, self.xy])
 
     def __init__(self, xy, name=None, params=None):
         """
@@ -1495,13 +1499,13 @@ class Text(PhysicalObject):
     Example
     -------
     >>> import laygo2
-    >>> text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100, 100]],
+    >>> text0 = laygo2.object.physical.Text(xy=[0, 0],
         layer=['text', 'drawing'], text='test', params=None)
     >>> print(text0)
     <laygo2.object.physical.Text object at 0x000002049A77FD90>
         name: None,
         class: Text,
-        xy: [[0, 0], [100, 100]],
+        xy: [0, 0],
         params: None,
         layer: ['text', 'drawing'],
         text: test
@@ -1518,7 +1522,7 @@ class Text(PhysicalObject):
     Example
     -------
     >>> import laygo2
-    >>> text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100, 100]], 
+    >>> text0 = laygo2.object.physical.Text(xy=[0, 0], 
             layer=['text', 'drawing'], text='test', params=None)
     >>> text0.layer 
     ['text', 'drawing']
@@ -1535,7 +1539,7 @@ class Text(PhysicalObject):
     Example
     -------
     >>> import laygo2
-    >>> text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100, 100]], 
+    >>> text0 = laygo2.object.physical.Text(xy=[0, 0], 
             layer=['text', 'drawing'], text='test', params=None)
     >>> text0.text 
     'test'
@@ -1573,13 +1577,13 @@ class Text(PhysicalObject):
         Example
         -------
         >>> import laygo2
-        >>> text0 = laygo2.object.physical.Text(xy=[[ 0, 0], [100, 100]],
+        >>> text0 = laygo2.object.physical.Text(xy=[0, 0],
             layer=['text', 'drawing'], text='test', params=None)
         >>> print(text0)
         <laygo2.object.physical.Text object at 0x000002049A77FD90>
             name: None,
             class: Text,
-            xy: [[0, 0], [100, 100]],
+            xy: [0, 0],
             params: None,
             layer: ['text', 'drawing'],
             text: test

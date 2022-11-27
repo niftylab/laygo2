@@ -29,6 +29,7 @@ This module implements interface with virtuoso in skill language
 import logging
 from math import log10
 from decimal import *
+import yaml
 
 import numpy as np
 import laygo2.object
@@ -283,7 +284,7 @@ def export(
     >>> r0 = Rect(xy=[[0, 0], [100, 100]], layer=["M1", "drawing"])
     >>> p0 = Pin(xy=[[0, 0], [50, 50]], layer=["M1", "pin"], name="P")
     >>> i0 = Instance(libname="tlib", cellname="t0", name="I0", xy=[0, 0])
-    >>> t0 = Text(xy=[[50, 50], [100, 100]], layer=["text", "drawing"], text="T")
+    >>> t0 = Text(xy=[50, 50], layer=["text", "drawing"], text="T")
     >>> # Add the layout objects to the design object.
     >>> dsn.append(r0)
     >>> dsn.append(p0)
@@ -340,3 +341,33 @@ def export(
         with open(filename, "w") as f:
             f.write(cmd)
     return cmd
+
+
+def load_cell_list(libname, filename, yaml_filename="import_skill_scratch.yaml"):
+    # parse header functions.
+    cmd = "; laygo2 cell-list load script.\n\n"
+    import os
+
+    header_filename = (
+        os.path.abspath(laygo2.interface.__file__)[:-11] + "skill_import.il"
+    )
+    with open(header_filename, "r") as f:
+        cmd += f.read()
+        cmd += "\n"
+    cmd += '_laygo2_get_cell_list("%s" "%s")\n' % (libname, yaml_filename)
+    if filename is not None:  # export to a file.
+        with open(filename, "w") as f:
+            f.write(cmd)
+    return cmd
+
+
+def load(libname, mpt=False, cellname=None, filename=None, yaml_filename="import_skill_scratch.yaml"):
+    mpt = "t" if mpt else "nil"
+    cmd = "; laygo2 cell load script.\n\n"
+    cmd += '_laygo2_parse_cad_layout("%s" "%s" "%s" "%s" )\n' %(libname, cellname, yaml_filename, mpt)
+    #cmd += "_laygo2_parse_cad_layout(\"" + libname + "\" \"" + cn + "\" \"" + yaml_filename + "\" \"" + mpt + "\")"
+    if filename is not None:  # export to a file.
+        with open(filename, "w") as f:
+            f.write(cmd)
+    return cmd
+
