@@ -6,7 +6,6 @@
 #                                                        #
 ##########################################################
 
-import numpy as np
 import laygo2
 import laygo2.interface
 import laygo2_tech_quick_start as tech
@@ -74,10 +73,10 @@ netmap_inckhl0 = {"D":"tail", "G":"CLK", "S":"VSS"}
 netmap_inckhr0 = {"D":"tail", "G":"CLK", "S":"VSS"}
 netmap_ininl0  = {"D":"intn", "G":"INP", "S":"tail"}
 netmap_ininr0  = {"D":"intp", "G":"INN", "S":"tail"}
-netmap_inrgl0  = {"D":"OUTN", "G":"OUTP_G", "S":"intn"}
-netmap_inrgr0  = {"D":"OUTP", "G":"OUTN_G", "S":"intp"}
-netmap_iprgl0  = {"D":"OUTN", "G":"OUTP_G", "S":"VDD"}
-netmap_iprgr0  = {"D":"OUTP", "G":"OUTN_G", "S":"VDD"}
+netmap_inrgl0  = {"D":"OUTN", "G":"OUTP", "S":"intn"}
+netmap_inrgr0  = {"D":"OUTP", "G":"OUTN", "S":"intp"}
+netmap_iprgl0  = {"D":"OUTN", "G":"OUTP", "S":"VDD"}
+netmap_iprgr0  = {"D":"OUTP", "G":"OUTN", "S":"VDD"}
 netmap_iprstl0 = {"D":"intn", "G":"CLK", "S":"VDD"}
 netmap_iprstr0 = {"D":"intp", "G":"CLK", "S":"VDD"}
 netmap_iprstl1 = {"D":"OUTN", "G":"CLK", "S":"VDD"}
@@ -108,30 +107,34 @@ _trkl = r23v.mn(inckhl0.pins["D"])[1, 0]
 _trkr = r23v.mn(inckhr0.pins["D"])[0, 0]
 _trkc = r23v.mn(inckhl0.bbox)[1, 0]
 nwire = int((nf_tot - nf_dmy)/ 2)
-
-rc = laygo2.object.template.RoutingMeshTemplate(grid=r23v)
+rc0 = laygo2.object.template.RoutingMeshTemplate(grid=r23v)
 for i in range(nwire):  # route multiple wires to reduce R
-    rc.add_track(name="taill"+str(i), index=[_trkl-2*i, None], netname="tail")
-    rc.add_track(name="tailr"+str(i), index=[_trkr+2*i, None], netname="tail")
-    rc.add_track(name="intn"+str(i), index=[_trkl-2*i-1, None], netname="intn")
-    rc.add_track(name="intp"+str(i), index=[_trkr+2*i+1, None], netname="intp")
-    rc.add_track(name="OUTN"+str(i), index=[_trkl-2*i, None], netname="OUTN")
-    rc.add_track(name="OUTP"+str(i), index=[_trkr+2*i, None], netname="OUTP")
-rc.add_track(name="OUTP_G", index=[_trkl+2, None], netname="OUTP_G")
-rc.add_track(name="OUTN_G", index=[_trkr-2, None], netname="OUTN_G")
-rc.add_track(name="CLK0", index=[_trkc, None], netname="CLK")
-rc.add_node([inckhl0, inckhr0, ininl0, ininr0, inrgl0, inrgr0])  # Add all instances to the routing mesh as nodes
-rc.add_node([inrgl0, inrgr0, iprstl0, iprstr0, iprgl0, iprgr0, iprstl1, iprstr1])
-rinst = rc.generate()
+    rc0.add_track(name="taill"+str(i), index=[_trkl-2*i, None], netname="tail")
+    rc0.add_track(name="tailr"+str(i), index=[_trkr+2*i, None], netname="tail")
+    rc0.add_track(name="intn"+str(i), index=[_trkl-2*i-1, None], netname="intn")
+    rc0.add_track(name="intp"+str(i), index=[_trkr+2*i+1, None], netname="intp")
+    rc0.add_track(name="OUTN"+str(i), index=[_trkl-2*i, None], netname="OUTN")
+    rc0.add_track(name="OUTP"+str(i), index=[_trkr+2*i, None], netname="OUTP")
+rc0.add_track(name="CLK0", index=[_trkc, None], netname="CLK")
+# Add all instances to the routing mesh as nodes
+rc0.add_node([inckhl0, inckhr0])
+rc0.add_node([ininl0, ininr0])
+rc0.add_node([inrgl0.pins["D"], inrgr0.pins["D"]]) # Do not connect gate pins
+rc0.add_node([iprstl0, iprstr0])
+rc0.add_node([iprgl0.pins["D"], iprgr0.pins["D"]])
+rc0.add_node([iprstl1, iprstr1])
+rinst = rc0.generate()
 dsn.place(grid=pg, inst=rinst)
 
 # Crosscoupled inverter outputs
-_trk = r23v.mn(iprgr0.pins["D"])[0, 1]
-_mn = [r23v.mn(rinst.pins["OUTP_G"])[0], r23v.mn(iprgr0.pins["D"])[0]]
-vcc0, rcc0, vcc1 = dsn.route_via_track(grid=r23v, mn=_mn, track=[None, _trk])
-_trk = r23v.mn(inrgl0.pins["D"])[0, 1]
-_mn = [r23v.mn(rinst.pins["OUTN_G"])[0], r23v.mn(inrgl0.pins["D"])[0]]
-vcc0, rcc0, vcc1 = dsn.route_via_track(grid=r23v, mn=_mn, track=[None, _trk])
+rc1 = laygo2.object.template.RoutingMeshTemplate(grid=r23v)
+rc1.add_track(name="OUTPG0", index=[_trkl+2, None], netname="OUTP")
+rc1.add_track(name="OUTNG0", index=[_trkr-2, None], netname="OUTN")
+rc1.add_node([inrgl0.pins["G"], inrgr0.pins["G"]])
+rc1.add_node([iprgl0.pins["G"], iprgr0.pins["G"]])
+rc1.add_node([inrgl0.pins["D"], iprgr0.pins["D"]])
+rinst1 = rc1.generate()
+dsn.place(grid=pg, inst=rinst1)
 
 # Input wires
 _mn = [[_trkl+1, 0], [_trkl+1, r23v.mn(ininl0.pins["G"])[0, 1]]]

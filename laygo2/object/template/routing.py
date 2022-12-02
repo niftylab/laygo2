@@ -30,7 +30,6 @@ import numpy as np
 from laygo2.object.template import *
 from laygo2.object.physical import *
 
-
 class RoutingMeshTemplate(Template):
     """RoutingMesh describes a two dimensional routing structure over a routing grid."""
 
@@ -99,8 +98,12 @@ class RoutingMeshTemplate(Template):
         self.grid = grid
         if tracks is not None:
             self.tracks = tracks
+        else:
+            self.tracks = dict()
         if nodes is not None:
             self.nodes = nodes
+        else:
+            self.nodes = []
 
     def add_track(self, name: str, index: int, netname: str = None):
         """Add a track to the mesh.
@@ -229,6 +232,9 @@ class RoutingMeshTemplate(Template):
                             _mn = (g.mn(p)[0] + g.mn(p)[1])/2
                             mn.append(_mn)
                 elif isinstance(n, Rect):
+                    if n.netname == tnn:
+                        mn.append(g.mn(n)[0])
+                elif isinstance(n, Pin):
                     if n.netname == tnn:
                         mn.append(g.mn(n)[0])
             # Do routing

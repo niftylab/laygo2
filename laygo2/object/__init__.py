@@ -48,10 +48,11 @@ from . import *
 from .database import *
 from .physical import *
 # template packages
-from .template.core import *
+from .template import *
 from .template.core import *
 from .template.routing import *
 # grid packages
+from .grid import *
 from .grid.core import *
 from .grid.placement import *
 from .grid.routing import *

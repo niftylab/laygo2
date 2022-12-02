@@ -1747,7 +1747,7 @@ class Design(BaseDatabase):
 
         xy = self.bbox
         pins = self.pins
-        return laygo2.object.core.NativeInstanceTemplate(libname=libname, cellname=cellname, bbox=xy, pins=pins)
+        return laygo2.object.NativeInstanceTemplate(libname=libname, cellname=cellname, bbox=xy, pins=pins)
 
     def get_matched_rects_by_layer(self, layer):
         """
