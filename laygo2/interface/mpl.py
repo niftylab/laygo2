@@ -99,29 +99,16 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
                 # ax.add_patch(rect)
             return []
     elif obj.__class__ == laygo2.object.Text:
+        return [["text", obj.layer[0], obj.text, obj.xy]]
         # TODO: implement text export function.
         pass
     elif obj.__class__ == laygo2.object.Instance:
         # Invoke _laygo2_generate_instance( cv name libname cellname viewname loc orient num_rows num_cols
         # sp_rows sp_cols params params_order )
         _xy = mxy + np.dot(obj.xy, tf.Mt(mtf).T)
-        if master is None:
-            transform = obj.transform
-        else:  # if the translated object has a master (e.g. VirtualInstance)
-            transform = tf.combine(obj.transform, master.transform)
-        if obj.shape is None:
-            num_rows = 1
-            num_cols = 1
-            sp_rows = 0
-            sp_cols = 0
-        else:
-            num_rows = obj.shape[1]
-            num_cols = obj.shape[0]
-            sp_rows = obj.pitch[1]
-            sp_cols = obj.pitch[0]
 
         _xy0 = obj.xy0
-        _xy1 = np.dot(obj.size, tf.Mt(mtf).T) * np.array([num_rows, num_cols])
+        _xy1 = np.dot(obj.size, tf.Mt(mtf).T) #* np.array([num_rows, num_cols])
         rect = matplotlib.patches.Rectangle(
             (_xy0[0], _xy0[1]),
             _xy1[0],
@@ -131,7 +118,13 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
             alpha=colormap["__instance__"][2],
             lw=2,
         )
-        pypobjs = [[rect, "__instance__", obj.cellname + "/" + obj.name]]
+        #pypobjs = [[rect, "__instance__", obj.cellname + "/" + obj.name]]
+        pypobjs = [[rect, "__instance__", obj.cellname + "/" + objname]]
+
+        # Elements for array instances
+        if obj.shape is not None:
+            for i, e in np.ndenumerate(obj.elements):
+                pypobjs += _translate_obj(e.name+"_"+str(i), e, colormap, scale=scale)
 
         # Instance pins
         for pn, p in obj.pins.items():
@@ -150,7 +143,7 @@ def _translate_obj(objname, obj, colormap, scale=1, master=None, offset=np.array
                         objname = "NoName"
                     else:
                         objname = obj.name
-                    _pypobj = _translate_obj(objname + "_" + elem_name, elem, colormap, scale=scale, master=obj)
+                    _pypobj = _translate_obj(objname, elem, colormap, scale=scale, master=obj)
                     pypobjs += _pypobj
         else:  # arrayed VirtualInstance
             for i, j in np.ndindex(tuple(obj.shape.tolist())):  # iterate over obj.shape
@@ -239,7 +232,14 @@ def export(
         for _alignobj in order:
             for _pypobj in pypobjs:
                 if _pypobj[1] == _alignobj:  # layer is matched.
-                    if _pypobj[0].__class__ == matplotlib.patches.Rectangle:  # Rect
+                    if isinstance(_pypobj[0], str):
+                        if _pypobj[0] == 'text':  # Text
+                            # [["text", obj.layer[0], obj.text, obj.xy]]
+                            color = "black"
+                            ax.annotate(
+                                _pypobj[2], (_pypobj[3][0], _pypobj[3][1]), color=color, weight="bold", fontsize=6, ha="center", va="center"
+                            )
+                    elif _pypobj[0].__class__ == matplotlib.patches.Rectangle:  # Rect
                         ax.add_patch(_pypobj[0])
                         if len(_pypobj) == 3:  # annotation.
                             ax.add_artist(_pypobj[0])

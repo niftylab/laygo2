@@ -32,6 +32,7 @@ mpl: # for matplotlib
     - metal3
     - via3
     - metal4
+    - text
 grids:
   placement_basic:
     type: placement
