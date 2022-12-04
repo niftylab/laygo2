@@ -164,8 +164,9 @@ def mos_generate_func(devtype, name=None, shape=None, pitch=np.array([0, 0]), tr
     rxy = np.array([[0, 0], [gblx + blx + us[0] * (nfdl + nf + nfdr) + brx + gbrx, us[1]]])
     nelements["PRBND0"] = laygo2.object.Rect(xy=rxy, layer=["prBoundary", "drawing"], name="PRBND0")
     # well
-    rxy = np.array([[-20, 0], [gblx + blx + us[0] * (nfdl + nf + nfdr) + brx + gbrx + 20, us[1]]])
-    nelements["NW0"] = laygo2.object.Rect(xy=rxy, layer=["nwell", "drawing"], name="NW0")
+    if devtype == "pmos":
+        rxy = np.array([[-20, 0], [gblx + blx + us[0] * (nfdl + nf + nfdr) + brx + gbrx + 20, us[1]]])
+        nelements["NW0"] = laygo2.object.Rect(xy=rxy, layer=["nwell", "drawing"], name="NW0")
     # implant
     rxy = np.array([[0, 5], [gblx + blx + us[0] * (nfdl + nf + nfdr) + brx + gbrx, us[1] - 5]])
     if devtype == "nmos":

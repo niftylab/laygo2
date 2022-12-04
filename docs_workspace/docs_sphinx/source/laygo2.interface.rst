@@ -14,3 +14,4 @@ laygo2.interface package
    laygo2.interface.gdspy
    laygo2.interface.magic
    laygo2.interface.yaml
+   laygo2.interface.mpl
