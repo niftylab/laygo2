@@ -266,3 +266,108 @@ def export(
     plt.show()
 
     return fig
+
+def export_grid(
+    obj,
+    colormap=None,
+    order=None,
+    xlim=[-10, 40],
+    ylim=[-10, 30],
+    filename=None,
+):
+    """
+    Export a laygo2.object.grid.Grid object to a matplotlib plot.
+
+    Parameters
+    ----------
+    obj: laygo2.object.grid.Grid
+        The grid object to exported.
+    scale: float
+        (optional) The scaling factor between laygo2's integer coordinates and plot coordinates.
+    colormap: dict
+        A dictionary that contains layer-color mapping information.
+    order: list
+        A list that contains the order of layers to be displayed (former is plotter first).
+    xlim: list
+        (optional) A list that specifies the range of plot in x-axis.
+    ylim: list
+        (optional) A list that specifies the range of plot in y-axis.
+    filename: str
+        (optional) If specified, export a output file for the plot.
+
+    Returns
+    -------
+    matplotlib.pyplot.figure or list: The generated figure object(s).
+
+    """
+    # colormap
+    if colormap is None:
+        colormap = dict()
+
+    # a list to align layered objects in order
+    if order is None:
+        order = []
+
+    fig = plt.figure()
+    pypobjs = []
+    ax = fig.add_subplot(111)
+    # scope
+    _xy = (obj.vgrid.range[0], obj.hgrid.range[0])
+    _width = obj.vgrid.range[1] - obj.vgrid.range[0]
+    _height = obj.hgrid.range[1] - obj.hgrid.range[0]
+    rect = matplotlib.patches.Rectangle(_xy, _width, _height, facecolor="none", edgecolor="black", lw=2)
+    ax.add_patch(rect)
+    rx, ry = rect.get_xy()
+    cx = rx + rect.get_width() / 2.0
+    cy = ry + rect.get_height() / 2.0
+    ax.annotate(
+        obj.name, (cx, cy), color="black", weight="bold", fontsize=6, ha="center", va="center"
+    )
+    if obj.__class__ == laygo2.object.RoutingGrid:  # Routing grid
+        for i in range(len(obj.vgrid.elements)):
+            print(i)
+            ve = obj.vgrid.elements[i]
+            _width = obj.vwidth[i]
+            _xy = (ve - _width/2, obj.hgrid.range[0])
+            facecolor=colormap[obj.vlayer[i][0]][1]
+            edgecolor=colormap[obj.vlayer[i][0]][0]
+            alpha=colormap[obj.vlayer[i][0]][2]
+            rect = matplotlib.patches.Rectangle(_xy, _width, _height, facecolor=facecolor, edgecolor=edgecolor, alpha=alpha, lw=2)
+            ax.add_patch(rect)
+        #for he in obj.hgrid.elements:
+        
+
+    for _alignobj in order:
+        for _pypobj in pypobjs:
+            if _pypobj[1] == _alignobj:  # layer is matched.
+                if isinstance(_pypobj[0], str):
+                    if _pypobj[0] == 'text':  # Text
+                        # [["text", obj.layer[0], obj.text, obj.xy]]
+                        color = "black"
+                        ax.annotate(
+                            _pypobj[2], (_pypobj[3][0], _pypobj[3][1]), color=color, weight="bold", fontsize=6, ha="center", va="center"
+                        )
+                elif _pypobj[0].__class__ == matplotlib.patches.Rectangle:  # Rect
+                    ax.add_patch(_pypobj[0])
+                    if len(_pypobj) == 3:  # annotation.
+                        ax.add_artist(_pypobj[0])
+                        rx, ry = _pypobj[0].get_xy()
+                        cx = rx + _pypobj[0].get_width() / 2.0
+                        cy = ry + _pypobj[0].get_height() / 2.0
+                        if _pypobj[1] == "__instance_pin__":
+                            color = _pypobj[0].get_edgecolor()
+                        else:
+                            color = "black"
+                        ax.annotate(
+                            _pypobj[2], (cx, cy), color=color, weight="bold", fontsize=6, ha="center", va="center"
+                        )
+
+    plt.xlim(xlim)
+    plt.ylim(ylim)
+
+    if filename is not None:
+        plt.savefig(filename)
+
+    plt.show()
+
+    return fig
