@@ -994,7 +994,7 @@ class RoutingGrid(Grid):
         route = list()
         # via at the starting point
         if via_tag is not None:
-            if via_tag[0] is True:
+            if via_tag[0]:
                 route.append(self.via(mn=_mn[0][0], params=None))
         # routing wires
         for i, __mn in enumerate(_mn):
