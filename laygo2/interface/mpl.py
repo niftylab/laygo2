@@ -197,7 +197,7 @@ def export(
     colormap: dict
         A dictionary that contains layer-color mapping information.
     order: list
-        A list that contains the order of layers to be displayed (former is plotter first).
+        A list that contains the order of layers to be displayed (former is plotted first).
     xlim: list
         (optional) A list that specifies the range of plot in x-axis.
     ylim: list
@@ -287,7 +287,7 @@ def export_grid(
     colormap: dict
         A dictionary that contains layer-color mapping information.
     order: list
-        A list that contains the order of layers to be displayed (former is plotter first).
+        A list that contains the order of layers to be displayed (former is plotted first).
     xlim: list
         (optional) A list that specifies the range of plot in x-axis.
     ylim: list
@@ -324,18 +324,41 @@ def export_grid(
         obj.name, (cx, cy), color="black", weight="bold", fontsize=6, ha="center", va="center"
     )
     if obj.__class__ == laygo2.object.RoutingGrid:  # Routing grid
-        for i in range(len(obj.vgrid.elements)):
-            print(i)
+        for i in range(len(obj.vgrid.elements)):  # vertical routing grid
             ve = obj.vgrid.elements[i]
+            _xy = (ve - obj.vwidth[i]/2, obj.hgrid.range[0]-obj.vextension[i])
             _width = obj.vwidth[i]
-            _xy = (ve - _width/2, obj.hgrid.range[0])
+            _height = obj.hgrid.range[1] - obj.hgrid.range[0] + 2 * obj.vextension[i]
             facecolor=colormap[obj.vlayer[i][0]][1]
             edgecolor=colormap[obj.vlayer[i][0]][0]
             alpha=colormap[obj.vlayer[i][0]][2]
             rect = matplotlib.patches.Rectangle(_xy, _width, _height, facecolor=facecolor, edgecolor=edgecolor, alpha=alpha, lw=2)
             ax.add_patch(rect)
-        #for he in obj.hgrid.elements:
-        
+            _xy = (ve, obj.hgrid.range[0]-obj.vextension[i])
+            ax.annotate(_xy[0], _xy, color="black", weight="bold", fontsize=6, ha="center", va="center")
+        for i in range(len(obj.hgrid.elements)):  # horizontal routing grid
+            he = obj.hgrid.elements[i]
+            _xy = (obj.vgrid.range[0] - obj.hextension[i], he - obj.hwidth[i]/2)
+            _width = obj.vgrid.range[1] - obj.vgrid.range[0] + 2*obj.hextension[i]
+            _height = obj.hwidth[i]
+            facecolor=colormap[obj.hlayer[i][0]][1]
+            edgecolor=colormap[obj.hlayer[i][0]][0]
+            alpha=colormap[obj.hlayer[i][0]][2]
+            rect = matplotlib.patches.Rectangle(_xy, _width, _height, facecolor=facecolor, edgecolor=edgecolor, alpha=alpha, lw=2)
+            ax.add_patch(rect)
+            _xy = (obj.vgrid.range[0] - obj.hextension[i], he)
+            ax.annotate(_xy[1], _xy, color="black", weight="bold", fontsize=6, ha="center", va="center")
+        # viamap
+        for i in range(len(obj.vgrid.elements)):  # vertical routing grid
+            for j in range(len(obj.hgrid.elements)):  # horizontal routing grid
+                v = obj.viamap[i, j]
+                x = obj.vgrid.elements[i]
+                y = obj.hgrid.elements[j]
+                print(v)
+                print(x, y)
+                circ = matplotlib.patches.Circle((x, y), radius=2, facecolor="black", edgecolor="black") #, **kwargs)
+                ax.add_patch(circ)
+                ax.annotate(v.name, (x+2, y), color="black", fontsize=4, ha="left", va="bottom")
 
     for _alignobj in order:
         for _pypobj in pypobjs:
