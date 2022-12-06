@@ -34,9 +34,9 @@ import laygo2.object.database
 # import laygo2_tech as tech
 import laygo2_tech_quick_start as tech
 
-tech_params = tech.tech_params
+# tech_params = tech.tech_params
 # templates = tech_params["templates"]
-grids = tech_params["grids"]
+# grids = tech_params["grids"]
 
 # Template functions for primitive devices
 def _mos_update_params(params):
