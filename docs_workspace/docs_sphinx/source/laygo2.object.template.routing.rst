@@ -1,4 +1,4 @@
-laygo2.object.template.routing module
+routing module
 =============================
 .. automodule:: laygo2.object.template.routing
    :undoc-members:
