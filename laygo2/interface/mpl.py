@@ -354,8 +354,6 @@ def export_grid(
                 v = obj.viamap[i, j]
                 x = obj.vgrid.elements[i]
                 y = obj.hgrid.elements[j]
-                print(v)
-                print(x, y)
                 circ = matplotlib.patches.Circle((x, y), radius=2, facecolor="black", edgecolor="black") #, **kwargs)
                 ax.add_patch(circ)
                 ax.annotate(v.name, (x+2, y), color="black", fontsize=4, ha="left", va="bottom")
