@@ -313,9 +313,9 @@ def export_instance(
 
     # xlim and ylim
     if xlim is None:
-        xlim = [obj.xy0[0], obj.xy1[0] + obj.width]
+        xlim = [obj.xy0[0] - obj.width, obj.xy1[0] + obj.width]
     if ylim is None:
-        ylim = [obj.xy0[1], obj.xy1[1] + obj.height]
+        ylim = [obj.xy0[1] - obj.height, obj.xy1[1] + obj.height]
 
     fig = plt.figure()
     pypobjs = []
