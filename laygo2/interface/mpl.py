@@ -267,6 +267,95 @@ def export(
 
     return fig
 
+
+def export_instance(
+    obj,
+    scale=1,
+    colormap=None,
+    order=None,
+    xlim=None,
+    ylim=None,
+    filename=None,
+):
+    """
+    Export a laygo2.object.physical.Instance object to a matplotlib plot.
+
+    Parameters
+    ----------
+    obj: laygo2.object.physical.Instance
+        The instance object to exported.
+    scale: float
+        (optional) The scaling factor between laygo2's integer coordinates and plot coordinates.
+    colormap: dict
+        A dictionary that contains layer-color mapping information.
+    order: list
+        A list that contains the order of layers to be displayed (former is plotted first).
+    xlim: list
+        (optional) A list that specifies the range of plot in x-axis.
+    ylim: list
+        (optional) A list that specifies the range of plot in y-axis.
+    filename: str
+        (optional) If specified, export a output file for the plot.
+
+    Returns
+    -------
+    matplotlib.pyplot.figure or list: The generated figure object(s).
+
+    """
+
+    # colormap
+    if colormap is None:
+        colormap = dict()
+
+    # a list to align layered objects in order
+    if order is None:
+        order = []
+
+    # xlim and ylim
+    if xlim is None:
+        xlim = [obj.xy0[0], obj.xy1[0] + obj.width]
+    if ylim is None:
+        ylim = [obj.xy0[1], obj.xy1[1] + obj.height]
+
+    fig = plt.figure()
+    pypobjs = []
+    ax = fig.add_subplot(111)
+    pypobjs += _translate_obj(obj.name, obj, colormap, scale=scale)
+    for _alignobj in order:
+        for _pypobj in pypobjs:
+            if _pypobj[1] == _alignobj:  # layer is matched.
+                if isinstance(_pypobj[0], str):
+                    if _pypobj[0] == 'text':  # Text
+                        # [["text", obj.layer[0], obj.text, obj.xy]]
+                        color = "black"
+                        ax.annotate(
+                            _pypobj[2], (_pypobj[3][0], _pypobj[3][1]), color=color, weight="bold", fontsize=6, ha="center", va="center"
+                        )
+                elif _pypobj[0].__class__ == matplotlib.patches.Rectangle:  # Rect
+                    ax.add_patch(_pypobj[0])
+                    if len(_pypobj) == 3:  # annotation.
+                        ax.add_artist(_pypobj[0])
+                        rx, ry = _pypobj[0].get_xy()
+                        cx = rx + _pypobj[0].get_width() / 2.0
+                        cy = ry + _pypobj[0].get_height() / 2.0
+                        if _pypobj[1] == "__instance_pin__":
+                            color = _pypobj[0].get_edgecolor()
+                        else:
+                            color = "black"
+                        ax.annotate(
+                            _pypobj[2], (cx, cy), color=color, weight="bold", fontsize=6, ha="center", va="center"
+                        )
+    plt.xlim(xlim)
+    plt.ylim(ylim)
+
+    if filename is not None:
+        plt.savefig(filename)
+
+    plt.show()
+
+    return fig
+
+
 def export_grid(
     obj,
     colormap=None,
