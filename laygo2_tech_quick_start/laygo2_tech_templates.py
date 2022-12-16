@@ -87,7 +87,7 @@ def mos_pins_func(devtype, params):
     """Generate a pin dictionary from params."""
     # Compute parameters
     params = _mos_update_params(params)
-    nf = params["nf"] if "nf" in params.keys() else 1
+    nf = params["nf"] 
     nfdl = params["nfdmyl"]
     nfdr = params["nfdmyr"]
     blx = 30 if params["bndl"] == True else 0
