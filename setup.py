@@ -19,13 +19,13 @@ with open("LICENSE") as f:
 
 setup(
     name="laygo2",
-    version="0.4.8",
+    version="0.5.2",
     author="Jaeduk Han",
     description="LAYout with Gridded Object 2 - A Python Package for Scripted IC Layout Generation Flow",
     long_description=readme,
     url="https://github.com/niftylab/laygo2",  # project address
     license=license,
-    packages=find_packages(exclude=("test", "docs")),
+    packages=find_packages(exclude=("tests", "docs", "laygo2_tech_quick_start", "laygo2_tech")),
     package_data={
         "": [
             "interface/skill_export.il",
