@@ -11,3 +11,6 @@ This docuement contains useful resources to utilize laygo2.
 * [**StrongARM latch generation**](https://colab.research.google.com/drive/1aih92JUbJEBmFCmM7eISuB53OO_7OmoA?usp=sharing) describes grid synthesis and mesh-based routing. 
 
 * [**Layout creation with physical coordinates**](https://colab.research.google.com/drive/18Y6rSRFXjJioE_D6YN5cKhWYCyTE4akk?usp=sharing) describes the bare-minimum approach to create layout generation scripts on physical grid (without using template and grid handling features).
+
+* [**Laygo2 technology setup - bare metal approach**](https://colab.research.google.com/drive/1mUzR98IQUQRCyHuy_fqu7yZxNhWQpSqP?usp=sharing) 
+describes an example method to set up laygo2 for a new technology by using minimal features. This approach is called bare-metal.

@@ -179,8 +179,8 @@ def export(
     scale=1,
     colormap=None,
     order=None,
-    xlim=[-100, 400],
-    ylim=[-100, 300],
+    xlim=None,
+    ylim=None,
     filename=None,
 ):
     """
@@ -257,8 +257,13 @@ def export(
     if len(fig) == 1:
         fig = fig[0]
 
-    plt.xlim(xlim)
-    plt.ylim(ylim)
+    # scale
+    plt.autoscale()
+    if not (xlim == None):
+        plt.xlim(xlim)
+    if not (ylim == None):
+        plt.ylim(ylim)
+
 
     if filename is not None:
         plt.savefig(filename)
@@ -311,11 +316,13 @@ def export_instance(
     if order is None:
         order = []
 
+    '''
     # xlim and ylim
     if xlim is None:
         xlim = [obj.bbox[0][0] - obj.width, obj.bbox[1][0] + obj.width]
     if ylim is None:
         ylim = [obj.bbox[0][1] - obj.height, obj.bbox[1][1] + obj.height]
+    '''
 
     fig = plt.figure()
     pypobjs = []
@@ -345,8 +352,12 @@ def export_instance(
                         ax.annotate(
                             _pypobj[2], (cx, cy), color=color, weight="bold", fontsize=6, ha="center", va="center"
                         )
-    plt.xlim(xlim)
-    plt.ylim(ylim)
+    # scale
+    plt.autoscale()
+    if not (xlim == None):
+        plt.xlim(xlim)
+    if not (ylim == None):
+        plt.ylim(ylim)
 
     if filename is not None:
         plt.savefig(filename)
@@ -360,8 +371,8 @@ def export_grid(
     obj,
     colormap=None,
     order=None,
-    xlim=[-10, 40],
-    ylim=[-10, 30],
+    xlim=None,
+    ylim=None,
     filename=None,
 ):
     """
@@ -472,8 +483,12 @@ def export_grid(
                             _pypobj[2], (cx, cy), color=color, weight="bold", fontsize=6, ha="center", va="center"
                         )
 
-    plt.xlim(xlim)
-    plt.ylim(ylim)
+    # scale
+    plt.autoscale()
+    if not (xlim == None):
+        plt.xlim(xlim)
+    if not (ylim == None):
+        plt.ylim(ylim)
 
     if filename is not None:
         plt.savefig(filename)
