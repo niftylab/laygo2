@@ -94,8 +94,6 @@ fig = laygo2.interface.mpl.export(
     cellname=cellname,
     colormap=mpl_params["colormap"],
     order=mpl_params["order"],
-    xlim=[-100, 1100],
-    ylim=[-300, 400],
     filename="dff_2x.png",
 )
 # skill export

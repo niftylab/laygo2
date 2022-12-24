@@ -105,8 +105,6 @@ fig = laygo2.interface.mpl.export(
     cellname=cellname,
     colormap=mpl_params["colormap"],
     order=mpl_params["order"],
-    xlim=[-100, 400],
-    ylim=[-100, 300],
     filename="tinv_2x.png",
 )
 # skill export
