@@ -1,6 +1,7 @@
 # Trial
 
-This document introduces setup procedure and trial example for begineers.
+This section provides an introductory guide for begineers users to get
+ started with using **laygo2**.
 
 <!--
 * **[Quick installation and setup](#Quick-Installation-and-Setup)** describes the installation and set up procedure of 
@@ -11,17 +12,20 @@ laygo in linux environments.
 
 ## Colab tutorial
 
-The easiest way of exercising laygo2 without installing it locally is using [Colab](https://colab.research.google.com/); 
-the example tutorial can be found **[here](https://colab.research.google.com/drive/1tpuUvqb6BujzZI6RBf2cFdAfMqBsxpep?usp=sharing)**.
+For individuals seeking to exercise the capabilities of **laygo2** 
+without local installation, [Colab](https://colab.research.google.com/), 
+a cloud-based Jupyter environment, can be utilized. 
+The example tutorial can be accessed at this 
+**[link](https://colab.research.google.com/drive/1tpuUvqb6BujzZI6RBf2cFdAfMqBsxpep?usp=sharing)**.
 
 ## Installation 
 
-There are two ways of installing laygo2 in your environment; 1) cloning from [github](https://www.github.com) and 2) using [pip](https://pypi.org).
+There are two available options for installing the **laygo2** package.
 
-### Installing laygo2 from **[Github repository](https://github.com/niftylab/laygo2.git)**
+### 1. Cloning from **[Github repository](https://github.com/niftylab/laygo2.git)**
 
-Users can download and install the laygo2 package by cloning its github 
-repository by typing the following command:
+Users can obtain the latest version of laygo2 by cloning the Github 
+repository by running the following command:
 
     >>> git clone https://github.com/niftylab/laygo2.git
 
@@ -34,31 +38,39 @@ After that, update the PHTHONPATH environment variable to point out the laygo2 p
     # (csh/tcsh example) add the following command to your .cshrc
     setenv PYTHONPATH ${PYTHONPATH}:[LAYGO2_INSTALLATION_PATH]/laygo2
 
-### Installing laygo2 from **[Pypi](https://pypi.org/project/laygo2)** 
+### 2. **[Pip](https://pypi.org/project/laygo2)** installation
 
-Instead of cloning github repository, laygo2 package can be installed by running the following pip command:
+Another option for installation is through the use of **[pip](https://pypi.org)**, the package manager for Python. This method allows for a 
+covenient and quick installation process.
+Run the following command to pip-install the **laygo2** package:
 
     >>> pip install laygo2
 
 ## Technology setup
 
-Users need to set up the following files in the **laygo2_tech** directory to enable laygo2 for a new technology:
+The following files in the **laygo2_tech** directory need to be 
+prepared for the usage of **laygo2** with a new technology:
 
-    laygo2_tech_templayes.py  # for templates
-    laygo2_tech_grids.py      # for grids
-    laygo2_tech.yaml          # for technology parameters
+    laygo2_tech_templayes.py  # contains the definitions for templates.
+    laygo2_tech_grids.py      # contains the definitions for grids.
+    laygo2_tech.yaml          # contains technology parameters.
 
-A bare-minimum tech setup for quick_start.py can be found **[here](https://github.com/niftylab/laygo2/tree/master/laygo2/examples/laygo2_tech)**.
-A more complete tech setup example for **gpdk045** can be found **[here](https://github.com/niftylab/laygo2_workspace_gpdk045/tree/master/laygo2_tech_example)**.
+A minimum technology setup, designed for for quick_start.py can be 
+found **[here](https://github.com/niftylab/laygo2/tree/master/laygo2/examples/laygo2_tech)**.
+A more comprehensive tech setup example, designed for **gpdk045**,
+ can be found **[here](https://github.com/niftylab/laygo2_workspace_gpdk045/tree/master/laygo2_tech_example)**.
 
 ## Simple gate generation
 
 Running the following command will generate a NAND gate layout.
 
-    # after git clone type the following commands.
+    # 1. Clone the laygo2 repository to your local machine.
+    # 2. Navigate to the laygo2 directory.
     >>> cd laygo2 
+    # 3. Run the quick start script by typing the following command:
     >>> python -m quick_start.py
-    # or you can run ipython and type run 'quick_start.py' instead.
+    # 4. Alternatively, you can run ipython and type the following command:
+    >>> run 'quick_start.py'
     
 The resulting layout of the NAND gate is shown in the figure below:
 
@@ -66,12 +78,16 @@ The resulting layout of the NAND gate is shown in the figure below:
 
 ## Trial in SKY130 technology
 
-An example tutorial of laygo2 in SkyWater **[SKY130](https://skywater-pdk.readthedocs.io/en/main/)**
- technology can be found **[here](https://laygo2-sky130-docs.readthedocs.io/en/latest/)**.
+Follow the tutorial available at the this 
+**[link](https://laygo2-sky130-docs.readthedocs.io/en/latest/)**.
+that covers the use of **laygo2** for generating a D flip-flop layout 
+in the **[SKY130](https://skywater-pdk.readthedocs.io/en/main/)** 
+technology.
 
 The generated layout of a D flip-flop is shown in the figure below:
 
 ![sky130 dff2x](../assets/img/trial_sky130_dff.png "sky130 dff2x")
 
-A colab version of the tutorial is provided as well. Check **[this link](https://colab.research.google.com/drive/1dToEQe7500TUNOPN2aPTJGRgcbbNsqhj?usp=sharing)**.
+For those who prefer a Colab version, please check this **[link](https://colab.research.google.com/drive/1dToEQe7500TUNOPN2aPTJGRgcbbNsqhj?usp=sharing)**.
+
 ![sky130 dff2x colab](../assets/img/trial_sky130_dff_colab.png "sky130 dff2x colab")
