@@ -14,17 +14,14 @@ design productivity.
 object classes and methods, written in the Python programmanging language, 
 rending it suitible for code-based layout generation.
 
-**laygo2** is cimposed of the following subpackages, each serving 
+**laygo2** is composed of the following subpackages, each serving 
 a distinct purpose:
 
-* **laygo2.object**: houses the core object classes, responsible for defining
-                     physical layout structures and design hierarchies.
+* laygo2.object: houses the core object classes, responsible for defining physical layout structures and design hierarchies.
 
-* **laygo2.interface**: implements the interfaces to external data structures 
-                        and EDA tools (**yaml**, **skill**, **BAG**, **GDS**, 
-                        **matplotlib** and others).
+* laygo2.interface: implements the interfaces to external data structures and EDA tools (**yaml**, **skill**, **BAG**, **GDS**, **matplotlib** and others).
 
-* **laygo2.util**: provides a range of utility functions for internal use.
+* laygo2.util: provides a range of utility functions for internal use.
 
 For further information regarding the subpackages and modules in **laygo**,
 please refer the provided link:
