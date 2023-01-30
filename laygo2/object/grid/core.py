@@ -2070,6 +2070,35 @@ class _PhyToAbsGridConverter:
         return self.master.mn(
             point_list[dist_sorted[0][0]]
         )  # Convert the closest point to abstract coordinate and then return.
+    
+    def left(self, obj):
+        """
+        Convert an object's physical left-center coordinate into abstract
+        coordinate of the master grid.
+        """
+        return np.array([self.bottom_left(obj)[0], self.center(obj)[1]])
+    
+    def right(self, obj):
+        """
+        Convert an object's physical right-center coordinate into abstract
+        coordinate of the master grid.
+        """
+        return np.array([self.bottom_right(obj)[0], self.center(obj)[1]])
+    
+    def top(self, obj):
+        """
+        Convert an object's physical upper-center coordinate into abstract
+        coordinate of the master grid.
+        """
+        return np.array([self.center(obj)[0], self.top_left(obj)[1]])
+    
+    def bottom(self, obj):
+        """
+        Convert an object's physical lower-center coordinate into abstract
+        coordinate of the master grid.
+        """
+        return np.array([self.center(obj)[0], self.bottom_left(obj)[1]])
+
 
 
 class OneDimGrid(CircularMapping):
@@ -2902,6 +2931,34 @@ class Grid:
         laygo2.object.grid._PhyToAbsGridConverter.center
         """
         return self.phy2abs.center(obj)
+    
+    def left(self, obj):
+        """
+        Return the abstract grid coordinates corresponding to the left
+        point of obj.
+        """
+        return self.phy2abs.left(obj)
+
+    def right(self, obj):
+        """
+        Return the abstract grid coordinates corresponding to the right
+        point of obj.
+        """
+        return self.phy2abs.right(obj)
+
+    def top(self, obj):
+        """
+        Return the abstract grid coordinates corresponding to the top
+        point of obj.
+        """
+        return self.phy2abs.top(obj)
+
+    def bottom(self, obj):
+        """
+        Return the abstract grid coordinates corresponding to the bottom
+        point of obj.
+        """
+        return self.phy2abs.bottom(obj)
 
     def copy(self):
         """

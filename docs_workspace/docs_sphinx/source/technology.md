@@ -55,7 +55,7 @@ the numeric parameters.
 ## laygo2_tech.layermap
 
 Contains layer mapping information for the target technology.
-The layer information is used for layout generation ation, gds export, and skill export.
+The layer information is used for layout generation, **gds** export, and **skill** export.
 
 The layermap file is normally provided by the technology ventor.
 If the layermap file is created manually by users, please use the following format to define layer parameters.

@@ -19,4 +19,4 @@ physical grids without relying on the template and grid handling
 features of laygo2.
 
 * [**Laygo2 technology setup - bare metal approach**](https://colab.research.google.com/drive/1mUzR98IQUQRCyHuy_fqu7yZxNhWQpSqP?usp=sharing) 
-describes an example for set up **laygo2** for a new technology using minimal features (the bare-metal approach).
+describes an example for setting up **laygo2** for a new technology using minimal features (the bare-metal approach).
