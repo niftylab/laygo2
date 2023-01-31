@@ -36,7 +36,8 @@ import numpy as np
 
 class BaseDatabase:
     """
-    BaseDatabase is a base class implementing basic functions of various database objects such as library and design.
+    A base class that implements basic functions for 
+    various database objects, such as libraries and designs.
 
     Notes
     -----
@@ -44,7 +45,7 @@ class BaseDatabase:
     """
 
     name = None
-    """str: BaseDatabase object name.
+    """str: Name of BaseDatabase object.
 
     Example
     -------
@@ -59,7 +60,7 @@ class BaseDatabase:
     """
 
     params = None
-    """dict or None: Dictionary containing parameters of BaseDatabase object.
+    """dict or None: BaseDatabase object's parameter dictionary.
 
     Example
     -------
@@ -75,7 +76,7 @@ class BaseDatabase:
     """
 
     elements = None
-    """dict: Dictionary containing its element objects.
+    """dict: Element object dictionary.
 
     Example
     -------
@@ -109,8 +110,7 @@ class BaseDatabase:
 
     noname_index = 0
     """
-    int: A unique number used as the name of an unnamed object belonging to 
-    the database.    
+    int: Unique identifier index for unnamed objects.
 
     Example
     -------
@@ -166,7 +166,7 @@ class BaseDatabase:
 
     def items(self):
         """
-        key/object pair of elements.
+        Key-object pairs of elements.
 
         Parameters
         ----------
@@ -206,11 +206,12 @@ class BaseDatabase:
 
     def __getitem__(self, pos):
         """
-        Return the object corresponding to the key.
+        Return the object corresponding to pos.
 
         Parameters
         ----------
-        key : str
+        pos : str
+            Name of object.
 
         Returns
         -------
@@ -257,10 +258,7 @@ class BaseDatabase:
         Parameters
         ----------
         key : str
-
-        Returns
-        -------
-        list
+            Object key (name).
 
         Example
         -------
@@ -289,17 +287,17 @@ class BaseDatabase:
         self.append(item)
 
     def append(self, item):
-        """(Simply) add a physical object to the BaseDatabase object.
+        """Add physical object to BaseDatabase without taking any further actions.
 
         Parameters
         ----------
         item : laygo2.object.physical.PhysicalObject
-            The physical object to be added.
+            Physical object to be added.
 
         Returns
         -------
         list :
-            A list containing the name of item and the item itself ([item.name, item]).
+            List of item name and item ([item.name, item]).
 
         Example
         -------
@@ -358,8 +356,8 @@ class BaseDatabase:
             return item_name, item
 
     def __iter__(self):
-        """Iterator function. Directly mapped to its elements.
-
+        """Element-mapped direct iterator function.
+        
         Example
         -------
         >>> import laygo2
@@ -392,7 +390,7 @@ class BaseDatabase:
         return self.summarize()
 
     def summarize(self):
-        """Return the summary of the object information."""
+        """Get object information summary."""
         return (
             self.__repr__() + " " + "name: " + self.name + ", " + "params: " + str(self.params) + " \n"
             "    elements: " + str(self.elements) + ""
@@ -445,7 +443,7 @@ class BaseDatabase:
 
 class Library(BaseDatabase):
     """
-    Library class implements the library management function.
+    Class for library management function implementation.
 
     Example
     -------
@@ -496,6 +494,8 @@ class Library(BaseDatabase):
     """
 
     def append(self, item):
+        """Add physical object to Library without taking any further actions.
+        """
         if isinstance(item, list) or isinstance(item, np.ndarray):
             item_name_list = []
             item_list = []
@@ -545,19 +545,19 @@ class Library(BaseDatabase):
         BaseDatabase.__init__(self, name=name, params=params, elements=elements)
 
     def summarize(self):
-        """Return the summary of the object information."""
+        """Get object information summary."""
         return BaseDatabase.summarize(self)
 
 
 class TemplateLibrary(Library):
-    """This class implements template libraries that contain templates as their child objects."""
+    """Class implementing template libraries with templates as child objects."""
 
     # TODO: implement this.
     pass
 
 
 class GridLibrary(Library):
-    """This class implements layout libraries that contain grid objectss as their child objects."""
+    """Class implementing grid libraries with grids as child objects."""
 
     # TODO: implement this.
     pass
@@ -565,11 +565,10 @@ class GridLibrary(Library):
 
 class Design(BaseDatabase):
     """
-    Design class implements the design management function.
+    Class for design management function implementation.
 
     Example
     -------
-
     A physical (non-abstract) grid example:
 
     >>> import laygo2
@@ -749,7 +748,7 @@ class Design(BaseDatabase):
 
     @property
     def bbox(self):
-        """get the design bbox which is union of self.instances.bbox."""
+        """Get design bounding box by taking union of instances' bounding boxes."""
         libname = self.libname
         cellname = self.cellname
         # Compute boundaries
@@ -782,7 +781,7 @@ class Design(BaseDatabase):
         self._libname = val
 
     libname = property(get_libname, set_libname)
-    """str: Library name of Design object.
+    """str: Design object's library name.
 
     Example
     -------
@@ -803,7 +802,7 @@ class Design(BaseDatabase):
         self.name = val
 
     cellname = property(get_cellname, set_cellname)
-    """str: Cell name of Design object.
+    """str: Design object's cell name.
 
     Example
     -------
@@ -911,7 +910,7 @@ class Design(BaseDatabase):
     """
 
     def __iter__(self):
-        """Iterator function. Directly mapped to its elements.
+        """Element-mapped direct iterator function.
 
         Example
         -------
@@ -939,7 +938,7 @@ class Design(BaseDatabase):
 
     def __init__(self, name, params=None, elements=None, libname=None):
         """
-        Constructor function of Design class.
+        Design class constructor function.
 
         Parameters
         ----------
@@ -990,7 +989,7 @@ class Design(BaseDatabase):
         BaseDatabase.__init__(self, name=name, params=params, elements=elements)
 
     def append(self, item):
-        """(Simply) add a physical object to the design.
+        """Add physical object to Design without taking any further actions.
 
         Parameters
         ----------
@@ -1070,7 +1069,7 @@ class Design(BaseDatabase):
             return item_name, item
 
     def summarize(self):
-        """Return the summary of the object information."""
+        """Get object information summary."""
         return (
             BaseDatabase.summarize(self)
             + " \n"
@@ -1100,27 +1099,24 @@ class Design(BaseDatabase):
     # Object creation and manipulation functions.
     def place(self, inst, grid, mn=[0, 0], anchor_xy=None):
         """
-        Place the instance on the abstract coordinate **mn**, on the abstract grid.
+        Place instance at abstract coordinate mn on abstract grid.
 
         Parameters
         ----------
         inst : laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance or list
-            The instance to be placed. When inst is a list, the elements
-            in the list are placed in order.
+            Instance(s) to be placed (when list, placed in order).
         grid : laygo2.object.grid.PlacementGrid
-            The placement grid where the instance is placed on.
+            Placement grid for instance placement.
         mn : numpy.ndarray or list
-            The abstract coordinate value [m, n] to place the instance.
+            Abstract coordinate value [m, n] for instance placement.
         anchor_xy : list
-            Two physical coordinates to be overlapped by the placement.
-            The first coordinate is for the absolute physical grid, and the
-            second coordinate is for the relative position of the instance
-            to be placed.
+            A list that contains two overlap coordinates for placement 
+            (1st for absolute physical grid, 2nd for relative instance position).
 
         Returns
         -------
         laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance or list(laygo2.object.physical.Instance):
-            The placed instance or a list containing the placed instances.
+            Placed instance(s) (list if multiple).
 
         Example
         -------
@@ -1257,14 +1253,14 @@ class Design(BaseDatabase):
 
     def route(self, grid, mn, direction=None, via_tag=None):
         """
-        Create wire object(s) for routing, on the abstract coordinate **mn**.
+        Create wire object(s) for routing at abstract coordinate **mn**.
 
         Parameters
         ----------
         grid : laygo2.object.grid.RoutingGrid
-            The placement grid where the wire is placed on.
+            Placement grid for wire placement.
         mn : list(numpy.ndarray)
-            The list containing two or more mn coordinates to be connected.
+            List containing two or more **mn** coordinates to be connected.
         direction : str, optional.
             None or “vertical” or "horizontal". The direction of the routing
             object.

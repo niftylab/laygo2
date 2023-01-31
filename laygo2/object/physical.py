@@ -662,7 +662,7 @@ class PhysicalObjectGroup(IterablePhysicalObject):
     # TODO: implement this.
 
     def summarize(self):
-        """Return the summary of the object information."""
+        """Get object information summary."""
         return IterablePhysicalObject.summarize(self) + "    elements: " + str(self.elements) + ", \n"
 
     def __init__(self, xy, name=None, params=None, elements=None):
@@ -1078,7 +1078,7 @@ class Rect(PhysicalObject):
             r1.xy = _xy
 
     def summarize(self):
-        """Return the summary of the object information."""
+        """Get object information summary."""
         return (
             PhysicalObject.summarize(self)
             + "    layer: "
@@ -1260,7 +1260,7 @@ class Path(PhysicalObject):
         self.pointers = dict()  # Pointers are invalid for Path objects.
 
     def summarize(self):
-        """Return the summary of the object information."""
+        """Get object information summary."""
         return (
             PhysicalObject.summarize(self)
             + "    width: "
@@ -1463,7 +1463,7 @@ class Pin(IterablePhysicalObject):
         IterablePhysicalObject.__init__(self, xy=xy, name=name, params=params, elements=elements)
 
     def summarize(self):
-        """Return the summary of the object information."""
+        """Get object information summary."""
         return (
             IterablePhysicalObject.summarize(self)
             + "    layer: "
@@ -1603,7 +1603,7 @@ class Text(PhysicalObject):
         PhysicalObject.__init__(self, xy=xy, name=name, params=params)
 
     def summarize(self):
-        """Return the summary of the object information."""
+        """Get object information summary."""
         return (
             PhysicalObject.summarize(self)
             + "    layer: "
