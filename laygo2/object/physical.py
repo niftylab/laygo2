@@ -68,7 +68,7 @@ import laygo2.util.transform as tf
 
 class PhysicalObject:
     """
-    The base class of physical layout objects, which has physical coordinate information.
+    Base class for physical layout objects with physical coordinate info.
 
     Notes
     -----
@@ -77,18 +77,18 @@ class PhysicalObject:
     """
 
     def _get_xy(self):
-        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of
-        this object."""
+        """numpy.ndarray(dtype=numpy.int): Retrive x,y coordinate values of
+        the object."""
         return self._xy
 
     def _set_xy(self, value):
-        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of
-        this object."""
+        """numpy.ndarray(dtype=numpy.int): Update x,y coordinates of
+        the object."""
         self._xy = np.asarray(value, dtype=np.int)
         self._update_pointers()
 
     name = None
-    """str: The name of the object.
+    """str: Object name.
 
     Example
     -------
@@ -101,17 +101,15 @@ class PhysicalObject:
     .. image:: ../assets/img/object_physical_PhysicalObject_name.png
       :height: 250
 
-    Notes
-    -----
-    **(Korean)**: 객체의 이름.
     """
 
     _xy = np.zeros(2, dtype=np.int)
-    """numpy.ndarray(dtype=numpy.int): The internal variable of xy."""
+    """numpy.ndarray(dtype=numpy.int): The x and y coordinate values 
+    stored within."""
 
     xy = property(_get_xy, _set_xy)
-    """numpy.ndarray: The physical coordinates [bottom_left, top_right] 
-    of the object.
+    """numpy.ndarray: Physical coordinate values of the object 
+    in the form of [bottom_left, top_right].
 
     Example
     -------
@@ -125,13 +123,10 @@ class PhysicalObject:
     .. image:: ../assets/img/object_physical_PhysicalObject_xy.png
       :height: 250
 
-    Notes
-    -----
-    **(Korean)**: 객체의 좌표.
     """
 
     master = None
-    """numpy.ndarray: The master of the current object (for array and pin objects).
+    """numpy.ndarray: Master ojbect for current object (for arrays and pins).
 
     Example
     -------
@@ -149,7 +144,7 @@ class PhysicalObject:
     """
 
     params = None
-    """dict: The dictionary that contains the object parameters.
+    """dict: Dictionary storing the parameters associated with the object
 
     Example
     -------
@@ -165,8 +160,9 @@ class PhysicalObject:
     """
 
     pointers = None
-    """dict: The dictionary that contains major physical coordinates of the object. 
-    Possible keys include left, right, top, bottom, bottom_left, center, etc.
+    """dict: The dictionary containing the key-value pairs of the major physical 
+    coordinates of the object, such as 'left', 'right', 'top', 'bottom', 
+    'bottom_left', 'center', etc.
 
     Example
     -------
@@ -185,7 +181,7 @@ class PhysicalObject:
 
     Notes
     -----
-    **(Korean)**: 객체의 주요 좌표들을 담고 있는 dict.
+    **(Korean)**: 객체의 주요 좌표들을 담고 있는 dictionary.
     """
 
     # Frequently used pointers
@@ -201,10 +197,6 @@ class PhysicalObject:
     
     .. image:: ../assets/img/object_physical_PhysicalObject_left.png
       :height: 250
-
-    Notes
-    -----
-    **(Korean)**: 객체의 left-center 좌표.
     """
 
     right = None
@@ -219,10 +211,6 @@ class PhysicalObject:
     
     .. image:: ../assets/img/object_physical_PhysicalObject_right.png
       :height: 250
-
-    Notes
-    -----
-    **(Korean)**: 객체의 right-center 좌표.
     """
 
     top = None
@@ -237,10 +225,6 @@ class PhysicalObject:
     
     .. image:: ../assets/img/object_physical_PhysicalObject_top.png
       :height: 250
-
-    Notes
-    -----
-    **(Korean)**: 객체의 top-center 좌표.
     """
 
     bottom = None
@@ -255,10 +239,6 @@ class PhysicalObject:
     
     .. image:: ../assets/img/object_physical_PhysicalObject_bottom.png
       :height: 250
-
-    Notes
-    -----
-    **(Korean)**: 객체의 bottom-center 좌표.
     """
 
     center = None
@@ -273,10 +253,6 @@ class PhysicalObject:
     
     .. image:: ../assets/img/object_physical_PhysicalObject_center.png
       :height: 250
-
-    Notes
-    -----
-    **(Korean)**: 객체의 center-center 좌표.
     """
 
     bottom_left = None
@@ -291,10 +267,6 @@ class PhysicalObject:
     
     .. image:: ../assets/img/object_physical_PhysicalObject_bottom_left.png
       :height: 250
-
-    Notes
-    -----
-    **(Korean)**: 객체의 bottom-left 좌표.
     """
 
     bottom_right = None
@@ -309,10 +281,6 @@ class PhysicalObject:
     
     .. image:: ../assets/img/object_physical_PhysicalObject_bottom_right.png 
       :height: 250
-
-    Notes
-    -----
-    **(Korean)**: 객체의 bottom-right 좌표.
     """
 
     top_left = None
@@ -327,10 +295,6 @@ class PhysicalObject:
     
     .. image:: ../assets/img/object_physical_PhysicalObject_top_left.png
       :height: 250
-
-    Notes
-    -----
-    **(Korean)**: 객체의 top-left 좌표.
     """
 
     top_right = None
@@ -345,10 +309,6 @@ class PhysicalObject:
     
     .. image:: ../assets/img/object_physical_PhysicalObject_top_right.png
       :height: 250
-
-    Notes
-    -----
-    **(Korean)**: 객체의 top-right 좌표.
     """
 
     @property
@@ -370,24 +330,25 @@ class PhysicalObject:
         -----
         **(Korean)**: numpy.ndarray: 객체의 bbox (bounding box).
         """
-        #if self.xy.ndim == 2:
-        if isinstance(self.xy[0], np.ndarray):  
+        # if self.xy.ndim == 2:
+        if isinstance(self.xy[0], np.ndarray):
             return np.sort(np.array([self.xy[0, :], self.xy[1, :]]), axis=0)
-        else: # single-point object.
+        else:  # single-point object.
             return np.array([self.xy, self.xy])
 
     def __init__(self, xy, name=None, params=None):
         """
-        The constructor function of PhysicalObject class.
+        The constructor function.
 
         Parameters
         ----------
         xy : numpy.ndarray
-            The physical coordinates [bottom_left, top_right] of the object.
+            Physical coordinate values of the object
+            in the form of [bottom_left, top_right].
         name : str
-            The name of the object.
+            Object name.
         params : dict
-            The dictionary that contains the object parameters.
+            Dictionary storing the parameters associated with the object.
 
         Returns
         -------
@@ -440,11 +401,11 @@ class PhysicalObject:
         self.xy = xy
 
     def __str__(self):
-        """Return the summary of this object."""
+        """Return the summary of the object information."""
         return self.summarize()
 
     def summarize(self):
-        """Return the summary of this object."""
+        """Return the summary of the object information."""
         name = "None" if self.name is None else self.name
         return (
             self.__repr__() + " \n"
@@ -463,8 +424,8 @@ class PhysicalObject:
         )
 
     def _update_pointers(self):
-        """Update pointers of this object. Called when the xy-coordinate of this
-        object is updated."""
+        """The internal function that updates the object's pointers
+        after a change in its physical coordinates."""
         xy_left = np.diag(np.dot(np.array([[1, 0], [0.5, 0.5]]), self.bbox))
         xy_right = np.diag(np.dot(np.array([[0, 1], [0.5, 0.5]]), self.bbox))
         xy_bottom = np.diag(np.dot(np.array([[0.5, 0.5], [1, 0]]), self.bbox))
@@ -506,8 +467,7 @@ class IterablePhysicalObject(PhysicalObject):
 
     elements = None
     """
-    numpy.ndarray: The numpy array that contains this object's subelements as 
-    its elements.
+    dict: Numpy array containing its element objects.
 
     Example
     -------
@@ -530,13 +490,13 @@ class IterablePhysicalObject(PhysicalObject):
     """
 
     def _get_xy(self):
-        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of
-        this object."""
+        """numpy.ndarray(dtype=numpy.int): Retrive x,y coordinate values of
+        the object."""
         return self._xy
 
     def _set_xy(self, value):
-        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of
-        this object."""
+        """numpy.ndarray(dtype=numpy.int): Update x,y coordinates of
+        the object."""
         # Update the coordinate value of its elements.
         self._update_elements(xy_ofst=value - self.xy)
         # Update the coordinate value of the object itself.
@@ -546,7 +506,7 @@ class IterablePhysicalObject(PhysicalObject):
 
     @property
     def shape(self):
-        """The array dimension of this object.
+        """Array size of the object.
 
         Example
         -------
@@ -571,18 +531,19 @@ class IterablePhysicalObject(PhysicalObject):
 
     def __init__(self, xy, name=None, params=None, elements=None):
         """
-        Constructor function of IterablePhysicalObject class.
+        The constructor function.
 
         Parameters
         ----------
         xy : numpy.ndarray
-            The physical coordinates [bottom_left,top_right] of the object.
+            Physical coordinate values of the object
+            in the form of [bottom_left, top_right].
         name : str
-            The name of the object.
+            Object name.
         params : dict
-            The dictionary containing attributes of the object.
+            Dictionary storing the parameters associated with the object.
         elements : list
-            The dictionary containing element objects that compose the object.
+            List containing its element objects.
 
         Returns
         -------
@@ -622,33 +583,32 @@ class IterablePhysicalObject(PhysicalObject):
             self.elements = np.asarray(elements)
 
     def __getitem__(self, pos):
-        """Return the sub-elements of this object, based on the pos parameter."""
+        """Return the sub-elements of the object, based on the pos parameter."""
         return self.elements[pos]
 
     def __setitem__(self, pos, item):
-        """Set the sub-elements of this object, based on the pos and item
-        parameter."""
+        """Update the sub-elements of the object, based on the pos and item
+        parameters."""
         self.elements[pos] = item
 
     def __iter__(self):
-        """Iterator function. Directly mapped to the iterator of the elements
-        attribute of this object."""
+        """Iterator that maps directly to the elements attribute of
+        this object."""
         return self.elements.__iter__()
 
     def __next__(self):
-        """Iterator function. Directly mapped to the iterator of the elements
-        attribute of this object."""
+        """Iterator that maps directly to the iterator function of
+        the elements attribute of this object."""
         return self.elements.__next__()
 
     def ndenumerate(self):
-        """Enumerate over the element array. Calls np.ndenumerate() of the elements
-        of this object."""
+        """Enumerate over the element array. Calls np.ndenumerate() of
+        the elements of this object."""
         return np.ndenumerate(self.elements)
 
     def _update_elements(self, xy_ofst):
-        """Update xy-coordinates of this object's elements. An internal function
-        for _set_xy()"""
-        # print("aa?")
+        """Update the xy coordinates of the elements of this object,
+        used internally by the _set_xy() function."""
         if np.all(self.elements is not None):
             # Update the x and y coordinate values of elements.
             for n, e in self.ndenumerate():
@@ -658,8 +618,8 @@ class IterablePhysicalObject(PhysicalObject):
 
 class PhysicalObjectGroup(IterablePhysicalObject):
     """
-    A grouped physical object. Intended to be generated as a group in Virtuoso
-    (not implemented yet).
+    A class for grouped physical objects, designed to be generated as a group
+    in Cadence Virtuoso (currently not implemented).
     """
 
     # TODO: implement this.
@@ -670,7 +630,7 @@ class PhysicalObjectGroup(IterablePhysicalObject):
 
     def __init__(self, xy, name=None, params=None, elements=None):
         """
-        Constructor.
+        The constructor function.
 
         Parameters
         ----------
@@ -758,11 +718,11 @@ class PhysicalObjectArray(np.ndarray):
         self.params = getattr(obj, 'params', None)
 
     def __str__(self):
-        """Returns the summary of this object."""
+        """Return the summary of the object information."""
         return self.summarize()
 
     def summarize(self):
-        """Summarizes object information."""
+        """Return the summary of the object information."""
         return "  " + \
                "name:" + self.name + ", " + \
                "class:" + self.__class__.__name__ + ", " + \
@@ -794,7 +754,8 @@ class Rect(PhysicalObject):
     """
 
     layer = None
-    """numpy.ndarray: The layer information [name, purpose] of the object.
+    """numpy.ndarray: The physical layer information of the object, 
+    represented as a list with two elements: [name, purpose].
 
     Example
     -------
@@ -811,7 +772,7 @@ class Rect(PhysicalObject):
 
     netname = None
     """
-    str: The net name of the object.
+    str: The net name associated with the object.
 
     Example
     -------
@@ -828,7 +789,7 @@ class Rect(PhysicalObject):
 
     hextension = 0
     """
-    int: The extension of the rect object in horizontal direction.
+    int: The horizontal extension of the rectangle object above its bounding box.
 
     Example
     -------
@@ -848,7 +809,7 @@ class Rect(PhysicalObject):
 
     vextension = 0
     """
-    int: The extension of the rect object in vertical direction.
+    int: The vertical extension of the rectangle object above its bounding box.
 
     Example
     -------
@@ -868,7 +829,7 @@ class Rect(PhysicalObject):
 
     color = None
     """
-    int or None or "not_MPT": The color (multi-patterning ID) parameter of 
+    int or None or "not_MPT": The color (multi-patterning identifier) parameter of 
     the object.
 
     Example
@@ -930,12 +891,14 @@ class Rect(PhysicalObject):
 
     @property
     def height_vec(self):
-        """numpy.ndarray(dtype=int): The height vector [0, self.height]."""
+        """numpy.ndarray(dtype=int): The height direction vector [0, self.height]
+        of the object."""
         return np.array([0, self.height])
 
     @property
     def width_vec(self):
-        """numpy.ndarray(dtype=int): The width vector [self.width, 0]."""
+        """numpy.ndarray(dtype=int): The width direction vector [self.width, 0]
+        of the object."""
         return np.array([self.width, 0])
 
     @property
@@ -977,21 +940,23 @@ class Rect(PhysicalObject):
         Parameters
         ----------
         xy : numpy.ndarray
-            The physical coordinates [bottom_left, top_right] of the object.
+            Physical coordinate values of the object
+            in the form of [bottom_left, top_right].
         layer : list
-            The layer information of the object.
+            The physical layer information of the object,
+            represented as a list with two elements: [name, purpose].
         hextension : int
             The horizontal extension value of the object.
         vextension : int
             The vertical extension value of the object.
         name : str
-            The name of the object.
+            Object name.
         netname : str
-            The net name of the object.
+            The net name associated with the object.
         params : dict
-            The dictionary containing attributes of the object.
+            Dictionary storing the parameters associated with the object.
         color : str, optional.
-            The coloring information of the object.
+            The color (multi-patterning identifier) parameter of the object.
 
         Returns
         -------
@@ -1414,7 +1379,7 @@ class Pin(IterablePhysicalObject):
         elements=None,
     ):
         """
-        The constructor function of Pin class.
+        The constructor function.
 
         Parameters
         ----------
@@ -1551,7 +1516,7 @@ class Text(PhysicalObject):
 
     def __init__(self, xy, layer, text, name=None, params=None):
         """
-        The constructor function of Text class.
+        The constructor function.
 
         Parameters
         ----------
@@ -1814,13 +1779,13 @@ class Instance(IterablePhysicalObject):
                             e.xy = e.xy + xy_ofst
 
     def _get_xy(self):
-        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of
-        this object."""
+        """numpy.ndarray(dtype=numpy.int): Retrive x,y coordinate values of
+        the object."""
         return self._xy
 
     def _set_xy(self, value):
-        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of
-        this object."""
+        """numpy.ndarray(dtype=numpy.int): Update x,y coordinates of
+        the object."""
         # Update the coordinate value of its pins.
         self._update_pins(xy_ofst=value - self.xy)
         IterablePhysicalObject._set_xy(self, value=value)
@@ -2082,7 +2047,7 @@ class Instance(IterablePhysicalObject):
         params=None,
     ):
         """
-        The constructor function of Instance class.
+        The constructor function.
 
         Parameters
         ----------
@@ -2275,7 +2240,7 @@ class Instance(IterablePhysicalObject):
                 )
 
     def summarize(self):
-        """Summarize object information."""
+        """Return the summary of the object information."""
         _shape = str(None if self.shape is None else self.shape.tolist())
         return (
             PhysicalObject.summarize(self)
@@ -2295,8 +2260,8 @@ class Instance(IterablePhysicalObject):
             + str(self.pins)
             + ", \n"
         )
-    
-    def update_netname(self, netmap:dict):
+
+    def update_netname(self, netmap: dict):
         """update netname information of pins"""
         for pn, p in self.pins.items():
             if p.netname in netmap:
@@ -2344,7 +2309,7 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
 
     native_elements = None
     """
-    dict: The dictionary containing physical entities constituting the object.
+    dict: Dictionary containing its physical element entities.
 
     Example
     -------
@@ -2397,7 +2362,7 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
         params=None,
     ):
         """
-        The constructor function of VirtualInstance class.
+        The constructor function.
 
         Parameters
         ----------
@@ -2497,7 +2462,7 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
         )
 
     def summarize(self):
-        """Summarize object information."""
+        """Return the summary of the object information."""
         return Instance.summarize(self) + "    native elements: " + str(self.native_elements) + "\n"
 
     def get_element_position(self, obj):
