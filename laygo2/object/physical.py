@@ -751,7 +751,8 @@ class Rect(PhysicalObject):
     """
 
     layer = None
-    """numpy.ndarray: The physical layer information of the object, 
+    """
+    numpy.ndarray: The physical layer information of the object, 
     represented as a list with two elements: [name, purpose].
 
     Example
@@ -1004,13 +1005,12 @@ class Rect(PhysicalObject):
 
     def align(self, rect2):
         """
-        Match the length of self and rect2 wires, when either width or height of
-        the two objects is zero.
+        Match the length of the self and rect2 objects, if either object has a width or height of 0.
 
         Parameters
         ----------
         rect2 : Rect
-            The other Rect object to be matched to this Rect object.
+            The rect object to be aligned with `self`.
         """
         index = 0
         r0 = self
@@ -1082,7 +1082,8 @@ class Path(PhysicalObject):
     # TODO: implement pointers.
 
     layer = None
-    """numpy.ndarray : The layer information [name, purpose] of object.
+    """numpy.ndarray: The physical layer information of the object, 
+    represented as a list with two elements: [name, purpose].
     
     Notes
     -----
@@ -1091,7 +1092,7 @@ class Path(PhysicalObject):
 
     netname = None
     """
-    str: The net name of the object.
+    str: The net name associated with the object.
 
     Example
     -------
@@ -1131,7 +1132,7 @@ class Path(PhysicalObject):
 
     extension = 0
     """
-    int: The extension of the path object from its endpoints.
+    int: The path extension from its endpoints.
 
     Example
     -------
@@ -1151,12 +1152,12 @@ class Path(PhysicalObject):
 
     @property
     def bbox(self):
-        """The bounding box [bottom_left, top_right] information of the object."""
+        """The physical bounding box of the object."""
         return np.sort(np.array([self.xy[0], self.xy[-1]]), axis=0)
 
     def _update_pointers(self):
-        """Update pointers of this object. Called when the value of xy of this
-        object is updated."""
+        """The internal function that updates the object's pointers
+        after a change in its physical coordinates."""
         pass
 
     def __init__(self, xy, layer, width, extension=0, name=None, netname=None, params=None):
@@ -1166,19 +1167,21 @@ class Path(PhysicalObject):
         Parameters
         ----------
         xy : numpy.ndarray
-            The physical coordinates [bottom_left, top_right] of the object.
+            Physical coordinate values of the object
+            in the form of [bottom_left, top_right].
         layer : list
-            The layer information of the object.
+            The physical layer information of the object,
+            represented as a list with two elements: [name, purpose].
         width : int
             The width of the object.
         extension : int
-            The extension value of the object.
+            The path extension from its endpoints.
         name : str
-            The name of the object.
+            Object name.
         netname : str
-            The net name of the object.
+            The net name associated with the object.
         params : dict
-            The dictionary containing attributes of the object.
+            Dictionary storing the parameters associated with the object.
 
         Returns
         -------
@@ -1267,7 +1270,8 @@ class Pin(IterablePhysicalObject):
 
     layer = None
     """
-    numpy.ndarray: The layer information of the object.
+    numpy.ndarray: The physical layer information of the object, 
+    represented as a list with two elements: [name, purpose].
 
     Example
     -------
@@ -1282,7 +1286,7 @@ class Pin(IterablePhysicalObject):
 
     netname = None
     """
-    str: The net name of the object.
+    str: The net name associated with the object.
 
     Example
     -------
@@ -1296,7 +1300,9 @@ class Pin(IterablePhysicalObject):
     """
 
     master = None
-    """Instance: The master instance of the pin. Used for instance pins only."""
+    """
+    Instance: The instance that the pin belongs to. Used for pins of instances only.
+    """
 
     @property
     def height(self):
@@ -1357,12 +1363,14 @@ class Pin(IterablePhysicalObject):
 
     @property
     def height_vec(self):
-        """numpy.ndarray(dtype=int): Return np.array([0, height])."""
+        """numpy.ndarray(dtype=int): The height direction vector [0, self.height]
+        of the object."""
         return np.array([0, self.height])
 
     @property
     def width_vec(self):
-        """numpy.ndarray(dtype=int): Return np.array([width, 0])."""
+        """numpy.ndarray(dtype=int): The width direction vector [self.width, 0]
+        of the object."""
         return np.array([self.width, 0])
 
     def __init__(
@@ -1381,15 +1389,17 @@ class Pin(IterablePhysicalObject):
         Parameters
         ----------
         xy : numpy.ndarray
-            The physical coordinates [bottom_left, top_right] of the object.
+            Physical coordinate values of the object
+            in the form of [bottom_left, top_right].
         layer : list
-            The layer information of the object.
+            The physical layer information of the object,
+            represented as a list with two elements: [name, purpose].
         name : str
-            The name of the object.
+            Object name.
         netname : str
-            The net name of the object.
+            The net name associated with the object.
         params : dict
-            The dictionary containing attributes of the object.
+            Dictionary storing the parameters associated with the object.
 
         Returns
         -------
@@ -1479,7 +1489,8 @@ class Text(PhysicalObject):
 
     layer = None
     """
-    numpy.ndarray: Layer information of object.
+    list: The physical layer information of the object,
+          represented as a list with two elements: [name, purpose].
 
     Example
     -------
@@ -1496,7 +1507,7 @@ class Text(PhysicalObject):
 
     text = None
     """
-    str: Text content of object.
+    str: Text content of the object.
 
     Example
     -------
@@ -1518,15 +1529,17 @@ class Text(PhysicalObject):
         Parameters
         ----------
         xy : numpy.ndarray
-            The physical coordinates [bottom_left, top_right] of the object.
+            Physical coordinate values of the object
+            in the form of [bottom_left, top_right].
         layer : list
-            The layer information of the object.
+            The physical layer information of the object,
+            represented as a list with two elements: [name, purpose].
         text : str
             The text content.
         name : str
-            The name of the object.
+            Object name.
         params : dict
-            The dictionary containing attributes of the object.
+            Dictionary storing the parameters associated with the object.
 
         Returns
         -------
@@ -1673,15 +1686,15 @@ class Instance(IterablePhysicalObject):
     """str: The view name of the instance."""
 
     shape = None
-    """np.array([int, int]) or None: The shape of the instance mosaic. None if 
-    the instance is non-mosaic."""
+    """np.array([int, int]) or None: The mosaic shape of the instance. 
+    None if the instance is non-mosaic."""
 
     _pitch = None
-    """np.array([int, int]) or None: The internal variable for pitch."""
+    """np.array([int, int]) or None: The internal variable for self.pitch."""
 
     unit_size = None
     """
-    numpy.ndarray: The unit size when the object is constructed in array.
+    numpy.ndarray: The array unit size for the object.
 
     Example
     -------
@@ -1707,7 +1720,8 @@ class Instance(IterablePhysicalObject):
 
     transform = "R0"
     """
-    str: The transformation attribute of the object.
+    str: The attribute of the object that defines its transformation 
+    (rotation and mirroring).
 
     Example
     -------
@@ -1733,7 +1747,7 @@ class Instance(IterablePhysicalObject):
 
     pins = None
     """
-    dict: The dictionary having the pins belonging to the object.
+    dict: Dictionary of pins belonging to the object.
 
     Example
     -------
@@ -1765,8 +1779,10 @@ class Instance(IterablePhysicalObject):
     """
 
     def _update_pins(self, xy_ofst):
-        """Update xy-coordinates of this object's pins. An internal function for
-        _set_xy()"""
+        """
+        Internal function to update x,y coordinates of the object's pins. 
+        Used as part of _set_xy().
+        """
         if self.pins is not None:
             for pn, p in self.pins.items():
                 if np.all(p is not None):
@@ -1792,7 +1808,7 @@ class Instance(IterablePhysicalObject):
     @property
     def xy0(self):
         """
-        numpy.ndarray: The coordinates of the primary corner of the object.
+        numpy.ndarray: The x,y coordinates of the primary corner of the object.
 
         Example
         -------
@@ -1813,14 +1829,14 @@ class Instance(IterablePhysicalObject):
 
         Notes
         -----
-        **(Korean)**:     numpy.ndarray: 객체의 주 코너 좌표.
+        **(Korean)**: 객체의 주 코너 좌표.
         """
         return self.xy
 
     @property
     def xy1(self):
         """
-        numpy.ndarray: The coordinates of the secondary corner of the object.
+        numpy.ndarray: The x,y coordinates of the secondary corner of the object.
 
         Example
         -------
@@ -1841,7 +1857,7 @@ class Instance(IterablePhysicalObject):
 
         Notes
         -----
-        **(Korean)**:     numpy.ndarray: 객체의 보조 코너 좌표.
+        **(Korean)**: 객체의 보조 코너 좌표.
         """
         if self.size is None:
             return self.xy
@@ -1851,7 +1867,7 @@ class Instance(IterablePhysicalObject):
     @property
     def size(self):
         """
-        numpy.ndarray: The size of the object ([width, height]).
+        numpy.ndarray: The size of the object ([self.width, self.height]).
 
         Example
         -------
@@ -1880,19 +1896,19 @@ class Instance(IterablePhysicalObject):
             return (self.shape - np.array([1, 1])) * self.pitch + self.unit_size
 
     def get_pitch(self):
-        """numpy.ndarray(dtype=int): Get the pitch of the instance."""
+        """numpy.ndarray(dtype=int): Retrive the pitch of the instance."""
         if self._pitch is None:
             return self.unit_size
         else:
             return self._pitch
 
     def set_pitch(self, value):
-        """numpy.ndarray(dtype=int): Set the pitch of the instance."""
+        """numpy.ndarray(dtype=int): Update the pitch of the instance."""
         self._pitch = value
 
     pitch = property(get_pitch, set_pitch)
     """
-    numpy.ndarray: Pitch between unit object of the object in array.
+    numpy.ndarray: The pitch between unit objects in the array.
 
     Example
     -------
@@ -1958,6 +1974,7 @@ class Instance(IterablePhysicalObject):
 
     @property
     def bbox(self):
+        """The physical bounding box of the object."""
         bbox = np.array([self.xy0, self.xy1])
         # return bbox
         # return self.xy + np.dot(self.size, tf.Mt(self.transform).T)
@@ -2021,12 +2038,14 @@ class Instance(IterablePhysicalObject):
 
     @property
     def height_vec(self):
-        """numpy.ndarray(dtype=int): The height vector [0, height]."""
+        """numpy.ndarray(dtype=int): The height direction vector [0, self.height]
+        of the object."""
         return np.array([0, self.height])
 
     @property
     def width_vec(self):
-        """numpy.ndarray(dtype=int): The width vector [width, 0]."""
+        """numpy.ndarray(dtype=int): The width direction vector [self.width, 0]
+        of the object."""
         return np.array([self.width, 0])
 
     def __init__(
@@ -2049,7 +2068,7 @@ class Instance(IterablePhysicalObject):
         Parameters
         ----------
         xy : numpy.ndarray
-            The primary coordinate [x0, y0] of the object.
+            The primary coordinate ([x0, y0]) of the object.
         libname : str
             The library name of the object.
         cellname : str
@@ -2057,21 +2076,23 @@ class Instance(IterablePhysicalObject):
         shape : numpy.ndarray
             The shape [col, row] of the elements.
         pitch : numpy.ndarray
-            Pitch between the elements of the object in array.
+            The pitch between unit objects in the array.
         transform : str
-            The transformation attribute of the object.
+            The attribute of the object that defines its transformation 
+            (rotation and mirroring).
         unit_size : list
-            Unit size of the object.
+            The array unit size for the object.
         pins : dict
-            The dictionary containing pins belonging to the object.
+            Dictionary of pins belonging to the object.
         name : str
-            The name of the object.
+            Object name.
         params : dict
-            (optional) The dictionary containing attributes of the object.
+            (optional) Dictionary storing the parameters associated with 
+            the object.
 
         Returns
         -------
-        Instance
+        Instance : The constructed Instance object.
 
         See Also
         --------
@@ -2259,7 +2280,10 @@ class Instance(IterablePhysicalObject):
         )
 
     def update_netname(self, netmap: dict):
-        """update netname information of pins"""
+        """
+        Update the netname information for all pins belonging 
+        to this object.
+        """
         for pn, p in self.pins.items():
             if p.netname in netmap:
                 p.netname = netmap[p.netname]  # update netname information
@@ -2267,9 +2291,9 @@ class Instance(IterablePhysicalObject):
 
 class VirtualInstance(Instance):  # IterablePhysicalObject):
     """
-    The VirtualInstance class implements functions for a group of objects,
-    which can be treated as a single instance with dedicated dimensional,
-    port, and any related parameters.
+    The VirtualInstance class implements functions for a group of objects 
+    to be treated as a single instance with dedicated dimensional, 
+    port, and related parameters.
 
     Example
     -------
@@ -2306,7 +2330,8 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
 
     native_elements = None
     """
-    dict: Dictionary containing its physical element entities.
+    dict: Dictionary that holds the physical element entities 
+        of the VirtualInstance object.
 
     Example
     -------
@@ -2364,31 +2389,35 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
         Parameters
         ----------
         xy : numpy.ndarray
-            The primary coordinate [x0, y0] of the object.
+            Physical coordinate values of the object
+            in the form of [bottom_left, top_right].
         libname : str
             The library name of the object.
         cellname : str
             The cell name of the object.
         native_elements : dict
-            The dictionary containing physical entities constituting the object.
+            Dictionary that holds the physical element entities 
+            of the VirtualInstance object.
         shape : numpy.ndarray
             The shape [col, row] of the elements.
         pitch : numpy.ndarray
-            Pitch between elements of the object in array.
+            The pitch between unit objects in the array.
         transform : str
-            The transformation attribute of the object.
+            The attribute of the object that defines its transformation 
+            (rotation and mirroring).
         unit_size : list
             Unit size of object.
         pins : dict
-            The dictionary containing pins belonging to the object.
+            The array unit size for the object.
         name : str
-            The name of the object.
+            Object name.
         params : dict
-            The dictionary containing attributes of the object.
+            (optional) Dictionary storing the parameters associated with 
+            the object.
 
         Returns
         -------
-        laygo2.VirtualInstance
+        laygo2.VirtualInstance : The constructed VirtualInstance object.
 
         See Also
         --------
@@ -2464,12 +2493,13 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
 
     def get_element_position(self, obj):
         """
-        Get element's xy-position from origin.
+        Get x,y coordinates of the element obj (which belongs to the object)
+        relative to the origin (0, 0).
 
         Parameters
         ----------
         obj : element
-            element belongs to self
+            The element belongs to the object.
         """
         vinst = self
         tr = vinst.transform
