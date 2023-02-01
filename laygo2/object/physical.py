@@ -23,37 +23,34 @@
 ########################################################################################################################
 
 """
-**laygo2.object.physical** module is defining classes for physical objects that 
-compose actual IC layout.
+**laygo2.object.physical** module provides classes for physical objects 
+used in IC layout design. The supported physical objects include:
 
-The types of objects supported by the physical module are summarized below:
+:obj:`PhysicalObject` - Base class for all physical layout objects.
 
-:obj:`PhysicalObject` - base class for physical layout objects.
+:obj:`IterablePhysicalObject` - Base class for physical objects that can be iterated (eg. arrayed instances).
 
-:obj:`IterablePhysicalObject` - base class for iterable physical objects (eg. arrayed instances).
+:obj:`PhysicalObjectGroup` - Defines a group of physical objects (currently not implemented).
 
-:obj:`PhysicalObjectGroup` - defines a group of physical objects (not implemented yet).
+:obj:`Rect` - Represents a rectangular shape.
 
-:obj:`Rect` - defines a rect.
+:obj:`Path` - Defines a path.
 
-:obj:`Path` - defines a path.
+:obj:`Pin` - Defines a pin.
 
-:obj:`Pin` - defines a pin.
+:obj:`Text` - Defines a text label.
 
-:obj:`Text` - defines a text label.
+:obj:`Instance` - Represents an instance of a design element.
 
-:obj:`Instance` - defines an instance.
+:obj:`VirtualInstance` - Represents a virtual instance composed of multiple physical objects, acting as a single instance.
 
-:obj:`VirtualInstance` - defines a virtual instance composed of multiple physical objects
-(a group of objects that acts as a single instance).
-
-The following figure illustrates examples of the physical objects supported by this module.
+Examples of the physical objects supported by this module are shown in the followng figure.
 
 .. image:: ../assets/img/user_guide_physical.png
 
 
 
-Check the following links for the details of component classes.
+Check the following links for further details.
 """
 
 __author__ = "Jaeduk Han"
@@ -625,7 +622,7 @@ class PhysicalObjectGroup(IterablePhysicalObject):
     # TODO: implement this.
 
     def summarize(self):
-        """Return the summary of the object information."""
+        """Get object information summary."""
         return IterablePhysicalObject.summarize(self) + "    elements: " + str(self.elements) + ", \n"
 
     def __init__(self, xy, name=None, params=None, elements=None):
@@ -1046,7 +1043,7 @@ class Rect(PhysicalObject):
             r1.xy = _xy
 
     def summarize(self):
-        """Return the summary of the object information."""
+        """Get object information summary."""
         return (
             PhysicalObject.summarize(self)
             + "    layer: "
@@ -1228,7 +1225,7 @@ class Path(PhysicalObject):
         self.pointers = dict()  # Pointers are invalid for Path objects.
 
     def summarize(self):
-        """Return the summary of the object information."""
+        """Get object information summary."""
         return (
             PhysicalObject.summarize(self)
             + "    width: "
@@ -1431,7 +1428,7 @@ class Pin(IterablePhysicalObject):
         IterablePhysicalObject.__init__(self, xy=xy, name=name, params=params, elements=elements)
 
     def summarize(self):
-        """Return the summary of the object information."""
+        """Get object information summary."""
         return (
             IterablePhysicalObject.summarize(self)
             + "    layer: "
@@ -1571,7 +1568,7 @@ class Text(PhysicalObject):
         PhysicalObject.__init__(self, xy=xy, name=name, params=params)
 
     def summarize(self):
-        """Return the summary of the object information."""
+        """Get object information summary."""
         return (
             PhysicalObject.summarize(self)
             + "    layer: "

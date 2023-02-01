@@ -22,10 +22,6 @@
 #
 ########################################################################################################################
 
-"""
-**laygo2.object.template** module implements classes for various layout template objects.
-"""
-
 __author__ = "Jaeduk Han"
 __maintainer__ = "Jaeduk Han"
 __status__ = "Prototype"

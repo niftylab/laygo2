@@ -42,37 +42,21 @@ import laygo2_tech_quick_start as tech
 def _mos_update_params(params):
     """Make a complete parameter table for mos"""
     us = np.array([30, 100])  # unit transistor size
-    #ush = np.array([15, 100])  # half-unit transistor size
-    if "nf" not in params:  # number of fingers
-        params["nf"] = 1
-    if "nfdmyl" not in params:  # number of left-dummy fingers
-        params["nfdmyl"] = 0
-    if "nfdmyr" not in params:  # number of right-dummy fingers
-        params["nfdmyr"] = 0
-    if "trackswap" not in params:  # source-drain track swap
-        params["trackswap"] = False
-    if "tie" not in params:  # tie to power rail
-        params["tie"] = None
-    if "bndl" not in params:  # create local left boundary
-        params["bndl"] = True
-    if "bndr" not in params:  # create local right boundary
-        params["bndr"] = True
-    if "gbndl" not in params:  # create global left boundary
-        params["gbndl"] = False
-    if "gbndr" not in params:  # create global right boundary
-        params["gbndr"] = False
-    if "unit_size_core" not in params:  # core unit size
-        params["unit_size_core"] = us
-    if "unit_size_dmy" not in params:  # dummy size
-        params["unit_size_dmy"] = us
-    if "unit_size_bndl" not in params:  # left boundary unit size
-        params["unit_size_bndl"] = us
-    if "unit_size_bndr" not in params:  # right boundary unit size
-        params["unit_size_bndr"] = us
-    if "unit_size_gbndl" not in params:  # left boundary unit size
-        params["unit_size_gbndl"] = us
-    if "unit_size_gbndr" not in params:  # right boundary unit size
-        params["unit_size_gbndr"] = us
+    params["nf"]              = params.get("nf",              1)     # number of fingers
+    params["nfdmyl"]          = params.get("nfdmyl",          0)     # number of left-dummy fingers
+    params["nfdmyr"]          = params.get("nfdmyr",          0)     # number of right-dummy fingers
+    params["trackswap"]       = params.get("trackswap",       False) # s/d track swap
+    params["tie"]             = params.get("tie",             None)  # tie to power rail
+    params["bndl"]            = params.get("bndl",            True)  # create local left boundary
+    params["bndr"]            = params.get("bndr",            True)  # create local right boundary
+    params["gbndl"]           = params.get("gbndl",           True)  # create global left boundary
+    params["gbndr"]           = params.get("gbndr",           True)  # create global right boundary
+    params["unit_size_core"]  = params.get("unit_size_core",  us)    # core unit size
+    params["unit_size_dmy"]   = params.get("unit_size_dmy",   us)    # dummy unit size
+    params["unit_size_bndl"]  = params.get("unit_size_bndl",  us)    # left local boundary size
+    params["unit_size_bndr"]  = params.get("unit_size_bndr",  us)    # right local boundary size
+    params["unit_size_gbndl"] = params.get("unit_size_gbndl", us)    # left global boundary size
+    params["unit_size_gbndr"] = params.get("unit_size_gbndr", us)    # right global boundary size
     return params
 
 
@@ -103,7 +87,7 @@ def mos_pins_func(devtype, params):
     """Generate a pin dictionary from params."""
     # Compute parameters
     params = _mos_update_params(params)
-    nf = params["nf"] if "nf" in params.keys() else 1
+    nf = params["nf"] 
     nfdl = params["nfdmyl"]
     nfdr = params["nfdmyr"]
     blx = 30 if params["bndl"] == True else 0

@@ -22,6 +22,10 @@
 #
 ########################################################################################################################
 
+"""
+**laygo2.object.template** module implements classes for various layout template objects.
+"""
+
 from . import *
 from .core import *
 from .routing import *

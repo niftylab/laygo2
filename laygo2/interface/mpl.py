@@ -179,8 +179,8 @@ def export(
     scale=1,
     colormap=None,
     order=None,
-    xlim=[-100, 400],
-    ylim=[-100, 300],
+    xlim=None,
+    ylim=None,
     filename=None,
 ):
     """
@@ -257,8 +257,13 @@ def export(
     if len(fig) == 1:
         fig = fig[0]
 
-    plt.xlim(xlim)
-    plt.ylim(ylim)
+    # scale
+    plt.autoscale()
+    if not (xlim == None):
+        plt.xlim(xlim)
+    if not (ylim == None):
+        plt.ylim(ylim)
+
 
     if filename is not None:
         plt.savefig(filename)
@@ -267,12 +272,107 @@ def export(
 
     return fig
 
+
+def export_instance(
+    obj,
+    scale=1,
+    colormap=None,
+    order=None,
+    xlim=None,
+    ylim=None,
+    filename=None,
+):
+    """
+    Export a laygo2.object.physical.Instance object to a matplotlib plot.
+
+    Parameters
+    ----------
+    obj: laygo2.object.physical.Instance
+        The instance object to exported.
+    scale: float
+        (optional) The scaling factor between laygo2's integer coordinates and plot coordinates.
+    colormap: dict
+        A dictionary that contains layer-color mapping information.
+    order: list
+        A list that contains the order of layers to be displayed (former is plotted first).
+    xlim: list
+        (optional) A list that specifies the range of plot in x-axis.
+    ylim: list
+        (optional) A list that specifies the range of plot in y-axis.
+    filename: str
+        (optional) If specified, export a output file for the plot.
+
+    Returns
+    -------
+    matplotlib.pyplot.figure or list: The generated figure object(s).
+
+    """
+
+    # colormap
+    if colormap is None:
+        colormap = dict()
+
+    # a list to align layered objects in order
+    if order is None:
+        order = []
+
+    '''
+    # xlim and ylim
+    if xlim is None:
+        xlim = [obj.bbox[0][0] - obj.width, obj.bbox[1][0] + obj.width]
+    if ylim is None:
+        ylim = [obj.bbox[0][1] - obj.height, obj.bbox[1][1] + obj.height]
+    '''
+
+    fig = plt.figure()
+    pypobjs = []
+    ax = fig.add_subplot(111)
+    pypobjs += _translate_obj(obj.name, obj, colormap, scale=scale)
+    for _alignobj in order:
+        for _pypobj in pypobjs:
+            if _pypobj[1] == _alignobj:  # layer is matched.
+                if isinstance(_pypobj[0], str):
+                    if _pypobj[0] == 'text':  # Text
+                        # [["text", obj.layer[0], obj.text, obj.xy]]
+                        color = "black"
+                        ax.annotate(
+                            _pypobj[2], (_pypobj[3][0], _pypobj[3][1]), color=color, weight="bold", fontsize=6, ha="center", va="center"
+                        )
+                elif _pypobj[0].__class__ == matplotlib.patches.Rectangle:  # Rect
+                    ax.add_patch(_pypobj[0])
+                    if len(_pypobj) == 3:  # annotation.
+                        ax.add_artist(_pypobj[0])
+                        rx, ry = _pypobj[0].get_xy()
+                        cx = rx + _pypobj[0].get_width() / 2.0
+                        cy = ry + _pypobj[0].get_height() / 2.0
+                        if _pypobj[1] == "__instance_pin__":
+                            color = _pypobj[0].get_edgecolor()
+                        else:
+                            color = "black"
+                        ax.annotate(
+                            _pypobj[2], (cx, cy), color=color, weight="bold", fontsize=6, ha="center", va="center"
+                        )
+    # scale
+    plt.autoscale()
+    if not (xlim == None):
+        plt.xlim(xlim)
+    if not (ylim == None):
+        plt.ylim(ylim)
+
+    if filename is not None:
+        plt.savefig(filename)
+
+    plt.show()
+
+    return fig
+
+
 def export_grid(
     obj,
     colormap=None,
     order=None,
-    xlim=[-10, 40],
-    ylim=[-10, 30],
+    xlim=None,
+    ylim=None,
     filename=None,
 ):
     """
@@ -354,8 +454,6 @@ def export_grid(
                 v = obj.viamap[i, j]
                 x = obj.vgrid.elements[i]
                 y = obj.hgrid.elements[j]
-                print(v)
-                print(x, y)
                 circ = matplotlib.patches.Circle((x, y), radius=2, facecolor="black", edgecolor="black") #, **kwargs)
                 ax.add_patch(circ)
                 ax.annotate(v.name, (x+2, y), color="black", fontsize=4, ha="left", va="bottom")
@@ -385,8 +483,12 @@ def export_grid(
                             _pypobj[2], (cx, cy), color=color, weight="bold", fontsize=6, ha="center", va="center"
                         )
 
-    plt.xlim(xlim)
-    plt.ylim(ylim)
+    # scale
+    plt.autoscale()
+    if not (xlim == None):
+        plt.xlim(xlim)
+    if not (ylim == None):
+        plt.ylim(ylim)
 
     if filename is not None:
         plt.savefig(filename)

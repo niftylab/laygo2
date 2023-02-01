@@ -22,25 +22,25 @@
 #
 ########################################################################################################################
 
-"""**laygo2.object** package implements core object classes for physical 
-layout structures and design hierarchies.
+"""
+**laygo2.object** package is a collection of core object classes that 
+are used to represent physical layout structures and design hierarchies. 
 
-The folowing modules compose the object package:
+The package consists of four modules:
 
-- **laygo2.object.physical** module is defining classes for physical objects that compose actual IC layout.
+- **laygo2.object.physical**: This module defines classes for physical objects, which composes the actual IC layout.
 
-- **laygo2.object.template** module describes classes for templates that generate various instance objects for target technology and design parameters.
+- **laygo2.object.template**: This module describes classes for templates, which generate various instance objects based on the target technology and design parameters.
 
-- **laygo2.object.grid** module describes grid classes to abstract placement and routing coordinates. parameterizations.
+- **laygo2.object.grid**: This module describes grid classes, which provide an abstract representation of placement and routing coordinates and parameters.
 
-- **laygo2.object.database** module implements classes for design hierarchy management.
+- **laygo2.object.database**: This module implements classes for design hierarchy management, enabling users to manage and maintain the relationships between design elements.
 
-The following figure illustrates a UML diagram of the object package.
+The following UML diagram of the object package provides a visual representation of the relationships between the four modules and their subclasses.
 
 .. image:: ../assets/img/user_guide_uml.png
 
-Check the following links for the details of submodules and classes.
-
+Check the following links for the details of the modules and their subclasses.
 """
 
 #from laygo2.object import *
