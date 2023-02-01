@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-laygo2 - LAYout with Gridded Objects 2
-=======================================
+laygo2: Automating Custom Analog/Mixed-Signal/Digital IC Layouts
+================================================================
 
 `[Source Code] <https://www.github.com/niftylab/laygo2>`_
 `[Colab Tutorial] <https://colab.research.google.com/drive/1tpuUvqb6BujzZI6RBf2cFdAfMqBsxpep?usp=sharing>`_
