@@ -81,7 +81,7 @@ class PhysicalObject:
     def _set_xy(self, value):
         """numpy.ndarray(dtype=numpy.int): Update x,y coordinates of
         the object."""
-        self._xy = np.asarray(value, dtype=np.int)
+        self._xy = np.asarray(value, dtype=int)
         self._update_pointers()
 
     name = None
@@ -100,7 +100,7 @@ class PhysicalObject:
 
     """
 
-    _xy = np.zeros(2, dtype=np.int)
+    _xy = np.zeros(2, dtype=int)
     """numpy.ndarray(dtype=numpy.int): The x and y coordinate values 
     stored within."""
 
@@ -377,14 +377,14 @@ class PhysicalObject:
         self.name = name
         # Initialize pointers.
         self.pointers = dict()
-        self.pointers["left"] = np.array([0, 0], dtype=np.int)
-        self.pointers["right"] = np.array([0, 0], dtype=np.int)
-        self.pointers["bottom"] = np.array([0, 0], dtype=np.int)
-        self.pointers["top"] = np.array([0, 0], dtype=np.int)
-        self.pointers["bottom_left"] = np.array([0, 0], dtype=np.int)
-        self.pointers["bottom_right"] = np.array([0, 0], dtype=np.int)
-        self.pointers["top_left"] = np.array([0, 0], dtype=np.int)
-        self.pointers["top_right"] = np.array([0, 0], dtype=np.int)
+        self.pointers["left"] = np.array([0, 0], dtype=int)
+        self.pointers["right"] = np.array([0, 0], dtype=int)
+        self.pointers["bottom"] = np.array([0, 0], dtype=int)
+        self.pointers["top"] = np.array([0, 0], dtype=int)
+        self.pointers["bottom_left"] = np.array([0, 0], dtype=int)
+        self.pointers["bottom_right"] = np.array([0, 0], dtype=int)
+        self.pointers["top_left"] = np.array([0, 0], dtype=int)
+        self.pointers["top_right"] = np.array([0, 0], dtype=int)
         self.left = self.pointers["left"]
         self.right = self.pointers["right"]
         self.bottom = self.pointers["bottom"]
@@ -432,15 +432,15 @@ class PhysicalObject:
         xy_top_left = np.diag(np.dot(np.array([[1, 0], [0, 1]]), self.bbox))
         xy_top_right = np.diag(np.dot(np.array([[0, 1], [0, 1]]), self.bbox))
         xy_center = np.diag(np.dot(np.array([[0.5, 0.5], [0.5, 0.5]]), self.bbox))
-        self.pointers["left"] = xy_left.astype(np.int)
-        self.pointers["right"] = xy_right.astype(np.int)
-        self.pointers["bottom"] = xy_bottom.astype(np.int)
-        self.pointers["top"] = xy_top.astype(np.int)
-        self.pointers["bottom_left"] = xy_bottom_left.astype(np.int)
-        self.pointers["bottom_right"] = xy_bottom_right.astype(np.int)
-        self.pointers["top_left"] = xy_top_left.astype(np.int)
-        self.pointers["top_right"] = xy_top_right.astype(np.int)
-        self.pointers["center"] = xy_center.astype(np.int)
+        self.pointers["left"] = xy_left.astype(int)
+        self.pointers["right"] = xy_right.astype(int)
+        self.pointers["bottom"] = xy_bottom.astype(int)
+        self.pointers["top"] = xy_top.astype(int)
+        self.pointers["bottom_left"] = xy_bottom_left.astype(int)
+        self.pointers["bottom_right"] = xy_bottom_right.astype(int)
+        self.pointers["top_left"] = xy_top_left.astype(int)
+        self.pointers["top_right"] = xy_top_right.astype(int)
+        self.pointers["center"] = xy_center.astype(int)
         self.left = self.pointers["left"]
         self.right = self.pointers["right"]
         self.bottom = self.pointers["bottom"]
@@ -524,7 +524,7 @@ class IterablePhysicalObject(PhysicalObject):
         if self.elements is None:
             return None
         else:
-            return np.array(self.elements.shape, dtype=np.int)
+            return np.array(self.elements.shape, dtype=int)
 
     def __init__(self, xy, name=None, params=None, elements=None):
         """
@@ -656,7 +656,7 @@ class PhysicalObjectArray(np.ndarray):
     params = None
     """dict or None: parameters of the object. """
 
-    _xy = None  # np.zeros(2, dtype=np.int)
+    _xy = None  # np.zeros(2, dtype=int)
     """numpy.ndarray(dtype=numpy.int): the internal variable of xy."""
 
     def get_xy(self):
@@ -668,7 +668,7 @@ class PhysicalObjectArray(np.ndarray):
         if value is None:
             self._xy = value
         else:
-            self._xy = np.asarray(value, dtype=np.int)
+            self._xy = np.asarray(value, dtype=int)
 
     xy = property(get_xy, set_xy)
     """numpy.ndarray(detype=numpy.int): the x and y coordinate values of the object."""
@@ -699,7 +699,7 @@ class PhysicalObjectArray(np.ndarray):
         obj = np.asarray(input_array).view(cls)
         # add the new attribute to the created instance
         obj.name = name
-        obj.xy = None if xy is None else np.asarray(xy, dtype=np.int)
+        obj.xy = None if xy is None else np.asarray(xy, dtype=int)
         obj.params = params
         # Finally, we must return the newly created object:
         return obj
