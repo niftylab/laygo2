@@ -27,7 +27,7 @@ engines in the **Berkeley Analog Generator2 (BAG2)** platform.
 ## Quick trial
 For step-by-step instructions on how to install the software and generate simple structures, refer to the **[Trial](trial.md)** page.
 
-## API docmentation
+## API documentation
 For an in-depth understanding of the **laygo2** software architecture 
 and componenets, refer to the latest **[API reference](laygo2.rst)**. 
 This reference provides a comprehensive overview of the package's 
