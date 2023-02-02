@@ -45,7 +45,7 @@ class Template(metaclass=ABCMeta):
 
     def __init__(self, name=None):
         """
-        Constructor function of Template class.
+        The constructor function.
 
         Parameters
         ----------
@@ -55,7 +55,7 @@ class Template(metaclass=ABCMeta):
         self.name = name
 
     def __str__(self):
-        """Return a string corresponding to this object's information."""
+        """Return a string representation of this template's information. """
         return self.summarize()
 
     def summarize(self):
@@ -72,30 +72,30 @@ class Template(metaclass=ABCMeta):
         )
 
     def height(self, params=None):
-        """int: Return the height of a template."""
+        """int: Return the height of the template."""
         return abs(self.bbox(params=params)[0, 1] - self.bbox(params=params)[1, 1])
 
     def width(self, params=None):
-        """int: Return the width of a template."""
+        """int: Return the width of the template."""
         return abs(self.bbox(params=params)[0, 0] - self.bbox(params=params)[1, 0])
 
     def size(self, params=None):
-        """int: Return the size of a template."""
+        """int: Return the size of the template."""
         return np.array([self.width(params=params), self.height(params=params)])
 
     @abstractmethod
     def bbox(self, params=None):
-        """numpy.ndarray: (Abstract method) Return the bounding box of a template."""
+        """numpy.ndarray: (Abstract method) the physical bounding box of the template."""
         pass
 
     @abstractmethod
     def pins(self, params=None):
-        """dict: (Abstract method) Return dict having the collection of pins of a template."""
+        """dict: (Abstract method) Dictionary storing the pins of the template."""
         pass
 
     @abstractmethod
     def generate(self, name=None, shape=None, pitch=None, transform="R0", netmap=None, params=None):
-        """instance: (Abstract method) Return the instance generated from a template."""
+        """instance: (Abstract method) Generate an instance from the template."""
         pass
         
 
@@ -110,7 +110,7 @@ class NativeInstanceTemplate(Template):
     """
 
     libname = None
-    """str: Library name of NativeInstanceTemplate object.
+    """str: Library name.
 
     Example
     -------
@@ -135,7 +135,7 @@ class NativeInstanceTemplate(Template):
     """
 
     cellname = None
-    """str: Cellname of NativeInstanceTemplate object.
+    """str: Cell name.
 
     Example
     -------
@@ -165,18 +165,18 @@ class NativeInstanceTemplate(Template):
 
     def __init__(self, libname, cellname, bbox=np.array([[0, 0], [0, 0]]), pins=None):
         """
-        Constructor function of NativeInstanceTemplate class.
+        Constructor function.
 
         Parameters
         ----------
         libname : str
-            library name.
+            Library name.
         cellname : str
-            cell name.
+            Cell name.
         bbox : numpy.ndarray
-            bbox.
+            Bounding box of the object.
         pins : dict
-            dictionary having the pin object.
+            Dictionary storing the template's pin objects.
 
         Returns
         -------
@@ -214,7 +214,7 @@ class NativeInstanceTemplate(Template):
         Template.__init__(self, name=cellname)
 
     def summarize(self):
-        """Return the summary of the template information."""
+        """Return the summary of the object information."""
         return (
             self.__repr__() + " "
             "name: "
@@ -235,7 +235,7 @@ class NativeInstanceTemplate(Template):
     # Core template functions
     def bbox(self, params=None):
         """
-        bbox of NativeInstanceTemplate object.
+        Bounding box of the object.
 
         Parameters
         ----------
@@ -271,7 +271,7 @@ class NativeInstanceTemplate(Template):
 
     def pins(self, params=None):
         """
-        Return pin dictionary of NativeInstanceTemplate object.
+        Dictionary storing pins of the object.
 
         Parameters
         ----------
@@ -279,7 +279,7 @@ class NativeInstanceTemplate(Template):
 
         Returns
         -------
-        dict : A dictionary that contains pin information.
+        dict : Dictionary storing pin objects.
 
         Example
         -------
@@ -322,17 +322,17 @@ class NativeInstanceTemplate(Template):
         Parameters
         ----------
         name : str
-            name of the instance to be generated.
+            Name of the instance to be generated.
         shape : numpy.ndarray, optional.
-            shape of the object to be generated.
+            Shape of the object to be generated.
         pitch : numpy.ndarray, optional.
-            pitch of the object to be generated.
+            Element pitch of the array object to be generated.
         transform : str
-            transformation attribute of the object to be generated.
+            Transformation attribute of the object to be generated.
         netmap : dict, optional.
-            dictionary containing netmap conversion information of pins.
+            Dictionary storing net-pin conversion mappings.
         params : dict, optional.
-            dictionary having the object attributes.
+            Dictionary storing the parameters associated with the object.
 
         Returns
         -------
@@ -407,7 +407,7 @@ class NativeInstanceTemplate(Template):
     # I/O functions
     def export_to_dict(self):
         """
-        Return Dictionary containing the information of NativeInstanceTemplate.
+        Return a dictionary containing the template information.
 
         Parameters
         ----------
@@ -466,10 +466,10 @@ class NativeInstanceTemplate(Template):
 
 class ParameterizedInstanceTemplate(Template):
     """
-    ParameterizedInstanceTemplate class implements the template that generates 
-    an instance with variable size (bbox) and pin parameters, based on its 
-    input parameters (such as instances mapped to Cadence Virtuoso's pcells 
-    or Pycells). 
+    The ParameterizedInstanceTemplate class implements a template for 
+    generating instances with varying size (bounding box) and pin 
+    configurations based on input parameters, such as instances mapped 
+    to Cadence Virtuoso's pcells or Pycells.
 
     Notes
     -----
@@ -478,10 +478,10 @@ class ParameterizedInstanceTemplate(Template):
     """
 
     libname = None
-    """str: The libname of the instance being generated."""
+    """str: The libname of the instance to be generated."""
 
     cellname = None
-    """str: The cellname of the instance being generated."""
+    """str: The cellname of the instance to be generated."""
 
     _bbox = None
 
@@ -582,7 +582,7 @@ class ParameterizedInstanceTemplate(Template):
     # Core template functions
     def bbox(self, params=None):
         """
-        bbox of ParameterizedInstanceTemplate object.
+        Bounding box of the template object.
 
         Parameters
         ----------
