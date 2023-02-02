@@ -33,8 +33,14 @@ __status__ = "Prototype"
 import laygo2.object
 import numpy as np
 
+from laygo2.object.physical import PhysicalObject
+from laygo2.object.grid import Grid
+from laygo2.object.template import Template
 
-class BaseDatabase:
+from laygo2._typing import T
+from typing import overload, Generic, Dict, Type, Union
+
+class BaseDatabase(Generic[T]):
     """
     A base class that implements basic functions for 
     various database objects, such as libraries and designs.
@@ -75,7 +81,7 @@ class BaseDatabase:
     **(Korean)** BaseDatabase의 속성.
     """
 
-    elements = None
+    elements: Dict[str, Type[Union[PhysicalObject, T]]] = None
     """dict: Element object dictionary.
 
     Example
@@ -135,7 +141,7 @@ class BaseDatabase:
     이름을 정할 때 부여되는 고유 번호.
     """
 
-    @property
+    # @property
     def keys(self):
         """Keys of elements.
 
@@ -162,7 +168,7 @@ class BaseDatabase:
         -----
         **(Korean)** BaseDatabase 객체의 구성 요소를 담고 있는 Dictionary.
         """
-        return self.elements.keys
+        return self.elements.keys()
 
     def items(self):
         """
@@ -203,6 +209,11 @@ class BaseDatabase:
         **(Korean)** elements의 key/object 짝 출력.
         """
         return self.elements.items()
+
+    @overload
+    def __getitem__(self: "BaseDatabase[T]", pos) -> Type[T]: ...
+    @overload
+    def __getitem__(self: "BaseDatabase[None]", pos) -> Type[PhysicalObject]: ...
 
     def __getitem__(self, pos):
         """
@@ -441,35 +452,7 @@ class BaseDatabase:
                 self.elements[e] = elements[e]
 
 
-class Library(BaseDatabase):
-    """
-    Class for library management function implementation.
-
-    Example
-    -------
-    >>> import laygo2
-    >>> lib = laygo2.object.database.Library(name="mylib")
-    >>> dsn0 = laygo2.object.database.Design(name="mycell0")
-    >>> dsn1 = laygo2.object.database.Design(name="mycell1")
-    >>> lib.append(dsn0)
-    >>> lib.append(dsn1)
-    >>> print(lib)
-    <laygo2.object.database.Library object at 0x0000025F2D25B8B0>
-    name: mylib, params: None
-    elements: {
-        'mycell0': <laygo2.object.database.Design object at 0x0000025F2D25B010>,
-        'mycell1': <laygo2.object.database.Design object at 0x0000025F2D25BF70>}
-
-    See Also
-    --------
-    laygo2.object.databse.Design: Check for more comprehensive Example.
-
-    Notes
-    -----
-    **(Korean)** Library 클래스는 라이브러리 관리 기능을 구현한다.
-
-    """
-
+class LibraryWrapper(BaseDatabase[T]):
     def get_libname(self):
         """getter function of libname property."""
         return self.name
@@ -493,7 +476,7 @@ class Library(BaseDatabase):
     **(Korean)** Library 객체의 이름.
     """
 
-    def append(self, item):
+    def append(self, item: T):
         """Add physical object to Library without taking any further actions.
         """
         if isinstance(item, list) or isinstance(item, np.ndarray):
@@ -548,15 +531,45 @@ class Library(BaseDatabase):
         """Get object information summary."""
         return BaseDatabase.summarize(self)
 
+class Library(LibraryWrapper["Design"]):
+    """
+    Class for library management function implementation.
 
-class TemplateLibrary(Library):
+    Example
+    -------
+    >>> import laygo2
+    >>> lib = laygo2.object.database.Library(name="mylib")
+    >>> dsn0 = laygo2.object.database.Design(name="mycell0")
+    >>> dsn1 = laygo2.object.database.Design(name="mycell1")
+    >>> lib.append(dsn0)
+    >>> lib.append(dsn1)
+    >>> print(lib)
+    <laygo2.object.database.Library object at 0x0000025F2D25B8B0>
+    name: mylib, params: None
+    elements: {
+        'mycell0': <laygo2.object.database.Design object at 0x0000025F2D25B010>,
+        'mycell1': <laygo2.object.database.Design object at 0x0000025F2D25BF70>}
+
+    See Also
+    --------
+    laygo2.object.databse.Design: Check for more comprehensive Example.
+
+    Notes
+    -----
+    **(Korean)** Library 클래스는 라이브러리 관리 기능을 구현한다.
+
+    """
+
+    pass
+
+class TemplateLibrary(LibraryWrapper[Template]):
     """Class implementing template libraries with templates as child objects."""
 
     # TODO: implement this.
     pass
 
 
-class GridLibrary(Library):
+class GridLibrary(LibraryWrapper[Grid]):
     """Class implementing grid libraries with grids as child objects."""
 
     # TODO: implement this.
