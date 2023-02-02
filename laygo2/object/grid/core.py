@@ -414,7 +414,7 @@ class CircularMapping:
     순환 맵핑의 구성 요소로 이루어진 배열. 
     """
 
-    dtype = np.int
+    dtype = int
     """type: Data type of the circular mapping.
 
     Example
@@ -467,7 +467,7 @@ class CircularMapping:
         """
         return np.array(self.elements.shape)
 
-    def __init__(self, elements=np.array([0]), dtype=np.int):
+    def __init__(self, elements=np.array([0]), dtype=int):
         """
         Constructor function of CircularMapping class.
 

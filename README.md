@@ -1,6 +1,6 @@
 # laygo2
 
-[![PyPI version](https://badge.fury.io/py/laygo2.svg)](https://badge.fury.io/py/laygo2)
+[![PyPI version](https://badge.fury.io/py/laygo2.svg?)](https://pypi.org/project/laygo2/)
 
 (The commit history is cleaned up on 6-27-2022)
 
@@ -15,29 +15,17 @@ with several advanced concepts such templates and grids.
 
 For further documentation, see [https://laygo2.github.io/](https://laygo2.github.io/).
 
-List of developers and contributers: 
-
-Jaeduk Han
-
-Taeho Shin
-
-Dongjun Lee
-
-Dongwhee Kim
-
-Gaeryun Sung
-
-Wookjin Shin, 
-
-Yunseong Jo
-
-Hyungjoo Park
-
-Seonghyun Park
-
-Youngmin Oh
-
-Taeseung Kang
-
-Curtis Mayberry
+List of developers and contributors:
+- Jaeduk Han
+- Taeho Shin
+- Dongjun Lee
+- Dongwhee Kim
+- Gaeryun Sung
+- Wookjin Shin
+- Yunseong Jo
+- Hyungjoo Park
+- Seonghyun Park
+- Youngmin Oh
+- Taeseung Kang
+- Curtis Mayberry
 

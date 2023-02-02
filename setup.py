@@ -23,6 +23,7 @@ setup(
     author="Jaeduk Han",
     description="LAYout with Gridded Object 2 - A Python Package for Scripted IC Layout Generation Flow",
     long_description=readme,
+    long_description_content_type="text/markdown",
     url="https://github.com/niftylab/laygo2",  # project address
     license=license,
     packages=find_packages(exclude=("tests", "docs", "laygo2_tech_quick_start", "laygo2_tech")),
@@ -36,5 +37,5 @@ setup(
         ]
     },
     include_package_data=True,
-    python_requires=">=3.0",
+    python_requires=">=3.5",
 )
