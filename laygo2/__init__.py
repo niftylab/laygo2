@@ -29,11 +29,11 @@
 
 # Objects
 from . import object
-#from laygo2.object import *
-#from laygo2.object.database import *
-#from laygo2.object.grid import *
-#from laygo2.object.physical import *
-#from laygo2.object.template import *
+from .object import *
+from .object.database import *
+from .object.grid import *
+from .object.physical import *
+from .object.template import *
 
 # Interface
 from . import interface
