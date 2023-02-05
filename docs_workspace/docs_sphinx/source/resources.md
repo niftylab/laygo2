@@ -2,6 +2,10 @@
 
 This document lists valuable resources to learn and utilize **laygo2**.
 
+## Cheatsheet
+
+* [Laygo2 Cheatsheet](../assets/misc/laygo2_cheatsheet_v0_1.pdf)
+
 ## Application Notes
 
 The following notes are designed to help users generate specific circuits using **laygo2** or utilize its specific features.
