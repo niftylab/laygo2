@@ -57,8 +57,8 @@ pg, r12, r23 = grids[pg_name], grids[r12_name], grids[r23_name]
 print(grids[pg_name], grids[r12_name], grids[r23_name], sep="\n")
 
 # 2. Create a design hierarchy.
-lib = laygo2.object.database.Library(name=libname)
-dsn = laygo2.object.database.Design(name=cellname)
+lib = laygo2.Library(name=libname)
+dsn = laygo2.Design(name=cellname)
 lib.append(dsn)
 
 # 3. Create instances.
