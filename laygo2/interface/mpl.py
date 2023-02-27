@@ -184,12 +184,12 @@ def export(
     filename=None,
 ):
     """
-    Export a laygo2.object.database.Library object to a matplotlib plot.
+    Export a laygo2.object.database.Library or Design object to a matplotlib plot.
 
     Parameters
     ----------
-    db: laygo2.database.Library
-        The library database to exported.
+    db: laygo2.database.Library or laygo2.database design
+        The library database or design to exported.
     cellname: str or List[str]
         (optional) The name(s) of cell(s) to be exported.
     scale: float
@@ -219,8 +219,12 @@ def export(
         order = []
 
     # cell name handling.
-    cellname = db.keys() if cellname is None else cellname  # export all cells if cellname is not given.
-    cellname = [cellname] if isinstance(cellname, str) else cellname  # convert to a list for iteration.
+    if isinstance(db, laygo2.database.Design):
+        cellname = [db.cellname]
+        db = {db.cellname:db}
+    if isinstance(db, laygo2.database.Library):
+        cellname = db.keys() if cellname is None else cellname  # export all cells if cellname is not given.
+        cellname = [cellname] if isinstance(cellname, str) else cellname  # convert to a list for iteration.
 
     fig = []
     for cn in cellname:

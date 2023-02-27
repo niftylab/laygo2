@@ -114,18 +114,14 @@ print("Export design")
 mpl_params = tech.tech_params["mpl"]
 fig = laygo2.interface.mpl.export(
     lib,
-    cellname=None,
     colormap=mpl_params["colormap"],
     order=mpl_params["order"],
-    xlim=[-100, 400],
-    ylim=[-100, 300],
 )
 filename = libname + "_" + cellname
 # gds export
 laygo2.interface.gdspy.export(
     lib,
     filename=filename + ".gds",
-    cellname=None,
     scale=1e-9,
     layermapfile="./laygo2_tech_quick_start/laygo2_tech.layermap",
     physical_unit=1e-9,
