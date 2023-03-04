@@ -771,21 +771,21 @@ class Design(BaseDatabase):
                 xy[0] = i.bbox[0]  # bl
                 xy[1] = i.bbox[1]  # tr
             else:
-                xy = np.minimum(xy, i.bbox)
-                # xy[0][0] = min(xy[0][0], i.bbox[0, 0])
-                # xy[0][1] = min(xy[0][1], i.bbox[0, 1])
-                # xy[1][0] = max(xy[1][0], i.bbox[1, 0])
-                # xy[1][1] = max(xy[1][1], i.bbox[1, 1])
+                #xy = np.minimum(xy, i.bbox)
+                xy[0][0] = min(xy[0][0], i.bbox[0, 0])
+                xy[0][1] = min(xy[0][1], i.bbox[0, 1])
+                xy[1][0] = max(xy[1][0], i.bbox[1, 0])
+                xy[1][1] = max(xy[1][1], i.bbox[1, 1])
         for n, i in self.virtual_instances.items():
             if xy[0] is None:
                 xy[0] = i.bbox[0]
                 xy[1] = i.bbox[1]
             else:
-                xy = np.minimum(xy, i.bbox)
-                # xy[0][0] = min(xy[0][0], i.bbox[0, 0])
-                # xy[0][1] = min(xy[0][1], i.bbox[0, 1])
-                # xy[1][0] = max(xy[1][0], i.bbox[1, 0])
-                # xy[1][1] = max(xy[1][1], i.bbox[1, 1])
+                #y = np.minimum(xy, i.bbox)
+                xy[0][0] = min(xy[0][0], i.bbox[0, 0])
+                xy[0][1] = min(xy[0][1], i.bbox[0, 1])
+                xy[1][0] = max(xy[1][0], i.bbox[1, 0])
+                xy[1][1] = max(xy[1][1], i.bbox[1, 1])
         xy = np.array(xy)
         return xy
 
