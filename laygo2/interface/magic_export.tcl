@@ -91,7 +91,7 @@ proc _laygo2_generate_pin {name layer bbox port_num} {
         M5 { set layer_real metal5 }
         default { set layer_real $layer }
     }
-    box values $pin_cx $pin_cy $pin_cx $pin_cy
+    box values [lindex [lindex $bbox 0] 0] [lindex [lindex $bbox 0] 1] [lindex [lindex $bbox 1] 0] [lindex [lindex $bbox 1] 1]
     paint $layer_real
     if {$pin_w >= $pin_h} {
         box values $pin_cx $pin_cy $pin_cx $pin_cy
