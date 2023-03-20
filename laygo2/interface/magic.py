@@ -258,7 +258,7 @@ def export(db, filename=None, cellname=None, libpath='./magic_layout', scale=1,
             cmd += "_laygo2_generate_pin %s %s %s %d ; # for the Pin object %s \n" \
                     % (info[0], info[1], info[2], port_num+1, info[3])
         cmd += "save\n"
-    
+        pin_info = []    
     # optional gds export
     if gds_filename is not None:
         cmd += "gds write "+gds_filename+"\n"
