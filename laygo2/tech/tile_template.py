@@ -57,9 +57,8 @@ class TileMosfetTemplate(UserDefinedTemplate):
     """The sequencye of sub-elements transform: {"R0", "MX", "MY", R180"}."""
     
     r2_tracks: Dict[str, int]         = 0  
-    """The mapping of Mosfet terminal and r2 vertical track and other options for tracks.
-       Mosfet terminal = {"G", "D", "S"},
-       
+    """The mapping of Mosfet terminal and r2 vertical track.
+       Mosfet terminal = {"G", "D", "S"}
     """
     
     grid_name: str         = 0  
@@ -71,7 +70,7 @@ class TileMosfetTemplate(UserDefinedTemplate):
     libname:str           = 0 
     """The name of Native template library."""
 
-    def __init__(self, templates, grids, grid_name: str, r2_tracks: dict, tparams: dict, placement_pattern: list, transform_pattern: list, name: str):
+    def __init__(self, templates, grids, grid_name, r2_tracks, tparams, placement_pattern, transform_pattern, name):
         self.templates = templates
 
         self.grids     = grids
@@ -87,36 +86,32 @@ class TileMosfetTemplate(UserDefinedTemplate):
         
         super().__init__(name = name, bbox_func = self.bbox_func, pins_func = self.pins_func, generate_func = self.generate_func)
 
-    def _route_pattern_via_track(self, grid, mn_list, n_track, name_via ) -> list:
-        """ Route with multi instance via
-
+    def _unpack_list(self, list_to_unpack, postfix:str) -> dict:
+        """ The recursive function for unpacking list.
+            This is used for flatten list that derived from route functions
+        
         Parameters
         ----------
-        mn_list: np.array 
-            sorted and unique array
-        n_track: int
-            track number of n
-        name_via: str
-            the name of via
+        list_to_unpack: array_like
+            The list to be unpacked.
+        postfix: str
+            The postfix of name. unpacked sub-elements should have the unique name for dictionary.
         """
-        len_via = mn_list.shape[0]
-        m_left  = mn_list[0][0] # left-most m
-        tvia    = grid.viamap[m_left, n_track]
-            
-        if len_via == 1:
-            via     = tvia.generate(name = name_via, shape = ( len_via, 1), pitch = [1, 1] )
-            track   = None
-        else:
-            m_left2   = mn_list[1][0]
-            pitch_m   = m_left2 - m_left
-            pitch_x   = grid.x(pitch_m)
 
-            via       = tvia.generate(name = name_via, shape = ( len_via, 1), pitch = [pitch_x, 0])
-            track     = grid.route( mn = ( [mn_list[0][0], n_track ] , [mn_list[-1][0], n_track ]   ) )
-            
-        via.xy = grid.xy( [m_left, n_track ])
+        def _sub_unpack( nelement_sub, element ):
+            """The main recursive function. Update nelements_sub"""
 
-        return via, track
+            i_postfix = len(nelement_sub) + 1
+            if isinstance( element, (list, np.ndarray) ):
+                for element2 in element:
+                    _sub_unpack( nelement_sub, element2) 
+            else: # main purpose
+                nelement_sub[f"via_or_rect_{i_postfix}_{postfix}"] = element
+
+        nelement_sub = {}
+        _sub_unpack( nelement_sub, list_to_unpack)
+
+        return nelement_sub
 
     def _update_params(self, params_in) -> dict:
         """ Update mosfet parameters
@@ -149,10 +144,6 @@ class TileMosfetTemplate(UserDefinedTemplate):
         params["sdswap"]    = params_in.get("sdswap"   , False)  
         params["trackswap"] = params_in.get("trackswap", False)  
         params["tie"      ] = params_in.get("tie"      , False)  
-        
-        # new function
-        params["ntrackswap"] = params_in.get("ntrackswap", False)  
-        params["sdswap"]     = params_in.get("sdswap"    , False)  
         params["rail"     ] = params_in.get("rail", True )  
         
         return params
@@ -268,8 +259,7 @@ class TileMosfetTemplate(UserDefinedTemplate):
         n_g = r2_tracks["G"]
         n_d = r2_tracks["D"]
         n_s = r2_tracks["S"]
-        n_r = r2_tracks.get( "RAIL", 0 )
-
+        
         nelements = {}
         nelements.update(iparams)
         
@@ -278,105 +268,75 @@ class TileMosfetTemplate(UserDefinedTemplate):
 
         G, S, D = "G", "S", "D"
 
-        
-        if params["trackswap"]: #backward compatable
+        if params["trackswap"]:
             n_d, n_s = n_s, n_d
-            S, D     = D, S
-        
-        if params["ntrackswap"]: 
-            n_d, n_s = n_s, n_d
-        
-        if params["sdswap"]: 
             S, D     = D, S
 
-        # Extrack mn from core mosfet
+        # Core gate routing
         mn_list_g = [] 
         mn_list_d = [] 
         mn_list_s = []
         i_iter = int( nf / nf_core) 
-
         for i in range( i_iter ):
             if i_iter == 1:
                 icore_sub =  icore
             else:
-                icore_sub =  icore[i][0] # it is 2-dimensional array
+                if nf_core == 2:
+                    icore_sub =  icore[i][0] # it is 2-dimensional array
+                else:
+                    icore_sub =  icore.native_elements[f"IM{i}"]
                 
             for pin_name in icore_sub.pins.keys():
-
-                if G in pin_name:
+                if "G" in pin_name:
                     mn_list_g.append( r12.mn.center( icore_sub.pins[pin_name] ) )
                 elif D in pin_name:
                     mn_list_d.append( r12.mn.center( icore_sub.pins[pin_name] ) )
                 elif S in pin_name:
                     mn_list_s.append( r12.mn.center( icore_sub.pins[pin_name] ) )
         
-
-        mn_list_g = np.asarray( mn_list_g)
-        mn_list_g = mn_list_g[  mn_list_g[:,0].argsort()] # sort list by bottom_left
-        mn_list_g = np.unique(  mn_list_g, axis = 0 )
-
-        mn_list_d = np.asarray( mn_list_d)
-        mn_list_d = mn_list_d[  mn_list_d[:,0].argsort()] 
-        mn_list_d = np.unique(  mn_list_d, axis = 0 )
+        r_g = r12.route_via_track( mn = mn_list_g , track = [ None, n_g], via_tag = [False, True] )
+        r_d = r12.route_via_track( mn = mn_list_d , track = [ None, n_d], via_tag = [False, True] )
+        r_s = r12.route_via_track( mn = mn_list_s , track = [ None, n_s], via_tag = [None, True] )
         
-        mn_list_s = np.asarray( mn_list_s)
-        mn_list_s = mn_list_s[  mn_list_s[:,0].argsort()] 
-        mn_list_s = np.unique(  mn_list_s, axis = 0 )
-
-        # Create via and track
-        r_g = dict( via = 0 , track = 0) 
-        r_d = dict( via = 0 , track = 0) 
-        r_s = dict( via = 0 , track = 0) 
-
-        for mn_list, n_track, terminal, r_dict in zip( (mn_list_g, mn_list_d, mn_list_s), (n_g, n_d, n_s), (G, D, S), (r_g, r_d, r_s) ):
+        if r_g[-1] == None: # When there is no gate track for core routing
+            mn_sub     = mn_list_g[0]
+            mn_sub[1]  = n_g
+            r_g        = [  r12.via( mn = mn_sub) ]
+             
+            r_g.append( r12.route( mn = [ mn_sub + [0,0], mn_sub + [0,0] ], via_tag =[None, None] ) ) # new track
+            #r_g.append( r12.route( mn = [ mn_sub + [-1,0], mn_sub + [1,0] ], via_tag =[None, None] ) ) # new track
             
-            via, track = self._route_pattern_via_track( r12, mn_list, n_track, terminal)
-            r_dict["via"]   = via
-            r_dict["track"] = track 
-
-        # Modify track
-        if r_g["track"] == None: 
-            mn_sub       = mn_list_g[0]
-            r_g["track"] = r12.route( mn = [ mn_sub + [0,0], mn_sub + [0,0] ], via_tag =[None, None] )  # new track
-            
-            x_extl        = r2_tracks["G_extension0_x"][0]
-            x_extr        = r2_tracks["G_extension0_x"][1]
-            if x_extl != None:
-                xy_sub     = r12.xy(mn_sub)
-                r_g["track"].xy = [ xy_sub + [ x_extl , 0], xy_sub + [x_extr, 0] ] # new track location
+            y_org      = r_g[-1].xy[0][1]
+            x_ext      = r_g[-1].hextension
+            #r_g[-1].xy = [ [aaa + x_ext , y_org], [ bbb - x_ext, y_org]] # new track location
         
-        if r_d["track"] == None: 
+        if r_d[-1] == None: # When there is no drain track for core routing
             mn_sub    = mn_list_d[0]
             mn_sub[1] = n_d
-            
-            m_ext = r2_tracks["D_extension0_m"]
-            m_extl = 0
-            m_extr = 0
-            if m_ext[0] != None:
-                m_extl = m_ext[0]
-                m_extr = m_ext[1]
-
-            r_d["track"]   = r12.route( mn = [ mn_sub + [m_extl,0], mn_sub + [m_extl,0] ], via_tag =[None, None] )
-
-        if r_s["track"] == None: 
+            r_d[-1]   = r12.route( mn = [ mn_sub + [0,0], mn_sub + [0,0] ], via_tag =[None, None] )
+            #r_d[-1]   = r12.route( mn = [ mn_sub + [-1,0], mn_sub + [1,0] ], via_tag =[None, None] )
+        
+        if r_s[-1] == None: # When there is no drain track for core routing
             mn_sub    = mn_list_s[0]
             mn_sub[1] = n_s
-            
-            m_ext = r2_tracks["S_extension0_m"]
-            m_extl = 0
-            m_extr = 0
-            if m_ext[0] != None:
-                m_extl = m_ext[0]
-                m_extr = m_ext[1]
-            r_s["track"]   = r12.route( mn = [ mn_sub + [m_extl,0], mn_sub + [m_extl,0] ], via_tag =[None, None] )
+            r_s[-1]   = r12.route( mn = [ mn_sub + [0,0], mn_sub + [0,0] ], via_tag =[None, None] )
+            #r_s[-1]   = r12.route( mn = [ mn_sub + [-1,0], mn_sub + [1,0] ], via_tag =[None, None] )
 
-        nelements["VIA_G"] = r_g["via"]
-        nelements["VIA_D"] = r_d["via"]
-        nelements["VIA_S"] = r_s["via"]
+        nelement_sub = {}
+        nelement_sub = self._unpack_list( r_d, "D")
+        nelements.update(nelement_sub)
+        
+        nelement_sub = {}
+        nelement_sub = self._unpack_list( r_s, "S")
+        nelements.update(nelement_sub)
 
-        nelements["RG0"] = r_g["track"]
-        nelements["RD0"] = r_d["track"]
-        nelements["RS0"] = r_s["track"]
+        nelement_sub = {}
+        nelement_sub = self._unpack_list( r_g, "G")
+        nelements.update(nelement_sub)
+
+        nelements["RG0"] = r_g[-1]
+        nelements["RD0"] = r_d[-1]
+        nelements["RS0"] = r_s[-1]
 
         # Rail routing
         if params["rail"]:
@@ -392,31 +352,23 @@ class TileMosfetTemplate(UserDefinedTemplate):
 
         # TIE
         if params["tie"] != False:
-
-            if params["tie"] == "S" or params["tie"] == True:
-                del nelements["RS0"]
-                del nelements["VIA_S"]
-                
-                via, track = self._route_pattern_via_track(r12, mn_list_s, n_r, "VIA_TIE")
-                r_t        = r12.route_via_track( mn = mn_list_s, via_tag = [ False, False], track = [None, n_r])
+            if params["tie"] == "S":
+                r_t = r12.route_via_track( mn = mn_list_s, via_tag = [ False, True], track = [None, r12.mn.center( r_track)[1] ])
             
             elif params["tie"] == "D":
-                del nelements["RD0"]
-                del nelements["VIA_D"]
-                
-                via, track = self._route_pattern_via_track(r12, mn_list_d, n_r, "VIA_TIE")
-                r_t        = r12.route_via_track( mn = mn_list_d, via_tag = [ False, False], track = [None, n_r])
+                r_t = r12.route_via_track( mn = mn_list_d, via_tag = [ False, True], track = [None, r12.mn.center( r_track)[1] ])
+
+            elif params["tie"] == True:
+                r_t = r12.route_via_track( mn = mn_list_s, via_tag = [ False, True], track = [None, r12.mn.center( r_track)[1] ])
 
             else:
-                raise Exception(" Value error for tie")
-            
-            nelements["VIA_TIE"] = via
+                raise Exception
             
             if r_t[-1] == None:
                 del r_t[1]
-            for i, r in enumerate(r_t):
-                nelements[f"RECT_TIE{i}"] = r
-
+            nelement_sub = self._unpack_list( r_t, "TIE")
+            nelements.update(nelement_sub)
+        
         return nelements
   
     def pins_func(self, params):
@@ -447,6 +399,7 @@ class TileMosfetTemplate(UserDefinedTemplate):
         iparams = self._mos_place( params )
 
         xy_all = np.asarray([0,0])
+        
         for t_inst, inst in iparams.items():
             xy = inst.bbox
             xy_bl     = xy[0]
@@ -507,7 +460,10 @@ class TileTapTemplate(TileMosfetTemplate):
             if i_iter == 1:
                 icore_sub =  icore
             else:
-                icore_sub =  icore[i][0] # it is 2-dimensional array
+                if nf_core == 2:
+                    icore_sub =  icore[i][0] # it is 2-dimensional array
+                else:
+                    icore_sub =  icore.native_elements[f"IM{i}"]
                 
             for pin_name in icore_sub.pins.keys():
                 if "TAP0" in pin_name:
@@ -515,10 +471,6 @@ class TileTapTemplate(TileMosfetTemplate):
                 elif "TAP2" in pin_name:
                     mn_list_s.append( r12.mn.center( icore_sub.pins[pin_name] ) )
         
-        mn_list_s = np.asarray( mn_list_s)
-        mn_list_s = mn_list_s[  mn_list_s[:,0].argsort()] 
-        mn_list_s = np.unique(  mn_list_s, axis = 0 )
-
         if params["rail"]:
             xy    = icore.bbox
             xy_bl = xy[0]
@@ -532,19 +484,13 @@ class TileTapTemplate(TileMosfetTemplate):
         
         # TIE
         if params["tie"] != False:
-            n_r = 0
-            len_via = mn_list_s.shape[0]
+            
             if params["tie"] == True:
-                via, track = self._route_pattern_via_track( r12, mn_list_s, n_r, "VIA_RAIL")
-                r_t        = r12.route_via_track( mn = mn_list_s, via_tag = [ False, False], track = [None, n_r])
+                r_t = r12.route_via_track( mn = mn_list_s, via_tag = [ False, True], track = [None, r12.mn.center( r_track)[1] ])
+
             else:
-                raise Exception(" Value error for tie")
-            
-            nelements["VIA_TIE"] = via
-            
-            if r_t[-1] == None:
-                del r_t[1]
-            for i, r in enumerate(r_t):
-                nelements[f"RECT_TIE{i}"] = r
+                raise Exception
+            nelement_sub = self._unpack_list( r_t, "TIE")
+            nelements.update(nelement_sub)
 
         return nelements

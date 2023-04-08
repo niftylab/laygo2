@@ -51,7 +51,6 @@ from .physical import *
 from .template import *
 from .template.core import *
 from .template.routing import *
-from .template.tile import *
 # grid packages
 from .grid import *
 from .grid.core import *
