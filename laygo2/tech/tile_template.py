@@ -85,6 +85,8 @@ class TileMosfetTemplate(UserDefinedTemplate):
         self.nf_core   = 2
         
         super().__init__(name = name, bbox_func = self.bbox_func, pins_func = self.pins_func, generate_func = self.generate_func)
+        
+
 
     def _unpack_list(self, list_to_unpack, postfix:str) -> dict:
         """ The recursive function for unpacking list.
@@ -270,7 +272,8 @@ class TileMosfetTemplate(UserDefinedTemplate):
 
         if params["trackswap"]:
             n_d, n_s = n_s, n_d
-            S, D     = D, S
+        if params["sdswap"]:
+            S, D = D, S
 
         # Core gate routing
         mn_list_g = [] 
@@ -289,38 +292,28 @@ class TileMosfetTemplate(UserDefinedTemplate):
             for pin_name in icore_sub.pins.keys():
                 if "G" in pin_name:
                     mn_list_g.append( r12.mn.center( icore_sub.pins[pin_name] ) )
-                elif D in pin_name:
+                elif "D" in pin_name:
                     mn_list_d.append( r12.mn.center( icore_sub.pins[pin_name] ) )
-                elif S in pin_name:
+                elif "S" in pin_name:
                     mn_list_s.append( r12.mn.center( icore_sub.pins[pin_name] ) )
         
-        r_g = r12.route_via_track( mn = mn_list_g , track = [ None, n_g], via_tag = [False, True] )
+        r_g = r12.route_via_track( mn = mn_list_g , track = [ None, n_g], via_tag = [None, None] )
         r_d = r12.route_via_track( mn = mn_list_d , track = [ None, n_d], via_tag = [False, True] )
         r_s = r12.route_via_track( mn = mn_list_s , track = [ None, n_s], via_tag = [None, True] )
         
         if r_g[-1] == None: # When there is no gate track for core routing
-            mn_sub     = mn_list_g[0]
-            mn_sub[1]  = n_g
-            r_g        = [  r12.via( mn = mn_sub) ]
-             
-            r_g.append( r12.route( mn = [ mn_sub + [0,0], mn_sub + [0,0] ], via_tag =[None, None] ) ) # new track
-            #r_g.append( r12.route( mn = [ mn_sub + [-1,0], mn_sub + [1,0] ], via_tag =[None, None] ) ) # new track
-            
+            mn_sub    = mn_list_g[0]
+            mn_sub[1] = n_g
+            r_g[-1]    = r12.route( mn = [ mn_sub + [-1,0], mn_sub + [1,0] ], via_tag =[None, None] ) # new track
             y_org      = r_g[-1].xy[0][1]
             x_ext      = r_g[-1].hextension
-            #r_g[-1].xy = [ [aaa + x_ext , y_org], [ bbb - x_ext, y_org]] # new track location
+
+            r_g[-1].xy = [ [160 + x_ext , y_org], [ 360 - x_ext, y_org]] # new track location
         
         if r_d[-1] == None: # When there is no drain track for core routing
             mn_sub    = mn_list_d[0]
             mn_sub[1] = n_d
-            r_d[-1]   = r12.route( mn = [ mn_sub + [0,0], mn_sub + [0,0] ], via_tag =[None, None] )
-            #r_d[-1]   = r12.route( mn = [ mn_sub + [-1,0], mn_sub + [1,0] ], via_tag =[None, None] )
-        
-        if r_s[-1] == None: # When there is no drain track for core routing
-            mn_sub    = mn_list_s[0]
-            mn_sub[1] = n_s
-            r_s[-1]   = r12.route( mn = [ mn_sub + [0,0], mn_sub + [0,0] ], via_tag =[None, None] )
-            #r_s[-1]   = r12.route( mn = [ mn_sub + [-1,0], mn_sub + [1,0] ], via_tag =[None, None] )
+            r_d[-1]   = r12.route( mn = [ mn_sub + [-1,0], mn_sub + [1,0] ], via_tag =[None, None] )
 
         nelement_sub = {}
         nelement_sub = self._unpack_list( r_d, "D")
@@ -328,10 +321,6 @@ class TileMosfetTemplate(UserDefinedTemplate):
         
         nelement_sub = {}
         nelement_sub = self._unpack_list( r_s, "S")
-        nelements.update(nelement_sub)
-
-        nelement_sub = {}
-        nelement_sub = self._unpack_list( r_g, "G")
         nelements.update(nelement_sub)
 
         nelements["RG0"] = r_g[-1]
@@ -354,22 +343,20 @@ class TileMosfetTemplate(UserDefinedTemplate):
         if params["tie"] != False:
             if params["tie"] == "S":
                 r_t = r12.route_via_track( mn = mn_list_s, via_tag = [ False, True], track = [None, r12.mn.center( r_track)[1] ])
-            
+
             elif params["tie"] == "D":
                 r_t = r12.route_via_track( mn = mn_list_d, via_tag = [ False, True], track = [None, r12.mn.center( r_track)[1] ])
-
+            
             elif params["tie"] == True:
                 r_t = r12.route_via_track( mn = mn_list_s, via_tag = [ False, True], track = [None, r12.mn.center( r_track)[1] ])
 
             else:
                 raise Exception
-            
-            if r_t[-1] == None:
-                del r_t[1]
             nelement_sub = self._unpack_list( r_t, "TIE")
             nelements.update(nelement_sub)
         
         return nelements
+
   
     def pins_func(self, params):
         """The method of creating pin."""
@@ -409,6 +396,7 @@ class TileMosfetTemplate(UserDefinedTemplate):
             xy_all[1] = max( xy_all[1], xy_tr[1])
         
         return xy_all
+
     
     def generate_func(self, name = None, shape = None, pitch = None, transform = 'R0', params = None):
         """ generate Virtualinstances and with routing
@@ -447,30 +435,17 @@ class TileTapTemplate(TileMosfetTemplate):
         nf_core   = self.nf_core
         iparams   = self._mos_place(params)
 
-        r12       = grids[grid_name]
+        r12 = grids[grid_name]
+        n_g = r2_tracks["G"]
+        n_d = r2_tracks["D"]
+        n_s = r2_tracks["S"]
+        
         nelements = {}
         nelements.update(iparams)
         
         icore   = iparams["core"]
         nf      = params["nf"]
 
-        mn_list_s = []
-        i_iter = int( nf / nf_core) 
-        for i in range( i_iter ):
-            if i_iter == 1:
-                icore_sub =  icore
-            else:
-                if nf_core == 2:
-                    icore_sub =  icore[i][0] # it is 2-dimensional array
-                else:
-                    icore_sub =  icore.native_elements[f"IM{i}"]
-                
-            for pin_name in icore_sub.pins.keys():
-                if "TAP0" in pin_name:
-                    mn_list_s.append( r12.mn.center( icore_sub.pins[pin_name] ) )
-                elif "TAP2" in pin_name:
-                    mn_list_s.append( r12.mn.center( icore_sub.pins[pin_name] ) )
-        
         if params["rail"]:
             xy    = icore.bbox
             xy_bl = xy[0]
@@ -481,16 +456,6 @@ class TileTapTemplate(TileMosfetTemplate):
 
             r_track = r12.route( mn = [mn_bl, mn_br], via_tag = [None, None] )
             nelements["RRAIL0"] = r_track
-        
-        # TIE
-        if params["tie"] != False:
-            
-            if params["tie"] == True:
-                r_t = r12.route_via_track( mn = mn_list_s, via_tag = [ False, True], track = [None, r12.mn.center( r_track)[1] ])
-
-            else:
-                raise Exception
-            nelement_sub = self._unpack_list( r_t, "TIE")
-            nelements.update(nelement_sub)
-
         return nelements
+
+
