@@ -49,7 +49,7 @@ def combine(transform1, transform2):
         elif transform2 == 'MXY': return 'MY'
     elif transform1 == 'MY':
         if transform2 == 'R0': return 'MY'
-        elif transform2 == 'MX': return 'R180'
+        elif transform2 == 'MX': return 'MXY'
         elif transform2 == 'MY': return 'R0'
         elif transform2 == 'MXY': return 'MX'
     raise ValueError("Transformation mapping is not matched.")
