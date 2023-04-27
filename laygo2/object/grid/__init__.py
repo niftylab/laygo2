@@ -37,4 +37,5 @@ Check the following links for the details of component methods and classes.
 from .core import *
 from .routing import *
 from .placement import *
+from .uniformrouting import *
 #from laygo2.object.grid.routing import *
