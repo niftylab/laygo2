@@ -34,6 +34,7 @@ import yaml
 import numpy as np
 import laygo2.object
 import laygo2.util.transform as tf
+import laygo2_tech as tech
 
 __author__ = ""
 __maintainer__ = ""
@@ -241,6 +242,16 @@ def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0
                             scale=scale,
                             master=obj[i, j],
                         )
+        return cmd
+    elif obj.__class__ == laygo2.object.Via: # For autovia skill
+        cmd = ""
+        center = _py2skill_list(obj.center, scale=scale)
+        cut = obj.params['cut']
+        color = obj.color # coloring func. added
+        layer = _py2skill_list([obj.params['xlayer'],obj.params['ylayer']])
+        cmd += "_laygo2_generate_autovia(cv,%s, %s, \"%s\", \"%s\", \"%s\") "  \
+               "; for the Via object %s \n" \
+               % (layer, center, cut, color, tech.name, objname)
         return cmd
     else:
         return obj.translate_to_skill()  #

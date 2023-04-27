@@ -98,6 +98,15 @@ procedure( _laygo2_generate_rect( cv layer bbox color )
     obj
 );procedure
 
+; create a autovia
+procedure( _laygo2_generate_autovia( cv layer center cut color tech)
+    techFile = techGetTechFile(ddGetObj(tech))
+    constraintGroupId = cstFindConstraintGroupIn(techFile "virtuosoDefaultSetup")
+    ViaOptions = viaGetViaOptions(constraintGroupId)
+    ViaOptions -> automatic ~> cutClass = cut
+    viaGenerateViasAtPoint(cv center ViaOptions ?topAndBottomLayers layer)    
+);procedure
+
 ; TODO: implement path creation function
 
 ; create a pin

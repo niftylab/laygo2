@@ -2531,6 +2531,100 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
             raise ValueError(" Others transfom not implemented")
         return coners[0], coners[2]
 
+class Via(IterablePhysicalObject):
+    """
+    Via object class.
+
+    Attributes
+    ----------
+    netname : str
+    color : str
+    size : np.array(dtype=np.int)
+
+    Methods
+    -------
+    """
+
+    netname = None
+    size = np.array([0,0])
+    unit_size = None
+    _pitch = None
+    transform = 'R0'
+    color = None
+    
+    def _get_xy(self):
+        """numpy.ndarray(dtype=numpy.int): Get the x and y coordinate values of this object."""
+        return self._xy
+
+    def _set_xy(self, value):
+        """numpy.ndarray(dtype=numpy.int): Set the x and y coordinate values of this object."""
+        # Update the coordinate value of its pins.
+        IterablePhysicalObject._set_xy(self, value=value)
+
+    xy = property(_get_xy, _set_xy)
+    
+    @property
+    def xy0(self):
+        """attribute
+        numpy.ndarray: Coordinates of major corner of object.
+
+        
+
+        Examples
+        --------
+       
+        Notes
+        -----
+        Related Images:
+
+        Reference in Korean:
+        numpy.ndarray: 객체의 주 코너 좌표.
+        """
+        return self.xy
+
+    @property
+    def xy1(self):
+        """attribute
+        numpy.ndarray: Coordinates of minor corner of object.
+
+        Examples
+        --------
+
+        Notes
+        -----
+        Related Images:
+
+        Reference in Korean:
+        numpy.ndarray: 객체의 보조 코너 좌표.
+        """
+        if self.size is None:
+            return self.xy
+        else:
+            return self.xy + np.dot(self.size, tf.Mt(self.transform).T)
+
+    @property
+    def bbox(self):
+        bbox = np.array([self.xy0, self.xy1])
+        #return bbox
+        #return self.xy + np.dot(self.size, tf.Mt(self.transform).T)
+        return np.sort(bbox, axis=0)
+     
+    def __init__(self, xy, color=None, name=None, netname=None, params=None, transform= 'R0',elements=None):
+
+        xy = np.asarray(xy)
+        if netname is None:
+            self.netname = name
+        else:
+            self.netname = netname
+        self.color = color
+        IterablePhysicalObject.__init__(self, xy=xy, name=name, params=params, elements=elements)
+
+
+    def summarize(self):
+        """Return the summary of the object information."""
+        return IterablePhysicalObject.summarize(self) + ", " + \
+                                              "netname: " + str(self.netname)
+
 
 # Test
 if __name__ == "__main__":
