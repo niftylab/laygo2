@@ -1,4 +1,4 @@
-########################################################################################################################
+####################################################################################################################
 #
 # Copyright (c) 2020, Nifty Chips Laboratory, Hanyang University
 # All rights reserved.
@@ -22,6 +22,7 @@
 ########################################################################################################################
 
 from typing import Set, Tuple, List, Dict
+from abc import *
 
 from laygo2.object.template import UserDefinedTemplate
 import laygo2.object.physical
@@ -29,60 +30,60 @@ import laygo2.object.database
 
 import numpy as np
 
-class TileMosfetTemplate(UserDefinedTemplate):
+
+class TileTemplate(UserDefinedTemplate, metaclass = ABCMeta):
     """ 
-    The class for basic mosfet cell. 
-    The mosfet sub-elements will be placed by placement_pattern.
+    The class for basic parametric cell. 
+    The sub-elements will be placed by placement_pattern.
 
     generation flow:
         1. inserted parameters by __init__()
-        2. self.generate_func, self.generete_pin, self.bbox are used for creating UDFtemplate
+        2. self.generate_func, self.generete_pin, self.bbox are used for creating UserDefindTemplate
     """
 
-    grids             = 0  
+    glib         = None  
     """The main grid libarary for routing."""
     
-    templates         = 0  
+    tlib         = None  
     """The main template library for calling nativeTemplates."""
     
-    tparams: Dict[str, str]  = 0  
+    placement_map: Dict[str, str]  = None  
     """The mapping of the name of sub-elements and the name of native template.
        the name of sub_elements = {"core", "bndr", "bndl", "gbndr", "gbndl"}.
     """
 
-    placement_pattern: List[str] = 0
+    placement_pattern: List[str] = None
     """The sequence of sub-elements placement."""
       
-    transform_pattern: List[str] = 0            
+    transform_pattern: List[str] = None            
     """The sequencye of sub-elements transform: {"R0", "MX", "MY", R180"}."""
     
-    r2_tracks: Dict[str, int]         = 0  
+    routing_map: Dict[str, int]  = None  
     """The mapping of Mosfet terminal and r2 vertical track and other options for tracks.
        Mosfet terminal = {"G", "D", "S"},
        
     """
     
-    grid_name: str         = 0  
+    routing_gname: str         = None  
     """The name of main routing grid."""
 
-    nf_core: int           = 1  
+    nf_core: int           = None  
     """The core template number of finger."""
 
-    libname:str           = 0 
+    libname:str           = None 
     """The name of Native template library."""
 
-    def __init__(self, templates, grids, grid_name: str, r2_tracks: dict, tparams: dict, placement_pattern: list, transform_pattern: list, name: str):
-        self.templates = templates
-
-        self.grids     = grids
-        self.grid_name = grid_name # mosfet grid name
-        self.r2_tracks = r2_tracks # gate, drain, source trakcs
+    def __init__(self, tlib, glib, routing_gname: str, routing_map: dict, placement_map: dict, placement_pattern: list, transform_pattern: list, name: str):
         
-        self.tparams           = tparams           # native template name dictionary
+        self.tlib              = tlib
+        self.glib              = glib
+        self.routing_gname     = routing_gname # mosfet grid name
+        self.routing_map       = routing_map # gate, drain, source trakcs
+        self.placement_map     = placement_map           # native template name dictionary
         self.placement_pattern = placement_pattern # placement pattern
         self.transform_pattern = transform_pattern # transform pattern
         
-        self.libname = templates.libname
+        self.libname = tlib.libname
         self.nf_core   = 2
         
         super().__init__(name = name, bbox_func = self.bbox_func, pins_func = self.pins_func, generate_func = self.generate_func)
@@ -119,10 +120,27 @@ class TileMosfetTemplate(UserDefinedTemplate):
         return via, track
 
     def _update_params(self, params_in) -> dict:
-        """ Update mosfet parameters
+        """ Update sub-elements parameters
         """
 
         params = {}
+
+        if "switch" in params_in:
+            nfs               = dict(core = "nf", dmyl = "nfdmyl", dmyr = "nfdmyr")
+            flags             = params_in["switch"]
+            sizes             = params_in["size"]
+            placement_pattern = self.placement_pattern
+
+            for i in len(flags):
+                tname = placement_pattern[i]
+                size  = sizes[i]
+                flag  = flags[i] 
+                if flag == True:
+                    params_in[tname] = True
+                    if tname in nfs:
+                        params_in[ nfs[tname] ] = size   
+                else:
+                    params_in[tname] = False
 
         params["nf"]        = params_in.get("nf"     , self.nf_core )
         params["nfdmyl"]    = params_in.get("nfdmyl" , False )
@@ -145,24 +163,30 @@ class TileMosfetTemplate(UserDefinedTemplate):
         params["gbndl" ]     = params_in.get("gbndl" , False)
         params["gbndr" ]     = params_in.get("gbndr" , False)
         
-        # about routing
-        params["sdswap"]    = params_in.get("sdswap"   , False)  
-        params["trackswap"] = params_in.get("trackswap", False)  
-        params["tie"      ] = params_in.get("tie"      , False)  
-        
-        # new function
-        params["ntrackswap"] = params_in.get("ntrackswap", False)  
-        params["sdswap"]     = params_in.get("sdswap"    , False)  
-        params["rail"     ] = params_in.get("rail", True )  
-        
+        params = self._update_params_sub(params_in, params)
         return params
+    
+    @abstractmethod
+    def _update_params_sub(self, params_in, params):
+        """ update custom flags """
+        pass
+
+    @abstractmethod
+    def _mos_route(self, params):
+        """ internal routing method """
+        pass
+
+    @abstractmethod
+    def pins_func(self, params):
+        """ pin generation method """
+        pass
 
     def _generate_subinstance(self, params) -> dict:
         """The method of generating native_elements.
         """
 
-        templates = self.templates
-        tparams   = self.tparams
+        tlib            = self.tlib
+        placement_map   = self.placement_map
         params    = self._update_params(params)
         nf_core   = self.nf_core
         tfs       = self.transform_pattern
@@ -188,7 +212,7 @@ class TileMosfetTemplate(UserDefinedTemplate):
             pins_core      = {}
             for i in range( nf):
                 tf_core   = tf_set[ i%2]
-                icore_sub = templates[ tparams["core"] ].generate( name=f'IM{i}'   , shape = [1, 1], transform = tf_core )
+                icore_sub = tlib[ placement_map["core"] ].generate( name=f'IM{i}'   , shape = [1, 1], transform = tf_core )
                 nelements_core[f"IM{i}"] = icore_sub
                 pins_core[f"D{i}"]   = icore_sub.pins["D"]
                 pins_core[f"S{i}"]   = icore_sub.pins["S"]
@@ -198,16 +222,16 @@ class TileMosfetTemplate(UserDefinedTemplate):
                                                              name = "IM0", native_elements = nelements_core, transform = "R0"
                                                             )
         else:
-            icore  = templates[ tparams["core"] ].generate( name='ICORE0', shape = [nf, 1] , transform = tfs["core"] )
+            icore  = tlib[ placement_map["core"] ].generate( name='ICORE0', shape = [nf, 1] , transform = tfs["core"] )
         
-        ibndl  = templates[ tparams["bndl"] ].generate( name='IBNDL0', shape = [1, 1] , transform = tfs["bndl"] )
-        ibndr  = templates[ tparams["bndr"] ].generate( name='IBNDR0', shape = [1, 1] , transform = tfs["bndr"] )
+        ibndl  = tlib[ placement_map["bndl"] ].generate( name='IBNDL0', shape = [1, 1] , transform = tfs["bndl"] )
+        ibndr  = tlib[ placement_map["bndr"] ].generate( name='IBNDR0', shape = [1, 1] , transform = tfs["bndr"] )
         
-        idmyl  = templates[ tparams["dmyl"] ].generate( name='IDMYL0',  shape = [nfdmyl, 1], transform = tfs["dmyl"] )
-        idmyr  = templates[ tparams["dmyr"] ].generate( name='IDMYR0',  shape = [nfdmyr, 1], transform = tfs["dmyr"] )
+        idmyl  = tlib[ placement_map["dmyl"] ].generate( name='IDMYL0',  shape = [nfdmyl, 1], transform = tfs["dmyl"] )
+        idmyr  = tlib[ placement_map["dmyr"] ].generate( name='IDMYR0',  shape = [nfdmyr, 1], transform = tfs["dmyr"] )
 
-        igbndl = templates[ tparams["gbndl"] ].generate( name='IGDMYL0', shape = [1, 1], transform = tfs["gbndl"] )
-        igbndr = templates[ tparams["gbndr"] ].generate( name='IGDMYR0', shape = [1, 1], transform = tfs["gbndr"] )
+        igbndl = tlib[ placement_map["gbndl"] ].generate( name='IGDMYL0', shape = [1, 1], transform = tfs["gbndl"] )
+        igbndr = tlib[ placement_map["gbndr"] ].generate( name='IGDMYR0', shape = [1, 1], transform = tfs["gbndr"] )
 
         iparams["gbndl"] = igbndl
         iparams["gbndr"] = igbndr
@@ -254,21 +278,101 @@ class TileMosfetTemplate(UserDefinedTemplate):
         
         return iparams
 
+   
+    def bbox_func(self, params) -> np.ndarray:
+        params  = self._update_params(params)
+        
+        iparams = self._mos_place( params )
+
+        xy_all = np.asarray([0,0])
+        for t_inst, inst in iparams.items():
+            xy = inst.bbox
+            xy_bl     = xy[0]
+            xy_tr     = xy[1]
+
+            xy_all[0] = max( xy_all[0], xy_tr[0])
+            xy_all[1] = max( xy_all[1], xy_tr[1])
+        
+        return xy_all
+    
+    def generate_func(self, name = None, shape = None, pitch = None, transform = 'R0', params = None):
+        """ generate Virtualinstances and with routing
+        """
+
+        nelements = dict()
+        params    = self._update_params( params )
+        placement_map   = self.placement_map
+        libname   = self.libname
+        iparams   = self._mos_place( params )
+        nelements.update( iparams )            
+        
+        routes    = self._mos_route( params )
+        nelements.update( routes )            
+
+        pins      = self.pins_func(params)
+        nelements.update(pins)
+
+        bbox      = self.bbox_func(params)
+
+        # Generate and return the final instance
+        inst = laygo2.object.VirtualInstance( name = name, xy = np.array([0, 0]) , libname = libname, cellname = f'myvcell_{name}' ,
+                                              native_elements = nelements, shape = shape, pitch = pitch,
+                                              transform       = transform, unit_size = bbox, pins = pins)
+        
+        return inst
+
+class TileMOSTemplate(TileTemplate):
+
+    def _update_params_sub(self, params_in, params):
+        # about routing
+        params["sdswap"]    = params_in.get("sdswap"   , False)  
+        params["trackswap"] = params_in.get("trackswap", False)  
+        params["tie"      ] = params_in.get("tie"      , False)  
+        
+        # new function
+        params["ntrackswap"] = params_in.get("ntrackswap", False)  
+        params["sdswap"]     = params_in.get("sdswap"    , False)  
+        params["rail"     ]  = params_in.get("rail", True )  
+        
+        return params
+
+    def pins_func(self, params):
+        """The method of creating pin."""
+        params  = self._update_params(params)
+        pins    = dict()
+        
+        # generate a virtual routing structure for reference
+        route_obj = self._mos_route( params )
+
+        if 'RG0' in route_obj:  # gate
+            g_obj = route_obj['RG0']
+            pins['G'] = laygo2.object.Pin(xy=g_obj.xy, layer=g_obj.layer, netname='G')
+        if 'RD0' in route_obj:  # drain
+            d_obj = route_obj['RD0']
+            pins['D'] = laygo2.object.Pin(xy=d_obj.xy, layer=d_obj.layer, netname='D')
+        if 'RS0' in route_obj:  # source
+            s_obj = route_obj['RS0']
+            pins['S'] = laygo2.object.Pin(xy=s_obj.xy, layer=s_obj.layer, netname='S')
+        if 'RRAIL0' in route_obj:  # rail
+            r_obj = route_obj['RRAIL0']
+            pins['RAIL'] = laygo2.object.Pin(xy=r_obj.xy, layer=r_obj.layer, netname='RAIL')
+        return pins
+
     def _mos_route(self, params) -> dict:
         """The method of routing mosfet"""
 
         params    = self._update_params(params)
-        grids     = self.grids
-        grid_name = self.grid_name
-        r2_tracks = self.r2_tracks
+        glib      = self.glib
+        routing_gname = self.routing_gname
+        routing_map = self.routing_map
         nf_core   = self.nf_core
         iparams   = self._mos_place(params)
         
-        r12 = grids[grid_name]
-        n_g = r2_tracks["G"]
-        n_d = r2_tracks["D"]
-        n_s = r2_tracks["S"]
-        n_r = r2_tracks.get( "RAIL", 0 )
+        r12 = glib[routing_gname]
+        n_g = routing_map["G"]
+        n_d = routing_map["D"]
+        n_s = routing_map["S"]
+        n_r = routing_map.get( "RAIL", 0 )
 
         nelements = {}
         nelements.update(iparams)
@@ -339,8 +443,8 @@ class TileMosfetTemplate(UserDefinedTemplate):
             mn_sub       = mn_list_g[0]
             r_g["track"] = r12.route( mn = [ mn_sub + [0,0], mn_sub + [0,0] ], via_tag =[None, None] )  # new track
             
-            x_extl        = r2_tracks["G_extension0_x"][0]
-            x_extr        = r2_tracks["G_extension0_x"][1]
+            x_extl        = routing_map["G_extension0_x"][0]
+            x_extr        = routing_map["G_extension0_x"][1]
             if x_extl != None:
                 xy_sub     = r12.xy(mn_sub)
                 r_g["track"].xy = [ xy_sub + [ x_extl , 0], xy_sub + [x_extr, 0] ] # new track location
@@ -349,7 +453,7 @@ class TileMosfetTemplate(UserDefinedTemplate):
             mn_sub    = mn_list_d[0]
             mn_sub[1] = n_d
             
-            m_ext = r2_tracks["D_extension0_m"]
+            m_ext = routing_map["D_extension0_m"]
             m_extl = 0
             m_extr = 0
             if m_ext[0] != None:
@@ -362,7 +466,7 @@ class TileMosfetTemplate(UserDefinedTemplate):
             mn_sub    = mn_list_s[0]
             mn_sub[1] = n_s
             
-            m_ext = r2_tracks["S_extension0_m"]
+            m_ext = routing_map["S_extension0_m"]
             m_extl = 0
             m_extr = 0
             if m_ext[0] != None:
@@ -419,6 +523,23 @@ class TileMosfetTemplate(UserDefinedTemplate):
 
         return nelements
   
+
+class TileTapTemplate(TileTemplate):
+    """The class of TileTap."""
+
+    def _update_params_sub(self, params_in, params):
+        # about routing
+        params["sdswap"]    = params_in.get("sdswap"   , False)  
+        params["trackswap"] = params_in.get("trackswap", False)  
+        params["tie"      ] = params_in.get("tie"      , False)  
+        
+        # new function
+        params["ntrackswap"] = params_in.get("ntrackswap", False)  
+        params["sdswap"]     = params_in.get("sdswap"    , False)  
+        params["rail"     ]  = params_in.get("rail", True )  
+        
+        return params
+
     def pins_func(self, params):
         """The method of creating pin."""
         params  = self._update_params(params)
@@ -441,60 +562,16 @@ class TileMosfetTemplate(UserDefinedTemplate):
             pins['RAIL'] = laygo2.object.Pin(xy=r_obj.xy, layer=r_obj.layer, netname='RAIL')
         return pins
 
-    def bbox_func(self, params) -> np.ndarray:
-        params  = self._update_params(params)
-        
-        iparams = self._mos_place( params )
-
-        xy_all = np.asarray([0,0])
-        for t_inst, inst in iparams.items():
-            xy = inst.bbox
-            xy_bl     = xy[0]
-            xy_tr     = xy[1]
-
-            xy_all[0] = max( xy_all[0], xy_tr[0])
-            xy_all[1] = max( xy_all[1], xy_tr[1])
-        
-        return xy_all
-    
-    def generate_func(self, name = None, shape = None, pitch = None, transform = 'R0', params = None):
-        """ generate Virtualinstances and with routing
-        """
-
-        nelements = dict()
-        params    = self._update_params( params )
-        tparams   = self.tparams
-        libname   = self.libname
-        iparams   = self._mos_place( params )
-        nelements.update( iparams )            
-        
-        routes    = self._mos_route( params )
-        nelements.update( routes )            
-
-        pins      = self.pins_func(params)
-        nelements.update(pins)
-
-        bbox      = self.bbox_func(params)
-
-        # Generate and return the final instance
-        inst = laygo2.object.VirtualInstance( name = name, xy = np.array([0, 0]) , libname = libname, cellname = f'myvcell_{name}' ,
-                                              native_elements = nelements, shape = shape, pitch = pitch,
-                                              transform       = transform, unit_size = bbox, pins = pins)
-        
-        return inst
-
-class TileTapTemplate(TileMosfetTemplate):
-    """The class of TileTap."""
 
     def _mos_route(self, params):
         params    = self._update_params(params)
-        grids     = self.grids
-        grid_name = self.grid_name
-        r2_tracks = self.r2_tracks
+        glib      = self.glib
+        routing_gname = self.routing_gname
+        routing_map = self.routing_map
         nf_core   = self.nf_core
         iparams   = self._mos_place(params)
 
-        r12       = grids[grid_name]
+        r12       = glib[routing_gname]
         nelements = {}
         nelements.update(iparams)
         
