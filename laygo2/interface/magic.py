@@ -124,7 +124,7 @@ def _translate_obj(libpath, objname, obj, scale=1, master=None, offset=np.array(
 # Solution 2: just use search path generate_instance function don't care where the libpath is 
 # solution 1: has serious problem -> microtemplate_dense lib has to be inside of libpath  
 # current state solution 2
-        if obj.libname == "skywater130_microtemplates_dense":
+        if obj.libname.find("_microtemplates_dense") != -1:
             cellfile_name = obj.cellname
         else:
             cellfile_name = obj.libname + '_' + obj.cellname
