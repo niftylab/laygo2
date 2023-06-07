@@ -23,7 +23,7 @@
 ########################################################################################################################
 
 import numpy as np
-from .core import CircularMapping, Grid
+from .core import CircularMapping, Grid, OneDimGrid
 import laygo2.object
 
 class RoutingGrid(Grid):
