@@ -37,8 +37,8 @@ class TileTemplate(UserDefinedTemplate, metaclass = ABCMeta):
     The sub-elements will be placed by placement_pattern.
 
     generation flow:
-        1. inserted parameters by __init__()
-        2. self.generate_func, self.generete_pin, self.bbox are used for creating UserDefindTemplate
+        1. insert parameters by __init__()
+        2. use self.generate_func, self.generete_pin, self.bbox for creating UserDefindTemplate
     """
 
     glib         = None  
@@ -67,19 +67,19 @@ class TileTemplate(UserDefinedTemplate, metaclass = ABCMeta):
     routing_gname: str         = None  
     """The name of main routing grid."""
 
-    nf_core: int           = None  
+    nf_core: int               = None  
     """The core template number of finger."""
 
-    libname:str           = None 
+    libname:str                = None 
     """The name of Native template library."""
 
     def __init__(self, tlib, glib, routing_gname: str, routing_map: dict, placement_map: dict, placement_pattern: list, transform_pattern: list, name: str):
         
         self.tlib              = tlib
         self.glib              = glib
-        self.routing_gname     = routing_gname # mosfet grid name
-        self.routing_map       = routing_map # gate, drain, source trakcs
-        self.placement_map     = placement_map           # native template name dictionary
+        self.routing_gname     = routing_gname     # mosfet grid name
+        self.routing_map       = routing_map       # gate, drain, source trakcs
+        self.placement_map     = placement_map     # native template name dictionary
         self.placement_pattern = placement_pattern # placement pattern
         self.transform_pattern = transform_pattern # transform pattern
         
