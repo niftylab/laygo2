@@ -758,7 +758,7 @@ class RoutingGrid(Grid):
                             vextension0=e0v, hextension0=e0h)
         >>> # Routing on grid
         >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
-        >>> route = g.route(mn=mn_list, via_tag=[True, None, True, True])
+        >>> route = g.route(mn=mn_list, via_tag=[True, False, True, True])
         >>> for r in route:
         >>>     print(r)
         <laygo2.object.physical.Instance object at 0x0000016939A23A90>
@@ -921,7 +921,7 @@ class RoutingGrid(Grid):
         >>> # Routing on grid
         >>> #
         >>> mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]
-        >>> route = g.route(mn=mn_list, via_tag=[True, None, True, True])
+        >>> route = g.route(mn=mn_list, via_tag=[True, False, True, True])
         >>> for r in route:
         >>>     print(r)
         <laygo2.object.physical.Instance object at 0x0000016939A23A90>
@@ -1153,7 +1153,7 @@ class RoutingGrid(Grid):
         via.xy = self[mn]
         return via
 
-    def route_via_track(self, mn, track, via_tag=[None, True]):
+    def route_via_track(self, mn, track, via_tag=[False, True]):
         """
         Perform routing on the specified track with accessing wires to mn.
 
