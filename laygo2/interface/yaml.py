@@ -90,6 +90,22 @@ def export_template(template, filename, mode='append'):
         if os.path.exists(filename):
             with open(filename, 'r') as stream:
                 db = yaml.load(stream, Loader=yaml.FullLoader)
+        else:
+            f_new = open(filename, "w")
+            f_new.write(f"{libname}:\n")
+            f_new.write(f"    dummy:\n")
+            f_new.write(f"        bbox:\n")
+            f_new.write(f"        - - 0\n")
+            f_new.write(f"          - 0\n")
+            f_new.write(f"        - - 0\n")
+            f_new.write(f"          - 0\n")
+            f_new.write(f"        cellname: dummy\n")
+            f_new.write(f"        libname: {libname}\n")
+
+            f_new.close()
+            with open(filename, 'r') as stream:
+                db = yaml.load(stream, Loader=yaml.FullLoader)
+
     if libname not in db:
         db[libname] = dict()
     db[libname][cellname] = template.export_to_dict()
@@ -135,6 +151,7 @@ def import_template(filename):
     if os.path.exists(filename):
         with open(filename, 'r') as stream:
             db = yaml.load(stream, Loader=yaml.FullLoader)
+
     libname = list(db.keys())[0]  # assuming there's only one library defined in each file.
     # create template library
     tlib = laygo2.object.database.TemplateLibrary(name=libname)

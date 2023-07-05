@@ -117,14 +117,14 @@ def _translate_obj(libpath, objname, obj, scale=1, master=None, offset=np.array(
         else:
             num_rows = obj.shape[1]
             num_cols = obj.shape[0]
-            sp_rows = _py2magic_number(obj.pitch[1])
-            sp_cols = _py2magic_number(obj.pitch[0])
+            sp_rows = _py2magic_number(obj.pitch[1], scale=scale)
+            sp_cols = _py2magic_number(obj.pitch[0], scale=scale)
 # Problem: if there is no cell at '/WORK/hjpark/laygo2_workspace_sky130/magic_layout' but exist at search path, this function dosen't work 
 # Solution 1: change  '/WORK/hjpark/laygo2_workspace_sky130/magic_layout' -> libpath (from layout generating script not here)
 # Solution 2: just use search path generate_instance function don't care where the libpath is 
 # solution 1: has serious problem -> microtemplate_dense lib has to be inside of libpath  
 # current state solution 2
-        if obj.libname == "skywater130_microtemplates_dense":
+        if obj.libname.find("_microtemplates_dense") != -1:
             cellfile_name = obj.cellname
         else:
             cellfile_name = obj.libname + '_' + obj.cellname
