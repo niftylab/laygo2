@@ -191,7 +191,7 @@ class TileTemplate(UserDefinedTemplate, metaclass = ABCMeta):
         nf_core   = self.nf_core
         tfs       = self.transform_pattern
         
-        iparams   = dict()  # mapping sub-elements nand and generated instance.
+        iparams   = dict()  # mapping sub-elements and generated instance.
         nf        = int( params["nf"] / nf_core) 
         
         if params["nfdmyl"] == False:
@@ -448,7 +448,7 @@ class TileMOSTemplate(TileTemplate):
             if x_extl != None:
                 xy_sub     = r12.xy(mn_sub)
                 r_g["track"].xy = [ xy_sub + [ x_extl , 0], xy_sub + [x_extr, 0] ] # new track location
-        
+
         if r_d["track"] == None: 
             mn_sub    = mn_list_d[0]
             mn_sub[1] = n_d
@@ -460,7 +460,7 @@ class TileMOSTemplate(TileTemplate):
                 m_extl = m_ext[0]
                 m_extr = m_ext[1]
 
-            r_d["track"]   = r12.route( mn = [ mn_sub + [m_extl,0], mn_sub + [m_extl,0] ], via_tag =[None, None] )
+            r_d["track"]   = r12.route( mn = [ mn_sub + [m_extl,0], mn_sub + [m_extr,0] ], via_tag =[None, None] )
 
         if r_s["track"] == None: 
             mn_sub    = mn_list_s[0]
@@ -472,8 +472,12 @@ class TileMOSTemplate(TileTemplate):
             if m_ext[0] != None:
                 m_extl = m_ext[0]
                 m_extr = m_ext[1]
-            r_s["track"]   = r12.route( mn = [ mn_sub + [m_extl,0], mn_sub + [m_extl,0] ], via_tag =[None, None] )
+            r_s["track"]   = r12.route( mn = [ mn_sub + [m_extl,0], mn_sub + [m_extr,0] ], via_tag =[None, None] )
 
+        #if True:
+        #    pass
+        #else:
+        
         nelements["VIA_G"] = r_g["via"]
         nelements["VIA_D"] = r_d["via"]
         nelements["VIA_S"] = r_s["via"]
@@ -571,14 +575,33 @@ class TileTapTemplate(TileTemplate):
         nf_core   = self.nf_core
         iparams   = self._mos_place(params)
 
-        r12       = glib[routing_gname]
+        r12 = glib[routing_gname]
+        n_g = routing_map["G"]
+        n_d = routing_map["D"]
+        n_s = routing_map["S"]
+        n_r = routing_map.get( "RAIL", 0 )
+
         nelements = {}
         nelements.update(iparams)
         
         icore   = iparams["core"]
         nf      = params["nf"]
 
-        mn_list_s = []
+        G, S, D = "G", "S", "D"
+        
+        if params["trackswap"]: #backward compatable
+            n_d, n_s = n_s, n_d
+            S, D     = D, S
+        
+        if params["ntrackswap"]: 
+            n_d, n_s = n_s, n_d
+        
+        if params["sdswap"]: 
+            S, D     = D, S
+
+        mn_list_s = [] # TAP0
+        mn_list_d = [] # TAP1
+
         i_iter = int( nf / nf_core) 
         for i in range( i_iter ):
             if i_iter == 1:
@@ -589,13 +612,58 @@ class TileTapTemplate(TileTemplate):
             for pin_name in icore_sub.pins.keys():
                 if "TAP0" in pin_name:
                     mn_list_s.append( r12.mn.center( icore_sub.pins[pin_name] ) )
-                elif "TAP2" in pin_name:
-                    mn_list_s.append( r12.mn.center( icore_sub.pins[pin_name] ) )
+                elif "TAP1" in pin_name:
+                    mn_list_d.append( r12.mn.center( icore_sub.pins[pin_name] ) )
         
         mn_list_s = np.asarray( mn_list_s)
         mn_list_s = mn_list_s[  mn_list_s[:,0].argsort()] 
         mn_list_s = np.unique(  mn_list_s, axis = 0 )
+        
+        mn_list_d = np.asarray( mn_list_d)
+        mn_list_d = mn_list_s[  mn_list_d[:,0].argsort()] 
+        mn_list_d = np.unique(  mn_list_d, axis = 0 )
 
+        r_s = dict( via = 0 , track = 0) 
+        r_d = dict( via = 0 , track = 0) 
+
+        for mn_list, n_track, terminal, r_dict in zip( (mn_list_s,mn_list_d), (n_s, n_d), ( D, S), (r_d, r_s) ):
+            via, track = self._route_pattern_via_track( r12, mn_list, n_track, terminal)
+            r_dict["via"]   = via
+            r_dict["track"] = track 
+
+        # Modify track
+        if r_d["track"] == None: 
+            mn_sub    = mn_list_d[0]
+            mn_sub[1] = n_d
+            
+            m_ext = routing_map["D_extension0_m"]
+            m_extl = 0
+            m_extr = 0
+            if m_ext[0] != None:
+                m_extl = m_ext[0]
+                m_extr = m_ext[1]
+
+            r_d["track"]   = r12.route( mn = [ mn_sub + [m_extl,0], mn_sub + [m_extr,0] ], via_tag =[None, None] )
+
+        if r_s["track"] == None: 
+            mn_sub    = mn_list_s[0]
+            mn_sub[1] = n_s
+            
+            m_ext = routing_map["S_extension0_m"]
+            m_extl = 0
+            m_extr = 0
+            if m_ext[0] != None:
+                m_extl = m_ext[0]
+                m_extr = m_ext[1]
+            r_s["track"]   = r12.route( mn = [ mn_sub + [m_extl,0], mn_sub + [m_extr,0] ], via_tag =[None, None] )
+
+        nelements["VIA_D"] = r_d["via"]
+        nelements["VIA_S"] = r_s["via"]
+
+        nelements["RD0"] = r_d["track"]
+        nelements["RS0"] = r_s["track"]
+
+        # Rail routing
         if params["rail"]:
             xy    = icore.bbox
             xy_bl = xy[0]
@@ -606,22 +674,27 @@ class TileTapTemplate(TileTemplate):
 
             r_track = r12.route( mn = [mn_bl, mn_br], via_tag = [None, None] )
             nelements["RRAIL0"] = r_track
-        
+
         # TIE
         if params["tie"] != False:
-            n_r = 0
-            len_via = mn_list_s.shape[0]
-            if params["tie"] == True:
-                via, track = self._route_pattern_via_track( r12, mn_list_s, n_r, "VIA_RAIL")
+
+            if params["tie"] == "TAP0" or params["tie"] == True:
+                del nelements["RS0"]
+                del nelements["VIA_S"]
+                
+                via, track = self._route_pattern_via_track(r12, mn_list_s, n_r, "VIA_TIE")
                 r_t        = r12.route_via_track( mn = mn_list_s, via_tag = [ False, False], track = [None, n_r])
+            
+            elif params["tie"] == "TAP1":
+                del nelements["RD0"]
+                del nelements["VIA_D"]
+                
+                via, track = self._route_pattern_via_track(r12, mn_list_d, n_r, "VIA_TIE")
+                r_t        = r12.route_via_track( mn = mn_list_d, via_tag = [ False, False], track = [None, n_r])
+
             else:
                 raise Exception(" Value error for tie")
             
             nelements["VIA_TIE"] = via
-            
-            if r_t[-1] == None:
-                del r_t[1]
-            for i, r in enumerate(r_t):
-                nelements[f"RECT_TIE{i}"] = r
 
         return nelements
