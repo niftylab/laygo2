@@ -25,7 +25,6 @@ from typing import Set, Tuple, List, Dict
 from abc import *
 
 from laygo2.object.template import UserDefinedTemplate
-import laygo2.object.physical
 import laygo2.object.database
 
 import numpy as np
@@ -227,8 +226,8 @@ class TileTemplate(UserDefinedTemplate, metaclass = ABCMeta):
         ibndl  = tlib[ placement_map["bndl"] ].generate( name='IBNDL0', shape = [1, 1] , transform = tfs["bndl"] )
         ibndr  = tlib[ placement_map["bndr"] ].generate( name='IBNDR0', shape = [1, 1] , transform = tfs["bndr"] )
         
-        idmyl  = tlib[ placement_map["dmyl"] ].generate( name='IDMYL0',  shape = [nfdmyl, 1], transform = tfs["dmyl"] )
-        idmyr  = tlib[ placement_map["dmyr"] ].generate( name='IDMYR0',  shape = [nfdmyr, 1], transform = tfs["dmyr"] )
+        idmyl  = tlib[ placement_map["dmyl"] ].generate( name='IDMYL0',  shape = [max( int(0.5 * nfdmyl ),1)  , 1], transform = tfs["dmyl"] )
+        idmyr  = tlib[ placement_map["dmyr"] ].generate( name='IDMYR0',  shape = [max( int(0.5 * nfdmyr) ,1)  , 1], transform = tfs["dmyr"] )
 
         igbndl = tlib[ placement_map["gbndl"] ].generate( name='IGDMYL0', shape = [1, 1], transform = tfs["gbndl"] )
         igbndr = tlib[ placement_map["gbndr"] ].generate( name='IGDMYR0', shape = [1, 1], transform = tfs["gbndr"] )
@@ -361,13 +360,14 @@ class TileMOSTemplate(TileTemplate):
     def _mos_route(self, params) -> dict:
         """The method of routing mosfet"""
 
-        params    = self._update_params(params)
-        glib      = self.glib
-        routing_gname = self.routing_gname
-        routing_map = self.routing_map
-        nf_core   = self.nf_core
-        iparams   = self._mos_place(params)
-        
+        params            = self._update_params(params)
+        glib              = self.glib
+        routing_gname     = self.routing_gname
+        routing_map       = self.routing_map
+        nf_core           = self.nf_core
+        iparams           = self._mos_place(params)
+        placement_pattern = self.placement_pattern
+
         r12 = glib[routing_gname]
         n_g = routing_map["G"]
         n_d = routing_map["D"]
@@ -381,7 +381,6 @@ class TileMOSTemplate(TileTemplate):
         nf      = params["nf"]
 
         G, S, D = "G", "S", "D"
-
         
         if params["trackswap"]: #backward compatable
             n_d, n_s = n_s, n_d
@@ -474,10 +473,6 @@ class TileMOSTemplate(TileTemplate):
                 m_extr = m_ext[1]
             r_s["track"]   = r12.route( mn = [ mn_sub + [m_extl,0], mn_sub + [m_extr,0] ], via_tag =[None, None] )
 
-        #if True:
-        #    pass
-        #else:
-        
         nelements["VIA_G"] = r_g["via"]
         nelements["VIA_D"] = r_d["via"]
         nelements["VIA_S"] = r_s["via"]
@@ -488,10 +483,31 @@ class TileMOSTemplate(TileTemplate):
 
         # Rail routing
         if params["rail"]:
-            xy    = icore.bbox
-            xy_bl = xy[0]
-            xy_tr = xy[1]
+
+            tinst_l = 0 # left most sub-element name
+            tinst_r = 0 # right most sub-element name
+
+            for i, tinst in enumerate(placement_pattern):
+                name = placement_pattern[i]
+                if name in iparams:
+                    if name != "gbndl":
+                        tinst_l = name
+                        break   
+            
+            for i, tinst in enumerate(placement_pattern):
+                name = placement_pattern[-1 - i]
+                if name in iparams:
+                    if name != "gbndr":
+                        tinst_r = name
+                        break   
+                    
+            inst_l = iparams[tinst_l]
+            inst_r = iparams[tinst_r]
+
+            xy_bl = inst_l.bbox[0]
+            xy_tr = inst_r.bbox[1]
             xy_br = [xy_tr[0], xy_bl[1] ]
+
             mn_bl = r12.xy >= xy_bl 
             mn_br = r12.xy <= xy_br 
 
@@ -522,8 +538,54 @@ class TileMOSTemplate(TileTemplate):
             
             if r_t[-1] == None:
                 del r_t[1]
-            for i, r in enumerate(r_t):
+            for i, r in enumerate(r_t): # source or drain to rail
                 nelements[f"RECT_TIE{i}"] = r
+
+        # dmy routing
+
+        names_dmy = ["dmyl", "dmyr"]
+        for i, tdmy_nf in enumerate( ( "nfdmyl", "nfdmyr" )):
+            if params[tdmy_nf] == 0:
+                continue
+            name_dmy  = names_dmy[i]
+            icore     = iparams[ name_dmy ]
+            mn_list_g = [] 
+            mn_list_d = [] 
+            mn_list_s = []
+            i_iter = int( params[tdmy_nf] / nf_core) 
+
+            for i in range( i_iter ):
+                if i_iter == 1:
+                    icore_sub =  icore
+                else:
+                    icore_sub =  icore[i][0] # it is 2-dimensional array
+                
+                for pin_name in icore_sub.pins.keys():
+
+                    if G in pin_name:
+                        mn_list_g.append( r12.mn.center( icore_sub.pins[pin_name] ) )
+                    elif D in pin_name:
+                        mn_list_d.append( r12.mn.center( icore_sub.pins[pin_name] ) )
+                    elif S in pin_name:
+                        mn_list_s.append( r12.mn.center( icore_sub.pins[pin_name] ) )
+
+                mn_list_a = mn_list_g + mn_list_s + mn_list_d
+                mn_list_a = np.asarray( mn_list_a)
+                mn_list_a = mn_list_a[  mn_list_a[:,0].argsort()] # sort list by bottom_left
+                mn_list_a = np.unique(  mn_list_a, axis = 0 )
+
+                r_t        = r12.route_via_track( mn = mn_list_a, via_tag = [ False, False], track = [None, n_r])
+                
+                mn_list_a[:,1] = n_r
+                mn_list_a = np.unique(  mn_list_a, axis = 0 )
+                via, track = self._route_pattern_via_track(r12, mn_list_a, n_r, f"VIA_DUMMY_{icore.name}")
+                
+                nelements[f"VIA_TIE_{name_dmy}"] = via
+                
+                if r_t[-1] == None:
+                    del r_t[1]
+                for i, r in enumerate(r_t): # source or drain to rail
+                    nelements[f"RECT_DMY_TIE_{name_dmy}_{i}"] = r
 
         return nelements
   
@@ -696,5 +758,10 @@ class TileTapTemplate(TileTemplate):
                 raise Exception(" Value error for tie")
             
             nelements["VIA_TIE"] = via
+
+            if r_t[-1] == None:
+                del r_t[1]
+            for i, r in enumerate(r_t):
+                nelements[f"RECT_TIE{i}"] = r
 
         return nelements
