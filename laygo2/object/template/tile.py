@@ -171,7 +171,7 @@ class TileTemplate(UserDefinedTemplate, metaclass = ABCMeta):
         pass
 
     @abstractmethod
-    def _mos_route(self, params):
+    def _internal_route(self, params):
         """ internal routing method """
         pass
 
@@ -245,7 +245,7 @@ class TileTemplate(UserDefinedTemplate, metaclass = ABCMeta):
 
         return iparams
 
-    def _mos_place(self, params) -> dict:
+    def _device_place(self, params) -> dict:
         """ The method of placing native elements.
             It will modify instances.xy
         """
@@ -281,7 +281,7 @@ class TileTemplate(UserDefinedTemplate, metaclass = ABCMeta):
     def bbox_func(self, params) -> np.ndarray:
         params  = self._update_params(params)
         
-        iparams = self._mos_place( params )
+        iparams = self._device_place( params )
 
         xy_all = np.asarray([0,0])
         for t_inst, inst in iparams.items():
@@ -302,10 +302,10 @@ class TileTemplate(UserDefinedTemplate, metaclass = ABCMeta):
         params    = self._update_params( params )
         placement_map   = self.placement_map
         libname   = self.libname
-        iparams   = self._mos_place( params )
+        iparams   = self._device_place( params )
         nelements.update( iparams )            
         
-        routes    = self._mos_route( params )
+        routes    = self._internal_route( params )
         nelements.update( routes )            
 
         pins      = self.pins_func(params)
@@ -341,7 +341,7 @@ class TileMOSTemplate(TileTemplate):
         pins    = dict()
         
         # generate a virtual routing structure for reference
-        route_obj = self._mos_route( params )
+        route_obj = self._internal_route( params )
 
         if 'RG0' in route_obj:  # gate
             g_obj = route_obj['RG0']
@@ -357,7 +357,7 @@ class TileMOSTemplate(TileTemplate):
             pins['RAIL'] = laygo2.object.Pin(xy=r_obj.xy, layer=r_obj.layer, netname='RAIL')
         return pins
 
-    def _mos_route(self, params) -> dict:
+    def _internal_route(self, params) -> dict:
         """The method of routing mosfet"""
 
         params            = self._update_params(params)
@@ -365,7 +365,7 @@ class TileMOSTemplate(TileTemplate):
         routing_gname     = self.routing_gname
         routing_map       = self.routing_map
         nf_core           = self.nf_core
-        iparams           = self._mos_place(params)
+        iparams           = self._device_place(params)
         placement_pattern = self.placement_pattern
 
         r12 = glib[routing_gname]
@@ -612,7 +612,7 @@ class TileTapTemplate(TileTemplate):
         pins    = dict()
         
         # generate a virtual routing structure for reference
-        route_obj = self._mos_route( params )
+        route_obj = self._internal_route( params )
 
         if 'RG0' in route_obj:  # gate
             g_obj = route_obj['RG0']
@@ -629,13 +629,14 @@ class TileTapTemplate(TileTemplate):
         return pins
 
 
-    def _mos_route(self, params):
+    def _internal_route(self, params):
         params    = self._update_params(params)
         glib      = self.glib
         routing_gname = self.routing_gname
         routing_map = self.routing_map
         nf_core   = self.nf_core
-        iparams   = self._mos_place(params)
+        iparams   = self._device_place(params)
+        placement_pattern = self.placement_pattern
 
         r12 = glib[routing_gname]
         n_g = routing_map["G"]
@@ -727,6 +728,37 @@ class TileTapTemplate(TileTemplate):
 
         # Rail routing
         if params["rail"]:
+
+            tinst_l = 0 # left most sub-element name
+            tinst_r = 0 # right most sub-element name
+
+            for i, tinst in enumerate(placement_pattern):
+                name = placement_pattern[i]
+                if name in iparams:
+                    if name != "gbndl":
+                        tinst_l = name
+                        break   
+            
+            for i, tinst in enumerate(placement_pattern):
+                name = placement_pattern[-1 - i]
+                if name in iparams:
+                    if name != "gbndr":
+                        tinst_r = name
+                        break   
+                    
+            inst_l = iparams[tinst_l]
+            inst_r = iparams[tinst_r]
+
+            xy_bl = inst_l.bbox[0]
+            xy_tr = inst_r.bbox[1]
+            xy_br = [xy_tr[0], xy_bl[1] ]
+
+            mn_bl = r12.xy >= xy_bl 
+            mn_br = r12.xy <= xy_br 
+
+            r_track = r12.route( mn = [mn_bl, mn_br], via_tag = [None, None] )
+            nelements["RRAIL0"] = r_track
+            '''
             xy    = icore.bbox
             xy_bl = xy[0]
             xy_tr = xy[1]
@@ -736,6 +768,7 @@ class TileTapTemplate(TileTemplate):
 
             r_track = r12.route( mn = [mn_bl, mn_br], via_tag = [None, None] )
             nelements["RRAIL0"] = r_track
+            '''
 
         # TIE
         if params["tie"] != False:
@@ -763,5 +796,90 @@ class TileTapTemplate(TileTemplate):
                 del r_t[1]
             for i, r in enumerate(r_t):
                 nelements[f"RECT_TIE{i}"] = r
+
+        return nelements
+
+class TileSpaceTemplate(TileTemplate):
+    """The class for tile-based spacer template."""
+
+    def _update_params_sub(self, params_in, params):
+        params["rail"     ]  = params_in.get("rail", True )  
+        return params
+
+    def pins_func(self, params):
+        """The method of creating pin."""
+        params  = self._update_params(params)
+        pins    = dict()
+        
+        # generate a virtual routing structure for reference
+        route_obj = self._internal_route( params )
+
+        if 'RRAIL0' in route_obj:  # rail
+            r_obj = route_obj['RRAIL0']
+            pins['RAIL'] = laygo2.object.Pin(xy=r_obj.xy, layer=r_obj.layer, netname='RAIL')
+        return pins
+
+
+    def _internal_route(self, params):
+        params    = self._update_params(params)
+        glib      = self.glib
+        routing_gname = self.routing_gname
+        routing_map = self.routing_map
+        nf_core   = self.nf_core
+        iparams   = self._device_place(params)
+        placement_pattern = self.placement_pattern
+
+        r12 = glib[routing_gname]
+        n_r = routing_map.get( "RAIL", 0 )
+
+        nelements = {}
+        nelements.update(iparams)
+        
+        icore   = iparams["core"]
+        nf      = params["nf"]
+
+        # Rail routing
+        if params["rail"]:
+
+            tinst_l = 0 # left most sub-element name
+            tinst_r = 0 # right most sub-element name
+
+            for i, tinst in enumerate(placement_pattern):
+                name = placement_pattern[i]
+                if name in iparams:
+                    if name != "gbndl":
+                        tinst_l = name
+                        break   
+            
+            for i, tinst in enumerate(placement_pattern):
+                name = placement_pattern[-1 - i]
+                if name in iparams:
+                    if name != "gbndr":
+                        tinst_r = name
+                        break   
+                    
+            inst_l = iparams[tinst_l]
+            inst_r = iparams[tinst_r]
+
+            xy_bl = inst_l.bbox[0]
+            xy_tr = inst_r.bbox[1]
+            xy_br = [xy_tr[0], xy_bl[1] ]
+
+            mn_bl = r12.xy >= xy_bl 
+            mn_br = r12.xy <= xy_br 
+
+            r_track = r12.route( mn = [mn_bl, mn_br], via_tag = [None, None] )
+            nelements["RRAIL0"] = r_track
+            '''
+            xy    = icore.bbox
+            xy_bl = xy[0]
+            xy_tr = xy[1]
+            xy_br = [xy_tr[0], xy_bl[1] ]
+            mn_bl = r12.xy >= xy_bl 
+            mn_br = r12.xy <= xy_br 
+
+            r_track = r12.route( mn = [mn_bl, mn_br], via_tag = [None, None] )
+            nelements["RRAIL0"] = r_track
+            '''
 
         return nelements
