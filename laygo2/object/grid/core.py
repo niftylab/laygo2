@@ -2797,6 +2797,9 @@ class Grid:
         return [self._xy[0].elements, self._xy[1].elements]
 
     # Indexing and slicing functions
+    def __call__(self, other):
+        return self.mn(other)
+
     def __getitem__(self, pos):
         return self.abs2phy.__getitem__(pos)
 
