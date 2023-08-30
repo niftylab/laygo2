@@ -2165,7 +2165,7 @@ class Instance(IterablePhysicalObject):
             elements = None
         else:
             _shape = tuple(shape)
-            elements = np.zeros(_shape, dtype=np.object)
+            elements = np.zeros(_shape, dtype=object)
             # elements = LayoutObjectArray(np.zeros(_shape, dtype=np.object))
             _it = np.nditer(elements, flags=["multi_index", "refs_ok"])
             while not _it.finished:
