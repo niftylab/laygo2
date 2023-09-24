@@ -1777,7 +1777,16 @@ class Instance(IterablePhysicalObject):
     -----
     **(Korean)**: 객체에 속한 핀들을 갖는 dict.
     """
+    
+    def get_p(self):
+        return self.pins
 
+    def set_p(self, val):
+        self.pins = val
+
+    p = property(get_p, set_p)
+    """str: Alias of pins."""
+    
     def _update_pins(self, xy_ofst):
         """
         Internal function to update x,y coordinates of the object's pins. 
