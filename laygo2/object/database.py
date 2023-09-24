@@ -954,7 +954,7 @@ class Design(BaseDatabase):
     def get_vi(self):
         return self.virtual_instances
 
-    def set_r(self, val):
+    def set_vi(self, val):
         self.virtual_instances = val
 
     vi = property(get_vi, set_vi)
