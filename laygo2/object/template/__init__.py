@@ -28,4 +28,5 @@
 
 from . import *
 from .core import *
+from .tile import *
 from .routing import *

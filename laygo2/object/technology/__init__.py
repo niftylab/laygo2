@@ -22,30 +22,11 @@
 #
 ########################################################################################################################
 
-"""laygo2 package"""
+"""
+**laygo2.object.technology** module implements classes for technology parameters and objects.
+"""
 
-#from .object import *
-#from .util import *
-
-# Objects
-from . import object
-from .object import *
-from .object.database import *
-from .object.grid import *
-from .object.physical import *
-from .object.template import *
-
-# Interface
-from . import interface
-from .interface.yaml import export_template
-from .interface.bag import export as export_to_bag
-from .interface.skill import export as export_to_skill
-#from . import util
-
-# Util
-from . import util
-
-#__all__ = ['object', 'util']
-#__all__ = ['object', 'PrimitiveUtil']
-
+from . import *
+from .core import *
+from .nifty import *
 

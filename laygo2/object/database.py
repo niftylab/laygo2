@@ -851,6 +851,15 @@ class Design(BaseDatabase):
     **(Korean)** Design 객체에 소속된 Rect 객체들을 갖고 있는 dictionary.
     """
 
+    def get_r(self):
+        return self.rects
+
+    def set_r(self, val):
+        self.rects = val
+
+    r = property(get_r, set_r)
+    """str: Alias of rects."""
+
     paths = None
 
     pins = None
@@ -872,7 +881,16 @@ class Design(BaseDatabase):
     -----
     **(Korean)** Design 객체에 소속된 Pin 객체들을 갖고 있는 dictionary.
     """
+    
+    def get_p(self):
+        return self.pins
 
+    def set_p(self, val):
+        self.pins = val
+
+    p = property(get_p, set_p)
+    """str: Alias of pins."""
+    
     texts = None
     """dict: Dictionary containing Text objects affiliated with Design object.
 
@@ -911,6 +929,15 @@ class Design(BaseDatabase):
     **(Korean)** Design 객체에 소속된 Instance 객체들을 갖고 있는 dictionary.
     """
 
+    def get_i(self):
+        return self.instances
+
+    def set_i(self, val):
+        self.instances = val
+
+    i = property(get_i, set_i)
+    """str: Alias of instances."""
+    
     virtual_instances = None
     """dict: Dictionary containing VirtualInstance objects affiliated with 
     Design object.
@@ -923,6 +950,15 @@ class Design(BaseDatabase):
     -----
     **(Korean)** Design 객체에 소속된 VirtualInstance 객체들을 갖고 있는 dictionary.
     """
+
+    def get_vi(self):
+        return self.virtual_instances
+
+    def set_vi(self, val):
+        self.virtual_instances = val
+
+    vi = property(get_vi, set_vi)
+    """str: Alias of virtual_instances."""
 
     def __iter__(self):
         """Element-mapped direct iterator function.

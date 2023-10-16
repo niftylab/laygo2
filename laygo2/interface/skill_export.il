@@ -57,7 +57,7 @@ procedure( _laygo2_generate_instance( cv name libname cellname viewname loc orie
                             params_order = mapcar( lambda( (x) car(x) ) params )
                         );if
                         ;abInvokeCdfCallbacks(obj ?order params_order)  ; run callback functions
-                        CCSinvokeCdfCallbacks(obj ?order params_order)  ; run callback functions
+                        CCSinvokeInstCdfCallbacks(obj ?order params_order)  ; run callback functions
                     );when
                 else  ; for vanilla cells
                     obj = dbCreateInst(cv inst_cv name loc orient)
@@ -70,7 +70,7 @@ procedure( _laygo2_generate_instance( cv name libname cellname viewname loc orie
                             params_order = mapcar( lambda( (x) car(x) ) params )
                         );if
                         ;abInvokeCdfCallbacks(obj ?order params_order)  ; run callback functions
-                        CCSinvokeCdfCallbacks(obj ?order params_order)  ; run callback functions
+                        CCSinvokeInstCdfCallbacks(obj ?order params_order)  ; run callback functions
                     );when
                 else  ; for vanilla cells
                     obj = dbCreateSimpleMosaic(cv inst_cv name loc orient num_rows num_cols sp_rows sp_cols)
