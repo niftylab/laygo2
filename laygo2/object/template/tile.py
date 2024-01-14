@@ -329,7 +329,7 @@ class TileMOSTemplate(TileTemplate):
         params["tie"      ] = params_in.get("tie"      , False)  
         
         # new function
-        params["ntrackswap"] = params_in.get("ntrackswap", False)  
+        params["rtrackswap"] = params_in.get("rtrackswap", False)  
         params["sdswap"]     = params_in.get("sdswap"    , False)  
         params["rail"     ]  = params_in.get("rail", True )  
         
@@ -386,7 +386,7 @@ class TileMOSTemplate(TileTemplate):
             n_d, n_s = n_s, n_d
             S, D     = D, S
         
-        if params["ntrackswap"]: 
+        if params["rtrackswap"]: 
             n_d, n_s = n_s, n_d
         
         if params["sdswap"]: 
@@ -600,7 +600,7 @@ class TileTapTemplate(TileTemplate):
         params["tie"      ] = params_in.get("tie"      , False)  
         
         # new function
-        params["ntrackswap"] = params_in.get("ntrackswap", False)  
+        params["rtrackswap"] = params_in.get("rtrackswap", False)  
         params["sdswap"]     = params_in.get("sdswap"    , False)  
         params["rail"     ]  = params_in.get("rail", True )  
         
@@ -656,7 +656,7 @@ class TileTapTemplate(TileTemplate):
             n_d, n_s = n_s, n_d
             S, D     = D, S
         
-        if params["ntrackswap"]: 
+        if params["rtrackswap"]: 
             n_d, n_s = n_s, n_d
         
         if params["sdswap"]: 
