@@ -1,5 +1,8 @@
 # laygo2
 
+### Notice: From Sep. 2024, the open-source version of laygo2 has been in "Maintenance Mode". Updates are restricted to bug fixes and marginal improvements. 
+Please contact us to access advanced features in the private version.
+
 [![PyPI version](https://badge.fury.io/py/laygo2.svg?)](https://pypi.org/project/laygo2/)
 
 (The commit history is cleaned up on 6-27-2022)
