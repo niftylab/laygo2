@@ -1,6 +1,6 @@
 # Trial
 
-This section provides an introductory guide for begineers users to get
+This section provides an introductory guide for begineers to get
  started with using **laygo2**.
 
 <!--

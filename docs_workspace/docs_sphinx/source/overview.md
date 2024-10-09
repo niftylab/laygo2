@@ -42,13 +42,13 @@ a generator code for a custom layout using the **laygo2** package:
     - Check [laygo2_tech.load_templates()](https://github.com/niftylab/laygo2/blob/master/laygo2/examples/laygo2_tech/laygo2_tech_templates.py)
     and [laygo2_tech.load_grids()](https://github.com/niftylab/laygo2/blob/master/laygo2/examples/laygo2_tech/laygo2_tech_grids.py) for further details.
 1. **Generate instances** from the loaded templates.
-    - Check [object.Template.generate()](https://laygo2.github.io/laygo2.object.template.Template.html#laygo2.object.template.Template.generate) for further details.
+    - Check [Template.generate()](https://laygo2.github.io/laygo2.object.template.Template.html#laygo2.object.template.Template.generate) for further details.
 1. Perform **placement** of the generated instances.
-    - Check [object.database.Design.place()](https://laygo2.github.io/laygo2.object.database.Design.html#laygo2.object.database.Design.place) for further details.
+    - Check [Design.place()](https://laygo2.github.io/laygo2.object.database.Design.html#laygo2.object.database.Design.place) for further details.
 1. **Route** wires and vias between the instances' terminals.
-    - Check [object.database.Design.route()](https://laygo2.github.io/laygo2.object.database.Design.html#laygo2.object.database.Design.route), [object.database.Design.route_via_track()](https://laygo2.github.io/laygo2.object.database.Design.html#laygo2.object.database.Design.route_via_track), and [object.routing.RoutingMesh](https://laygo2.github.io/laygo2.object.routing.RoutingMesh.html) for further details.
-2. Create the necessary **Pins**. 
-    - Check [object.database.Design.pin()](https://laygo2.github.io/laygo2.object.database.Design.html#laygo2.object.database.Design.pin) for further details.
+    - Check [Design.route()](https://laygo2.github.io/laygo2.object.database.Design.html#laygo2.object.database.Design.route), [Design.route_via_track()](https://laygo2.github.io/laygo2.object.database.Design.html#laygo2.object.database.Design.route_via_track), and [RoutingMeshTemplate](https://laygo2.github.io/laygo2.object.routing.RoutingMeshTemplate.html) for further details.
+2. Create **Pins** for interfaces with other building blocks. 
+    - Check [Design.pin()](https://laygo2.github.io/laygo2.object.database.Design.html#laygo2.object.database.Design.pin) for further details.
 3. **Export** the completed design in the desired format.
     - Check [interface.skill.export()](https://laygo2.github.io/laygo2.interface.skill.html#laygo2.interface.skill.export), [interface.skillbridge.export()](https://laygo2.github.io/laygo2.interface.skillbridge.html#laygo2.interface.skillbridge.export), [interface.bag.export()](https://laygo2.github.io/laygo2.interface.bag.html#laygo2.interface.bag.export), [interface.gdspy.export()](https://laygo2.github.io/laygo2.interface.gdspy.html#laygo2.interface.gdspy.export), [interface.magic.export()](https://laygo2.github.io/laygo2.interface.magic.html#laygo2.interface.magic.export), and [interface.mpl.export()](https://laygo2.github.io/laygo2.interface.mpl.html#laygo2.interface.mpl.export) for further details.
 4.  _(Optional)_ Save the design as a new **template** for future reuse. 

@@ -13,10 +13,10 @@ The **LAYout with Gridded Object 2 (laygo2)** package is a comprehensive
 framework for IC layout generation, written in the Python programming 
 language. 
 
-laygo2 is currently being maintained by the 
-`Nifty Chips Laboratory <https://niftylab.github.io>`_ at Hanyang University 
-in South Korea, ensuring that the package remains up-to-date and 
-well-supported.
+The open-source version of laygo2 is currently being maintained by the 
+`Nifty Chips Laboratory <https://niftylab.github.io>`_ at Hanyang University. 
+
+Its closed-source version requires a technology-transfer contract to be provided. Contact for details.
 
 .. toctree::
    :maxdepth: 2
@@ -27,8 +27,6 @@ well-supported.
    API Reference<laygo2>
    Tech Setup<technology>
    Resources<resources>
-   Korean<kor>
-
 
 Indices and tables
 ==================
