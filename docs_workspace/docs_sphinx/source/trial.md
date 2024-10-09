@@ -3,13 +3,6 @@
 This section provides an introductory guide for begineers to get
  started with using **laygo2**.
 
-<!--
-* **[Quick installation and setup](#Quick-Installation-and-Setup)** describes the installation and set up procedure of 
-laygo in linux environments.
-* **[Technology setup](#Technology-Setup)** illustrates how to set up laygo2 for new technology nodes.
-* **[simple-gates](#Simple-Gates)**: introduces layout generators for simple logic gates.
--->
-
 ## Colab tutorial
 
 For individuals seeking to exercise the capabilities of **laygo2** 
@@ -56,7 +49,7 @@ prepared for the usage of **laygo2** with a new technology:
     laygo2_tech.yaml          # contains technology parameters.
 
 A minimum technology setup, designed for for quick_start.py can be 
-found **[here](https://github.com/niftylab/laygo2/tree/master/laygo2/examples/laygo2_tech)**.
+found **[here](https://github.com/niftylab/laygo2/tree/master/laygo2_tech_quick_start)**.
 A more comprehensive tech setup example, designed for **gpdk045**,
  can be found **[here](https://github.com/niftylab/laygo2_workspace_gpdk045/tree/master/laygo2_tech_example)**.
 

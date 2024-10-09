@@ -41,8 +41,8 @@ pg, r12, r23, r34 = grids[pg_name], grids[r12_name], grids[r23_name], grids[r34_
 # print(grids[pg_name], grids[r12_name], grids[r23_name], grids[r34_name], sep="\n") # Uncomment if you want to print grids.
 
 # 2. Create a design hierarchy
-lib = laygo2.object.database.Library(name=libname)
-dsn = laygo2.object.database.Design(name=cellname, libname=libname)
+lib = laygo2.Library(name=libname)
+dsn = laygo2.Design(name=cellname, libname=libname)
 lib.append(dsn)
 
 # 3. Create istances.
@@ -62,7 +62,7 @@ dsn.place(grid=pg, inst=[inv0, inv1, tinv0, tinv_small0, inv2, tinv1, tinv_small
 print("Create wires")
 _trk = r34.mn(inv1.pins["O"])[0, 1] - 2
 # rc = laygo2.object.core.RoutingMeshTemplate(grid=r34)
-rc = laygo2.object.template.routing.RoutingMeshTemplate(grid=r34)
+rc = laygo2.RoutingMeshTemplate(grid=r34)
 rc.add_track(name="ICLK", index=[None, _trk], netname="ICLK")
 rc.add_track(name="ICLKB", index=[None, _trk + 1], netname="ICLKB")
 rc.add_track(name="FLCH", index=[None, _trk + 2], netname="FLCH")
@@ -79,11 +79,11 @@ rvss0 = dsn.route(grid=r12, mn=[r12.mn.bottom_left(inv0), r12.mn.bottom_right(in
 rvdd0 = dsn.route(grid=r12, mn=[r12.mn.top_left(inv0), r12.mn.top_right(inv3)])
 
 # 6. Create pins.
-pin0 = dsn.pin(name="I", grid=r23, mn=r23.mn.bbox(tinv0.pins["I"]))
-pclk0 = dsn.pin(name="CLK", grid=r23, mn=r23.mn.bbox(inv0.pins["I"]))
-pout0 = dsn.pin(name="O", grid=r23, mn=r23.mn.bbox(inv3.pins["O"]))
-pvss0 = dsn.pin(name="VSS", grid=r12, mn=r12.mn.bbox(rvss0))
-pvdd0 = dsn.pin(name="VDD", grid=r12, mn=r12.mn.bbox(rvdd0))
+pin0 = dsn.pin(name="I", grid=r23, mn=tinv0.pins["I"])
+pclk0 = dsn.pin(name="CLK", grid=r23, mn=inv0.pins["I"])
+pout0 = dsn.pin(name="O", grid=r23, mn=inv3.pins["O"])
+pvss0 = dsn.pin(name="VSS", grid=r12, mn=rvss0)
+pvdd0 = dsn.pin(name="VDD", grid=r12, mn=rvdd0)
 
 # 7. Export to physical database.
 print("Export design")
@@ -96,6 +96,7 @@ fig = laygo2.interface.mpl.export(
     colormap=mpl_params["colormap"],
     order=mpl_params["order"],
     filename="dff_2x.png",
+    show=True
 )
 # skill export
 skill_str = laygo2.interface.skill.export(lib, filename=libname + "_" + cellname + ".il", cellname=None, scale=1e-3)

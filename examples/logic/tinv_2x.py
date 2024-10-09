@@ -41,8 +41,8 @@ pg, r12, r23 = grids[pg_name], grids[r12_name], grids[r23_name]
 # print(grids[pg_name], grids[r12_name], grids[r23_name], sep="\n") # Uncomment if you want to print grids
 
 # 2. Create a design hierarchy
-lib = laygo2.object.database.Library(name=libname)
-dsn = laygo2.object.database.Design(name=cellname, libname=libname)
+lib = laygo2.Library(name=libname)
+dsn = laygo2.Design(name=cellname, libname=libname)
 lib.append(dsn)
 
 # 3. Create istances.
@@ -59,42 +59,42 @@ dsn.place(grid=pg, inst=[[in0, in1], [ip0, ip1]], mn=[0, 0])
 print("Create wires")
 
 # IN
-_mn = [r23.mn(in0.pins["G"])[0], r23.mn(ip0.pins["G"])[0]]
+_mn = [r23(in0.pins["G"])[0], r23(ip0.pins["G"])[0]]
 v0, rin0, v1 = dsn.route(grid=r23, mn=_mn, via_tag=[True, True])
 
 # OUT
-_mn = [r23.mn(in1.pins["D"])[1], r23.mn(ip1.pins["D"])[1]]
+_mn = [r23(in1.pins["D"])[1], r23(ip1.pins["D"])[1]]
 vout0, rout0, vout1 = dsn.route(grid=r23, mn=_mn, via_tag=[True, True])
 
 # EN
-_mn = [r23.mn(in1.pins["G"])[1] + [1, 0], r23.mn(ip1.pins["G"])[1] + [1, 0]]
+_mn = [r23(in1.pins["G"])[1] + [1, 0], r23(ip1.pins["G"])[1] + [1, 0]]
 ven0, ren0 = dsn.route(grid=r23, mn=_mn, via_tag=[True, False])
-_mn = [r23.mn(in1.pins["G"])[1], r23.mn(in1.pins["G"])[1] + [1, 0]]
+_mn = [r23(in1.pins["G"])[1], r23(in1.pins["G"])[1] + [1, 0]]
 renint = dsn.route(grid=r23, mn=_mn)
 
 # ENB
-_mn = [r23.mn(in1.pins["G"])[1] + [-1, 0], r23.mn(ip1.pins["G"])[1] + [-1, 0]]
+_mn = [r23(in1.pins["G"])[1] + [-1, 0], r23(ip1.pins["G"])[1] + [-1, 0]]
 renb0, venb0 = dsn.route(grid=r23, mn=_mn, via_tag=[False, True])
 
 # Internal
-_mn = [r23.mn(ip0.pins["D"])[0], r23.mn(ip1.pins["S"])[0]]
+_mn = [r23(ip0.pins["D"])[0], r23(ip1.pins["S"])[0]]
 rintp0 = dsn.route(grid=r23, mn=_mn)
-_mn = [r23.mn(in0.pins["D"])[0], r23.mn(in1.pins["S"])[0]]
+_mn = [r23(in0.pins["D"])[0], r23(in1.pins["S"])[0]]
 rintn0 = dsn.route(grid=r23, mn=_mn)
 
 # VSS
-rvss0 = dsn.route(grid=r12, mn=[r12.mn(in0.pins["RAIL"])[0], r12.mn(in1.pins["RAIL"])[1]])
+rvss0 = dsn.route(grid=r12, mn=[r12(in0.pins["RAIL"])[0], r12(in1.pins["RAIL"])[1]])
 
 # VDD
-rvdd0 = dsn.route(grid=r12, mn=[r12.mn(ip0.pins["RAIL"])[0], r12.mn(ip1.pins["RAIL"])[1]])
+rvdd0 = dsn.route(grid=r12, mn=[r12(ip0.pins["RAIL"])[0], r12(ip1.pins["RAIL"])[1]])
 
 # 6. Create pins.
-pin0 = dsn.pin(name="I", grid=r23, mn=r23.mn.bbox(rin0))
-pen0 = dsn.pin(name="EN", grid=r23, mn=r23.mn.bbox(ren0))
-penb0 = dsn.pin(name="ENB", grid=r23, mn=r23.mn.bbox(renb0))
-pout0 = dsn.pin(name="O", grid=r23, mn=r23.mn.bbox(rout0))
-pvss0 = dsn.pin(name="VSS", grid=r12, mn=r12.mn.bbox(rvss0))
-pvdd0 = dsn.pin(name="VDD", grid=r12, mn=r12.mn.bbox(rvdd0))
+pin0 = dsn.pin(name="I", grid=r23, mn=rin0)
+pen0 = dsn.pin(name="EN", grid=r23, mn=ren0)
+penb0 = dsn.pin(name="ENB", grid=r23, mn=renb0)
+pout0 = dsn.pin(name="O", grid=r23, mn=rout0)
+pvss0 = dsn.pin(name="VSS", grid=r12, mn=rvss0)
+pvdd0 = dsn.pin(name="VDD", grid=r12, mn=rvdd0)
 
 # 7. Export to physical database.
 print("Export design")
@@ -106,6 +106,7 @@ fig = laygo2.interface.mpl.export(
     colormap=mpl_params["colormap"],
     order=mpl_params["order"],
     filename="tinv_2x.png",
+    show=True
 )
 # skill export
 skill_str = laygo2.interface.skill.export(lib, filename=libname + "_" + cellname + ".il", cellname=None, scale=1e-3)

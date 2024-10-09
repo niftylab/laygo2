@@ -984,6 +984,16 @@ class RoutingGrid(Grid):
         반환값
         list: 생성된 routing object들을 담고 있는 list.
         """
+        # 1. Check whether the "mn" is physical object list or coordinate list.
+        __mn = []
+        for _mn in mn:
+            if (_mn.__class__.__name__ == "PhysicalObject") or (
+                issubclass(_mn.__class__, laygo2.object.physical.PhysicalObject)
+            ):
+                __mn.append(np.array(self.center(_mn))) # Assume the point to be routed as the center of the object.
+            else:
+                __mn.append(np.array(_mn))
+
         mn = np.asarray(mn)
         _mn = list()
         for i in range(1, mn.shape[0]):
@@ -1358,6 +1368,12 @@ class RoutingGrid(Grid):
         반환값
             - laygo2.physical.Pin: Pin object
         """
+        if (mn.__class__.__name__ == "PhysicalObject") or \
+            (issubclass(mn.__class__, laygo2.object.physical.PhysicalObject)): # object is given for the input coordinate
+            _mn = self.mn.bbox(mn)  # get the bounding box of the object.
+        else:  # numerical coordinate
+            _mn = mn
+
         xy0 = self.abs2phy[mn[0]]
         xy1 = self.abs2phy[mn[1]]
         # _xy = np.array([[xy0[0], xy0[1]], [xy1[0], xy1[1]]])

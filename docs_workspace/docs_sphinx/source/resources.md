@@ -4,7 +4,7 @@ This document lists valuable resources to learn and utilize **laygo2**.
 
 ## Cheatsheet
 
-* [Laygo2 Cheatsheet](../assets/misc/laygo2_cheatsheet_v0_1.pdf)
+* [Laygo2 Cheatsheet](../assets/misc/laygo2_cheatsheet_v0_2.pdf)
 
 ## Application Notes
 

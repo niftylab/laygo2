@@ -10,7 +10,7 @@ for a new technology:
 * **laygo2_tech.layermap**: (optional) Layer information defined by technology-speckfic PDK.
 * **laygo2_tech.lyp**: (optional) Layer display information for KLayout.
 
-A simple technology setup example for **laygo2** is available [here](https://github.com/niftylab/laygo2/tree/master/laygo2/examples/laygo2_tech).
+A simple technology setup example for **laygo2** is available [here](https://github.com/niftylab/laygo2/tree/master/laygo2/laygo2_tech_quick_start).
 
 Please find detailed descriptions for the listed files below:
 
@@ -64,5 +64,4 @@ If the layermap file is created manually by users, please use the following form
 
 (please find the example layermap file in the **laygo2_tech** directiory
  for reference).
-
 
