@@ -45,9 +45,6 @@ class BaseDatabase(Generic[T]):
     A base class that implements basic functions for 
     various database objects, such as libraries and designs.
 
-    Notes
-    -----
-    **(Korean)** BaseDatabase는 데이터베이스 객체들의 기본 기능을 구현하는 클래스.
     """
 
     name = None
@@ -60,9 +57,6 @@ class BaseDatabase(Generic[T]):
     >>> base.name 
     "mycell"
 
-    Notes
-    -----
-    **(Korean)** BaseDatabase 이름.
     """
 
     params = None
@@ -76,9 +70,6 @@ class BaseDatabase(Generic[T]):
     >>> base.params 
     {'ivdd': 0.001}
 
-    Notes
-    -----
-    **(Korean)** BaseDatabase의 속성.
     """
 
     elements: Dict[str, Type[Union[PhysicalObject, T]]] = None
@@ -109,9 +100,6 @@ class BaseDatabase(Generic[T]):
     'I0': <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>, 
     'NoName_1': <laygo2.object.physical.Text object at 0x0000024C6C2EF8B0>}
 
-    Notes
-    -----
-    **(Korean)** BaseDatabase 객체의 구성 요소를 담고 있는 Dictionary.
     """
 
     noname_index = 0
@@ -135,10 +123,6 @@ class BaseDatabase(Generic[T]):
     >>> print(base.noname_index) 
     1
 
-    Notes
-    -----
-    **(Korean)** BaseDatabase의 소속 객체들 중 이름이 정해지지 않은 객체의 
-    이름을 정할 때 부여되는 고유 번호.
     """
 
     # @property
@@ -164,9 +148,6 @@ class BaseDatabase(Generic[T]):
         >>> print(dsn.keys())
         dict_keys(['NoName_0', 'P', 'I0', 'NoName_1'])
 
-        Notes
-        -----
-        **(Korean)** BaseDatabase 객체의 구성 요소를 담고 있는 Dictionary.
         """
         return self.elements.keys()
 
@@ -204,9 +185,6 @@ class BaseDatabase(Generic[T]):
                     ('I0', <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>),
                     ('NoName_1', <laygo2.object.physical.Text object at 0x0000024C6C2EF8B0>)])
 
-        Notes
-        -----
-        **(Korean)** elements의 key/object 짝 출력.
         """
         return self.elements.items()
 
@@ -256,9 +234,6 @@ class BaseDatabase(Generic[T]):
         transform: R0
         pins: {}
 
-        Notes
-        -----
-        **(Korean)** key에 해당하는 object 반환.
         """
         return self.elements[pos]
 
@@ -290,9 +265,6 @@ class BaseDatabase(Generic[T]):
         xy: [[0, 0], [100, 100]],
         params: None, , layer: ['M1', 'drawing'], netname: None
 
-        Notes
-        -----
-        **(Korean)** 요소 추가 함수.
         """
         item.name = key
         self.append(item)
@@ -391,9 +363,6 @@ class BaseDatabase(Generic[T]):
         ('I0', <laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0>)
         ('NoName_1', <laygo2.object.physical.Text object at 0x0000024C6C2EF8B0>)
 
-        Notes
-        -----
-        **(Korean)** BaseDatabase의 Iterable 함수.
         """
         return self.elements.__iter__()
 
@@ -432,16 +401,6 @@ class BaseDatabase(Generic[T]):
         <laygo2.object.database.BaseDatabase object>
         name: mycell, params: None elements: {}>
 
-        Notes
-        -----
-        **(Korean)** BaseDatabase 클래스 생성자 함수.
-
-        파라미터
-            - name(str): BaseDatabase 객체의 이름
-            - params(dict): BaseDatabase의 parameters [optional]
-            - elements(dict): BaseDatabase의 elements를 갖고 있는 dict [optional]
-        반환값
-            - laygo2.object.BaseDatabase
         """
         self.name = name
         self.params = params
@@ -471,9 +430,6 @@ class LibraryWrapper(BaseDatabase[T]):
     >>> print(lib.name) 
     "mylib"
 
-    Notes
-    -----
-    **(Korean)** Library 객체의 이름.
     """
 
     def append(self, item: T):
@@ -515,15 +471,6 @@ class LibraryWrapper(BaseDatabase[T]):
         >>> print(lib)
         <laygo2.object.database.Library > name: mylib, params: None elements: {} >
 
-        Notes
-        -----
-        **(Korean)** Library 클래스의 생성자 함수.
-        파라미터
-            - name(str): Library 객체의 이름
-            - params(dict): Library의 parameters [optional]
-            - elements(dict): Library의 elements를 갖고 있는 dict [optional]
-        반환값
-            - laygo2.object.Library
         """
         BaseDatabase.__init__(self, name=name, params=params, elements=elements)
 
@@ -553,10 +500,6 @@ class Library(LibraryWrapper["Design"]):
     See Also
     --------
     laygo2.object.databse.Design: Check for more comprehensive Example.
-
-    Notes
-    -----
-    **(Korean)** Library 클래스는 라이브러리 관리 기능을 구현한다.
 
     """
 
@@ -753,10 +696,6 @@ class Design(BaseDatabase):
         ...
 
 
-    Notes
-    -----
-    **(Korean)**
-    Design 클래스는 디자인 관리 기능을 구현한다.
     """
 
     @property
@@ -805,9 +744,6 @@ class Design(BaseDatabase):
     >>> print(dsn.libname) 
     “testlib”
 
-    Notes
-    -----
-    **(Korean)** Design 객체의 라이브러리 이름.
     """
 
     def get_cellname(self):
@@ -826,9 +762,6 @@ class Design(BaseDatabase):
     >>> print(dsn.cellname) 
     “dsn”
 
-    Notes
-    -----
-    **(Korean)** Design 객체의 셀 이름.
     """
 
     rects = None
@@ -846,9 +779,6 @@ class Design(BaseDatabase):
     >>> print(dsn.rects) 
     {'R0': <laygo2.object.physical.Rect object>}
 
-    Notes
-    -----
-    **(Korean)** Design 객체에 소속된 Rect 객체들을 갖고 있는 dictionary.
     """
 
     def get_r(self):
@@ -877,9 +807,6 @@ class Design(BaseDatabase):
     >>> print(dsn.pins) 
     {'NoName_0': <laygo2.object.physical.Pin object>}
     
-    Notes
-    -----
-    **(Korean)** Design 객체에 소속된 Pin 객체들을 갖고 있는 dictionary.
     """
     
     def get_p(self):
@@ -905,9 +832,6 @@ class Design(BaseDatabase):
     >>> print(dsn.texts) 
     {'NoName_1': <laygo2.object.physical.Text object>}
     
-    Notes
-    -----
-    **(Korean)** Design 객체에 소속된 Text 객체들을 갖고 있는 dictionary.
     """
 
     instances = None
@@ -924,9 +848,6 @@ class Design(BaseDatabase):
     >>> print(dsn.instances) 
     {'I0': <laygo2.object.physical.Instance object>}
     
-    Notes
-    -----
-    **(Korean)** Design 객체에 소속된 Instance 객체들을 갖고 있는 dictionary.
     """
 
     def get_i(self):
@@ -946,9 +867,6 @@ class Design(BaseDatabase):
     --------
     instances
 
-    Notes
-    -----
-    **(Korean)** Design 객체에 소속된 VirtualInstance 객체들을 갖고 있는 dictionary.
     """
 
     def get_vi(self):
@@ -1019,16 +937,6 @@ class Design(BaseDatabase):
             instances:{}
             virtual instances:{}
 
-        Notes
-        -----
-        **(Korean)** Design 클래스의 생성자 함수.
-
-        파라미터
-            - name(str): Design 객체의 이름
-            - params(dict): Design 객체의 parameters [optional]
-            - elements(dict): Design 객체의 elements [optional]
-        반환값
-            - laygo2.object.BaseDatabase
         """
         self.libname = libname
         self.rects = dict()
@@ -1244,16 +1152,6 @@ class Design(BaseDatabase):
         laygo2.object.grid.PlacementGrid.place : place a (virtual) instance
             on the grid.
 
-        Notes
-        -----
-        **(Korean)** 인스턴스를 grid위 추상 좌표 mn에 배치하는 함수.
-
-        파라미터
-            - inst(laygo2.physical.instance or list(laygo2.object.physical.Instance)): 배치할 인스턴스 또는 배치할 인스턴스 들을 갖는 리스트.
-            - mn(numpy.ndarray or list): 인스턴스를 배치할 추상좌표.
-
-        반환값
-            - laygo2.physical.instance or list(laygo2.object.physical.Instance) : 좌표가 수정된 인스턴스 또는 좌표가 수정된 인스턴스 들을 갖는 리스트.
         """
         if isinstance(inst, (laygo2.object.Instance, laygo2.object.VirtualInstance)):
             # single instance
@@ -1401,17 +1299,6 @@ class Design(BaseDatabase):
         --------
         laygo2.object.grid.RoutingGrid.route : route wire(s) on the grid.
 
-        Notes
-        -----
-        **(Korean)** 추상 좌표 위에 라우팅을 수행 하는 함수.
-
-        파라미터
-            - mn(list(numpy.ndarray)): 배선을 수행할 2개 이상의 mn 좌표를 담고 있는 list.
-            - direction(str): None or “vertical”; path의 방향을 결정 (수평 or 수직) [optional].
-            - via_tag(list(Boolean)): Path에 via를 형성 할지를 결정하는 switch들을 담고 있는 list [optional].
-
-        반환값
-            - list: 생성된 routing object들을 담고 있는 list.
         """
         r = grid.route(mn=mn, direction=direction, via_tag=via_tag)
         self.append(r)
@@ -1499,13 +1386,6 @@ class Design(BaseDatabase):
         --------
         laygo2.object.grid.RoutingGrid.via
 
-        Notes
-        -----
-        **(Korean)** via 생성함수.
-        파라미터
-            - mn(list(numpy.ndarray)): via를 생성할 mn좌표. 복수 개 입력 가능.
-        반환값
-            - list(physical.PhysicalObject)): 생성된 via object들을 담고 있는 list.
         """
         v = grid.via(mn=mn, params=params)
         self.append(v)
@@ -1613,19 +1493,6 @@ class Design(BaseDatabase):
         --------
         laygo2.object.grid.RoutingGrid.route_via_track
 
-        Notes
-        -----
-        **(Korean)** wire 라우팅 함수, track을 기준점으로 routing을 진행한다.
-
-        파라미터
-            - track(numpy.ndarray): track의 좌표값과 방향을 담고 있는 list.
-            수직 트랙일 경우 [v, None], 수평 트랙일 경우 [None, v]의 형태를
-            가지고 있다 (v는 track의 좌표값).
-            - mn(list(numpy.ndarray)): track을 통해 연결될 지점들의 좌표를
-            담고 있는 list.
-        반환값
-            - list: 생성된 routing object들을 담고 있는 list.
-            마지막 object가 track위의 routing object에 해당.
         """
         r = grid.route_via_track(mn=mn, track=track, via_tag=via_tag)
         self.append(r)
@@ -1714,20 +1581,6 @@ class Design(BaseDatabase):
             instances:{}
             virtual instances:{}
 
-        Notes
-        -----
-        **(Korean)**
-        pin 생성함수.
-
-        파라미터
-            - name(str): Pin 이름.
-            - mn(numpy.ndarray): Pin을 생성할 abstract 좌표.
-            - direction(str): 방향 [optional].
-            - netname(str): Pin의 net이름 [optional].
-            - params(dict): Pin 속성 [optional].
-        반환값
-            - laygo2.physical.Pin: Pin object.
-
         """
         p = grid.pin(name=name, mn=mn, direction=direction, netname=netname, params=params)
         self.append(p)
@@ -1780,12 +1633,6 @@ class Design(BaseDatabase):
             laygo2.interface.yaml.export_template : Export a template to
             a yaml file.
 
-        Notes
-        -----
-        **(Korean)** Design 객체에 해당하는 NativeInstanceTemplate 객체 생성.
-
-        반환값
-            - laygo2.NativeInstanceTemplate
         """
         if libname is None:
             libname = self.libname
@@ -1830,16 +1677,6 @@ class Design(BaseDatabase):
          <laygo2.object.physical.Pin object>,
          <laygo2.object.physical.Rect object>]
 
-        Notes
-        -----
-        **(Korean)**
-        주어진 layer와 일치되는 Physical object 갖는 list 반환.
-        파라미터
-        layer purpose pair(list): 레이어 정보
-        반환값
-        list: 매치되는 Physical object를 담고 있는 list
-        참조
-        없음
         """
         rects = self.rects
         insts = self.instances

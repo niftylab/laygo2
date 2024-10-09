@@ -67,10 +67,6 @@ class PhysicalObject:
     """
     Base class for physical layout objects with physical coordinate info.
 
-    Notes
-    -----
-    **(Korean)**: 물리 객체들의 기본 클래스, 물리 좌표 정보를 갖고 있다.
-
     """
 
     def _get_xy(self):
@@ -135,9 +131,6 @@ class PhysicalObject:
     >>> obj2.master
     <laygo2.object.physical.PhysicalObject object at 0x00000204AAF3C7C0>
 
-    Notes
-    -----
-    **(Korean)**: 객체의 master (배열 element 또는 pin 객체들의 master 객체에 연결).
     """
 
     params = None
@@ -151,9 +144,6 @@ class PhysicalObject:
     >>> obj.params 
     {‘maxI’: 0.005 }
 
-    Notes
-    -----
-    **(Korean)**: 객체의 속성.
     """
 
     pointers = None
@@ -176,9 +166,6 @@ class PhysicalObject:
     .. image:: ../assets/img/object_physical_PhysicalObject_pointers.png
       :height: 250
 
-    Notes
-    -----
-    **(Korean)**: 객체의 주요 좌표들을 담고 있는 dictionary.
     """
 
     # Frequently used pointers
@@ -323,9 +310,6 @@ class PhysicalObject:
         .. image:: ../assets/img/object_physical_PhysicalObject_bbox.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)**: numpy.ndarray: 객체의 bbox (bounding box).
         """
         # if self.xy.ndim == 2:
         if isinstance(self.xy[0], np.ndarray):
@@ -362,16 +346,6 @@ class PhysicalObject:
          class: PhysicalObject,
          xy: [[0, 0], [200, 200]],
          params: {'maxI': 0.005},
-
-        Notes
-        -----
-        **(Korean)** PhysicalObject 클래스의 생성자.
-
-        파라미터
-            - xy(numpy.ndarray): 객체의 물리적 좌표 (bbox).
-            - name(str): 객체의 이름.
-            - params(dict): 객체의 주요 속성을 갖고 있는 dict.
-
         """
 
         self.name = name
@@ -456,10 +430,6 @@ class IterablePhysicalObject(PhysicalObject):
     """
     The base class of entities capable of iterable operations among elements.
 
-    Notes
-    -----
-    **(Korean)**: 구성 요소의 iterable 연산이 가능한 객체들의 기본 클래스.
-
     """
 
     elements = None
@@ -481,9 +451,6 @@ class IterablePhysicalObject(PhysicalObject):
            <laygo2.object.physical.PhysicalObject object at 0x000002049A77FF40>],
           dtype=object)
 
-    Notes
-    -----
-    **(Korean)**: 객체의 하위 구성원을 담고 있는 list.
     """
 
     def _get_xy(self):
@@ -517,9 +484,6 @@ class IterablePhysicalObject(PhysicalObject):
         >>> iphy0.shape
         array([3])
 
-        Notes
-        -----
-        **(Korean)**: numpy.ndarray: 객체의 element의 배열 크기.
         """
         if self.elements is None:
             return None
@@ -561,16 +525,6 @@ class IterablePhysicalObject(PhysicalObject):
         class: IterablePhysicalObject,
         xy: [[0, 0], [300, 300]],
         params: None,
-
-        Notes
-        -----
-        **(Korean)**:  IterablePhysicalObject 클래스의 생성자.
-
-        파라미터
-            - xy(numpy.ndarray): 객체의 물리 좌표 (bbox).
-            - name(str): 객체의 이름.
-            - params(dict): 객체의 주요 속성이 담긴 dict.
-            - elements(list): 객체의 구성 요소 객체들(elements)이 담긴 list.
 
         """
         PhysicalObject.__init__(self, xy=xy, name=name, params=params)
@@ -745,9 +699,6 @@ class Rect(PhysicalObject):
     xy: [[0, 0], [100, 100]],
     params: None, , layer: ['M1', 'drawing']
 
-    Notes
-    -----
-    **(Korean)**: 사각형 객체 클래스.
     """
 
     layer = None
@@ -763,9 +714,6 @@ class Rect(PhysicalObject):
     >>> rect0.layer 
     ['M1', 'drawing']
 
-    Notes
-    -----
-    **(Korean)**: 객체의 layer 정보 [name, purpose].
     """
 
     netname = None
@@ -780,9 +728,6 @@ class Rect(PhysicalObject):
     >>> rect0.netname 
     “net0”
     
-    Notes
-    -----
-    **(Korean)**: 객체의 노드 이름.
     """
 
     hextension = 0
@@ -800,9 +745,6 @@ class Rect(PhysicalObject):
     .. image:: ../assets/img/object_physical_rect_hextension.png
       :height: 250
 
-    Notes
-    -----
-    **(Korean)**: 객체의 기존 좌표로부터 수평 방향으로의 확장값.
     """
 
     vextension = 0
@@ -820,9 +762,6 @@ class Rect(PhysicalObject):
     .. image:: ../assets/img/object_physical_rect_vextension.png
       :height: 250
 
-    Notes
-    -----
-    **(Korean)**: 객체의 기존 좌표로부터 수직 방향으로의 확장값.
     """
 
     color = None
@@ -838,9 +777,6 @@ class Rect(PhysicalObject):
     >>> rect0.color 
     1
 
-    Notes
-    -----
-    **(Korean)**: 객체의 color (multi-patterning ID).
     """
 
     @property
@@ -859,9 +795,6 @@ class Rect(PhysicalObject):
         .. image:: ../assets/img/object_physical_rect_height.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)**: int: 객체의 높이.
         """
         return abs(self.xy[0, 1] - self.xy[1, 1])
 
@@ -881,9 +814,6 @@ class Rect(PhysicalObject):
         .. image:: ../assets/img/object_physical_rect_width.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)**: int: 객체의 폭.
         """
         return abs(self.xy[0, 0] - self.xy[1, 0])
 
@@ -915,9 +845,6 @@ class Rect(PhysicalObject):
         .. image:: ../assets/img/object_physical_rect_size.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)**: numpy.ndarray: 객체의 크기 ([폭, 높이]).
         """
         return np.array([self.width, self.height])
 
@@ -979,19 +906,6 @@ class Rect(PhysicalObject):
         .. image:: ../assets/img/object_physical_rect_init.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)**: Rect 클래스의 생성자 함수.
-
-        파라미터
-            - xy(numpy.ndarray): 객체의 물리 좌표 (bbox).
-            - layer(list): 객체의 layer 정보.
-            - hextension(int): 객체의 수평 방향 확장값.
-            - vextension(int): 객체의 수직 방향 확장값.
-            - name(str): 객체의 이름.
-            - netname(str): 객체의 노드 명.
-            - params(dict): 객체의 주요 속성을 갖는 dict [optional].
-            - color(str): 객체의 color [optional].
         """
         self.layer = layer
         if netname is None:
@@ -1074,9 +988,6 @@ class Path(PhysicalObject):
     extension: 5,
     layer: ['M1', 'drawing'],
 
-    Notes
-    -----
-    **(Korean)**: Path 객체 클래스.
     """
 
     # TODO: implement pointers.
@@ -1085,9 +996,6 @@ class Path(PhysicalObject):
     """numpy.ndarray: The physical layer information of the object, 
     represented as a list with two elements: [name, purpose].
     
-    Notes
-    -----
-    **(Korean)**: 객체의 레이어 정보 [name, purpose].
     """
 
     netname = None
@@ -1105,9 +1013,6 @@ class Path(PhysicalObject):
     .. image:: ../assets/img/object_physical_path_netname.png 
       :height: 250
 
-    Notes
-    -----
-    **(Korean)**: 객체의 노드 명.
     """
 
     width = None
@@ -1125,9 +1030,6 @@ class Path(PhysicalObject):
     .. image:: ../assets/img/object_physical_path_width.png
       :height: 250
 
-    Notes
-    -----
-    **(Korean)**: 객체의 폭.
     """
 
     extension = 0
@@ -1145,9 +1047,6 @@ class Path(PhysicalObject):
     .. image:: ../assets/img/object_physical_path_extension.png
       :height: 250
 
-    Notes
-    -----
-    **(Korean)**: 객체의 양 끝점에서의 확장값.
     """
 
     @property
@@ -1206,19 +1105,6 @@ class Path(PhysicalObject):
         .. image:: ../assets/img/object_physical_path_init.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)**: Path 객체 생성.
-
-        파라미터
-            - xy(numpy.ndarray): 객체의 물리 좌표 (bbox).
-            - layer(list): 객체의 layer 정보.
-            - width(int): 객체의 폭.
-            - extension(int): 객체의 끝점에서의 확장 값.
-            - name(str): 객체의 이름.
-            - netname(str): 객체의 노드 명.
-            - params(dict): 객체의 주요 속성을 갖는 dict.
-
         """
         self.layer = layer
         self.width = width
@@ -1263,9 +1149,6 @@ class Pin(IterablePhysicalObject):
         params: {'direction': 'input'}, , layer: ['M1' 'drawing'],
         netname: net0, shape: None, master: None
 
-    Notes
-    -----
-    **(Korean)**: Pin 객체 클래스.
     """
 
     layer = None
@@ -1317,9 +1200,6 @@ class Pin(IterablePhysicalObject):
         >>> pin0.height
         100
 
-        Notes
-        -----
-        **(Korean)**: 객체의 높이.
         """
         return abs(self.xy[0, 1] - self.xy[1, 1])
 
@@ -1336,9 +1216,6 @@ class Pin(IterablePhysicalObject):
         >>> pin0.width
         100
 
-        Notes
-        -----
-        **(Korean)**: 객체의 폭.
         """
         return abs(self.xy[0, 0] - self.xy[1, 0])
 
@@ -1355,9 +1232,6 @@ class Pin(IterablePhysicalObject):
         >>> pin0.size
         [100, 100]
 
-        Notes
-        -----
-        **(Korean)**: 객체의 크기.
         """
         return np.array([self.width, self.height])
 
@@ -1418,17 +1292,6 @@ class Pin(IterablePhysicalObject):
             params: {'direction': 'input'}, , layer: ['M1' 'drawing'],
             netname: net0, shape: None, master: None
 
-        Notes
-        -----
-        **(Korean)**: Pin 클래스의 생성자 함수
-
-        파라미터
-            - xy(numpy.ndarray): 객체의 물리적 좌표 (bbox).
-            - layer(list): 객체의 layer 정보 ([name, purpose]).
-            - name(str): 객체의 이름.
-            - netname(str): 객체의 노드 명.
-            - params(dict): 객체의 주요 속성을 갖는 dict.
-
         """
         self.layer = np.asarray(layer)
         if netname is None:
@@ -1482,9 +1345,6 @@ class Text(PhysicalObject):
         layer: ['text', 'drawing'],
         text: test
 
-    Notes
-    -----
-    **(Korean)**: Text 객체 클래스.
     """
 
     layer = None
@@ -1500,9 +1360,6 @@ class Text(PhysicalObject):
     >>> text0.layer 
     ['text', 'drawing']
 
-    Notes
-    -----
-    **(Korean)**: 객체의 layer 정보 [name, purpose].
     """
 
     text = None
@@ -1517,9 +1374,6 @@ class Text(PhysicalObject):
     >>> text0.text 
     'test'
     
-    Notes
-    -----
-    **(Korean)**: 객체의 텍스트 내용.
     """
 
     def __init__(self, xy, layer, text, name=None, params=None):
@@ -1562,17 +1416,6 @@ class Text(PhysicalObject):
             params: None,
             layer: ['text', 'drawing'],
             text: test
-
-        Notes
-        -----
-        **(Korean)**: Text 클래스의 생성자 함수.
-
-        파라미터
-            - xy(numpy.ndarray): 객체의 물리적 좌표, bbox.
-            - layer(list): 객체의 layer 정보.
-            - text(str): 텍스트 내용.
-            - name(str): 객체의 이름.
-            - params(dict): 객체의 주요 속성을 갖는 dict.
 
         """
         self.layer = layer
@@ -1623,9 +1466,6 @@ class Instance(IterablePhysicalObject):
     >>> print( inst0[1,0].xy0 )
     array([300, 100])
 
-    Notes
-    -----
-    **(Korean)**: Instance 객체 클래스.
     """
 
     # TODO: update (maybe) xy and sub-elements after transform property is updated.
@@ -1651,9 +1491,6 @@ class Instance(IterablePhysicalObject):
     .. image:: ../assets/img/object_physical_instance_libname.png
       :height: 250
 
-    Notes
-    -----
-    **(Korean)**: 객체의 라이브러리 이름.
     """
 
     cellname = None
@@ -1677,9 +1514,6 @@ class Instance(IterablePhysicalObject):
     .. image:: ../assets/img/object_physical_instance_cellname.png
       :height: 250
 
-    Notes
-    -----
-    **(Korean)**: 객체가 속한 셀 이름.
     """
 
     viewname = None
@@ -1713,9 +1547,6 @@ class Instance(IterablePhysicalObject):
     .. image:: ../assets/img/object_physical_instance_unit_size.png
       :height: 250
 
-    Notes
-    -----
-    **(Korean)**: 객체가 배열로 구성되었을 때 단위 크기.
     """
 
     transform = "R0"
@@ -1740,9 +1571,6 @@ class Instance(IterablePhysicalObject):
     .. image:: ../assets/img/object_physical_instance_transform.png
       :height: 250
 
-    Notes
-    -----
-    **(Korean)**: 객체의 변환 속성 (R0, MX, MY 등).
     """
 
     pins = None
@@ -1773,9 +1601,6 @@ class Instance(IterablePhysicalObject):
     .. image:: ../assets/img/object_physical_instance_pins.png
       :height: 250
 
-    Notes
-    -----
-    **(Korean)**: 객체에 속한 핀들을 갖는 dict.
     """
     
     def get_p(self):
@@ -1836,9 +1661,6 @@ class Instance(IterablePhysicalObject):
         .. image:: ../assets/img/object_physical_instance_xy0.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)**: 객체의 주 코너 좌표.
         """
         return self.xy
 
@@ -1864,9 +1686,6 @@ class Instance(IterablePhysicalObject):
         .. image:: ../assets/img/object_physical_instance_xy1.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)**: 객체의 보조 코너 좌표.
         """
         if self.size is None:
             return self.xy
@@ -1895,9 +1714,6 @@ class Instance(IterablePhysicalObject):
         .. image:: ../assets/img/object_physical_instance_size.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)**: 객체의 크기 ([width, height]).
         """
         if self.shape is None:
             return self.unit_size
@@ -1940,9 +1756,6 @@ class Instance(IterablePhysicalObject):
     --------
     Instance.spacing
 
-    Notes
-    -----
-    **(Korean)**: 배열로 구성된 객체의 단위 객체(element)간 간격 (pitch).
     """
 
     def get_spacing(self):
@@ -1976,9 +1789,6 @@ class Instance(IterablePhysicalObject):
     --------
     Instance.pitch
 
-    Notes
-    -----
-    **(Korean)**: 배열로 구성된 객체의 단위 객체(element)간 간격 (spacing).
     """
 
     @property
@@ -2011,9 +1821,6 @@ class Instance(IterablePhysicalObject):
         .. image:: ../assets/img/object_physical_instance_height.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)**: 객체의 높이.
         """
         return abs(self.bbox[1][1] - self.bbox[0][1])
 
@@ -2039,9 +1846,6 @@ class Instance(IterablePhysicalObject):
         .. image:: ../assets/img/object_physical_instance_width.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)**: 객체의 폭.
         """
         return abs(self.bbox[1][0] - self.bbox[0][0])
 
@@ -2136,21 +1940,6 @@ class Instance(IterablePhysicalObject):
         .. image:: ../assets/img/object_physical_instance_init.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)**: Instance 클래스의 생성함수
-
-        파라미터
-            - xy(numpy.ndarray): 객체의 주좌표 [x0, y0].
-            - libname(str): 객체의 library 이름.
-            - cellname(str): 객체의 cell 이름.
-            - shape(numpy.ndarray): elements의 배열 크기 ([column, row]).
-            - pitch(numpy.ndarray): 배열로 구성된 객체의 구성 요소 (element) 간격 (pitch).
-            - transform(str): 객체의 변환 속성.
-            - unit_size(list): 객체의 단위 크기.
-            - pins(dict): 객체에 속한 핀들을 갖는 dict.
-            - name(str): 객체의 이름.
-            - params(dict): 객체의 주요 속성을 갖는 dict.
         """
         # Assign parameters.
         xy = np.asarray(xy)
@@ -2330,11 +2119,6 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
      'R1': <laygo2.object.physical.Rect object at 0x00000204AAFCEA40>,
      'R2': <laygo2.object.physical.Rect object at 0x00000204AAFCE0B0>}
 
-    Notes
-    -----
-    **(Korean)**: VirtualInstance 객체 클래스. VirtualInstance는 여러 개의
-    레이아웃 오브젝트를 하나의 그룹으로 묶어 크기/포트 등의 관련된 파라미터
-    들을 이용해 추상화 할 수 있는 객체를 구현한다.
     """
 
     native_elements = None
@@ -2371,9 +2155,6 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
     .. image:: ../assets/img/object_physical_VirtualInstance_native_elements.png
       :height: 250
 
-    Notes
-    -----
-    **(Korean)**: 객체를 구성하는 하위 물리 객체들(Rect, Path, Pin, Text, Instance 등)을 갖고 있는 dict.
     """
     # Dict[PhysicalObject] the elements that compose the virtual instance. Its keys represent the names of the elements.
 
@@ -2460,23 +2241,6 @@ class VirtualInstance(Instance):  # IterablePhysicalObject):
 
         .. image:: ../assets/img/object_physical_VirtualInstance_init.png
           :height: 250
-
-        Notes
-        -----
-        **(Korean)**: VirtualInstance 클래스의 생성자.
-
-        파라미터
-        - xy(numpy.ndarray): 객체의 주좌표 [x0, y0].
-        - libname(str): 객체의 library 이름.
-        - cellname(str): 객체의 cell이름.
-        - native_elements(dict): 객체를 구성하는 물리 객체를 갖는 dict.
-        - shape(numpy.ndarray): elements의 배열 크기 ([col, row]).
-        - pitch(numpy.ndarray): 배열로 구성된 객체의 하위 객체 (element)간의 간격.
-        - transform(str): 객체의 변환 속성 (R0, MX, MY 등).
-        - unit_size(list): 객체의 단위 크기.
-        - pins(dict): 객체에 속한 핀들을 갖는 dict.
-        - name(str): 객체의 이름.
-        - params(dict): 객체의 주요 속성을 갖는 dict.
 
         """
         self.native_elements = native_elements
@@ -2582,12 +2346,6 @@ class Via(IterablePhysicalObject):
         Examples
         --------
        
-        Notes
-        -----
-        Related Images:
-
-        Reference in Korean:
-        numpy.ndarray: 객체의 주 코너 좌표.
         """
         return self.xy
 
@@ -2599,12 +2357,6 @@ class Via(IterablePhysicalObject):
         Examples
         --------
 
-        Notes
-        -----
-        Related Images:
-
-        Reference in Korean:
-        numpy.ndarray: 객체의 보조 코너 좌표.
         """
         if self.size is None:
             return self.xy
