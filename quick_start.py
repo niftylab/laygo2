@@ -74,38 +74,33 @@ ip1 = tpmos.generate(name="MP1", transform="MX", params={"nf": nf_a, "tie": "S"}
 # dsn.place(grid=pg, inst=ip0, mn=pg.mn.top_left(in0) + pg.mn.height_vec(ip0))
 # dsn.place(grid=pg, inst=in1, mn=pg.mn.bottom_right(in0))
 # dsn.place(grid=pg, inst=ip1, mn=pg.mn.top_right(ip0))
-## option 2 - anchor-based placement
-# dsn.place(grid=pg, inst=in0, mn=[0, 0])
-# dsn.place(grid=pg, inst=ip0, anchor_xy=[in0.top_left, ip0.bottom_left])
-# dsn.place(grid=pg, inst=in1, anchor_xy=[in0.bottom_right, in1.bottom_left])
-# dsn.place(grid=pg, inst=ip1, anchor_xy=[in1.top_left, ip1.bottom_left])
-## option 3 - array-based placement
+## option 2 - array-based placement
 dsn.place(grid=pg, inst=[[in0, in1], [ip0, ip1]], mn=[0, 0])
 
 # 5. Create and place wires.
 print("Create wires")
 # A
-_mn = [r23.mn(in1.pins["G"])[0], r23.mn(ip1.pins["G"])[0]]
-va0, ra0, va1 = dsn.route(grid=r23, mn=_mn, via_tag=[True, True])
+_mn = [r23(in1.pins["G"])[0], r23(ip1.pins["G"])[0]]
+_, ra0, _ = dsn.route(grid=r23, mn=_mn, via_tag=[True, True])
 # B
-_mn = [r23.mn(in0.pins["G"])[0], r23.mn(ip0.pins["G"])[0]]
-vb0, rb0, vb1 = dsn.route(grid=r23, mn=_mn, via_tag=[True, True])
+_mn = [r23(in0.pins["G"])[0], r23(ip0.pins["G"])[0]]
+_, rb0, _ = dsn.route(grid=r23, mn=_mn, via_tag=[True, True])
 # internal
-_mn = [r12.mn(in0.pins["D"])[1], r12.mn(in1.pins["S"])[0]]
+_mn = [r12(in0.pins["D"])[1], r12(in1.pins["S"])[0]]
 dsn.route(grid=r23, mn=_mn)
 # output
-_mn = [r12.mn(ip0.pins["D"])[1], r12.mn(ip1.pins["D"])[0]]
+_mn = [r12(ip0.pins["D"])[1], r12(ip1.pins["D"])[0]]
 dsn.route(grid=r23, mn=_mn)
-_mn = [r23.mn(in1.pins["D"])[1], r23.mn(ip1.pins["D"])[1]]
+_mn = [r23(in1.pins["D"])[1], r23(ip1.pins["D"])[1]]
 _, rout0, _ = dsn.route(grid=r23, mn=_mn, via_tag=[True, True])
 
 # 6. Create pins.
-pB = dsn.pin(name="B", grid=r23, mn=r23.mn(rb0))
-pA = dsn.pin(name="A", grid=r23, mn=r23.mn(ra0))
-pout0 = dsn.pin(name="O", grid=r23, mn=r23.mn(rout0))
-_mn = [r12.mn(in0.pins["RAIL"])[0], r12.mn(in1.pins["RAIL"])[1]]
+pB = dsn.pin(name="B", grid=r23, mn=r23(rb0))
+pA = dsn.pin(name="A", grid=r23, mn=r23(ra0))
+pout0 = dsn.pin(name="O", grid=r23, mn=r23(rout0))
+_mn = [r12(in0.pins["RAIL"])[0], r12(in1.pins["RAIL"])[1]]
 pvss0 = dsn.pin(name="VSS", grid=r12, mn=_mn)
-_mn = [r12.mn(ip0.pins["RAIL"])[0], r12.mn(ip1.pins["RAIL"])[1]]
+_mn = [r12(ip0.pins["RAIL"])[0], r12(ip1.pins["RAIL"])[1]]
 pvdd0 = dsn.pin(name="VDD", grid=r12, mn=_mn)
 
 # 7. Export to physical database.
@@ -116,9 +111,11 @@ fig = laygo2.interface.mpl.export(
     lib,
     colormap=mpl_params["colormap"],
     order=mpl_params["order"],
+    show=True,
 )
 filename = libname + "_" + cellname
 # gds export
+'''
 laygo2.interface.gdspy.export(
     lib,
     filename=filename + ".gds",
@@ -131,9 +128,12 @@ laygo2.interface.gdspy.export(
     png_filename=filename + ".png",
     # pin_annotation_layer=['text', 'drawing'], text_height=0.1,abstract_instances=abstract,
 )
+'''
 # skill export
+'''
 skill_str = laygo2.interface.skill.export(lib, filename=libname + "_" + cellname + ".il", cellname=None, scale=1e-3)
-# print(skill_str)
+print(skill_str)
+'''
 
 # 8. Export to a template database file.
 nat_temp = dsn.export_to_template()

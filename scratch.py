@@ -39,16 +39,12 @@ grids = tech.load_grids(templates=templates)
 pg, r12, r23 = grids[pg_name], grids[r12_name], grids[r23_name]
 # print(grids[pg_name], grids[r12_name], grids[r23_name], sep="\n") # Uncomment if you want to print grids
 
-#fig = laygo2.interface.mpl.export_grid(r12, colormap=mpl_params["colormap"], order=mpl_params["order"], xlim=[-100, 200], ylim=[-100, 400])
-#fig = laygo2.interface.mpl.export_grid(pg, colormap=mpl_params["colormap"], order=mpl_params["order"], xlim=[-100, 100], ylim=[-100, 100])
-#print(inst0.pins['in'])
-#print(inst0.pins['in'][0, 1])
 inst0_pins = dict()
-inst0_pins['in'] = laygo2.object.physical.Pin(xy=[[0, 0], [10,10]],
+inst0_pins['in'] = laygo2.Pin(xy=[[0, 0], [10,10]],
     layer = ['metal1', 'drawing'], netname = 'in')
-inst0_pins['out']= laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]],
+inst0_pins['out']= laygo2.Pin(xy=[[90, 90], [100, 100]],
     layer=['metal1', 'drawing'], netname='out')
-inst0 = laygo2.object.physical.Instance(name="I0", xy=[100,100],
+inst0 = laygo2.Instance(name="I0", xy=[100,100],
     libname="mylib", cellname="mycell", shape=None, pitch=[200,200],
     unit_size=[100, 100], pins=inst0_pins, transform='R0')
 print(inst0)

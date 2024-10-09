@@ -34,7 +34,17 @@ import yaml
 import numpy as np
 import laygo2.object
 import laygo2.util.transform as tf
-import laygo2_tech as tech
+import importlib
+if hasattr(importlib, 'find_loader'):  # python 3.4-
+    if importlib.find_loader('laygo2_tech') is not None:
+        import laygo2_tech as tech
+    else:  # load dummy tech
+        tech = {"name": "dummy", "layers": {}, "templates": {}, "grids": {}}
+elif hasattr(importlib, 'find_spec'):  # python 3.4+
+    if importlib.find_spec('laygo2_tech') is not None:
+        import laygo2_tech as tech
+    else:  # load dummy tech
+        tech = {"name": "dummy", "layers": {}, "templates": {}, "grids": {}}
 
 __author__ = ""
 __maintainer__ = ""

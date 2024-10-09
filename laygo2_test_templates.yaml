@@ -3,7 +3,7 @@ laygo2_test:
     bbox:
     - - 0
       - 0
-    - - 270
+    - - 450
       - 200
     cellname: nand2
     libname: laygo2_test
@@ -15,10 +15,10 @@ laygo2_test:
         name: A
         netname: A
         xy:
-        - - 175
-          - 90
-        - - 185
-          - 110
+        - - 325
+          - 80
+        - - 335
+          - 120
       B:
         layer:
         - metal3
@@ -26,10 +26,10 @@ laygo2_test:
         name: B
         netname: B
         xy:
-        - - 25
-          - 90
-        - - 35
-          - 110
+        - - 85
+          - 80
+        - - 95
+          - 120
       O:
         layer:
         - metal3
@@ -37,10 +37,10 @@ laygo2_test:
         name: O
         netname: O
         xy:
-        - - 235
-          - 40
-        - - 245
-          - 140
+        - - 385
+          - 30
+        - - 395
+          - 150
       VDD:
         layer:
         - metal2
@@ -50,7 +50,7 @@ laygo2_test:
         xy:
         - - 0
           - 195
-        - - 270
+        - - 450
           - 205
       VSS:
         layer:
@@ -61,5 +61,5 @@ laygo2_test:
         xy:
         - - 0
           - -5
-        - - 270
+        - - 450
           - 5
