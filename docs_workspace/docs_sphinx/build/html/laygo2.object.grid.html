@@ -1,0 +1,847 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>laygo2.object.grid module &#8212; laygo2</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/autoclasstoc.css?v=08871587" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'laygo2.object.grid';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Core methods" href="laygo2.object.grid.core.html" />
+    <link rel="prev" title="RoutingMeshTemplate class" href="laygo2.object.template.routing.RoutingMeshTemplate.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="laygo2 - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="laygo2 - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="trial.html">
+    Trial
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="laygo2.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="technology.html">
+    Tech Setup
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="resources.html">
+    Resources
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/niftylab/laygo2" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="trial.html">
+    Trial
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="laygo2.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="technology.html">
+    Tech Setup
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="resources.html">
+    Resources
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/niftylab/laygo2" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="laygo2.object.html">laygo2.object package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="laygo2.object.physical.html">laygo2.object.physical module</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.PhysicalObject.html">PhysicalObject class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.IterablePhysicalObject.html">IterablePhysicalObject class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.PhysicalObjectGroup.html">PhysicalObjectGroup class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.Rect.html">Rect class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.Path.html">Path class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.Pin.html">Pin class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.Text.html">Text class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.Instance.html">Instance class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.VirtualInstance.html">VirtualInstance class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="laygo2.object.template.html">laygo2.object.template module</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.template.Template.html">Template class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.template.NativeInstanceTemplate.html">NativeInstanceTemplate class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.template.ParameterizedInstanceTemplate.html">ParameterizedInstanceTemplate class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.template.UserDefinedTemplate.html">UserDefinedTemplate class</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="laygo2.object.template.routing.html">routing module</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.template.routing.RoutingMeshTemplate.html">RoutingMeshTemplate class</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">laygo2.object.grid module</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.core.html">Core methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html">CircularMapping class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html">CircularMappingArray class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid._AbsToPhyGridConverter.html">_AbsToPhyGridConverter class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid._PhyToAbsGridConverter.html">_PhyToAbsGridConverter class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html">OneDimGrid class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html">Grid class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html">PlacementGrid class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html">RoutingGrid class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="laygo2.object.database.html">laygo2.object.database module</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.database.BaseDatabase.html">BaseDatabase class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.database.Library.html">Library class</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="laygo2.object.database.Design.html">Design class</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.append.html">append() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.place.html">place() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.route.html">route() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.route_via_track.html">route_via_track() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.via.html">via() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.pin.html">pin() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.export_to_template.html">export_to_template() method</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="laygo2.interface.html">laygo2.interface package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.bag.html">laygo2.interface.bag module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.skill.html">laygo2.interface.skill module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.skillbridge.html">laygo2.interface.skillbridge module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.gdspy.html">laygo2.interface.gdspy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.magic.html">laygo2.interface.magic module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.yaml.html">laygo2.interface.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.mpl.html">laygo2.interface.mpl module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="laygo2.util.html">laygo2.util package</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="laygo2.html" class="nav-link">API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="laygo2.object.html" class="nav-link">laygo2.object package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">laygo2.objec...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-laygo2.object.grid">
+<span id="laygo2-object-grid-module"></span><h1>laygo2.object.grid module<a class="headerlink" href="#module-laygo2.object.grid" title="Link to this heading">#</a></h1>
+<p><strong>laygo2.object.grid</strong> module contains classes that implement abstract coordinate systems that are interacting with technology-specific physical coordinate systems.</p>
+<p>laygo2 implements the layout designs based on the abstract coordinate system.</p>
+<img alt="_images/user_guide_grid.png" src="_images/user_guide_grid.png" />
+<p>Check the following links for the details of component methods and classes.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="laygo2.object.grid.core.html">Core methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.object.grid.core.html#laygo2.object.grid.copy"><code class="docutils literal notranslate"><span class="pre">copy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.object.grid.core.html#laygo2.object.grid.vflip"><code class="docutils literal notranslate"><span class="pre">vflip()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.object.grid.core.html#laygo2.object.grid.hflip"><code class="docutils literal notranslate"><span class="pre">hflip()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.object.grid.core.html#laygo2.object.grid.hstack"><code class="docutils literal notranslate"><span class="pre">hstack()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.object.grid.core.html#laygo2.object.grid.vstack"><code class="docutils literal notranslate"><span class="pre">vstack()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html">CircularMapping class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping"><code class="docutils literal notranslate"><span class="pre">CircularMapping</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping.dtype"><code class="docutils literal notranslate"><span class="pre">CircularMapping.dtype</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping.__init__"><code class="docutils literal notranslate"><span class="pre">CircularMapping.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping.append"><code class="docutils literal notranslate"><span class="pre">CircularMapping.append()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping.concatenate"><code class="docutils literal notranslate"><span class="pre">CircularMapping.concatenate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping.copy"><code class="docutils literal notranslate"><span class="pre">CircularMapping.copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping.flip"><code class="docutils literal notranslate"><span class="pre">CircularMapping.flip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping.get_elements"><code class="docutils literal notranslate"><span class="pre">CircularMapping.get_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping.set_elements"><code class="docutils literal notranslate"><span class="pre">CircularMapping.set_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping.summarize"><code class="docutils literal notranslate"><span class="pre">CircularMapping.summarize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping._elements"><code class="docutils literal notranslate"><span class="pre">CircularMapping._elements</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping.elements"><code class="docutils literal notranslate"><span class="pre">CircularMapping.elements</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html#laygo2.object.grid.CircularMapping.shape"><code class="docutils literal notranslate"><span class="pre">CircularMapping.shape</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html">CircularMappingArray class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html#laygo2.object.grid.CircularMappingArray"><code class="docutils literal notranslate"><span class="pre">CircularMappingArray</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html#laygo2.object.grid.CircularMappingArray.dtype"><code class="docutils literal notranslate"><span class="pre">CircularMappingArray.dtype</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html#laygo2.object.grid.CircularMappingArray.__init__"><code class="docutils literal notranslate"><span class="pre">CircularMappingArray.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html#laygo2.object.grid.CircularMappingArray.append"><code class="docutils literal notranslate"><span class="pre">CircularMappingArray.append()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html#laygo2.object.grid.CircularMappingArray.concatenate"><code class="docutils literal notranslate"><span class="pre">CircularMappingArray.concatenate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html#laygo2.object.grid.CircularMappingArray.copy"><code class="docutils literal notranslate"><span class="pre">CircularMappingArray.copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html#laygo2.object.grid.CircularMappingArray.flip"><code class="docutils literal notranslate"><span class="pre">CircularMappingArray.flip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html#laygo2.object.grid.CircularMappingArray.get_elements"><code class="docutils literal notranslate"><span class="pre">CircularMappingArray.get_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html#laygo2.object.grid.CircularMappingArray.set_elements"><code class="docutils literal notranslate"><span class="pre">CircularMappingArray.set_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html#laygo2.object.grid.CircularMappingArray.summarize"><code class="docutils literal notranslate"><span class="pre">CircularMappingArray.summarize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html#laygo2.object.grid.CircularMappingArray._elements"><code class="docutils literal notranslate"><span class="pre">CircularMappingArray._elements</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html#laygo2.object.grid.CircularMappingArray.elements"><code class="docutils literal notranslate"><span class="pre">CircularMappingArray.elements</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html#laygo2.object.grid.CircularMappingArray.shape"><code class="docutils literal notranslate"><span class="pre">CircularMappingArray.shape</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="laygo2.object.grid._AbsToPhyGridConverter.html">_AbsToPhyGridConverter class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="laygo2.object.grid._PhyToAbsGridConverter.html">_PhyToAbsGridConverter class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html">OneDimGrid class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid"><code class="docutils literal notranslate"><span class="pre">OneDimGrid</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.dtype"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.dtype</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.__init__"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.append"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.append()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.concatenate"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.concatenate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.copy"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.export_to_dict"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.export_to_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.flip"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.flip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.get_elements"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.get_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.set_elements"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.set_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.summarize"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.summarize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid._elements"><code class="docutils literal notranslate"><span class="pre">OneDimGrid._elements</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.abs2phy"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.abs2phy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.elements"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.elements</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.name"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.phy2abs"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.phy2abs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.range"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.range</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.shape"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html#laygo2.object.grid.OneDimGrid.width"><code class="docutils literal notranslate"><span class="pre">OneDimGrid.width</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="laygo2.object.grid.Grid.html">Grid class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid"><code class="docutils literal notranslate"><span class="pre">Grid</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.__init__"><code class="docutils literal notranslate"><span class="pre">Grid.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid._get_hgrid"><code class="docutils literal notranslate"><span class="pre">Grid._get_hgrid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid._get_vgrid"><code class="docutils literal notranslate"><span class="pre">Grid._get_vgrid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid._set_hgrid"><code class="docutils literal notranslate"><span class="pre">Grid._set_hgrid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid._set_vgrid"><code class="docutils literal notranslate"><span class="pre">Grid._set_vgrid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.bbox"><code class="docutils literal notranslate"><span class="pre">Grid.bbox()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.bottom"><code class="docutils literal notranslate"><span class="pre">Grid.bottom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.bottom_left"><code class="docutils literal notranslate"><span class="pre">Grid.bottom_left()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.bottom_right"><code class="docutils literal notranslate"><span class="pre">Grid.bottom_right()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.center"><code class="docutils literal notranslate"><span class="pre">Grid.center()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.copy"><code class="docutils literal notranslate"><span class="pre">Grid.copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.crossing"><code class="docutils literal notranslate"><span class="pre">Grid.crossing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.get_range"><code class="docutils literal notranslate"><span class="pre">Grid.get_range()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.hflip"><code class="docutils literal notranslate"><span class="pre">Grid.hflip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.hstack"><code class="docutils literal notranslate"><span class="pre">Grid.hstack()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.left"><code class="docutils literal notranslate"><span class="pre">Grid.left()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.overlap"><code class="docutils literal notranslate"><span class="pre">Grid.overlap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.right"><code class="docutils literal notranslate"><span class="pre">Grid.right()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.set_range"><code class="docutils literal notranslate"><span class="pre">Grid.set_range()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.summarize"><code class="docutils literal notranslate"><span class="pre">Grid.summarize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.top"><code class="docutils literal notranslate"><span class="pre">Grid.top()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.top_left"><code class="docutils literal notranslate"><span class="pre">Grid.top_left()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.top_right"><code class="docutils literal notranslate"><span class="pre">Grid.top_right()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.union"><code class="docutils literal notranslate"><span class="pre">Grid.union()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.vflip"><code class="docutils literal notranslate"><span class="pre">Grid.vflip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.vstack"><code class="docutils literal notranslate"><span class="pre">Grid.vstack()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid._xy"><code class="docutils literal notranslate"><span class="pre">Grid._xy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.abs2phy"><code class="docutils literal notranslate"><span class="pre">Grid.abs2phy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.elements"><code class="docutils literal notranslate"><span class="pre">Grid.elements</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.h"><code class="docutils literal notranslate"><span class="pre">Grid.h</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.height"><code class="docutils literal notranslate"><span class="pre">Grid.height</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.height_vec"><code class="docutils literal notranslate"><span class="pre">Grid.height_vec</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.hgrid"><code class="docutils literal notranslate"><span class="pre">Grid.hgrid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.m"><code class="docutils literal notranslate"><span class="pre">Grid.m</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.mn"><code class="docutils literal notranslate"><span class="pre">Grid.mn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.n"><code class="docutils literal notranslate"><span class="pre">Grid.n</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.name"><code class="docutils literal notranslate"><span class="pre">Grid.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.phy2abs"><code class="docutils literal notranslate"><span class="pre">Grid.phy2abs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.range"><code class="docutils literal notranslate"><span class="pre">Grid.range</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.shape"><code class="docutils literal notranslate"><span class="pre">Grid.shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.v"><code class="docutils literal notranslate"><span class="pre">Grid.v</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.vgrid"><code class="docutils literal notranslate"><span class="pre">Grid.vgrid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.width"><code class="docutils literal notranslate"><span class="pre">Grid.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.width_vec"><code class="docutils literal notranslate"><span class="pre">Grid.width_vec</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.x"><code class="docutils literal notranslate"><span class="pre">Grid.x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.xy"><code class="docutils literal notranslate"><span class="pre">Grid.xy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html#laygo2.object.grid.Grid.y"><code class="docutils literal notranslate"><span class="pre">Grid.y</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html">PlacementGrid class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid"><code class="docutils literal notranslate"><span class="pre">PlacementGrid</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.__init__"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid._get_hgrid"><code class="docutils literal notranslate"><span class="pre">PlacementGrid._get_hgrid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid._get_vgrid"><code class="docutils literal notranslate"><span class="pre">PlacementGrid._get_vgrid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid._set_hgrid"><code class="docutils literal notranslate"><span class="pre">PlacementGrid._set_hgrid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid._set_vgrid"><code class="docutils literal notranslate"><span class="pre">PlacementGrid._set_vgrid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.bbox"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.bbox()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.bottom"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.bottom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.bottom_left"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.bottom_left()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.bottom_right"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.bottom_right()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.center"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.center()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.copy"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.crossing"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.crossing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.get_range"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.get_range()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.hflip"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.hflip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.hstack"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.hstack()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.left"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.left()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.overlap"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.overlap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.place"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.place()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.right"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.right()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.set_range"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.set_range()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.summarize"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.summarize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.top"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.top()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.top_left"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.top_left()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.top_right"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.top_right()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.union"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.union()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.vflip"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.vflip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.vstack"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.vstack()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid._xy"><code class="docutils literal notranslate"><span class="pre">PlacementGrid._xy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.abs2phy"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.abs2phy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.elements"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.elements</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.h"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.h</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.height"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.height</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.height_vec"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.height_vec</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.hgrid"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.hgrid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.m"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.m</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.mn"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.mn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.n"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.n</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.name"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.phy2abs"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.phy2abs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.range"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.range</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.shape"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.type"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.v"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.v</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.vgrid"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.vgrid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.width"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.width_vec"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.width_vec</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.x"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.xy"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.xy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html#laygo2.object.grid.PlacementGrid.y"><code class="docutils literal notranslate"><span class="pre">PlacementGrid.y</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html">RoutingGrid class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid"><code class="docutils literal notranslate"><span class="pre">RoutingGrid</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.__init__"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid._get_hgrid"><code class="docutils literal notranslate"><span class="pre">RoutingGrid._get_hgrid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid._get_vgrid"><code class="docutils literal notranslate"><span class="pre">RoutingGrid._get_vgrid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid._set_hgrid"><code class="docutils literal notranslate"><span class="pre">RoutingGrid._set_hgrid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid._set_vgrid"><code class="docutils literal notranslate"><span class="pre">RoutingGrid._set_vgrid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.bbox"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.bbox()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.bottom"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.bottom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.bottom_left"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.bottom_left()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.bottom_right"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.bottom_right()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.center"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.center()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.copy"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.crossing"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.crossing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.get_range"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.get_range()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.hflip"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.hflip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.hstack"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.hstack()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.left"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.left()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.overlap"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.overlap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.pin"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.pin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.right"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.right()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.route"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.route()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.route_via_track"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.route_via_track()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.set_range"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.set_range()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.summarize"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.summarize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.top"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.top()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.top_left"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.top_left()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.top_right"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.top_right()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.union"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.union()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.vflip"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.vflip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.via"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.via()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.vstack"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.vstack()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid._xy"><code class="docutils literal notranslate"><span class="pre">RoutingGrid._xy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.abs2phy"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.abs2phy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.elements"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.elements</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.h"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.h</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.height"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.height</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.height_vec"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.height_vec</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.hextension"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.hextension</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.hextension0"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.hextension0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.hgrid"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.hgrid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.hlayer"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.hlayer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.hwidth"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.hwidth</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.m"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.m</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.mn"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.mn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.n"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.n</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.name"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.phy2abs"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.phy2abs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.pin_hlayer"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.pin_hlayer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.pin_vlayer"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.pin_vlayer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.primary_grid"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.primary_grid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.range"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.range</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.shape"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.type"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.v"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.v</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.vextension"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.vextension</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.vextension0"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.vextension0</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.vgrid"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.vgrid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.viamap"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.viamap</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.vlayer"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.vlayer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.vwidth"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.vwidth</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.width"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.width_vec"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.width_vec</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.x"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.xcolor"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.xcolor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.xy"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.xy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.y"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid.ycolor"><code class="docutils literal notranslate"><span class="pre">RoutingGrid.ycolor</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="laygo2.object.template.routing.RoutingMeshTemplate.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">RoutingMeshTemplate class</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="laygo2.object.grid.core.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Core methods</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/laygo2.object.grid.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2021, Niftylab at Hanyang University, South Korea.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
