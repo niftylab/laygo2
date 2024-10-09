@@ -1,0 +1,1201 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>laygo2.interface.mpl &#8212; laygo2</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/autoclasstoc.css?v=08871587" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/laygo2/interface/mpl';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="laygo2 - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="laygo2 - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../trial.html">
+    Trial
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../laygo2.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../technology.html">
+    Tech Setup
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../resources.html">
+    Resources
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/niftylab/laygo2" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../trial.html">
+    Trial
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../laygo2.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../technology.html">
+    Tech Setup
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../resources.html">
+    Resources
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/niftylab/laygo2" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">laygo2.interface.mpl</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for laygo2.interface.mpl</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1">########################################################################################################################</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (C) 2023, Nifty Chips Laboratory at Hanyang University - All Rights Reserved</span>
+<span class="c1"># </span>
+<span class="c1"># Unauthorized copying of this software package, via any medium is strictly prohibited</span>
+<span class="c1"># Proprietary and confidential</span>
+<span class="c1"># Written by Jaeduk Han, 07-23-2023</span>
+<span class="c1">#</span>
+<span class="c1"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES,</span>
+<span class="c1"># INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span>
+<span class="c1"># DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</span>
+<span class="c1"># SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR</span>
+<span class="c1"># SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,</span>
+<span class="c1"># WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</span>
+<span class="c1"># OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<span class="c1">#</span>
+<span class="c1">########################################################################################################################</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module implements the interface with matplotlib.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">TYPE_CHECKING</span><span class="p">,</span>
+    <span class="n">Union</span><span class="p">,</span>
+    <span class="n">List</span>
+<span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log10</span>
+<span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">laygo2.util.transform</span> <span class="k">as</span> <span class="nn">tf</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">laygo2.object</span>
+
+<span class="c1">#from laygo2._typing import Path</span>
+
+<span class="c1"># Type checking</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">overload</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">laygo2</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">__maintainer__</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">__status__</span> <span class="o">=</span> <span class="s2">&quot;Prototype&quot;</span>
+
+<span class="c1"># support for hover information.</span>
+<span class="c1"># https://stackoverflow.com/a/47166787/7128154</span>
+<span class="c1"># https://matplotlib.org/3.3.3/api/collections_api.html#matplotlib.collections.PathCollection</span>
+<span class="c1"># https://matplotlib.org/3.3.3/api/path_api.html#matplotlib.path.Path</span>
+<span class="c1"># https://stackoverflow.com/questions/15876011/add-information-to-matplotlib-navigation-toolbar-status-bar</span>
+<span class="c1"># https://stackoverflow.com/questions/36730261/matplotlib-path-contains-point</span>
+<span class="c1"># https://stackoverflow.com/a/36335048/7128154</span>
+<div class="viewcode-block" id="StatusbarHoverManager">
+<a class="viewcode-back" href="../../../laygo2.interface.mpl.html#laygo2.interface.mpl.StatusbarHoverManager">[docs]</a>
+<span class="k">class</span> <span class="nc">StatusbarHoverManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Manage hover information for mpl.axes.Axes object based on appearing</span>
+<span class="sd">    artists.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ax : mpl.axes.Axes</span>
+<span class="sd">        subplot to show status information</span>
+<span class="sd">    artists : list of mpl.artist.Artist</span>
+<span class="sd">        elements on the subplot, which react to mouse over</span>
+<span class="sd">    labels : list (list of strings) or strings</span>
+<span class="sd">        each element on the top level corresponds to an artist.</span>
+<span class="sd">        if the artist has items</span>
+<span class="sd">        (i.e. second return value of contains() has key &#39;ind&#39;),</span>
+<span class="sd">        the element has to be of type list.</span>
+<span class="sd">        otherwise the element if of type string</span>
+<span class="sd">    cid : to reconnect motion_notify_event</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="StatusbarHoverManager.__init__">
+<a class="viewcode-back" href="../../../laygo2.interface.mpl.html#laygo2.interface.mpl.StatusbarHoverManager.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">Axes</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">hover</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">inaxes</span> <span class="o">!=</span> <span class="n">ax</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="n">info</span> <span class="o">=</span> <span class="s1">&#39;x=</span><span class="si">{:.0f}</span><span class="s1">, y=</span><span class="si">{:.0f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">xdata</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">ydata</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+            <span class="c1"># replace with self.text.set_text(info) if you want to show the info in the figure information bar.</span>
+            <span class="c1">#ax.format_coord = lambda x, y: info</span>
+        <span class="n">cid</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">mpl_connect</span><span class="p">(</span><span class="s2">&quot;motion_notify_event&quot;</span><span class="p">,</span> <span class="n">hover</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cid</span> <span class="o">=</span> <span class="n">cid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">artists</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;bottom&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig</span> <span class="o">=</span> <span class="n">fig</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">text</span></div>
+
+
+<div class="viewcode-block" id="StatusbarHoverManager.add_artist_labels">
+<a class="viewcode-back" href="../../../laygo2.interface.mpl.html#laygo2.interface.mpl.StatusbarHoverManager.add_artist_labels">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_artist_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">artist</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">artist</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">artist</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="n">artist</span> <span class="o">=</span> <span class="n">artist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">artists</span> <span class="o">+=</span> <span class="p">[</span><span class="n">artist</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">+=</span> <span class="p">[</span><span class="n">label</span><span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">hover</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">inaxes</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="n">info</span> <span class="o">=</span> <span class="s1">&#39;x=</span><span class="si">{:.0f}</span><span class="s1">, y=</span><span class="si">{:.0f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">xdata</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">ydata</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">aa</span><span class="p">,</span> <span class="n">artist</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">artists</span><span class="p">):</span>
+                <span class="n">cont</span><span class="p">,</span> <span class="n">dct</span> <span class="o">=</span> <span class="n">artist</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">cont</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="n">inds</span> <span class="o">=</span> <span class="n">dct</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ind&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">inds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># artist contains items</span>
+                    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">inds</span><span class="p">:</span>
+                        <span class="n">lbl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">aa</span><span class="p">][</span><span class="n">ii</span><span class="p">]</span>
+                        <span class="n">info</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">   </span><span class="si">{:}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lbl</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">lbl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">aa</span><span class="p">]</span>
+                    <span class="n">info</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">   </span><span class="si">{:}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lbl</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw_idle</span><span class="p">()</span>
+            <span class="c1"># replace with self.text.set_text(info) if you want to show the info in the figure information bar.</span>
+            <span class="c1">#self.ax.format_coord = lambda x, y: info</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">mpl_disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cid</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">mpl_connect</span><span class="p">(</span><span class="s2">&quot;motion_notify_event&quot;</span><span class="p">,</span> <span class="n">hover</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="k">def</span> <span class="nf">_translate_obj</span><span class="p">(</span>
+        <span class="n">objname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+        <span class="n">obj</span><span class="p">:</span> <span class="s2">&quot;laygo2.object.physical.PhysicalObject&quot;</span><span class="p">,</span> 
+        <span class="n">colormap</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> 
+        <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+        <span class="n">master</span><span class="p">:</span> <span class="s2">&quot;laygo2.object.physical.PhysicalObject&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+        <span class="n">offset</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a layout object to corresponding matplotlib patch object.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    objname: str</span>
+<span class="sd">        The name of the object. </span>
+<span class="sd">    obj: laygo2.object.PhysicalObject</span>
+<span class="sd">        The object to be converted.</span>
+<span class="sd">    colormap: dict</span>
+<span class="sd">        A dictionary that contains layer-color mapping information.</span>
+<span class="sd">    scale: float</span>
+<span class="sd">        (optional) The scaling factor between laygo2&#39;s integer coordinates and plot coordinates.</span>
+<span class="sd">    master: laygo2.object.PhysicalObject</span>
+<span class="sd">        (optional) The master object of the translated object.</span>
+<span class="sd">    offset: np.array</span>
+<span class="sd">        (optional) The offset of the translated object&#39;s position.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pypobjs: list</span>
+<span class="sd">        A list of matplotlib patch objects. Each element is a list of the form [patch, layer, annotation, (on-figure annotation)].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">master</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">mxy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">mtf</span> <span class="o">=</span> <span class="s2">&quot;R0&quot;</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># if the translated object has a master (e.g. VirtualInstance)</span>
+        <span class="n">mxy</span> <span class="o">=</span> <span class="n">master</span><span class="o">.</span><span class="n">xy</span>
+        <span class="n">mtf</span> <span class="o">=</span> <span class="n">master</span><span class="o">.</span><span class="n">transform</span>
+    <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">Rect</span><span class="p">:</span>
+        <span class="c1"># Compute the rectangle size</span>
+        <span class="n">_xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">xy</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># make sure obj.xy is sorted</span>
+        <span class="n">_xy</span> <span class="o">=</span> <span class="n">mxy</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span>
+            <span class="n">_xy</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="n">obj</span><span class="o">.</span><span class="n">hextension</span><span class="p">,</span> <span class="o">-</span><span class="n">obj</span><span class="o">.</span><span class="n">vextension</span><span class="p">],</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">hextension</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">vextension</span><span class="p">]]),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">Mt</span><span class="p">(</span><span class="n">mtf</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="p">[</span><span class="n">_xy</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">_xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">_xy</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">_xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+        <span class="c1"># Create a rectangle patch</span>
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">colormap</span><span class="p">:</span>
+            <span class="n">rect</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">_xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">_xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+                <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">facecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">edgecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">2</span><span class="p">],</span>
+                <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="p">[[</span><span class="n">rect</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;[rect] &quot;</span> <span class="o">+</span> <span class="n">objname</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">obj</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">netname</span><span class="p">)]]</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">elif</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">Path</span><span class="p">:</span>
+        <span class="c1"># TODO: implement path export function.</span>
+        <span class="k">pass</span>
+    <span class="k">elif</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">Pin</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">elements</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_objelem</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_objelem</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">elements</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">_obj</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndenumerate</span><span class="p">(</span><span class="n">_objelem</span><span class="p">):</span>
+            <span class="c1"># Compute the pin rectangle size</span>
+            <span class="n">_xy</span> <span class="o">=</span> <span class="n">mxy</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">_obj</span><span class="o">.</span><span class="n">xy</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">Mt</span><span class="p">(</span><span class="n">mtf</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="p">[</span><span class="n">_xy</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">_xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">_xy</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">_xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+            <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">colormap</span><span class="p">:</span>
+                <span class="c1"># Create a pin rectangle patch</span>
+                <span class="n">rect</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">_xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">_xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+                    <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="n">facecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="n">edgecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="n">alpha</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">2</span><span class="p">],</span>
+                    <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">pypobj</span> <span class="o">=</span> <span class="p">[</span><span class="n">rect</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;[pin] &quot;</span> <span class="o">+</span> <span class="n">objname</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">obj</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">netname</span><span class="p">)]</span>
+                <span class="k">if</span> <span class="n">master</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># add on-figure annotatation if the pin is at the top level</span>
+                    <span class="n">pypobj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">netname</span><span class="p">))</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">pypobj</span><span class="p">]</span>
+            <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">elif</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">Text</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">obj</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">xy</span><span class="p">]]</span>
+        <span class="c1"># TODO: implement text export function.</span>
+        <span class="k">pass</span>
+    <span class="k">elif</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">Instance</span><span class="p">:</span>
+        <span class="c1"># Check if the instance belongs to a virtual instance or array.</span>
+        <span class="k">if</span> <span class="n">master</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_master</span> <span class="o">=</span> <span class="n">master</span>
+        <span class="k">elif</span> <span class="n">obj</span><span class="o">.</span><span class="n">master</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_master</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">master</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_master</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># single instance</span>
+            <span class="n">_xy</span> <span class="o">=</span> <span class="n">mxy</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">xy</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">Mt</span><span class="p">(</span><span class="n">mtf</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+            <span class="n">_xy0</span> <span class="o">=</span> <span class="n">_xy</span>
+            <span class="n">_xy1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">xy1</span><span class="o">-</span><span class="n">obj</span><span class="o">.</span><span class="n">xy0</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">Mt</span><span class="p">(</span><span class="n">mtf</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="c1">#* np.array([num_rows, num_cols])</span>
+            <span class="n">rect</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">_xy0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">_xy0</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">_xy1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">_xy1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">facecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="s2">&quot;__instance__&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">edgecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="s2">&quot;__instance__&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="s2">&quot;__instance__&quot;</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span>
+                <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">pypobj</span> <span class="o">=</span> <span class="p">[</span><span class="n">rect</span><span class="p">,</span> <span class="s2">&quot;__instance__&quot;</span><span class="p">,</span> <span class="s2">&quot;[inst] &quot;</span> <span class="o">+</span> <span class="n">objname</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">obj</span><span class="o">.</span><span class="n">cellname</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">master</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># add on-figure annotatation if the instance is at the top level</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">obj</span><span class="o">.</span><span class="n">cellname</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;via&quot;</span><span class="p">):</span>
+                    <span class="n">pypobj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">objname</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="n">obj</span><span class="o">.</span><span class="n">cellname</span><span class="p">)</span>
+            <span class="n">pypobjs</span> <span class="o">=</span> <span class="p">[</span><span class="n">pypobj</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># array instance</span>
+            <span class="n">pypobjs</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndenumerate</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">elements</span><span class="p">):</span>
+                <span class="n">pypobjs</span> <span class="o">+=</span> <span class="n">_translate_obj</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">e</span><span class="p">,</span> <span class="n">colormap</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="n">_master</span><span class="p">)</span>
+
+        <span class="c1"># Instance pins</span>
+        <span class="k">for</span> <span class="n">pn</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">pins</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">_pypobj</span> <span class="o">=</span> <span class="n">_translate_obj</span><span class="p">(</span><span class="n">pn</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">colormap</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="n">_master</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">)</span>
+            <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;__instance_pin__&quot;</span>
+            <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="s2">&quot;__instance_pin__&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="s2">&quot;__instance_pin__&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;[inst] &quot;</span> <span class="o">+</span> <span class="n">objname</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">pypobjs</span> <span class="o">+=</span> <span class="n">_pypobj</span>
+        <span class="k">return</span> <span class="n">pypobjs</span>
+    <span class="k">elif</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">VirtualInstance</span><span class="p">:</span>
+        <span class="c1"># construct the list that constains patches of elements.</span>
+        <span class="n">pypobjs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_xy</span> <span class="o">=</span> <span class="n">mxy</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">xy</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">Mt</span><span class="p">(</span><span class="n">mtf</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+            <span class="n">_xy0</span> <span class="o">=</span> <span class="n">_xy</span>
+            <span class="n">_xy1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">xy1</span><span class="o">-</span><span class="n">obj</span><span class="o">.</span><span class="n">xy0</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">Mt</span><span class="p">(</span><span class="n">mtf</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> 
+            <span class="n">rect</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">_xy0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">_xy0</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">_xy1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">_xy1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">facecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="s2">&quot;__instance__&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">edgecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="s2">&quot;__instance__&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="s2">&quot;__instance__&quot;</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span>
+                <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">pypobjs</span> <span class="o">=</span> <span class="p">[[</span><span class="n">rect</span><span class="p">,</span> <span class="s2">&quot;__instance__&quot;</span><span class="p">,</span> <span class="s2">&quot;[vinst] &quot;</span> <span class="o">+</span> <span class="n">objname</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">obj</span><span class="o">.</span><span class="n">cellname</span><span class="p">]]</span>
+            <span class="n">pypobjs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">objname</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="n">obj</span><span class="o">.</span><span class="n">cellname</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">elem_name</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">native_elements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">elem</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">Pin</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">objname</span> <span class="o">=</span> <span class="s2">&quot;NoName&quot;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">objname</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span>
+                    <span class="n">_pypobj</span> <span class="o">=</span> <span class="n">_translate_obj</span><span class="p">(</span><span class="n">objname</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">colormap</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">_p</span> <span class="ow">in</span> <span class="n">_pypobj</span><span class="p">:</span>
+                        <span class="n">_p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;[vinst] &quot;</span> <span class="o">+</span> <span class="n">objname</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">_p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+                    <span class="n">pypobjs</span> <span class="o">+=</span> <span class="n">_pypobj</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># arrayed VirtualInstance</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndindex</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">tolist</span><span class="p">())):</span>  <span class="c1"># iterate over obj.shape</span>
+                <span class="k">for</span> <span class="n">elem_name</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">native_elements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">elem</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">Pin</span><span class="p">:</span>
+                        <span class="n">_pypobj</span> <span class="o">=</span> <span class="n">_translate_obj</span><span class="p">(</span>
+                            <span class="n">obj</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">elem_name</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">),</span>
+                            <span class="n">elem</span><span class="p">,</span>
+                            <span class="n">colormap</span><span class="p">,</span>
+                            <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span>
+                            <span class="n">master</span><span class="o">=</span><span class="n">obj</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
+                        <span class="p">)</span>
+                        <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;[vinst] &quot;</span> <span class="o">+</span> <span class="n">objname</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+                        <span class="n">pypobjs</span> <span class="o">+=</span> <span class="n">_pypobj</span>
+
+        <span class="c1"># Instance pins</span>
+        <span class="k">for</span> <span class="n">pn</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">pins</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># master coordinate is already included in the pin object of the virtual instance.</span>
+            <span class="n">_pypobj</span> <span class="o">=</span> <span class="n">_translate_obj</span><span class="p">(</span><span class="n">pn</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">colormap</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">)</span>  
+            <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;__instance_pin__&quot;</span>
+            <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="s2">&quot;__instance_pin__&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="s2">&quot;__instance_pin__&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;[vinst] &quot;</span> <span class="o">+</span> <span class="n">objname</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">pypobjs</span> <span class="o">+=</span> <span class="n">_pypobj</span>
+        <span class="k">return</span> <span class="n">pypobjs</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+        <span class="c1"># return [obj.translate_to_matplotlib()]</span>
+    <span class="k">return</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="export">
+<a class="viewcode-back" href="../../../laygo2.interface.mpl.html#laygo2.interface.mpl.export">[docs]</a>
+<span class="k">def</span> <span class="nf">export</span><span class="p">(</span>
+    <span class="n">db</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;laygo2.object.database.Library&quot;</span><span class="p">,</span> <span class="s2">&quot;laygo2.object.database.Design&quot;</span><span class="p">],</span>
+    <span class="n">cellname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">colormap</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">xlim</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">show</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">annotate_grid</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;laygo2.object.physical.Grid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Export a laygo2.object.database.Library or Design object to a matplotlib plot.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    db: laygo2.database.Library or laygo2.database design</span>
+<span class="sd">        The library database or design to exported.</span>
+<span class="sd">    cellname: str or List[str]</span>
+<span class="sd">        (optional) The name(s) of cell(s) to be exported.</span>
+<span class="sd">    scale: float</span>
+<span class="sd">        (optional) The scaling factor between laygo2&#39;s integer coordinates and plot coordinates.</span>
+<span class="sd">    colormap: dict</span>
+<span class="sd">        A dictionary that contains layer-color mapping information.</span>
+<span class="sd">    order: list</span>
+<span class="sd">        A list that contains the order of layers to be displayed (former is plotted first).</span>
+<span class="sd">    xlim: list</span>
+<span class="sd">        (optional) A list that specifies the range of plot in x-axis.</span>
+<span class="sd">    ylim: list</span>
+<span class="sd">        (optional) A list that specifies the range of plot in y-axis.</span>
+<span class="sd">    filename: str</span>
+<span class="sd">        (optional) If specified, export a output file for the plot.</span>
+<span class="sd">    annotate_grid: list</span>
+<span class="sd">        (optional) A list of grid objects to be annotated.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    matplotlib.pyplot.figure or list: The generated figure object(s).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># colormap</span>
+    <span class="k">if</span> <span class="n">colormap</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">colormap</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="c1"># a list to align layered objects in order</span>
+    <span class="k">if</span> <span class="n">order</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># cell name handling.</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">Design</span><span class="p">):</span>
+        <span class="n">cellname</span> <span class="o">=</span> <span class="p">[</span><span class="n">db</span><span class="o">.</span><span class="n">cellname</span><span class="p">]</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="p">{</span><span class="n">db</span><span class="o">.</span><span class="n">cellname</span><span class="p">:</span><span class="n">db</span><span class="p">}</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">Library</span><span class="p">):</span>
+        <span class="n">cellname</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">cellname</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">cellname</span>  <span class="c1"># export all cells if cellname is not given.</span>
+        <span class="n">cellname</span> <span class="o">=</span> <span class="p">[</span><span class="n">cellname</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cellname</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">cellname</span>  <span class="c1"># convert to a list for iteration.</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">_fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">cn</span> <span class="ow">in</span> <span class="n">cellname</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">show</span><span class="p">:</span>
+            <span class="n">_fig</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mi">6</span><span class="o">*</span><span class="n">db</span><span class="p">[</span><span class="n">cn</span><span class="p">]</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">1200</span><span class="p">)))</span>
+            <span class="n">_fig</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mi">6</span><span class="o">*</span><span class="n">db</span><span class="p">[</span><span class="n">cn</span><span class="p">]</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">1200</span><span class="p">)))</span>
+        <span class="n">pypobjs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">_fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+        <span class="n">shm</span> <span class="o">=</span> <span class="n">StatusbarHoverManager</span><span class="p">(</span><span class="n">_fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">objname</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">db</span><span class="p">[</span><span class="n">cn</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">pypobjs</span> <span class="o">+=</span> <span class="n">_translate_obj</span><span class="p">(</span><span class="n">objname</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">colormap</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_alignobj</span> <span class="ow">in</span> <span class="n">order</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">_pypobj</span> <span class="ow">in</span> <span class="n">pypobjs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">_alignobj</span><span class="p">:</span>  <span class="c1"># layer is matched.</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;text&#39;</span><span class="p">:</span>  <span class="c1"># Text</span>
+                            <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span>
+                            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+                                <span class="n">_pypobj</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">(</span><span class="n">_pypobj</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">]),</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span>
+                            <span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">:</span>  <span class="c1"># Rect</span>
+                        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">_pypobj</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># annotation.</span>
+                            <span class="n">shm</span><span class="o">.</span><span class="n">add_artist_labels</span><span class="p">(</span><span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+                            <span class="c1">#ax.add_artist(_pypobj[0])</span>
+                            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">_pypobj</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>  <span class="c1"># text annotation.</span>
+                                <span class="n">rx</span><span class="p">,</span> <span class="n">ry</span> <span class="o">=</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_xy</span><span class="p">()</span>
+                                <span class="n">cx</span> <span class="o">=</span> <span class="n">rx</span> <span class="o">+</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.0</span>
+                                <span class="n">cy</span> <span class="o">=</span> <span class="n">ry</span> <span class="o">+</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.0</span>
+                                <span class="k">if</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;__instance__&quot;</span><span class="p">:</span>
+                                    <span class="n">color</span> <span class="o">=</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_edgecolor</span><span class="p">()</span>
+                                <span class="k">elif</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;__instance_pin__&quot;</span><span class="p">:</span>
+                                    <span class="n">color</span> <span class="o">=</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_edgecolor</span><span class="p">()</span>
+                                <span class="k">else</span><span class="p">:</span>
+                                    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span>
+                                <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+                                    <span class="n">_pypobj</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span>
+                                <span class="p">)</span>
+        <span class="k">if</span> <span class="n">annotate_grid</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">grid</span> <span class="ow">in</span> <span class="n">annotate_grid</span><span class="p">:</span>
+                <span class="n">laygo2</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">export_grid</span><span class="p">(</span>
+                    <span class="n">obj</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
+                    <span class="n">colormap</span><span class="o">=</span><span class="n">colormap</span><span class="p">,</span>
+                    <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span>
+                    <span class="n">xlim</span><span class="o">=</span><span class="n">db</span><span class="p">[</span><span class="n">cn</span><span class="p">]</span><span class="o">.</span><span class="n">bbox</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+                    <span class="n">ylim</span><span class="o">=</span><span class="n">db</span><span class="p">[</span><span class="n">cn</span><span class="p">]</span><span class="o">.</span><span class="n">bbox</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+                    <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">fig</span><span class="o">=</span><span class="n">_fig</span><span class="p">,</span>
+                    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                    <span class="n">for_annotation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="p">)</span>
+        <span class="c1"># scale</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">)</span>
+        <span class="c1">#_fig.tight_layout()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">autoscale</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">xlim</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">ylim</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_fig</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">fig</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1">#fig = fig[0]</span>
+
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">fig</span></div>
+
+
+<div class="viewcode-block" id="export_instance">
+<a class="viewcode-back" href="../../../laygo2.interface.mpl.html#laygo2.interface.mpl.export_instance">[docs]</a>
+<span class="k">def</span> <span class="nf">export_instance</span><span class="p">(</span>
+    <span class="n">obj</span><span class="p">:</span> <span class="s2">&quot;laygo2.object.physical.Instance&quot;</span><span class="p">,</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">colormap</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">order</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">xlim</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Export a laygo2.object.physical.Instance object to a matplotlib plot.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj: laygo2.object.physical.Instance</span>
+<span class="sd">        The instance object to exported.</span>
+<span class="sd">    scale: float</span>
+<span class="sd">        (optional) The scaling factor between laygo2&#39;s integer coordinates and plot coordinates.</span>
+<span class="sd">    colormap: dict</span>
+<span class="sd">        A dictionary that contains layer-color mapping information.</span>
+<span class="sd">    order: list</span>
+<span class="sd">        A list that contains the order of layers to be displayed (former is plotted first).</span>
+<span class="sd">    xlim: list</span>
+<span class="sd">        (optional) A list that specifies the range of plot in x-axis.</span>
+<span class="sd">    ylim: list</span>
+<span class="sd">        (optional) A list that specifies the range of plot in y-axis.</span>
+<span class="sd">    filename: str</span>
+<span class="sd">        (optional) If specified, export a output file for the plot.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    matplotlib.pyplot.figure or list: The generated figure object(s).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># colormap</span>
+    <span class="k">if</span> <span class="n">colormap</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">colormap</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="c1"># a list to align layered objects in order</span>
+    <span class="k">if</span> <span class="n">order</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    # xlim and ylim</span>
+<span class="sd">    if xlim is None:</span>
+<span class="sd">        xlim = [obj.bbox[0][0] - obj.width, obj.bbox[1][0] + obj.width]</span>
+<span class="sd">    if ylim is None:</span>
+<span class="sd">        ylim = [obj.bbox[0][1] - obj.height, obj.bbox[1][1] + obj.height]</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">pypobjs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+    <span class="n">pypobjs</span> <span class="o">+=</span> <span class="n">_translate_obj</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">colormap</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_alignobj</span> <span class="ow">in</span> <span class="n">order</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">_pypobj</span> <span class="ow">in</span> <span class="n">pypobjs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">_alignobj</span><span class="p">:</span>  <span class="c1"># layer is matched.</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;text&#39;</span><span class="p">:</span>  <span class="c1"># Text</span>
+                        <span class="c1"># [[&quot;text&quot;, obj.layer[0], obj.text, obj.xy]]</span>
+                        <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span>
+                        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+                            <span class="n">_pypobj</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">(</span><span class="n">_pypobj</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">]),</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span>
+                        <span class="p">)</span>
+                <span class="k">elif</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">:</span>  <span class="c1"># Rect</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">_pypobj</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># annotation.</span>
+                        <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                        <span class="n">rx</span><span class="p">,</span> <span class="n">ry</span> <span class="o">=</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_xy</span><span class="p">()</span>
+                        <span class="n">cx</span> <span class="o">=</span> <span class="n">rx</span> <span class="o">+</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.0</span>
+                        <span class="n">cy</span> <span class="o">=</span> <span class="n">ry</span> <span class="o">+</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.0</span>
+                        <span class="k">if</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;__instance_pin__&quot;</span><span class="p">:</span>
+                            <span class="n">color</span> <span class="o">=</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_edgecolor</span><span class="p">()</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span>
+                        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+                            <span class="n">_pypobj</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span>
+                        <span class="p">)</span>
+
+    <span class="c1"># scale</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">autoscale</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">xlim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">ylim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">fig</span></div>
+
+
+
+<div class="viewcode-block" id="export_grid">
+<a class="viewcode-back" href="../../../laygo2.interface.mpl.html#laygo2.interface.mpl.export_grid">[docs]</a>
+<span class="k">def</span> <span class="nf">export_grid</span><span class="p">(</span>
+    <span class="n">obj</span><span class="p">:</span> <span class="s2">&quot;laygo2.object.physical.Grid&quot;</span><span class="p">,</span>
+    <span class="n">colormap</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">order</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">xlim</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">fig</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">for_annotation</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Export a laygo2.object.grid.Grid object to a matplotlib plot.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj: laygo2.object.grid.Grid</span>
+<span class="sd">        The grid object to exported.</span>
+<span class="sd">    scale: float</span>
+<span class="sd">        (optional) The scaling factor between laygo2&#39;s integer coordinates and plot coordinates.</span>
+<span class="sd">    colormap: dict</span>
+<span class="sd">        A dictionary that contains layer-color mapping information.</span>
+<span class="sd">    order: list</span>
+<span class="sd">        A list that contains the order of layers to be displayed (former is plotted first).</span>
+<span class="sd">    xlim: list</span>
+<span class="sd">        (optional) A list that specifies the range of plot in x-axis.</span>
+<span class="sd">    ylim: list</span>
+<span class="sd">        (optional) A list that specifies the range of plot in y-axis.</span>
+<span class="sd">    filename: str</span>
+<span class="sd">        (optional) If specified, export a output file for the plot.</span>
+<span class="sd">    fig: matplotlib.pyplot.figure</span>
+<span class="sd">        (optional) The figure object to be plotted on.</span>
+<span class="sd">    ax: matplotlib.pyplot.axis</span>
+<span class="sd">        (optional) The axis object to be plotted on.</span>
+<span class="sd">    for_annotation: bool</span>
+<span class="sd">        (optional) If True, only draw the dashed grid lines.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    matplotlib.pyplot.figure or list: The generated figure object(s).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># colormap</span>
+    <span class="k">if</span> <span class="n">colormap</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">colormap</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">for_annotation</span><span class="p">:</span>
+        <span class="n">lw</span> <span class="o">=</span> <span class="mf">0.5</span>
+        <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&quot;--&quot;</span>
+        <span class="n">wscl</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lw</span> <span class="o">=</span> <span class="mf">2.0</span>
+        <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span>
+        <span class="n">wscl</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># a list to align layered objects in order</span>
+    <span class="k">if</span> <span class="n">order</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+    <span class="n">pypobjs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># scope</span>
+    <span class="n">_xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">vgrid</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">obj</span><span class="o">.</span><span class="n">hgrid</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">_width</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">vgrid</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">obj</span><span class="o">.</span><span class="n">vgrid</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">_height</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">hgrid</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">obj</span><span class="o">.</span><span class="n">hgrid</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">rect</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">_xy</span><span class="p">,</span> <span class="n">_width</span><span class="p">,</span> <span class="n">_height</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="n">linestyle</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">for_annotation</span><span class="p">:</span>
+        <span class="n">rx</span><span class="p">,</span> <span class="n">ry</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span class="n">get_xy</span><span class="p">()</span>
+        <span class="n">cx</span> <span class="o">=</span> <span class="n">rx</span> <span class="o">+</span> <span class="n">rect</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.0</span>
+        <span class="n">cy</span> <span class="o">=</span> <span class="n">ry</span> <span class="o">+</span> <span class="n">rect</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.0</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">RoutingGrid</span><span class="p">:</span>  <span class="c1"># Routing grid</span>
+        <span class="k">if</span> <span class="n">for_annotation</span><span class="p">:</span>
+            <span class="n">rng</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">vgrid</span><span class="o">&lt;=</span><span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">obj</span><span class="o">.</span><span class="n">vgrid</span><span class="o">&gt;=</span><span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">height0</span> <span class="o">=</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rng</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">vgrid</span><span class="o">.</span><span class="n">elements</span><span class="p">))</span>
+            <span class="n">height0</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">hgrid</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rng</span><span class="p">:</span>  <span class="c1"># vertical routing grid</span>
+            <span class="n">ve</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">vgrid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">_xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">ve</span> <span class="o">-</span> <span class="n">obj</span><span class="o">.</span><span class="n">vwidth</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">wscl</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">hgrid</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">obj</span><span class="o">.</span><span class="n">vextension</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">_width</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">vwidth</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">wscl</span>
+            <span class="n">_height</span> <span class="o">=</span> <span class="n">height0</span> <span class="o">-</span> <span class="n">obj</span><span class="o">.</span><span class="n">hgrid</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">obj</span><span class="o">.</span><span class="n">vextension</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">facecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">vlayer</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">vlayer</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">vlayer</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]][</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">rect</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">_xy</span><span class="p">,</span> <span class="n">_width</span><span class="p">,</span> <span class="n">_height</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">facecolor</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">edgecolor</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="n">linestyle</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+            <span class="n">_xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">ve</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">hgrid</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">obj</span><span class="o">.</span><span class="n">vextension</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">_xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">_xy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">for_annotation</span><span class="p">:</span>
+            <span class="n">rng</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">hgrid</span><span class="o">&lt;=</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">obj</span><span class="o">.</span><span class="n">hgrid</span><span class="o">&gt;=</span><span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">width0</span> <span class="o">=</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rng</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">hgrid</span><span class="o">.</span><span class="n">elements</span><span class="p">))</span> 
+            <span class="n">width0</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">vgrid</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rng</span><span class="p">:</span> <span class="c1"># horizontal routing grid</span>
+            <span class="n">he</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">hgrid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">_xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">vgrid</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">obj</span><span class="o">.</span><span class="n">hextension</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">he</span> <span class="o">-</span> <span class="n">obj</span><span class="o">.</span><span class="n">hwidth</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">wscl</span><span class="p">)</span>
+            <span class="n">_width</span> <span class="o">=</span> <span class="n">width0</span> <span class="o">-</span> <span class="n">obj</span><span class="o">.</span><span class="n">vgrid</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">obj</span><span class="o">.</span><span class="n">hextension</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">_height</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">hwidth</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">wscl</span>
+            <span class="n">facecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">hlayer</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">hlayer</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">hlayer</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]][</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">rect</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">_xy</span><span class="p">,</span> <span class="n">_width</span><span class="p">,</span> <span class="n">_height</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">facecolor</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">edgecolor</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="n">linestyle</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+            <span class="n">_xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">vgrid</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">obj</span><span class="o">.</span><span class="n">hextension</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">he</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">_xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">_xy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+        <span class="c1"># viamap</span>
+        <span class="k">if</span> <span class="n">for_annotation</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">vgrid</span><span class="o">.</span><span class="n">elements</span><span class="p">)):</span>  <span class="c1"># vertical routing grid</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">hgrid</span><span class="o">.</span><span class="n">elements</span><span class="p">)):</span>  <span class="c1"># horizontal routing grid</span>
+                    <span class="n">v</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">viamap</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+                    <span class="n">x</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">vgrid</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">hgrid</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                    <span class="n">circ</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span> <span class="c1">#, **kwargs)</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;bottom&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">_alignobj</span> <span class="ow">in</span> <span class="n">order</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">_pypobj</span> <span class="ow">in</span> <span class="n">pypobjs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">_alignobj</span><span class="p">:</span>  <span class="c1"># layer is matched.</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;text&#39;</span><span class="p">:</span>  <span class="c1"># Text</span>
+                        <span class="c1"># [[&quot;text&quot;, obj.layer[0], obj.text, obj.xy]]</span>
+                        <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span>
+                        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+                            <span class="n">_pypobj</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">(</span><span class="n">_pypobj</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">]),</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span>
+                        <span class="p">)</span>
+                <span class="k">elif</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">:</span>  <span class="c1"># Rect</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">_pypobj</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># annotation.</span>
+                        <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                        <span class="n">rx</span><span class="p">,</span> <span class="n">ry</span> <span class="o">=</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_xy</span><span class="p">()</span>
+                        <span class="n">cx</span> <span class="o">=</span> <span class="n">rx</span> <span class="o">+</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.0</span>
+                        <span class="n">cy</span> <span class="o">=</span> <span class="n">ry</span> <span class="o">+</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.0</span>
+                        <span class="k">if</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;__instance_pin__&quot;</span><span class="p">:</span>
+                            <span class="n">color</span> <span class="o">=</span> <span class="n">_pypobj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_edgecolor</span><span class="p">()</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span>
+                        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+                            <span class="n">_pypobj</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span>
+                        <span class="p">)</span>
+
+    <span class="c1"># scale</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">autoscale</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">for_annotation</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">xlim</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">ylim</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">for_annotation</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">fig</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2021, Niftylab at Hanyang University, South Korea.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

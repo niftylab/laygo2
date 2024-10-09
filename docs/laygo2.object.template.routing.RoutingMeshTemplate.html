@@ -1,0 +1,947 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>RoutingMeshTemplate class &#8212; laygo2</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/autoclasstoc.css?v=08871587" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'laygo2.object.template.routing.RoutingMeshTemplate';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="laygo2.object.grid module" href="laygo2.object.grid.html" />
+    <link rel="prev" title="routing module" href="laygo2.object.template.routing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="laygo2 - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="laygo2 - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="trial.html">
+    Trial
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="laygo2.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="technology.html">
+    Tech Setup
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="resources.html">
+    Resources
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/niftylab/laygo2" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="trial.html">
+    Trial
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="laygo2.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="technology.html">
+    Tech Setup
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="resources.html">
+    Resources
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/niftylab/laygo2" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="laygo2.object.html">laygo2.object package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="laygo2.object.physical.html">laygo2.object.physical module</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.PhysicalObject.html">PhysicalObject class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.IterablePhysicalObject.html">IterablePhysicalObject class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.PhysicalObjectGroup.html">PhysicalObjectGroup class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.Rect.html">Rect class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.Path.html">Path class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.Pin.html">Pin class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.Text.html">Text class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.Instance.html">Instance class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.VirtualInstance.html">VirtualInstance class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="laygo2.object.template.html">laygo2.object.template module</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.template.Template.html">Template class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.template.NativeInstanceTemplate.html">NativeInstanceTemplate class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.template.ParameterizedInstanceTemplate.html">ParameterizedInstanceTemplate class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.template.UserDefinedTemplate.html">UserDefinedTemplate class</a></li>
+<li class="toctree-l3 current active has-children"><a class="reference internal" href="laygo2.object.template.routing.html">routing module</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l4 current active"><a class="current reference internal" href="#">RoutingMeshTemplate class</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="laygo2.object.grid.html">laygo2.object.grid module</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.core.html">Core methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html">CircularMapping class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html">CircularMappingArray class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid._AbsToPhyGridConverter.html">_AbsToPhyGridConverter class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid._PhyToAbsGridConverter.html">_PhyToAbsGridConverter class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html">OneDimGrid class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html">Grid class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html">PlacementGrid class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html">RoutingGrid class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="laygo2.object.database.html">laygo2.object.database module</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.database.BaseDatabase.html">BaseDatabase class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.database.Library.html">Library class</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="laygo2.object.database.Design.html">Design class</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.append.html">append() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.place.html">place() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.route.html">route() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.route_via_track.html">route_via_track() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.via.html">via() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.pin.html">pin() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.export_to_template.html">export_to_template() method</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="laygo2.interface.html">laygo2.interface package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.bag.html">laygo2.interface.bag module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.skill.html">laygo2.interface.skill module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.skillbridge.html">laygo2.interface.skillbridge module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.gdspy.html">laygo2.interface.gdspy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.magic.html">laygo2.interface.magic module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.yaml.html">laygo2.interface.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.mpl.html">laygo2.interface.mpl module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="laygo2.util.html">laygo2.util package</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="laygo2.html" class="nav-link">API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
+    
+    
+    <li class="breadcrumb-item"><a href="laygo2.object.template.routing.html" class="nav-link">routing module</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">RoutingMeshT...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="routingmeshtemplate-class">
+<h1>RoutingMeshTemplate class<a class="headerlink" href="#routingmeshtemplate-class" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">laygo2.object.template.routing.</span></span><span class="sig-name descname"><span class="pre">RoutingMeshTemplate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tracks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><span class="pre">dict</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template/routing.html#RoutingMeshTemplate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="laygo2.object.template.Template.html#laygo2.object.template.Template" title="laygo2.object.template.core.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">Template</span></code></a></p>
+<p>RoutingMesh describes a two dimensional routing structure over a routing grid.</p>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Data Attributes:</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid</span></code></p></td>
+<td><p>A routing grid object that the RoutingMesh object refers to.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">tracks</span></code></p></td>
+<td><p>A dictionary that contains track information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">nodes</span></code></p></td>
+<td><p>A list that contains layout objects to be connected through the routing channel. The element could be either one of the following:     laygo2.object.physical.Instance,     laygo2.object.physical.VirtualInstance,     laygo2.object.physical.Rect.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<details><summary>Inherited from <a class="reference internal" href="laygo2.object.template.Template.html#laygo2.object.template.Template" title="laygo2.object.template.core.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">Template</span></code></a></summary><div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>Template name.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details></div>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Methods:</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bbox</span></code>([params])</p></td>
+<td><p>numpy.ndarray: (Abstract method) Return the bounding box of a template.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pins</span></code>([params])</p></td>
+<td><p>dict: (Abstract method) Return dict having the collection of pins of a template.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code>(grid[, tracks, nodes])</p></td>
+<td><p>The constructor function.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_track</span></code>(name, index[, netname])</p></td>
+<td><p>Add a track to the mesh.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_node</span></code>(obj)</p></td>
+<td><p>Add a node object to the mesh.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate</span></code>()</p></td>
+<td><p>Generate a routing mesh.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<details><summary>Inherited from <a class="reference internal" href="laygo2.object.template.Template.html#laygo2.object.template.Template" title="laygo2.object.template.core.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">Template</span></code></a></summary><div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code>([name])</p></td>
+<td><p>The constructor function.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__str__</span></code>()</p></td>
+<td><p>Return a string representation of this template's information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summarize</span></code>()</p></td>
+<td><p>Return the summary of the template information.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>([params])</p></td>
+<td><p>int: Return the height of the template.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">width</span></code>([params])</p></td>
+<td><p>int: Return the width of the template.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code>([params])</p></td>
+<td><p>int: Return the size of the template.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bbox</span></code>([params])</p></td>
+<td><p>numpy.ndarray: (Abstract method) the physical bounding box of the template.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pins</span></code>([params])</p></td>
+<td><p>dict: (Abstract method) Dictionary storing the pins of the template.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate</span></code>([name, shape, pitch, transform, ...])</p></td>
+<td><p>instance: (Abstract method) Generate an instance from the template.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details></div>
+<hr class="docutils" />
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tracks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><span class="pre">dict</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template/routing.html#RoutingMeshTemplate.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate.__init__" title="Link to this definition">#</a></dt>
+<dd><p>The constructor function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grid</strong> (<a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid" title="laygo2.object.grid.RoutingGrid"><em>laygo2.object.grid.RoutingGrid</em></a>) – The grid object that this object refers to for constructing routing wires.</p></li>
+<li><p><strong>tracks</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – The dictionary that contains track information.
+The format of its element is “track_name”: [index, “net_name”].</p></li>
+<li><p><strong>nodes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – <p>The list that contains layout objects to be connected through the routing channel.
+The element could be either one of the following:</p>
+<blockquote>
+<div><p>laygo2.object.physical.Instance,
+laygo2.object.physical.VirtualInstance,
+laygo2.object.physical.Rect.</p>
+</div></blockquote>
+<p>For Instance or VirtualInstance elements, the netname parameters of their pins need to be set to the
+name of net (netname) which the pins are connected to.
+For Rect elements, their netname parameters should be set.</p>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate.add_node">
+<span class="sig-name descname"><span class="pre">add_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template/routing.html#RoutingMeshTemplate.add_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate.add_node" title="Link to this definition">#</a></dt>
+<dd><p>Add a node object to the mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> (<a class="reference internal" href="laygo2.object.physical.Instance.html#laygo2.object.physical.Instance" title="laygo2.object.physical.Instance"><em>laygo2.object.physical.Instance</em></a><em> or </em><a class="reference internal" href="laygo2.object.physical.VirtualInstance.html#laygo2.object.physical.VirtualInstance" title="laygo2.object.physical.VirtualInstance"><em>laygo2.object.physical.VirtualInstance</em></a><em> or </em><em>laygo2.object.pythiscl.Rect</em>) – The object to be added to the mesh as a node.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate.add_track">
+<span class="sig-name descname"><span class="pre">add_track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">netname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template/routing.html#RoutingMeshTemplate.add_track"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate.add_track" title="Link to this definition">#</a></dt>
+<dd><p>Add a track to the mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The name of the track to be added.</p></li>
+<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The index of the track.
+For a horizontal track, it should be [None, i] where i is the
+value of abstract coordinate to place the routing track.
+For a vertical track, it should be [i, None].</p></li>
+<li><p><strong>netname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The net name of the track.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate.bbox">
+<span class="sig-name descname"><span class="pre">bbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template/routing.html#RoutingMeshTemplate.bbox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate.bbox" title="Link to this definition">#</a></dt>
+<dd><p>numpy.ndarray: (Abstract method) Return the bounding box of a template.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template/routing.html#RoutingMeshTemplate.generate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate.generate" title="Link to this definition">#</a></dt>
+<dd><p>Generate a routing mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>laygo2.object.physical.VirtualInstance</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>the generated routing object.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">laygo2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">laygo2.object.grid</span> <span class="kn">import</span> <span class="n">CircularMapping</span> <span class="k">as</span> <span class="n">CM</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">laygo2.object.grid</span> <span class="kn">import</span> <span class="n">CircularMappingArray</span> <span class="k">as</span> <span class="n">CMA</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">laygo2.object.grid</span> <span class="kn">import</span> <span class="n">OneDimGrid</span><span class="p">,</span> <span class="n">RoutingGrid</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">laygo2.object.template</span> <span class="kn">import</span> <span class="n">NativeInstanceTemplate</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">laygo2.object.physical</span> <span class="kn">import</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">Rect</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Routing grid construction (not needed if laygo2_tech is set up).</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gv</span> <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;gv&quot;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gh</span> <span class="o">=</span> <span class="n">OneDimGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;gv&quot;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wv</span> <span class="o">=</span> <span class="n">CM</span><span class="p">([</span><span class="mi">10</span><span class="p">])</span>           <span class="c1"># vertical (xgrid) width</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wh</span> <span class="o">=</span> <span class="n">CM</span><span class="p">([</span><span class="mi">10</span><span class="p">])</span>   <span class="c1"># horizontal (ygrid) width</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ev</span> <span class="o">=</span> <span class="n">CM</span><span class="p">([</span><span class="mi">10</span><span class="p">])</span>           <span class="c1"># vertical (xgrid) extension</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eh</span> <span class="o">=</span> <span class="n">CM</span><span class="p">([</span><span class="mi">10</span><span class="p">])</span>   <span class="c1"># horizontal (ygrid) extension</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e0v</span> <span class="o">=</span> <span class="n">CM</span><span class="p">([</span><span class="mi">5</span><span class="p">])</span>          <span class="c1"># vert. extension (for zero-length wires)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e0h</span> <span class="o">=</span> <span class="n">CM</span><span class="p">([</span><span class="mi">5</span><span class="p">])</span>  <span class="c1"># hori. extension (for zero-length wires)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lv</span> <span class="o">=</span> <span class="n">CM</span><span class="p">([[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>  <span class="c1"># layer information</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lh</span> <span class="o">=</span> <span class="n">CM</span><span class="p">([[</span><span class="s1">&#39;M2&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plv</span> <span class="o">=</span> <span class="n">CM</span><span class="p">([[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;pin&#39;</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span> <span class="c1"># pin layers</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plh</span> <span class="o">=</span> <span class="n">CM</span><span class="p">([[</span><span class="s1">&#39;M2&#39;</span><span class="p">,</span> <span class="s1">&#39;pin&#39;</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xcolor</span> <span class="o">=</span> <span class="n">CM</span><span class="p">([</span><span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>  <span class="c1"># not multi-patterned</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ycolor</span> <span class="o">=</span> <span class="n">CM</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">primary_grid</span> <span class="o">=</span> <span class="s1">&#39;horizontal&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tvia</span> <span class="o">=</span> <span class="n">NativeInstanceTemplate</span><span class="p">(</span><span class="n">libname</span><span class="o">=</span><span class="s1">&#39;tlib&#39;</span><span class="p">,</span> <span class="n">cellname</span><span class="o">=</span><span class="s1">&#39;via0&#39;</span><span class="p">)</span>  <span class="c1"># via</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viamap</span> <span class="o">=</span> <span class="n">CMA</span><span class="p">(</span><span class="n">elements</span><span class="o">=</span><span class="p">[[</span><span class="n">tvia</span><span class="p">,</span> <span class="n">tvia</span><span class="p">,</span> <span class="n">tvia</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">RoutingGrid</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;mygrid&#39;</span><span class="p">,</span> <span class="n">vgrid</span><span class="o">=</span><span class="n">gv</span><span class="p">,</span> <span class="n">hgrid</span><span class="o">=</span><span class="n">gh</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>                <span class="n">vwidth</span><span class="o">=</span><span class="n">wv</span><span class="p">,</span> <span class="n">hwidth</span><span class="o">=</span><span class="n">wh</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>                <span class="n">vextension</span><span class="o">=</span><span class="n">ev</span><span class="p">,</span> <span class="n">hextension</span><span class="o">=</span><span class="n">eh</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>                <span class="n">vlayer</span><span class="o">=</span><span class="n">lv</span><span class="p">,</span> <span class="n">hlayer</span><span class="o">=</span><span class="n">lh</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>                <span class="n">pin_vlayer</span><span class="o">=</span><span class="n">plv</span><span class="p">,</span> <span class="n">pin_hlayer</span><span class="o">=</span><span class="n">plh</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>                <span class="n">viamap</span><span class="o">=</span><span class="n">viamap</span><span class="p">,</span> <span class="n">primary_grid</span><span class="o">=</span><span class="n">primary_grid</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>                <span class="n">xcolor</span><span class="o">=</span><span class="n">xcolor</span><span class="p">,</span> <span class="n">ycolor</span><span class="o">=</span><span class="n">ycolor</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>                <span class="n">vextension0</span><span class="o">=</span><span class="n">e0v</span><span class="p">,</span> <span class="n">hextension0</span><span class="o">=</span><span class="n">e0h</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create node objects.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r0</span> <span class="o">=</span> <span class="n">Rect</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">45</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">55</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">Rect</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">95</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">105</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i0_pins</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i0_pins</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">95</span><span class="p">],</span> <span class="p">[</span><span class="mi">55</span><span class="p">,</span> <span class="mi">105</span><span class="p">]],</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">layer</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;drawing&#39;</span><span class="p">],</span> <span class="n">netname</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i0</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">Instance</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;I0&quot;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">[</span><span class="mi">150</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">libname</span><span class="o">=</span><span class="s2">&quot;mylib&quot;</span><span class="p">,</span> <span class="n">cellname</span><span class="o">=</span><span class="s2">&quot;mycell&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">pitch</span><span class="o">=</span><span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">200</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">unit_size</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">pins</span><span class="o">=</span><span class="n">i0_pins</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="s1">&#39;R0&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create a routing mesh.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rm</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">routing</span><span class="o">.</span><span class="n">RoutingMesh</span><span class="p">(</span><span class="n">grid</span> <span class="o">=</span> <span class="n">g</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rm</span><span class="o">.</span><span class="n">add_track</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">netname</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rm</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">r0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rm</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rm</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">i0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rinst</span> <span class="o">=</span> <span class="n">rm</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Print horizontal wire</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">rinst</span><span class="o">.</span><span class="n">pins</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">xy</span><span class="p">)</span>
+<span class="go">[[ 50 250]</span>
+<span class="go"> [200 250]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Vertical wire to r0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">rinst</span><span class="o">.</span><span class="n">native_elements</span><span class="p">[</span><span class="s2">&quot;A_0_0&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">xy</span><span class="p">)</span>
+<span class="go">[[ 50   0]</span>
+<span class="go"> [ 50 250]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Vertical wire to r1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">rinst</span><span class="o">.</span><span class="n">native_elements</span><span class="p">[</span><span class="s2">&quot;A_1_0&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">xy</span><span class="p">)</span>
+<span class="go">[[100   0]</span>
+<span class="go"> [100 250]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Vertical wire to i0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">rinst</span><span class="o">.</span><span class="n">native_elements</span><span class="p">[</span><span class="s2">&quot;A_2_0&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">xy</span><span class="p">)</span>
+<span class="go">[[200 100]</span>
+<span class="go"> [200 250]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate.height">
+<span class="sig-name descname"><span class="pre">height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate.height" title="Link to this definition">#</a></dt>
+<dd><p>int: Return the height of the template.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate.pins">
+<span class="sig-name descname"><span class="pre">pins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template/routing.html#RoutingMeshTemplate.pins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate.pins" title="Link to this definition">#</a></dt>
+<dd><p>dict: (Abstract method) Return dict having the collection of pins of a template.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate.size">
+<span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate.size" title="Link to this definition">#</a></dt>
+<dd><p>int: Return the size of the template.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate.summarize">
+<span class="sig-name descname"><span class="pre">summarize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate.summarize" title="Link to this definition">#</a></dt>
+<dd><p>Return the summary of the template information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate.width">
+<span class="sig-name descname"><span class="pre">width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate.width" title="Link to this definition">#</a></dt>
+<dd><p>int: Return the width of the template.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate._abc_impl" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate.grid">
+<span class="sig-name descname"><span class="pre">grid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate.grid" title="Link to this definition">#</a></dt>
+<dd><p>A routing grid object that the RoutingMesh object refers to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html#laygo2.object.grid.RoutingGrid" title="laygo2.object.grid.RoutingGrid">laygo2.object.grid.RoutingGrid</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate.name" title="Link to this definition">#</a></dt>
+<dd><p>Template name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate.nodes">
+<span class="sig-name descname"><span class="pre">nodes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate.nodes" title="Link to this definition">#</a></dt>
+<dd><p>A list that contains layout objects to be connected through the routing channel.
+The element could be either one of the following:</p>
+<blockquote>
+<div><p>laygo2.object.physical.Instance,
+laygo2.object.physical.VirtualInstance,
+laygo2.object.physical.Rect.</p>
+</div></blockquote>
+<p>For Instance or VirtualInstance elements, the netname parameters of their pins need to be set to the
+name of net (netname) which the pins are connected to.
+For Rect elements, their netname parameters should be set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.routing.RoutingMeshTemplate.tracks">
+<span class="sig-name descname"><span class="pre">tracks</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#laygo2.object.template.routing.RoutingMeshTemplate.tracks" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary that contains track information.
+The format of its element is “track_name”: [index, “net_name”].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="laygo2.object.template.routing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">routing module</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="laygo2.object.grid.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">laygo2.object.grid module</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate.__init__"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate.add_node"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate.add_node()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate.add_track"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate.add_track()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate.bbox"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate.bbox()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate.generate"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate.generate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate.height"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate.height()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate.pins"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate.pins()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate.size"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate.size()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate.summarize"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate.summarize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate.width"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate.width()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate._abc_impl"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate._abc_impl</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate.grid"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate.grid</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate.name"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate.name</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate.nodes"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate.nodes</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.routing.RoutingMeshTemplate.tracks"><code class="docutils literal notranslate"><span class="pre">RoutingMeshTemplate.tracks</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/laygo2.object.template.routing.RoutingMeshTemplate.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2021, Niftylab at Hanyang University, South Korea.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1088 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ParameterizedInstanceTemplate class &#8212; laygo2</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/autoclasstoc.css?v=08871587" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'laygo2.object.template.ParameterizedInstanceTemplate';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="UserDefinedTemplate class" href="laygo2.object.template.UserDefinedTemplate.html" />
+    <link rel="prev" title="NativeInstanceTemplate class" href="laygo2.object.template.NativeInstanceTemplate.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="laygo2 - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="laygo2 - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="trial.html">
+    Trial
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="laygo2.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="technology.html">
+    Tech Setup
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="resources.html">
+    Resources
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/niftylab/laygo2" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="trial.html">
+    Trial
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="laygo2.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="technology.html">
+    Tech Setup
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="resources.html">
+    Resources
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/niftylab/laygo2" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="laygo2.object.html">laygo2.object package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="laygo2.object.physical.html">laygo2.object.physical module</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.PhysicalObject.html">PhysicalObject class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.IterablePhysicalObject.html">IterablePhysicalObject class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.PhysicalObjectGroup.html">PhysicalObjectGroup class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.Rect.html">Rect class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.Path.html">Path class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.Pin.html">Pin class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.Text.html">Text class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.Instance.html">Instance class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.physical.VirtualInstance.html">VirtualInstance class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="laygo2.object.template.html">laygo2.object.template module</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.template.Template.html">Template class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.template.NativeInstanceTemplate.html">NativeInstanceTemplate class</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">ParameterizedInstanceTemplate class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.template.UserDefinedTemplate.html">UserDefinedTemplate class</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="laygo2.object.template.routing.html">routing module</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.template.routing.RoutingMeshTemplate.html">RoutingMeshTemplate class</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="laygo2.object.grid.html">laygo2.object.grid module</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.core.html">Core methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMapping.html">CircularMapping class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.CircularMappingArray.html">CircularMappingArray class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid._AbsToPhyGridConverter.html">_AbsToPhyGridConverter class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid._PhyToAbsGridConverter.html">_PhyToAbsGridConverter class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.OneDimGrid.html">OneDimGrid class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.Grid.html">Grid class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.PlacementGrid.html">PlacementGrid class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.grid.RoutingGrid.html">RoutingGrid class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="laygo2.object.database.html">laygo2.object.database module</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.database.BaseDatabase.html">BaseDatabase class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laygo2.object.database.Library.html">Library class</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="laygo2.object.database.Design.html">Design class</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.append.html">append() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.place.html">place() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.route.html">route() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.route_via_track.html">route_via_track() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.via.html">via() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.pin.html">pin() method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laygo2.object.database.Design.export_to_template.html">export_to_template() method</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="laygo2.interface.html">laygo2.interface package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.bag.html">laygo2.interface.bag module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.skill.html">laygo2.interface.skill module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.skillbridge.html">laygo2.interface.skillbridge module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.gdspy.html">laygo2.interface.gdspy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.magic.html">laygo2.interface.magic module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.yaml.html">laygo2.interface.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laygo2.interface.mpl.html">laygo2.interface.mpl module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="laygo2.util.html">laygo2.util package</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="laygo2.html" class="nav-link">API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
+    
+    
+    <li class="breadcrumb-item"><a href="laygo2.object.template.html" class="nav-link">laygo2.object.template module</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Parameterize...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="parameterizedinstancetemplate-class">
+<h1>ParameterizedInstanceTemplate class<a class="headerlink" href="#parameterizedinstancetemplate-class" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="laygo2.object.template.ParameterizedInstanceTemplate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">laygo2.object.template.</span></span><span class="sig-name descname"><span class="pre">ParameterizedInstanceTemplate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">libname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pins_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template/core.html#ParameterizedInstanceTemplate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.ParameterizedInstanceTemplate" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="laygo2.object.template.Template.html#laygo2.object.template.Template" title="laygo2.object.template.core.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">Template</span></code></a></p>
+<p>The ParameterizedInstanceTemplate class implements a template for
+generating instances with varying size (bounding box) and pin
+configurations based on input parameters, such as instances mapped
+to Cadence Virtuoso’s pcells or Pycells.</p>
+<p class="rubric">Notes</p>
+<p><strong>(Korean)</strong> ParameterizedInstanceTemplate 클래스는 입력 파라미터에 따라
+크기와 pin 정보가 가변하는 인스턴스를 생성하는 템플릿을 구현한다.</p>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Data Attributes:</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">libname</span></code></p></td>
+<td><p>The libname of the instance to be generated.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cellname</span></code></p></td>
+<td><p>The cellname of the instance to be generated.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<details><summary>Inherited from <a class="reference internal" href="laygo2.object.template.Template.html#laygo2.object.template.Template" title="laygo2.object.template.core.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">Template</span></code></a></summary><div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>Template name.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details></div>
+<div class="autoclasstoc docutils container">
+<p class="rubric">Public Methods:</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code>(libname, cellname[, bbox_func, ...])</p></td>
+<td><p>Constructor of ParameterizedInstanceTemplate class.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bbox</span></code>([params])</p></td>
+<td><p>Bounding box of the template object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pins</span></code>([params])</p></td>
+<td><p>Return pin dictionary of ParameterizedInstanceTemplate object.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate</span></code>([name, shape, pitch, transform, ...])</p></td>
+<td><p>Generate an Instance object corresponding to the template and its input parameters.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<details><summary>Inherited from <a class="reference internal" href="laygo2.object.template.Template.html#laygo2.object.template.Template" title="laygo2.object.template.core.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">Template</span></code></a></summary><div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code>([name])</p></td>
+<td><p>The constructor function.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__str__</span></code>()</p></td>
+<td><p>Return a string representation of this template's information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summarize</span></code>()</p></td>
+<td><p>Return the summary of the template information.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>([params])</p></td>
+<td><p>int: Return the height of the template.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">width</span></code>([params])</p></td>
+<td><p>int: Return the width of the template.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code>([params])</p></td>
+<td><p>int: Return the size of the template.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bbox</span></code>([params])</p></td>
+<td><p>numpy.ndarray: (Abstract method) the physical bounding box of the template.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pins</span></code>([params])</p></td>
+<td><p>dict: (Abstract method) Dictionary storing the pins of the template.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate</span></code>([name, shape, pitch, transform, ...])</p></td>
+<td><p>instance: (Abstract method) Generate an instance from the template.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details></div>
+<hr class="docutils" />
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.ParameterizedInstanceTemplate.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">libname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pins_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template/core.html#ParameterizedInstanceTemplate.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.ParameterizedInstanceTemplate.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Constructor of ParameterizedInstanceTemplate class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>libname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The library name.</p></li>
+<li><p><strong>cellname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The cell name of the template.</p></li>
+<li><p><strong>bbox_func</strong> (<em>callable</em>) – The function that computes the bounding box of the template from
+its input parameters.</p></li>
+<li><p><strong>pins_func</strong> (<em>callable</em>) – The function that returns a dictionary that contains its pin
+objects for its input parameters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#laygo2.object.template.ParameterizedInstanceTemplate" title="laygo2.object.template.ParameterizedInstanceTemplate">laygo2.object.template.ParameterizedInstanceTemplate</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">laygo2.object.template</span> <span class="kn">import</span> <span class="n">ParameterizedInstanceTemplate</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">laygo2.object.physical</span> <span class="kn">import</span> <span class="n">Pin</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># bbox computation function.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pcell_bbox_func</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+<span class="go">        return np.array([[0, 0], [100 * params[&quot;mult&quot;], 100]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pin generation function.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pcell_pins_func</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">template_pins</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;mult&quot;</span><span class="p">]):</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">template_pins</span><span class="p">[</span><span class="s2">&quot;in&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;drawing&quot;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">netname</span><span class="o">=</span><span class="s2">&quot;in&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">template_pins</span><span class="p">[</span><span class="s2">&quot;out&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;drawing&quot;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">netname</span><span class="o">=</span><span class="s2">&quot;out&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">return</span> <span class="n">template_pins</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create a template</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcell_temp</span> <span class="o">=</span> <span class="n">ParameterizedInstanceTemplate</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">libname</span><span class="o">=</span><span class="s2">&quot;mylib&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">cellname</span><span class="o">=</span><span class="s2">&quot;mypcelltemplate&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">bbox_func</span><span class="o">=</span><span class="n">pcell_bbox_func</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">pins_func</span><span class="o">=</span><span class="n">pcell_pins_func</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Generate an instance for input parameters.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcell_inst_params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mult&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcell_inst</span> <span class="o">=</span> <span class="n">pcell_temp</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mypcellinst&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">transform</span><span class="o">=</span><span class="s2">&quot;R0&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">params</span><span class="o">=</span><span class="n">pcell_inst_params</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># display</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pcell_temp</span><span class="p">)</span>
+<span class="go">    &lt;laygo2.object.template.ParameterizedInstanceTemplate object at 0x000001B1BA91D9C0&gt;</span>
+<span class="go">    name: mypcelltemplate,</span>
+<span class="go">    class: ParameterizedInstanceTemplate,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pcell_inst</span><span class="p">)</span>
+<span class="go">    xy: [0, 0],</span>
+<span class="go">    params: {&#39;mult&#39;: 4},</span>
+<span class="go">    size: [400, 100],</span>
+<span class="go">    shape: None,</span>
+<span class="go">    pitch: [400, 100],</span>
+<span class="go">    transform: R0,</span>
+<span class="go">    pins: {&#39;in0&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91FCA0&gt;,</span>
+<span class="go">           &#39;out0&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91FC70&gt;,</span>
+<span class="go">           &#39;in1&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91FC10&gt;,</span>
+<span class="go">           &#39;out1&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91E8C0&gt;,</span>
+<span class="go">           &#39;in2&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91E890&gt;,</span>
+<span class="go">           &#39;out2&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91FBE0&gt;,</span>
+<span class="go">           &#39;in3&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91E7D0&gt;,</span>
+<span class="go">           &#39;out3&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91E710&gt;},</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_template_ParameterizedInstanceTemplate_init.png"><img alt="_images/object_template_ParameterizedInstanceTemplate_init.png" src="_images/object_template_ParameterizedInstanceTemplate_init.png" style="height: 250px;" />
+</a>
+<p class="rubric">Notes</p>
+<p><strong>(Korean)</strong> ParameterizedInstanceTemplate 클래스의 생성자함수.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.ParameterizedInstanceTemplate.bbox">
+<span class="sig-name descname"><span class="pre">bbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template/core.html#ParameterizedInstanceTemplate.bbox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.ParameterizedInstanceTemplate.bbox" title="Link to this definition">#</a></dt>
+<dd><p>Bounding box of the template object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – A dictionary that contains input parameters corresponding to the
+bounding box to be computed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>numpy.ndarray</strong> – coordinates corresponding to the input parameters.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A 2x2 numpy array that contains the bounding box</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">laygo2.object.template</span> <span class="kn">import</span> <span class="n">ParameterizedInstanceTemplate</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">laygo2.object.physical</span> <span class="kn">import</span> <span class="n">Pin</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># bbox computation function.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pcell_bbox_func</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+<span class="go">        return np.array([[0, 0], [100 * params[&quot;mult&quot;], 100]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pin generation function.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pcell_pins_func</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">template_pins</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;mult&quot;</span><span class="p">]):</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">template_pins</span><span class="p">[</span><span class="s2">&quot;in&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;drawing&quot;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">netname</span><span class="o">=</span><span class="s2">&quot;in&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">template_pins</span><span class="p">[</span><span class="s2">&quot;out&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;drawing&quot;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">netname</span><span class="o">=</span><span class="s2">&quot;out&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">return</span> <span class="n">template_pins</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create a template</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcell_temp</span> <span class="o">=</span> <span class="n">ParameterizedInstanceTemplate</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">libname</span><span class="o">=</span><span class="s2">&quot;mylib&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">cellname</span><span class="o">=</span><span class="s2">&quot;mypcelltemplate&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">bbox_func</span><span class="o">=</span><span class="n">pcell_bbox_func</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">pins_func</span><span class="o">=</span><span class="n">pcell_pins_func</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Compute bbox for input parameters</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcell_inst_params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mult&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcell_temp</span><span class="o">.</span><span class="n">bbox</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">pcell_inst_params</span><span class="p">)</span>
+<span class="go">array([[  0,   0],</span>
+<span class="go">       [400, 100]])</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_template_ParameterizedInstanceTemplate_bbox.png"><img alt="_images/object_template_ParameterizedInstanceTemplate_bbox.png" src="_images/object_template_ParameterizedInstanceTemplate_bbox.png" style="height: 250px;" />
+</a>
+<p class="rubric">Notes</p>
+<p><strong>(Korean)</strong> ParameterizedInstanceTemplate 객체의 bbox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.ParameterizedInstanceTemplate.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'R0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">netmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template/core.html#ParameterizedInstanceTemplate.generate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.ParameterizedInstanceTemplate.generate" title="Link to this definition">#</a></dt>
+<dd><p>Generate an Instance object corresponding to the template and its
+input parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – name of the instance to be generated.</p></li>
+<li><p><strong>shape</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><em>numpy.ndarray</em></a><em>, </em><em>optional.</em>) – shape of the object to be generated.</p></li>
+<li><p><strong>pitch</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><em>numpy.ndarray</em></a><em>, </em><em>optional.</em>) – pitch of the object to be generated.</p></li>
+<li><p><strong>transform</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional.</em>) – transformation attribute of the entity to be generated.</p></li>
+<li><p><strong>netmap</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional.</em>) – dictionary containing netmap conversion information of pins.</p></li>
+<li><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional.</em>) – dictionary having the entity attributes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>laygo2.object.physical.Instance</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The generated Instance object</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">laygo2.object.template</span> <span class="kn">import</span> <span class="n">ParameterizedInstanceTemplate</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">laygo2.object.physical</span> <span class="kn">import</span> <span class="n">Pin</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># bbox computation function.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pcell_bbox_func</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+<span class="go">        return np.array([[0, 0], [100 * params[&quot;mult&quot;], 100]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pin generation function.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pcell_pins_func</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">template_pins</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;mult&quot;</span><span class="p">]):</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">template_pins</span><span class="p">[</span><span class="s2">&quot;in&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;drawing&quot;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">netname</span><span class="o">=</span><span class="s2">&quot;in&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">template_pins</span><span class="p">[</span><span class="s2">&quot;out&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;drawing&quot;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">netname</span><span class="o">=</span><span class="s2">&quot;out&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">return</span> <span class="n">template_pins</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create a template</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcell_temp</span> <span class="o">=</span> <span class="n">ParameterizedInstanceTemplate</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">libname</span><span class="o">=</span><span class="s2">&quot;mylib&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">cellname</span><span class="o">=</span><span class="s2">&quot;mypcelltemplate&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">bbox_func</span><span class="o">=</span><span class="n">pcell_bbox_func</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">pins_func</span><span class="o">=</span><span class="n">pcell_pins_func</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Generate an instance for input parameters.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcell_inst_params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mult&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcell_inst</span> <span class="o">=</span> <span class="n">pcell_temp</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mypcellinst&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">transform</span><span class="o">=</span><span class="s2">&quot;R0&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">params</span><span class="o">=</span><span class="n">pcell_inst_params</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># display</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pcell_temp</span><span class="p">)</span>
+<span class="go">    &lt;laygo2.object.template.ParameterizedInstanceTemplate object at 0x000001B1BA91D9C0&gt;</span>
+<span class="go">    name: mypcelltemplate,</span>
+<span class="go">    class: ParameterizedInstanceTemplate,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pcell_inst</span><span class="p">)</span>
+<span class="go">    xy: [0, 0],</span>
+<span class="go">    params: {&#39;mult&#39;: 4},</span>
+<span class="go">    size: [400, 100],</span>
+<span class="go">    shape: None,</span>
+<span class="go">    pitch: [400, 100],</span>
+<span class="go">    transform: R0,</span>
+<span class="go">    pins: {&#39;in0&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91FCA0&gt;,</span>
+<span class="go">           &#39;out0&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91FC70&gt;,</span>
+<span class="go">           &#39;in1&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91FC10&gt;,</span>
+<span class="go">           &#39;out1&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91E8C0&gt;,</span>
+<span class="go">           &#39;in2&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91E890&gt;,</span>
+<span class="go">           &#39;out2&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91FBE0&gt;,</span>
+<span class="go">           &#39;in3&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91E7D0&gt;,</span>
+<span class="go">           &#39;out3&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91E710&gt;},</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_template_ParameterizedInstanceTemplate_generate.png"><img alt="_images/object_template_ParameterizedInstanceTemplate_generate.png" src="_images/object_template_ParameterizedInstanceTemplate_generate.png" style="height: 250px;" />
+</a>
+<p class="rubric">Notes</p>
+<p><strong>(Korean)</strong> 템플릿으로부터 입력 파라미터에 따른 Instance 객체 생성.</p>
+<dl class="simple">
+<dt>파라미터</dt><dd><ul class="simple">
+<li><p>name(str): 생성할 인스턴스의 이름.</p></li>
+<li><p>shape(numpy.ndarray): (optional) 생성할 객체의 배열 shape.</p></li>
+<li><p>pitch(numpy.ndarray): (optional) 생성할 객체 간의 간격.</p></li>
+<li><p>params(dict) : 개체의 속성이 담긴 dictionary.</p></li>
+<li><p>transform(str): 생성할 개체의 변환 속성.</p></li>
+</ul>
+</dd>
+<dt>반환값</dt><dd><ul class="simple">
+<li><p>laygo2.Instance: 생성된 객체</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.ParameterizedInstanceTemplate.height">
+<span class="sig-name descname"><span class="pre">height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.template.ParameterizedInstanceTemplate.height" title="Link to this definition">#</a></dt>
+<dd><p>int: Return the height of the template.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.ParameterizedInstanceTemplate.pins">
+<span class="sig-name descname"><span class="pre">pins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/laygo2/object/template/core.html#ParameterizedInstanceTemplate.pins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#laygo2.object.template.ParameterizedInstanceTemplate.pins" title="Link to this definition">#</a></dt>
+<dd><p>Return pin dictionary of ParameterizedInstanceTemplate object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – A dictionary that contains input parameters corresponding to the
+pin objects to be produced.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>dict</strong> – input parameters.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dictionary that contains pin object corresponding to the</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">laygo2.object.template</span> <span class="kn">import</span> <span class="n">ParameterizedInstanceTemplate</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">laygo2.object.physical</span> <span class="kn">import</span> <span class="n">Pin</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># bbox computation function.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pcell_bbox_func</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+<span class="go">        return np.array([[0, 0], [100 * params[&quot;mult&quot;], 100]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pin generation function.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pcell_pins_func</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">template_pins</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;mult&quot;</span><span class="p">]):</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">template_pins</span><span class="p">[</span><span class="s2">&quot;in&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;drawing&quot;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">netname</span><span class="o">=</span><span class="s2">&quot;in&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">template_pins</span><span class="p">[</span><span class="s2">&quot;out&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;drawing&quot;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">netname</span><span class="o">=</span><span class="s2">&quot;out&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">return</span> <span class="n">template_pins</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create a template</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcell_temp</span> <span class="o">=</span> <span class="n">ParameterizedInstanceTemplate</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">libname</span><span class="o">=</span><span class="s2">&quot;mylib&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">cellname</span><span class="o">=</span><span class="s2">&quot;mypcelltemplate&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">bbox_func</span><span class="o">=</span><span class="n">pcell_bbox_func</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">pins_func</span><span class="o">=</span><span class="n">pcell_pins_func</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Compute bbox for input parameters</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcell_inst_params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mult&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcell_temp</span><span class="o">.</span><span class="n">pins</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">pcell_inst_params</span><span class="p">)</span>
+<span class="go">    {&#39;in0&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91F7C0&gt;,</span>
+<span class="go">     &#39;out0&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91E830&gt;,</span>
+<span class="go">     &#39;in1&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91DAB0&gt;,</span>
+<span class="go">     &#39;out1&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91E860&gt;,</span>
+<span class="go">     &#39;in2&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91E560&gt;,</span>
+<span class="go">     &#39;out2&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91E800&gt;,</span>
+<span class="go">     &#39;in3&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91E770&gt;,</span>
+<span class="go">     &#39;out3&#39;: &lt;laygo2.object.physical.Pin object at 0x000001B1BA91EA40&gt;}</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/object_template_ParameterizedInstanceTemplate_pins.png"><img alt="_images/object_template_ParameterizedInstanceTemplate_pins.png" src="_images/object_template_ParameterizedInstanceTemplate_pins.png" style="height: 250px;" />
+</a>
+<p class="rubric">Notes</p>
+<p><strong>(Korean)</strong> ParameterizedInstanceTemplate 객체의 pin dictionary 반환.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.ParameterizedInstanceTemplate.size">
+<span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.template.ParameterizedInstanceTemplate.size" title="Link to this definition">#</a></dt>
+<dd><p>int: Return the size of the template.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.ParameterizedInstanceTemplate.summarize">
+<span class="sig-name descname"><span class="pre">summarize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.template.ParameterizedInstanceTemplate.summarize" title="Link to this definition">#</a></dt>
+<dd><p>Return the summary of the template information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="laygo2.object.template.ParameterizedInstanceTemplate.width">
+<span class="sig-name descname"><span class="pre">width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#laygo2.object.template.ParameterizedInstanceTemplate.width" title="Link to this definition">#</a></dt>
+<dd><p>int: Return the width of the template.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.ParameterizedInstanceTemplate._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#laygo2.object.template.ParameterizedInstanceTemplate._abc_impl" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.ParameterizedInstanceTemplate._bbox">
+<span class="sig-name descname"><span class="pre">_bbox</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.template.ParameterizedInstanceTemplate._bbox" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.ParameterizedInstanceTemplate._pins">
+<span class="sig-name descname"><span class="pre">_pins</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.template.ParameterizedInstanceTemplate._pins" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.ParameterizedInstanceTemplate.cellname">
+<span class="sig-name descname"><span class="pre">cellname</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.template.ParameterizedInstanceTemplate.cellname" title="Link to this definition">#</a></dt>
+<dd><p>The cellname of the instance to be generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.ParameterizedInstanceTemplate.libname">
+<span class="sig-name descname"><span class="pre">libname</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.template.ParameterizedInstanceTemplate.libname" title="Link to this definition">#</a></dt>
+<dd><p>The libname of the instance to be generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="laygo2.object.template.ParameterizedInstanceTemplate.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#laygo2.object.template.ParameterizedInstanceTemplate.name" title="Link to this definition">#</a></dt>
+<dd><p>Template name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="laygo2.object.template.NativeInstanceTemplate.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">NativeInstanceTemplate class</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="laygo2.object.template.UserDefinedTemplate.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">UserDefinedTemplate class</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.ParameterizedInstanceTemplate"><code class="docutils literal notranslate"><span class="pre">ParameterizedInstanceTemplate</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.ParameterizedInstanceTemplate.__init__"><code class="docutils literal notranslate"><span class="pre">ParameterizedInstanceTemplate.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.ParameterizedInstanceTemplate.bbox"><code class="docutils literal notranslate"><span class="pre">ParameterizedInstanceTemplate.bbox()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.ParameterizedInstanceTemplate.generate"><code class="docutils literal notranslate"><span class="pre">ParameterizedInstanceTemplate.generate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.ParameterizedInstanceTemplate.height"><code class="docutils literal notranslate"><span class="pre">ParameterizedInstanceTemplate.height()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.ParameterizedInstanceTemplate.pins"><code class="docutils literal notranslate"><span class="pre">ParameterizedInstanceTemplate.pins()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.ParameterizedInstanceTemplate.size"><code class="docutils literal notranslate"><span class="pre">ParameterizedInstanceTemplate.size()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.ParameterizedInstanceTemplate.summarize"><code class="docutils literal notranslate"><span class="pre">ParameterizedInstanceTemplate.summarize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.ParameterizedInstanceTemplate.width"><code class="docutils literal notranslate"><span class="pre">ParameterizedInstanceTemplate.width()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.ParameterizedInstanceTemplate._abc_impl"><code class="docutils literal notranslate"><span class="pre">ParameterizedInstanceTemplate._abc_impl</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.ParameterizedInstanceTemplate._bbox"><code class="docutils literal notranslate"><span class="pre">ParameterizedInstanceTemplate._bbox</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.ParameterizedInstanceTemplate._pins"><code class="docutils literal notranslate"><span class="pre">ParameterizedInstanceTemplate._pins</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.ParameterizedInstanceTemplate.cellname"><code class="docutils literal notranslate"><span class="pre">ParameterizedInstanceTemplate.cellname</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.ParameterizedInstanceTemplate.libname"><code class="docutils literal notranslate"><span class="pre">ParameterizedInstanceTemplate.libname</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laygo2.object.template.ParameterizedInstanceTemplate.name"><code class="docutils literal notranslate"><span class="pre">ParameterizedInstanceTemplate.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/laygo2.object.template.ParameterizedInstanceTemplate.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2021, Niftylab at Hanyang University, South Korea.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

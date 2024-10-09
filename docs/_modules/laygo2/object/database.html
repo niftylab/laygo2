@@ -1,0 +1,2494 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>laygo2.object.database &#8212; laygo2</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/autoclasstoc.css?v=08871587" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/laygo2/object/database';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="laygo2 - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="laygo2 - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../trial.html">
+    Trial
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../laygo2.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../technology.html">
+    Tech Setup
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../resources.html">
+    Resources
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/niftylab/laygo2" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../overview.html">
+    Overview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../trial.html">
+    Trial
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../laygo2.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../technology.html">
+    Tech Setup
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../resources.html">
+    Resources
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/niftylab/laygo2" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">laygo2.objec...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for laygo2.object.database</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1">########################################################################################################################</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2020, Nifty Chips Laboratory, Hanyang University</span>
+<span class="c1"># All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># Redistribution and use in source and binary forms, with or without modification, are permitted provided that the</span>
+<span class="c1"># following conditions are met:</span>
+<span class="c1">#</span>
+<span class="c1"># 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following</span>
+<span class="c1">#   disclaimer.</span>
+<span class="c1"># 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the</span>
+<span class="c1">#    following disclaimer in the documentation and/or other materials provided with the distribution.</span>
+<span class="c1">#</span>
+<span class="c1"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES,</span>
+<span class="c1"># INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span>
+<span class="c1"># DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</span>
+<span class="c1"># SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR</span>
+<span class="c1"># SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,</span>
+<span class="c1"># WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</span>
+<span class="c1"># OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<span class="c1">#</span>
+<span class="c1">########################################################################################################################</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">**laygo2.object.database** module consists of the classes implementing a hierarchical structure database that manages design and library.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Jaeduk Han&quot;</span>
+<span class="n">__maintainer__</span> <span class="o">=</span> <span class="s2">&quot;Jaeduk Han&quot;</span>
+<span class="n">__status__</span> <span class="o">=</span> <span class="s2">&quot;Prototype&quot;</span>
+
+<span class="kn">import</span> <span class="nn">laygo2.object</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">laygo2.object.physical</span> <span class="kn">import</span> <span class="n">PhysicalObject</span>
+<span class="kn">from</span> <span class="nn">laygo2.object.grid</span> <span class="kn">import</span> <span class="n">Grid</span>
+<span class="kn">from</span> <span class="nn">laygo2.object.template</span> <span class="kn">import</span> <span class="n">Template</span>
+
+<span class="kn">from</span> <span class="nn">laygo2._typing</span> <span class="kn">import</span> <span class="n">T</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">overload</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span>
+
+<div class="viewcode-block" id="BaseDatabase">
+<a class="viewcode-back" href="../../../laygo2.object.database.BaseDatabase.html#laygo2.object.database.BaseDatabase">[docs]</a>
+<span class="k">class</span> <span class="nc">BaseDatabase</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A base class that implements basic functions for </span>
+<span class="sd">    various database objects, such as libraries and designs.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **(Korean)** BaseDatabase는 데이터베이스 객체들의 기본 기능을 구현하는 클래스.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;str: Name of BaseDatabase object.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import laygo2</span>
+<span class="sd">    &gt;&gt;&gt; base = laygo2.object.database.BaseDatabase(name=&quot;mycell&quot;) </span>
+<span class="sd">    &gt;&gt;&gt; base.name </span>
+<span class="sd">    &quot;mycell&quot;</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **(Korean)** BaseDatabase 이름.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;dict or None: BaseDatabase object&#39;s parameter dictionary.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import laygo2</span>
+<span class="sd">    &gt;&gt;&gt; base = laygo2.object.database.BaseDatabase(name=&quot;mycell&quot;,</span>
+<span class="sd">                   params={&#39;ivdd&#39;: 0.001}) </span>
+<span class="sd">    &gt;&gt;&gt; base.params </span>
+<span class="sd">    {&#39;ivdd&#39;: 0.001}</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **(Korean)** BaseDatabase의 속성.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">elements</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Type</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">PhysicalObject</span><span class="p">,</span> <span class="n">T</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;dict: Element object dictionary.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import laygo2</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.database import BaseDatabase</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">    &gt;&gt;&gt; # Create a design.</span>
+<span class="sd">    &gt;&gt;&gt; dsn = BaseDatabase(name=&quot;mycell&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; # Create layout objects.</span>
+<span class="sd">    &gt;&gt;&gt; r0 = Rect(xy=[[0, 0], [100, 100]], layer=[&quot;M1&quot;, &quot;drawing&quot;])</span>
+<span class="sd">    &gt;&gt;&gt; p0 = Pin(xy=[[0, 0], [50, 50]], layer=[&quot;M1&quot;, &quot;pin&quot;], name=&quot;P&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; i0 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t0&quot;, name=&quot;I0&quot;, xy=[0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; t0 = Text(xy=[[50, 50], [100, 100]], layer=[&quot;text&quot;, &quot;drawing&quot;], text=&quot;T&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; # Add layout objects to the design.</span>
+<span class="sd">    &gt;&gt;&gt; dsn.append(r0)</span>
+<span class="sd">    &gt;&gt;&gt; dsn.append(p0)</span>
+<span class="sd">    &gt;&gt;&gt; dsn.append(i0)</span>
+<span class="sd">    &gt;&gt;&gt; dsn.append(t0)</span>
+<span class="sd">    &gt;&gt;&gt; # </span>
+<span class="sd">    &gt;&gt;&gt; # Display elements of the design.</span>
+<span class="sd">    &gt;&gt;&gt; print(dsn.elements) </span>
+<span class="sd">    {&#39;NoName_0&#39;: &lt;laygo2.object.physical.Rect object at 0x0000024C6C230F40&gt;, </span>
+<span class="sd">    &#39;P&#39;: &lt;laygo2.object.physical.Pin object at 0x0000024C6C2EFF40&gt;, </span>
+<span class="sd">    &#39;I0&#39;: &lt;laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0&gt;, </span>
+<span class="sd">    &#39;NoName_1&#39;: &lt;laygo2.object.physical.Text object at 0x0000024C6C2EF8B0&gt;}</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **(Korean)** BaseDatabase 객체의 구성 요소를 담고 있는 Dictionary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">noname_index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    int: Unique identifier index for unnamed objects.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import laygo2</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.database import BaseDatabase</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">    &gt;&gt;&gt; # Create a design</span>
+<span class="sd">    &gt;&gt;&gt; dsn = BaseDatabase(name=&quot;mycell&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; # Create layout objects</span>
+<span class="sd">    &gt;&gt;&gt; r0 = Rect(xy=[[0, 0], [100, 100]], layer=[&quot;M1&quot;, &quot;drawing&quot;])</span>
+<span class="sd">    &gt;&gt;&gt; dsn.append(r0)</span>
+<span class="sd">    &gt;&gt;&gt; print(base.noname_index) </span>
+<span class="sd">    0 </span>
+<span class="sd">    &gt;&gt;&gt; r1 = Rect(xy=[[100, 100], [200, 200]], layer=[&quot;M1&quot;, &quot;drawing&quot;])</span>
+<span class="sd">    &gt;&gt;&gt; dsn.append(r1)</span>
+<span class="sd">    &gt;&gt;&gt; print(base.noname_index) </span>
+<span class="sd">    1</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **(Korean)** BaseDatabase의 소속 객체들 중 이름이 정해지지 않은 객체의 </span>
+<span class="sd">    이름을 정할 때 부여되는 고유 번호.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># @property</span>
+<div class="viewcode-block" id="BaseDatabase.keys">
+<a class="viewcode-back" href="../../../laygo2.object.database.BaseDatabase.html#laygo2.object.database.BaseDatabase.keys">[docs]</a>
+    <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Keys of elements.</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.database import BaseDatabase</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">        &gt;&gt;&gt; # Create a design</span>
+<span class="sd">        &gt;&gt;&gt; dsn = BaseDatabase(name=&quot;mycell&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; # Create layout objects</span>
+<span class="sd">        &gt;&gt;&gt; r0 = Rect(xy=[[0, 0], [100, 100]], layer=[&quot;M1&quot;, &quot;drawing&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; p0 = Pin(xy=[[0, 0], [50, 50]], layer=[&quot;M1&quot;, &quot;pin&quot;], name=&quot;P&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; i0 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t0&quot;, name=&quot;I0&quot;, xy=[0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; t0 = Text(xy=[[50, 50], [100, 100]], layer=[&quot;text&quot;, &quot;drawing&quot;], text=&quot;T&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(r0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(p0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(i0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(t0)</span>
+<span class="sd">        &gt;&gt;&gt; print(dsn.keys())</span>
+<span class="sd">        dict_keys([&#39;NoName_0&#39;, &#39;P&#39;, &#39;I0&#39;, &#39;NoName_1&#39;])</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **(Korean)** BaseDatabase 객체의 구성 요소를 담고 있는 Dictionary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="BaseDatabase.items">
+<a class="viewcode-back" href="../../../laygo2.object.database.BaseDatabase.html#laygo2.object.database.BaseDatabase.items">[docs]</a>
+    <span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Key-object pairs of elements.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict_items</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.database import BaseDatabase</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">        &gt;&gt;&gt; # Create a design</span>
+<span class="sd">        &gt;&gt;&gt; dsn = BaseDatabase(name=&quot;mycell&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; # Create layout objects</span>
+<span class="sd">        &gt;&gt;&gt; r0 = Rect(xy=[[0, 0], [100, 100]], layer=[&quot;M1&quot;, &quot;drawing&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; p0 = Pin(xy=[[0, 0], [50, 50]], layer=[&quot;M1&quot;, &quot;pin&quot;], name=&quot;P&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; i0 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t0&quot;, name=&quot;I0&quot;, xy=[0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; t0 = Text(xy=[[50, 50], [100, 100]], layer=[&quot;text&quot;, &quot;drawing&quot;], text=&quot;T&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(r0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(p0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(i0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(t0)</span>
+<span class="sd">        &gt;&gt;&gt; print(dsn.items())</span>
+<span class="sd">        dict_items([(&#39;NoName_0&#39;, &lt;laygo2.object.physical.Rect object at 0x0000024C6C230F40&gt;),</span>
+<span class="sd">                    (&#39;P&#39;, &lt;laygo2.object.physical.Pin object at 0x0000024C6C2EFF40&gt;),</span>
+<span class="sd">                    (&#39;I0&#39;, &lt;laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0&gt;),</span>
+<span class="sd">                    (&#39;NoName_1&#39;, &lt;laygo2.object.physical.Text object at 0x0000024C6C2EF8B0&gt;)])</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **(Korean)** elements의 key/object 짝 출력.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">()</span></div>
+
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="s2">&quot;BaseDatabase[T]&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span> <span class="o">...</span>
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="s2">&quot;BaseDatabase[None]&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">PhysicalObject</span><span class="p">]:</span> <span class="o">...</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the object corresponding to pos.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        pos : str</span>
+<span class="sd">            Name of object.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        laygo2.object.physical : corresponding object.</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.database import BaseDatabase</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">        &gt;&gt;&gt; # Create a design</span>
+<span class="sd">        &gt;&gt;&gt; dsn = BaseDatabase(name=&quot;mycell&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; # Create layout objects</span>
+<span class="sd">        &gt;&gt;&gt; r0 = Rect(xy=[[0, 0], [100, 100]], layer=[&quot;M1&quot;, &quot;drawing&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; p0 = Pin(xy=[[0, 0], [50, 50]], layer=[&quot;M1&quot;, &quot;pin&quot;], name=&quot;P&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; i0 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t0&quot;, name=&quot;I0&quot;, xy=[0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; t0 = Text(xy=[[50, 50], [100, 100]], layer=[&quot;text&quot;, &quot;drawing&quot;], text=&quot;T&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(r0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(p0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(i0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(t0)</span>
+<span class="sd">        &gt;&gt;&gt; print(dsn[&quot;I0&quot;])</span>
+<span class="sd">        &lt;laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0&gt;</span>
+<span class="sd">        name: I0,</span>
+<span class="sd">        class: Instance,</span>
+<span class="sd">        xy: [0, 0],</span>
+<span class="sd">        params: None,</span>
+<span class="sd">        size: [0, 0]</span>
+<span class="sd">        shape: None</span>
+<span class="sd">        pitch: [0, 0]</span>
+<span class="sd">        transform: R0</span>
+<span class="sd">        pins: {}</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **(Korean)** key에 해당하는 object 반환.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add key/object pair.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        key : str</span>
+<span class="sd">            Object key (name).</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.database import BaseDatabase</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">        &gt;&gt;&gt; # Create a design</span>
+<span class="sd">        &gt;&gt;&gt; dsn = BaseDatabase(name=&quot;mycell&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; # Create layout objects</span>
+<span class="sd">        &gt;&gt;&gt; r1 = Rect(xy=[[0, 0], [100, 100]], layer=[&quot;M1&quot;, &quot;drawing&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(r1)</span>
+<span class="sd">        &gt;&gt;&gt; r2 = Rect(xy=[[0, 0], [100, 100]], layer=[&quot;M1&quot;, &quot;drawing&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; dsn[&quot;R2&quot;] = r2</span>
+<span class="sd">        &gt;&gt;&gt; print(dsn[&quot;R2&quot;])</span>
+<span class="sd">        &lt;laygo2.object.physical.Rect object at 0x0000024C6C107C40&gt;</span>
+<span class="sd">        name: R2,</span>
+<span class="sd">        class: Rect,</span>
+<span class="sd">        xy: [[0, 0], [100, 100]],</span>
+<span class="sd">        params: None, , layer: [&#39;M1&#39;, &#39;drawing&#39;], netname: None</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **(Korean)** 요소 추가 함수.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">item</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BaseDatabase.append">
+<a class="viewcode-back" href="../../../laygo2.object.database.BaseDatabase.html#laygo2.object.database.BaseDatabase.append">[docs]</a>
+    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add physical object to BaseDatabase without taking any further actions.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        item : laygo2.object.physical.PhysicalObject</span>
+<span class="sd">            Physical object to be added.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list :</span>
+<span class="sd">            List of item name and item ([item.name, item]).</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.database import BaseDatabase</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">        &gt;&gt;&gt; # Create a design</span>
+<span class="sd">        &gt;&gt;&gt; dsn = Design(name=&quot;mycell&quot;, libname=&quot;genlib&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; # Create layout objects</span>
+<span class="sd">        &gt;&gt;&gt; r0 = Rect(xy=[[0, 0], [100, 100]], layer=[&quot;M1&quot;, &quot;drawing&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; p0 = Pin(xy=[[0, 0], [50, 50]], layer=[&quot;M1&quot;, &quot;pin&quot;], name=&quot;P&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; i0 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t0&quot;, name=&quot;I0&quot;, xy=[0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; t0 = Text(xy=[[50, 50], [100, 100]], layer=[&quot;text&quot;, &quot;drawing&quot;], text=&quot;T&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(r0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(p0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(i0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(t0)</span>
+<span class="sd">        &gt;&gt;&gt; print(dsn)</span>
+<span class="sd">        &lt;laygo2.object.database.BaseDatabase object at 0x0000024C6C2EF010&gt;</span>
+<span class="sd">            name: mycell, params: None</span>
+<span class="sd">            elements: {</span>
+<span class="sd">                &#39;NoName_0&#39;: &lt;laygo2.object.physical.Rect object at 0x0000024C6C230F40&gt;,</span>
+<span class="sd">                &#39;P&#39;: &lt;laygo2.object.physical.Pin object at 0x0000024C6C2EFF40&gt;,</span>
+<span class="sd">                &#39;I0&#39;: &lt;laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0&gt;,</span>
+<span class="sd">                &#39;NoName_1&#39;: &lt;laygo2.object.physical.Text object at 0x0000024C6C2EF8B0&gt;}</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">            laygo2.object.database.Library.append</span>
+<span class="sd">            laygo2.object.database.Design.append</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="n">item_name_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">item_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+                <span class="n">_item_name</span><span class="p">,</span> <span class="n">_item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="n">item_name_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_item_name</span><span class="p">)</span>
+                <span class="n">item_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_item</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">item_name_list</span><span class="p">,</span> <span class="n">item_list</span>
+            <span class="c1"># return [i[0] for i in item_list], [i[1] for i in item_list]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">item_name</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">if</span> <span class="n">item_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># NoName object. Put a name on it.</span>
+                <span class="k">while</span> <span class="s2">&quot;NoName_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">noname_index</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">noname_index</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">item_name</span> <span class="o">=</span> <span class="s2">&quot;NoName_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">noname_index</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">noname_index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">errstr</span> <span class="o">=</span> <span class="n">item_name</span> <span class="o">+</span> <span class="s2">&quot; cannot be added to &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;, as a child object with the same name exists.&quot;</span>
+            <span class="k">if</span> <span class="n">item_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">errstr</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">item_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">errstr</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">item_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+            <span class="k">return</span> <span class="n">item_name</span><span class="p">,</span> <span class="n">item</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Element-mapped direct iterator function.</span>
+<span class="sd">        </span>
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.database import BaseDatabase</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">        &gt;&gt;&gt; # Create a design</span>
+<span class="sd">        &gt;&gt;&gt; dsn = BaseDatabase(name=&quot;mycell&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; # Create layout objects</span>
+<span class="sd">        &gt;&gt;&gt; r0 = Rect(xy=[[0, 0], [100, 100]], layer=[&quot;M1&quot;, &quot;drawing&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; p0 = Pin(xy=[[0, 0], [50, 50]], layer=[&quot;M1&quot;, &quot;pin&quot;], name=&quot;P&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; i0 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t0&quot;, name=&quot;I0&quot;, xy=[0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; t0 = Text(xy=[[50, 50], [100, 100]], layer=[&quot;text&quot;, &quot;drawing&quot;], text=&quot;T&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(r0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(p0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(i0)</span>
+<span class="sd">        &gt;&gt;&gt; for o in dsn.items():</span>
+<span class="sd">        &gt;&gt;&gt;     print(o)</span>
+<span class="sd">        (&#39;NoName_0&#39;, &lt;laygo2.object.physical.Rect object at 0x0000024C6C230F40&gt;)</span>
+<span class="sd">        (&#39;P&#39;, &lt;laygo2.object.physical.Pin object at 0x0000024C6C2EFF40&gt;)</span>
+<span class="sd">        (&#39;I0&#39;, &lt;laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0&gt;)</span>
+<span class="sd">        (&#39;NoName_1&#39;, &lt;laygo2.object.physical.Text object at 0x0000024C6C2EF8B0&gt;)</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **(Korean)** BaseDatabase의 Iterable 함수.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">summarize</span><span class="p">()</span>
+
+<div class="viewcode-block" id="BaseDatabase.summarize">
+<a class="viewcode-back" href="../../../laygo2.object.database.BaseDatabase.html#laygo2.object.database.BaseDatabase.summarize">[docs]</a>
+    <span class="k">def</span> <span class="nf">summarize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get object information summary.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="s2">&quot;name: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="s2">&quot;params: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; </span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    elements: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BaseDatabase.__init__">
+<a class="viewcode-back" href="../../../laygo2.object.database.BaseDatabase.html#laygo2.object.database.BaseDatabase.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">elements</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        BaseDatabase class constructor function.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            BaseDatabase object name.</span>
+<span class="sd">        params : dict, optional</span>
+<span class="sd">            parameters of BaseDatabase.</span>
+<span class="sd">        elements : dict, optional</span>
+<span class="sd">            dictionary having the elements of BaseDatabase.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        laygo2.object.BaseDatabase</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; base = laygo2.object.database.BaseDatabase(name=&#39;mycell&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; print(base)</span>
+<span class="sd">        &lt;laygo2.object.database.BaseDatabase object&gt;</span>
+<span class="sd">        name: mycell, params: None elements: {}&gt;</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **(Korean)** BaseDatabase 클래스 생성자 함수.</span>
+
+<span class="sd">        파라미터</span>
+<span class="sd">            - name(str): BaseDatabase 객체의 이름</span>
+<span class="sd">            - params(dict): BaseDatabase의 parameters [optional]</span>
+<span class="sd">            - elements(dict): BaseDatabase의 elements를 갖고 있는 dict [optional]</span>
+<span class="sd">        반환값</span>
+<span class="sd">            - laygo2.object.BaseDatabase</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">params</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">elements</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="n">elements</span><span class="p">[</span><span class="n">e</span><span class="p">]</span></div>
+</div>
+
+
+
+<span class="k">class</span> <span class="nc">LibraryWrapper</span><span class="p">(</span><span class="n">BaseDatabase</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="nf">get_libname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;getter function of libname property.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">set_libname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;setter function of libname property.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">val</span>
+
+    <span class="n">libname</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_libname</span><span class="p">,</span> <span class="n">set_libname</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;str: The name of library.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import laygo2</span>
+<span class="sd">    &gt;&gt;&gt; lib = laygo2.object.database.Library(name=&#39;mylib&#39;) </span>
+<span class="sd">    &gt;&gt;&gt; print(lib.name) </span>
+<span class="sd">    &quot;mylib&quot;</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **(Korean)** Library 객체의 이름.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">T</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add physical object to Library without taking any further actions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="n">item_name_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">item_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+                <span class="n">_item_name</span><span class="p">,</span> <span class="n">_item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="n">item_name_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_item_name</span><span class="p">)</span>
+                <span class="n">item_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_item</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">item_name_list</span><span class="p">,</span> <span class="n">item_list</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">item_name</span><span class="p">,</span> <span class="n">item</span> <span class="o">=</span> <span class="n">BaseDatabase</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">libname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>  <span class="c1"># update library name</span>
+            <span class="k">return</span> <span class="n">item_name</span><span class="p">,</span> <span class="n">item</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">elements</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor function of Library class.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Library object name.</span>
+<span class="sd">        params : dict, optional</span>
+<span class="sd">            Library parameters.</span>
+<span class="sd">        elements : dict, optional</span>
+<span class="sd">            Dictionary having the elements of Library.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        laygo2.object.Library</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; lib = laygo2.object.database.Library(name=&#39;mylib&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; print(lib)</span>
+<span class="sd">        &lt;laygo2.object.database.Library &gt; name: mylib, params: None elements: {} &gt;</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **(Korean)** Library 클래스의 생성자 함수.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">            - name(str): Library 객체의 이름</span>
+<span class="sd">            - params(dict): Library의 parameters [optional]</span>
+<span class="sd">            - elements(dict): Library의 elements를 갖고 있는 dict [optional]</span>
+<span class="sd">        반환값</span>
+<span class="sd">            - laygo2.object.Library</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">BaseDatabase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">elements</span><span class="o">=</span><span class="n">elements</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">summarize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get object information summary.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">BaseDatabase</span><span class="o">.</span><span class="n">summarize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Library">
+<a class="viewcode-back" href="../../../laygo2.object.database.Library.html#laygo2.object.database.Library">[docs]</a>
+<span class="k">class</span> <span class="nc">Library</span><span class="p">(</span><span class="n">LibraryWrapper</span><span class="p">[</span><span class="s2">&quot;Design&quot;</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for library management function implementation.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import laygo2</span>
+<span class="sd">    &gt;&gt;&gt; lib = laygo2.object.database.Library(name=&quot;mylib&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; dsn0 = laygo2.object.database.Design(name=&quot;mycell0&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; dsn1 = laygo2.object.database.Design(name=&quot;mycell1&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; lib.append(dsn0)</span>
+<span class="sd">    &gt;&gt;&gt; lib.append(dsn1)</span>
+<span class="sd">    &gt;&gt;&gt; print(lib)</span>
+<span class="sd">    &lt;laygo2.object.database.Library object at 0x0000025F2D25B8B0&gt;</span>
+<span class="sd">    name: mylib, params: None</span>
+<span class="sd">    elements: {</span>
+<span class="sd">        &#39;mycell0&#39;: &lt;laygo2.object.database.Design object at 0x0000025F2D25B010&gt;,</span>
+<span class="sd">        &#39;mycell1&#39;: &lt;laygo2.object.database.Design object at 0x0000025F2D25BF70&gt;}</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    laygo2.object.databse.Design: Check for more comprehensive Example.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **(Korean)** Library 클래스는 라이브러리 관리 기능을 구현한다.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">pass</span></div>
+
+
+<span class="k">class</span> <span class="nc">TemplateLibrary</span><span class="p">(</span><span class="n">LibraryWrapper</span><span class="p">[</span><span class="n">Template</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class implementing template libraries with templates as child objects.&quot;&quot;&quot;</span>
+
+    <span class="c1"># TODO: implement this.</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">GridLibrary</span><span class="p">(</span><span class="n">LibraryWrapper</span><span class="p">[</span><span class="n">Grid</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class implementing grid libraries with grids as child objects.&quot;&quot;&quot;</span>
+
+    <span class="c1"># TODO: implement this.</span>
+    <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="Design">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design">[docs]</a>
+<span class="k">class</span> <span class="nc">Design</span><span class="p">(</span><span class="n">BaseDatabase</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for design management function implementation.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    A physical (non-abstract) grid example:</span>
+
+<span class="sd">    &gt;&gt;&gt; import laygo2</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.database import Design</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">    &gt;&gt;&gt; # Create a design.</span>
+<span class="sd">    &gt;&gt;&gt; dsn = Design(name=&quot;mycell&quot;, libname=&quot;genlib&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; # Create layout objects.</span>
+<span class="sd">    &gt;&gt;&gt; r0 = Rect(xy=[[0, 0], [100, 100]], layer=[&quot;M1&quot;, &quot;drawing&quot;])</span>
+<span class="sd">    &gt;&gt;&gt; p0 = Pin(xy=[[0, 0], [50, 50]], layer=[&quot;M1&quot;, &quot;pin&quot;], name=&quot;P&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; i0 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t0&quot;, name=&quot;I0&quot;, xy=[0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; t0 = Text(xy=[[50, 50], [100, 100]], layer=[&quot;text&quot;, &quot;drawing&quot;], text=&quot;T&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; # Add the layout objects to the design object.</span>
+<span class="sd">    &gt;&gt;&gt; dsn.append(r0)</span>
+<span class="sd">    &gt;&gt;&gt; dsn.append(p0)</span>
+<span class="sd">    &gt;&gt;&gt; dsn.append(i0)</span>
+<span class="sd">    &gt;&gt;&gt; dsn.append(t0)</span>
+<span class="sd">    &gt;&gt;&gt; print(dsn)</span>
+<span class="sd">    &lt;laygo2.object.database.Design object at 0x0000024C6C2EF010&gt;</span>
+<span class="sd">        name: mycell, params: None</span>
+<span class="sd">        elements: {</span>
+<span class="sd">            &#39;NoName_0&#39;: &lt;laygo2.object.physical.Rect object at 0x0000024C6C230F40&gt;,</span>
+<span class="sd">            &#39;P&#39;: &lt;laygo2.object.physical.Pin object at 0x0000024C6C2EFF40&gt;,</span>
+<span class="sd">            &#39;I0&#39;: &lt;laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0&gt;,</span>
+<span class="sd">            &#39;NoName_1&#39;: &lt;laygo2.object.physical.Text object at 0x0000024C6C2EF8B0&gt;}</span>
+<span class="sd">        libname:genlib</span>
+<span class="sd">        rects:{</span>
+<span class="sd">            &#39;NoName_0&#39;: &lt;laygo2.object.physical.Rect object at 0x0000024C6C230F40&gt;}</span>
+<span class="sd">        paths:{}</span>
+<span class="sd">        pins:{</span>
+<span class="sd">            &#39;P&#39;: &lt;laygo2.object.physical.Pin object at 0x0000024C6C2EFF40&gt;}</span>
+<span class="sd">        texts:{</span>
+<span class="sd">            &#39;NoName_1&#39;: &lt;laygo2.object.physical.Text object at 0x0000024C6C2EF8B0&gt;}</span>
+<span class="sd">        instances:{</span>
+<span class="sd">            &#39;I0&#39;: &lt;laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0&gt;}</span>
+<span class="sd">        virtual instances:{}</span>
+<span class="sd">    &gt;&gt;&gt; #</span>
+<span class="sd">    &gt;&gt;&gt; # Export to a NativeInstanceTemplate for reuse in higher levels.</span>
+<span class="sd">    &gt;&gt;&gt; nt0 = dsn.export_to_template()</span>
+<span class="sd">    &gt;&gt;&gt; nt0.dsn.export_to_template()</span>
+<span class="sd">    &gt;&gt;&gt; print(nt0)</span>
+<span class="sd">        &lt;laygo2.object.template.NativeInstanceTemplate object at 0x000001CB5A9CE380&gt;</span>
+<span class="sd">        name: mycell,</span>
+<span class="sd">        class: NativeInstanceTemplate,</span>
+<span class="sd">         bbox: [[0, 0], [0, 0]],</span>
+<span class="sd">         pins: {&#39;P&#39;: &lt;laygo2.object.physical.Pin object at 0x000001CB5A9CFF40&gt;},</span>
+<span class="sd">    &gt;&gt;&gt; #</span>
+<span class="sd">    &gt;&gt;&gt; # Export to a skill script.</span>
+<span class="sd">    &gt;&gt;&gt; lib = laygo2.object.database.Library(name=&quot;mylib&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; lib.append(dsn)</span>
+<span class="sd">    &gt;&gt;&gt; scr = laygo2.interface.skill.export(lib, filename=&quot;myscript.il&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; print(scr)</span>
+<span class="sd">    ; (definitions of laygo2 skill functions)</span>
+<span class="sd">    ; exporting mylib__mycell</span>
+<span class="sd">    cv = _laygo2_open_layout(&quot;mylib&quot; &quot;mycell&quot; &quot;layout&quot;)</span>
+<span class="sd">    _laygo2_generate_rect(cv, list( &quot;M1&quot; &quot;drawing&quot; ), list( list( 0.0000  0.0000  ) list( 0.1000  0.1000  ) ), &quot;None&quot;)</span>
+<span class="sd">    _laygo2_generate_pin(cv, &quot;P&quot;, list( &quot;M1&quot; &quot;pin&quot; ), list( list( 0.0000  0.0000  ) list( 0.0500  0.0500  ) ) )</span>
+<span class="sd">    _laygo2_generate_instance(cv, &quot;I0&quot;, &quot;tlib&quot;, &quot;t0&quot;, &quot;layout&quot;, list( 0.0000  0.0000  ), &quot;R0&quot;, 1, 1, 0, 0, nil, nil)</span>
+<span class="sd">    _laygo2_save_and_close_layout(cv)</span>
+
+<span class="sd">    An abstract grid example:</span>
+
+<span class="sd">    &gt;&gt;&gt; import laygo2</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.grid import CircularMapping as CM</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.grid import CircularMappingArray as CMA</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.grid import OneDimGrid, PlacementGrid, RoutingGrid</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.template import NativeInstanceTemplate</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.database import Design</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.physical import Instance</span>
+<span class="sd">    &gt;&gt;&gt; # Placement grid construction (not needed if laygo2_tech is set up).</span>
+<span class="sd">    &gt;&gt;&gt; gx  = OneDimGrid(name=&quot;gx&quot;, scope=[0, 20], elements=[0])</span>
+<span class="sd">    &gt;&gt;&gt; gy  = OneDimGrid(name=&quot;gy&quot;, scope=[0, 100], elements=[0])</span>
+<span class="sd">    &gt;&gt;&gt; gp  = PlacementGrid(name=&quot;test&quot;, vgrid=gx, hgrid=gy)</span>
+<span class="sd">    &gt;&gt;&gt; # Routing grid construction (not needed if laygo2_tech is set up).</span>
+<span class="sd">    &gt;&gt;&gt; gv = OneDimGrid(name=&quot;gv&quot;, scope=[0, 50], elements=[0])</span>
+<span class="sd">    &gt;&gt;&gt; gh = OneDimGrid(name=&quot;gv&quot;, scope=[0, 100], elements=[0, 40, 60])</span>
+<span class="sd">    &gt;&gt;&gt; wv = CM([10])           # vertical (xgrid) width</span>
+<span class="sd">    &gt;&gt;&gt; wh = CM([20, 10, 10])   # horizontal (ygrid) width</span>
+<span class="sd">    &gt;&gt;&gt; ev = CM([10])           # vertical (xgrid) extension</span>
+<span class="sd">    &gt;&gt;&gt; eh = CM([10, 10, 10])   # horizontal (ygrid) extension</span>
+<span class="sd">    &gt;&gt;&gt; e0v = CM([15])          # vert. extension (for zero-length wires)</span>
+<span class="sd">    &gt;&gt;&gt; e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)</span>
+<span class="sd">    &gt;&gt;&gt; lv = CM([[&#39;M1&#39;, &#39;drawing&#39;]], dtype=object)  # layer information</span>
+<span class="sd">    &gt;&gt;&gt; lh = CM([[&#39;M2&#39;, &#39;drawing&#39;]]*3, dtype=object)</span>
+<span class="sd">    &gt;&gt;&gt; plv = CM([[&#39;M1&#39;, &#39;pin&#39;]], dtype=object) # pin layers</span>
+<span class="sd">    &gt;&gt;&gt; plh = CM([[&#39;M2&#39;, &#39;pin&#39;]]*3, dtype=object)</span>
+<span class="sd">    &gt;&gt;&gt; xcolor = CM([None], dtype=object)  # not multipatterned</span>
+<span class="sd">    &gt;&gt;&gt; ycolor = CM([None]*3, dtype=object)</span>
+<span class="sd">    &gt;&gt;&gt; primary_grid = &#39;horizontal&#39;</span>
+<span class="sd">    &gt;&gt;&gt; tvia = NativeInstanceTemplate(libname=&#39;tlib&#39;, cellname=&#39;via0&#39;)  # via</span>
+<span class="sd">    &gt;&gt;&gt; viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)</span>
+<span class="sd">    &gt;&gt;&gt; gr = laygo2.object.grid.RoutingGrid(name=&#39;mygrid&#39;, vgrid=gv, hgrid=gh,</span>
+<span class="sd">                                            vwidth=wv, hwidth=wh,</span>
+<span class="sd">                                            vextension=ev, hextension=eh,</span>
+<span class="sd">                                            vlayer=lv, hlayer=lh,</span>
+<span class="sd">                                            pin_vlayer=plv, pin_hlayer=plh,</span>
+<span class="sd">                                            viamap=viamap, primary_grid=primary_grid,</span>
+<span class="sd">                                            xcolor=xcolor, ycolor=ycolor,</span>
+<span class="sd">                                            vextension0=e0v, hextension0=e0h)</span>
+<span class="sd">    &gt;&gt;&gt; # Create a design</span>
+<span class="sd">    &gt;&gt;&gt; dsn = Design(name=&quot;mycell&quot;, libname=&quot;genlib&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; # Create an instance</span>
+<span class="sd">    &gt;&gt;&gt; i0 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t0&quot;, name=&quot;I0&quot;, xy=[0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; print(inst0.xy)</span>
+<span class="sd">    [100, 100]</span>
+<span class="sd">    &gt;&gt;&gt; # Place the instance</span>
+<span class="sd">    &gt;&gt;&gt; dsn.place(inst=i0, grid=gp, mn=[10,10])</span>
+<span class="sd">    &gt;&gt;&gt; # Routing on grid</span>
+<span class="sd">    &gt;&gt;&gt; mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]</span>
+<span class="sd">    &gt;&gt;&gt; route = dsn.route(grid=gr, mn=mn_list,</span>
+<span class="sd">                          via_tag=[True, None, True, True])</span>
+<span class="sd">    &gt;&gt;&gt; #</span>
+<span class="sd">    &gt;&gt;&gt; # Display generated design.</span>
+<span class="sd">    &gt;&gt;&gt; print(dsn)</span>
+<span class="sd">    &lt;laygo2.object.database.Design object at 0x000001C71AE3A110&gt;</span>
+<span class="sd">        ...</span>
+<span class="sd">    &gt;&gt;&gt; #</span>
+<span class="sd">    &gt;&gt;&gt; # Export to a NativeInstanceTemplate for reuse in higher levels.</span>
+<span class="sd">    &gt;&gt;&gt; nt0 = dsn.export_to_template()</span>
+<span class="sd">    &gt;&gt;&gt; nt0.dsn.export_to_template()</span>
+<span class="sd">    &gt;&gt;&gt; print(nt0)</span>
+<span class="sd">        ...</span>
+<span class="sd">    &gt;&gt;&gt; #</span>
+<span class="sd">    &gt;&gt;&gt; # Export to a skill script.</span>
+<span class="sd">    &gt;&gt;&gt; lib = laygo2.object.database.Library(name=&quot;mylib&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; lib.append(dsn)</span>
+<span class="sd">    &gt;&gt;&gt; scr = laygo2.interface.skill.export(lib, filename=&quot;myscript.il&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; print(scr)</span>
+<span class="sd">        ...</span>
+
+<span class="sd">    An abstract template/grid example with technology setup (laygo2_tech):</span>
+
+<span class="sd">    &gt;&gt;&gt; import laygo2</span>
+<span class="sd">    &gt;&gt;&gt; import laygo2.interface</span>
+<span class="sd">    &gt;&gt;&gt; import laygo2_tech_quick_start as tech  # target tech&#39;s laygo2_tech</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.database import Design</span>
+<span class="sd">    &gt;&gt;&gt; templates = tech.load_templates()</span>
+<span class="sd">    &gt;&gt;&gt; mytemplate = templates[&#39;nmos&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; grids = tech.load_grids(templates=templates)</span>
+<span class="sd">    &gt;&gt;&gt; gp = grids[&#39;placement_basic&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; gr = grids[&#39;routing_23_cmos&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; # Create a design</span>
+<span class="sd">    &gt;&gt;&gt; dsn = Design(name=&quot;mycell&quot;, libname=&quot;genlib&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; # Create an instance</span>
+<span class="sd">    &gt;&gt;&gt; i0 = tnmos.generate(name=&#39;MN0&#39;, params={&#39;nf&#39;: 4})</span>
+<span class="sd">    &gt;&gt;&gt; # Place the instance</span>
+<span class="sd">    &gt;&gt;&gt; dsn.place(inst=i0, grid=gp, mn=[10,10])</span>
+<span class="sd">    &gt;&gt;&gt; # Routing on grid</span>
+<span class="sd">    &gt;&gt;&gt; mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]</span>
+<span class="sd">    &gt;&gt;&gt; route = dsn.route(grid=gr, mn=mn_list,</span>
+<span class="sd">                          via_tag=[True, None, True, True])</span>
+<span class="sd">    &gt;&gt;&gt; #</span>
+<span class="sd">    &gt;&gt;&gt; # Display generated design.</span>
+<span class="sd">    &gt;&gt;&gt; print(dsn)</span>
+<span class="sd">    &lt;laygo2.object.database.Design object at 0x000001C71AE3A110&gt;</span>
+<span class="sd">        ...</span>
+<span class="sd">    &gt;&gt;&gt; #</span>
+<span class="sd">    &gt;&gt;&gt; # Export to a NativeInstanceTemplate for reuse in higher levels.</span>
+<span class="sd">    &gt;&gt;&gt; nt0 = dsn.export_to_template()</span>
+<span class="sd">    &gt;&gt;&gt; nt0.dsn.export_to_template()</span>
+<span class="sd">    &gt;&gt;&gt; print(nt0)</span>
+<span class="sd">        ...</span>
+<span class="sd">    &gt;&gt;&gt; #</span>
+<span class="sd">    &gt;&gt;&gt; # Export to a skill script.</span>
+<span class="sd">    &gt;&gt;&gt; lib = laygo2.object.database.Library(name=&quot;mylib&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; lib.append(dsn)</span>
+<span class="sd">    &gt;&gt;&gt; scr = laygo2.interface.skill.export(lib, filename=&quot;myscript.il&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; print(scr)</span>
+<span class="sd">        ...</span>
+
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **(Korean)**</span>
+<span class="sd">    Design 클래스는 디자인 관리 기능을 구현한다.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bbox</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get design bounding box by taking union of instances&#39; bounding boxes.&quot;&quot;&quot;</span>
+        <span class="n">libname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">libname</span>
+        <span class="n">cellname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cellname</span>
+        <span class="c1"># Compute boundaries</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># bl</span>
+                <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># tr</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1">#xy = np.minimum(xy, i.bbox)</span>
+                <span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+                <span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">i</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+                <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+                <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">i</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">virtual_instances</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1">#y = np.minimum(xy, i.bbox)</span>
+                <span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+                <span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">i</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+                <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+                <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">i</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">xy</span>
+
+<div class="viewcode-block" id="Design.get_libname">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design.get_libname">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_libname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_libname</span></div>
+
+
+<div class="viewcode-block" id="Design.set_libname">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design.set_libname">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_libname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_libname</span> <span class="o">=</span> <span class="n">val</span></div>
+
+
+    <span class="n">libname</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_libname</span><span class="p">,</span> <span class="n">set_libname</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;str: Design object&#39;s library name.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import laygo2</span>
+<span class="sd">    &gt;&gt;&gt; dsn = laygo2.object.database.Design(name=&quot;dsn&quot;, libname=&quot;testlib&quot;) </span>
+<span class="sd">    &gt;&gt;&gt; print(dsn.libname) </span>
+<span class="sd">    “testlib”</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **(Korean)** Design 객체의 라이브러리 이름.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Design.get_cellname">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design.get_cellname">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_cellname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span></div>
+
+
+<div class="viewcode-block" id="Design.set_cellname">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design.set_cellname">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_cellname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">val</span></div>
+
+
+    <span class="n">cellname</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_cellname</span><span class="p">,</span> <span class="n">set_cellname</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;str: Design object&#39;s cell name.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import laygo2</span>
+<span class="sd">    &gt;&gt;&gt; dsn = laygo2.object.database.Design(name=&quot;dsn&quot;, libname=&quot;testlib&quot;) </span>
+<span class="sd">    &gt;&gt;&gt; print(dsn.cellname) </span>
+<span class="sd">    “dsn”</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **(Korean)** Design 객체의 셀 이름.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">rects</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;dict: Dictionary containing Rectangle object affiliated with the </span>
+<span class="sd">    Design object.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import laygo2</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.database import Design</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">    &gt;&gt;&gt; dsn = Design(name=&quot;dsn&quot;, libname=&quot;testlib&quot;) </span>
+<span class="sd">    &gt;&gt;&gt; r0 = Rect(xy=[[0, 0], [100, 100]], layer=[&quot;M1&quot;, &quot;drawing&quot;])</span>
+<span class="sd">    &gt;&gt;&gt; dsn.append(r0) </span>
+<span class="sd">    &gt;&gt;&gt; print(dsn.rects) </span>
+<span class="sd">    {&#39;R0&#39;: &lt;laygo2.object.physical.Rect object&gt;}</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **(Korean)** Design 객체에 소속된 Rect 객체들을 갖고 있는 dictionary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Design.get_r">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design.get_r">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_r</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rects</span></div>
+
+
+<div class="viewcode-block" id="Design.set_r">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design.set_r">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rects</span> <span class="o">=</span> <span class="n">val</span></div>
+
+
+    <span class="n">r</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_r</span><span class="p">,</span> <span class="n">set_r</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;str: Alias of rects.&quot;&quot;&quot;</span>
+
+    <span class="n">paths</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">pins</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;dict: Dictionary having the collection of Pin objects affiliated </span>
+<span class="sd">    with the Design object.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import laygo2</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.database import Design</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">    &gt;&gt;&gt; dsn = Design(name=&quot;dsn&quot;, libname=&quot;testlib&quot;) </span>
+<span class="sd">    &gt;&gt;&gt; p0 = Pin(xy=[[0, 0], [50, 50]], layer=[&quot;M1&quot;, &quot;pin&quot;], name=&quot;P&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; dsn.append(p0) </span>
+<span class="sd">    &gt;&gt;&gt; print(dsn.pins) </span>
+<span class="sd">    {&#39;NoName_0&#39;: &lt;laygo2.object.physical.Pin object&gt;}</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **(Korean)** Design 객체에 소속된 Pin 객체들을 갖고 있는 dictionary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="Design.get_p">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design.get_p">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_p</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pins</span></div>
+
+
+<div class="viewcode-block" id="Design.set_p">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design.set_p">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_p</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pins</span> <span class="o">=</span> <span class="n">val</span></div>
+
+
+    <span class="n">p</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_p</span><span class="p">,</span> <span class="n">set_p</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;str: Alias of pins.&quot;&quot;&quot;</span>
+    
+    <span class="n">texts</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;dict: Dictionary containing Text objects affiliated with Design object.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import laygo2</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.database import Design</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">    &gt;&gt;&gt; dsn = Design(name=&quot;dsn&quot;, libname=&quot;testlib&quot;) </span>
+<span class="sd">    &gt;&gt;&gt; t0 = Text(xy=[[50, 50], [100, 100]], layer=[&quot;text&quot;, &quot;drawing&quot;], text=&quot;T&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; dsn.append(t0) </span>
+<span class="sd">    &gt;&gt;&gt; print(dsn.texts) </span>
+<span class="sd">    {&#39;NoName_1&#39;: &lt;laygo2.object.physical.Text object&gt;}</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **(Korean)** Design 객체에 소속된 Text 객체들을 갖고 있는 dictionary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">instances</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;dict: Dictionary containing Instance objects affiliated with Design object.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import laygo2</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.database import Design</span>
+<span class="sd">    &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">    &gt;&gt;&gt; dsn = Design(name=&quot;dsn&quot;, libname=&quot;testlib&quot;) </span>
+<span class="sd">    &gt;&gt;&gt; i0 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t0&quot;, name=&quot;I0&quot;, xy=[0, 0])</span>
+<span class="sd">    &gt;&gt;&gt; dsn.append(i0) </span>
+<span class="sd">    &gt;&gt;&gt; print(dsn.instances) </span>
+<span class="sd">    {&#39;I0&#39;: &lt;laygo2.object.physical.Instance object&gt;}</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **(Korean)** Design 객체에 소속된 Instance 객체들을 갖고 있는 dictionary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Design.get_i">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design.get_i">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_i</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span></div>
+
+
+<div class="viewcode-block" id="Design.set_i">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design.set_i">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_i</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instances</span> <span class="o">=</span> <span class="n">val</span></div>
+
+
+    <span class="n">i</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_i</span><span class="p">,</span> <span class="n">set_i</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;str: Alias of instances.&quot;&quot;&quot;</span>
+    
+    <span class="n">virtual_instances</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;dict: Dictionary containing VirtualInstance objects affiliated with </span>
+<span class="sd">    Design object.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    instances</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    **(Korean)** Design 객체에 소속된 VirtualInstance 객체들을 갖고 있는 dictionary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Design.get_vi">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design.get_vi">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_vi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">virtual_instances</span></div>
+
+
+<div class="viewcode-block" id="Design.set_vi">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design.set_vi">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_vi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">virtual_instances</span> <span class="o">=</span> <span class="n">val</span></div>
+
+
+    <span class="n">vi</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_vi</span><span class="p">,</span> <span class="n">set_vi</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;str: Alias of virtual_instances.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Element-mapped direct iterator function.</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.database import Design</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">        &gt;&gt;&gt; # Create a design</span>
+<span class="sd">        &gt;&gt;&gt; dsn = Design(name=&quot;mycell&quot;, libname=&quot;genlib&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; # Create layout objects</span>
+<span class="sd">        &gt;&gt;&gt; r0 = Rect(xy=[[0, 0], [100, 100]], layer=[&quot;M1&quot;, &quot;drawing&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; p0 = Pin(xy=[[0, 0], [50, 50]], layer=[&quot;M1&quot;, &quot;pin&quot;], name=&quot;P&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; i0 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t0&quot;, name=&quot;I0&quot;, xy=[0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; t0 = Text(xy=[[50, 50], [100, 100]], layer=[&quot;text&quot;, &quot;drawing&quot;], text=&quot;T&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(r0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(p0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(i0)</span>
+<span class="sd">        &gt;&gt;&gt; for o in dsn.items():</span>
+<span class="sd">        &gt;&gt;&gt;     print(o)</span>
+<span class="sd">        (&#39;NoName_0&#39;, &lt;laygo2.object.physical.Rect object at 0x0000024C6C230F40&gt;)</span>
+<span class="sd">        (&#39;P&#39;, &lt;laygo2.object.physical.Pin object at 0x0000024C6C2EFF40&gt;)</span>
+<span class="sd">        (&#39;I0&#39;, &lt;laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0&gt;)</span>
+<span class="sd">        (&#39;NoName_1&#39;, &lt;laygo2.object.physical.Text object at 0x0000024C6C2EF8B0&gt;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Design.__init__">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">elements</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">libname</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Design class constructor function.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Design object name.</span>
+<span class="sd">        params : dict, optional</span>
+<span class="sd">            Design object parameters.</span>
+<span class="sd">        elements : dict, optional</span>
+<span class="sd">            Design object elements.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        laygo2.object.BaseDatabase</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; dsn = laygo2.object.database.Design(name=&#39;dsn&#39;, libname=&quot;testlib&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; print(dsn)</span>
+<span class="sd">        &lt;laygo2.object.database.Design object&gt;  name: dsn, params: None</span>
+<span class="sd">            elements: {}</span>
+<span class="sd">            libname:testlib</span>
+<span class="sd">            rects:{}</span>
+<span class="sd">            paths:{}</span>
+<span class="sd">            pins:{}</span>
+<span class="sd">            texts:{}</span>
+<span class="sd">            instances:{}</span>
+<span class="sd">            virtual instances:{}</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **(Korean)** Design 클래스의 생성자 함수.</span>
+
+<span class="sd">        파라미터</span>
+<span class="sd">            - name(str): Design 객체의 이름</span>
+<span class="sd">            - params(dict): Design 객체의 parameters [optional]</span>
+<span class="sd">            - elements(dict): Design 객체의 elements [optional]</span>
+<span class="sd">        반환값</span>
+<span class="sd">            - laygo2.object.BaseDatabase</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">libname</span> <span class="o">=</span> <span class="n">libname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rects</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paths</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pins</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">texts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instances</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">virtual_instances</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">BaseDatabase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">elements</span><span class="o">=</span><span class="n">elements</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Design.append">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.append.html#laygo2.object.database.Design.append">[docs]</a>
+    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add physical object to Design without taking any further actions.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        item : laygo2.object.physical.PhysicalObject</span>
+<span class="sd">            The physical object to be added.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list :</span>
+<span class="sd">            A list containing the name of item and the item itself ([item.name, item]).</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.database import Design</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">        &gt;&gt;&gt; # Create a design</span>
+<span class="sd">        &gt;&gt;&gt; dsn = Design(name=&quot;mycell&quot;, libname=&quot;genlib&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; # Create layout objects</span>
+<span class="sd">        &gt;&gt;&gt; r0 = Rect(xy=[[0, 0], [100, 100]], layer=[&quot;M1&quot;, &quot;drawing&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; p0 = Pin(xy=[[0, 0], [50, 50]], layer=[&quot;M1&quot;, &quot;pin&quot;], name=&quot;P&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; i0 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t0&quot;, name=&quot;I0&quot;, xy=[0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; t0 = Text(xy=[[50, 50], [100, 100]], layer=[&quot;text&quot;, &quot;drawing&quot;], text=&quot;T&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(r0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(p0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(i0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(t0)</span>
+<span class="sd">        &gt;&gt;&gt; print(dsn)</span>
+<span class="sd">        &lt;laygo2.object.database.Design object at 0x0000024C6C2EF010&gt;</span>
+<span class="sd">            name: mycell, params: None</span>
+<span class="sd">            elements: {</span>
+<span class="sd">                &#39;NoName_0&#39;: &lt;laygo2.object.physical.Rect object at 0x0000024C6C230F40&gt;,</span>
+<span class="sd">                &#39;P&#39;: &lt;laygo2.object.physical.Pin object at 0x0000024C6C2EFF40&gt;,</span>
+<span class="sd">                &#39;I0&#39;: &lt;laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0&gt;,</span>
+<span class="sd">                &#39;NoName_1&#39;: &lt;laygo2.object.physical.Text object at 0x0000024C6C2EF8B0&gt;}</span>
+<span class="sd">            libname:genlib</span>
+<span class="sd">            rects:{</span>
+<span class="sd">                &#39;NoName_0&#39;: &lt;laygo2.object.physical.Rect object at 0x0000024C6C230F40&gt;}</span>
+<span class="sd">            paths:{}</span>
+<span class="sd">            pins:{</span>
+<span class="sd">                &#39;P&#39;: &lt;laygo2.object.physical.Pin object at 0x0000024C6C2EFF40&gt;}</span>
+<span class="sd">            texts:{</span>
+<span class="sd">                &#39;NoName_1&#39;: &lt;laygo2.object.physical.Text object at 0x0000024C6C2EF8B0&gt;}</span>
+<span class="sd">            instances:{</span>
+<span class="sd">                &#39;I0&#39;: &lt;laygo2.object.physical.Instance object at 0x0000024C6C2EFDC0&gt;}</span>
+<span class="sd">            virtual instances:{}</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">            laygo2.object.database.Design.place : Place a (virtual) instance</span>
+<span class="sd">            on a grid and append to the design.</span>
+<span class="sd">            laygo2.object.database.Design.route : Route on a grid and append</span>
+<span class="sd">            to the design.</span>
+<span class="sd">            laygo2.object.database.Design.route_via_track : Route on a track</span>
+<span class="sd">            on a grid and append.</span>
+<span class="sd">            laygo2.object.database.Design.pin : Place a pin on a grid and</span>
+<span class="sd">            append to the design.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">item</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>  <span class="c1"># don&#39;t do anything</span>
+            <span class="n">item_name</span><span class="p">,</span> <span class="n">_item</span> <span class="o">=</span> <span class="n">BaseDatabase</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Rect</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">rects</span><span class="p">[</span><span class="n">item_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+            <span class="k">elif</span> <span class="n">item</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Path</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="n">item_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+            <span class="k">elif</span> <span class="n">item</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Pin</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pins</span><span class="p">[</span><span class="n">item_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+            <span class="k">elif</span> <span class="n">item</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Text</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">texts</span><span class="p">[</span><span class="n">item_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+            <span class="k">elif</span> <span class="n">item</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Instance</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">[</span><span class="n">item_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+            <span class="k">elif</span> <span class="n">item</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">VirtualInstance</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">virtual_instances</span><span class="p">[</span><span class="n">item_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+            <span class="k">return</span> <span class="n">item_name</span><span class="p">,</span> <span class="n">item</span></div>
+
+
+<div class="viewcode-block" id="Design.summarize">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design.summarize">[docs]</a>
+    <span class="k">def</span> <span class="nf">summarize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get object information summary.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">BaseDatabase</span><span class="o">.</span><span class="n">summarize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">&quot; </span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="o">+</span> <span class="s2">&quot;    libname:&quot;</span>
+            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">libname</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">&quot; </span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="o">+</span> <span class="s2">&quot;    rects:&quot;</span>
+            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rects</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">&quot; </span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="o">+</span> <span class="s2">&quot;    paths:&quot;</span>
+            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">&quot; </span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="o">+</span> <span class="s2">&quot;    pins:&quot;</span>
+            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pins</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">&quot; </span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="o">+</span> <span class="s2">&quot;    texts:&quot;</span>
+            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">texts</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">&quot; </span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="o">+</span> <span class="s2">&quot;    instances:&quot;</span>
+            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="o">+</span> <span class="s2">&quot;    virtual instances:&quot;</span>
+            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">virtual_instances</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">&quot;&quot;</span>
+        <span class="p">)</span></div>
+
+
+    <span class="c1"># Object creation and manipulation functions.</span>
+<div class="viewcode-block" id="Design.place">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.place.html#laygo2.object.database.Design.place">[docs]</a>
+    <span class="k">def</span> <span class="nf">place</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">mn</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">anchor_xy</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Place instance at abstract coordinate mn on abstract grid.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inst : laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance or list</span>
+<span class="sd">            Instance(s) to be placed (when list, placed in order).</span>
+<span class="sd">        grid : laygo2.object.grid.PlacementGrid</span>
+<span class="sd">            Placement grid for instance placement.</span>
+<span class="sd">        mn : numpy.ndarray or list</span>
+<span class="sd">            Abstract coordinate value [m, n] for instance placement.</span>
+<span class="sd">        anchor_xy : list</span>
+<span class="sd">            A list that contains two overlap coordinates for placement </span>
+<span class="sd">            (1st for absolute physical grid, 2nd for relative instance position).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance or list(laygo2.object.physical.Instance):</span>
+<span class="sd">            Placed instance(s) (list if multiple).</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.grid import OneDimGrid, PlacementGrid</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.database import Design</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.physical import Instance</span>
+<span class="sd">        &gt;&gt;&gt; # Create a grid (not needed if laygo2_tech is set up).</span>
+<span class="sd">        &gt;&gt;&gt; gx  = OneDimGrid(name=&quot;gx&quot;, scope=[0, 20], elements=[0])</span>
+<span class="sd">        &gt;&gt;&gt; gy  = OneDimGrid(name=&quot;gy&quot;, scope=[0, 100], elements=[0])</span>
+<span class="sd">        &gt;&gt;&gt; g   = PlacementGrid(name=&quot;test&quot;, vgrid=gx, hgrid=gy)</span>
+<span class="sd">        &gt;&gt;&gt; # Create a design</span>
+<span class="sd">        &gt;&gt;&gt; dsn = Design(name=&quot;mycell&quot;, libname=&quot;genlib&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; # Create an instance</span>
+<span class="sd">        &gt;&gt;&gt; i0 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t0&quot;, name=&quot;I0&quot;, xy=[0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; print(inst0.xy)</span>
+<span class="sd">        [100, 100]</span>
+<span class="sd">        &gt;&gt;&gt; ######################</span>
+<span class="sd">        &gt;&gt;&gt; # Place the instance #</span>
+<span class="sd">        &gt;&gt;&gt; ######################</span>
+<span class="sd">        &gt;&gt;&gt; dsn.place(inst=i0, grid=g, mn=[10,10])</span>
+<span class="sd">        &gt;&gt;&gt; # Print parameters of the placed instance.</span>
+<span class="sd">        &gt;&gt;&gt; print(i0.xy)</span>
+<span class="sd">        [200, 1000]</span>
+<span class="sd">        &gt;&gt;&gt; print(dsn)</span>
+<span class="sd">        &lt;laygo2.object.database.Design object at 0x000002803D4C0F40&gt;</span>
+<span class="sd">            name: mycell</span>
+<span class="sd">            params: None</span>
+<span class="sd">            elements:</span>
+<span class="sd">                {&#39;I0&#39;: &lt;laygo2.object.physical.Instance object at</span>
+<span class="sd">                        0x000002803D57F010&gt;}</span>
+<span class="sd">            libname:genlib</span>
+<span class="sd">            rects:{}</span>
+<span class="sd">            paths:{}</span>
+<span class="sd">            pins:{}</span>
+<span class="sd">            texts:{}</span>
+<span class="sd">            instances:</span>
+<span class="sd">                {&#39;I0&#39;: &lt;laygo2.object.physical.Instance object at 0x000002803D57F010&gt;}</span>
+<span class="sd">            virtual instances:{}</span>
+<span class="sd">        &gt;&gt;&gt; # When placing multiple instances by wrapping them with a list:</span>
+<span class="sd">        &gt;&gt;&gt; i1 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t1&quot;, name=&quot;I1&quot;, xy=[0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; i2 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t2&quot;, name=&quot;I2&quot;, xy=[0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; i3 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t3&quot;, name=&quot;I3&quot;, xy=[0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; dsn.place(inst= [i1, i2, i3], grid=g, mn=[10,10])</span>
+<span class="sd">        &gt;&gt;&gt; print(dsn)</span>
+<span class="sd">        &lt;laygo2.object.database.Design object at 0x000002803D4C0F40&gt;</span>
+<span class="sd">            name: mycell</span>
+<span class="sd">            params: None</span>
+<span class="sd">            elements:</span>
+<span class="sd">                {&#39;I0&#39;: &lt;laygo2.object.physical.Instance object at</span>
+<span class="sd">                        0x000002803D57F010&gt;,</span>
+<span class="sd">                 &#39;I1&#39;: &lt;laygo2.object.physical.Instance object at</span>
+<span class="sd">                        0x000002803D57F011&gt;,</span>
+<span class="sd">                 &#39;I2&#39;: &lt;laygo2.object.physical.Instance object at</span>
+<span class="sd">                        0x000002803D57F012&gt;,</span>
+<span class="sd">                 &#39;I3&#39;: &lt;laygo2.object.physical.Instance object at</span>
+<span class="sd">                        0x000002803D57F013&gt;</span>
+<span class="sd">                        }</span>
+<span class="sd">            libname:genlib</span>
+<span class="sd">            rects:{}</span>
+<span class="sd">            paths:{}</span>
+<span class="sd">            pins:{}</span>
+<span class="sd">            texts:{}</span>
+<span class="sd">            instances:</span>
+<span class="sd">                {&#39;I0&#39;: &lt;laygo2.object.physical.Instance object at 0x000002803D57F010&gt;,</span>
+<span class="sd">                 &#39;I1&#39;: &lt;laygo2.object.physical.Instance object at 0x000002803D57F011&gt;,</span>
+<span class="sd">                 &#39;I2&#39;: &lt;laygo2.object.physical.Instance object at 0x000002803D57F012&gt;,</span>
+<span class="sd">                 &#39;I3&#39;: &lt;laygo2.object.physical.Instance object at 0x000002803D57F013&gt;</span>
+<span class="sd">                }</span>
+<span class="sd">            virtual instances:{}</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        laygo2.object.grid.PlacementGrid.place : place a (virtual) instance</span>
+<span class="sd">            on the grid.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **(Korean)** 인스턴스를 grid위 추상 좌표 mn에 배치하는 함수.</span>
+
+<span class="sd">        파라미터</span>
+<span class="sd">            - inst(laygo2.physical.instance or list(laygo2.object.physical.Instance)): 배치할 인스턴스 또는 배치할 인스턴스 들을 갖는 리스트.</span>
+<span class="sd">            - mn(numpy.ndarray or list): 인스턴스를 배치할 추상좌표.</span>
+
+<span class="sd">        반환값</span>
+<span class="sd">            - laygo2.physical.instance or list(laygo2.object.physical.Instance) : 좌표가 수정된 인스턴스 또는 좌표가 수정된 인스턴스 들을 갖는 리스트.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="p">(</span><span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Instance</span><span class="p">,</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">VirtualInstance</span><span class="p">)):</span>
+            <span class="c1"># single instance</span>
+            <span class="k">if</span> <span class="n">anchor_xy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">_mn</span> <span class="o">=</span> <span class="n">mn</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">_xy</span> <span class="o">=</span> <span class="n">anchor_xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">anchor_xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">_mn</span> <span class="o">=</span> <span class="n">mn</span> <span class="o">+</span> <span class="n">grid</span><span class="o">.</span><span class="n">mn</span><span class="p">(</span><span class="n">_xy</span><span class="p">)</span>
+            <span class="n">inst</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">_mn</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inst</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">inst</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># multiple instances (anchor_xy is not supported yet)</span>
+            <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">inst</span><span class="p">)</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">size</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># when 1-dimentional array</span>
+                <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">matrix</span> <span class="o">=</span> <span class="p">[</span><span class="n">matrix</span><span class="p">]</span>
+
+            <span class="n">mn_ref</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mn</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">index</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">ns</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">ms</span> <span class="o">=</span> <span class="n">index</span> <span class="o">-</span> <span class="mi">1</span>
+                    <span class="k">while</span> <span class="n">row</span><span class="p">[</span><span class="n">ns</span><span class="p">]</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># Right search</span>
+                        <span class="n">ns</span> <span class="o">=</span> <span class="n">ns</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="k">while</span> <span class="n">matrix</span><span class="p">[</span><span class="n">ms</span><span class="p">][</span><span class="n">ns</span><span class="p">]</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># Down search</span>
+                        <span class="n">ms</span> <span class="o">=</span> <span class="n">ms</span> <span class="o">-</span> <span class="mi">1</span>
+                    <span class="n">mn_ref</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">mn</span><span class="o">.</span><span class="n">top_left</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">ms</span><span class="p">][</span><span class="n">ns</span><span class="p">])</span>
+
+                <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="p">(</span><span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">Instance</span><span class="p">,</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">VirtualInstance</span><span class="p">)):</span>
+                        <span class="n">mn_bl</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">mn</span><span class="o">.</span><span class="n">bottom_left</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+                        <span class="n">mn_comp</span> <span class="o">=</span> <span class="n">mn_ref</span> <span class="o">-</span> <span class="n">mn_bl</span>
+                        <span class="n">inst_sub</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">mn_comp</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inst_sub</span><span class="p">)</span>
+                        <span class="n">mn_ref</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">mn</span><span class="o">.</span><span class="n">bottom_right</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">element</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="k">pass</span>
+                        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                            <span class="n">mn_ref</span> <span class="o">=</span> <span class="n">mn_ref</span> <span class="o">+</span> <span class="p">[</span><span class="n">element</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># offset</span>
+            <span class="k">return</span> <span class="n">inst</span></div>
+
+
+<div class="viewcode-block" id="Design.route">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.route.html#laygo2.object.database.Design.route">[docs]</a>
+    <span class="k">def</span> <span class="nf">route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">mn</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">via_tag</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create wire object(s) for routing at abstract coordinate **mn**.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        grid : laygo2.object.grid.RoutingGrid</span>
+<span class="sd">            Placement grid for wire placement.</span>
+<span class="sd">        mn : list(numpy.ndarray)</span>
+<span class="sd">            List containing two or more **mn** coordinates to be connected.</span>
+<span class="sd">        direction : str, optional.</span>
+<span class="sd">            None or “vertical” or &quot;horizontal&quot;. The direction of the routing</span>
+<span class="sd">            object.</span>
+<span class="sd">        via_tag : list(Boolean), optional.</span>
+<span class="sd">            The list containing switches deciding whether to place via at</span>
+<span class="sd">            the edges.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        laygo2.object.physical.Rect or list :</span>
+<span class="sd">            The generated routing object(s).</span>
+<span class="sd">            Check the example code in laygo2.object.grid.RoutingGrid.route</span>
+<span class="sd">            for details.</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.grid import CircularMapping as CM</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.grid import CircularMappingArray as CMA</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.grid import OneDimGrid, RoutingGrid</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.template import NativeInstanceTemplate</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.database import Design</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.physical import Instance</span>
+<span class="sd">        &gt;&gt;&gt; # Routing grid construction (not needed if laygo2_tech is set up).</span>
+<span class="sd">        &gt;&gt;&gt; gv = OneDimGrid(name=&quot;gv&quot;, scope=[0, 50], elements=[0])</span>
+<span class="sd">        &gt;&gt;&gt; gh = OneDimGrid(name=&quot;gv&quot;, scope=[0, 100], elements=[0, 40, 60])</span>
+<span class="sd">        &gt;&gt;&gt; wv = CM([10])           # vertical (xgrid) width</span>
+<span class="sd">        &gt;&gt;&gt; wh = CM([20, 10, 10])   # horizontal (ygrid) width</span>
+<span class="sd">        &gt;&gt;&gt; ev = CM([10])           # vertical (xgrid) extension</span>
+<span class="sd">        &gt;&gt;&gt; eh = CM([10, 10, 10])   # horizontal (ygrid) extension</span>
+<span class="sd">        &gt;&gt;&gt; e0v = CM([15])          # vert. extension (for zero-length wires)</span>
+<span class="sd">        &gt;&gt;&gt; e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)</span>
+<span class="sd">        &gt;&gt;&gt; lv = CM([[&#39;M1&#39;, &#39;drawing&#39;]], dtype=object)  # layer information</span>
+<span class="sd">        &gt;&gt;&gt; lh = CM([[&#39;M2&#39;, &#39;drawing&#39;]]*3, dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; plv = CM([[&#39;M1&#39;, &#39;pin&#39;]], dtype=object) # pin layers</span>
+<span class="sd">        &gt;&gt;&gt; plh = CM([[&#39;M2&#39;, &#39;pin&#39;]]*3, dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; xcolor = CM([None], dtype=object)  # not multipatterned</span>
+<span class="sd">        &gt;&gt;&gt; ycolor = CM([None]*3, dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; primary_grid = &#39;horizontal&#39;</span>
+<span class="sd">        &gt;&gt;&gt; tvia = NativeInstanceTemplate(libname=&#39;tlib&#39;, cellname=&#39;via0&#39;)  # via</span>
+<span class="sd">        &gt;&gt;&gt; viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; g = laygo2.object.grid.RoutingGrid(name=&#39;mygrid&#39;, vgrid=gv, hgrid=gh,</span>
+<span class="sd">                                               vwidth=wv, hwidth=wh,</span>
+<span class="sd">                                               vextension=ev, hextension=eh,</span>
+<span class="sd">                                               vlayer=lv, hlayer=lh,</span>
+<span class="sd">                                               pin_vlayer=plv, pin_hlayer=plh,</span>
+<span class="sd">                                               viamap=viamap, primary_grid=primary_grid,</span>
+<span class="sd">                                               xcolor=xcolor, ycolor=ycolor,</span>
+<span class="sd">                                               vextension0=e0v, hextension0=e0h)</span>
+<span class="sd">        &gt;&gt;&gt; # Create a design</span>
+<span class="sd">        &gt;&gt;&gt; dsn = Design(name=&quot;mycell&quot;, libname=&quot;genlib&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; #################</span>
+<span class="sd">        &gt;&gt;&gt; # Route on grid #</span>
+<span class="sd">        &gt;&gt;&gt; #################</span>
+<span class="sd">        &gt;&gt;&gt; mn_list = [[0, -2], [0, 1], [2, 1], [5,1] ]</span>
+<span class="sd">        &gt;&gt;&gt; route = dsn.route(grid=g, mn=mn_list,</span>
+<span class="sd">                              via_tag=[True, None, True, True])</span>
+<span class="sd">        &gt;&gt;&gt; # Display generated design.</span>
+<span class="sd">        &gt;&gt;&gt; print(dsn)</span>
+<span class="sd">        &lt;laygo2.object.database.Design object at 0x000001C71AE3A110&gt;</span>
+<span class="sd">            name: mycell, params: None</span>
+<span class="sd">            elements: {</span>
+<span class="sd">            &#39;NoName_0&#39;: &lt;laygo2.object.physical.Instance object at 0x000001C71AE3BA90&gt;,</span>
+<span class="sd">            &#39;NoName_1&#39;: &lt;laygo2.object.physical.Rect object at 0x000001C71AE3B820&gt;,</span>
+<span class="sd">            &#39;NoName_2&#39;: &lt;laygo2.object.physical.Rect object at 0x000001C71AE3ABF0&gt;,</span>
+<span class="sd">            &#39;NoName_3&#39;: &lt;laygo2.object.physical.Instance object at 0x000001C71AE3A140&gt;,</span>
+<span class="sd">            &#39;NoName_4&#39;: &lt;laygo2.object.physical.Rect object at 0x000001C71AE39DB0&gt;,</span>
+<span class="sd">            &#39;NoName_5&#39;: &lt;laygo2.object.physical.Instance object at 0x000001C71AE3AB60&gt;}</span>
+<span class="sd">            libname:genlib</span>
+<span class="sd">            rects: {  # wires</span>
+<span class="sd">            &#39;NoName_1&#39;: &lt;laygo2.object.physical.Rect object at 0x000001C71AE3B820&gt;,</span>
+<span class="sd">            &#39;NoName_2&#39;: &lt;laygo2.object.physical.Rect object at 0x000001C71AE3ABF0&gt;,</span>
+<span class="sd">            &#39;NoName_4&#39;: &lt;laygo2.object.physical.Rect object at 0x000001C71AE39DB0&gt;}</span>
+<span class="sd">            paths:{}</span>
+<span class="sd">            pins:{}</span>
+<span class="sd">            texts:{}</span>
+<span class="sd">            instances:{  # vias</span>
+<span class="sd">            &#39;NoName_0&#39;: &lt;laygo2.object.physical.Instance object at 0x000001C71AE3BA90&gt;,</span>
+<span class="sd">            &#39;NoName_3&#39;: &lt;laygo2.object.physical.Instance object at 0x000001C71AE3A140&gt;,</span>
+<span class="sd">            &#39;NoName_5&#39;: &lt;laygo2.object.physical.Instance object at 0x000001C71AE3AB60&gt;}</span>
+<span class="sd">            virtual instances:{}</span>
+
+<span class="sd">        .. image:: ../assets/img/object_grid_RoutingGrid_route.png</span>
+<span class="sd">           :height: 250</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        laygo2.object.grid.RoutingGrid.route : route wire(s) on the grid.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **(Korean)** 추상 좌표 위에 라우팅을 수행 하는 함수.</span>
+
+<span class="sd">        파라미터</span>
+<span class="sd">            - mn(list(numpy.ndarray)): 배선을 수행할 2개 이상의 mn 좌표를 담고 있는 list.</span>
+<span class="sd">            - direction(str): None or “vertical”; path의 방향을 결정 (수평 or 수직) [optional].</span>
+<span class="sd">            - via_tag(list(Boolean)): Path에 via를 형성 할지를 결정하는 switch들을 담고 있는 list [optional].</span>
+
+<span class="sd">        반환값</span>
+<span class="sd">            - list: 생성된 routing object들을 담고 있는 list.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="n">mn</span><span class="o">=</span><span class="n">mn</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span> <span class="n">via_tag</span><span class="o">=</span><span class="n">via_tag</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span></div>
+
+
+<div class="viewcode-block" id="Design.via">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.via.html#laygo2.object.database.Design.via">[docs]</a>
+    <span class="k">def</span> <span class="nf">via</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">mn</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create Via object(s) on abstract grid.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mn : list(numpy.ndarray)</span>
+<span class="sd">            Abstract coordinate(s) that specify location(s) to insert via(s).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list(physical.PhysicalObject):</span>
+<span class="sd">            The list containing the generated via objects.</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.grid import CircularMapping as CM</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.grid import CircularMappingArray as CMA</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.grid import OneDimGrid, RoutingGrid</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.template import NativeInstanceTemplate</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.database import Design</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.physical import Instance</span>
+<span class="sd">        &gt;&gt;&gt; # Routing grid construction (not needed if laygo2_tech is set up).</span>
+<span class="sd">        &gt;&gt;&gt; gv = OneDimGrid(name=&quot;gv&quot;, scope=[0, 50], elements=[0])</span>
+<span class="sd">        &gt;&gt;&gt; gh = OneDimGrid(name=&quot;gv&quot;, scope=[0, 100], elements=[0, 40, 60])</span>
+<span class="sd">        &gt;&gt;&gt; wv = CM([10])           # vertical (xgrid) width</span>
+<span class="sd">        &gt;&gt;&gt; wh = CM([20, 10, 10])   # horizontal (ygrid) width</span>
+<span class="sd">        &gt;&gt;&gt; ev = CM([10])           # vertical (xgrid) extension</span>
+<span class="sd">        &gt;&gt;&gt; eh = CM([10, 10, 10])   # horizontal (ygrid) extension</span>
+<span class="sd">        &gt;&gt;&gt; e0v = CM([15])          # vert. extension (for zero-length wires)</span>
+<span class="sd">        &gt;&gt;&gt; e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)</span>
+<span class="sd">        &gt;&gt;&gt; lv = CM([[&#39;M1&#39;, &#39;drawing&#39;]], dtype=object)  # layer information</span>
+<span class="sd">        &gt;&gt;&gt; lh = CM([[&#39;M2&#39;, &#39;drawing&#39;]]*3, dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; plv = CM([[&#39;M1&#39;, &#39;pin&#39;]], dtype=object) # pin layers</span>
+<span class="sd">        &gt;&gt;&gt; plh = CM([[&#39;M2&#39;, &#39;pin&#39;]]*3, dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; xcolor = CM([None], dtype=object)  # Not multipatterned</span>
+<span class="sd">        &gt;&gt;&gt; ycolor = CM([None]*3, dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; primary_grid = &#39;horizontal&#39;</span>
+<span class="sd">        &gt;&gt;&gt; tvia = NativeInstanceTemplate(libname=&#39;tlib&#39;, cellname=&#39;via0&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; g = laygo2.object.grid.RoutingGrid(name=&#39;mygrid&#39;, vgrid=gv, hgrid=gh,</span>
+<span class="sd">                                               vwidth=wv, hwidth=wh,</span>
+<span class="sd">                                               vextension=ev, hextension=eh,</span>
+<span class="sd">                                               vlayer=lv, hlayer=lh,</span>
+<span class="sd">                                               pin_vlayer=plv, pin_hlayer=plh,</span>
+<span class="sd">                                               viamap=viamap, primary_grid=primary_grid,</span>
+<span class="sd">                                               xcolor=xcolor, ycolor=ycolor,</span>
+<span class="sd">                                               vextension0=e0v, hextension0=e0h)</span>
+<span class="sd">        &gt;&gt;&gt; # Create a design</span>
+<span class="sd">        &gt;&gt;&gt; dsn = Design(name=&quot;mycell&quot;, libname=&quot;genlib&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; ##############</span>
+<span class="sd">        &gt;&gt;&gt; # Place vias #</span>
+<span class="sd">        &gt;&gt;&gt; ##############</span>
+<span class="sd">        &gt;&gt;&gt; mn_list = [[0, -2], [1, 0], [2, 5]]</span>
+<span class="sd">        &gt;&gt;&gt; via = dsn.via(grid=g, mn=mn_list)</span>
+<span class="sd">        &gt;&gt;&gt; # Display generated design.</span>
+<span class="sd">        &gt;&gt;&gt; print(dsn)</span>
+<span class="sd">        &lt;laygo2.object.database.Design object at 0x0000015A77C6A110&gt;</span>
+<span class="sd">        name: mycell, params: None,</span>
+<span class="sd">        elements: {</span>
+<span class="sd">        &#39;NoName_0&#39;: &lt;laygo2.object.physical.Instance object at 0x0000015A77C6AC20&gt;,</span>
+<span class="sd">        &#39;NoName_1&#39;: &lt;laygo2.object.physical.Instance object at 0x0000015A77C6AD10&gt;,</span>
+<span class="sd">        &#39;NoName_2&#39;: &lt;laygo2.object.physical.Instance object at 0x0000015A77C6AD40&gt;}</span>
+<span class="sd">        libname:genlib</span>
+<span class="sd">        rects:{}</span>
+<span class="sd">        paths:{}</span>
+<span class="sd">        pins:{}</span>
+<span class="sd">        texts:{}</span>
+<span class="sd">        instances:{</span>
+<span class="sd">        &#39;NoName_0&#39;: &lt;laygo2.object.physical.Instance object at 0x0000015A77C6AC20&gt;,</span>
+<span class="sd">        &#39;NoName_1&#39;: &lt;laygo2.object.physical.Instance object at 0x0000015A77C6AD10&gt;,</span>
+<span class="sd">        &#39;NoName_2&#39;: &lt;laygo2.object.physical.Instance object at 0x0000015A77C6AD40&gt;}</span>
+<span class="sd">        virtual instances:{}</span>
+
+<span class="sd">        .. image:: ../assets/img/object_grid_RoutingGrid_via.png</span>
+<span class="sd">           :height: 250</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        laygo2.object.grid.RoutingGrid.via</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **(Korean)** via 생성함수.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">            - mn(list(numpy.ndarray)): via를 생성할 mn좌표. 복수 개 입력 가능.</span>
+<span class="sd">        반환값</span>
+<span class="sd">            - list(physical.PhysicalObject)): 생성된 via object들을 담고 있는 list.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">via</span><span class="p">(</span><span class="n">mn</span><span class="o">=</span><span class="n">mn</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">v</span></div>
+
+
+<div class="viewcode-block" id="Design.route_via_track">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.route_via_track.html#laygo2.object.database.Design.route_via_track">[docs]</a>
+    <span class="k">def</span> <span class="nf">route_via_track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">mn</span><span class="p">,</span> <span class="n">track</span><span class="p">,</span> <span class="n">via_tag</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">True</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform routing on the specified track with accessing wires to mn.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        grid : laygo2.object.grid.RoutingGrid</span>
+<span class="sd">            The placement grid where the wire is placed on.</span>
+<span class="sd">        mn : list(numpy.ndarray)</span>
+<span class="sd">            list containing coordinates of the points being connected through a track</span>
+<span class="sd">        track : numpy.ndarray</span>
+<span class="sd">            list containing coordinate values and direction of a track.</span>
+<span class="sd">            Vertical tracks have [v, None] format, while horizontal tracks have [None, v] format</span>
+<span class="sd">            (v is the coordinates of the track).</span>
+<span class="sd">        via_tag : list(Boolean), optional.</span>
+<span class="sd">            The list containing switches deciding whether to place via at</span>
+<span class="sd">            the edges of individual stubs.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list:</span>
+<span class="sd">            The list containing the generated routing objects;</span>
+<span class="sd">            The last object corresponds to the routing object on the track.</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.grid import CircularMapping as CM</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.grid import CircularMappingArray as CMA</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.grid import OneDimGrid, RoutingGrid</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.template import NativeInstanceTemplate</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.database import Design</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.physical import Instance</span>
+<span class="sd">        &gt;&gt;&gt; # Routing grid construction (not needed if laygo2_tech is set up).</span>
+<span class="sd">        &gt;&gt;&gt; gv = OneDimGrid(name=&quot;gv&quot;, scope=[0, 50], elements=[0])</span>
+<span class="sd">        &gt;&gt;&gt; gh = OneDimGrid(name=&quot;gv&quot;, scope=[0, 100], elements=[0, 40, 60])</span>
+<span class="sd">        &gt;&gt;&gt; wv = CM([10])           # vertical (xgrid) width</span>
+<span class="sd">        &gt;&gt;&gt; wh = CM([20, 10, 10])   # horizontal (ygrid) width</span>
+<span class="sd">        &gt;&gt;&gt; ev = CM([10])           # vertical (xgrid) extension</span>
+<span class="sd">        &gt;&gt;&gt; eh = CM([10, 10, 10])   # horizontal (ygrid) extension</span>
+<span class="sd">        &gt;&gt;&gt; e0v = CM([15])          # vert. extension (for zero-length wires)</span>
+<span class="sd">        &gt;&gt;&gt; e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)</span>
+<span class="sd">        &gt;&gt;&gt; lv = CM([[&#39;M1&#39;, &#39;drawing&#39;]], dtype=object)  # layer information</span>
+<span class="sd">        &gt;&gt;&gt; lh = CM([[&#39;M2&#39;, &#39;drawing&#39;]]*3, dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; plv = CM([[&#39;M1&#39;, &#39;pin&#39;]], dtype=object) # pin layers</span>
+<span class="sd">        &gt;&gt;&gt; plh = CM([[&#39;M2&#39;, &#39;pin&#39;]]*3, dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; xcolor = CM([None], dtype=object)  # not multipatterned</span>
+<span class="sd">        &gt;&gt;&gt; ycolor = CM([None]*3, dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; primary_grid = &#39;horizontal&#39;</span>
+<span class="sd">        &gt;&gt;&gt; tvia = NativeInstanceTemplate(libname=&#39;tlib&#39;, cellname=&#39;via0&#39;)  # via</span>
+<span class="sd">        &gt;&gt;&gt; viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; g = laygo2.object.grid.RoutingGrid(name=&#39;mygrid&#39;, vgrid=gv, hgrid=gh,</span>
+<span class="sd">                                               vwidth=wv, hwidth=wh,</span>
+<span class="sd">                                               vextension=ev, hextension=eh,</span>
+<span class="sd">                                               vlayer=lv, hlayer=lh,</span>
+<span class="sd">                                               pin_vlayer=plv, pin_hlayer=plh,</span>
+<span class="sd">                                               viamap=viamap, primary_grid=primary_grid,</span>
+<span class="sd">                                               xcolor=xcolor, ycolor=ycolor,</span>
+<span class="sd">                                               vextension0=e0v, hextension0=e0h)</span>
+<span class="sd">        &gt;&gt;&gt; # Create a design</span>
+<span class="sd">        &gt;&gt;&gt; dsn = Design(name=&quot;mycell&quot;, libname=&quot;genlib&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; # Do routing</span>
+<span class="sd">        &gt;&gt;&gt; mn_list = [[0, -2], [1, 0], [2, 5], [3, 4], [4, 5], [5, 5]]</span>
+<span class="sd">        &gt;&gt;&gt; track = dsn.route_via_track(grid=g, mn=mn_list, track=[None,0])</span>
+<span class="sd">        &gt;&gt;&gt; # Display design</span>
+<span class="sd">        &gt;&gt;&gt; print(dsn)</span>
+<span class="sd">            &lt;laygo2.object.database.Design object at 0x0000015A77C6BA60&gt;</span>
+<span class="sd">            name: mycell, params: None</span>
+<span class="sd">            elements: {</span>
+<span class="sd">            &#39;NoName_0&#39;: &lt;laygo2.object.physical.Rect object at 0x0000015A77C6B790&gt;,</span>
+<span class="sd">            &#39;NoName_1&#39;: &lt;laygo2.object.physical.Instance object at 0x0000015A77C6B820&gt;,</span>
+<span class="sd">            &#39;NoName_2&#39;: &lt;laygo2.object.physical.Instance object at 0x0000015A77C6B7C0&gt;,</span>
+<span class="sd">            &#39;NoName_3&#39;: &lt;laygo2.object.physical.Rect object at 0x0000015A77C6B760&gt;,</span>
+<span class="sd">            &#39;NoName_4&#39;: &lt;laygo2.object.physical.Instance object at 0x0000015A77C6A2F0&gt;,</span>
+<span class="sd">            &#39;NoName_5&#39;: &lt;laygo2.object.physical.Rect object at 0x0000015A77C6BA90&gt;}</span>
+<span class="sd">            libname:genlib</span>
+<span class="sd">            rects:{</span>
+<span class="sd">            &#39;NoName_0&#39;: &lt;laygo2.object.physical.Rect object at 0x0000015A77C6B790&gt;,</span>
+<span class="sd">            &#39;NoName_3&#39;: &lt;laygo2.object.physical.Rect object at 0x0000015A77C6B760&gt;,</span>
+<span class="sd">            &#39;NoName_5&#39;: &lt;laygo2.object.physical.Rect object at 0x0000015A77C6BA90&gt;}</span>
+<span class="sd">            paths:{}</span>
+<span class="sd">            pins:{}</span>
+<span class="sd">            texts:{}</span>
+<span class="sd">            instances:{</span>
+<span class="sd">            &#39;NoName_1&#39;: &lt;laygo2.object.physical.Instance object at 0x0000015A77C6B820&gt;,</span>
+<span class="sd">            &#39;NoName_2&#39;: &lt;laygo2.object.physical.Instance object at 0x0000015A77C6B7C0&gt;,</span>
+<span class="sd">            &#39;NoName_4&#39;: &lt;laygo2.object.physical.Instance object at 0x0000015A77C6A2F0&gt;}</span>
+<span class="sd">            virtual instances:{}</span>
+<span class="sd">        &gt;&gt;&gt; print(track[-1])</span>
+<span class="sd">            &lt;laygo2.object.physical.Rect object at 0x0000015A77C6BA90&gt;</span>
+<span class="sd">            name: None,</span>
+<span class="sd">            class: Rect,</span>
+<span class="sd">            xy: [[0, 0], [100, 0]],</span>
+<span class="sd">            params: None, , layer: [&#39;M2&#39; &#39;drawing&#39;], netname: None</span>
+
+<span class="sd">        .. image:: ../assets/img/object_grid_RoutingGrid_route_via_track.png</span>
+<span class="sd">           :height: 250</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        laygo2.object.grid.RoutingGrid.route_via_track</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **(Korean)** wire 라우팅 함수, track을 기준점으로 routing을 진행한다.</span>
+
+<span class="sd">        파라미터</span>
+<span class="sd">            - track(numpy.ndarray): track의 좌표값과 방향을 담고 있는 list.</span>
+<span class="sd">            수직 트랙일 경우 [v, None], 수평 트랙일 경우 [None, v]의 형태를</span>
+<span class="sd">            가지고 있다 (v는 track의 좌표값).</span>
+<span class="sd">            - mn(list(numpy.ndarray)): track을 통해 연결될 지점들의 좌표를</span>
+<span class="sd">            담고 있는 list.</span>
+<span class="sd">        반환값</span>
+<span class="sd">            - list: 생성된 routing object들을 담고 있는 list.</span>
+<span class="sd">            마지막 object가 track위의 routing object에 해당.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">route_via_track</span><span class="p">(</span><span class="n">mn</span><span class="o">=</span><span class="n">mn</span><span class="p">,</span> <span class="n">track</span><span class="o">=</span><span class="n">track</span><span class="p">,</span> <span class="n">via_tag</span><span class="o">=</span><span class="n">via_tag</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span></div>
+
+
+<div class="viewcode-block" id="Design.pin">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.pin.html#laygo2.object.database.Design.pin">[docs]</a>
+    <span class="k">def</span> <span class="nf">pin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">mn</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">netname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a Pin object over the abstract coordinates specified by mn,</span>
+<span class="sd">        on the specified routing grid.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Pin name.</span>
+<span class="sd">        mn : numpy.ndarray</span>
+<span class="sd">            Abstract coordinates for generating Pin.</span>
+<span class="sd">        direction : str, optional.</span>
+<span class="sd">            Direction.</span>
+<span class="sd">        netname : str, optional.</span>
+<span class="sd">            Net name of Pin.</span>
+<span class="sd">        params : dict, optional</span>
+<span class="sd">            Pin attributes.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        laygo2.physical.Pin: The generated pin object.</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.grid import CircularMapping as CM</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.grid import CircularMappingArray as CMA</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.grid import OneDimGrid, RoutingGrid</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.template import NativeInstanceTemplate</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.database import Design</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.physical import Instance</span>
+<span class="sd">        &gt;&gt;&gt; # Routing grid construction (not needed if laygo2_tech is set up).</span>
+<span class="sd">        &gt;&gt;&gt; gv = OneDimGrid(name=&quot;gv&quot;, scope=[0, 50], elements=[0])</span>
+<span class="sd">        &gt;&gt;&gt; gh = OneDimGrid(name=&quot;gv&quot;, scope=[0, 100], elements=[0, 40, 60])</span>
+<span class="sd">        &gt;&gt;&gt; wv = CM([10])           # vertical (xgrid) width</span>
+<span class="sd">        &gt;&gt;&gt; wh = CM([20, 10, 10])   # horizontal (ygrid) width</span>
+<span class="sd">        &gt;&gt;&gt; ev = CM([10])           # vertical (xgrid) extension</span>
+<span class="sd">        &gt;&gt;&gt; eh = CM([10, 10, 10])   # horizontal (ygrid) extension</span>
+<span class="sd">        &gt;&gt;&gt; e0v = CM([15])          # vert. extension (for zero-length wires)</span>
+<span class="sd">        &gt;&gt;&gt; e0h = CM([15, 15, 15])  # hori. extension (for zero-length wires)</span>
+<span class="sd">        &gt;&gt;&gt; lv = CM([[&#39;M1&#39;, &#39;drawing&#39;]], dtype=object)  # layer information</span>
+<span class="sd">        &gt;&gt;&gt; lh = CM([[&#39;M2&#39;, &#39;drawing&#39;]]*3, dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; plv = CM([[&#39;M1&#39;, &#39;pin&#39;]], dtype=object) # pin layers</span>
+<span class="sd">        &gt;&gt;&gt; plh = CM([[&#39;M2&#39;, &#39;pin&#39;]]*3, dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; xcolor = CM([None], dtype=object)  # Not multipatterned</span>
+<span class="sd">        &gt;&gt;&gt; ycolor = CM([None]*3, dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; primary_grid = &#39;horizontal&#39;</span>
+<span class="sd">        &gt;&gt;&gt; tvia = NativeInstanceTemplate(libname=&#39;tlib&#39;, cellname=&#39;via0&#39;)  # via</span>
+<span class="sd">        &gt;&gt;&gt; viamap = CMA(elements=[[tvia, tvia, tvia]], dtype=object)</span>
+<span class="sd">        &gt;&gt;&gt; g = laygo2.object.grid.RoutingGrid(name=&#39;mygrid&#39;, vgrid=gv, hgrid=gh,</span>
+<span class="sd">                                               vwidth=wv, hwidth=wh,</span>
+<span class="sd">                                               vextension=ev, hextension=eh,</span>
+<span class="sd">                                               vlayer=lv, hlayer=lh,</span>
+<span class="sd">                                               pin_vlayer=plv, pin_hlayer=plh,</span>
+<span class="sd">                                               viamap=viamap, primary_grid=primary_grid,</span>
+<span class="sd">                                               xcolor=xcolor, ycolor=ycolor,</span>
+<span class="sd">                                               vextension0=e0v, hextension0=e0h)</span>
+<span class="sd">        &gt;&gt;&gt; # Create a design</span>
+<span class="sd">        &gt;&gt;&gt; dsn = Design(name=&quot;mycell&quot;, libname=&quot;genlib&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; ###############</span>
+<span class="sd">        &gt;&gt;&gt; # Place a pin #</span>
+<span class="sd">        &gt;&gt;&gt; ###############</span>
+<span class="sd">        &gt;&gt;&gt; mn = [[0, 0], [10, 10]]</span>
+<span class="sd">        &gt;&gt;&gt; pin = dsn.pin(name=&quot;pin&quot;, grid=g, mn=mn)</span>
+<span class="sd">        &gt;&gt;&gt; print(pin)</span>
+<span class="sd">        &lt;laygo2.object.physical.Pin object at 0x0000028DABE3AB90&gt;</span>
+<span class="sd">            name: pin,</span>
+<span class="sd">            class: Pin,</span>
+<span class="sd">            xy: [[0, -10], [500, 350]],</span>
+<span class="sd">            params: None, , layer: [&#39;M2&#39; &#39;pin&#39;], netname: pin, shape: None,</span>
+<span class="sd">            master: None</span>
+<span class="sd">        &gt;&gt;&gt; print(dsn)</span>
+<span class="sd">        &lt;laygo2.object.database.Design object at 0x0000028DABE3A110&gt; name: mycell, params: None</span>
+<span class="sd">            elements: {&#39;pin&#39;: &lt;laygo2.object.physical.Pin object at</span>
+<span class="sd">            0x0000028DABE3AB90&gt;}</span>
+<span class="sd">            libname:genlib</span>
+<span class="sd">            rects:{}</span>
+<span class="sd">            paths:{}</span>
+<span class="sd">            pins:{&#39;pin&#39;: &lt;laygo2.object.physical.Pin object at 0x0000028DABE3AB90&gt;}</span>
+<span class="sd">            texts:{}</span>
+<span class="sd">            instances:{}</span>
+<span class="sd">            virtual instances:{}</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **(Korean)**</span>
+<span class="sd">        pin 생성함수.</span>
+
+<span class="sd">        파라미터</span>
+<span class="sd">            - name(str): Pin 이름.</span>
+<span class="sd">            - mn(numpy.ndarray): Pin을 생성할 abstract 좌표.</span>
+<span class="sd">            - direction(str): 방향 [optional].</span>
+<span class="sd">            - netname(str): Pin의 net이름 [optional].</span>
+<span class="sd">            - params(dict): Pin 속성 [optional].</span>
+<span class="sd">        반환값</span>
+<span class="sd">            - laygo2.physical.Pin: Pin object.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">pin</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">mn</span><span class="o">=</span><span class="n">mn</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span> <span class="n">netname</span><span class="o">=</span><span class="n">netname</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">p</span></div>
+
+
+    <span class="c1"># I/O functions</span>
+<div class="viewcode-block" id="Design.export_to_template">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.export_to_template.html#laygo2.object.database.Design.export_to_template">[docs]</a>
+    <span class="k">def</span> <span class="nf">export_to_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">libname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cellname</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a NativeInstanceTemplate object corresponding to Design object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        libname: str</span>
+<span class="sd">            The library name.</span>
+<span class="sd">        cellname: str</span>
+<span class="sd">            The cell name.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        laygo2.NativeInstanceTemplate: The generated template object.</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; import laygo2</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.database import Design</span>
+<span class="sd">        &gt;&gt;&gt; from laygo2.object.physical import Rect, Pin, Instance, Text</span>
+<span class="sd">        &gt;&gt;&gt; # Create a design</span>
+<span class="sd">        &gt;&gt;&gt; dsn = Design(name=&quot;mycell&quot;, libname=&quot;genlib&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; # Create layout objects</span>
+<span class="sd">        &gt;&gt;&gt; r0 = Rect(xy=[[0, 0], [100, 100]], layer=[&quot;M1&quot;, &quot;drawing&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; p0 = Pin(xy=[[0, 0], [50, 50]], layer=[&quot;M1&quot;, &quot;pin&quot;], name=&quot;P&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; i0 = Instance(libname=&quot;tlib&quot;, cellname=&quot;t0&quot;, name=&quot;I0&quot;, xy=[0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; t0 = Text(xy=[[50, 50], [100, 100]], layer=[&quot;text&quot;, &quot;drawing&quot;], text=&quot;T&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(r0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(p0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(i0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(t0)</span>
+<span class="sd">        &gt;&gt;&gt; # Export the design to a template.</span>
+<span class="sd">        &gt;&gt;&gt; nt0 = dsn.export_to_template()</span>
+<span class="sd">        &gt;&gt;&gt; print(nt0)</span>
+<span class="sd">        &lt;laygo2.object.template.NativeInstanceTemplate object at XXXX&gt;</span>
+<span class="sd">            name: mycell, class: NativeInstanceTemplate,</span>
+<span class="sd">            bbox: [[0, 0], [0, 0]],</span>
+<span class="sd">            pins: {&#39;P&#39;: &lt;laygo2.object.physical.Pin object at YYYY&gt;},</span>
+<span class="sd">        &gt;&gt;&gt; # Save the template into a yaml file.</span>
+<span class="sd">        &gt;&gt;&gt; laygo2.interface.yaml.export_template(nt0, filename=&#39;mytemp.yaml&#39;)</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">            laygo2.interface.yaml.export_template : Export a template to</span>
+<span class="sd">            a yaml file.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **(Korean)** Design 객체에 해당하는 NativeInstanceTemplate 객체 생성.</span>
+
+<span class="sd">        반환값</span>
+<span class="sd">            - laygo2.NativeInstanceTemplate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">libname</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">libname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">libname</span>
+        <span class="k">if</span> <span class="n">cellname</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">cellname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cellname</span>
+
+        <span class="n">xy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bbox</span>
+        <span class="n">pins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pins</span>
+        <span class="k">return</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">NativeInstanceTemplate</span><span class="p">(</span><span class="n">libname</span><span class="o">=</span><span class="n">libname</span><span class="p">,</span> <span class="n">cellname</span><span class="o">=</span><span class="n">cellname</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">xy</span><span class="p">,</span> <span class="n">pins</span><span class="o">=</span><span class="n">pins</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Design.get_matched_rects_by_layer">
+<a class="viewcode-back" href="../../../laygo2.object.database.Design.html#laygo2.object.database.Design.get_matched_rects_by_layer">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_matched_rects_by_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a list containing physical objects matched with the layer input in Design object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        layer : list</span>
+<span class="sd">            The layer information. Format is [name, purpose].</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list: The list containing the matched Physical objects.</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; dsn    = laygo2.object.Design(name=&#39;dsn&#39;, libname=&quot;testlib&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; rect0  = laygo2.object.Rect(xy=[[0, 0], [100, 100]], layer=[‘M1’, ‘drawing’]……)</span>
+<span class="sd">        &gt;&gt;&gt; pin0   = laygo2.object.Pin(xy=[[0, 0], [100, 100]], layer=[‘M1’, ‘pin’]……)</span>
+<span class="sd">        &gt;&gt;&gt; inst0  = laygo2.object.Instance(name=‘I0’, xy=[100, 100]……)</span>
+<span class="sd">        &gt;&gt;&gt; vinst0_pins[‘in’]  = laygo2.object.physical.Pin(xy=[[0, 0], [10, 10]], layer=[‘M1’,’drawing’]……)</span>
+<span class="sd">        &gt;&gt;&gt; vinst0_pins[‘out’] = laygo2.object.physical.Pin(xy=[[90, 90], [100, 100]], layer=[‘M1’, drawing’] ……)</span>
+<span class="sd">        &gt;&gt;&gt; vinst0 = laygo2.object.physical.VirtualInstance(name=‘VI0’, ……)</span>
+<span class="sd">        &gt;&gt;&gt; text0  = laygo2.object.physical.Text(xy=[[ 0, 0], [100,100 ]], layer=[‘text’, ‘drawing’]……)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(rect0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(pin0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(inst0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(vinst0)</span>
+<span class="sd">        &gt;&gt;&gt; dsn.append(text0)</span>
+<span class="sd">        &gt;&gt;&gt; print( dsn.get_matchedrects_by_layer( [“M1”, “drawing”] )</span>
+<span class="sd">        [&lt;laygo2.object.physical.Rect object&gt;,</span>
+<span class="sd">         &lt;laygo2.object.physical.Pin object&gt;,</span>
+<span class="sd">         &lt;laygo2.object.physical.Pin object&gt;,</span>
+<span class="sd">         &lt;laygo2.object.physical.Rect object&gt;]</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        **(Korean)**</span>
+<span class="sd">        주어진 layer와 일치되는 Physical object 갖는 list 반환.</span>
+<span class="sd">        파라미터</span>
+<span class="sd">        layer purpose pair(list): 레이어 정보</span>
+<span class="sd">        반환값</span>
+<span class="sd">        list: 매치되는 Physical object를 담고 있는 list</span>
+<span class="sd">        참조</span>
+<span class="sd">        없음</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rects</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rects</span>
+        <span class="n">insts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span>
+        <span class="n">vinsts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">virtual_instances</span>
+
+        <span class="n">obj_check</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">rname</span><span class="p">,</span> <span class="n">rect</span> <span class="ow">in</span> <span class="n">rects</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">rect</span><span class="o">.</span><span class="n">layer</span><span class="p">,</span> <span class="n">layer</span><span class="p">):</span>
+                <span class="n">obj_check</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">iname</span><span class="p">,</span> <span class="n">inst</span> <span class="ow">in</span> <span class="n">insts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">pname</span><span class="p">,</span> <span class="n">pin</span> <span class="ow">in</span> <span class="n">inst</span><span class="o">.</span><span class="n">pins</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">pin</span><span class="o">.</span><span class="n">layer</span><span class="p">,</span> <span class="n">layer</span><span class="p">):</span>
+                    <span class="n">obj_check</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">iname</span><span class="p">,</span> <span class="n">vinst</span> <span class="ow">in</span> <span class="n">vinsts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">inst</span> <span class="ow">in</span> <span class="n">vinst</span><span class="o">.</span><span class="n">native_elements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">Rect</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">layer</span><span class="p">,</span> <span class="n">layer</span><span class="p">):</span>
+                        <span class="n">_xy</span> <span class="o">=</span> <span class="n">vinst</span><span class="o">.</span><span class="n">get_element_position</span><span class="p">(</span><span class="n">inst</span><span class="p">)</span>
+                        <span class="n">ninst</span> <span class="o">=</span> <span class="n">laygo2</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span>
+                            <span class="n">xy</span><span class="o">=</span><span class="n">_xy</span><span class="p">,</span>
+                            <span class="n">layer</span><span class="o">=</span><span class="n">layer</span><span class="p">,</span>
+                            <span class="n">hextension</span><span class="o">=</span><span class="n">inst</span><span class="o">.</span><span class="n">hextension</span><span class="p">,</span>
+                            <span class="n">vextension</span><span class="o">=</span><span class="n">inst</span><span class="o">.</span><span class="n">vextension</span><span class="p">,</span>
+                            <span class="n">color</span><span class="o">=</span><span class="n">inst</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
+                        <span class="p">)</span>
+                        <span class="n">obj_check</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ninst</span><span class="p">)</span>  <span class="c1">## ninst is for sort, inst should be frozen for implement to layout</span>
+        <span class="k">return</span> <span class="n">obj_check</span></div>
+</div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">laygo2.object.physical</span> <span class="kn">import</span> <span class="o">*</span>
+
+    <span class="c1"># Test</span>
+    <span class="n">lib</span> <span class="o">=</span> <span class="n">Library</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;mylib&quot;</span><span class="p">)</span>
+    <span class="n">dsn</span> <span class="o">=</span> <span class="n">Design</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;mycell&quot;</span><span class="p">)</span>
+    <span class="n">lib</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dsn</span><span class="p">)</span>
+    <span class="n">rect0</span> <span class="o">=</span> <span class="n">Rect</span><span class="p">(</span>
+        <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span>
+        <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;drawing&quot;</span><span class="p">],</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;R0&quot;</span><span class="p">,</span>
+        <span class="n">netname</span><span class="o">=</span><span class="s2">&quot;net0&quot;</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxI&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">},</span>
+    <span class="p">)</span>
+    <span class="n">dsn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rect0</span><span class="p">)</span>
+    <span class="n">rect1</span> <span class="o">=</span> <span class="n">Rect</span><span class="p">(</span>
+        <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span>
+        <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;drawing&quot;</span><span class="p">],</span>
+        <span class="n">netname</span><span class="o">=</span><span class="s2">&quot;net0&quot;</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxI&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">},</span>
+    <span class="p">)</span>
+    <span class="n">dsn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rect1</span><span class="p">)</span>
+    <span class="n">path0</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span>
+        <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span>
+        <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">extension</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;drawing&quot;</span><span class="p">],</span>
+        <span class="n">netname</span><span class="o">=</span><span class="s2">&quot;net0&quot;</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxI&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">},</span>
+    <span class="p">)</span>
+    <span class="n">dsn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path0</span><span class="p">)</span>
+    <span class="n">pin0</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span>
+        <span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span>
+        <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;pin&quot;</span><span class="p">],</span>
+        <span class="n">netname</span><span class="o">=</span><span class="s2">&quot;n0&quot;</span><span class="p">,</span>
+        <span class="n">master</span><span class="o">=</span><span class="n">rect0</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;direction&quot;</span><span class="p">:</span> <span class="s2">&quot;input&quot;</span><span class="p">},</span>
+    <span class="p">)</span>
+    <span class="n">dsn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pin0</span><span class="p">)</span>
+    <span class="c1"># text0 = Text(xy=[0, 0], layer=[&#39;text&#39;, &#39;drawing&#39;], text=&#39;test&#39;, params=None)</span>
+    <span class="c1"># dsn.append(text0)</span>
+    <span class="n">inst0_pins</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">inst0_pins</span><span class="p">[</span><span class="s2">&quot;in&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;drawing&quot;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">)</span>
+    <span class="n">inst0_pins</span><span class="p">[</span><span class="s2">&quot;out&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span> <span class="n">layer</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;drawing&quot;</span><span class="p">],</span> <span class="n">netname</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">)</span>
+    <span class="n">inst0</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;I0&quot;</span><span class="p">,</span>
+        <span class="n">xy</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+        <span class="n">libname</span><span class="o">=</span><span class="s2">&quot;mylib&quot;</span><span class="p">,</span>
+        <span class="n">cellname</span><span class="o">=</span><span class="s2">&quot;mycell&quot;</span><span class="p">,</span>
+        <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="n">pitch</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+        <span class="n">unit_size</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+        <span class="n">pins</span><span class="o">=</span><span class="n">inst0_pins</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="s2">&quot;R0&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">dsn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inst0</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lib</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dsn</span><span class="p">)</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2021, Niftylab at Hanyang University, South Korea.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
