@@ -389,9 +389,6 @@ class CircularMapping:
     >>> print(map[2:7])
     [300, 100, 200, 300, 100]
 
-    Notes
-    -----
-    **(Korean)** 기본 순환 맵핑 (인덱싱 넘버가 무한히 확장) 클래스.
     """
 
     _elements = None
@@ -408,10 +405,6 @@ class CircularMapping:
     .. image:: ../assets/img/object_grid_CircularMapping_elements.png
            :height: 250 
 
-    Notes
-    -----
-    **(Korean)**
-    순환 맵핑의 구성 요소로 이루어진 배열. 
     """
 
     dtype = int
@@ -428,10 +421,6 @@ class CircularMapping:
     .. image:: ../assets/img/object_grid_CircularMapping_dtype.png
            :height: 250
 
-    Notes
-    -----
-    **(Korean)**
-    순환 맵핑의 데이터 유형.
     """
 
     def get_elements(self):
@@ -460,10 +449,6 @@ class CircularMapping:
         .. image:: ../assets/img/object_grid_CircularMapping_shape.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)**
-        순환 맵핑의 shape.
         """
         return np.array(self.elements.shape)
 
@@ -493,12 +478,6 @@ class CircularMapping:
         .. image:: ../assets/img/object_grid_CircularMapping_init.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** CircularMapping 클래스의 생성자함수
-            파라미터
-            - elements(list): 구성 요소
-            - dtype(type): 구성 요소의 datatype
         """
         self.dtype = dtype
         self.elements = np.asarray(elements, dtype=dtype)
@@ -572,9 +551,6 @@ class CircularMappingArray(CircularMapping):
     """
     Multi-dimensional circular mapping class (index number expands infinitely).
 
-    Notes
-    -----
-    **(Korean)** 다차원 순환맵핑(인덱싱 넘버가 무한히 확장) 클래스.
     """
 
     def __getitem__(self, pos):
@@ -603,9 +579,6 @@ class CircularMappingArray(CircularMapping):
         .. image:: ../assets/img/object_grid_CircularMappingArray_getitem.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 순환 맵핑의 요소 접근함수
         """
         if isinstance(pos, list):  # pos is containing multiple indices as a list
             return [self.__getitem__(pos=p) for p in pos]
@@ -654,10 +627,6 @@ class _AbsToPhyGridConverter:
 
     .. image:: ../assets/img/user_guide_abs2phy.png
 
-    Notes
-    -----
-    **(Korean)** 추상 좌표를 물리 좌표로 변환하는 클래스, 조건부연산은 역변환을
-    수행한다.
     """
 
     master = None
@@ -679,9 +648,6 @@ class _AbsToPhyGridConverter:
     >>> print(g2.xy.master) 
     <laygo2.object.grid.Grid object>
 
-    Notes
-    -----
-    **(Korean)** _AbsToPhyGridConverter 객체가 속한 좌표계.
     """
 
     # Constructor
@@ -719,9 +685,6 @@ class _AbsToPhyGridConverter:
         .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_call.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 추상 좌표를 master 좌표계에서 대응되는 물리 좌표로 변환.
         """
         return self.__getitem__(pos)
 
@@ -754,9 +717,6 @@ class _AbsToPhyGridConverter:
         .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_getitem.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 추상 좌표를 master 좌표계에서 대응되는 물리 좌표로 변환.
         """
         if (self.master.__class__.__name__ == "OneDimGrid") or (
             issubclass(self.master.__class__, OneDimGrid)
@@ -861,9 +821,6 @@ class _AbsToPhyGridConverter:
         .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_eq.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         """
         return self.master.phy2abs(pos=other)
 
@@ -896,9 +853,6 @@ class _AbsToPhyGridConverter:
         .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_lt.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         """
         if (self.master.__class__.__name__ == "OneDimGrid") or (
             issubclass(self.master.__class__, OneDimGrid)
@@ -1002,9 +956,6 @@ class _AbsToPhyGridConverter:
         .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_le.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         """
         if (self.master.__class__.__name__ == "OneDimGrid") or (
             issubclass(self.master.__class__, OneDimGrid)
@@ -1059,9 +1010,6 @@ class _AbsToPhyGridConverter:
         .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_gt.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         """
         if (self.master.__class__.__name__ == "OneDimGrid") or (
             issubclass(self.master.__class__, OneDimGrid)
@@ -1116,9 +1064,6 @@ class _AbsToPhyGridConverter:
         .. image:: ../assets/img/object_grid_AbsToPhyGridConverter_ge.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 물리 좌표를 master 좌표계에서 조건부 연산을 만족하는 추상 좌표로 변환.
         """
         if (self.master.__class__.__name__ == "OneDimGrid") or (
             issubclass(self.master.__class__, OneDimGrid)
@@ -1153,12 +1098,6 @@ class _PhyToAbsGridConverter:
 
     .. image:: ../assets/img/user_guide_phy2abs.png
 
-    Notes
-    -----
-    **(Korean)**
-    물리 좌표를 추상 좌표로 변환하는 클래스, 조건부연산은 반대로 추상 좌표를
-    물리 좌표로 변환한다.
-
     """
 
     master = None
@@ -1180,9 +1119,6 @@ class _PhyToAbsGridConverter:
     >>> print(g2.mn.master) 
     <laygo2.object.grid.Grid object>
 
-    Notes
-    -----
-    **(Korean)** _PhyToAbsGridConverter 객체가 속한 좌표계.
     """
 
     # Constructor
@@ -1220,9 +1156,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_call.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 물리 좌표를 master 좌표계에서 대응되는 추상 좌표로 변환.
         """
         return self.__getitem__(pos)
 
@@ -1254,9 +1187,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_getItem.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 물리 좌표를 master 좌표계에서 대응되는 추상 좌표로 변환.
         """
         if (self.master.__class__.__name__ == "OneDimGrid") or (
             issubclass(self.master.__class__, OneDimGrid)
@@ -1370,9 +1300,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_eq.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환.
         """
         return self.master.abs2phy(pos=other)
 
@@ -1427,9 +1354,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_lt.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환.
         """
         if (self.master.__class__.__name__ == "OneDimGrid") or (
             issubclass(self.master.__class__, OneDimGrid)
@@ -1479,9 +1403,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_le.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환.
         """
         return self.master.abs2phy(pos=other)
 
@@ -1514,9 +1435,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_gt.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환.
         """
         if (self.master.__class__.__name__ == "OneDimGrid") or (
             issubclass(self.master.__class__, OneDimGrid)
@@ -1568,9 +1486,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_ge.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 추상 좌표를 master 좌표계에서 조건부 연산을 만족하는 물리 좌표로 변환.
         """
         return self.master.abs2phy.__getitem__(pos=other)
 
@@ -1605,10 +1520,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_bbox.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 객체의 bounding box를 master 좌표계의 추상 좌표로 변환.
-        _AbsToPhyGridConverter 객체의 >=, <=를 사용하므로 추상면적이 작아질수있다.
         """
         if (obj.__class__.__name__ == "PhysicalObject") or (
             issubclass(obj.__class__, laygo2.object.PhysicalObject)
@@ -1652,9 +1563,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_bottom_left.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         """
         if (obj.__class__.__name__ == "PhysicalObject") or (
             issubclass(obj.__class__, laygo2.object.PhysicalObject)
@@ -1695,9 +1603,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_bottom_right.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         """
         if (obj.__class__.__name__ == "PhysicalObject") or (
             issubclass(obj.__class__, laygo2.object.PhysicalObject)
@@ -1738,9 +1643,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_top_left.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         """
         if (obj.__class__.__name__ == "PhysicalObject") or (
             issubclass(obj.__class__, laygo2.object.PhysicalObject)
@@ -1781,9 +1683,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_top_right.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 객체의 물리 코너 좌표를 master 좌표계의 추상 좌표로 변환.
         """
         if (obj.__class__.__name__ == "PhysicalObject") or (
             issubclass(obj.__class__, laygo2.object.PhysicalObject)
@@ -1852,9 +1751,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_size.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 객체의 크기([width, height])를 master 좌표계의 추상 좌표로 변환.
         """
         return np.array([self.width(obj), self.height(obj)])
 
@@ -1890,9 +1786,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_crossing.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 객체들의 물리적 교차점을 master 좌표계의 추상 좌표로 변환.
         """
         return self.overlap(*args, type="point")
 
@@ -1935,16 +1828,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_overlap.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 객체들의 겹치는 면적을 master 좌표계의 추상 좌표로 변환 후
-        type에 따른 형태로 반환.
-
-        'bbox'인 경우, bounding box로 반환.
-
-        'array' 인 경우 모든 교점을 2차원 array로 반환.
-
-        'list' 인경우 모든 교점을 1차원 list로 변환.
         """
         _ib = None
         for _obj in args:
@@ -1997,10 +1880,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_union.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 객체들을 모두 포함하는 bounding box를 master 좌표계의
-        추상 좌표로 변환.
         """
         _ub = None
         for _obj in args:
@@ -2044,9 +1923,6 @@ class _PhyToAbsGridConverter:
         .. image:: ../assets/img/object_grid_PhyToAbsGridConverter_center.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 객체의 물리 중앙 좌표를 master 좌표계의 추상 좌표로 변환.
         """
         mn0 = self.master.xy >= obj.center
         mn1 = self.master.xy <= obj.center
@@ -2105,11 +1981,6 @@ class OneDimGrid(CircularMapping):
     """
     Class implementing one-dimensional abstract coordinates.
 
-    Notes
-    -----
-    **(Korean)**
-    1차원 추상좌표를 구현하는 클래스.
-
     """
 
     # Member variables and properties
@@ -2126,9 +1997,6 @@ class OneDimGrid(CircularMapping):
     .. image:: ../assets/img/object_grid_OneDimGrid_name.png
            :height: 250
 
-    Notes
-    -----
-    **(Korean)** 좌표계 이름.
     """
 
     range = None
@@ -2145,9 +2013,6 @@ class OneDimGrid(CircularMapping):
     .. image:: ../assets/img/object_grid_OneDimGrid_range.png
            :height: 250
 
-    Notes
-    -----
-    **(Korean)** 좌표계가 정의된 영역. 정의된 영역의 좌표들이 반복되는 형태로 확장된다.
     """
 
     phy2abs = None
@@ -2161,9 +2026,6 @@ class OneDimGrid(CircularMapping):
     >>> g1_x.phy2abs
     <_PhyToAbsGridConverter object>
 
-    Notes
-    -----
-    **(Korean)** 물리 좌표에서 추상 좌표로 변환연산을 해주는 객체. 
     """
 
     abs2phy = None
@@ -2177,9 +2039,6 @@ class OneDimGrid(CircularMapping):
     >>> g1_x.abs2phy
     <_AbsToPhyGridConverter object>
 
-    Notes
-    -----
-    **(Korean)** 추상 좌표에서 물리 좌표로 변환연산을 해주는 객체. 
     """
 
     @property
@@ -2196,9 +2055,6 @@ class OneDimGrid(CircularMapping):
         .. image:: ../assets/img/object_grid_OneDimGrid_width.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 좌표계가 정의된 영역의 크기.
         """
         return abs(self.range[1] - self.range[0])
 
@@ -2231,9 +2087,6 @@ class OneDimGrid(CircularMapping):
         .. image:: ../assets/img/object_grid_OneDimGrid_init.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** OneDimGrid 클래스의 생성자함수.
         """
         self.name = name
         self.range = np.asarray(scope)
@@ -2313,9 +2166,6 @@ class OneDimGrid(CircularMapping):
         .. image:: ../assets/img/object_grid_OneDimGrid_export_to_dict.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 그리드의 정보를 담은 dict객체 반환.
         """
         export_dict = {
             "scope": self.range.tolist(),
@@ -2351,11 +2201,6 @@ class Grid:
 
     .. image:: ../assets/img/user_guide_grid_conversion.png
 
-
-    Notes
-    -----
-    **(Korean)** 2차원 물리좌표와 추상좌표간 mapping 정보(element) 를 갖고 있으며
-    해당 element를 활용하는 좌표 연산자를 가지고 있는 기본 클래스.
     """
 
     name = None
@@ -2397,9 +2242,6 @@ class Grid:
         .. image:: ../assets/img/object_grid_Grid_Elements.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** 좌표계 2차원 element.
         """
         return [self._xy[0].elements, self._xy[1].elements]
 
@@ -2433,9 +2275,6 @@ class Grid:
         >>> g2.xy >= [10,10]
         [1,0]
 
-        Notes
-        -----
-        **(Korean)** 2차원 _AbsToPhyConverter.
         """
         return self.abs2phy
 
@@ -2461,10 +2300,6 @@ class Grid:
         >>> g2.x >= 10
         [1]
 
-        Notes
-        -----
-        **(Korean)**
-        x좌표계 1차원 _AbsToPhyGridConverter.
         """
         return self._xy[0].abs2phy
 
@@ -2490,9 +2325,6 @@ class Grid:
         >>> g2.y >= 10
         [0]
 
-        Notes
-        -----
-        **(Korean)** y좌표계 1차원 _AbsToPhyGridConverter.
         """
         return self._xy[1].abs2phy
 
@@ -2509,9 +2341,6 @@ class Grid:
         >>> g2.v
         g1_x
 
-        Notes
-        -----
-        **(Korean)** x좌표계 OneDimGrid.
         """
         return self.x
 
@@ -2528,9 +2357,6 @@ class Grid:
         >>> g2.h
         g1_y
 
-        Notes
-        -----
-        **(Korean)** y좌표계 OneDimGrid.
         """
         return self.y
 
@@ -2558,10 +2384,6 @@ class Grid:
         >>> g2.mn >= [40,40]
         [800, 810]
 
-        Notes
-        -----
-        **(Korean)**
-        좌표계 2차원 _PhyToAbsConverter.
         """
         return self.phy2abs
 
@@ -2589,9 +2411,6 @@ class Grid:
         >>> g2.n >= 40
         810
 
-        Notes
-        -----
-        **(Korean)** x좌표계 1차원 _PhyToAbsConverter.
         """
         return self._xy[0].phy2abs
 
@@ -2619,9 +2438,6 @@ class Grid:
         >>> g2.n >= 40
         810
 
-        Notes
-        -----
-        **(Korean)** y좌표계 1차원 _PhyToAbsConverter.
         """
         return self._xy[1].phy2abs
 
@@ -2639,9 +2455,6 @@ class Grid:
         >>> g2.shape
         [5, 5]
 
-        Notes
-        -----
-        **(Korean)** 좌표게 2차원 element의 길이.
         """
         return np.hstack([self._xy[0].shape, self._xy[1].shape])
 
@@ -2665,9 +2478,6 @@ class Grid:
     >>> g2.range 
     [ [0, 0], [100, 100 ]]
 
-    Notes
-    -----
-    **(Korean)** 좌표계가 정의된 영역.
     """
 
     @property
@@ -2684,9 +2494,6 @@ class Grid:
         >>> g2.width
         100
 
-        Notes
-        -----
-        **(Korean)** 좌표계가 정의된 영역의 폭.
         """
         return self._xy[0].width
 
@@ -2703,9 +2510,6 @@ class Grid:
         >>> g2.height
         100
 
-        Notes
-        -----
-        **(Korean)** 좌표계가 정의된 영역의 높이.
         """
         return self._xy[1].width
 
@@ -2722,9 +2526,6 @@ class Grid:
         >>> g2.height_vec
         [0, 100]
 
-        Notes
-        -----
-        **(Korean)** height를 list로 반환.
         """
         return np.array([0, self.height])
 
@@ -2742,9 +2543,6 @@ class Grid:
         >>> g2.width_vec
         [100, 0]
 
-        Notes
-        -----
-        **(Korean)** width를 list로 반환.
         """
         return np.array([self.width, 0])
 
@@ -2773,15 +2571,6 @@ class Grid:
         >>> print(g2)
         <laygo2.object.grid.Grid object> name: test, class: Grid, scope: [[0, 0], [100, 100]], elements: [array([ 0, 10, 20, 40, 50]), array([10, 20, 40, 50, 60])
 
-        Notes
-        -----
-        **(Korean)** Grid 클래스의 생성자함수.
-        파라미터
-            - name(str): 이름
-            - vgrid(laygo2.OneDimGrid): x좌표계 OneDimGrid 객체
-            - hgrid(laygo2.OneDimGrid): y좌표계 OneDimGrid 객체
-        반환값
-            - laygo2.Grid
         """
         self.name = name
         self._xy = [vgrid, hgrid]
@@ -3116,9 +2905,6 @@ class Grid:
         >>> g2.summarize()
         <laygo2.object.grid.Grid object> name: test, class: Grid, scope: [[0, 0], [100, 100]], elements: [array([ 0, 10, 20, 40, 50]), array([10, 20, 40, 50, 60])
 
-        Notes
-        -----
-        **(Korean)** 해당 Grid의 정보 출력.
         """
         return (
             self.__repr__()

@@ -29,11 +29,6 @@ class PlacementGrid(Grid):
     PlacementGrid class implements a grid for placement of Instance and
     VirtualInstance objects.
 
-    Notes
-    -----
-    **(Korean)** PlacementGrid 클래스는 Instance 및 VirtualInstance 개체들의
-        배치를 위한 격자 그리드를 구현한다.
-
     """
 
     type = "placement"
@@ -81,14 +76,6 @@ class PlacementGrid(Grid):
         >>> print(i0.xy)
         [200, 1000]
 
-        Notes
-        -----
-        **(Korean)** 인스턴스 xy속성에 추상좌표를 매핑함.
-            파라미터
-            - inst(laygo2.physical.instance): 배치할 인스턴스
-            - mn(numpy.ndarray or list): 인스턴스를 배치할 추상좌표
-            반환값
-            - laygo2.physical.instance: 좌표가 수정된 인스턴스
         """
         inst.xy = self[mn]
         return inst

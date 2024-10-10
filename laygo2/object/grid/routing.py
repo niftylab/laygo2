@@ -29,10 +29,6 @@ import laygo2.object
 class RoutingGrid(Grid):
     """
     A class that implements wire connections in an abstract coordinate system.
-
-    Notes
-    -----
-    **(Korean)** 추상 좌표계 상의 배선 동작을 구현하는 클래스.
     """
 
     type = "routing"
@@ -85,10 +81,6 @@ class RoutingGrid(Grid):
     See Also
     --------
     vwidth, hwidth, vextension, hextension, vextension0, hextension0
-
-    Notes
-    -----
-    **(Korean)** 수직 wire들의 폭.
     """
 
     hwidth = None
@@ -139,9 +131,6 @@ class RoutingGrid(Grid):
     --------
     vwidth, hwidth, vextension, hextension, vextension0, hextension0
 
-    Notes
-    -----
-    **(Korean)** 수평 wire들의 폭.
     """
 
     vextension = None
@@ -188,9 +177,6 @@ class RoutingGrid(Grid):
     .. image:: ../assets/img/object_grid_RoutingGrid_vextension.png
            :height: 250
 
-    Notes
-    -----
-    **(Korean)** 수직 wire들의 extension.
     """
 
     hextension = None
@@ -237,9 +223,6 @@ class RoutingGrid(Grid):
     .. image:: ../assets/img/object_grid_RoutingGrid_hextension.png
            :height: 250 
 
-    Notes
-    -----
-    **(Korean)** 수평 wire들의 extension.
     """
 
     vextension0 = None
@@ -370,9 +353,6 @@ class RoutingGrid(Grid):
     .. image:: ../assets/img/object_grid_RoutingGrid_vlayer.png
            :height: 250
 
-    Notes
-    -----
-    **(Korean)** 수직 wire들의 레이어 정보.
     """
 
     hlayer = None
@@ -419,9 +399,6 @@ class RoutingGrid(Grid):
     .. image:: ../assets/img/object_grid_RoutingGrid_hlayer.png
            :height: 250
 
-    Notes
-    -----
-    **(Korean)** 수평 wire들의 레이어정보.
     """
 
     pin_vlayer = None
@@ -468,9 +445,6 @@ class RoutingGrid(Grid):
     .. image:: ../assets/img/object_grid_RoutingGrid_pin_vlayer.png
            :height: 250
 
-    Notes
-    -----
-    **(Korean)** 수직 pin wire들의 레이어 정보.
     """
 
     pin_hlayer = None
@@ -517,9 +491,6 @@ class RoutingGrid(Grid):
     .. image:: ../assets/img/object_grid_RoutingGrid_pin_hlayer.png
            :height: 250
 
-    Notes
-    -----
-    **(Korean)** 수평 pin wire 들의 레이어정보.
     """
 
     viamap = None
@@ -569,9 +540,6 @@ class RoutingGrid(Grid):
     .. image:: ../assets/img/object_grid_RoutingGrid_viamap.png
            :height: 250
 
-    Notes
-    -----
-    **(Korean)** 그리드 교차점에 위치하는 via개채들을 담고있는배열.
     """
 
     primary_grid = "vertical"
@@ -617,9 +585,6 @@ class RoutingGrid(Grid):
     .. image:: ../assets/img/object_grid_RoutingGrid_primary_grid.png
            :height: 250
 
-    Notes
-    -----
-    **(Korean)** Routing의 기본 방향 (길이가 0인 wire방향).
     """
 
     xcolor = None
@@ -637,9 +602,6 @@ class RoutingGrid(Grid):
     .. image:: ../assets/img/object_grid_RoutingGrid_xcolor.png
            :height: 250
 
-    Notes
-    -----
-    **(Korean)** 수평 wire 들의 color.
     """
 
     ycolor = None
@@ -657,9 +619,6 @@ class RoutingGrid(Grid):
     .. image:: ../assets/img/object_grid_RoutingGrid_ycolor.png
            :height: 250
 
-    Notes
-    -----
-    **(Korean)** 수직 wire들의 color.
     """
 
     def __init__(
@@ -810,30 +769,6 @@ class RoutingGrid(Grid):
         .. image:: ../assets/img/object_grid_RoutingGrid_init.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)**
-        RoutingGrid 클래스의 생성자함수.
-        파라미터
-        name(str): Routing 객체의 이름
-        vgrid(laygo2.OneDimGrid): x좌표계 OneDimGrid
-        hgrid(laygo2.OneDimGrid): y좌표계 OneDimGrid
-        vwidth(CircularMapping): x좌표계 Width
-        hwidth(CircularMapping): y좌표계 Width
-        vextension(CircularMapping): x좌표계의 extension
-        hextension(CircularMapping): y좌표계의 extension
-        vlayer(CircularMapping): x좌표계의 layer
-        hlayer(CircularMapping): y좌표계의 layer
-        pin_vlayer(CircularMapping): x좌표계 pin의 layer
-        pin_hlayer(CircularMapping): y좌표계 pin의 layer
-        xcolor(list): x좌표계 color
-        ycolor(list): y좌표계 color
-        viamap(CircularMappingArray): Grid의 Via map
-        primary_grid(str): 길이가 0인 Wire방향
-        반환값
-        laygo2.RoutingGrid
-        참조
-        없음
         """
         self.vwidth = vwidth
         self.hwidth = hwidth
@@ -973,16 +908,6 @@ class RoutingGrid(Grid):
         .. image:: ../assets/img/object_grid_RoutingGrid_route.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)**
-        추상 좌표 위에 라우팅을 수행 하는 함수.
-        파라미터
-        mn(list(numpy.ndarray)): 배선을 수행할 2개 이상의 mn 좌표를 담고 있는 list.
-        direction(str): None or “vertical”; path의 방향을 결정 (수평 or 수직) [optional].
-        via_tag(list(Boolean)): Path에 via를 형성 할지를 결정하는 switch들을 담고 있는 list [optional].
-        반환값
-        list: 생성된 routing object들을 담고 있는 list.
         """
         # 1. Check whether the "mn" is physical object list or coordinate list.
         __mn = []
@@ -1136,14 +1061,6 @@ class RoutingGrid(Grid):
         .. image:: ../assets/img/object_grid_RoutingGrid_via.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** via 생성함수.
-
-        파라미터
-            - mn(list(numpy.ndarray)): via를 생성할 mn좌표. 복수 개 입력 가능.
-        반환값
-            - list(physical.PhysicalObject)): 생성된 via들을 담고 있는 list.
         """
         # If mn contains multiple coordinates (or objects), place iteratively.
         if isinstance(mn, list):
@@ -1236,18 +1153,6 @@ class RoutingGrid(Grid):
         .. image:: ../assets/img/object_grid_RoutingGrid_route_via_track.png
            :height: 250
 
-        Notes
-        -----
-        **(Korean)** wire 라우팅 함수, track을 기준점으로 routing을 진행한다.
-
-        파라미터
-            - track(numpy.ndarray): track의 좌표값과 방향을 담고 있는 list.
-                수직 트랙일 경우 [v, None],
-                수평 트랙일 경우 [None, v]의 형태를 가지고 있다 (v는 track의 좌표값).
-            - mn(list(numpy.ndarray)): track을 통해 연결될 지점들의 좌표를 담고 있는 list.
-        반환값
-            - list: 생성된 routing object들을 담고 있는 list.
-                마지막 object가 track위의 routing object에 해당.
         """
         mn = np.array(mn)
         route = list()
@@ -1355,18 +1260,6 @@ class RoutingGrid(Grid):
             params: None, , layer: ['M2' 'pin'], netname: pin, shape: None,
             master: None
 
-        Notes
-        -----
-        **(Korean)** pin 생성함수.
-
-        파라미터
-            - name(str): Pin 이름
-            - mn(numpy.ndarray): Pin을 생성할 abstract 좌표
-            - direction(str): 방향 [optional]
-            - netname(str): Pin의 net이름 [optional]
-            - params(dict): Pin 속성 [optional]
-        반환값
-            - laygo2.physical.Pin: Pin object
         """
         if (mn.__class__.__name__ == "PhysicalObject") or \
             (issubclass(mn.__class__, laygo2.object.physical.PhysicalObject)): # object is given for the input coordinate

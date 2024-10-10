@@ -54,10 +54,6 @@ class UniformRoutingGrid(RoutingGrid):
     __init__()
     via()
 
-    Notes
-    -----
-    Reference in Korean:
-    조절가능한 등간격 추상 좌표계의 동작을 구현하는 클래스.
     """
     type = 'uniform_routing'
 

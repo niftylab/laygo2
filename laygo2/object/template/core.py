@@ -35,9 +35,6 @@ class Template(metaclass=ABCMeta):
     """
     The base class that defines the functions and attributes of the template.
 
-    Notes
-    -----
-    **(Korean)** Template의 기본동작과 속성을 정의한 기본 클래스.
     """
 
     name = None
@@ -104,9 +101,6 @@ class NativeInstanceTemplate(Template):
     """
     NativeInstanceTemplate class implements the template that generate Instance.
 
-    Notes
-    -----
-    **(Korean)** NativeInstanceTemplate 클래스는 기본 Instance를 반환하는 템플릿을 구현한다.
     """
 
     libname = None
@@ -129,9 +123,6 @@ class NativeInstanceTemplate(Template):
     .. image:: ../assets/img/object_template_NativeInstanceTemplate_libname.png
           :height: 250
 
-    Notes
-    -----
-    **(Korean)** NativeInstanceTemplate 객체의 library 이름.
     """
 
     cellname = None
@@ -154,9 +145,6 @@ class NativeInstanceTemplate(Template):
     .. image:: ../assets/img/object_template_NativeInstanceTemplate_cellname.png
           :height: 250
 
-    Notes
-    -----
-    **(Korean)** NativeInstanceTemplate 객체의 cellname.
     """
 
     _bbox = np.array([[0, 0], [0, 0]])
@@ -203,9 +191,6 @@ class NativeInstanceTemplate(Template):
         .. image:: ../assets/img/object_template_NativeInstanceTemplate_init.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)** NativeInstanceTemplate 클래스의 생성자함수.
         """
         self.libname = libname
         self.cellname = cellname
@@ -263,9 +248,6 @@ class NativeInstanceTemplate(Template):
         .. image:: ../assets/img/object_template_NativeInstanceTemplate_bbox.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)** NativeInstanceTemplate 객체의 bbox.
         """
         return self._bbox
 
@@ -309,9 +291,6 @@ class NativeInstanceTemplate(Template):
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_pins.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)** NativeInstanceTemplate 객체의 pin dictionary 반환.
         """
         return self._pins
 
@@ -383,9 +362,6 @@ class NativeInstanceTemplate(Template):
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_generate.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)** 템플릿으로부터 Instance 객체 생성.
         """
         inst = laygo2.object.physical.Instance(
             libname=self.libname,
@@ -450,9 +426,6 @@ class NativeInstanceTemplate(Template):
         .. image:: ../assets/img/object_template_NativeInstanceTemplate_export_to_dict.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)** NativeInstanceTemplate 의 정보가 담긴 Dictonary 반환.
         """
         db = dict()
         db["libname"] = self.libname
@@ -471,10 +444,6 @@ class ParameterizedInstanceTemplate(Template):
     configurations based on input parameters, such as instances mapped 
     to Cadence Virtuoso's pcells or Pycells.
 
-    Notes
-    -----
-    **(Korean)** ParameterizedInstanceTemplate 클래스는 입력 파라미터에 따라 
-    크기와 pin 정보가 가변하는 인스턴스를 생성하는 템플릿을 구현한다. 
     """
 
     libname = None
@@ -569,9 +538,6 @@ class ParameterizedInstanceTemplate(Template):
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_init.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)** ParameterizedInstanceTemplate 클래스의 생성자함수.
         """
         self.libname = libname
         self.cellname = cellname
@@ -634,9 +600,6 @@ class ParameterizedInstanceTemplate(Template):
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_bbox.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)** ParameterizedInstanceTemplate 객체의 bbox.
         """
         return self._bbox(params=params)
 
@@ -700,9 +663,6 @@ class ParameterizedInstanceTemplate(Template):
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_pins.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)** ParameterizedInstanceTemplate 객체의 pin dictionary 반환.
         """
         return self._pins(params=params)
 
@@ -791,18 +751,6 @@ class ParameterizedInstanceTemplate(Template):
         .. image:: ../assets/img/object_template_ParameterizedInstanceTemplate_generate.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)** 템플릿으로부터 입력 파라미터에 따른 Instance 객체 생성.
-
-        파라미터
-            - name(str): 생성할 인스턴스의 이름.
-            - shape(numpy.ndarray): (optional) 생성할 객체의 배열 shape.
-            - pitch(numpy.ndarray): (optional) 생성할 객체 간의 간격.
-            - params(dict) : 개체의 속성이 담긴 dictionary.
-            - transform(str): 생성할 개체의 변환 속성.
-        반환값
-            - laygo2.Instance: 생성된 객체
         """
         # xy = xy + np.dot(self.xy(params)[0], tf.Mt(transform).T)
         inst = laygo2.object.physical.Instance(
@@ -828,11 +776,6 @@ class UserDefinedTemplate(Template):
     UserDefinedTemplate class implements the template that generates 
     a VirtualInstance object corresponding to the template and input 
     parameters.
-
-    Notes
-    -----
-    **(Korean)** UserDefinedTemplate 클래스는 VirtualInstance를 반환하는 
-    템플릿을 구현한다.
 
     """
 
@@ -974,17 +917,6 @@ class UserDefinedTemplate(Template):
         .. image:: ../assets/img/object_template_UserDefinedTemplate_init.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)** UserDefinedTemplate 클래스의 생성자 함수.
-        
-        파라미터
-            - bbox_func(callable): bbox를 연산하는 함수.
-            - pins_func(callable): pins를 생성하는 함수.
-            - generate_func(callable): VirtualInstance를 생성하는 함수.
-            - name(str): 템플릿 이름
-        반환값
-            - laygo2.object.template.UserDefinedTemplate
         """
         self._bbox = bbox_func
         self._pins = pins_func
@@ -1077,9 +1009,6 @@ class UserDefinedTemplate(Template):
         .. image:: ../assets/img/object_template_UserDefinedTemplate_bbox.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)** UserDefinedTemplate 객체의 bbox 반환.
         """
         return self._bbox(params=params)
 
@@ -1176,9 +1105,6 @@ class UserDefinedTemplate(Template):
         .. image:: ../assets/img/object_template_UserDefinedTemplate_pins.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)** UserDefinedTemplate 객체의 pin dictionary를 생성 및 반환하는 함수.
         """
         return self._pins(params=params)
 
@@ -1312,17 +1238,6 @@ class UserDefinedTemplate(Template):
         .. image:: ../assets/img/object_template_UserDefinedTemplate_generate.png
           :height: 250
 
-        Notes
-        -----
-        **(Korean)** 템플릿으로부터 입력 파라미터에 따른 VirtualInstance 객체 생성.
-        파라미터
-            - name(str): 생성할 인스턴스의 이름.
-            - shape(numpy.ndarray): (optional) 생성할 객체의 배열 shape.
-            - pitch(numpy.ndarray): (optional) 생성할 객체 간의 간격.
-            - params(dict) : 개체의 속성이 담긴 dictionary.
-            - transform(str): 생성할 개체의 변환 속성.
-        반환값
-            - laygo2.VirtualInstance: 생성된 객체
         """
         inst = self._generate(
             name=name, shape=shape, pitch=pitch, transform=transform, params=params
