@@ -1263,9 +1263,9 @@ class RoutingGrid(Grid):
         """
         if (mn.__class__.__name__ == "PhysicalObject") or \
             (issubclass(mn.__class__, laygo2.object.physical.PhysicalObject)): # object is given for the input coordinate
-            _mn = self.mn.bbox(mn)  # get the bounding box of the object.
+            mn = self.mn.bbox(mn)  # get the bounding box of the object.
         else:  # numerical coordinate
-            _mn = mn
+            mn = mn
 
         xy0 = self.abs2phy[mn[0]]
         xy1 = self.abs2phy[mn[1]]
