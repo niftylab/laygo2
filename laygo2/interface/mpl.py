@@ -366,7 +366,7 @@ def export(
         if tech is None:
             colormap = dict()
         else:
-            tech_params = db.tech.tech_params
+            tech_params = tech.tech_params
             colormap = tech_params['export']['mpl']['colormap']
 
     # a list to align layered objects in order
@@ -374,7 +374,7 @@ def export(
         if tech is None:
             order = []
         else:
-            tech_params = db.tech.tech_params
+            tech_params = tech.tech_params
             order = tech_params['export']['mpl']['order']
 
     # cell name handling.
