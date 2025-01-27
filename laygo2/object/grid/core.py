@@ -2513,39 +2513,6 @@ class Grid:
         """
         return self._xy[1].width
 
-    @property
-    def height_vec(self):
-        """numpy.ndarray: Return the height vector [0, h].
-
-        Example
-        -------
-        >>> from laygo2.object.grid import OneDimGrid, Grid
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
-        >>> g2   = Grid(name="test", vgrid = g1_x, hgrid = g1_y )
-        >>> g2.height_vec
-        [0, 100]
-
-        """
-        return np.array([0, self.height])
-
-    @property
-    def width_vec(self):
-        """numpy.ndarray: Return width as a list.
-            length of the respective axis and zero
-
-        Example
-        -------
-        >>> from laygo2.object.grid import OneDimGrid, Grid
-        >>> g1_x = OneDimGrid(name='xgrid', scope=[0, 100], elements=[0, 10, 20, 40, 50 ])
-        >>> g1_y = OneDimGrid(name='ygrid', scope=[0, 100], elements=[10, 20, 40, 50, 60 ])
-        >>> g2   = Grid(name="test", vgrid = g1_x, hgrid = g1_y )
-        >>> g2.width_vec
-        [100, 0]
-
-        """
-        return np.array([self.width, 0])
-
     def __init__(self, name, vgrid, hgrid):
         """
         Constructor function of Grid class.
@@ -2620,6 +2587,19 @@ class Grid:
         but greater than or equal to other.
         """
         return self.abs2phy.__ge__(other)
+
+    # object coordinate conversion functions
+    def height_vec(self, obj:"laygo2.object.physical.PhysicalObject"):
+        """
+        Return the height vector of the input object obj.
+        """
+        return self.phy2abs.height_vec(obj)
+
+    def width_vec(self, obj:"laygo2.object.physical.PhysicalObject"):
+        """
+        Return the width vector of the input object obj.
+        """
+        return self.phy2abs.width_vec(obj)
 
     def bbox(self, obj):
         """
