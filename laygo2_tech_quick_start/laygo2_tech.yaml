@@ -1,38 +1,41 @@
 # Technology parameters for the advanced example technology.
-mpl: # for matplotlib
-  colormap:
-    prBoundary: ["darkgray", "none", 0.3]
-    nwell: ["yellowgreen", "none", 0.3]
-    pimplant: ["tomato", "none", 0.3]
-    nimplant: ["olive", "none", 0.3]
-    diffusion: ["r", "r", 0.5]
-    poly: ["b", "b", 0.3]
-    metal1: ["c", "c", 0.5]
-    metal2: ["y", "y", 0.5]
-    metal3: ["g", "g", 0.5]
-    metal4: ["m", "m", 0.5]
-    via1: ["indigo", "indigo", 1]
-    via2: ["navy", "navy", 1]
-    via3: ["olive", "olive", 1]
-    __instance__: ["black", "none", 1]
-    __instance_pin__: ["gray", "none", 1]
-  order:
-    - __instance__
-    - __instance_pin__
-    - prBoundary
-    - nwell
-    - pimplant
-    - nimplant
-    - diffusion
-    - poly
-    - metal1
-    - via1
-    - metal2
-    - via2
-    - metal3
-    - via3
-    - metal4
-    - text
+export:
+    target: mpl
+    mpl: &laygo2_tech_mpl
+      colormap:
+      prBoundary: ["darkgray", "none", 0.3]
+      nwell: ["yellowgreen", "none", 0.3]
+      pimplant: ["tomato", "none", 0.3]
+      nimplant: ["olive", "none", 0.3]
+      diffusion: ["r", "r", 0.5]
+      poly: ["b", "b", 0.3]
+      metal1: ["c", "c", 0.5]
+      metal2: ["y", "y", 0.5]
+      metal3: ["g", "g", 0.5]
+      metal4: ["m", "m", 0.5]
+      via1: ["indigo", "indigo", 1]
+      via2: ["navy", "navy", 1]
+      via3: ["olive", "olive", 1]
+      __instance__: ["black", "none", 1]
+      __instance_pin__: ["gray", "none", 1]
+    order:
+      - __instance__
+      - __instance_pin__
+      - prBoundary
+      - nwell
+      - pimplant
+      - nimplant
+      - diffusion
+      - poly
+      - metal1
+      - via1
+      - metal2
+      - via2
+      - metal3
+      - via3
+      - metal4
+      - text
+mpl: *laygo2_tech_mpl
 grids:
   placement_basic:
     type: placement
