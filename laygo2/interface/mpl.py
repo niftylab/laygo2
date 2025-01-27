@@ -320,6 +320,7 @@ def _translate_obj(
 def export(
     db: Union["laygo2.object.database.Library", "laygo2.object.database.Design"],
     cellname: str = None,
+    tech: "laygo2.object.technology.BaseTechnology" = None,
     scale = 1,
     colormap: dict = None,
     order = None,
@@ -338,6 +339,8 @@ def export(
         The library database or design to exported.
     cellname: str or List[str]
         (optional) The name(s) of cell(s) to be exported.
+    tech: laygo2.technology.BaseTechnology
+        (optional) The technology object to be used for the export.
     scale: float
         (optional) The scaling factor between laygo2's integer coordinates and plot coordinates.
     colormap: dict
@@ -360,11 +363,19 @@ def export(
     """
     # colormap
     if colormap is None:
-        colormap = dict()
+        if tech is None:
+            colormap = dict()
+        else:
+            tech_params = db.tech.tech_params
+            colormap = tech_params['export']['mpl']['colormap']
 
     # a list to align layered objects in order
     if order is None:
-        order = []
+        if tech is None:
+            order = []
+        else:
+            tech_params = db.tech.tech_params
+            order = tech_params['export']['mpl']['order']
 
     # cell name handling.
     if isinstance(db, laygo2.object.database.Design):
