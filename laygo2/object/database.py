@@ -1568,7 +1568,7 @@ class Design(BaseDatabase):
         self.append(r)
         return r
 
-    def pin(self, name, grid, mn, direction=None, netname=None, params=None):
+    def pin(self, name, grid=None, mn=None, direction=None, netname=None, params=None):
         """
         Create a Pin object over the abstract coordinates specified by mn,
         on the specified routing grid.
@@ -1652,6 +1652,12 @@ class Design(BaseDatabase):
             virtual instances:{}
 
         """
+        # Grid setup
+        if grid is None:
+            if self.rgrid is None:
+                raise ValueError("Design.pin() requires grid input if Design.rgrid is not set")
+            grid = self.rgrid
+            
         p = grid.pin(name=name, mn=mn, direction=direction, netname=netname, params=params)
         self.append(p)
         return p
