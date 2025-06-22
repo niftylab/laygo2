@@ -1209,6 +1209,34 @@ class RoutingGrid(Grid):
         """
         # If mn contains multiple coordinates (or objects), place iteratively.
         if isinstance(mn, list):
+            if isinstance(mn[0], (int, np.integer)): # It's actually a single coordinate.
+                return self.via(mn=np.asarray(mn), params=params)
+            else:
+                return [self.via(mn=_mn, params=params) for _mn in mn]
+        elif isinstance(mn, np.ndarray):
+            if isinstance(mn[0], (int, np.integer)): # It's actually a single coordinate.
+                pass
+            else:
+                return np.array([self.via(mn=_mn, params=params) for _mn in mn])
+        if not isinstance(mn, tuple):
+            # if mn is a physical object or ponter, get the coordinate information from the object.
+            if (mn.__class__.__name__ == "PhysicalObjectPointer") or \
+               (mn.__class__.__name__ == "PhysicalObject") or \
+               (issubclass(mn.__class__, PhysicalObject)):
+                if (mn.__class__.__name__ == "PhysicalObjectPointer"): # if _mn is PhysicalObjectPointer
+                    mn = mn.evaluate(self)
+                else: # If mn is laygo2.object.Rect or laygo2.object.Pin             
+                    mn = self.center(mn)
+                    #mn_eval = self.center(mn)
+            mn = tuple(mn)  # viamap (CircularMapping) works only with tuples
+        tvia = self.viamap[mn]
+        via = tvia.generate(params=params)
+        via.xy = self[mn]
+        return via
+
+        '''
+        # If mn contains multiple coordinates (or objects), place iteratively.
+        if isinstance(mn, list):
             if isinstance(mn[0], (int, np.integer)):  # It's actually a single coordinate.
                 return self.via(mn=np.asarray(mn), params=params)
             else:
@@ -1224,6 +1252,7 @@ class RoutingGrid(Grid):
         via = tvia.generate(params=params)
         via.xy = self[mn]
         return via
+        '''
 
     def route_via_track(self, mn, track, via_tag=[False, True], netname=None):
         """
