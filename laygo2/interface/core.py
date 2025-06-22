@@ -17,7 +17,7 @@ def export(
     xlim: list = None,
     ylim: list = None,
     show: bool = None,
-    annotate_grid: List["laygo2.object.physical.Grid"] = None,
+    annotate_grid = None,
     export_to_webserver: bool = False,
 ):
     """
