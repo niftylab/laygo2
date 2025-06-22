@@ -1299,6 +1299,168 @@ class RoutingGrid(Grid):
            :height: 250
 
         """
+        branch_offset=None  # compatibility with laygo3
+        via_tag_branch=[False, False]  # compatibility with laygo3
+        
+        # Check if the track number is integer
+        if (track[0] is None) and (not isinstance(track[1], int) and not isinstance(track[1], PhysicalObjectPointerAbsCoordinate)):
+            if track[1].ndim > 0:
+                raise ValueError(f"The format of horizontal track for route_via_track() and route() should be [None, int] or [None, PhysicalObjectPointerAbsCoordinate].")
+        if (track[1] is None) and (not isinstance(track[0], int) and not isinstance(track[0], PhysicalObjectPointerAbsCoordinate)):
+            if track[0].ndim > 0:
+                raise ValueError(f"The format of vertical track for route_via_track() and route() should be [int, None] or [PhysicalObjectPointerAbsCoordinate, None].")
+
+        # Preprocess: complete via_tag and via_tag_branch by adding false to empty entries.
+        if via_tag is None:
+            via_tag = []
+        for diff in range(len(mn)-len(via_tag)):  
+            via_tag.append(False)
+        if branch_offset is not None: 
+            for diff in range(len(branch_offset)-len(via_tag_branch)):
+                via_tag_branch.append(False)
+
+        # Preprocess: evaluate the expression of track_num (evaluated version of track)
+        track_num = [0, 0]
+        if isinstance(track[0], PhysicalObjectPointerAbsCoordinate):
+            track_num[0] = track[0].evaluate(self)
+        else:
+            track_num[0] = track[0]
+        if isinstance(track[1], PhysicalObjectPointerAbsCoordinate):
+            track_num[1] = track[1].evaluate(self)
+        else:
+            track_num[1] = track[1]
+
+        # 1. Check whether the "mn" is physical object list or coordinate list and determine the direction of the object.
+        route_obj = [] # [mn, layer, direction]
+        for _mn in mn:
+            if (_mn.__class__.__name__ == "PhysicalObjectPointer") or \
+               (_mn.__class__.__name__ == "PhysicalObject") or \
+               (issubclass(_mn.__class__, PhysicalObject)):
+                if (_mn.__class__.__name__ == "PhysicalObjectPointer"): # if _mn is PhysicalObjectPointer
+                    _mn_obj = _mn.master
+                    _mn_eval = _mn.evaluate(self)
+                else: # If _mn is laygo2.object.Rect or laygo2.object.Pin             
+                    _mn_obj = _mn
+                    _mn_eval = self.center(_mn)
+
+                if (_mn_obj.width > _mn_obj.height) and (_mn_obj.height > 0):
+                    route_obj.append([_mn_eval, _mn_obj.layer[0], "horizontal"]) # Assume the point to be routed as the center of the object.
+                elif _mn_obj.width < _mn_obj.height and (_mn_obj.width > 0):
+                    route_obj.append([_mn_eval, _mn_obj.layer[0], "vertical"])
+                else: 
+                    # The policy for determining the direction of square/point objects was changed on Mar-29-2025. 
+                    # for square objects, if the object's layer matches the track's layer, 
+                    # assume the parallel direction with the track.
+                    # otherwise, assume the orthogonal direction with the track.
+                    if track_num[1] != None: # horizontal
+                        if self.hlayer[track_num[1]][0] == _mn_obj.layer[0]:
+                            _direction = "horizontal" 
+                        else:
+                            _direction = "vertical" 
+                    else: # vertical
+                        if self.vlayer[track_num[0]][0] == _mn_obj.layer[0]:
+                            _direction = "vertical" 
+                        else:
+                            _direction = "horizontal" 
+                    route_obj.append([_mn_eval, _mn_obj.layer[0], _direction])
+                    '''
+                    # Deprecated on Mar-29-2025.
+                    # for square objects, assume the orthogonal direction of the track.
+                    if track[1] != None:
+                        route_obj.append([self.center(_mn), _mn.layer[0], "vertical"])
+                    else:
+                        route_obj.append([self.center(_mn), _mn.layer[0], "horizontal"])
+                    '''
+            else:
+                route_obj.append([np.array(_mn), "unknown", "unknown"]) # Use the input "via_tag" variable for routing.
+        
+        route = []
+
+        # 1. Define the track axis.
+        if track_num[1] != None:  # Give a priority to horizontal(y) track.
+            tr = 1  # index of track axis
+            br = 0  # index of branch axis
+            mn_pivot = track_num[1]
+            track_direction = "horizontal"
+        else: # Vertical(x) track
+            tr = 0
+            br = 1
+            mn_pivot = track_num[0]
+            track_direction = "vertical"
+
+        # 2. Route bypass branches (optional)
+        if branch_offset != None:
+            for idx, offset in enumerate(branch_offset):
+                if offset != 0:
+                    _mn = route_obj[idx][0]
+                    mn_new_x = _mn[0] + tr*offset
+                    mn_new_y = _mn[1] + br*offset
+                    mn_new = np.array([mn_new_x, mn_new_y])
+
+                    branch_direction = route_obj[idx][2]
+                    if branch_direction == "unknown":
+                        vtag = [via_tag_branch[idx], True]
+                    elif branch_direction == track_direction:
+                        vtag = [False, True]
+                    else:
+                        vtag = [True, True]
+                    # Destination point requires via.
+                    if not np.array_equal(mn_new, _mn):
+                        route.append(self.route(mn=[_mn, mn_new], via_tag=vtag))  # route mn_new, route_obj[idx][0]
+                    else:
+                        route.append([None, self.via(mn=_mn[0], params=None)])
+                    route_obj[idx][0] = mn_new  # update route_obj[idx][0] to mn_new
+
+        # 3. Route main branches.
+        mn_b = np.array([[0, 0], [0, 0]]) 
+        min_t, max_t = route_obj[0][0][br], route_obj[0][0][br] # Initialize the min, max value for the trunk routing.
+
+        for i in range(len(route_obj)): # Iterate the given mn-list.
+            mn_b[0] = route_obj[i][0] # Define the departing point
+            mn_b[1][br] = mn_b[0][br] # Define the destination of the branch. 
+            mn_b[1][tr] = mn_pivot
+
+            # Via drop - TODO: the stretagy needs to be changed to a layer-based one.
+            if mn_b[0][tr] == mn_pivot: # If the branch has zero length,
+                if route_obj[i][2] == "unknown": # If the route_obj direction is unknown, create a via at the destination point according to the via_tag.
+                    if via_tag[i]:
+                        route.append([None, self.via(mn=mn_b[0], params=None)]) # Only create a via at the destination point.
+                    else:
+                        route.append([None, None])
+                elif route_obj[i][2] == track_direction: # If the branch is orthogonal (route_obj is parallel) to the trunk, don't create a via.
+                    route.append([None, None])
+                else: # If the branch is parallel (route_obj is orthogonal) to the trunk, create a via at the destination point.
+                    route.append([None, self.via(mn=mn_b[0], params=None)]) 
+            else:
+                if route_obj[i][2] == "unknown":
+                    vtag = [via_tag[i], True] # If the branch direction is unknown, preserve the via_tag parameter for receiving branch coordinates for mn.
+                elif route_obj[i][2] == track_direction: # If the branch is orthogonal (route_obj is parallel) to the trunk, create a via.
+                    vtag = [True, True]
+                else: # If the branch is parallel (route_obj is orthogonal) to the trunk, create a via at the destination point.
+                    vtag = [False, True]
+                route.append(self.route(mn=[mn_b[0], mn_b[1]], via_tag=vtag, netname=netname))
+
+            comp = route_obj[i][0][br] # Update the min, max value.
+            if comp < min_t:
+                min_t = comp
+            elif max_t < comp:
+                max_t = comp
+
+        # 4. Route a trunk wire on the track.
+        mn_trunk = np.array([[0, 0], [0, 0]])
+        mn_trunk[0][br], mn_trunk[0][tr] = min_t, mn_pivot # min
+        mn_trunk[1][br], mn_trunk[1][tr] = max_t, mn_pivot # max
+
+        # if np.array_equal(mn_trunk[0], mn_trunk[1]): # Skip or create wire with length is 2 ??
+        zero_len = int(np.array_equal(mn_trunk[0], mn_trunk[1]))
+        mn_trunk[0][0] -= 1*tr*zero_len; mn_trunk[1][0] += 1*tr*zero_len
+        mn_trunk[0][1] -= 1*br*zero_len; mn_trunk[1][1] += 1*br*zero_len
+        route.append(self.route(mn=mn_trunk, netname=netname, via_tag=[False, False])) # Just create trunk wire on the track, not creating via.
+
+        return route
+
+        
+        '''
         mn = np.array(mn)
         route = list()
 
@@ -1310,9 +1472,6 @@ class RoutingGrid(Grid):
             t = 1
             p = 0
             mn_pivot = track[0]
-        
-        if isinstance(track[t], PhysicalObjectPointerAbsCoordinate):
-            track[t] = track[t].evaluate(self)
 
         mn_b = np.array([[0, 0], [0, 0]])  # 1.branch
         min_t, max_t = mn[0][t], mn[0][t]
@@ -1342,6 +1501,7 @@ class RoutingGrid(Grid):
             route.append(self.route(mn=mn_track, netname=netname))
 
         return route
+        '''
 
     def pin(self, name, mn, direction=None, netname=None, params=None):
         """
