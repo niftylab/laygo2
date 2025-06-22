@@ -1,7 +1,7 @@
 """
 This module implements interfaces with external cad environments.
 """
-from . import bag, mpl, bokeh, yaml 
+from . import bag, mpl, yaml 
 from ..object.database import Library
 
 # functions added for compatibilities with laygo3 
