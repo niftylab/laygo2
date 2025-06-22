@@ -149,8 +149,8 @@ def export(
             filename=filename,
             annotate_grid=annotate_grid
         )
-        else:
-            raise Exception("output file name is not specified")
+    else:
+        raise Exception("output file name is not specified")
 
         
 
