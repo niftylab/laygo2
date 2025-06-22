@@ -919,7 +919,7 @@ class RoutingGrid(Grid):
             else:
                 __mn.append(np.array(_mn))
 
-        mn = np.asarray(mn)
+        mn = np.asarray(__mn)
         _mn = list()
         for i in range(1, mn.shape[0]):
             # when more than two points are given,
