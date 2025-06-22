@@ -1232,7 +1232,7 @@ class Design(BaseDatabase):
                             mn_ref = mn_ref + [element, 0]  # offset
             return inst
 
-    def route(self, grid=None, mn=None, direction=None, via_tag=None):
+    def route(self, grid=None, mn=None, track=None, direction=None, via_tag=None):
         """
         Create wire object(s) for routing at abstract coordinate **mn**.
 
@@ -1242,6 +1242,10 @@ class Design(BaseDatabase):
             Placement grid for wire placement. If None, self.rgrid is used.
         mn : list(numpy.ndarray)
             List containing two or more **mn** coordinates to be connected.
+        track: numpy.ndarray
+            Specifies routing using a track. Format is [v, None] for vertical or
+            [None, v] for horizontal track coordinate. If specified, the function
+            is forwarded to route_via_track().
         direction : str, optional.
             None or “vertical” or "horizontal". The direction of the routing
             object.
