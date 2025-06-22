@@ -798,7 +798,7 @@ class RoutingGrid(Grid):
             self.ycolor = ycolor
         Grid.__init__(self, name=name, vgrid=vgrid, hgrid=hgrid)
 
-    def route(self, mn, direction=None, via_tag=None):
+    def route(self, mn, direction=None, via_tag=None, netname=None):
         """
         Create wire object(s) for routing.
 
@@ -988,6 +988,7 @@ class RoutingGrid(Grid):
                 hextension=hextension,
                 vextension=vextension,
                 color=color,
+                netname=netname,
             )
             route.append(p)
             # via placement
@@ -1080,7 +1081,7 @@ class RoutingGrid(Grid):
         via.xy = self[mn]
         return via
 
-    def route_via_track(self, mn, track, via_tag=[False, True]):
+    def route_via_track(self, mn, track, via_tag=[False, True], netname=None):
         """
         Perform routing on the specified track with accessing wires to mn.
 
@@ -1176,7 +1177,7 @@ class RoutingGrid(Grid):
             if np.array_equal(mn_b[0], mn_b[1]):  #### via only
                 route.append(self.via(mn=mn_b[0], params=None))
             else:
-                route.append(self.route(mn=[mn_b[0], mn_b[1]], via_tag=via_tag))
+                route.append(self.route(mn=[mn_b[0], mn_b[1]], via_tag=via_tag, netname=netname))
 
             center_t = mn[i][t]
             if center_t < min_t:
@@ -1191,7 +1192,7 @@ class RoutingGrid(Grid):
         if np.array_equal(mn_track[0], mn_track[1]):  # Skip
             route.append(None)
         else:
-            route.append(self.route(mn=mn_track))
+            route.append(self.route(mn=mn_track, netname=netname))
 
         return route
 
