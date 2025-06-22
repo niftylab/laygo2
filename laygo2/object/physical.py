@@ -62,6 +62,13 @@ import numpy as np
 # from copy import deepcopy
 import laygo2.util.transform as tf
 
+# Type checking
+from typing import TYPE_CHECKING, overload, Generic, Dict
+from typing import List, Tuple, Iterable, Type, Union, Any, Optional
+from laygo2._typing import T, FilePath
+if TYPE_CHECKING:
+    import laygo2
+
 class PhysicalObjectPointerAbsCoordinate():
     """A class representing abstract coordinates (m or n) of a PhysicalObjectPointer.
 
