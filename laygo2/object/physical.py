@@ -591,6 +591,7 @@ class PhysicalObject:
         """
 
         self.name = name
+        '''
         # Initialize pointers.
         self.pointers = dict()
         self.pointers["left"] = np.array([0, 0], dtype=int)
@@ -609,6 +610,20 @@ class PhysicalObject:
         self.bottom_right = self.pointers["bottom_right"]
         self.top_left = self.pointers["top_left"]
         self.top_right = self.pointers["top_right"]
+        '''
+        # initialize pointers
+        self.pointers = {}
+        self.pointers["left"] = PhysicalObjectPointer(master=self, key="left", xy=np.array([0, 0], dtype=int))
+        self.pointers["right"] = PhysicalObjectPointer(master=self, key="right", xy=np.array([0, 0], dtype=int))
+        self.pointers["bottom"] = PhysicalObjectPointer(master=self, key="bottom", xy=np.array([0, 0], dtype=int))
+        self.pointers["top"] = PhysicalObjectPointer(master=self, key="top", xy=np.array([0, 0], dtype=int))
+        self.pointers["bottom_left"] = PhysicalObjectPointer(master=self, key="bottom_left", xy=np.array([0, 0], dtype=int))
+        self.pointers["bottom_right"] = PhysicalObjectPointer(master=self, key="bottom_right", xy=np.array([0, 0], dtype=int))
+        self.pointers["top_left"] = PhysicalObjectPointer(master=self, key="top_left", xy=np.array([0, 0], dtype=int))
+        self.pointers["top_right"] = PhysicalObjectPointer(master=self, key="top_right", xy=np.array([0, 0], dtype=int))
+        self.pointers["center"] = PhysicalObjectPointer(master=self, key="center", xy=np.array([0, 0], dtype=int))
+        self.pointers["m"] = PhysicalObjectPointerAbsCoordinate(self, self.pointers["center"], 0)
+        self.pointers["n"] = PhysicalObjectPointerAbsCoordinate(self, self.pointers["center"], 1)
 
         self.params = params  # deepcopy(params)  # deepcopy increases the memory usage.
         self.xy = xy
