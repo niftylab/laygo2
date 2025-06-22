@@ -1924,8 +1924,8 @@ class _PhyToAbsGridConverter:
            :height: 250
 
         """
-        mn0 = self.master.xy >= obj.center
-        mn1 = self.master.xy <= obj.center
+        mn0 = self.master.xy >= obj.center.xy
+        mn1 = self.master.xy <= obj.center.xy
 
         point_list = [
             self.master.xy[mn0],
