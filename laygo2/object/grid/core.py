@@ -1937,7 +1937,7 @@ class _PhyToAbsGridConverter:
         idx = 0
         for point in point_list:
             dist_list.append(
-                [idx, np.linalg.norm(point - obj.center)]
+                [idx, np.linalg.norm(point - obj.center.xy)]
             )  # Calculate Euclidean distances.
             idx += 1
         dist_sorted = sorted(
