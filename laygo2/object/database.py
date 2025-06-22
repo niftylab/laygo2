@@ -878,6 +878,24 @@ class Design(BaseDatabase):
     vi = property(get_vi, set_vi)
     """str: Alias of virtual_instances."""
 
+    def _get_pgrid(self):
+        return self._pgrid
+    def _set_pgrid(self, val: "laygo2.PlacementGrid"):
+        self._pgrid = val
+    pgrid = property(_get_pgrid, _set_pgrid)
+    """laygo2.PlacementGrid: Default placement grid to be used for placement commands without specifying grid."""
+    pg = property(_get_pgrid, _set_pgrid)
+    """str: Alias of Design.pgrid"""
+
+    def _get_rgrid(self):
+        return self._rgrid
+    def _set_rgrid(self, val: "laygo2.RoutingGrid"):
+        self._rgrid = val
+    rgrid = property(_get_rgrid, _set_rgrid)
+    """laygo2.RoutingGrid: Default routing grid to be used for routing commands without specifying grid."""
+    rg = property(_get_rgrid, _set_rgrid)
+    """str: Alias of Design.rgrid"""
+    
     def __iter__(self):
         """Element-mapped direct iterator function.
 
@@ -905,7 +923,7 @@ class Design(BaseDatabase):
         """
         return self.elements.__iter__()
 
-    def __init__(self, name, params=None, elements=None, libname=None):
+    def __init__(self, name, params=None, elements=None, libname=None, pgrid=None, rgrid=None):
         """
         Design class constructor function.
 
@@ -917,6 +935,10 @@ class Design(BaseDatabase):
             Design object parameters.
         elements : dict, optional
             Design object elements.
+        pgrid : Optional[PlacementGrid])
+            Default placement grid for the design.
+        rgrid : Optional[RoutingGrid]
+            Default routing grid for the design.
 
         Returns
         -------
@@ -945,6 +967,10 @@ class Design(BaseDatabase):
         self.texts = dict()
         self.instances = dict()
         self.virtual_instances = dict()
+
+        # Initialize placement and routing grids
+        self.pgrid = pgrid
+        self.rgrid = rgrid
         BaseDatabase.__init__(self, name=name, params=params, elements=elements)
 
     def append(self, item):
@@ -1056,7 +1082,7 @@ class Design(BaseDatabase):
         )
 
     # Object creation and manipulation functions.
-    def place(self, inst, grid, mn=[0, 0], anchor_xy=None):
+    def place(self, inst, grid=None, mn=[0, 0], anchor_xy=None):
         """
         Place instance at abstract coordinate mn on abstract grid.
 
@@ -1065,7 +1091,7 @@ class Design(BaseDatabase):
         inst : laygo2.object.physical.Instance or laygo2.object.physical.VirtualInstance or list
             Instance(s) to be placed (when list, placed in order).
         grid : laygo2.object.grid.PlacementGrid
-            Placement grid for instance placement.
+            Placement grid for instance placement. If None, self.pgrid is used.
         mn : numpy.ndarray or list
             Abstract coordinate value [m, n] for instance placement.
         anchor_xy : list
@@ -1153,6 +1179,12 @@ class Design(BaseDatabase):
             on the grid.
 
         """
+        # Grid setup
+        if grid is None:
+            if self.pgrid is None:
+                raise ValueError("Design.place() requires grid input if Design.pgrid is not set")
+            grid = self.pgrid
+        
         if isinstance(inst, (laygo2.object.Instance, laygo2.object.VirtualInstance)):
             # single instance
             if anchor_xy is None:
@@ -1200,14 +1232,14 @@ class Design(BaseDatabase):
                             mn_ref = mn_ref + [element, 0]  # offset
             return inst
 
-    def route(self, grid, mn, direction=None, via_tag=None):
+    def route(self, grid=None, mn=None, direction=None, via_tag=None):
         """
         Create wire object(s) for routing at abstract coordinate **mn**.
 
         Parameters
         ----------
         grid : laygo2.object.grid.RoutingGrid
-            Placement grid for wire placement.
+            Placement grid for wire placement. If None, self.rgrid is used.
         mn : list(numpy.ndarray)
             List containing two or more **mn** coordinates to be connected.
         direction : str, optional.
@@ -1300,11 +1332,17 @@ class Design(BaseDatabase):
         laygo2.object.grid.RoutingGrid.route : route wire(s) on the grid.
 
         """
+        # Grid setup
+        if grid is None:
+            if self.rgrid is None:
+                raise ValueError("Design.route() requires grid input if Design.rgrid is not set")
+            grid = self.rgrid
+            
         r = grid.route(mn=mn, direction=direction, via_tag=via_tag)
         self.append(r)
         return r
 
-    def via(self, grid, mn, params=None):
+    def via(self, grid=None, mn=None, params=None):
         """
         Create Via object(s) on abstract grid.
 
@@ -1387,18 +1425,24 @@ class Design(BaseDatabase):
         laygo2.object.grid.RoutingGrid.via
 
         """
+        # Grid setup
+        if grid is None:
+            if self.rgrid is None:
+                raise ValueError("Design.route() requires grid input if Design.rgrid is not set")
+            grid = self.rgrid
+            
         v = grid.via(mn=mn, params=params)
         self.append(v)
         return v
 
-    def route_via_track(self, grid, mn, track, via_tag=[None, True]):
+    def route_via_track(self, grid=None, mn=None, track=None, via_tag=[None, True]):
         """
         Perform routing on the specified track with accessing wires to mn.
 
         Parameters
         ----------
         grid : laygo2.object.grid.RoutingGrid
-            The placement grid where the wire is placed on.
+            The placement grid where the wire is placed on. If None, self.rgrid is used.
         mn : list(numpy.ndarray)
             list containing coordinates of the points being connected through a track
         track : numpy.ndarray
@@ -1494,6 +1538,12 @@ class Design(BaseDatabase):
         laygo2.object.grid.RoutingGrid.route_via_track
 
         """
+        # Grid setup
+        if grid is None:
+            if self.rgrid is None:
+                raise ValueError("Design.route_via_track() requires grid input if Design.rgrid is not set")
+            grid = self.rgrid
+            
         r = grid.route_via_track(mn=mn, track=track, via_tag=via_tag)
         self.append(r)
         return r
