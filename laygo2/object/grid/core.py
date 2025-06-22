@@ -1249,6 +1249,10 @@ class _PhyToAbsGridConverter:
             issubclass(pos.__class__, laygo2.object.PhysicalObject)
         ):
             return self.bbox(pos)
+        # If pos contains only one PhysicalObjectPointer object, call one of the grid's conversion function corresponding to the pointer.
+        if (pos.__class__.__name__ == "PhysicalObjectPointer"):
+            return pos.evaluate(self)
+
         # If pos contains only one coordinate, convert it to abstract grid.
         m = self.master.x == pos[0]
         n = self.master.y == pos[1]
@@ -2553,8 +2557,12 @@ class Grid:
         return [self._xy[0].elements, self._xy[1].elements]
 
     # Indexing and slicing functions
-    def __call__(self, other):
-        return self.mn(other)
+    def __call__(self, *args):
+        if len(args) == 1:
+            return self.mn(args[0])
+        else: 
+            return self.mn(list(args))
+        #return self.mn(other)
 
     def __getitem__(self, pos):
         return self.abs2phy.__getitem__(pos)

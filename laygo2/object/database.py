@@ -1443,12 +1443,6 @@ class Design(BaseDatabase):
                 raise ValueError("Design.route() requires grid input if Design.rgrid is not set")
             grid = self.rgrid
 
-        # Convert track-based routing to route_via_track
-        if track is not None:
-            if via_tag is None: # route_via_track raise error if via_tag is not list w/ len==2
-                via_tag = [False, False]
-            return self.route_via_track(grid=grid, mn=mn, track=track, via_tag=via_tag, netname=netname)
-            
         v = grid.via(mn=mn, params=params)
         self.append(v)
         return v

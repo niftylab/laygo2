@@ -266,8 +266,10 @@ def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0
     elif isinstance(obj, list):
         cmd = ""
         for _obj in obj:
+            if _obj.name == None:
+                _obj.name = "NoName"
             cmd += _translate_obj(
-                _obj.name, _obj, scale=scale, master=_obj.master
+                _obj.name + "_" + master.name , _obj, scale=scale, master=master
             )
         return cmd
     else:
