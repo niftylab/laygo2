@@ -24,7 +24,7 @@
 
 #import numpy as np
 #from .core import CircularMapping, Grid, OneDimGrid
-#import laygo2.object
+import laygo2.object
 import numpy as np
 from .core import CircularMapping, Grid, OneDimGrid
 from ..physical import PhysicalObject, Rect, Path, Pin, Text, Instance, VirtualInstance, PhysicalObjectPointer, PhysicalObjectPointerAbsCoordinate
