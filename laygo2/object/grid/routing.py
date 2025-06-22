@@ -909,6 +909,144 @@ class RoutingGrid(Grid):
            :height: 250
 
         """
+        
+        # 1. Check whether the "mn" is physical object list or coordinate list.
+        __mn = []
+        for _mn in mn:
+            if (_mn.__class__.__name__ == "PhysicalObject") or (
+                issubclass(_mn.__class__, PhysicalObject)
+            ):
+                __mn.append(np.array(self.center(_mn))) # Assume the point to be routed as the center of the object.
+            elif (_mn.__class__.__name__ == "PhysicalObjectPointer"):
+                __mn.append(np.array(_mn.evaluate(self)))
+            else:
+                __mn.append(np.array(_mn))
+        # Construct via_tag if the first/last elements of mn is either PhysicalObject or PhysicalObjectPointer
+        # and the via_tag is not provided explictly
+        if via_tag is None:  # via_tag is not given
+            via_tag_candidate = [False, False]
+            # first element of the new via_tag
+            if (mn[0].__class__.__name__ == "PhysicalObject") or \
+               (issubclass(mn[0].__class__, PhysicalObject)) or \
+               (mn[0].__class__.__name__ == "PhysicalObjectPointer"):
+                    if mn[0].__class__.__name__ == "PhysicalObjectPointer":
+                        _mn_obj = mn[0].master
+                    else:
+                        _mn_obj = mn[0]
+                    if (_mn_obj.__class__.__name__ == "Rect") or \
+                       (_mn_obj.__class__.__name__ == "Pin"):
+                        if __mn[0][1] == __mn[1][1]: # horizontal
+                            if self.hlayer[__mn[0][1]][0] != _mn_obj.layer[0]:
+                                via_tag_candidate[0] = True
+                        else:  # vertical
+                            if self.vlayer[__mn[0][0]][0] != _mn_obj.layer[0]:
+                                via_tag_candidate[0] = True
+            # second element of the new via_tag
+            if (mn[-1].__class__.__name__ == "PhysicalObject") or \
+               (issubclass(mn[-1].__class__, PhysicalObject)) or \
+               (mn[-1].__class__.__name__ == "PhysicalObjectPointer"):
+                    if mn[-1].__class__.__name__ == "PhysicalObjectPointer":
+                        _mn_obj = mn[-1].master
+                    else:
+                        _mn_obj = mn[-1]
+                    if (_mn_obj.__class__.__name__ == "Rect") or \
+                       (_mn_obj.__class__.__name__ == "Pin"):
+                        if __mn[-1][1] == __mn[-2][1]:  # horizontal
+                            if self.hlayer[__mn[-1][1]][0] != _mn_obj.layer[0]:
+                                via_tag_candidate[1] = True
+                        else:  # vertical
+                            if self.vlayer[__mn[-1][0]][0] != _mn_obj.layer[0]:
+                                via_tag_candidate[1] = True
+                    if True in via_tag_candidate:
+                        via_tag = via_tag_candidate
+        
+        mn_orig = mn            
+        mn = list()
+        # for i in range(1, __mn.shape[0]):
+        for i in range(1, len(__mn)):
+            # when more than two points are given,
+            # create a multi-point wire compose of sub-routing wires
+            # connecting the points given by mn in sequence.
+            # mn.append([__mn[i - 1, :], __mn[i, :]])
+            mn.append([__mn[i-1], __mn[i]])
+        route = list()
+        # via at the starting point
+        if via_tag is not None:
+            if via_tag[0]:
+                route.append(self.via(mn=mn[0][0], params=None))
+        # routing wires
+        for i, _mn in enumerate(mn):
+            if (_mn[0].ndim > 1) or (_mn[1].ndim > 1):  # if the dimension of the point is more than 1, raise error.
+                raise ValueError(f"Invalid input for RoutingGrid.route(): mn should be a list of abstract coordinates or PhysicalObject. Check the value of mn: {mn_orig}") 
+            xy0 = self.abs2phy[_mn[0]]
+            xy1 = self.abs2phy[_mn[1]]
+            _xy = np.array([[xy0[0], xy0[1]], [xy1[0], xy1[1]]])
+            if np.all(xy0 == xy1):  # if two points are identical, generate a metal stub on the bottom layer.
+                if (direction == "vertical") or ((direction is None) and (self.primary_grid == "vertical")):
+                    width = self.vwidth[_mn[0][0]]
+                    hextension = int(width / 2)
+                    vextension = self.vextension0[_mn[0][0]]
+                    layer = self.vlayer[_mn[0][0]]
+                    if self.xcolor is not None:
+                        color = self.xcolor[
+                            _mn[0][0] % self.xcolor.shape[0]
+                        ]  # xcolor is determined by its grid layer.
+                    else:
+                        color = None
+                else:
+                    width = self.hwidth[_mn[0][1]]
+                    hextension = self.hextension0[_mn[0][1]]
+                    vextension = int(width / 2)
+                    layer = self.hlayer[_mn[0][1]]
+                    if self.ycolor is not None:
+                        color = self.ycolor[
+                            _mn[0][1] % self.ycolor.shape[0]
+                        ]  # ycolor is determined by its grid layer.
+                    else:
+                        color = None
+            else:
+                if (xy0[0] == xy1[0]) or (direction == "vertical"):  # vertical routing
+                    width = self.vwidth[_mn[0][0]]
+                    hextension = int(width / 2)
+                    vextension = self.vextension[_mn[0][0]]
+                    layer = self.vlayer[_mn[0][0]]
+                    if self.xcolor is not None:
+                        color = self.xcolor[
+                            _mn[0][0] % self.xcolor.shape[0]
+                        ]  # xcolor is determined by its grid layer.
+                    else:
+                        color = None
+                else:  # horizontal routing
+                    width = self.hwidth[_mn[0][1]]
+                    hextension = self.hextension[_mn[0][1]]
+                    vextension = int(width / 2)
+                    layer = self.hlayer[_mn[0][1]]
+                    if self.ycolor is not None:
+                        color = self.ycolor[
+                            _mn[0][1] % self.ycolor.shape[0]
+                        ]  # ycolor is determined by its grid layer.
+                    else:
+                        color = None
+            p = Rect(
+                xy=_xy,
+                layer=layer,
+                hextension=hextension,
+                vextension=vextension,
+                color=color,
+                netname=netname,
+            )
+            route.append(p)
+            # via placement 
+            if i < (np.asarray(mn).shape[0] - 1):  # connecting vias
+                route.append(self.via(mn=_mn[1], params=None))  
+            elif via_tag is not None:
+                if via_tag[-1]:  # ending point
+                    route.append(self.via(mn=_mn[1], params=None))
+        if len(route) == 1:  # not isinstance(mn[0][0], list):
+            return route[0]
+        else:
+            return route
+        '''
         # 1. Check whether the "mn" is physical object list or coordinate list.
         __mn = []
         for _mn in mn:
@@ -918,6 +1056,7 @@ class RoutingGrid(Grid):
                 __mn.append(np.array(self.center(_mn))) # Assume the point to be routed as the center of the object.
             else:
                 __mn.append(np.array(_mn))
+        
 
         mn = np.asarray(__mn)
         _mn = list()
@@ -1002,6 +1141,7 @@ class RoutingGrid(Grid):
             return route[0]
         else:
             return route
+        '''
 
     def via(self, mn=np.array([0, 0]), params=None):
         """
