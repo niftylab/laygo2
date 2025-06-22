@@ -1451,7 +1451,7 @@ class Design(BaseDatabase):
         self.append(v)
         return v
 
-    def route_via_track(self, grid=None, mn=None, track=None, via_tag=[None, True]):
+    def route_via_track(self, grid=None, mn=None, track=None, via_tag=[None, True], netname=None):
         """
         Perform routing on the specified track with accessing wires to mn.
 
@@ -1468,6 +1468,8 @@ class Design(BaseDatabase):
         via_tag : list(Boolean), optional.
             The list containing switches deciding whether to place via at
             the edges of individual stubs.
+        netname: str
+            Name of the net being routed. Used for net connectivity.
 
         Returns
         -------
@@ -1560,7 +1562,7 @@ class Design(BaseDatabase):
                 raise ValueError("Design.route_via_track() requires grid input if Design.rgrid is not set")
             grid = self.rgrid
             
-        r = grid.route_via_track(mn=mn, track=track, via_tag=via_tag)
+        r = grid.route_via_track(mn=mn, track=track, via_tag=via_tag, netname=netname)
         self.append(r)
         return r
 
