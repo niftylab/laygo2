@@ -4,7 +4,7 @@ This module implements interfaces with external cad environments.
 from . import bag, mpl, bokeh, yaml 
 from ..object.database import Library
 
-# functions to added for compatibilities with laygo3 
+# functions added for compatibilities with laygo3 
 def export(
     # Common parameters
     db: "laygo2.object.database.Library" or "laygo2.object.database.Design",
