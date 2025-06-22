@@ -25,6 +25,7 @@
 """laygo2 interface package implements all interfaces to external data structure and tools (yaml, gds, skill, skillbridge, bag)."""
 
 #from . import *
+from .core import *
 from . import gds         # gds (to be deprecated)
 from . import gdspy       # gdspy
 from . import skill       # Cadence skill
