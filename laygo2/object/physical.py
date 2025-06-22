@@ -62,6 +62,241 @@ import numpy as np
 # from copy import deepcopy
 import laygo2.util.transform as tf
 
+class PhysicalObjectPointerAbsCoordinate():
+    """A class representing abstract coordinates (m or n) of a PhysicalObjectPointer.
+
+    This class provides a way to access and manipulate individual coordinate components
+    (m or n) of a PhysicalObjectPointer in the layout grid system. It supports basic
+    arithmetic operations (addition and subtraction) for coordinate manipulation.
+
+    Attributes:
+        master (PhysicalObject): The master object which the pointer is bound to.
+        pointer (PhysicalObjectPointer): The pointer object which this coordinate is bound to.
+        index (int): The index of the coordinate (0 for m, 1 for n).
+
+    Example:
+        >>> import laygo2
+        >>> obj = laygo2.PhysicalObject(xy=[[0, 0], [100, 100]])
+        >>> # Access the m coordinate of the center pointer
+        >>> m_coord = obj.center[0]  # Returns a PhysicalObjectPointerAbsCoordinate
+        >>> # Add an offset to the m coordinate
+        >>> new_m_coord = m_coord + 2  # Moves the coordinate by 2 units in m direction
+        >>> # Evaluate the coordinate using a grid
+        >>> grid = laygo2.Grid()
+        >>> abs_coord = m_coord.evaluate(grid)  # Converts to absolute coordinate
+    """
+
+    def __init__(self, master: "laygo2.PhysicalObject", pointer: "PhysicalObjectPointer", index: int):
+        """Initialize a coordinate pointer for a physical object.
+
+        Args:
+            master: The physical object this coordinate is bound to.
+            pointer: The pointer object containing the coordinate.
+            index: Coordinate index (0=m, 1=n).
+
+        Raises:
+            TypeError: If any argument has invalid type.
+            ValueError: If index is not 0 or 1.
+        """
+        # Type validation
+        if not isinstance(master, PhysicalObject):
+            raise TypeError("master must be an instance of PhysicalObject")
+        if not isinstance(pointer, PhysicalObjectPointer):
+            raise TypeError("pointer must be an instance of PhysicalObjectPointer")
+        if not isinstance(index, int):
+            raise TypeError("index must be an integer")
+        if index not in (0, 1):
+            raise ValueError("index must be either 0 (for m) or 1 (for n)")
+
+        # Initialize attributes
+        self.master = master
+        self.pointer = pointer
+        self.index = index
+
+    def evaluate(self, grid: "laygo2.Grid") -> int:
+        """Evaluate the coordinate value in the grid system.
+        """
+        return self.pointer.evaluate(grid)[self.index]
+
+    def __add__(self, offset: int) -> "PhysicalObjectPointerAbsCoordinate":
+        """Add an offset to the coordinate value.
+
+        Args:
+            offset: Offset value to add to the coordinate (m or n).
+
+        Returns:
+            New coordinate pointer with updated offset.
+
+        Raises:
+            TypeError: If offset is not an integer.
+        """
+        if not isinstance(offset, int):
+            raise TypeError("offset must be an integer")
+
+        offset_new = np.array(self.pointer.mn_offset, dtype=int)
+        offset_new[self.index] += offset
+        return PhysicalObjectPointer(self.master, self.pointer.key, self.pointer.xy, offset_new)[self.index]
+
+    def __sub__(self, offset: int) -> "PhysicalObjectPointerAbsCoordinate":
+        """Subtract an offset from the coordinate value.
+
+        Args:
+            offset: Offset value to subtract from the coordinate (m or n).
+
+        Returns:
+            New coordinate pointer with updated offset.
+
+        Raises:
+            TypeError: If offset is not an integer.
+        """
+        if not isinstance(offset, int):
+            raise TypeError("offset must be an integer")
+
+        offset_new = np.array(self.pointer.mn_offset, dtype=int)
+        offset_new[self.index] -= offset
+        return PhysicalObjectPointer(self.master, self.pointer.key, self.pointer.xy, offset_new)[self.index]
+
+
+class PhysicalObjectPointer():
+    """A pointer to a specific coordinate of a physical object.
+
+    This class provides a way to reference and manipulate coordinates of physical objects
+    in the layout grid system. It supports basic arithmetic operations for coordinate
+    manipulation and can be used to access both m and n coordinates.
+
+    Attributes:
+        master (PhysicalObject): The physical object this pointer is bound to.
+        key (str): The key identifying the pointer (e.g., 'left', 'right', 'center').
+        xy (np.ndarray): The physical coordinates of the pointer.
+        mn_offset (np.ndarray): The offset in the grid system.
+        m (PhysicalObjectPointerAbsCoordinate): The m-coordinate component.
+        n (PhysicalObjectPointerAbsCoordinate): The n-coordinate component.
+
+    Example:
+        >>> import laygo2
+        >>> obj = laygo2.PhysicalObject(xy=[[0, 0], [100, 100]])
+        >>> # Access the center pointer
+        >>> center_ptr = obj.center
+        >>> # Get m and n coordinates
+        >>> m_coord = center_ptr[0]  # Returns m coordinate
+        >>> n_coord = center_ptr[1]  # Returns n coordinate
+        >>> # Add offset to pointer
+        >>> new_ptr = center_ptr + [2, 3]  # Moves pointer by 2 in m, 3 in n
+    """
+
+    def __init__(self, master: "laygo2.PhysicalObject", key: str, xy: np.ndarray, mn_offset: np.ndarray = np.array([0, 0])) -> None:
+        """Initialize a pointer to a specific coordinate of a physical object.
+
+        Args:
+            master (laygo2.PhysicalObject): The physical object this pointer is bound to.
+            key (str): The key identifying the pointer (e.g., 'left', 'right', 'center').
+            xy (np.ndarray): The physical coordinates of the pointer.
+            mn_offset (np.ndarray, optional): The offset in the grid system. Defaults to [0, 0].
+
+        Raises:
+            TypeError: If any argument has an invalid type.
+            ValueError: If key is not a valid pointer key.
+        """
+        if not isinstance(master, PhysicalObject):
+            raise TypeError("master must be an instance of PhysicalObject")
+        if not isinstance(key, str):
+            raise TypeError("key must be a string")
+        self.master = master
+        self.key = key
+        self.xy = xy
+        self.mn_offset = mn_offset
+        self.m = PhysicalObjectPointerAbsCoordinate(master, self, 0)
+        self.n = PhysicalObjectPointerAbsCoordinate(master, self, 1)
+
+    def evaluate(self, grid: "laygo2.Grid") -> np.ndarray:
+        """
+        Evaluate the abstract coordinate based on the grid object
+        """
+        if self.key == "left":
+            return grid.left(self.master) + self.mn_offset
+        if self.key == "right":
+            return grid.right(self.master) + self.mn_offset
+        if self.key == "top":
+            return grid.top(self.master) + self.mn_offset
+        if self.key == "bottom":
+            return grid.bottom(self.master) + self.mn_offset
+        if self.key == "bottom_left":
+            return grid.bottom_left(self.master) + self.mn_offset
+        if self.key == "bottom_right":
+            return grid.bottom_right(self.master) + self.mn_offset
+        if self.key == "top_left":
+            return grid.top_left(self.master) + self.mn_offset
+        if self.key == "top_right":
+            return grid.top_right(self.master) + self.mn_offset
+        if self.key == "center":
+            return grid.center(self.master) + self.mn_offset
+        raise ValueError(f"Invalid key: {self.key}")
+
+    def __add__(self, mn_other: Union[np.ndarray, list, tuple]) -> "PhysicalObjectPointer":
+        """Add an mn offset to the pointer.
+
+        Args:
+            mn_other (Union[np.ndarray, list, tuple]): The offset on mn to be added to the pointer.
+
+        Returns:
+            PhysicalObjectPointer: A new pointer with the updated offset.
+        """
+        offset_new = self.mn_offset + np.asarray(mn_other)
+        return PhysicalObjectPointer(self.master, self.key, self.xy, offset_new)
+
+    def __sub__(self, mn_other: Union[np.ndarray, list, tuple]) -> "PhysicalObjectPointer":
+        """Subtract an mn offset from the pointer.
+
+        Args:
+            mn_other (Union[np.ndarray, list, tuple]): The offset on mn to be subtracted from the pointer.
+
+        Returns:
+            PhysicalObjectPointer: A new pointer with the updated offset.
+        """
+        offset_new = self.mn_offset - np.asarray(mn_other)
+        return PhysicalObjectPointer(self.master, self.key, self.xy, offset_new)
+
+    def __getitem__(self, key: int) -> "PhysicalObjectPointerAbsCoordinate":
+        """Get the pointer by key. Used to support the [] operation.
+
+        Args:
+            key (int): The index of the pointer (0 for m, 1 for n).
+
+        Returns:
+            PhysicalObjectPointerAbsCoordinate: The m or n coordinate pointer.
+
+        Raises:
+            TypeError: If key is not an integer.
+        """
+        if not isinstance(key, int):
+            raise TypeError("Index of PhysicalObjectPointer() must be int. 0 for m, and 1 for n.")
+        if key == 0:
+            return self.m
+        elif key == 1:
+            return self.n
+
+    def _get_xy(self) -> np.ndarray:
+        """Get the physical coordinates of the pointer."""
+        return self._xy
+
+    def _set_xy(self, value: np.ndarray) -> None:
+        """Set the physical coordinates of the pointer."""
+        self._xy = np.asarray(value, dtype=int)
+
+    xy = property(_get_xy, _set_xy)
+    """Physical coordinates of the pointer in the layout space.
+
+    This property represents the absolute physical coordinates of the pointer in the
+    layout space. The coordinates are stored as a numpy array of shape (2,) with
+    integer dtype, representing [x, y] coordinates.
+
+    Example:
+        >>> import laygo2
+        >>> obj = laygo2.PhysicalObject(xy=[[0, 0], [100, 100]])
+        >>> ptr = obj.center  # Get center pointer
+        >>> print(ptr.xy)  # Access physical coordinates
+        array([50, 50])
+    """
 
 class PhysicalObject:
     """
