@@ -388,6 +388,7 @@ class PhysicalObject:
 
     """
 
+    '''
     pointers = None
     """dict: The dictionary containing the key-value pairs of the major physical 
     coordinates of the object, such as 'left', 'right', 'top', 'bottom', 
@@ -535,6 +536,212 @@ class PhysicalObject:
     
     .. image:: ../assets/img/object_physical_PhysicalObject_top_right.png
       :height: 250
+    """
+    '''
+
+    
+    def _get_pointers(self):
+        return self._pointers
+    def _set_pointers(self, value: dict):
+        self._pointers = value
+    pointers = property(_get_pointers, _set_pointers)
+    """dict: The dictionary containing the key-value pairs of the major
+    anchors of the object, such as 'left', 'right', 'top', 'bottom',
+    'bottom_left', 'center', 'm', 'n', etc.
+
+    Example:
+        >>> import laygo2
+        >>> obj = laygo2.PhysicalObject(xy = [[0, 0], [200, 200]])
+        >>> obj.pointers
+        {'left': array([  0, 100]), 'right': array([200, 100]),
+        'bottom': array([100,   0]), 'top': array([100, 200]),
+        'bottom_left': array([0, 0]), 'bottom_right': array([200,   0]),
+        'top_left': array([  0, 200]), 'top_right': array([200, 200]),
+        'center': array([100, 100])}
+
+        .. image:: ../assets/img/object_physical_PhysicalObject_pointers.png
+          :height: 250
+    """
+
+    # Frequently used pointers
+    def _get_left(self):
+        return self.pointers["left"]
+    def _set_left(self, value: np.ndarray):
+        self.pointers["left"] = value
+    left = property(_get_left, _set_left)
+    """numpy.ndarray: The left-center coordinate of the object.
+
+    Example:
+        >>> import laygo2
+        >>> obj = laygo2.PhysicalObject(xy = [[0, 0], [200, 200]])
+        >>> obj.left
+        array([  0, 100])
+
+        .. image:: ../assets/img/object_physical_PhysicalObject_left.png
+          :height: 250
+    """
+
+    def _get_right(self):
+        return self.pointers["right"]
+    def _set_right(self, value: np.ndarray):
+        self.pointers["right"] = value
+    right = property(_get_right, _set_right)
+    """numpy.ndarray: The right-center coordinate of the object.
+
+    Example:
+        >>> import laygo2
+        >>> obj = laygo2.PhysicalObject(xy = [[0, 0], [200, 200]])
+        >>> obj.right
+        array([200, 100])
+
+        .. image:: ../assets/img/object_physical_PhysicalObject_right.png
+          :height: 250
+    """
+
+    def _get_top(self):
+        return self.pointers["top"]
+    def _set_top(self, value: np.ndarray):
+        self.pointers["top"] = value
+    top = property(_get_top, _set_top)
+    """numpy.ndarray: The top-center coordinate of the object.
+
+    Example:
+        >>> import laygo2
+        >>> obj = laygo2.PhysicalObject(xy = [[0, 0], [200, 200]])
+        >>> obj.top
+        array([100, 200])
+
+        .. image:: ../assets/img/object_physical_PhysicalObject_top.png
+          :height: 250
+    """
+
+    def _get_bottom(self):
+        return self.pointers["bottom"]
+    def _set_bottom(self, value: np.ndarray):
+        self.pointers["bottom"] = value
+    bottom = property(_get_bottom, _set_bottom)
+    """numpy.ndarray: The bottom-center coordinate of the object.
+
+    Example:
+        >>> import laygo2
+        >>> obj = laygo2.PhysicalObject(xy = [[0, 0], [200, 200]])
+        >>> obj.bottom
+        array([100,   0])
+
+        .. image:: ../assets/img/object_physical_PhysicalObject_bottom.png
+          :height: 250
+    """
+
+    def _get_center(self):
+        return self.pointers["center"]
+    def _set_center(self, value: np.ndarray):
+        self.pointers["center"] = value
+    center = property(_get_center, _set_center)
+    """numpy.ndarray: The center-center coordinate of the object.
+
+    Example:
+        >>> import laygo2
+        >>> obj = laygo2.PhysicalObject(xy = [[0, 0], [200, 200]])
+        >>> obj.center
+        array([100, 100])
+
+        .. image:: ../assets/img/object_physical_PhysicalObject_center.png
+          :height: 250
+    """
+
+    def _get_bottom_left(self):
+        return self.pointers["bottom_left"]
+    def _set_bottom_left(self, value: np.ndarray):
+        self.pointers["bottom_left"] = value
+    bottom_left = property(_get_bottom_left, _set_bottom_left)
+    """numpy.ndarray: The bottom-left coordinate of the object.
+
+    Example:
+        >>> import laygo2
+        >>> obj = laygo2.PhysicalObject(xy = [[0, 0], [200, 200]])
+        >>> obj.bottom_left
+        array([0, 0])
+
+        .. image:: ../assets/img/object_physical_PhysicalObject_bottom_left.png
+          :height: 250
+    """
+
+    def _get_bottom_right(self):
+        return self.pointers["bottom_right"]
+    def _set_bottom_right(self, value: np.ndarray):
+        self.pointers["bottom_right"] = value
+    bottom_right = property(_get_bottom_right, _set_bottom_right)
+    """numpy.ndarray: The bottom-right coordinate of the object.
+
+    Example:
+        >>> import laygo2
+        >>> obj = laygo2.PhysicalObject(xy = [[0, 0], [200, 200]])
+        >>> obj.bottom_right
+        array([200,   0])
+
+        .. image:: ../assets/img/object_physical_PhysicalObject_bottom_right.png
+          :height: 250
+    """
+
+    def _get_top_left(self):
+        return self.pointers["top_left"]
+    def _set_top_left(self, value: np.ndarray):
+        self.pointers["top_left"] = value
+    top_left = property(_get_top_left, _set_top_left)
+    """numpy.ndarray: The top-left coordinate of the object.
+
+    Example:
+        >>> import laygo2
+        >>> obj = laygo2.PhysicalObject(xy = [[0, 0], [200, 200]])
+        >>> obj.top_left
+        array([  0, 200])
+
+        .. image:: ../assets/img/object_physical_PhysicalObject_top_left.png
+          :height: 250
+    """
+
+    def _get_top_right(self):
+        return self.pointers["top_right"]
+    def _set_top_right(self, value: np.ndarray):
+        self.pointers["top_right"] = value
+    top_right = property(_get_top_right, _set_top_right)
+    """numpy.ndarray: The top-right coordinate of the object.
+
+    Example:
+        >>> import laygo2
+        >>> obj = laygo2.PhysicalObject(xy = [[0, 0], [200, 200]])
+        >>> obj.top_right
+        array([200, 200])
+
+        .. image:: ../assets/img/object_physical_PhysicalObject_top_right.png
+          :height: 250
+    """
+
+    def _get_m(self):
+        return self.pointers["m"]
+    def _set_m(self, value: np.ndarray):
+        self.pointers["m"] = value
+    m = property(_get_m, _set_m)
+    """int: The m coordinate of the object.
+
+    Example:
+        >>> import laygo2
+        >>> obj = laygo2.PhysicalObject(xy = [[0, 0], [200, 200]])
+        >>> obj.m
+        0
+    """
+    def _get_n(self):
+        return self.pointers["n"]
+    def _set_n(self, value: np.ndarray):
+        self.pointers["n"] = value
+    n = property(_get_n, _set_n)
+    """int: The n coordinate of the object.
+    
+    Example:
+        >>> import laygo2
+        >>> obj = laygo2.PhysicalObject(xy = [[0, 100], [200, 200]])
+        >>> obj.n
+        100
     """
 
     @property
