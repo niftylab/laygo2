@@ -121,7 +121,7 @@ def export(
             reset_library=reset_library,
             tech_library=tech_library
         )
-    elif target == 'mpl':  # mpl export
+    elif (target == 'mpl') or (target == 'bokeh'):  # mpl export
         params_mpl = tech_params.get('export',{}).get('mpl',{})
         if colormap is None:
             colormap = params_mpl.get('colormap', None) # tech_params['export']['mpl']['colormap']
@@ -149,47 +149,10 @@ def export(
             filename=filename,
             annotate_grid=annotate_grid
         )
-    elif target == 'bokeh':  # bokeh export
-        
-        if 'bokeh' in tech_params.get('export',{}):
-            key = 'bokeh'
-        else:
-            key = 'mpl'
-        params_bokeh = tech_params.get('export',{}).get(key,{})
-        if colormap is None:
-            colormap = params_bokeh.get("colormap", {"M1": "deepskyblue", "M2": "gold", "M3": "seagreen", "M4": "stategray", "M5": "purple"}) # params_bokeh.get('colormap', None) # tech_params['export'][key]['colormap']
-        if show is None:
-            show = params_bokeh.get('show', False)
-            # if 'show' in tech_params['export'][key]:
-            #     show = tech_params['export'][key]['show']
-            # else:
-            #     show = False
-        lorder = params_bokeh.get("order", None)
-        
-        if filename is not None:
-            if '.' in filename:
-                root = filename.rsplit('.', 1)[0]
-            else:
-                root = filename
-            if export_to_webserver:
-                filename = root + '.html'
-            else:
-                filename = root + '.png'
-            #print("filename: ",filename)
         else:
             raise Exception("output file name is not specified")
 
-        return bokeh.export(
-            db=db,
-            colormap=colormap,
-            xlim=xlim,
-            ylim=ylim,
-            show=show,
-            filename=filename,
-            annotate_grid=annotate_grid,
-            lorder=lorder,
-            export_to_webserver=export_to_webserver
-        )
+        
 
 def export_template(
         template:"laygo2.object.template.Template", 
@@ -220,25 +183,5 @@ def export_template(
         If true, internal shape parameters are exported. 
     """
     tech_params = getattr(tech, "tech_params", {})
-
-    # if tech is not None:
-    #     tech_params = tech.tech_params
-    # else:
-    #     tech_params = {}
-
-    if export_mask is None:
-        export_mask = tech_params.get('export_template',{}).get('export_mask', False)
-    # else:
-    #     export_mask = False
     
-    if export_prelvs_info is None:
-        export_prelvs_info = tech_params.get('export_template',{}).get('export_prelvs_info', True)
-    # else:
-    #     export_prelvs_info = True
-    
-    if export_internal_shapes is None:
-        export_internal_shapes = tech_params.get('export_template',{}).get('export_internal_shapes', False)
-    # else:
-    #     export_internal_shapes = False
-    
-    yaml.export_template(template=template, filename=filename, mode=mode, export_mask=export_mask, export_prelvs_info=export_prelvs_info, export_internal_shapes=export_internal_shapes)
+    yaml.export_template(template=template, filename=filename, mode=mode)
