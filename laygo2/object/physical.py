@@ -652,8 +652,20 @@ class PhysicalObject:
         )
 
     def _update_pointers(self):
-        """The internal function that updates the object's pointers
-        after a change in its physical coordinates."""
+        """Update all pointer coordinates based on the object's current xy coordinates.
+
+        This method calculates and updates the coordinates for all pointer positions
+        (left, right, top, bottom, corners, center) based on the object's current
+        xy coordinates. The pointers are stored in the pointers dictionary.
+
+        The method handles:
+        - Edge centers (left, right, top, bottom)
+        - Corners (bottom_left, bottom_right, top_left, top_right)
+        - Center point
+        - All coordinates are converted to integer type
+        """
+        
+        '''
         xy_left = np.diag(np.dot(np.array([[1, 0], [0.5, 0.5]]), self.bbox))
         xy_right = np.diag(np.dot(np.array([[0, 1], [0.5, 0.5]]), self.bbox))
         xy_bottom = np.diag(np.dot(np.array([[0.5, 0.5], [1, 0]]), self.bbox))
@@ -681,6 +693,27 @@ class PhysicalObject:
         self.top_left = self.pointers["top_left"]
         self.top_right = self.pointers["top_right"]
         self.center = self.pointers["center"]
+        '''
+
+        # Calculate coordinates for all pointer positions
+        xy_bottom_left = self.bbox[0]
+        xy_top_right = self.bbox[1]
+        xy_center = (xy_bottom_left + xy_top_right) // 2
+
+        # Update edge centers
+        self.pointers["left"].xy = np.array([xy_bottom_left[0], xy_center[1]], dtype=int)
+        self.pointers["right"].xy = np.array([xy_top_right[0], xy_center[1]], dtype=int)
+        self.pointers["bottom"].xy = np.array([xy_center[0], xy_bottom_left[1]], dtype=int)
+        self.pointers["top"].xy = np.array([xy_center[0], xy_top_right[1]], dtype=int)
+
+        # Update corners
+        self.pointers["bottom_left"].xy = xy_bottom_left.astype(int)
+        self.pointers["bottom_right"].xy = np.array([xy_top_right[0], xy_bottom_left[1]], dtype=int)
+        self.pointers["top_left"].xy = np.array([xy_bottom_left[0], xy_top_right[1]], dtype=int)
+        self.pointers["top_right"].xy = xy_top_right.astype(int)
+
+        # Update center
+        self.pointers["center"].xy = xy_center.astype(int)
 
 
 class IterablePhysicalObject(PhysicalObject):
