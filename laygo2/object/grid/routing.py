@@ -1310,6 +1310,9 @@ class RoutingGrid(Grid):
             t = 1
             p = 0
             mn_pivot = track[0]
+        
+        if isinstance(track[t], PhysicalObjectPointerAbsCoordinate):
+            track[t] = track[t].evaluate(self)
 
         mn_b = np.array([[0, 0], [0, 0]])  # 1.branch
         min_t, max_t = mn[0][t], mn[0][t]
