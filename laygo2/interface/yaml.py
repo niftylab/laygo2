@@ -81,6 +81,9 @@ def export_template(template, filename, mode='append'):
                     'netname': 'o'
     }}}}}
     """
+    if (template.__class__.__name__ == "Design"):  # if design is provided, convert it to template
+        template = template.export_to_template() #(export_prelvs_info=export_prelvs_info, export_internal_shapes=export_internal_shapes)
+
     libname = template.libname
     cellname = template.cellname
     pins = template.pins()

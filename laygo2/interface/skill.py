@@ -263,6 +263,13 @@ def _translate_obj(objname, obj, scale=0.001, master=None, offset=np.array([0, 0
                "; for the Via object %s \n" \
                % (layer, center, cut, color, tech.name, objname)
         return cmd
+    elif isinstance(obj, list):
+        cmd = ""
+        for _obj in obj:
+            cmd += _translate_obj(
+                _obj.name, _obj, scale=scale, master=_obj.master
+            )
+        return cmd
     else:
         return obj.translate_to_skill()  #
 
