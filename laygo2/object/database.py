@@ -1232,7 +1232,7 @@ class Design(BaseDatabase):
                             mn_ref = mn_ref + [element, 0]  # offset
             return inst
 
-    def route(self, grid=None, mn=None, track=None, direction=None, via_tag=None):
+    def route(self, grid=None, mn=None, track=None, direction=None, via_tag=None, netname=None):
         """
         Create wire object(s) for routing at abstract coordinate **mn**.
 
@@ -1252,6 +1252,8 @@ class Design(BaseDatabase):
         via_tag : list(Boolean), optional.
             The list containing switches deciding whether to place via at
             the edges.
+        netname: str
+            Name of the net being routed. Used for net connectivity in laygo3.
 
         Returns
         -------
@@ -1469,7 +1471,7 @@ class Design(BaseDatabase):
             The list containing switches deciding whether to place via at
             the edges of individual stubs.
         netname: str
-            Name of the net being routed. Used for net connectivity.
+            Name of the net being routed. Used for net connectivity in laygo3.
 
         Returns
         -------
