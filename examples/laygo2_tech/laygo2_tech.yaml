@@ -1,4 +1,8 @@
 # Technology parameters for the advanced example technology.
+export_template:
+  target: json
+import_template:
+  target: json
 templates: # Primitive template parameters
   mos:
     common: &mos_common # mosfet template common parameters

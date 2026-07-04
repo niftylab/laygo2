@@ -1,4 +1,8 @@
 # Technology parameters for the advanced example technology.
+export_template:
+  target: json
+import_template:
+  target: json
 export:
     target: mpl
     mpl: &laygo2_tech_mpl
